@@ -1,0 +1,204 @@
+{
+  "expo": {
+    "name": "Raça Fight",
+    "slug": "academia-plus",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "academiaplus",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "icon": "./recursos/icone.png",
+    "ios": {
+      "bundleIdentifier": "com.pixelmartins.academiaplus",
+      "buildNumber": "1",
+      "supportsTablet": false,
+      "usesAppleSignIn": true,
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "NSCameraUsageDescription": "A Raça Fight usa a câmera só quando você toca para tirar a sua foto de perfil.",
+        "NSPhotoLibraryUsageDescription": "A Raça Fight abre as suas fotos só quando você escolhe uma imagem para o perfil.",
+        "CFBundleDevelopmentRegion": "pt-BR",
+        "CFBundleAllowMixedLocalizations": true
+      },
+      "privacyManifests": {
+        "NSPrivacyTracking": false,
+        "NSPrivacyTrackingDomains": [],
+        "NSPrivacyAccessedAPITypes": [
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "CA92.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "C617.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategorySystemBootTime",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "35F9.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryDiskSpace",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "E174.1"
+            ]
+          }
+        ],
+        "NSPrivacyCollectedDataTypes": [
+          {
+            "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeName",
+            "NSPrivacyCollectedDataTypeLinked": true,
+            "NSPrivacyCollectedDataTypeTracking": false,
+            "NSPrivacyCollectedDataTypePurposes": [
+              "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+            ]
+          },
+          {
+            "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeEmailAddress",
+            "NSPrivacyCollectedDataTypeLinked": true,
+            "NSPrivacyCollectedDataTypeTracking": false,
+            "NSPrivacyCollectedDataTypePurposes": [
+              "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+            ]
+          },
+          {
+            "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypePhoneNumber",
+            "NSPrivacyCollectedDataTypeLinked": true,
+            "NSPrivacyCollectedDataTypeTracking": false,
+            "NSPrivacyCollectedDataTypePurposes": [
+              "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+            ]
+          },
+          {
+            "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeHealth",
+            "NSPrivacyCollectedDataTypeLinked": true,
+            "NSPrivacyCollectedDataTypeTracking": false,
+            "NSPrivacyCollectedDataTypePurposes": [
+              "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+            ]
+          },
+          {
+            "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeFitness",
+            "NSPrivacyCollectedDataTypeLinked": true,
+            "NSPrivacyCollectedDataTypeTracking": false,
+            "NSPrivacyCollectedDataTypePurposes": [
+              "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+            ]
+          },
+          {
+            "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypePhotosorVideos",
+            "NSPrivacyCollectedDataTypeLinked": true,
+            "NSPrivacyCollectedDataTypeTracking": false,
+            "NSPrivacyCollectedDataTypePurposes": [
+              "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+            ]
+          },
+          {
+            "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeOtherUserContent",
+            "NSPrivacyCollectedDataTypeLinked": true,
+            "NSPrivacyCollectedDataTypeTracking": false,
+            "NSPrivacyCollectedDataTypePurposes": [
+              "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+            ]
+          },
+          {
+            "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeUserID",
+            "NSPrivacyCollectedDataTypeLinked": true,
+            "NSPrivacyCollectedDataTypeTracking": false,
+            "NSPrivacyCollectedDataTypePurposes": [
+              "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+            ]
+          }
+        ]
+      }
+    },
+    "android": {
+      "package": "com.pixelmartins.academiaplus",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./recursos/icone-adaptativo.png",
+        "backgroundColor": "#1C1C1C"
+      },
+      "edgeToEdgeEnabled": true,
+      "allowBackup": false
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "root": "./navegacao"
+        }
+      ],
+      "expo-secure-store",
+      "expo-sqlite",
+      "expo-apple-authentication",
+      [
+        "expo-notifications",
+        {
+          "icon": "./recursos/icone-notificacao.png",
+          "color": "#C42024",
+          "enableBackgroundRemoteNotifications": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./recursos/fontes/Figtree-Regular.ttf",
+            "./recursos/fontes/Figtree-Medium.ttf",
+            "./recursos/fontes/Figtree-SemiBold.ttf",
+            "./recursos/fontes/Figtree-Bold.ttf",
+            "./recursos/fontes/Archivo-Bold.ttf",
+            "./recursos/fontes/Archivo-ExtraBold.ttf"
+          ]
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#1C1C1C",
+          "image": "./recursos/abertura-logo.png",
+          "imageWidth": 288,
+          "resizeMode": "contain",
+          "dark": {
+            "backgroundColor": "#1C1C1C",
+            "image": "./recursos/abertura-logo.png"
+          }
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      "expo-asset"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {}
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./recursos/icone.png"
+    }
+  }
+}

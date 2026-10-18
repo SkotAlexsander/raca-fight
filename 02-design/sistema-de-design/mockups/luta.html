@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raça Fight — Telas de luta</title>
+<meta name="description" content="As telas de luta da Raça Fight (P12, agente AL): Início com a próxima aula como herói, Horários, Treinos com presença e graduação, Academia, o Cronômetro de rounds em tela cheia e o Hoje do professor que leva à chamada. Vermelho, preto e branco, vidro sobre foto, claro e escuro.">
+<link rel="stylesheet" href="sistema.css">
+<link rel="stylesheet" href="novas.css">
+<link rel="stylesheet" href="luta.css">
+<script>
+  // Mesmo começo do index.html e do novas.html: tema salvo, aparelho (?aparelho=), movimento, transparência e fonte, antes de pintar.
+  try { var t = localStorage.getItem('academia-plus-tema'); if (t === 'claro' || t === 'escuro') document.documentElement.setAttribute('data-tema', t); } catch (e) {}
+  try {
+    var ids = ['iphone-se', 'iphone-13-mini', 'iphone-16', 'iphone-16-pro-max', 'android'];
+    var a = new URLSearchParams(location.search).get('aparelho');
+    if (ids.indexOf(a) < 0) { try { a = localStorage.getItem('academia-plus-aparelho'); } catch (e) {} }
+    if (ids.indexOf(a) < 0) a = 'android';
+    document.documentElement.setAttribute('data-aparelho', a);
+    document.documentElement.setAttribute('data-plataforma', a === 'android' ? 'android' : 'ios');
+  } catch (e) {}
+  try {
+    var m = null; try { m = localStorage.getItem('academia-plus-movimento'); } catch (e) {}
+    if (m !== 'normal' && m !== 'reduzido') m = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'reduzido' : 'normal';
+    document.documentElement.setAttribute('data-movimento', m);
+  } catch (e) {}
+  try {
+    var tr = null; try { tr = localStorage.getItem('academia-plus-transparencia'); } catch (e) {}
+    if (tr !== 'normal' && tr !== 'reduzida') tr = matchMedia('(prefers-reduced-transparency: reduce)').matches ? 'reduzida' : 'normal';
+    document.documentElement.setAttribute('data-transparencia', tr);
+  } catch (e) {}
+  try { if (localStorage.getItem('academia-plus-fonte') === '160') document.documentElement.style.fontSize = '160%'; } catch (e) {}
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!-- SPRITE:INICIO (montar-luta.mjs: ícones gerais de 02-design/icones/sprite.svg sem os de musculação + 02-design/icones/luta/sprite-luta.svg + o logo provisório) -->
+<symbol id="i-treinos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a2.5 2.5 0 0 1 2.5 2.5v12.5a2.5 2.5 0 0 1 -2.5 2.5h-10a2.5 2.5 0 0 1 -2.5 -2.5v-12.5a2.5 2.5 0 0 1 2.5 -2.5z"/><path d="M10 2.25h4a1.5 1.5 0 0 1 1.5 1.5v0.75a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-0.75a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M8.5 11h.01"/><path d="M12 11h3.5"/><path d="M8.5 16h.01"/><path d="M12 16h3.5"/></symbol>
+<symbol id="i-treinos-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2.88h10a3.62 3.62 0 0 1 3.62 3.62v12.5a3.62 3.62 0 0 1 -3.62 3.62h-10a3.62 3.62 0 0 1 -3.62 -3.62v-12.5a3.62 3.62 0 0 1 3.62 -3.62zM9.4 9.6h5.2a1.4 1.4 0 0 1 1.4 1.4v0a1.4 1.4 0 0 1 -1.4 1.4h-5.2a1.4 1.4 0 0 1 -1.4 -1.4v-0a1.4 1.4 0 0 1 1.4 -1.4zM9.4 15h5.2a1.4 1.4 0 0 1 1.4 1.4v0a1.4 1.4 0 0 1 -1.4 1.4h-5.2a1.4 1.4 0 0 1 -1.4 -1.4v-0a1.4 1.4 0 0 1 1.4 -1.4z" fill="currentColor" stroke="none" fill-rule="evenodd"/><path d="M10 2.25h4a1.5 1.5 0 0 1 1.5 1.5v0.75a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-0.75a1.5 1.5 0 0 1 1.5 -1.5z" fill="currentColor"/></symbol>
+<symbol id="i-perfil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></symbol>
+<symbol id="i-perfil-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z" fill="currentColor"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z" fill="currentColor"/></symbol>
+<symbol id="i-alunos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8" r="3.75"/><path d="M2.75 21a6.75 6.75 0 0 1 13.5 0"/><path d="M15.5 4.5a3.75 3.75 0 0 1 0 7"/><path d="M18.5 15a6.75 6.75 0 0 1 2.75 6"/></symbol>
+<symbol id="i-alunos-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.75 8a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0z" fill="currentColor"/><path d="M2.75 21a6.75 6.75 0 0 1 13.5 0z" fill="currentColor"/><path d="M15.5 4.5a3.75 3.75 0 0 1 0 7"/><path d="M18.5 15a6.75 6.75 0 0 1 2.75 6"/></symbol>
+<symbol id="i-academia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 5 3.5h14l2 5"/><path d="M3 8.5a3 3 0 0 0 6 0a3 3 0 0 0 6 0a3 3 0 0 0 6 0"/><path d="M5 12.5V21h14v-8.5"/><path d="M10 21v-4h4v4"/></symbol>
+<symbol id="i-academia-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 5 3.5h14l2 5a3 3 0 0 1 -6 0a3 3 0 0 1 -6 0a3 3 0 0 1 -6 0z" fill="currentColor"/><path d="M5 13.5V21h4.5v-3.5a1.5 1.5 0 0 1 1.5 -1.5h2a1.5 1.5 0 0 1 1.5 1.5V21H19v-7.5z" fill="currentColor"/></symbol>
+<symbol id="i-marcar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></symbol>
+<symbol id="i-mais" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+<symbol id="i-menos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></symbol>
+<symbol id="i-cronometro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15.75 7A7.5 7.5 0 1 1 8.25 7"/><path d="M10 3h4"/><path d="M12 3v3"/><path d="M12 13.5l3-3"/></symbol>
+<symbol id="i-pausar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 5v14"/><path d="M15.5 5v14"/></symbol>
+<symbol id="i-pausar-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.75 3.5h1.5a1.75 1.75 0 0 1 1.75 1.75v13.5a1.75 1.75 0 0 1 -1.75 1.75h-1.5a1.75 1.75 0 0 1 -1.75 -1.75v-13.5a1.75 1.75 0 0 1 1.75 -1.75zM15.75 3.5h1.5a1.75 1.75 0 0 1 1.75 1.75v13.5a1.75 1.75 0 0 1 -1.75 1.75h-1.5a1.75 1.75 0 0 1 -1.75 -1.75v-13.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-comecar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 7 5.2z"/></symbol>
+<symbol id="i-comecar-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 7 5.2z" fill="currentColor"/></symbol>
+<symbol id="i-pular" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.2v11.6a1 1 0 0 0 1.53.85l9.2-5.8a1 1 0 0 0 0-1.7l-9.2-5.8A1 1 0 0 0 4.5 6.2z"/><path d="M19.5 5v14"/></symbol>
+<symbol id="i-buscar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.75"/><path d="M15.5 15.5 20.5 20.5"/></symbol>
+<symbol id="i-filtro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6h17"/><path d="M6.5 12h11"/><path d="M9.5 18h5"/></symbol>
+<symbol id="i-voltar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+<symbol id="i-avancar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.25" fill="currentColor"/><circle cx="12" cy="12" r="1.25" fill="currentColor"/><circle cx="19" cy="12" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></symbol>
+<symbol id="i-vibrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4.5h4a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-12a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M2.5 8.5l2 1.75-2 1.75 2 1.75-2 1.75"/><path d="M21.5 8.5l-2 1.75 2 1.75-2 1.75 2 1.75"/></symbol>
+<symbol id="i-sino" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5V10a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 21h4"/></symbol>
+<symbol id="i-sino-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5V10a6 6 0 0 1 12 0v5.5l1.5 2h-15z" fill="currentColor"/><path d="M10 21h4"/></symbol>
+<symbol id="i-prato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3v5.5a3 3 0 0 0 6 0V3"/><path d="M7.5 11.5V21"/><path d="M19.5 14.5V3a4.5 4.5 0 0 0-4.5 4.5v5.5a1.5 1.5 0 0 0 1.5 1.5h3zm0 0V21"/></symbol>
+<symbol id="i-grafico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 20V14"/><path d="M12 20V4.5"/><path d="M18.5 20V9.5"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9a2 2 0 0 1 2-2h2.5l1.6-2.5h5.8L16.5 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13.25" r="3"/></symbol>
+<symbol id="i-cadeado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11h11a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></symbol>
+<symbol id="i-email" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z"/><path d="M3.5 7.5 12 13l8.5-5.5"/></symbol>
+<symbol id="i-apple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M16.37 12.6c-.02-2.2 1.8-3.27 1.88-3.32-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.17-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.3-3.5zM14.2 6.13c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.64-1.05 1.67-.92 2.66.97.08 1.96-.49 2.56-1.21z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-google" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M18.2 6.6A8.25 8.25 0 1 0 20.25 12H12.5"/></symbol>
+<symbol id="i-calendario" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 5h13a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-13a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z"/><path d="M3.5 10h17"/><path d="M8 2.75v4"/><path d="M16 2.75v4"/></symbol>
+<symbol id="i-baixo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></symbol>
+<symbol id="i-subir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></symbol>
+<symbol id="i-seta-direita" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="M13 5.5l6.5 6.5-6.5 6.5"/></symbol>
+<symbol id="i-lista" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11.5"/><path d="M9 12h11.5"/><path d="M9 18h11.5"/><circle cx="4.25" cy="6" r="1.25" fill="currentColor"/><circle cx="4.25" cy="12" r="1.25" fill="currentColor"/><circle cx="4.25" cy="18" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-conversa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2.5 21.5z"/></symbol>
+<symbol id="i-desfazer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+<symbol id="i-trocar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20V4"/><path d="M3 8l4-4 4 4"/><path d="M17 4v16"/><path d="M13 16l4 4 4-4"/></symbol>
+<symbol id="i-alerta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10.27 4.5a2 2 0 0 1 3.46 0l7.6 13.25A2 2 0 0 1 19.6 20.75H4.4a2 2 0 0 1-1.73-3z"/><path d="M12 9.5v4"/><circle cx="12" cy="17" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-alca" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1.25" fill="currentColor"/><circle cx="15" cy="6" r="1.25" fill="currentColor"/><circle cx="9" cy="12" r="1.25" fill="currentColor"/><circle cx="15" cy="12" r="1.25" fill="currentColor"/><circle cx="9" cy="18" r="1.25" fill="currentColor"/><circle cx="15" cy="18" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-nuvem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></symbol>
+<symbol id="i-olho" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-escudo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></symbol>
+<symbol id="i-convite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h15a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2h-15a2 2 0 0 0-2 2z"/><path d="M13 5v2"/><path d="M13 11v2"/><path d="M13 17v2"/></symbol>
+<symbol id="i-relogio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.25 2"/></symbol>
+<symbol id="i-estrela" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.75l2.78 5.64 6.22.9-4.5 4.39 1.06 6.2L12 16.95l-5.56 2.93 1.06-6.2L3 9.29l6.22-.9z"/></symbol>
+<symbol id="i-corrida" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="4.5" r="2" fill="currentColor"/><path d="M4 17l5 1 .75-1.5"/><path d="M15 21v-4l-4-3 1-6"/><path d="M7 12V9l5-1 3 3 3 1"/></symbol>
+<symbol id="i-alongamento" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="5.5" r="2" fill="currentColor"/><path d="M6.5 21l3.5-5"/><path d="M5 11l7-2"/><path d="M16 21l-4-7V9l7-4"/></symbol>
+<symbol id="i-balanca" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3.5h9a4 4 0 0 1 4 4v9a4 4 0 0 1 -4 4h-9a4 4 0 0 1 -4 -4v-9a4 4 0 0 1 4 -4z"/><path d="M12 8a6 6 0 0 1 4.3 1.8l-2.6 2.6a2.4 2.4 0 0 0-3.4 0L7.7 9.8A6 6 0 0 1 12 8z"/></symbol>
+<symbol id="i-medida" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1z"/><path d="M7.5 12v3"/><path d="M12 12v3"/><path d="M16.5 12v3"/><path d="M3 3.5v4"/><path d="M3 5.5h18"/><path d="M21 3.5v4"/></symbol>
+<symbol id="i-frequencia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5a5.25 5.25 0 0 1 9.1-3.6.55.55 0 0 0 .8 0A5.25 5.25 0 0 1 21.5 9.5c0 2.2-1.45 3.85-2.9 5.3l-5.2 5.1a2 2 0 0 1-2.8 0l-5.2-5.1C3.95 13.35 2.5 11.7 2.5 9.5"/><path d="M6 12.5h3l1.5-2.5 3 5 1.5-2.5h3"/></symbol>
+<symbol id="i-sequencia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a7 7 0 0 1-14 0 5 5 0 0 1 1-3 2.5 2.5 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4z"/></symbol>
+<symbol id="i-sequencia-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a7 7 0 0 1-14 0 5 5 0 0 1 1-3 2.5 2.5 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4z" fill="currentColor"/></symbol>
+<symbol id="i-trofeu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6.5H4.5v1.5a3 3 0 0 0 3 3"/><path d="M17 6.5h2.5v1.5a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/><path d="M9.5 18h5"/></symbol>
+<symbol id="i-garrafa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.75h4"/><path d="M10.25 2.75v2.5c0 1.2-.6 2-1.5 3.2A6 6 0 0 0 7.5 12v7.5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2V12a6 6 0 0 0-1.25-3.55c-.9-1.2-1.5-2-1.5-3.2v-2.5"/><path d="M7.5 14.5c1.5-1 3-1 4.5 0s3 1 4.5 0"/></symbol>
+<symbol id="i-personal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6.5v3.5"/><path d="M21 6.5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5.7A6.75 6.75 0 1 1 9 6.5z"/></symbol>
+<symbol id="i-grafico-linha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 3.5V19a1.5 1.5 0 0 0 1.5 1.5h15.5"/><path d="M7.5 15l4-4.5 3 3 5-6"/></symbol>
+<symbol id="i-inicio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-7.5a1 1 0 0 0 -1 -1h-4a1 1 0 0 0 -1 1V21"/><path d="M3 10a2 2 0 0 1 .71 -1.53l7 -6a2 2 0 0 1 2.58 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1 -2 2H5a2 2 0 0 1 -2 -2z"/></symbol>
+<symbol id="i-inicio-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10a2 2 0 0 1 .71 -1.53l7 -6a2 2 0 0 1 2.58 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1 -2 2H5a2 2 0 0 1 -2 -2zM10 14v6h4v-6z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-horarios" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0 -2 -2H5a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><path d="M10.5 16a5.5 5.5 0 1 0 11 0a5.5 5.5 0 1 0 -11 0"/></symbol>
+<symbol id="i-horarios-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0 -2 -2H5a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M9.4 16a6.6 6.6 0 1 0 13.2 0a6.6 6.6 0 1 0 -13.2 0zM15.1 13.2v3.6l2.6 2 .9 -1.2 -2.1 -1.6v-2.8z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-hoje" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-hoje-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M1.9 12a10.1 10.1 0 1 0 20.2 0a10.1 10.1 0 1 0 -20.2 0zM10.9 6.5v6.1l3.6 2.4 1.2 -1.9 -2.6 -1.7V6.5z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-check-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2H5a2 2 0 0 1 -2 -2V6a2 2 0 0 1 2 -2z"/><path d="M3 10h18"/><path d="m9 16 2 2 4 -4"/></symbol>
+<symbol id="i-modalidade" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M16.75 4a1.25 1.25 0 1 0 2.5 0a1.25 1.25 0 1 0 -2.5 0"/><path d="M3 9l4.5 1l3 2.5"/><path d="M13 21v-8l3 -5.5"/><path d="M8 4.5l4 2l4 1l4 3.5l-2 3.5"/></symbol>
+<symbol id="i-luva" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h4.5a6 6 0 0 1 6 6v3.5a4.5 4.5 0 0 1 -4.5 4.5H8.5a3.5 3.5 0 0 1 -3.5 -3.5V6.5a3.5 3.5 0 0 1 3.5 -3.5z"/><path d="M5 11.5h3.5a2 2 0 0 0 2 -2V8"/><path d="M7.5 17v2.5a1.5 1.5 0 0 0 1.5 1.5h6a1.5 1.5 0 0 0 1.5 -1.5V17"/></symbol>
+<symbol id="i-faixa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h7"/><path d="M14.5 8h7"/><path d="M2.5 12h7"/><path d="M14.5 12h7"/><path d="M11 6h2a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1 -1.5 1.5h-2a1.5 1.5 0 0 1 -1.5 -1.5v-5A1.5 1.5 0 0 1 11 6z"/><path d="M10.5 14l-2.5 7"/><path d="M13.5 14l2.5 7"/></symbol>
+<symbol id="i-faixa-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h7"/><path d="M14.5 8h7"/><path d="M2.5 12h7"/><path d="M14.5 12h7"/><path d="M10.5 14l-2.5 7"/><path d="M13.5 14l2.5 7"/><path d="M11 4.9h2a2.6 2.6 0 0 1 2.6 2.6v5a2.6 2.6 0 0 1 -2.6 2.6h-2a2.6 2.6 0 0 1 -2.6 -2.6v-5A2.6 2.6 0 0 1 11 4.9z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-tatame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7.5h15l-3 11H3z"/><path d="M11 7.5l-3 11"/><path d="M16 7.5l-3 11"/><path d="M4.5 13h15"/></symbol>
+<symbol id="i-saco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5v2"/><path d="M8.5 7.5 12 4.5l3.5 3"/><path d="M11 7.5h2a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-2a4 4 0 0 1 -4 -4v-6a4 4 0 0 1 4 -4z"/><path d="M7 11.5h10"/><path d="M7 17.5h10"/></symbol>
+<symbol id="i-cronometro-round" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M13.56 6.16A7.5 7.5 0 0 1 19.13 15.82"/><path d="M17.57 18.52A7.5 7.5 0 0 1 6.43 18.52"/><path d="M4.87 15.82A7.5 7.5 0 0 1 10.44 6.16"/><path d="M10 2.5h4"/><path d="M12 2.5v3.5"/><path d="M12 13.5l2.5 -2.5"/></symbol>
+<symbol id="i-gongo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 21V4h15v17"/><path d="M3 21h3"/><path d="M18 21h3"/><path d="M9.5 4l1 3.5"/><path d="M14.5 4l-1 3.5"/><path d="M7 13a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"/><path d="M12 13h.01"/></symbol>
+<symbol id="i-kimono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3.5 3.5 6.5l1.5 5.5 2.5 -1v10.5h9V11l2.5 1 1.5 -5.5 -5 -3"/><path d="M8.5 3.5 12 9l3.5 -5.5"/><path d="M12 9l-3.5 6"/><path d="M7.5 15h9"/></symbol>
+<symbol id="i-caneleira" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5h8v9.5a5 5 0 0 1 -1.6 3.7L13.5 17.5h-3l-.9 -.8A5 5 0 0 1 8 13z"/><path d="M8 7.5h8"/><path d="M8 11.5h8"/><path d="M10.5 17.5v3h3v-3"/></symbol>
+<symbol id="s-simbolo" viewBox="-54 -24 1078 304"><path d="M30 0H182A40 40 0 0 1 222 40V44A40 40 0 0 1 182 84H0V52H182A8 8 0 0 0 190 44V40A8 8 0 0 0 182 32H14ZM0 52H32V140H0ZM120 84H162L234 140H192ZM256 140L380 0H416L492 140ZM322 108H440L394 46ZM738 0H566A46 46 0 0 0 520 46V94A46 46 0 0 0 566 140H738V108H566A14 14 0 0 1 552 94V46A14 14 0 0 1 566 32H738ZM754 140L878 0H914L990 140ZM820 108H938L892 46ZM622 150H642L636 190H616Z"/><path fill-rule="evenodd" d="M-30 168H1000V256H58ZM-10.69 176H992V248H61.31Z"/><path d="M108.93 230V189.91H148.39V198.71H120.8V206.8H145.34V215.6H120.8V230ZM161.52 230V189.91H173.39V230ZM211.9 230.7Q199.74 230.7 193.64 225.57Q187.55 220.44 187.55 209.97Q187.55 203.11 190.72 198.49Q193.89 193.88 199.89 191.54Q205.89 189.21 214.31 189.21Q219.52 189.21 223.97 190.15Q228.42 191.08 231.76 192.95Q235.1 194.82 236.94 197.65Q238.79 200.48 238.79 204.27H227.25Q227.25 202.65 226.24 201.44Q225.24 200.24 223.49 199.49Q221.74 198.74 219.51 198.37Q217.29 198.01 214.82 198.01Q211.31 198.01 208.51 198.71Q205.71 199.4 203.74 200.82Q201.78 202.24 200.75 204.35Q199.72 206.45 199.72 209.24V210.64Q199.72 214.59 201.37 217.07Q203.02 219.56 206.17 220.73Q209.32 221.9 213.84 221.9Q217.95 221.9 220.96 221.16Q223.96 220.42 225.59 218.99Q227.21 217.55 227.21 215.58V215.24H213.19V207.61H238.85V230H231.91L230.79 225.2Q228.54 227.07 225.64 228.31Q222.75 229.54 219.31 230.12Q215.86 230.7 211.9 230.7ZM254.27 230V189.91H266.15V204.83H290.21V189.91H302.08V230H290.21V214.39H266.15V230ZM331.81 230V199.47H314.44V189.91H361.05V199.47H343.68V230Z"/><path fill-rule="evenodd" d="M832 178H966V246H832ZM838 184V240H960V184Z"/><path style="fill:var(--logo-ponta, currentColor)" d="M838 184H960V240H838Z"/></symbol>
+<!-- SPRITE:FIM -->
+  <symbol id="s-sinal" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></symbol>
+  <symbol id="s-wifi" viewBox="0 0 16 12"><path d="M8 11.6l2.3-2.6a3.3 3.3 0 0 0-4.6 0z"/><path d="M3.3 6.4l1.5 1.7a4.8 4.8 0 0 1 6.4 0l1.5-1.7a7.1 7.1 0 0 0-9.4 0z"/><path d="M.6 3.5l1.5 1.7a9 9 0 0 1 11.8 0l1.5-1.7a11.3 11.3 0 0 0-14.8 0z"/></symbol>
+  <symbol id="s-bateria" viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="22" height="11" rx="3" fill="none" stroke="currentColor" opacity="0.45"/><rect x="2" y="2" width="16" height="8" rx="1.5"/><path d="M24 4v4a2 2 0 0 0 0-4z" opacity="0.45"/></symbol>
+  <!-- a faixa de jiu-jitsu (branca, 2 graus) e o kruang de muay thai (amarelo): desenho de dado, até 3 cores (R16.2) -->
+  <symbol id="f-faixa" viewBox="0 0 88 24"><rect x="0.5" y="0.5" width="87" height="23" rx="3" style="fill:var(--l-faixa-cor, #F5F5F5);stroke:var(--l-faixa-borda, #9A9A9A);stroke-width:1"/><rect x="58" y="1" width="22" height="22" style="fill:#1C1C1C"/><rect x="62" y="1" width="3" height="22" style="fill:#FFFFFF"/><rect x="68" y="1" width="3" height="22" style="fill:#FFFFFF"/></symbol>
+</svg>
+
+<main class="pagina">
+
+  <header class="pagina__topo">
+    <div>
+      <nav class="paginas-nav" aria-label="Páginas do mockup"><span class="paginas-nav__marca" aria-hidden="true">Raça Fight</span><a href="luta.html" aria-current="page">Telas de luta</a><a href="entrada.html">Abertura e entrada</a><a href="index.html">Sistema (histórico)</a><a href="novas.html">Musculação (histórico)</a></nav>
+      <h1 class="so-leitor">Raça Fight — telas de luta</h1>
+      <p class="p-nota-topo corpo-pequeno">P12, agente AL. O mapa de telas do AJ (<code>01-especificacao/luta/06-MAPA-DE-TELAS.md</code>) na marca da Raça Fight: tokens 2.0.0 (vermelho <code>#C42024</code>, preto e branco), as fotos da academia (sem rosto de criança) e os ícones de luta. Nomes de pessoas são fictícios. <span class="l-provisorio">Logo provisório</span></p>
+    </div>
+    <div class="seletores">
+      <div class="seletor-tema" role="group" aria-label="Tema">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-tema-botao="claro">Claro</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-tema-botao="escuro">Escuro</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-tema-botao="sistema">Sistema</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Aparelho da moldura">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="iphone-se">iPhone SE</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="iphone-16">iPhone 16</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="iphone-16-pro-max">iPhone 16 Pro Max</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="android">Android 390</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Movimento">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-movimento-botao="normal">Movimento</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-movimento-botao="reduzido">Reduzido</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Transparência">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-transparencia-botao="normal">Vidro</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-transparencia-botao="reduzida">Reduzir transparência</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Tamanho da fonte do sistema">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-fonte-botao="100">Fonte 100 %</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-fonte-botao="160">160 %</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="galeria" id="telas">
+    <div class="galeria__titulo">
+      <h2 class="titulo-2">7 telas de luta · <span id="rotulo-aparelho">Android 390 · 390 × 844</span></h2>
+      <p class="texto-secundario corpo-pequeno">Quinta, 15 de outubro, 19:41. Lucas treina Muay Thai e Jiu-Jitsu; o professor Diego dá a aula de Muay Thai das 20h. As telas respondem: toque em "Estou na aula", troque o dia em Horários, marque e desmarque na chamada, pause e retome o cronômetro.</p>
+    </div>
+
+    <div class="telas">
+
+      <!-- ===================== 1. INÍCIO DO ALUNO ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: Início do aluno">
+          <div class="celular__tela p-tela">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">19:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-rolagem">
+              <header class="p-saudacao">
+                <span class="p-avatar" aria-hidden="true">L</span>
+                <div class="p-saudacao__texto">
+                  <p class="p-sobretitulo">Quinta, 15 de out.</p>
+                  <p class="p-titulo-grande">Olá, Lucas</p>
+                </div>
+                <a class="p-sino" href="#" aria-label="Avisos: 1 novo"><svg class="p-icone"><use href="#i-sino"/></svg></a>
+              </header>
+
+              <article class="p-capa l-heroi" aria-label="Próxima aula: Muay Thai, hoje às 20:00" data-presenca="pendente">
+                <img src="../../imagens/raca-fight/modalidade-muay-thai-cartao@1x.webp" width="358" height="200" alt="Aluno de boné chuta o saco de pancada na academia">
+                <span class="p-capa__etiqueta p-vidro vidro--escuro"><svg class="p-icone p-icone--pequeno"><use href="#i-hoje"/></svg>Próxima aula · hoje</span>
+                <div class="p-capa__painel p-vidro vidro--escuro">
+                  <div class="l-heroi__linha">
+                    <h2 class="p-titulo-grande">Muay Thai</h2>
+                    <span class="l-heroi__hora">20:00</span>
+                  </div>
+                  <p class="p-texto-2">Adulto · todos os níveis · Prof. Diego</p>
+                  <button class="p-botao p-botao--vivo p-botao--grande p-botao--largo" data-checkin><svg class="p-icone"><use href="#i-check-in"/></svg>Estou na aula</button>
+                  <div class="l-feito" role="status"><span><svg class="p-icone"><use href="#i-marcar"/></svg>Presença marcada</span><button data-desfazer-checkin>Desfazer</button></div>
+                  <p class="l-estado" data-estado>O check-in abriu às 19:30 e fecha às 20:30.</p>
+                </div>
+              </article>
+
+              <section class="p-aviso" aria-label="Aviso da academia" data-aviso>
+                <p class="p-aviso__de"><svg class="p-icone p-icone--pequeno"><use href="#i-academia"/></svg>Raça Fight · há 2 h</p>
+                <button class="p-aviso__fechar" aria-label="Dispensar aviso" data-dispensar><svg class="p-icone"><use href="#i-fechar"/></svg></button>
+                <p class="p-aviso__texto">Sexta tem OPEN das 20h às 22h: venha treinar o que quiser.</p>
+              </section>
+
+              <section class="p-semana" aria-labelledby="l-semana-t">
+                <div class="p-semana__topo">
+                  <div>
+                    <h3 class="p-titulo-secao" id="l-semana-t">Sua semana</h3>
+                    <p class="p-texto-2">Aulas em que você esteve</p>
+                  </div>
+                  <p class="p-semana__conta" role="img" aria-label="3 aulas nesta semana"><span class="p-numero-hero">3</span><span class="p-texto-2">aulas</span></p>
+                </div>
+                <ol class="p-dias" aria-label="Dias da semana">
+                  <li class="p-dia p-dia--feito" aria-label="Segunda, Jiu-Jitsu"><span class="p-dia__letra" aria-hidden="true">S</span><span class="p-dia__bola"><svg class="p-icone p-icone--pequeno"><use href="#i-marcar"/></svg></span></li>
+                  <li class="p-dia p-dia--feito" aria-label="Terça, Muay Thai"><span class="p-dia__letra" aria-hidden="true">T</span><span class="p-dia__bola"><svg class="p-icone p-icone--pequeno"><use href="#i-marcar"/></svg></span></li>
+                  <li class="p-dia p-dia--feito" aria-label="Quarta, Jiu-Jitsu"><span class="p-dia__letra" aria-hidden="true">Q</span><span class="p-dia__bola"><svg class="p-icone p-icone--pequeno"><use href="#i-marcar"/></svg></span></li>
+                  <li class="p-dia p-dia--hoje" aria-label="Quinta, hoje"><span class="p-dia__letra" aria-hidden="true">Q</span><span class="p-dia__bola">15</span></li>
+                  <li class="p-dia" aria-label="Sexta, OPEN"><span class="p-dia__letra" aria-hidden="true">S</span><span class="p-dia__bola"></span></li>
+                  <li class="p-dia" aria-label="Sábado"><span class="p-dia__letra" aria-hidden="true">S</span><span class="p-dia__bola"></span></li>
+                  <li class="p-dia p-dia--descanso" aria-label="Domingo, sem aula"><span class="p-dia__letra" aria-hidden="true">D</span><span class="p-dia__bola"></span></li>
+                </ol>
+              </section>
+
+              <section class="p-cartao l-mods" aria-labelledby="l-faixas-t">
+                <h3 class="p-titulo-secao" id="l-faixas-t">Suas faixas</h3>
+                <div class="l-graduacao"><svg class="l-faixa" role="img" aria-label="Faixa branca com 2 graus"><use href="#f-faixa"/></svg><p><b>Jiu-Jitsu</b><span class="p-texto-2" style="display:block">Branca, 2º grau · 14 aulas desde o último grau</span></p></div>
+                <div class="l-graduacao" style="--l-faixa-cor:#F2C230"><svg class="l-faixa" role="img" aria-label="Kruang amarelo, sem graus"><use href="#f-faixa"/></svg><p><b>Muay Thai</b><span class="p-texto-2" style="display:block">Kruang amarelo · régua a confirmar com a academia</span></p></div>
+              </section>
+
+              <nav aria-label="Atalhos" class="p-atalhos">
+                <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-cronometro-round"/></svg></span>Cronômetro</a>
+                <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-luva"/></svg></span>Técnicas</a>
+                <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-trofeu"/></svg></span>Eventos</a>
+                <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-convite"/></svg></span>Indicar um amigo</a>
+              </nav>
+            </div>
+            <div class="celular__base"><nav class="barra-abas" aria-label="Navegação do aluno (luta)"><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio-cheio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-horarios"/></svg></span><span class="aba__rotulo">Horários</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-faixa"/></svg></span><span class="aba__rotulo">Treinos</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-academia"/></svg></span><span class="aba__rotulo">Academia</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav></div>
+            <div class="celular__gesto p-gesto" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">1 · Início do aluno</p>
+        <p class="legenda texto-secundario">O herói é a próxima aula: foto da modalidade, a hora e "Estou na aula" em vermelho cheio, que só aparece dentro da janela do check-in (R15.2). Depois do toque, a presença fica pendente até a chamada, e o "Desfazer" aparece no lugar. Embaixo, o aviso, a semana em bolinhas, as faixas desenhadas e os atalhos. 5 abas.</p>
+      </div>
+
+      <!-- ===================== 2. HORÁRIOS ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: Horários">
+          <div class="celular__tela p-tela">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">19:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-rolagem">
+              <header class="p-saudacao">
+                <div class="p-saudacao__texto">
+                  <p class="p-sobretitulo">Grade da semana</p>
+                  <h2 class="p-titulo-grande">Horários</h2>
+                </div>
+              </header>
+              <div class="l-dias" role="group" aria-label="Dia da semana" data-dias>
+                <button class="l-dia-chip" aria-pressed="false" data-dia="seg">Seg</button>
+                <button class="l-dia-chip" aria-pressed="false" data-dia="ter">Ter</button>
+                <button class="l-dia-chip" aria-pressed="false" data-dia="qua">Qua</button>
+                <button class="l-dia-chip" aria-pressed="true" data-dia="qui">Qui</button>
+                <button class="l-dia-chip" aria-pressed="false" data-dia="sex">Sex</button>
+                <button class="l-dia-chip" aria-pressed="false" data-dia="sab">Sáb</button>
+              </div>
+              <div class="p-chips" role="group" aria-label="Filtro">
+                <button class="p-chip" aria-pressed="true">Minhas modalidades</button>
+                <button class="p-chip" aria-pressed="false" style="color:var(--cor-texto);border-color:var(--cor-borda)">Todas</button>
+              </div>
+              <ul class="l-aulas" aria-label="Aulas do dia" data-aulas></ul>
+              <p class="p-texto-2">A grade é a que a academia publica. Turmas Kids aparecem para quem tem dependente matriculado; o treino de competição, só para atletas.</p>
+            </div>
+            <div class="celular__base"><nav class="barra-abas" aria-label="Navegação do aluno (luta)"><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-horarios-cheio"/></svg></span><span class="aba__rotulo">Horários</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-faixa"/></svg></span><span class="aba__rotulo">Treinos</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-academia"/></svg></span><span class="aba__rotulo">Academia</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav></div>
+            <div class="celular__gesto p-gesto" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">2 · Horários</p>
+        <p class="legenda texto-secundario">A grade real da Raça Fight (<code>raca-37</code>) por dia, com as aulas do aluno em vermelho. Kids, OPEN e Competição viram selo; aula cancelada sai riscada. Toque nos dias.</p>
+      </div>
+
+      <!-- ===================== 3. TREINOS ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: Treinos, presenças e graduação">
+          <div class="celular__tela p-tela">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">19:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-rolagem">
+              <header class="p-saudacao">
+                <div class="p-saudacao__texto">
+                  <p class="p-sobretitulo">Presença e graduação</p>
+                  <h2 class="p-titulo-grande">Treinos</h2>
+                </div>
+              </header>
+              <div class="p-chips" role="group" aria-label="Modalidade">
+                <button class="p-chip" aria-pressed="true">Jiu-Jitsu</button>
+                <button class="p-chip" aria-pressed="false" style="color:var(--cor-texto);border-color:var(--cor-borda)">Muay Thai</button>
+              </div>
+              <section class="p-cartao" aria-labelledby="l-grad-t">
+                <div class="p-cartao__topo"><h3 class="p-titulo-secao" id="l-grad-t">Minha graduação</h3><svg class="p-icone" style="color:var(--cor-marca)" aria-hidden="true"><use href="#i-faixa"/></svg></div>
+                <div class="l-graduacao"><svg class="l-faixa" role="img" aria-label="Faixa branca com 2 graus"><use href="#f-faixa"/></svg><p><b>Faixa branca, 2º grau</b><span class="p-texto-2" style="display:block">Desde 12/03/2026, pelo registro no app</span></p></div>
+                <div class="p-grade-2">
+                  <div class="p-quadro"><span class="p-quadro__rotulo">Aulas desde o último grau</span><span class="p-numero-medio">14</span></div>
+                  <div class="p-quadro"><span class="p-quadro__rotulo">Tempo na faixa</span><span class="p-numero-medio">7 <small class="p-texto-2">meses</small></span></div>
+                </div>
+                <a class="p-quadro__acao" href="#">Ver o histórico de graduação <svg class="p-icone p-icone--pequeno"><use href="#i-avancar"/></svg></a>
+              </section>
+              <section class="p-cartao" aria-labelledby="l-mes-t">
+                <div class="p-cartao__topo"><h3 class="p-titulo-secao" id="l-mes-t">Outubro</h3><span class="p-texto-2"><b class="p-numero" style="font-size:var(--tipo-titulo-3);line-height:var(--linha-titulo-3);color:var(--cor-texto)">4</b> aulas</span></div>
+                <div class="l-mes" role="img" aria-label="Outubro: aulas de Jiu-Jitsu nos dias 5, 7, 12 e 14. Hoje é 15." data-mes></div>
+                <p class="p-legenda-mapa p-texto-2"><span><i></i>aula</span><span><i class="vazio"></i>sem aula</span></p>
+              </section>
+              <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-cronometro-round"/></svg></span>Cronômetro de rounds</a>
+            </div>
+            <div class="celular__base"><nav class="barra-abas" aria-label="Navegação do aluno (luta)"><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-horarios"/></svg></span><span class="aba__rotulo">Horários</span></a><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-faixa-cheio"/></svg></span><span class="aba__rotulo">Treinos</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-academia"/></svg></span><span class="aba__rotulo">Academia</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav></div>
+            <div class="celular__gesto p-gesto" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">3 · Treinos</p>
+        <p class="legenda texto-secundario">No lugar do treino de séries: a faixa desenhada com os graus, o tempo contado do registro no app (R16.7, a tela diz isso), as aulas desde o último grau e o mês em quadrados. Nada de "pronto para graduar" (L20).</p>
+      </div>
+
+      <!-- ===================== 4. ACADEMIA ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: Academia">
+          <div class="celular__tela p-tela p-tela--foto-topo">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">19:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-rolagem p-rolagem--sob-foto">
+              <div class="p-foto l-foto-topo">
+                <img src="../../imagens/raca-fight/admin-fundo-cartao@1x.webp" width="358" height="200" alt="O salão da academia vazio, com o ringue, os sacos e a luz da janela">
+                <span class="l-selo-logo p-vidro vidro--escuro"><svg role="img" aria-label="Raça Fight"><use href="#s-simbolo"/></svg></span>
+                <h2 class="p-titulo-grande">Treine com disciplina, técnica e respeito</h2>
+              </div>
+              <ul class="l-linhas" aria-label="A academia">
+                <li><a href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-alunos"/></svg></span><span>Professores<small>Muay Thai, Boxe, Jiu-Jitsu, Luta Livre e MMA</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+                <li><a href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-luva"/></svg></span><span>Atletas<small>Só quem aceitou aparecer</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+                <li><a href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-trofeu"/></svg></span><span>Eventos<small>Noite de luta · 21/11 · Lomba do Pinheiro</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+                <li><a href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-tatame"/></svg></span><span>Técnicas<small>Golpes básicos e de curta distância</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+                <li><a href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-conversa"/></svg></span><span>Raça Responde<small>Perguntas frequentes</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+                <li><a href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-academia"/></svg></span><span>Endereço e WhatsApp<small>Av. Alexandrino de Alencar, 593 · Gravataí</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+              </ul>
+            </div>
+            <div class="celular__base"><nav class="barra-abas" aria-label="Navegação do aluno (luta)"><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-horarios"/></svg></span><span class="aba__rotulo">Horários</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-faixa"/></svg></span><span class="aba__rotulo">Treinos</span></a><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-academia-cheio"/></svg></span><span class="aba__rotulo">Academia</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav></div>
+            <div class="celular__gesto p-gesto" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">4 · Academia</p>
+        <p class="legenda texto-secundario">A foto do salão (sem ninguém) com o logo num selo de vidro e a frase da academia. As linhas seguem os destaques do Instagram: Professores, Atletas, Eventos, Técnicas e "Raça Responde".</p>
+      </div>
+
+      <!-- ===================== 5. CRONÔMETRO DE ROUNDS ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" data-tema="escuro" role="group" aria-label="Tela: cronômetro de rounds em tela cheia">
+          <div class="celular__tela p-tela p-treino p-tela--foto-topo l-rounds">
+            <div class="p-treino__foto p-treino__foto--descanso"><img src="../../imagens/raca-fight/cronometro-fundo-tela@1x.webp" width="390" height="844" alt=""></div>
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">20:14</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-treino__corpo">
+              <div class="p-treino__barra">
+                <a class="p-botao-vidro p-vidro vidro--escuro" href="#" aria-label="Minimizar o cronômetro (ele continua)"><svg class="p-icone"><use href="#i-baixo"/></svg></a>
+                <div class="p-treino__titulo">
+                  <span>Muay Thai · 3 × 3 min</span>
+                  <div class="p-segmentos" aria-hidden="true"><i class="feito"></i><i class="atual"></i><i></i></div>
+                </div>
+                <button class="p-botao-vidro p-vidro vidro--escuro" aria-label="Som e aviso dos 10 segundos"><svg class="p-icone"><use href="#i-gongo"/></svg></button>
+              </div>
+              <div class="p-descanso">
+                <p class="l-fase"><i aria-hidden="true"></i><span data-fase>Luta</span></p>
+                <div class="p-anel" role="timer" aria-label="Round 2 de 3, luta, faltam 1 minuto e 48 segundos" data-anel-round>
+                  <svg viewBox="0 0 248 248" aria-hidden="true"><circle class="trilho" cx="124" cy="124" r="116"/><circle class="valor" cx="124" cy="124" r="116" pathLength="1000" stroke-dasharray="600 1000" data-round-valor/></svg>
+                  <div class="p-anel__centro"><span>Round 2</span><span class="p-anel__tempo" data-round-tempo>1:48</span><span class="l-round">de 3</span></div>
+                </div>
+                <div class="p-controles">
+                  <button class="p-botao p-vidro vidro--escuro" data-round-parar>Parar</button>
+                  <button class="p-botao p-botao--vivo" data-round-pausar aria-pressed="false"><svg class="p-icone"><use href="#i-pausar"/></svg><span>Pausar</span></button>
+                  <button class="p-botao p-vidro vidro--escuro"><svg class="p-icone"><use href="#i-pular"/></svg>Pular</button>
+                </div>
+              </div>
+              <section class="p-painel p-vidro vidro--escuro" aria-label="Depois deste round">
+                <p class="l-depois"><span>Depois: <b>intervalo de 1:00</b></span><span>Total 11:00</span></p>
+                <p class="p-texto-2">Aviso aos 10 s e o gongo na troca, com o app aberto. A tela fica acesa enquanto roda.</p>
+              </section>
+            </div>
+            <div class="celular__gesto p-gesto p-gesto--claro" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">5 · Cronômetro de rounds</p>
+        <p class="legenda texto-secundario">No lugar do modo treino: o escuro em tela cheia, a foto do saco desfocada, um traço por round, a fase escrita ("Luta" / "Intervalo") e o tempo de 49 como o único herói. Predefinições do R17: Boxe e Muay Thai 3 × 3 min / 1 min, MMA 3 × 5 / 1.</p>
+      </div>
+
+      <!-- ===================== 6. PROFESSOR · HOJE ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: Hoje do professor">
+          <div class="celular__tela p-tela">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">19:52</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-rolagem">
+              <header class="p-saudacao">
+                <span class="p-avatar" aria-hidden="true">D</span>
+                <div class="p-saudacao__texto">
+                  <p class="p-sobretitulo">Quinta, 15 de out.</p>
+                  <p class="p-titulo-grande">Hoje</p>
+                </div>
+                <a class="p-sino" href="#" aria-label="Avisos da equipe: 1 novo"><svg class="p-icone"><use href="#i-sino"/></svg></a>
+              </header>
+              <article class="p-capa" aria-label="Sua próxima aula: Muay Thai às 20:00">
+                <img src="../../imagens/raca-fight/aula-capa-capa@1x.webp" width="358" height="300" alt="Dois alunos fazem sparring no tatame da academia">
+                <span class="p-capa__etiqueta p-vidro vidro--escuro"><svg class="p-icone p-icone--pequeno"><use href="#i-hoje"/></svg>Em 8 min · 20:00</span>
+                <div class="p-capa__painel p-vidro vidro--escuro">
+                  <div>
+                    <h2 class="p-titulo-grande">Muay Thai</h2>
+                    <p class="p-texto-2">Adulto · todos os níveis</p>
+                  </div>
+                  <div class="l-numeros-aula" role="group" aria-label="9 check-ins e 1 aula experimental">
+                    <div><b>9</b><span>check-ins</span></div>
+                    <div><b>1</b><span>experimental</span></div>
+                  </div>
+                  <a class="p-botao p-botao--vivo p-botao--grande p-botao--largo" href="#tela-chamada" style="text-decoration:none">Abrir a chamada <span class="p-botao__seta" aria-hidden="true"><svg class="p-icone"><use href="#i-seta-direita"/></svg></span></a>
+                </div>
+              </article>
+              <section aria-labelledby="l-hoje-t" class="l-grupo">
+                <h3 class="p-titulo-secao" id="l-hoje-t">Suas aulas hoje</h3>
+                <ul class="l-aulas">
+                  <li class="l-aula"><span class="l-aula__hora">19:00</span><span class="l-aula__texto"><span class="l-aula__nome">Muay Thai Kids</span><span class="p-texto-2">Chamada fechada · 11 presentes</span></span><span class="l-selo">Kids</span></li>
+                  <li class="l-aula l-aula--minha"><span class="l-aula__hora">20:00</span><span class="l-aula__texto"><span class="l-aula__nome">Muay Thai</span><span class="p-texto-2">Agora · 9 check-ins</span></span><span class="l-selo l-selo--marca">Agora</span></li>
+                  <li class="l-aula"><span class="l-aula__hora">21:00</span><span class="l-aula__texto"><span class="l-aula__nome">Muay Thai</span><span class="p-texto-2">2 check-ins até agora</span></span></li>
+                </ul>
+              </section>
+              <nav aria-label="Atalhos" class="p-atalhos">
+                <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-cronometro-round"/></svg></span>Cronômetro</a>
+                <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-trofeu"/></svg></span>Eventos</a>
+                <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-sino"/></svg></span>Aviso para uma turma</a>
+              </nav>
+            </div>
+            <div class="celular__base"><nav class="barra-abas" aria-label="Navegação do professor"><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-hoje-cheio"/></svg></span><span class="aba__rotulo">Hoje</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-tatame"/></svg></span><span class="aba__rotulo">Turmas</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-alunos"/></svg></span><span class="aba__rotulo">Alunos</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-faixa"/></svg></span><span class="aba__rotulo">Graduação</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav></div>
+            <div class="celular__gesto p-gesto" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">6 · Hoje (professor)</p>
+        <p class="legenda texto-secundario">A primeira aba do professor responde "qual é a minha aula agora?": a aula da hora em foto, quantos fizeram check-in e quantos experimentais vêm, e "Abrir a chamada". Nenhum dado financeiro (R14.6a).</p>
+      </div>
+
+      <!-- ===================== 7. PROFESSOR · CHAMADA ===================== -->
+      <div class="tela-legenda" id="tela-chamada">
+        <div class="celular" role="group" aria-label="Tela: chamada da aula">
+          <div class="celular__tela p-tela">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">20:03</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-rolagem">
+              <header class="p-saudacao">
+                <a class="p-sino" href="#" aria-label="Voltar para Hoje" style="box-shadow:var(--sombra-1)"><svg class="p-icone"><use href="#i-voltar"/></svg></a>
+                <div class="p-saudacao__texto">
+                  <p class="p-sobretitulo">Muay Thai · 20:00</p>
+                  <h2 class="p-titulo-grande">Chamada</h2>
+                </div>
+              </header>
+              <section class="l-grupo" aria-labelledby="l-ch1">
+                <div class="l-grupo__titulo"><h3 class="p-titulo-secao" id="l-ch1">Fizeram check-in</h3><span class="p-texto-2" data-conta-chamada>4 de 4 confirmados</span></div>
+                <ul class="l-alunos">
+                  <li class="l-aluno"><span class="avatar" aria-hidden="true">AP</span><span class="l-aluno__nome">Ana Paula<small><svg class="l-faixa" aria-hidden="true" style="--l-faixa-cor:#F2C230"><use href="#f-faixa"/></svg>Kruang amarelo</small></span><button class="l-check" aria-pressed="true" aria-label="Ana Paula presente"><svg class="p-icone"><use href="#i-marcar"/></svg></button></li>
+                  <li class="l-aluno"><span class="avatar" aria-hidden="true">BS</span><span class="l-aluno__nome">Bruno Souza<small><svg class="l-faixa" aria-hidden="true"><use href="#f-faixa"/></svg>Sem graduação</small></span><button class="l-check" aria-pressed="true" aria-label="Bruno Souza presente"><svg class="p-icone"><use href="#i-marcar"/></svg></button></li>
+                  <li class="l-aluno"><span class="avatar" aria-hidden="true">CM</span><span class="l-aluno__nome">Camila Moura<small><svg class="l-faixa" aria-hidden="true" style="--l-faixa-cor:#F2C230"><use href="#f-faixa"/></svg>Kruang amarelo</small></span><button class="l-check" aria-pressed="true" aria-label="Camila Moura presente"><svg class="p-icone"><use href="#i-marcar"/></svg></button></li>
+                  <li class="l-aluno"><span class="avatar" aria-hidden="true">LF</span><span class="l-aluno__nome">Lucas Ferraz<small><svg class="l-faixa" aria-hidden="true" style="--l-faixa-cor:#F2C230"><use href="#f-faixa"/></svg>Kruang amarelo</small></span><button class="l-check" aria-pressed="true" aria-label="Lucas Ferraz presente"><svg class="p-icone"><use href="#i-marcar"/></svg></button></li>
+                </ul>
+              </section>
+              <section class="l-grupo" aria-labelledby="l-ch2">
+                <div class="l-grupo__titulo"><h3 class="p-titulo-secao" id="l-ch2">Da turma, sem check-in</h3></div>
+                <ul class="l-alunos">
+                  <li class="l-aluno"><span class="avatar" aria-hidden="true">DR</span><span class="l-aluno__nome">Davi Rocha<small>Última aula há 9 dias</small></span><button class="l-check" aria-pressed="false" aria-label="Davi Rocha presente"><svg class="p-icone"><use href="#i-marcar"/></svg></button></li>
+                  <li class="l-aluno"><span class="avatar" aria-hidden="true">EL</span><span class="l-aluno__nome">Elisa Lima<small>Última aula na terça</small></span><button class="l-check" aria-pressed="false" aria-label="Elisa Lima presente"><svg class="p-icone"><use href="#i-marcar"/></svg></button></li>
+                </ul>
+              </section>
+              <section class="l-grupo" aria-labelledby="l-ch3">
+                <div class="l-grupo__titulo"><h3 class="p-titulo-secao" id="l-ch3">Aula experimental</h3></div>
+                <ul class="l-alunos">
+                  <li class="l-aluno"><span class="avatar" aria-hidden="true">IG</span><span class="l-aluno__nome">Igor<small>Agendada pela recepção</small></span><button class="l-check" aria-pressed="false" aria-label="Igor compareceu"><svg class="p-icone"><use href="#i-marcar"/></svg></button></li>
+                </ul>
+              </section>
+              <button class="botao botao--secundario">+ Aluno de outra turma</button>
+              <div class="l-fechar"><button class="p-botao p-botao--vivo p-botao--grande p-botao--largo">Fechar a chamada</button></div>
+            </div>
+            <div class="celular__base"><nav class="barra-abas" aria-label="Navegação do professor"><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-hoje-cheio"/></svg></span><span class="aba__rotulo">Hoje</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-tatame"/></svg></span><span class="aba__rotulo">Turmas</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-alunos"/></svg></span><span class="aba__rotulo">Alunos</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-faixa"/></svg></span><span class="aba__rotulo">Graduação</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav></div>
+            <div class="celular__gesto p-gesto" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">7 · Chamada (professor)</p>
+        <p class="legenda texto-secundario">Os três grupos do F19: quem fez check-in (já marcados), quem é da turma e não fez, e o experimental. Tocar marca ou desmarca, com o check de mola; o que ficar pendente às 23:59 confirma sozinho, com a marca "sem chamada" (R15.4).</p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script>
+/* PAGINA:CONTROLES (montar-luta.mjs copia o bloco de tema, aparelho, movimento, transparência, fonte e moldura do novas.html) */
+  /* Página: tema, aparelho, movimento, transparência, fonte e moldura (igual ao index.html, mais a chave de transparência). */
+  (function () {
+    var raiz = document.documentElement;
+    function marcarGrupo(lista, atributo, atual) {
+      lista.forEach(function (b) {
+        var ativo = b.getAttribute(atributo) === atual;
+        b.classList.toggle('botao--primario', ativo); b.classList.toggle('botao--secundario', !ativo);
+        b.setAttribute('aria-pressed', ativo ? 'true' : 'false');
+      });
+    }
+    var botoes = document.querySelectorAll('[data-tema-botao]');
+    function marcar() { marcarGrupo(botoes, 'data-tema-botao', raiz.getAttribute('data-tema') || 'sistema'); }
+    botoes.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = b.getAttribute('data-tema-botao');
+        if (t === 'sistema') raiz.removeAttribute('data-tema'); else raiz.setAttribute('data-tema', t);
+        try { if (t === 'sistema') localStorage.removeItem('academia-plus-tema'); else localStorage.setItem('academia-plus-tema', t); } catch (e) {}
+        marcar();
+      });
+    });
+    var botoesFonte = document.querySelectorAll('[data-fonte-botao]');
+    function marcarFonte() { marcarGrupo(botoesFonte, 'data-fonte-botao', parseFloat(getComputedStyle(raiz).fontSize) / 16 >= 1.6 - 0.001 ? '160' : '100'); }
+    botoesFonte.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-fonte-botao');
+        raiz.style.fontSize = f === '160' ? '160%' : '';
+        try { if (f === '160') localStorage.setItem('academia-plus-fonte', '160'); else localStorage.removeItem('academia-plus-fonte'); } catch (e) {}
+        marcarFonte(); ajustar();
+      });
+    });
+    function chave(seletor, atributo, armazenamento) {
+      var lista = document.querySelectorAll(seletor);
+      function m() { marcarGrupo(lista, seletor.slice(1, -1), raiz.getAttribute(atributo)); }
+      lista.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.getAttribute(seletor.slice(1, -1));
+          raiz.setAttribute(atributo, v);
+          try { localStorage.setItem(armazenamento, v); } catch (e) {}
+          m();
+        });
+      });
+      m();
+    }
+    chave('[data-movimento-botao]', 'data-movimento', 'academia-plus-movimento');
+    chave('[data-transparencia-botao]', 'data-transparencia', 'academia-plus-transparencia');
+
+    var APARELHOS = {
+      'iphone-se': 'iPhone SE · 375 × 667', 'iphone-13-mini': 'iPhone 13 mini · 375 × 812', 'iphone-16': 'iPhone 16 · 393 × 852',
+      'iphone-16-pro-max': 'iPhone 16 Pro Max · 440 × 956', 'android': 'Android 390 · 390 × 844'
+    };
+    var botoesAparelho = document.querySelectorAll('[data-aparelho-botao]');
+    function marcarAparelho() {
+      var atual = raiz.getAttribute('data-aparelho') || 'android';
+      marcarGrupo(botoesAparelho, 'data-aparelho-botao', atual);
+      var rot = document.getElementById('rotulo-aparelho'); if (rot && APARELHOS[atual]) rot.textContent = APARELHOS[atual];
+    }
+    botoesAparelho.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var a = b.getAttribute('data-aparelho-botao');
+        raiz.setAttribute('data-aparelho', a);
+        raiz.setAttribute('data-plataforma', a === 'android' ? 'android' : 'ios');
+        try { localStorage.setItem('academia-plus-aparelho', a); } catch (e) {}
+        try { var u = new URL(location.href); u.searchParams.set('aparelho', a); history.replaceState(null, '', u.href); } catch (e) {}
+        marcarAparelho(); ajustar();
+      });
+    });
+
+    // Moldura: mesmo cálculo do index.html (zoom pela altura em janela deitada, colunas equilibradas, ?moldura=real sem zoom).
+    function ajustar() {
+      var cs = getComputedStyle(raiz);
+      var escala = parseFloat(cs.fontSize) / 16;
+      var faixa = function (n, padrao) { return parseFloat(cs.getPropertyValue(n)) || padrao; };
+      raiz.setAttribute('data-fonte', escala > faixa('--fonte-maxima', 1.6) + 0.001 ? 'maxima' : escala >= faixa('--fonte-ampliada', 1.3) - 0.001 ? 'ampliada' : 'padrao');
+      var v = function (n) { return parseFloat(cs.getPropertyValue(n)) || 0; };
+      var telas = document.querySelector('.telas');
+      var n = telas.querySelectorAll('.tela-legenda').length;
+      var gs = getComputedStyle(telas), vao = parseFloat(gs.columnGap) || 0;
+      var borda = v('--moldura-borda'), bordaV = v('--moldura-borda-v') || borda;
+      var largura = v('--moldura-tela-largura') + 2 * borda, altura = v('--moldura-tela-altura') + 2 * bordaV;
+      var W = telas.clientWidth, minimo = v('--moldura-zoom-minimo') || 0.5;
+      var real = /[?&]moldura=real\b/.test(location.search);
+      var zAltura = 1;
+      if (!real && innerWidth > innerHeight) {
+        // tudo o que fica acima da 1ª fileira (topo fixo + título da galeria): a moldura inteira cabe na 1ª tela (o ultrawide do Alex, 2040 × 790)
+        var acima = telas.getBoundingClientRect().top + scrollY;
+        zAltura = Math.max(minimo, Math.min(1, (innerHeight - acima - v('--espaco-4')) / altura));
+      }
+      var zDe = function (c) { return Math.min(zAltura, (W - (c - 1) * vao) / (c * largura)); };
+      var cabe = 1; for (var c = n; c >= 1; c--) { if (zDe(c) >= zAltura - 0.0001 || c === 1) { cabe = c; break; } }
+      var col = cabe;
+      for (var c2 = n; c2 > cabe; c2--) { if (zDe(c2) >= Math.max(minimo, 0.85 * zAltura)) { col = c2; break; } }
+      var linhas = Math.ceil(n / col); col = Math.ceil(n / linhas);
+      var z = real ? 1 : Math.max(Math.min(1, zDe(col)), minimo);
+      if (real) { col = Math.max(1, Math.min(n, Math.floor((W + vao) / (largura + vao)))); linhas = Math.ceil(n / col); col = Math.ceil(n / linhas); }
+      raiz.style.setProperty('--moldura-zoom', z.toFixed(4));
+      telas.style.setProperty('--colunas-telas', col);
+    }
+    window.addEventListener('resize', ajustar);
+    ajustar(); marcar(); marcarFonte(); marcarAparelho();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustar);
+  })();
+</script>
+<script>
+  /* Efeitos das telas de luta: o dado muda ANTES da animação; movimento reduzido = esmaecer de 160 ms. */
+  (function () {
+    var raiz = document.documentElement;
+    var reduzir = function () { return raiz.getAttribute('data-movimento') === 'reduzido'; };
+    var MOLA = 'linear(0, 0.2, 0.62, 1.02, 1.17, 1.12, 1.02, 0.97, 0.97, 0.99, 1)';
+    function mover(el, quadros, dur, curva) {
+      if (!el.animate) return;
+      if (reduzir()) return el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, easing: 'cubic-bezier(0, 0, 0.2, 1)' });
+      return el.animate(quadros, { duration: dur, easing: curva || 'cubic-bezier(0.2, 0, 0, 1)' });
+    }
+    var registro = []; // o "banco" do mockup
+
+    // 1. Check-in do aluno
+    document.querySelectorAll('[data-checkin]').forEach(function (b) {
+      var heroi = b.closest('[data-presenca]'), estado = heroi.querySelector('[data-estado]');
+      b.addEventListener('click', function () {
+        registro.push({ tipo: 'checkin', estado: 'pendente', em: new Date().toISOString() });
+        heroi.setAttribute('data-presenca', 'feita');
+        estado.textContent = 'Pendente até o professor fechar a chamada.';
+        mover(heroi.querySelector('.l-feito .p-icone'), [{ transform: 'scale(.4)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], 400, MOLA);
+        heroi.querySelector('[data-desfazer-checkin]').focus();
+      });
+      heroi.querySelector('[data-desfazer-checkin]').addEventListener('click', function () {
+        registro.push({ tipo: 'checkin', estado: 'desfeito' });
+        heroi.setAttribute('data-presenca', 'pendente');
+        estado.textContent = 'O check-in abriu às 19:30 e fecha às 20:30.';
+        b.focus(); mover(b, [{ opacity: 0 }, { opacity: 1 }], 200);
+      });
+    });
+
+    // 2. Aviso dispensável
+    document.querySelectorAll('[data-dispensar]').forEach(function (b) {
+      b.addEventListener('click', function () { var a = b.closest('[data-aviso]'); var an = mover(a, [{ opacity: 1 }, { opacity: 0 }], 120); if (an) an.onfinish = function () { a.hidden = true; }; else a.hidden = true; });
+    });
+
+    // 3. Horários: a grade real (02-design/referencias/raca-fight/01-DADOS-REAIS.md); professores fictícios
+    var GRADE = {
+      seg: [['09:00', 'Muay Thai', 'Prof. Diego', ''], ['19:00', 'Jiu-Jitsu Kids', 'Prof. Márcio', 'Kids'], ['20:00', 'Muay Thai', 'Prof. Diego', 'minha'], ['20:00', 'Jiu-Jitsu / Luta Livre', 'Prof. Márcio', 'minha'], ['21:00', 'Muay Thai', 'Prof. Diego', '']],
+      ter: [['09:00', 'Boxe', 'Prof. Renato', ''], ['19:00', 'Muay Thai Kids', 'Prof. Diego', 'Kids'], ['20:00', 'Muay Thai', 'Prof. Diego', 'minha'], ['20:00', 'MMA', 'Prof. Márcio', ''], ['21:00', 'Boxe', 'Prof. Renato', '']],
+      qua: [['09:00', 'Muay Thai', 'Prof. Diego', ''], ['19:00', 'Jiu-Jitsu Kids', 'Prof. Márcio', 'Kids'], ['20:00', 'Muay Thai', 'Prof. Diego', 'minha'], ['20:00', 'Jiu-Jitsu / Luta Livre', 'Prof. Márcio', 'minha'], ['21:00', 'Muay Thai', 'Prof. Diego', '']],
+      qui: [['09:00', 'Boxe', 'Prof. Renato', 'cancelada'], ['19:00', 'Muay Thai Kids', 'Prof. Diego', 'Kids'], ['20:00', 'Muay Thai', 'Prof. Diego', 'minha'], ['20:00', 'MMA', 'Prof. Márcio', ''], ['21:00', 'Boxe', 'Prof. Renato', '']],
+      sex: [['20:00', 'Sexta OPEN · até 22:00', 'Escala da semana', 'OPEN']],
+      sab: [['10:00', 'Treino de competição · até 12:00', 'Só atletas', 'Competição']]
+    };
+    var lista = document.querySelector('[data-aulas]');
+    function desenhar(dia) {
+      lista.innerHTML = GRADE[dia].map(function (a) {
+        var cl = a[3] === 'minha' ? ' l-aula--minha' : a[3] === 'cancelada' ? ' l-aula--cancelada' : '';
+        var selo = a[3] === 'minha' ? '<span class="l-selo l-selo--marca">Sua turma</span>' : a[3] === 'cancelada' ? '<span class="l-selo">Cancelada</span>' : a[3] ? '<span class="l-selo">' + a[3] + '</span>' : '<span></span>';
+        return '<li class="l-aula' + cl + '"><span class="l-aula__hora">' + a[0] + '</span><span class="l-aula__texto"><span class="l-aula__nome">' + a[1] + '</span><span class="p-texto-2">' + a[2] + '</span></span>' + selo + '</li>';
+      }).join('');
+    }
+    if (lista) {
+      desenhar('qui');
+      document.querySelectorAll('[data-dia]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          document.querySelectorAll('[data-dia]').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+          desenhar(b.getAttribute('data-dia')); mover(lista, [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], 200);
+        });
+      });
+    }
+
+    // 4. Mês de presenças (outubro de 2026 começa numa quinta; semana de segunda a domingo)
+    var mes = document.querySelector('[data-mes]');
+    if (mes) {
+      var h = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'].map(function (l) { return '<span class="cab">' + l + '</span>'; }).join('');
+      for (var i = 0; i < 3; i++) h += '<span class="fora"></span>';
+      for (var d = 1; d <= 31; d++) h += '<span class="' + ([5, 7, 12, 14].indexOf(d) >= 0 ? 'aula' : d === 15 ? 'hoje' : '') + '">' + d + '</span>';
+      mes.innerHTML = h;
+    }
+
+    // 5. Chamada: marcar e desmarcar
+    document.querySelectorAll('.l-check').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var v = b.getAttribute('aria-pressed') !== 'true';
+        registro.push({ tipo: 'chamada', aluno: b.getAttribute('aria-label'), presente: v });
+        b.setAttribute('aria-pressed', v ? 'true' : 'false');
+        if (v) mover(b, [{ transform: 'scale(.6)' }, { transform: 'scale(1)' }], 400, MOLA);
+        var g = document.querySelector('[data-conta-chamada]'); if (g) { var s = b.closest('ul').querySelectorAll('.l-check[aria-pressed="true"]').length; if (b.closest('section').contains(g)) g.textContent = s + ' de 4 confirmados'; }
+      });
+    });
+
+    // 6. Cronômetro de rounds: pausar e retomar (o motor é o app/dominio/cronometro.ts; aqui só a demonstração)
+    var pausar = document.querySelector('[data-round-pausar]');
+    if (pausar) {
+      var tempo = document.querySelector('[data-round-tempo]'), valor = document.querySelector('[data-round-valor]'), anel = document.querySelector('[data-anel-round]');
+      var resta = 108, total = 180, rel = null;
+      function pintar() { tempo.textContent = Math.floor(resta / 60) + ':' + String(resta % 60).padStart(2, '0'); valor.setAttribute('stroke-dasharray', Math.round(resta / total * 1000) + ' 1000'); anel.setAttribute('aria-label', 'Round 2 de 3, luta, faltam ' + resta + ' segundos'); }
+      // o mockup abre como uma foto do round em andamento (parado, para a auditoria medir sempre o mesmo quadro); "Pausar" pausa, "Retomar" conta de verdade
+      var pausado = false;
+      function estado(p) {
+        pausado = p;
+        pausar.setAttribute('aria-pressed', p ? 'true' : 'false');
+        pausar.querySelector('span').textContent = p ? 'Retomar' : 'Pausar';
+        pausar.querySelector('use').setAttribute('href', p ? '#i-comecar' : '#i-pausar');
+      }
+      pausar.addEventListener('click', function () {
+        if (!pausado) { clearInterval(rel); rel = null; estado(true); return; }
+        estado(false);
+        rel = setInterval(function () { resta = Math.max(0, resta - 1); pintar(); if (!resta) { clearInterval(rel); rel = null; estado(true); } }, 1000);
+      });
+      document.querySelector('[data-round-parar]').addEventListener('click', function () { clearInterval(rel); rel = null; resta = 180; pintar(); estado(true); });
+    }
+  })();
+</script>
+<script>document.querySelectorAll('.paginas-nav a').forEach(function (a) { a.addEventListener('click', function () { if (location.search) a.href = a.getAttribute('href').split('?')[0] + location.search; }); });</script>
+</body>
+</html>

@@ -1,0 +1,1475 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raça Fight Admin · telas</title>
+<meta name="description" content="Desenho das telas do app do dono da Raça Fight (agente AK, P12, 15/10/2026): painel, pessoas, financeiro tipo planilha, importação, relatórios, funil, agenda, notas, histórico e estados, no PC (2040 × 790) e no celular.">
+<script>
+  // tema, movimento e modo (antes de pintar): ?tema=claro|escuro · ?movimento=reduzido · ?tela=<quadro>
+  (function () {
+    var r = document.documentElement, q = new URLSearchParams(location.search);
+    var g = function (k) { try { return localStorage.getItem(k) } catch (e) { return null } };
+    var t = q.get('tema') || g('academia-plus-tema'); if (t === 'claro' || t === 'escuro') r.setAttribute('data-tema', t);
+    var m = q.get('movimento') || g('academia-plus-movimento'); if (m === 'normal' || m === 'reduzido') r.setAttribute('data-movimento', m);
+    if (q.get('tela')) r.classList.add('ad--app');
+  })();
+</script>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<!-- ícones: Lucide (ISC) e Tabler (MIT) redesenhados em 02-design/icones (CREDITOS.md); logo: provisório do AL (marca-e-proposta/logo-raca-fight), trocar pelo original -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-grafico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 20V14"/><path d="M12 20V4.5"/><path d="M18.5 20V9.5"/></symbol>
+<symbol id="i-alunos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8" r="3.75"/><path d="M2.75 21a6.75 6.75 0 0 1 13.5 0"/><path d="M15.5 4.5a3.75 3.75 0 0 1 0 7"/><path d="M18.5 15a6.75 6.75 0 0 1 2.75 6"/></symbol>
+<symbol id="i-lista" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11.5"/><path d="M9 12h11.5"/><path d="M9 18h11.5"/><circle cx="4.25" cy="6" r="1.25" fill="currentColor"/><circle cx="4.25" cy="12" r="1.25" fill="currentColor"/><circle cx="4.25" cy="18" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-grafico-linha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 3.5V19a1.5 1.5 0 0 0 1.5 1.5h15.5"/><path d="M7.5 15l4-4.5 3 3 5-6"/></symbol>
+<symbol id="i-calendario" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 5h13a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-13a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z"/><path d="M3.5 10h17"/><path d="M8 2.75v4"/><path d="M16 2.75v4"/></symbol>
+<symbol id="i-conversa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2.5 21.5z"/></symbol>
+<symbol id="i-relogio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.25 2"/></symbol>
+<symbol id="i-academia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 5 3.5h14l2 5"/><path d="M3 8.5a3 3 0 0 0 6 0a3 3 0 0 0 6 0a3 3 0 0 0 6 0"/><path d="M5 12.5V21h14v-8.5"/><path d="M10 21v-4h4v4"/></symbol>
+<symbol id="i-olho" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-voltar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+<symbol id="i-avancar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="i-buscar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.75"/><path d="M15.5 15.5 20.5 20.5"/></symbol>
+<symbol id="i-filtro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6h17"/><path d="M6.5 12h11"/><path d="M9.5 18h5"/></symbol>
+<symbol id="i-marcar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></symbol>
+<symbol id="i-mais" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.25" fill="currentColor"/><circle cx="12" cy="12" r="1.25" fill="currentColor"/><circle cx="19" cy="12" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></symbol>
+<symbol id="i-desfazer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+<symbol id="i-nuvem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></symbol>
+<symbol id="i-alerta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10.27 4.5a2 2 0 0 1 3.46 0l7.6 13.25A2 2 0 0 1 19.6 20.75H4.4a2 2 0 0 1-1.73-3z"/><path d="M12 9.5v4"/><circle cx="12" cy="17" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-cadeado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11h11a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></symbol>
+<symbol id="i-trocar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20V4"/><path d="M3 8l4-4 4 4"/><path d="M17 4v16"/><path d="M13 16l4 4 4-4"/></symbol>
+<symbol id="i-escudo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></symbol>
+<symbol id="i-seta-direita" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="M13 5.5l6.5 6.5-6.5 6.5"/></symbol>
+<symbol id="i-luva" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h4.5a6 6 0 0 1 6 6v3.5a4.5 4.5 0 0 1 -4.5 4.5H8.5a3.5 3.5 0 0 1 -3.5 -3.5V6.5a3.5 3.5 0 0 1 3.5 -3.5z"/><path d="M5 11.5h3.5a2 2 0 0 0 2 -2V8"/><path d="M7.5 17v2.5a1.5 1.5 0 0 0 1.5 1.5h6a1.5 1.5 0 0 0 1.5 -1.5V17"/></symbol>
+<symbol id="logo-rf" viewBox="-54 -24 1078 304"><path fill="currentColor" d="M30 0H182A40 40 0 0 1 222 40V44A40 40 0 0 1 182 84H0V52H182A8 8 0 0 0 190 44V40A8 8 0 0 0 182 32H14ZM0 52H32V140H0ZM120 84H162L234 140H192ZM256 140L380 0H416L492 140ZM322 108H440L394 46ZM738 0H566A46 46 0 0 0 520 46V94A46 46 0 0 0 566 140H738V108H566A14 14 0 0 1 552 94V46A14 14 0 0 1 566 32H738ZM754 140L878 0H914L990 140ZM820 108H938L892 46ZM622 150H642L636 190H616Z"/><path fill="currentColor" fill-rule="evenodd" d="M-30 168H1000V256H58ZM-10.69 176H992V248H61.31Z"/><path fill="currentColor" d="M108.93 230V189.91H148.39V198.71H120.8V206.8H145.34V215.6H120.8V230ZM161.52 230V189.91H173.39V230ZM211.9 230.7Q199.74 230.7 193.64 225.57Q187.55 220.44 187.55 209.97Q187.55 203.11 190.72 198.49Q193.89 193.88 199.89 191.54Q205.89 189.21 214.31 189.21Q219.52 189.21 223.97 190.15Q228.42 191.08 231.76 192.95Q235.1 194.82 236.94 197.65Q238.79 200.48 238.79 204.27H227.25Q227.25 202.65 226.24 201.44Q225.24 200.24 223.49 199.49Q221.74 198.74 219.51 198.37Q217.29 198.01 214.82 198.01Q211.31 198.01 208.51 198.71Q205.71 199.4 203.74 200.82Q201.78 202.24 200.75 204.35Q199.72 206.45 199.72 209.24V210.64Q199.72 214.59 201.37 217.07Q203.02 219.56 206.17 220.73Q209.32 221.9 213.84 221.9Q217.95 221.9 220.96 221.16Q223.96 220.42 225.59 218.99Q227.21 217.55 227.21 215.58V215.24H213.19V207.61H238.85V230H231.91L230.79 225.2Q228.54 227.07 225.64 228.31Q222.75 229.54 219.31 230.12Q215.86 230.7 211.9 230.7ZM254.27 230V189.91H266.15V204.83H290.21V189.91H302.08V230H290.21V214.39H266.15V230ZM331.81 230V199.47H314.44V189.91H361.05V199.47H343.68V230Z"/><path fill="currentColor" fill-rule="evenodd" d="M832 178H966V246H832ZM838 184V240H960V184Z"/><path fill="currentColor" d="M838 184H960V240H838Z"/></symbol>
+</svg>
+
+<!-- =========================================================================================
+     Cada <section class="ad-quadro"> é uma tela do app, do tamanho da janela. O script no fim
+     monta a moldura em volta (barra lateral, topo com busca e filtro, barra de baixo do celular)
+     a partir de data-secao, data-sub e data-titulo. ?tela=<data-captura> mostra só uma, como app.
+     data-so="pc" ou "celular": o quadro só existe naquela largura.
+     ========================================================================================= -->
+
+<!-- 1. PAINEL -->
+<section class="ad-quadro" data-captura="painel" data-tela="painel" data-secao="painel" data-titulo="Painel" data-mes="Outubro de 2026" aria-label="Painel">
+  <div class="ad-colunas" style="--colunas: minmax(300px, 1fr) minmax(0, 1.9fr) minmax(0, 2.1fr)">
+    <div class="ad-coluna">
+      <section class="ad-painel" aria-labelledby="pn-alunos">
+        <div class="ad-painel__topo"><h2 id="pn-alunos">Alunos</h2><a class="ad-btn ad-btn--plano" href="?tela=pessoas">Ver lista</a></div>
+        <dl class="ad-numeros" style="--n: 3">
+          <a class="ad-numero cartao--tocavel" href="?tela=pessoas"><dt>Matriculados</dt><dd>186</dd></a>
+          <div class="ad-numero"><dt>Treinaram</dt><dd>158</dd></div>
+          <a class="ad-numero cartao--tocavel" href="?tela=pessoas"><dt>Novos no mês</dt><dd class="pos">+14</dd></a>
+          <a class="ad-numero cartao--tocavel" href="?tela=pessoas"><dt>Trancados</dt><dd>9</dd></a>
+          <div class="ad-numero"><dt>Inativos</dt><dd>41</dd></div>
+          <div class="ad-numero"><dt>No cadastro</dt><dd>236</dd></div>
+        </dl>
+        <p class="ad-anotacao">Treinaram = presença nos últimos 30 dias. 28 matriculados não vieram.</p>
+        <div class="ad-sep"></div>
+        <h3 class="ad-h3">Por modalidade</h3>
+        <ul class="ad-lista ad-lista--compacta ad-lista--2col">
+          <li><span class="ad-lista__txt"><b>Muay Thai</b></span><span class="ad-lista__val">92</span></li>
+          <li><span class="ad-lista__txt"><b>Jiu-Jitsu</b></span><span class="ad-lista__val">48</span></li>
+          <li><span class="ad-lista__txt"><b>Boxe</b></span><span class="ad-lista__val">31</span></li>
+          <li><span class="ad-lista__txt"><b>MMA</b></span><span class="ad-lista__val">22</span></li>
+          <li><span class="ad-lista__txt"><b>Luta Livre</b></span><span class="ad-lista__val">17</span></li>
+          <li><span class="ad-lista__txt"><b>Kids</b></span><span class="ad-lista__val">26</span></li>
+        </ul>
+        <p class="ad-anotacao">Kids: Muay Thai 15 · Jiu-Jitsu 11. Quem faz combo conta nas duas.</p>
+      </section>
+      <section class="ad-painel" aria-labelledby="pn-equipe">
+        <div class="ad-painel__topo"><h2 id="pn-equipe">Equipe · 9</h2><a class="ad-btn ad-btn--plano" href="?tela=ficha-funcionario">Ver</a></div>
+        <ul class="ad-lista ad-lista--compacta">
+          <li><span class="ad-lista__txt"><b>Professores</b></span><span class="ad-lista__val">5</span></li>
+          <li><span class="ad-lista__txt"><b>Recepção</b></span><span class="ad-lista__val">2</span></li>
+          <li><span class="ad-lista__txt"><b>Limpeza</b></span><span class="ad-lista__val">1</span></li>
+          <li><span class="ad-lista__txt"><b>Administrativo</b></span><span class="ad-lista__val">1</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="ad-coluna ad-primeiro">
+      <section class="ad-painel ad-painel--heroi" aria-labelledby="pn-mes">
+        <div class="ad-painel__topo"><h2 id="pn-mes">Outubro até hoje (15/10)</h2><span class="ad-selo ad-selo--ok"><svg class="icone icone--16" aria-hidden="true"><use href="#i-marcar"/></svg>Mensalidades geradas em 01/10</span></div>
+        <div class="ad-heroi-par">
+          <dl class="ad-heroi">
+            <dt>Resultado até hoje (entrou − saiu)</dt>
+            <dd>R$ 8.467,60</dd>
+            <p class="ad-heroi__var pos">▲ R$ 1.032,10 (+13,9 %) sobre 1 a 15 de setembro</p>
+          </dl>
+          <dl class="ad-heroi ad-heroi--par">
+            <dt>Previsão do fechamento</dt>
+            <dd>R$ 10.287,60</dd>
+            <p class="ad-heroi__var sec">Setembro fechou em R$ 9.873,20</p>
+          </dl>
+        </div>
+        <dl class="ad-numeros" style="--n: 4">
+          <a class="ad-numero cartao--tocavel" href="?tela=financeiro"><dt>Entrou</dt><dd>R$ 24.380,00<small class="pos">+6,2 % (1 a 15)</small></dd></a>
+          <a class="ad-numero cartao--tocavel" href="?tela=financeiro"><dt>Saiu</dt><dd>R$ 15.912,40<small class="sec">+3,1 % (1 a 15)</small></dd></a>
+          <a class="ad-numero cartao--tocavel" href="?tela=cobrancas"><dt>A receber</dt><dd>R$ 3.960,00<small class="sec">36 cobranças</small></dd></a>
+          <a class="ad-numero cartao--tocavel" href="?tela=financeiro"><dt>A pagar</dt><dd>R$ 2.140,00<small class="sec">4 linhas</small></dd></a>
+        </dl>
+      </section>
+      <section class="ad-painel so-pc" aria-labelledby="pn-comp">
+        <div class="ad-painel__topo"><h2 id="pn-comp">Comparação no mesmo período</h2></div>
+        <div class="lista ad-tabela-rola">
+          <table class="ad-tabela">
+            <thead><tr><th scope="col"></th><th scope="col" class="dir">1 a 15/09</th><th scope="col" class="dir">1 a 15/10</th><th scope="col" class="dir">Diferença</th><th scope="col" class="dir">Setembro inteiro</th></tr></thead>
+            <tbody>
+              <tr><th scope="row" class="t13b">Entrou</th><td class="dir">R$ 22.956,00</td><td class="dir"><b>R$ 24.380,00</b></td><td class="dir pos">+R$ 1.424,00 (+6,2 %)</td><td class="dir sec">R$ 35.284,00</td></tr>
+              <tr><th scope="row" class="t13b">Saiu</th><td class="dir">R$ 15.520,50</td><td class="dir"><b>R$ 15.912,40</b></td><td class="dir neg">−R$ 391,90 (+3,1 %)</td><td class="dir sec">R$ 25.410,80</td></tr>
+              <tr><th scope="row" class="t13b">Resultado</th><td class="dir">R$ 7.435,50</td><td class="dir"><b>R$ 8.467,60</b></td><td class="dir pos">+R$ 1.032,10 (+13,9 %)</td><td class="dir sec">R$ 9.873,20</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="ad-painel ad-painel--cheio" aria-labelledby="pn-12">
+        <div class="ad-painel__topo"><h2 id="pn-12">Resultado dos últimos 12 meses</h2><a class="ad-btn ad-btn--plano" href="?tela=relatorios">Relatório do ano</a></div>
+        <div class="ad-barras" data-barras role="img" aria-label="Resultado mensal de novembro de 2025 a outubro de 2026"></div>
+        <p class="ad-legenda"><span><i class="viva"></i>Outubro: R$ 8.467,60 (até hoje)</span><span><i></i>Outros meses</span><span><i class="neg"></i>Julho: −R$ 820,00 (viagem do campeonato)</span></p>
+      </section>
+    </div>
+
+    <div class="ad-coluna">
+      <div class="ad-sub2">
+        <div class="ad-pilha">
+          <section class="ad-painel" aria-labelledby="pn-prev">
+            <div class="ad-painel__topo"><h2 id="pn-prev">Previsão de outubro, por partes</h2></div>
+            <p class="ad-anotacao">Como a conta chega em R$ 10.287,60:</p>
+            <ul class="ad-lista ad-lista--compacta">
+              <li><span class="ad-lista__txt"><span>Já entrou</span></span><span class="ad-lista__val">R$ 24.380,00</span></li>
+              <li><span class="ad-lista__txt"><span>+ cobranças abertas do mês</span></span><span class="ad-lista__val pos">+R$ 3.960,00</span></li>
+              <li><span class="ad-lista__txt"><span>− já saiu</span></span><span class="ad-lista__val neg">−R$ 15.912,40</span></li>
+              <li><span class="ad-lista__txt"><span>− a pagar no mês</span></span><span class="ad-lista__val neg">−R$ 2.140,00</span></li>
+              <li><span class="ad-lista__txt"><b>= deve fechar em</b></span><span class="ad-lista__val">R$ 10.287,60</span></li>
+            </ul>
+            <p class="ad-anotacao">Fora da conta: R$ 780,00 atrasados de meses anteriores que ainda podem entrar.</p>
+          </section>
+          <section class="ad-painel" aria-labelledby="pn-inad">
+            <div class="ad-painel__topo"><h2 id="pn-inad">Devendo · 11 · R$ 1.690,00</h2><a class="ad-btn ad-btn--plano" href="?tela=cobrancas">Ver</a></div>
+            <ul class="ad-lista">
+              <li><span class="ad-lista__txt"><b>Renan Duarte</b><span>41 dias · 2 mensalidades</span></span><span class="ad-lista__val neg">R$ 240,00</span><button class="ad-btn ad-btn--icone" aria-label="Cobrar Renan Duarte no WhatsApp"><svg class="icone icone--16" aria-hidden="true"><use href="#i-conversa"/></svg></button></li>
+              <li><span class="ad-lista__txt"><b>Vinícius Hoffmann</b><span>35 dias · setembro</span></span><span class="ad-lista__val neg">R$ 150,00</span><button class="ad-btn ad-btn--icone" aria-label="Cobrar Vinícius Hoffmann no WhatsApp"><svg class="icone icone--16" aria-hidden="true"><use href="#i-conversa"/></svg></button></li>
+              <li><span class="ad-lista__txt"><b>Diego Fontoura</b><span>32 dias · setembro</span></span><span class="ad-lista__val neg">R$ 150,00</span><button class="ad-btn ad-btn--icone" aria-label="Cobrar Diego Fontoura no WhatsApp"><svg class="icone icone--16" aria-hidden="true"><use href="#i-conversa"/></svg></button></li>
+              <li><span class="ad-lista__txt"><b>Fernanda Lima</b><span>5 dias · Davi e Elisa (Kids)</span></span><span class="ad-lista__val neg">R$ 209,00</span><button class="ad-btn ad-btn--icone" aria-label="Cobrar Fernanda Lima no WhatsApp"><svg class="icone icone--16" aria-hidden="true"><use href="#i-conversa"/></svg></button></li>
+            </ul>
+          </section>
+        </div>
+        <div class="ad-pilha">
+          <section class="ad-painel" aria-labelledby="pn-funil">
+            <div class="ad-painel__topo"><h2 id="pn-funil">Funil de outubro</h2><a class="ad-btn ad-btn--plano" href="?tela=funil">Abrir</a></div>
+            <dl class="ad-numeros" style="--n: 4">
+              <div class="ad-numero"><dt>Contatos</dt><dd>38</dd></div>
+              <div class="ad-numero"><dt>Marcaram</dt><dd>21</dd></div>
+              <div class="ad-numero"><dt>Fizeram</dt><dd>16</dd></div>
+              <div class="ad-numero"><dt>Matrículas</dt><dd>9</dd></div>
+            </dl>
+            <p class="ad-anotacao">Da aula à matrícula: 56 %. <a class="marca forte" href="?tela=funil">4 para chamar de volta</a></p>
+          </section>
+          <section class="ad-painel" aria-labelledby="pn-hoje">
+            <div class="ad-painel__topo"><h2 id="pn-hoje">Hoje</h2><a class="ad-btn ad-btn--plano" href="?tela=agenda">Agenda</a></div>
+            <ul class="ad-lista">
+              <li><span class="ad-selo ad-selo--erro">Atrasado</span><span class="ad-lista__txt"><b>Cobrar Renan Duarte</b><span>desde 12/10</span></span></li>
+              <li><span class="ad-selo ad-selo--pend">Hoje</span><span class="ad-lista__txt"><b>Vence: Internet (boleto)</b><span>R$ 120,00</span></span></li>
+              <li><span class="ad-selo ad-selo--pend">Hoje</span><span class="ad-lista__txt"><b>Ligar para Larissa Becker</b><span>fez a aula experimental no dia 11</span></span></li>
+              <li><span class="ad-selo">Tarefa</span><span class="ad-lista__txt"><b>Trocar 6 placas de tatame</b><span>Igor · até 18/10</span></span></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. FINANCEIRO: a planilha -->
+<section class="ad-quadro" data-captura="financeiro" data-tela="lancamentos" data-secao="financeiro" data-sub="Lançamentos" data-titulo="Lançamentos" data-mes="Outubro de 2026" aria-label="Financeiro, lançamentos">
+  <div class="ad-grade-moldura so-pc">
+    <div class="ad-grade-barra">
+      <div class="ad-frase">
+        <p class="forte">Outubro de 2026 · todas as categorias · 312 linhas</p>
+        <span class="ad-chip">Tipo: todos<button aria-label="Tirar o filtro de tipo"><svg class="icone icone--16" aria-hidden="true"><use href="#i-fechar"/></svg></button></span>
+        <span class="ad-chip">Situação: todas<button aria-label="Tirar o filtro de situação"><svg class="icone icone--16" aria-hidden="true"><use href="#i-fechar"/></svg></button></span>
+        <button class="ad-btn"><svg class="icone icone--16" aria-hidden="true"><use href="#i-filtro"/></svg>Filtrar <kbd>/</kbd></button>
+      </div>
+      <div class="ad-acoes">
+        <button class="ad-btn" data-acao="desfazer"><svg class="icone icone--16" aria-hidden="true"><use href="#i-desfazer"/></svg>Desfazer <kbd>Ctrl Z</kbd></button>
+        <button class="ad-btn">Exportar CSV</button>
+        <button class="ad-btn">Gerar mensalidades de novembro</button>
+        <button class="ad-btn ad-btn--primario" data-acao="nova-linha"><svg class="icone icone--16" aria-hidden="true"><use href="#i-mais"/></svg>Linha <kbd>Ctrl Enter</kbd></button>
+      </div>
+    </div>
+    <div class="ad-lote" data-lote>
+      <p data-lote-txt>3 linhas selecionadas · soma R$ 510,00</p>
+      <button class="ad-btn">Mudar categoria</button>
+      <button class="ad-btn">Mudar forma</button>
+      <button class="ad-btn">Marcar como pago</button>
+      <button class="ad-btn ad-btn--perigo">Arquivar</button>
+    </div>
+    <div class="lista ad-grade-rola">
+      <table class="ad-grade" role="grid" aria-label="Lançamentos de outubro" data-planilha="outubro" data-estado="edicao"></table>
+    </div>
+    <div class="ad-grade-status" data-status>
+      <span class="ad-gravado" data-salvo><svg class="icone icone--16" aria-hidden="true"><use href="#i-nuvem"/></svg>Editando · Enter grava e desce · Esc cancela</span>
+      <span>Célula <b data-celula>Valor, linha 1</b></span>
+      <span class="ad-atalhos"><span><kbd class="ad-kbd">↑ ↓ ← →</kbd> andar</span><span><kbd class="ad-kbd">Enter</kbd> editar</span><span><kbd class="ad-kbd">Tab</kbd> próxima</span><span><kbd class="ad-kbd">Shift ↑ ↓</kbd> selecionar</span><span><kbd class="ad-kbd">Ctrl V</kbd> colar do Excel</span><span><kbd class="ad-kbd">Ctrl Z</kbd> desfazer</span><span><kbd class="ad-kbd">Ctrl Y</kbd> refazer</span></span>
+    </div>
+  </div>
+  <!-- no celular, a planilha vira lista; a edição é numa folha (quadro financeiro-folha) -->
+  <div class="so-celular">
+    <div class="ad-pilha">
+      <section class="ad-painel" aria-label="Totais de outubro">
+        <dl class="ad-numeros" style="--n: 2">
+          <div class="ad-numero"><dt>Entrou</dt><dd class="pos">+R$ 24.380,00</dd></div>
+          <div class="ad-numero"><dt>Saiu</dt><dd class="neg">−R$ 15.912,40</dd></div>
+          <div class="ad-numero"><dt>Resultado</dt><dd>R$ 8.467,60</dd></div>
+          <div class="ad-numero"><dt>Pendentes</dt><dd class="ate">R$ 3.960 / 2.140</dd></div>
+        </dl>
+      </section>
+      <div class="ad-acoes"><button class="ad-btn"><svg class="icone icone--16" aria-hidden="true"><use href="#i-filtro"/></svg>Filtrar</button><button class="ad-btn ad-btn--primario"><svg class="icone icone--16" aria-hidden="true"><use href="#i-mais"/></svg>Lançamento</button></div>
+      <div class="ad-lanc" data-lista-lanc></div>
+    </div>
+  </div>
+  <div class="ad-aviso folha-moldura so-pc" role="status" data-camada>
+    <span>Categoria de "Tatame EVA 1 m² × 6" mudou para Equipamento</span>
+    <button class="ad-btn" data-acao="desfazer">Desfazer <kbd>Ctrl Z</kbd></button>
+  </div>
+</section>
+
+<!-- 2b. FINANCEIRO: colar várias linhas -->
+<section class="ad-quadro" data-so="pc" data-captura="financeiro-colar" data-tela="colar" data-secao="financeiro" data-sub="Lançamentos" data-titulo="Lançamentos" data-mes="Outubro de 2026" aria-label="Financeiro, colar várias linhas">
+  <div class="ad-grade-moldura">
+    <div class="ad-faixa-aviso">
+      <svg class="icone" aria-hidden="true"><use href="#i-alerta"/></svg>
+      <p><b>Você colou 20 linhas do Excel: 18 prontas e 2 com erro.</b>Nada foi gravado ainda. As linhas novas estão em vermelho-claro; as células com erro dizem o motivo. Gravar é uma ação só: Ctrl+Z desfaz as 18.</p>
+      <div class="ad-acoes">
+        <button class="ad-btn ad-btn--primario">Gravar as 18 linhas</button>
+        <button class="ad-btn">Ir para a 1ª com erro</button>
+        <button class="ad-btn">Cancelar <kbd>Esc</kbd></button>
+      </div>
+    </div>
+    <div class="lista ad-grade-rola">
+      <table class="ad-grade" role="grid" aria-label="Lançamentos de outubro com as linhas coladas" data-planilha="outubro" data-estado="colar"></table>
+    </div>
+    <div class="ad-grade-status">
+      <span class="ad-gravado"><svg class="icone icone--16" aria-hidden="true"><use href="#i-alerta"/></svg>20 linhas na prévia · 18 prontas · 2 com erro</span>
+      <span>Coladas a partir de <b>Data, linha 1</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- 2c. FINANCEIRO: mês fechado -->
+<section class="ad-quadro" data-so="pc" data-captura="financeiro-fechado" data-tela="fechamento" data-secao="financeiro" data-sub="Lançamentos" data-titulo="Lançamentos" data-mes="Setembro de 2026" data-mes-fechado aria-label="Financeiro, mês fechado">
+  <div class="ad-grade-moldura">
+    <div class="ad-faixa-aviso ad-faixa-aviso--fechado">
+      <svg class="icone" aria-hidden="true"><use href="#i-cadeado"/></svg>
+      <p><b>Setembro está fechado desde 03/10/2026, 18:12, por Alex.</b>Os números estão congelados como foram para o contador. Para mudar uma linha, reabra o mês: o motivo fica no histórico.</p>
+      <div class="ad-acoes"><button class="ad-btn">Ver o fechamento</button><button class="ad-btn">Reabrir setembro</button></div>
+    </div>
+    <div class="lista ad-grade-rola">
+      <table class="ad-grade" role="grid" aria-readonly="true" aria-label="Lançamentos de setembro, só leitura" data-planilha="setembro" data-estado="fechado"></table>
+    </div>
+    <div class="ad-grade-status"><span class="ad-gravado"><svg class="icone icone--16" aria-hidden="true"><use href="#i-cadeado"/></svg>Só leitura · 287 linhas</span></div>
+  </div>
+  <div class="ad-aviso folha-moldura" role="alert" data-camada>
+    <svg class="icone icone--16" aria-hidden="true"><use href="#i-cadeado"/></svg>
+    <span>Setembro está fechado: nada foi mudado.</span>
+    <button class="ad-btn">Reabrir com motivo</button>
+  </div>
+</section>
+
+<!-- 2d. FINANCEIRO no celular: edição em folha -->
+<section class="ad-quadro" data-so="celular" data-captura="financeiro-folha" data-secao="financeiro" data-sub="Lançamentos" data-titulo="Lançamentos" data-mes="Out 2026" aria-label="Financeiro, editar lançamento no celular">
+  <div class="ad-lanc" data-lista-lanc></div>
+  <div class="ad-veu" data-camada></div>
+  <div class="ad-gaveta folha-moldura" role="dialog" aria-modal="true" aria-labelledby="fl-tit" data-camada>
+    <h2 id="fl-tit">Mensalidade outubro — Davi Lima</h2>
+    <p class="ad-anotacao">Gerada da matrícula de Davi (Muay Thai Kids). Quem paga: Fernanda Lima.</p>
+    <label class="campo"><span>Valor</span><span class="campo__caixa"><input inputmode="decimal" value="R$ 110,00" aria-describedby="fl-v"></span></label>
+    <p class="campo__ajuda" id="fl-v">"160", "160,00" e "R$ 1.600" valem. Pagamento parcial não é aceito.</p>
+    <label class="campo"><span>Data</span><span class="campo__caixa"><input value="15/10/2026"></span></label>
+    <label class="campo"><span>Forma</span><span class="campo__caixa"><select><option>Pix</option><option>Dinheiro</option><option>Cartão de débito</option><option>Cartão de crédito</option></select></span></label>
+    <label class="campo"><span>Categoria</span><span class="campo__caixa"><select><option>Mensalidades</option></select></span></label>
+    <div class="ad-gaveta__pe"><button class="ad-btn ad-btn--grande">Cancelar</button><button class="ad-btn ad-btn--primario ad-btn--grande">Marcar como paga</button></div>
+  </div>
+</section>
+
+<!-- 3. COBRANÇAS + marcar como paga -->
+<section class="ad-quadro" data-captura="cobrancas" data-tela="cobrancas" data-secao="financeiro" data-sub="Cobranças" data-titulo="Cobranças" data-mes="Outubro de 2026" aria-label="Cobranças e marcar como paga">
+  <div class="ad-colunas" style="--colunas: minmax(0, 1fr)">
+    <section class="ad-painel ad-painel--sem-pad ad-painel--cheio">
+      <div class="ad-painel__topo">
+        <div class="ad-grupos" role="group" aria-label="Situação">
+          <a href="?tela=cobrancas" aria-current="true">Todas <b>186</b></a><a href="?tela=cobrancas">A vencer <b>25</b></a><a href="?tela=cobrancas">Vence hoje <b>6</b></a><a href="?tela=cobrancas">Atrasadas <b>11</b></a><a href="?tela=cobrancas">Pagas <b>144</b></a>
+        </div>
+        <div class="ad-acoes"><button class="ad-btn">Cobrança avulsa</button><button class="ad-btn">Exportar CSV</button></div>
+      </div>
+      <div class="lista ad-tabela-rola">
+        <table class="ad-tabela" data-tabela="cobrancas"></table>
+      </div>
+    </section>
+  </div>
+  <div class="ad-veu" data-camada></div>
+  <div class="ad-gaveta folha-moldura" role="dialog" aria-modal="true" aria-labelledby="cb-tit" data-camada>
+    <h2 id="cb-tit">Marcar como paga</h2>
+    <dl class="ad-dados">
+      <dt>Cobrança</dt><dd>Mensalidade de outubro · Muay Thai Kids</dd>
+      <dt>Aluno</dt><dd>Davi Lima</dd>
+      <dt>Quem paga</dt><dd>Fernanda Lima (responsável)</dd>
+      <dt>Venceu</dt><dd class="neg">10/10/2026 · há 5 dias</dd>
+    </dl>
+    <label class="campo"><span>Data do pagamento</span><span class="campo__caixa"><input value="15/10/2026"></span></label>
+    <label class="campo"><span>Forma</span><span class="campo__caixa"><select><option>Pix</option><option>Dinheiro</option><option>Cartão de débito</option><option>Cartão de crédito</option><option>Transferência</option></select></span></label>
+    <label class="campo"><span>Valor pago</span><span class="campo__caixa"><input value="R$ 110,00" inputmode="decimal"></span></label>
+    <p class="campo__ajuda">Sem multa nem juros: a academia não cobra (Ajustes › Regras de cobrança). Pagamento parcial não é aceito.</p>
+    <p class="ad-anotacao">Ao confirmar, a cobrança vira paga e nasce a linha de entrada na planilha, com a modalidade. Dá para desfazer.</p>
+    <div class="ad-gaveta__pe"><button class="ad-btn ad-btn--grande">Cancelar</button><button class="ad-btn ad-btn--primario ad-btn--grande">Confirmar pagamento</button></div>
+  </div>
+</section>
+
+<!-- 4. PESSOAS: lista com filtros cruzados -->
+<section class="ad-quadro" data-captura="pessoas" data-tela="alunos" data-secao="pessoas" data-sub="Alunos" data-titulo="Alunos" aria-label="Pessoas, alunos">
+  <div class="ad-colunas" style="--colunas: 280px minmax(0, 1fr)">
+    <aside class="ad-coluna so-pc" aria-label="Filtros">
+      <section class="ad-painel">
+        <h2 class="ad-h3">Filtros salvos</h2>
+        <ul class="ad-lista ad-lista--compacta">
+          <li><a class="ad-lista__txt" href="?tela=pessoas"><b>Inadimplentes há mais de 30 dias</b></a><span class="ad-lista__val">3</span></li>
+          <li><a class="ad-lista__txt" href="?tela=pessoas"><b>Novos do mês</b></a><span class="ad-lista__val">14</span></li>
+          <li><a class="ad-lista__txt" href="?tela=pessoas"><b>Kids</b></a><span class="ad-lista__val">26</span></li>
+          <li><a class="ad-lista__txt" href="?tela=pessoas"><b>Trancados</b></a><span class="ad-lista__val">9</span></li>
+        </ul>
+      </section>
+      <section class="ad-painel">
+        <h2 class="ad-h3">Situação</h2>
+        <label class="campo__caixa marcar"><input type="checkbox" checked><span>Matriculado</span><em>186</em></label>
+        <label class="campo__caixa marcar"><input type="checkbox"><span>Trancado</span><em>9</em></label>
+        <label class="campo__caixa marcar"><input type="checkbox"><span>Inativo</span><em>41</em></label>
+        <h2 class="ad-h3">Modalidade</h2>
+        <label class="campo__caixa marcar"><input type="checkbox" checked><span>Muay Thai</span><em>92</em></label>
+        <label class="campo__caixa marcar"><input type="checkbox"><span>Jiu-Jitsu</span><em>48</em></label>
+        <label class="campo__caixa marcar"><input type="checkbox"><span>Boxe</span><em>31</em></label>
+        <label class="campo__caixa marcar"><input type="checkbox"><span>MMA</span><em>22</em></label>
+        <label class="campo__caixa marcar"><input type="checkbox"><span>Luta Livre</span><em>17</em></label>
+        <h2 class="ad-h3">Cobrança</h2>
+        <label class="campo__caixa marcar"><input type="checkbox"><span>Em atraso há mais de 30 dias</span><em>3</em></label>
+        <label class="campo__caixa marcar"><input type="checkbox"><span>Em dia</span><em>175</em></label>
+        <label class="campo"><span>Plano</span><span class="campo__caixa"><select><option>Todos os planos</option><option>Muay Thai livre</option><option>Muay Thai 2×</option><option>Combo 2 modalidades</option><option>Muay Thai Kids</option></select></span></label>
+        <label class="campo"><span>Motivo de desconto</span><span class="campo__caixa"><select><option>Qualquer um</option><option>Família</option><option>Bolsista</option><option>Atleta</option><option>Indicação</option><option>Funcionário</option></select></span></label>
+      </section>
+    </aside>
+    <section class="ad-painel ad-painel--sem-pad ad-painel--cheio" aria-label="Resultado">
+      <div class="ad-painel__topo">
+        <div class="ad-abas" role="tablist" aria-label="Pessoas"><a href="?tela=pessoas" aria-current="page">Alunos</a><a href="?tela=ficha-funcionario">Funcionários</a><a href="?tela=ficha-kids">Responsáveis</a></div>
+        <div class="ad-acoes"><button class="ad-btn">Salvar este filtro</button><button class="ad-btn">Exportar CSV</button><button class="ad-btn ad-btn--primario"><svg class="icone icone--16" aria-hidden="true"><use href="#i-mais"/></svg>Aluno</button></div>
+      </div>
+      <div class="ad-painel__topo">
+        <div class="ad-frase">
+          <p><b>Alunos · matriculados · Muay Thai</b> · 92 pessoas · 6 em atraso (R$ 790,00)</p>
+          <span class="ad-chip">Matriculado<button aria-label="Tirar Matriculado"><svg class="icone icone--16" aria-hidden="true"><use href="#i-fechar"/></svg></button></span>
+          <span class="ad-chip">Muay Thai<button aria-label="Tirar Muay Thai"><svg class="icone icone--16" aria-hidden="true"><use href="#i-fechar"/></svg></button></span>
+          <button class="ad-btn so-celular"><svg class="icone icone--16" aria-hidden="true"><use href="#i-filtro"/></svg>Filtros (2)</button>
+        </div>
+      </div>
+      <div class="lista ad-tabela-rola so-pc"><table class="ad-tabela" data-tabela="alunos"></table></div>
+      <div class="ad-lanc ad-pessoas-cel so-celular" data-lista-alunos></div>
+    </section>
+  </div>
+</section>
+
+<!-- 4b. FICHA DO ALUNO -->
+<section class="ad-quadro" data-captura="ficha-aluno" data-secao="pessoas" data-sub="Alunos" data-titulo="Ficha do aluno" aria-label="Ficha do aluno">
+  <div class="ad-colunas" style="--colunas: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr)">
+    <div class="ad-coluna">
+      <section class="ad-painel">
+        <div class="ad-ficha-cabeca">
+          <span class="ad-avatar" aria-hidden="true">BA</span>
+          <div><h2>Bruno Almeida</h2><p class="ad-anotacao">Aluno desde 02/03/2026 · conta do app ligada</p></div>
+        </div>
+        <div class="ad-acoes"><span class="ad-selo ad-selo--ok">Matriculado</span><span class="ad-selo">Muay Thai</span><span class="ad-selo ad-selo--ok">Em dia</span></div>
+        <div class="ad-acoes"><button class="ad-btn">Editar</button><button class="ad-btn"><svg class="icone icone--16" aria-hidden="true"><use href="#i-conversa"/></svg>WhatsApp</button><button class="ad-btn">Anotar <kbd>N</kbd></button><button class="ad-btn">Lembrar <kbd>L</kbd></button></div>
+        <dl class="ad-dados">
+          <dt>Telefone</dt><dd>(51) 90000-0001</dd>
+          <dt>E-mail</dt><dd>bruno.almeida@exemplo.com</dd>
+          <dt>Nascimento</dt><dd>14/05/1998</dd>
+          <dt>No tatame</dt><dd>14 aulas em 30 dias · prajied amarelo</dd>
+        </dl>
+        <p class="ad-anotacao">Sem dado de saúde aqui: peso, altura e restrições ficam só no app do aluno.</p>
+      </section>
+      <section class="ad-painel">
+        <div class="ad-painel__topo"><h2>Matrícula</h2><button class="ad-btn">Trancar</button><button class="ad-btn ad-btn--perigo">Encerrar</button></div>
+        <dl class="ad-dados">
+          <dt>Plano</dt><dd>Muay Thai livre · R$ 150,00 por mês</dd>
+          <dt>Início</dt><dd>02/03/2026</dd>
+          <dt>Vencimento</dt><dd>todo dia 10</dd>
+          <dt>Desconto</dt><dd>nenhum</dd>
+          <dt>Taxa de matrícula</dt><dd>R$ 50,00 · paga em 02/03/2026</dd>
+        </dl>
+      </section>
+    </div>
+    <section class="ad-painel ad-painel--sem-pad ad-painel--cheio" aria-labelledby="fa-cob">
+      <div class="ad-painel__topo"><h2 id="fa-cob">Cobranças e pagamentos</h2><button class="ad-btn">Cobrança avulsa</button></div>
+      <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="cobrancas-bruno"></table></div>
+    </section>
+    <div class="ad-coluna">
+      <section class="ad-painel">
+        <div class="ad-painel__topo"><h2>Notas e lembretes</h2><button class="ad-btn">Anotar</button></div>
+        <div class="ad-nota ad-nota--fixa"><p>Quer trocar para o Combo em novembro (Muay Thai + Jiu-Jitsu).</p><span>Fixada · Alex, 12/10</span></div>
+        <div class="ad-nota"><p>Lembrar: oferecer a luva 14 oz quando chegar o pedido.</p><span>Lembrete · 20/10</span></div>
+      </section>
+      <section class="ad-painel">
+        <div class="ad-painel__topo"><h2>Histórico</h2><a class="ad-btn ad-btn--plano" href="?tela=historico">Tudo</a></div>
+        <ul class="ad-lista ad-lista--compacta">
+          <li><span class="ad-lista__txt"><b>Igor marcou como paga a de outubro</b><span>10/10/2026 às 19:40 · Pix · R$ 150,00</span></span></li>
+          <li><span class="ad-lista__txt"><b>Alex ligou à conta do app</b><span>04/03/2026 às 09:12</span></span></li>
+          <li><span class="ad-lista__txt"><b>Alex matriculou no Muay Thai livre</b><span>02/03/2026 às 20:31</span></span></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- 4c. RESPONSÁVEL KIDS -->
+<section class="ad-quadro" data-captura="ficha-kids" data-secao="pessoas" data-sub="Responsáveis" data-titulo="Ficha do responsável" aria-label="Ficha de responsável Kids">
+  <div class="ad-colunas" style="--colunas: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr)">
+    <div class="ad-coluna">
+      <section class="ad-painel">
+        <div class="ad-ficha-cabeca"><span class="ad-avatar" aria-hidden="true">FL</span><div><h2>Fernanda Lima</h2><p class="ad-anotacao">Responsável · não treina · paga 2 matrículas</p></div></div>
+        <div class="ad-acoes"><span class="ad-selo">Responsável</span><span class="ad-selo ad-selo--erro">Atrasada há 5 dias</span></div>
+        <div class="ad-acoes"><button class="ad-btn">Editar</button><button class="ad-btn"><svg class="icone icone--16" aria-hidden="true"><use href="#i-conversa"/></svg>Cobrar no WhatsApp</button><button class="ad-btn">Anotar</button></div>
+        <dl class="ad-dados"><dt>Telefone</dt><dd>(51) 90000-0003</dd><dt>E-mail</dt><dd>fernanda.lima@exemplo.com</dd></dl>
+      </section>
+      <section class="ad-painel">
+        <div class="ad-painel__topo"><h2>Dependentes · 2</h2><button class="ad-btn"><svg class="icone icone--16" aria-hidden="true"><use href="#i-mais"/></svg>Criança</button></div>
+        <div class="ad-cartao"><b>Davi Lima · 10 anos</b><span>Muay Thai Kids · terça e quinta, 19h · vence dia 10 · R$ 110,00</span><span>9 aulas em 30 dias · prajied branco</span></div>
+        <div class="ad-cartao"><b>Elisa Lima · 8 anos</b><span>Jiu-Jitsu Kids · segunda e quarta, 19h · vence dia 10 · R$ 99,00</span><span class="pos">Desconto família −10 % (R$ 11,00), desde 01/08/2026</span></div>
+        <p class="ad-anotacao">O mesmo pagador com duas matrículas: o desconto de família foi sugerido e o Alex aplicou. O percentual é da academia (A8).</p>
+      </section>
+    </div>
+    <section class="ad-painel ad-painel--sem-pad ad-painel--cheio" aria-labelledby="fk-cob">
+      <div class="ad-painel__topo"><h2 id="fk-cob">Cobranças da família</h2><button class="ad-btn ad-btn--primario">Marcar as 2 como pagas</button></div>
+      <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="cobrancas-fernanda"></table></div>
+    </section>
+    <div class="ad-coluna">
+      <section class="ad-painel">
+        <div class="ad-painel__topo"><h2>Notas</h2><button class="ad-btn">Anotar</button></div>
+        <div class="ad-nota ad-nota--fixa"><p>Combinou pagar as duas no dia 20 (recebe dia 18).</p><span>Fixada · Alex, 13/10 · ligada a R$ 209,00</span></div>
+        <div class="ad-nota"><p>Pediu recibo por e-mail das mensalidades de 2026.</p><span>Igor, 02/09</span></div>
+      </section>
+      <section class="ad-painel">
+        <div class="ad-painel__topo"><h2>Histórico</h2></div>
+        <ul class="ad-lista ad-lista--compacta">
+          <li><span class="ad-lista__txt"><b>Alex aplicou desconto família em Elisa</b><span>01/08/2026 · R$ 110,00 → R$ 99,00</span></span></li>
+          <li><span class="ad-lista__txt"><b>Alex matriculou Elisa no Jiu-Jitsu Kids</b><span>01/08/2026 às 18:02</span></span></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- 4d. FUNCIONÁRIOS + ficha -->
+<section class="ad-quadro" data-captura="ficha-funcionario" data-tela="funcionarios" data-secao="pessoas" data-sub="Funcionários" data-titulo="Funcionários" aria-label="Funcionários e ficha de funcionário">
+  <div class="ad-colunas" style="--colunas: minmax(0, 1.5fr) minmax(0, 1fr)">
+    <section class="ad-painel ad-painel--sem-pad ad-painel--cheio" aria-labelledby="ff-eq">
+      <div class="ad-painel__topo"><h2 id="ff-eq">Equipe · 9 pessoas · folha de outubro R$ 11.218,00 (calculada)</h2><button class="ad-btn ad-btn--primario"><svg class="icone icone--16" aria-hidden="true"><use href="#i-mais"/></svg>Funcionário</button></div>
+      <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="equipe"></table></div>
+    </section>
+    <div class="ad-coluna">
+      <section class="ad-painel">
+        <div class="ad-ficha-cabeca"><span class="ad-avatar" aria-hidden="true">HM</span><div><h2>Helena Martins</h2><p class="ad-anotacao">Professora de Jiu-Jitsu · desde 01/06/2025 · também é aluna (Muay Thai)</p></div></div>
+        <div class="ad-acoes"><span class="ad-selo">Professora</span><span class="ad-selo">Jiu-Jitsu</span><span class="ad-selo">Jiu-Jitsu Kids</span><span class="ad-selo ad-selo--ok">No app: instrutor</span></div>
+        <dl class="ad-dados">
+          <dt>Remuneração</dt><dd>Fixo R$ 800,00 + comissão de 20 %</dd>
+          <dt>Turmas</dt><dd>Seg e qua 20h · Kids seg e qua 19h</dd>
+          <dt>Telefone</dt><dd>(51) 90000-0021</dd>
+        </dl>
+      </section>
+      <section class="ad-painel ad-painel--heroi">
+        <div class="ad-painel__topo"><h2>Remuneração de outubro (calculada)</h2></div>
+        <ul class="ad-lista ad-lista--compacta">
+          <li><span class="ad-lista__txt"><span>Entrou de Jiu-Jitsu no mês (o combo conta a metade)</span></span><span class="ad-lista__val">R$ 6.420,00</span></li>
+          <li><span class="ad-lista__txt"><span>Comissão de 20 %</span></span><span class="ad-lista__val">R$ 1.284,00</span></li>
+          <li><span class="ad-lista__txt"><span>Fixo</span></span><span class="ad-lista__val">R$ 800,00</span></li>
+          <li><span class="ad-lista__txt"><b>Total</b></span><span class="ad-lista__val">R$ 2.084,00</span></li>
+        </ul>
+        <p class="ad-anotacao">O Admin calcula; o dono confere e lança. A remuneração não vira linha sozinha.</p>
+        <div class="ad-acoes"><button class="ad-btn ad-btn--primario">Lançar R$ 2.084,00 como saída</button><button class="ad-btn">Desligar</button></div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- 5. IMPORTAR: conferir colunas -->
+<section class="ad-quadro" data-captura="importar" data-tela="importar" data-secao="financeiro" data-sub="Importar" data-titulo="Importar planilha" aria-label="Importar planilha, conferir colunas">
+  <div class="ad-colunas" style="--colunas: minmax(0, 1fr)">
+    <div class="ad-coluna">
+      <section class="ad-painel">
+        <div class="ad-painel__topo">
+          <ol class="ad-passos" aria-label="Passos"><li class="feito"><b>✓</b>Arquivo</li><li class="ad-passos__seta" aria-hidden="true">›</li><li aria-current="step"><b>2</b>Conferir colunas</li><li class="ad-passos__seta" aria-hidden="true">›</li><li><b>3</b>Gravar</li></ol>
+          <div class="ad-acoes"><button class="ad-btn">Trocar arquivo</button><button class="ad-btn ad-btn--primario">Gravar 117 linhas</button></div>
+        </div>
+        <p class="t13b"><b>caixa-raca-2026.xlsx</b> · aba "Outubro" · o cabeçalho está na linha 3 (as 2 de cima são título) · 128 linhas. <span class="sec">Nada foi gravado ainda.</span></p>
+        <div class="ad-mapa" data-mapa></div>
+      </section>
+      <div class="ad-colunas" style="--colunas: minmax(0, 2.2fr) minmax(0, 1fr); height: auto">
+        <section class="ad-painel ad-painel--sem-pad" aria-labelledby="im-prev">
+          <div class="ad-painel__topo"><h2 id="im-prev">Prévia</h2>
+            <div class="ad-grupos" role="group" aria-label="Grupos da prévia"><a href="?tela=importar" aria-current="true">Prontas <b>112</b></a><a href="?tela=importar">Com aviso <b>5</b></a><a href="?tela=importar">Repetidas <b>9</b></a><a href="?tela=importar">Com erro <b>2</b></a></div>
+          </div>
+          <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="previa"></table></div>
+        </section>
+        <section class="ad-painel" aria-labelledby="im-cat">
+          <h2 id="im-cat">Criar estas categorias?</h2>
+          <p class="ad-anotacao">Estão na planilha e não existem no Admin. Aceite, renomeie ou aponte para uma que já existe.</p>
+          <label class="campo"><span>"Kimono" (entrada, 6 linhas)</span><span class="campo__caixa"><select><option>Usar: Venda de produtos</option><option>Criar "Kimono"</option></select></span></label>
+          <label class="campo"><span>"Gasolina viagem" (saída, 2 linhas)</span><span class="campo__caixa"><select><option>Criar "Gasolina viagem"</option><option>Usar: Eventos e campeonatos (saídas)</option></select></span></label>
+          <label class="campo"><span>"Mensal" (entrada, 84 linhas)</span><span class="campo__caixa"><select><option>Usar: Mensalidades</option></select></span></label>
+          <div class="ad-sep"></div>
+          <h3 class="ad-h3">Repetidas</h3>
+          <p class="ad-anotacao">9 linhas iguais a lançamentos que já existem (mesma data, tipo, valor e descrição). Ficam de fora, a menos que você marque.</p>
+          <h3 class="ad-h3">Com erro</h3>
+          <p class="campo__erro"><svg class="icone icone--16" aria-hidden="true"><use href="#i-alerta"/></svg>Linha 47: data "31/09/2026" não existe.</p>
+          <p class="campo__erro"><svg class="icone icone--16" aria-hidden="true"><use href="#i-alerta"/></svg>Linha 102: valor "12,345" é ambíguo (doze ou doze mil?).</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. RELATÓRIOS -->
+<section class="ad-quadro" data-captura="relatorios" data-tela="relatorio-modalidade" data-secao="relatorios" data-titulo="Relatórios" aria-label="Relatórios">
+  <div class="ad-colunas" style="--colunas: minmax(0, 1fr)">
+    <div class="ad-coluna">
+      <div class="ad-abas" aria-label="Relatórios"><a href="?tela=relatorio-ano">Mês</a><a href="?tela=relatorio-ano">Ano</a><a href="?tela=relatorios">Por categoria</a><a href="?tela=relatorios" aria-current="page">Por modalidade</a><a href="?tela=relatorios">Por forma</a><a href="?tela=relatorios">Por professor</a><a href="?tela=relatorios">Por evento</a><a href="?tela=inadimplencia">Inadimplência</a><a href="?tela=funil">Funil</a></div>
+      <div class="ad-colunas" style="--colunas: minmax(0, 1.2fr) minmax(0, 1fr); height: auto">
+        <section class="ad-painel" aria-labelledby="rl-mod">
+          <div class="ad-painel__topo"><h2 id="rl-mod">Quanto entrou por modalidade · 3º trimestre (jul a set)</h2>
+            <div class="ad-acoes"><span class="campo__caixa"><select aria-label="Período"><option>Este trimestre</option><option>Este mês</option><option>Este ano</option><option>Livre…</option></select></span><button class="ad-btn">Exportar CSV</button></div>
+          </div>
+          <p class="t16">Entrou <b>R$ 21.640,00 de Muay Thai</b> no trimestre: 37 % do total de mensalidades. O combo conta a metade para cada modalidade.</p>
+          <div class="ad-pilha" data-hbarras></div>
+        </section>
+        <section class="ad-painel ad-painel--sem-pad" aria-labelledby="rl-tab">
+          <div class="ad-painel__topo"><h2 id="rl-tab">Em números</h2></div>
+          <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="modalidades"></table></div>
+        </section>
+      </div>
+      <div class="ad-colunas" style="--colunas: minmax(0, 1fr) minmax(0, 1fr); height: auto">
+        <section class="ad-painel ad-painel--sem-pad" aria-labelledby="rl-prof">
+          <div class="ad-painel__topo"><h2 id="rl-prof">Por professor · outubro</h2></div>
+          <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="professores"></table></div>
+        </section>
+        <section class="ad-painel ad-painel--sem-pad" aria-labelledby="rl-ev">
+          <div class="ad-painel__topo"><h2 id="rl-ev">Por evento · 2026</h2></div>
+          <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="eventos"></table></div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FUNIL -->
+<section class="ad-quadro" data-captura="funil" data-tela="funil" data-secao="funil" data-titulo="Funil da aula experimental" data-mes="Outubro de 2026" aria-label="Funil da aula experimental">
+  <div class="ad-colunas" style="--colunas: minmax(0, 3fr) minmax(320px, 1fr)">
+    <div class="ad-funil" data-funil></div>
+    <div class="ad-coluna ad-primeiro">
+      <section class="ad-painel ad-painel--heroi" aria-labelledby="fu-volta">
+        <div class="ad-painel__topo"><h2 id="fu-volta">Chamar de volta · 4</h2></div>
+        <p class="ad-anotacao">Fizeram a aula há 3 dias ou mais e ainda não decidiram. O prazo de 3 dias é proposta (A15).</p>
+        <ul class="ad-lista" data-volta></ul>
+      </section>
+      <section class="ad-painel ad-painel--sem-pad" aria-labelledby="fu-orig">
+        <div class="ad-painel__topo"><h2 id="fu-orig">De onde vem aluno · outubro</h2></div>
+        <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="origens"></table></div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- 8. AGENDA -->
+<section class="ad-quadro" data-captura="agenda" data-tela="agenda" data-secao="agenda" data-titulo="Agenda" data-mes="Outubro de 2026" aria-label="Agenda: lembretes e tarefas">
+  <div class="ad-colunas" style="--colunas: minmax(300px, 1fr) minmax(0, 2fr) minmax(300px, 1fr)">
+    <div class="ad-coluna ad-primeiro">
+      <section class="ad-painel" aria-labelledby="ag-hoje">
+        <div class="ad-painel__topo"><h2 id="ag-hoje">Hoje, quinta 15/10</h2><button class="ad-btn ad-btn--primario"><svg class="icone icone--16" aria-hidden="true"><use href="#i-mais"/></svg>Lembrete <kbd>L</kbd></button></div>
+        <h3 class="ad-h3">Atrasados · 1</h3>
+        <ul class="ad-lista">
+          <li><span class="ad-lista__txt"><b>Cobrar Renan Duarte</b><span>era 12/10 · R$ 240,00 · ligado à pessoa</span></span><button class="ad-btn">Concluir</button></li>
+        </ul>
+        <h3 class="ad-h3">Hoje · 3</h3>
+        <ul class="ad-lista">
+          <li><span class="ad-lista__txt"><b>Vence: Internet</b><span>todo dia 15 · boleto · R$ 120,00</span></span><button class="ad-btn">Concluir</button></li>
+          <li><span class="ad-lista__txt"><b>Ligar para Larissa Becker</b><span>retorno da aula experimental</span></span><button class="ad-btn">Concluir</button></li>
+          <li><span class="ad-lista__txt"><b>Conferir a conta de luz</b><span>15:00 · a linha está "estimado"</span></span><button class="ad-btn">Adiar</button></li>
+        </ul>
+        <h3 class="ad-h3">Em breve</h3>
+        <ul class="ad-lista ad-lista--compacta">
+          <li><span class="ad-lista__txt"><b>Exame de graduação Muay Thai</b><span>sáb 24/10 · avisa 7 dias antes</span></span></li>
+          <li><span class="ad-lista__txt"><b>Vence: Aluguel da sala</b><span>todo dia 10 · próximo 10/11</span></span></li>
+          <li><span class="ad-lista__txt"><b>Renovar o alvará</b><span>uma vez por ano · 30/11</span></span></li>
+        </ul>
+      </section>
+    </div>
+    <section class="ad-painel" aria-labelledby="ag-cal">
+      <div class="ad-painel__topo"><h2 id="ag-cal">Outubro</h2><span class="ad-legenda"><span><i class="viva"></i>vencimento</span><span><i></i>lembrete</span></span></div>
+      <div class="ad-cal" data-cal></div>
+    </section>
+    <div class="ad-coluna">
+      <section class="ad-painel" aria-labelledby="ag-tar">
+        <div class="ad-painel__topo"><h2 id="ag-tar">Tarefas abertas · 4</h2><button class="ad-btn"><svg class="icone icone--16" aria-hidden="true"><use href="#i-mais"/></svg>Tarefa</button></div>
+        <ul class="ad-lista">
+          <li><span class="ad-selo ad-selo--erro">Atrasada</span><span class="ad-lista__txt"><b>Pedir orçamento de sacos novos</b><span>Alex · era 13/10</span></span></li>
+          <li><span class="ad-selo ad-selo--pend">18/10</span><span class="ad-lista__txt"><b>Trocar 6 placas de tatame</b><span>Igor</span></span></li>
+          <li><span class="ad-selo">22/10</span><span class="ad-lista__txt"><b>Fechar o card da Lomba do Pinheiro</b><span>Gabriel · evento de 21/11</span></span></li>
+          <li><span class="ad-selo">sem prazo</span><span class="ad-lista__txt"><b>Comprar 10 pares de luvas 14 oz</b><span>Alex</span></span></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- 8b. NOTAS -->
+<section class="ad-quadro" data-captura="notas" data-secao="notas" data-titulo="Notas" aria-label="Notas">
+  <div class="ad-colunas" style="--colunas: minmax(0, 1fr)">
+    <div class="ad-coluna">
+      <div class="ad-acoes">
+        <label class="campo__caixa" style="flex: 1 1 320px; max-width: 480px"><svg class="icone icone--16" aria-hidden="true"><use href="#i-buscar"/></svg><input type="search" placeholder="Buscar nas notas" aria-label="Buscar nas notas"></label>
+        <span class="campo__caixa"><select aria-label="Pessoa"><option>Qualquer pessoa</option><option>Fernanda Lima</option><option>Bruno Almeida</option></select></span>
+        <span class="campo__caixa"><select aria-label="Período"><option>Últimos 90 dias</option><option>Este mês</option><option>Tudo</option></select></span>
+        <button class="ad-btn ad-btn--primario"><svg class="icone icone--16" aria-hidden="true"><use href="#i-mais"/></svg>Nota <kbd>N</kbd></button>
+      </div>
+      <h2 class="ad-h3">Fixadas · 3</h2>
+      <div class="ad-mapa" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))">
+        <div class="ad-nota ad-nota--fixa"><p>Fernanda combinou pagar as duas mensalidades no dia 20.</p><span>Fernanda Lima · R$ 209,00 · 13/10</span></div>
+        <div class="ad-nota ad-nota--fixa"><p>Contador pediu o fechamento de outubro até 05/11, com as notas da luz e da água.</p><span>Fechamento · 08/10</span></div>
+        <div class="ad-nota ad-nota--fixa"><p>Bruno quer trocar para o Combo em novembro.</p><span>Bruno Almeida · 12/10</span></div>
+      </div>
+      <h2 class="ad-h3">Mais novas</h2>
+      <div class="ad-mapa" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))">
+        <div class="ad-nota"><p>O fornecedor de luvas dá 8 % à vista no Pix.</p><span>Equipamento · 14/10</span></div>
+        <div class="ad-nota"><p>Sábado de competição lotou: 23 alunos. Pensar em segunda turma.</p><span>Dia 10/10</span></div>
+        <div class="ad-nota"><p>Tatame da área 2 descolando no canto da porta.</p><span>Tarefa criada · 09/10</span></div>
+        <div class="ad-nota"><p>Pediu recibo por e-mail das mensalidades de 2026.</p><span>Fernanda Lima · 02/09</span></div>
+        <div class="ad-nota"><p>Inscrição do card: R$ 240,00, paga no Pix. Premiação a confirmar.</p><span>Card Lomba do Pinheiro · 14/10</span></div>
+        <div class="ad-nota"><p>Aula particular da Rafaela às terças, 18h, R$ 150,00.</p><span>Rafaela Nunes · 15/10</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. HISTÓRICO -->
+<section class="ad-quadro" data-captura="historico" data-tela="historico" data-secao="historico" data-titulo="Histórico" aria-label="Histórico">
+  <div class="ad-colunas" style="--colunas: 280px minmax(0, 1fr)">
+    <aside class="ad-coluna" aria-label="Filtros do histórico">
+      <section class="ad-painel">
+        <label class="campo"><span>O quê</span><span class="campo__caixa"><select><option>Tudo</option><option>Lançamentos</option><option>Cobranças</option><option>Pessoas e matrículas</option><option>Fechamentos</option><option>Importações</option><option>Ajustes</option></select></span></label>
+        <label class="campo"><span>Quem mudou</span><span class="campo__caixa"><select><option>Qualquer um</option><option>Alex</option><option>Igor (recepção)</option></select></span></label>
+        <label class="campo"><span>Período</span><span class="campo__caixa"><select><option>Últimos 7 dias</option><option>Este mês</option><option>Livre…</option></select></span></label>
+        <p class="ad-anotacao">Quem grava é o banco. Ninguém edita nem apaga o histórico, nem o dono.</p>
+      </section>
+    </aside>
+    <section class="ad-painel ad-painel--sem-pad ad-painel--cheio" aria-label="Mudanças">
+      <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="historico"></table></div>
+    </section>
+  </div>
+</section>
+
+<!-- 13. DESPESAS FIXAS -->
+<section class="ad-quadro" data-captura="despesas-fixas" data-tela="despesas-fixas" data-secao="financeiro" data-sub="Despesas fixas" data-titulo="Despesas fixas" aria-label="Despesas fixas">
+  <div class="ad-colunas" style="--colunas: minmax(0, 2.4fr) minmax(300px, 1fr)">
+    <section class="ad-painel ad-painel--sem-pad ad-painel--cheio" aria-labelledby="df-t">
+      <div class="ad-painel__topo"><h2 id="df-t">O que se repete todo mês · 9 despesas · R$ 7.969,50 por mês</h2><button class="ad-btn ad-btn--primario"><svg class="icone icone--16" aria-hidden="true"><use href="#i-mais"/></svg>Despesa fixa</button></div>
+      <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="despesas"></table></div>
+    </section>
+    <div class="ad-coluna">
+      <section class="ad-painel" aria-labelledby="df-c">
+        <h2 id="df-c">Como funciona</h2>
+        <p class="t13b">No dia 1, cada despesa vira uma linha <b>pendente</b> na planilha, no dia do vencimento. Rodar de novo não duplica.</p>
+        <p class="t13b">Luz e água mudam todo mês: o valor é a média dos 3 últimos, marcado "estimado" até alguém conferir a conta.</p>
+        <p class="t13b">Salário é despesa fixa com a pessoa. Comissão não: o Admin calcula e o dono lança (Pessoas › Funcionários).</p>
+      </section>
+      <section class="ad-painel" aria-labelledby="df-o">
+        <h2 id="df-o">Outubro</h2>
+        <dl class="ad-numeros" style="--n: 2"><div class="ad-numero"><dt>Já pago</dt><dd>R$ 6.787,50</dd></div><div class="ad-numero"><dt>Pendente</dt><dd class="ate">R$ 1.020,00</dd></div></dl>
+        <p class="ad-anotacao">A hospedagem do app começa em novembro.</p>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- 14. INADIMPLÊNCIA: cobrar quem deve -->
+<section class="ad-quadro" data-captura="inadimplencia" data-tela="inadimplencia" data-secao="relatorios" data-titulo="Inadimplência" data-mes="Outubro de 2026" aria-label="Inadimplência">
+  <div class="ad-colunas" style="--colunas: minmax(0, 2fr) minmax(320px, 1fr)">
+    <section class="ad-painel ad-painel--sem-pad ad-painel--cheio" aria-labelledby="in-t">
+      <div class="ad-painel__topo"><h2 id="in-t">Quem deve · 11 pessoas · R$ 1.690,00 · do maior atraso para o menor</h2>
+        <div class="ad-acoes"><span class="campo__caixa"><select aria-label="Atraso"><option>Qualquer atraso</option><option>Há mais de 15 dias</option><option>Há mais de 30 dias</option></select></span><button class="ad-btn">Exportar CSV</button></div></div>
+      <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="inadimplentes"></table></div>
+    </section>
+    <div class="ad-coluna ad-primeiro">
+      <section class="ad-painel ad-painel--heroi" aria-labelledby="in-w">
+        <h2 id="in-w">Cobrar Renan Duarte no WhatsApp</h2>
+        <p class="ad-anotacao">A mensagem vai pronta, sem dado de saúde. O Admin abre a conversa; quem manda é você.</p>
+        <div class="ad-nota"><p>Olá, Renan! As mensalidades de setembro e outubro da Raça Fight venceram em 05/09 e 05/10, no total de R$ 240,00. Se já pagou, desconsidere.</p><span>para (51) 90000-0011</span></div>
+        <div class="ad-acoes"><button class="ad-btn ad-btn--primario"><svg class="icone icone--16" aria-hidden="true"><use href="#i-conversa"/></svg>Abrir no WhatsApp</button><button class="ad-btn">Lembrar de cobrar</button><button class="ad-btn">Anotar</button></div>
+      </section>
+      <section class="ad-painel" aria-labelledby="in-x">
+        <h2 id="in-x">Taxa do mês</h2>
+        <dl class="ad-numeros" style="--n: 2"><div class="ad-numero"><dt>Venceu e não foi pago</dt><dd>6,2 %</dd></div><div class="ad-numero"><dt>Setembro (fechado)</dt><dd>4,8 %</dd></div></dl>
+        <p class="ad-anotacao">Atraso não bloqueia o treino (R14.6a). Multa e juros: a academia não usa (A3).</p>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- 15. EXPORTAR -->
+<section class="ad-quadro" data-captura="exportar" data-tela="exportar" data-secao="financeiro" data-sub="Lançamentos" data-titulo="Exportar" data-mes="Outubro de 2026" aria-label="Exportar para o Excel">
+  <div class="ad-colunas" style="--colunas: minmax(320px, 1fr) minmax(0, 2fr)">
+    <section class="ad-painel" aria-labelledby="ex-t">
+      <h2 id="ex-t">Exportar para o Excel</h2>
+      <div class="ad-pilha" role="radiogroup" aria-label="O que exportar">
+        <h3 class="ad-h3">O quê</h3>
+        <label class="campo__caixa marcar"><input type="radio" name="ex-o" checked><span>O que está na tela (outubro, todas as categorias)</span><em>312</em></label>
+        <label class="campo__caixa marcar"><input type="radio" name="ex-o"><span>O ano de 2026 inteiro</span><em>2.918</em></label>
+        <label class="campo__caixa marcar"><input type="radio" name="ex-o"><span>Só as linhas selecionadas</span><em>3</em></label>
+      </div>
+      <label class="campo"><span>Formato</span><span class="campo__caixa"><select><option>CSV para o Excel em português (;)</option><option>CSV padrão (,)</option></select></span></label>
+      <p class="campo__ajuda">Acentos certos, valor como número (vírgula decimal, sem "R$") e a coluna "Valor (±)" com a saída negativa, para a SOMA dar o resultado. XLSX fica para a v2.</p>
+      <div class="ad-acoes"><button class="ad-btn ad-btn--primario ad-btn--grande">Baixar o CSV de outubro</button></div>
+    </section>
+    <section class="ad-painel ad-painel--sem-pad" aria-labelledby="ex-p">
+      <div class="ad-painel__topo"><h2 id="ex-p">Como o Excel vai abrir (5 primeiras linhas)</h2></div>
+      <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="exportar"></table></div>
+      <p class="ad-anotacao" style="padding: 12px 16px">O que sai volta igual pela importação. Texto que começa com =, +, − ou @ ganha um apóstrofo, para o Excel não rodar como fórmula.</p>
+    </section>
+  </div>
+</section>
+
+<!-- 16. RELATÓRIO DO ANO -->
+<section class="ad-quadro" data-captura="relatorio-ano" data-tela="relatorio-ano" data-secao="relatorios" data-titulo="Relatórios" aria-label="Relatório do ano">
+  <div class="ad-colunas" style="--colunas: minmax(0, 1fr)">
+    <div class="ad-coluna">
+      <div class="ad-abas" aria-label="Relatórios"><a href="?tela=relatorio-ano">Mês</a><a href="?tela=relatorio-ano" aria-current="page">Ano</a><a href="?tela=relatorios">Por categoria</a><a href="?tela=relatorios">Por modalidade</a><a href="?tela=relatorios">Por forma</a><a href="?tela=relatorios">Por professor</a><a href="?tela=relatorios">Por evento</a><a href="?tela=inadimplencia">Inadimplência</a><a href="?tela=funil">Funil</a></div>
+      <div class="ad-colunas" style="--colunas: minmax(0, 1fr) minmax(0, 1.4fr); height: auto">
+        <section class="ad-painel" aria-labelledby="ra-g">
+          <div class="ad-painel__topo"><h2 id="ra-g">Resultado mês a mês · nov/2025 a out/2026</h2><button class="ad-btn">Exportar CSV</button></div>
+          <p class="t16">Nos 12 meses ficaram <b>R$ 68.561,80</b>. O melhor mês fechado foi setembro (R$ 9.873,20); julho fechou no vermelho por causa da viagem do campeonato.</p>
+          <div class="ad-barras" data-barras role="img" aria-label="Resultado mensal de novembro de 2025 a outubro de 2026" style="min-height: 240px"></div>
+          <p class="ad-legenda"><span><i class="viva"></i>Outubro (até o dia 15)</span><span><i></i>Meses fechados</span><span><i class="neg"></i>Mês no vermelho</span></p>
+        </section>
+        <section class="ad-painel ad-painel--sem-pad" aria-labelledby="ra-t">
+          <div class="ad-painel__topo"><h2 id="ra-t">Em números</h2></div>
+          <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="ano"></table></div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 17. FILTRO TOTAL -->
+<section class="ad-quadro" data-captura="filtro" data-tela="filtro" data-secao="pessoas" data-sub="Alunos" data-titulo="Alunos" aria-label="Filtro total aberto">
+  <section class="ad-painel ad-painel--sem-pad" aria-label="Resultado do filtro">
+    <div class="ad-painel__topo"><div class="ad-frase"><p><b>Alunos · Muay Thai · em atraso há mais de 30 dias</b> · 3 pessoas · R$ 540,00</p></div><div class="ad-acoes"><button class="ad-btn">Exportar CSV</button></div></div>
+    <div class="lista ad-tabela-rola"><table class="ad-tabela" data-tabela="filtrados"></table></div>
+  </section>
+  <div class="ad-gaveta folha-moldura" role="dialog" aria-labelledby="ft-t" data-camada>
+    <h2 id="ft-t">Filtro total</h2>
+    <p class="ad-anotacao">Dentro de um critério vale qualquer valor (ou). Entre critérios valem todos (e).</p>
+    <div class="ad-cartao"><b>Modalidade é</b><span class="campo__caixa"><select aria-label="Modalidade"><option>Muay Thai</option><option>Boxe</option><option>Jiu-Jitsu</option></select></span></div>
+    <div class="ad-cartao"><b>e Situação é</b><span class="campo__caixa"><select aria-label="Situação"><option>Matriculado</option><option>Trancado</option></select></span></div>
+    <div class="ad-cartao"><b>e Em atraso há mais de (dias)</b><label class="campo__caixa"><input value="30" inputmode="numeric" aria-label="Dias de atraso"></label></div>
+    <button class="ad-btn"><svg class="icone icone--16" aria-hidden="true"><use href="#i-mais"/></svg>Critério: plano, desconto, novos desde…</button>
+    <label class="campo"><span>Salvar com o nome</span><span class="campo__caixa"><input value="Muay Thai devendo há mais de 30 dias"></span></label>
+    <div class="ad-gaveta__pe"><button class="ad-btn ad-btn--grande">Limpar</button><button class="ad-btn ad-btn--grande">Salvar filtro</button><button class="ad-btn ad-btn--primario ad-btn--grande">Ver 3 pessoas</button></div>
+  </div>
+</section>
+
+<!-- 10. BUSCA GLOBAL -->
+<section class="ad-quadro ad-quadro--busca" data-captura="busca" data-secao="painel" data-titulo="Painel" data-mes="Outubro de 2026" data-busca="lima" data-copia="painel" aria-label="Busca global aberta">
+</section>
+
+<!-- 11. ESTADOS -->
+<section class="ad-quadro" data-captura="estados" data-secao="financeiro" data-sub="Lançamentos" data-titulo="Estados" aria-label="Estados: carregando, vazio, erro, salvando, sem permissão">
+  <div class="ad-colunas" style="--colunas: repeat(auto-fit, minmax(320px, 1fr))">
+    <section class="ad-painel ad-painel--sem-pad" aria-labelledby="es-1" aria-busy="true">
+      <div class="ad-painel__topo"><h2 id="es-1">Carregando</h2></div>
+      <div class="ad-esq-linhas" aria-hidden="true">
+        <div class="ad-esq-linha"><i class="ad-esq"></i><i class="ad-esq"></i><i class="ad-esq"></i><i class="ad-esq"></i></div>
+        <div class="ad-esq-linha"><i class="ad-esq"></i><i class="ad-esq"></i><i class="ad-esq"></i><i class="ad-esq"></i></div>
+        <div class="ad-esq-linha"><i class="ad-esq"></i><i class="ad-esq"></i><i class="ad-esq"></i><i class="ad-esq"></i></div>
+        <div class="ad-esq-linha"><i class="ad-esq"></i><i class="ad-esq"></i><i class="ad-esq"></i><i class="ad-esq"></i></div>
+        <div class="ad-esq-linha"><i class="ad-esq"></i><i class="ad-esq"></i><i class="ad-esq"></i><i class="ad-esq"></i></div>
+      </div>
+      <p class="ad-anotacao" style="padding: 0 16px 16px">O esqueleto só aparece se demorar mais de 300 ms; a passada dá 3 voltas e para.</p>
+    </section>
+    <section class="ad-painel ad-painel--sem-pad" aria-labelledby="es-2">
+      <div class="ad-painel__topo"><h2 id="es-2">Vazio</h2></div>
+      <div class="ad-estado">
+        <span class="ad-estado__icone"><svg class="icone" aria-hidden="true"><use href="#i-lista"/></svg></span>
+        <h2 class="t20">Nenhuma cobrança em novembro</h2>
+        <p>As mensalidades de novembro ainda não foram geradas. 186 matrículas ativas estão prontas.</p>
+        <button class="ad-btn ad-btn--primario ad-btn--grande">Gerar mensalidades de novembro</button>
+      </div>
+    </section>
+    <section class="ad-painel ad-painel--sem-pad" aria-labelledby="es-3">
+      <div class="ad-painel__topo"><h2 id="es-3">Erro e sem conexão</h2></div>
+      <div class="ad-estado">
+        <span class="ad-estado__icone ad-estado__icone--erro"><svg class="icone" aria-hidden="true"><use href="#i-alerta"/></svg></span>
+        <h2 class="t20">Não deu para carregar os lançamentos</h2>
+        <p>O servidor não respondeu. O que está na tela é de 10:41.</p>
+        <button class="ad-btn ad-btn--grande">Tentar de novo</button>
+      </div>
+      <div class="ad-faixa-aviso ad-faixa-aviso--erro">
+        <svg class="icone" aria-hidden="true"><use href="#i-nuvem"/></svg>
+        <p><b>Sem conexão: nada foi gravado.</b>O que você digitou continua na tela. Dinheiro não grava sem rede.</p>
+      </div>
+    </section>
+    <section class="ad-painel ad-painel--sem-pad" aria-labelledby="es-4">
+      <div class="ad-painel__topo"><h2 id="es-4">Salvando</h2></div>
+      <div class="lista ad-tabela-rola" style="flex: none">
+        <table class="ad-tabela">
+          <thead><tr><th scope="col">Descrição</th><th scope="col" class="dir">Valor</th></tr></thead>
+          <tbody>
+            <tr><td class="t16">Aula particular — Rafaela</td><td class="dir"><span class="ad-gravado"><span class="ad-girando" aria-hidden="true"></span>Salvando…</span></td></tr>
+            <tr><td class="t16 ad-gravou">Tatame EVA 1 m² × 6</td><td class="dir ad-gravou"><b>R$ 1.140,00</b></td></tr>
+            <tr><td class="t16">Internet</td><td class="dir"><b>R$ 120,00</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ad-estado">
+        <p>A célula gravada pisca de leve uma vez. No topo: <span class="ad-gravado"><svg class="icone icone--16" aria-hidden="true"><use href="#i-marcar"/></svg>Salvo às 10:42</span></p>
+      </div>
+    </section>
+    <section class="ad-painel ad-painel--sem-pad" aria-labelledby="es-5">
+      <div class="ad-painel__topo"><h2 id="es-5">Sem permissão</h2></div>
+      <div class="ad-estado">
+        <span class="ad-estado__icone"><svg class="icone" aria-hidden="true"><use href="#i-escudo"/></svg></span>
+        <h2 class="t20">Esta parte é só do dono</h2>
+        <p>Com o papel administrativo (se o Alex quiser, A1), a recepção lança pagamento, mas não vê resultado, salário nem relatórios.</p>
+        <a class="ad-btn" href="?tela=painel">Voltar ao painel</a>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- 12. SEM PERMISSÃO (tela inteira) -->
+<section class="ad-quadro ad-quadro--bloqueio" data-captura="sem-permissao" aria-label="Sem permissão">
+  <div class="ad-bloqueio">
+    <svg class="logo" viewBox="-54 -24 1078 304" role="img" aria-label="Raça Fight"><use href="#logo-rf"/></svg>
+    <h1>Esta área é do dono da academia</h1>
+    <p>Você entrou com a conta de Igor Pereira, que tem o papel de recepção. O Admin mostra os números da academia só para quem é dono.</p>
+    <p>Se você é professor ou da recepção, use o app da equipe.</p>
+    <button class="ad-btn ad-btn--grande">Sair desta conta</button>
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict'
+  var raiz = document.documentElement
+  var Q = new URLSearchParams(location.search)
+  var brl = function (c, sinal) {
+    var neg = c < 0, v = Math.abs(c), r = Math.floor(v / 100), cent = String(v % 100).padStart(2, '0')
+    var s = 'R$ ' + String(r).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + cent
+    return (neg ? '−' : sinal && c > 0 ? '+' : '') + s
+  }
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m] }) }
+  var ic = function (id, cls) { return '<svg class="icone ' + (cls || 'icone--16') + '" aria-hidden="true"><use href="#' + id + '"/></svg>' }
+
+  /* ------------------------------------------------ moldura (barra lateral, topo, barra de baixo) */
+  var NAV = [
+    { id: 'painel', rot: 'Painel', ic: 'i-grafico', tela: 'painel' },
+    { id: 'pessoas', rot: 'Pessoas', ic: 'i-alunos', tela: 'pessoas', sub: [['Alunos', 'pessoas'], ['Funcionários', 'ficha-funcionario'], ['Responsáveis', 'ficha-kids']] },
+    { id: 'financeiro', rot: 'Financeiro', ic: 'i-lista', tela: 'financeiro', sub: [['Lançamentos', 'financeiro'], ['Cobranças', 'cobrancas'], ['Despesas fixas', 'despesas-fixas'], ['Fechamento', 'financeiro-fechado'], ['Importar', 'importar']] },
+    { id: 'relatorios', rot: 'Relatórios', ic: 'i-grafico-linha', tela: 'relatorios' },
+    { id: 'funil', rot: 'Funil', ic: 'i-luva', tela: 'funil', conta: 4 },
+    { id: 'agenda', rot: 'Agenda', ic: 'i-calendario', tela: 'agenda', conta: 4 },
+    { id: 'notas', rot: 'Notas', ic: 'i-conversa', tela: 'notas' },
+    { id: 'historico', rot: 'Histórico', ic: 'i-relogio', tela: 'historico' },
+    { id: 'ajustes', rot: 'Ajustes', ic: 'i-academia', tela: 'painel' },
+  ]
+  var ABAS = [['painel', 'Painel', 'i-grafico'], ['pessoas', 'Pessoas', 'i-alunos'], ['financeiro', 'Finanças', 'i-lista'], ['agenda', 'Agenda', 'i-calendario'], ['mais', 'Mais', 'i-menu']]
+
+  function lateral(secao, sub) {
+    var h = '<aside class="ad-lateral" aria-label="Navegação"><div class="ad-marca">' +
+      '<svg viewBox="-54 -24 1078 304" role="img" aria-label="Raça Fight"><use href="#logo-rf"/></svg>' +
+      '<span class="ad-faixa">' + ic('i-luva') + '<span>Admin</span></span></div><nav class="ad-nav" aria-label="Seções">'
+    NAV.forEach(function (n) {
+      var atual = n.id === secao
+      h += '<a class="ad-nav__item" href="?tela=' + n.tela + '"' + (atual ? ' aria-current="page"' : '') + '>' + ic(n.ic, '') + n.rot +
+        (n.conta ? '<span class="ad-nav__conta" aria-label="' + n.conta + ' pendentes">' + n.conta + '</span>' : '') + '</a>'
+      if (atual && n.sub) {
+        h += '<div class="ad-nav__sub">'
+        n.sub.forEach(function (s) { h += '<a href="?tela=' + s[1] + '"' + (s[0] === sub ? ' aria-current="page"' : '') + '>' + s[0] + '</a>' })
+        h += '</div>'
+      }
+    })
+    h += '</nav><div class="ad-lateral__pe"><button type="button" data-acao="tema">' + ic('i-olho') + '<span data-tema-rot>Tema claro</span></button>' +
+      '<div class="ad-quem"><span class="ad-quem__avatar" aria-hidden="true">AL</span><p>Alex<span>dono · Raça Fight Gravataí</span></p></div></div></aside>'
+    return h
+  }
+  function topo(q) {
+    var t = q.dataset.titulo, mes = q.dataset.mes, fechado = q.hasAttribute('data-mes-fechado'), busca = q.dataset.busca || ''
+    var h = '<header class="ad-topo"><h1>' + t + '</h1>'
+    if (mes) h += '<div class="ad-topo__contexto"><span class="ad-mes"><button class="ad-btn ad-btn--icone ad-btn--plano" aria-label="Mês anterior">' + ic('i-voltar') + '</button><span>' + mes + '</span><button class="ad-btn ad-btn--icone ad-btn--plano" aria-label="Próximo mês">' + ic('i-avancar') + '</button></span>' +
+      (fechado ? '<span class="ad-selo">' + ic('i-cadeado') + 'Fechado</span>' : '') + '</div>'
+    h += '<div class="ad-busca"><label class="campo__caixa">' + ic('i-buscar') + '<input type="search" placeholder="Buscar pessoa, lançamento, nota…" aria-label="Busca global" value="' + esc(busca) + '"><kbd class="ad-kbd">Ctrl K</kbd></label>'
+    if (busca) h += suspensa()
+    h += '</div><div class="ad-topo__acoes">' +
+      '<button class="ad-btn so-pc-acao">' + ic('i-filtro') + 'Filtro <kbd>/</kbd></button>' +
+      '<button class="ad-btn so-pc-acao">Anotar <kbd>N</kbd></button>' +
+      '<button class="ad-btn so-pc-acao">Lembrar <kbd>L</kbd></button>' +
+      '<span class="ad-gravado so-pc-acao">' + ic('i-marcar') + 'Salvo às 10:42</span>' +
+      '<button class="ad-btn ad-btn--icone so-celular" aria-label="Buscar">' + ic('i-buscar') + '</button>' +
+      '<button class="ad-btn ad-btn--icone so-celular" aria-label="Anotar ou lembrar">' + ic('i-mais') + '</button>' +
+      '</div></header>'
+    return h
+  }
+  function suspensa() {
+    var r = function (sel, href, tit, sub) { return '<a class="linha" href="' + href + '"' + (sel ? ' aria-selected="true"' : '') + ' role="option"><span><b>' + tit + '</b><small>' + sub + '</small></span></a>' }
+    return '<div class="ad-suspensa folha-moldura" role="listbox" aria-label="Resultados para lima">' +
+      '<h3 class="ad-h3">Pessoas · 3</h3>' +
+      r(true, '?tela=ficha-kids', 'Fernanda <mark>Lima</mark>', 'Responsável · 2 dependentes · atrasada há 5 dias') +
+      r(false, '?tela=ficha-kids', 'Davi <mark>Lima</mark>', 'Muay Thai Kids · responsável Fernanda') +
+      r(false, '?tela=ficha-kids', 'Elisa <mark>Lima</mark>', 'Jiu-Jitsu Kids · desconto família') +
+      '<h3 class="ad-h3">Lançamentos e cobranças · 2</h3>' +
+      r(false, '?tela=cobrancas', 'Mensalidade outubro — Davi <mark>Lima</mark>', 'R$ 110,00 · pendente · venceu 10/10') +
+      r(false, '?tela=cobrancas', 'Mensalidade outubro — Elisa <mark>Lima</mark>', 'R$ 99,00 · pendente · venceu 10/10') +
+      '<h3 class="ad-h3">Notas · 1</h3>' +
+      r(false, '?tela=notas', 'Combinou pagar as duas no dia 20', 'Fernanda <mark>Lima</mark> · fixada') +
+      '<footer><span>↑ ↓ escolher</span><span>Enter abrir</span><span>Esc fechar</span></footer></div>'
+  }
+  function tabbar(secao) {
+    var alvo = { painel: 'painel', pessoas: 'pessoas', financeiro: 'financeiro', agenda: 'agenda' }[secao] || 'mais'
+    var h = '<nav class="ad-tabbar" aria-label="Seções">'
+    ABAS.forEach(function (a) {
+      var tela = a[0] === 'mais' ? 'relatorios' : a[0]
+      h += '<a class="aba" href="?tela=' + tela + '"' + (a[0] === alvo ? ' aria-current="page"' : '') + '>' + ic(a[2], '') + '<span class="aba__rotulo">' + a[1] + '</span></a>'
+    })
+    return h + '</nav>'
+  }
+  // a busca abre sobre o painel: copia o miolo do painel (sem os id, para não repetir)
+  document.querySelectorAll('.ad-quadro[data-copia]').forEach(function (q) {
+    var fonte = document.querySelector('.ad-quadro[data-captura="' + q.dataset.copia + '"]')
+    q.innerHTML = fonte.innerHTML.replace(/\s(id|aria-labelledby)="[^"]*"/g, '')
+  })
+  document.querySelectorAll('.ad-quadro[data-secao]').forEach(function (q) {
+    var camadas = [].slice.call(q.querySelectorAll(':scope > [data-camada]'))
+    camadas.forEach(function (c) { c.remove() })
+    var miolo = q.innerHTML
+    q.innerHTML = lateral(q.dataset.secao, q.dataset.sub) + '<div class="ad-principal">' + topo(q) + '<main class="ad-conteudo">' + miolo + '</main>' + tabbar(q.dataset.secao) + '</div>'
+    camadas.forEach(function (c) { q.appendChild(c) })
+  })
+  // quadros que só existem numa largura
+  var mq = matchMedia('(max-width: 1023px)')
+  function soLargura() { document.querySelectorAll('.ad-quadro[data-so]').forEach(function (q) { q.style.display = (q.dataset.so === 'pc') === mq.matches ? 'none' : '' }) }
+  soLargura(); mq.addEventListener('change', soLargura)
+  // modo app: ?tela=<quadro>
+  if (Q.get('tela')) {
+    var q = document.querySelector('.ad-quadro[data-captura="' + Q.get('tela') + '"]') || document.querySelector('.ad-quadro')
+    q.classList.add('ad-quadro--atual')
+  }
+  // tema
+  function rotTema() { var e = getComputedStyle(raiz).colorScheme.indexOf('dark') >= 0; document.querySelectorAll('[data-tema-rot]').forEach(function (s) { s.textContent = e ? 'Tema claro' : 'Tema escuro' }) }
+  rotTema()
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-acao="tema"]'); if (!b) return
+    var escuro = getComputedStyle(raiz).colorScheme.indexOf('dark') >= 0, novo = escuro ? 'claro' : 'escuro'
+    raiz.setAttribute('data-tema', novo); try { localStorage.setItem('academia-plus-tema', novo) } catch (x) {}
+    rotTema()
+  })
+
+  /* ------------------------------------------------ dados de exemplo (nomes fictícios, valores de exemplo) */
+  // painel: 12 meses (centavos)
+  var MESES = [['nov', 521000], ['dez', 398000], ['jan', 214000], ['fev', 602000], ['mar', 745000], ['abr', 688000], ['mai', 712000], ['jun', 594000], ['jul', -82000], ['ago', 630000], ['set', 987320], ['out', 846760]]
+  document.querySelectorAll('[data-barras]').forEach(function (el) {
+    var max = Math.max.apply(null, MESES.map(function (m) { return Math.abs(m[1]) }))
+    el.innerHTML = MESES.map(function (m, i) {
+      var atual = i === MESES.length - 1, neg = m[1] < 0
+      return '<div class="ad-barras__col' + (atual ? ' ad-barras__col--atual' : '') + '" title="' + m[0] + ': ' + brl(m[1]) + '"><span class="ad-barras__barra' + (neg ? ' ad-barras__barra--neg' : '') + '" style="height:' + Math.max(4, Math.round(Math.abs(m[1]) / max * 100)) + '%"></span><span class="ad-barras__rot">' + m[0] + '</span></div>'
+    }).join('')
+  })
+
+  // lançamentos de outubro (a grade)
+  var CATS = ['Mensalidades', 'Taxas de matrícula', 'Exames de graduação', 'Eventos e campeonatos (entradas)', 'Venda de produtos', 'Aulas avulsas e particulares', 'Aluguel', 'Salários', 'Comissão de professores', 'Luz', 'Água', 'Internet e telefone', 'Equipamento (tatame, luvas, sacos)', 'Limpeza e manutenção', 'Produtos para revenda', 'Eventos e campeonatos (saídas)', 'Impostos e taxas', 'Contador', 'Divulgação']
+  var L = function (d, desc, cat, tipo, v, forma, pes, sit, ori, extra) { var o = { d: d, desc: desc, cat: cat, tipo: tipo, v: v, forma: forma || '', pes: pes || '', sit: sit, ori: ori || 'manual' }; for (var k in extra) o[k] = extra[k]; return o }
+  var OUTUBRO = [
+    L('15/10', 'Aula particular — Rafaela Nunes', 'Aulas avulsas e particulares', 'entrada', 15000, 'Pix', 'Rafaela Nunes', 'pago', 'manual', { nova: true }),
+    L('20/10', 'Luz', 'Luz', 'saida', 45000, '', '', 'pendente', 'despesa_fixa', { estimado: true }),
+    L('15/10', 'Internet', 'Internet e telefone', 'saida', 12000, 'Boleto', '', 'pendente', 'despesa_fixa'),
+    L('14/10', 'Inscrição — Card Lomba do Pinheiro', 'Eventos e campeonatos (saídas)', 'saida', 24000, 'Pix', '', 'pago', 'manual', { evento: true }),
+    L('13/10', 'Tatame EVA 1 m² × 6', 'Equipamento (tatame, luvas, sacos)', 'saida', 114000, 'Cartão de crédito', '', 'pago'),
+    L('12/10', 'Exame de graduação — Muay Thai (4 alunos)', 'Exames de graduação', 'entrada', 60000, 'Dinheiro', '', 'pago'),
+    L('10/10', 'Mensalidade outubro — Davi Lima', 'Mensalidades', 'entrada', 11000, '', 'Fernanda Lima', 'pendente', 'mensalidade'),
+    L('10/10', 'Mensalidade outubro — Elisa Lima', 'Mensalidades', 'entrada', 9900, '', 'Fernanda Lima', 'pendente', 'mensalidade'),
+    L('10/10', 'Mensalidade outubro — Bruno Almeida', 'Mensalidades', 'entrada', 15000, 'Pix', 'Bruno Almeida', 'pago', 'mensalidade', { sel: true }),
+    L('10/10', 'Aluguel da sala', 'Aluguel', 'saida', 350000, 'Pix', '', 'pago', 'despesa_fixa'),
+    L('08/10', 'Bandagens e protetores bucais', 'Produtos para revenda', 'saida', 41240, 'Pix', '', 'pago'),
+    L('06/10', 'Luvas 12 oz × 2 pares', 'Venda de produtos', 'entrada', 38000, 'Cartão de débito', 'Matheus Kunz', 'pago'),
+    L('05/10', 'Mensalidade outubro — Carla Souza', 'Mensalidades', 'entrada', 22000, 'Pix', 'Carla Souza', 'pago', 'mensalidade', { sel: true }),
+    L('05/10', 'Salário — Igor Pereira', 'Salários', 'saida', 160000, 'Pix', 'Igor Pereira', 'pago', 'despesa_fixa'),
+    L('03/10', 'Mensalidade outubro — Leonardo Vieira', 'Mensalidades', 'entrada', 14000, 'Dinheiro', 'Leonardo Vieira', 'pago', 'mensalidade', { sel: true }),
+    L('02/10', 'Kimono A2 branco', 'Venda de produtos', 'entrada', 32000, 'Pix', 'Tatiane Moura', 'pago'),
+    L('01/10', 'Mensalidade outubro — Juliana Prates', 'Mensalidades', 'entrada', 12000, 'Pix', 'Juliana Prates', 'pago', 'mensalidade'),
+  ]
+  var COLADAS = [
+    L('01/10', 'Mensal — Pedro Henrique Sá', 'Mensalidades', 'entrada', 22000, 'Pix', 'Pedro Henrique Sá', 'pago', 'manual', { nova: true }),
+    L('01/10', 'Mensal — Aline Castro', 'Mensalidades', 'entrada', 12000, 'Pix', 'Aline Castro', 'pago', 'manual', { nova: true }),
+    L('02/10', 'Mensal — Sofia Brandão', 'Mensalidades', 'entrada', 11000, 'Dinheiro', 'Marcos Brandão', 'pago', 'manual', { nova: true }),
+    L('31/09', 'Mensal — Tatiane Moura', 'Mensalidades', 'entrada', 40500, 'Pix', 'Tatiane Moura', 'pago', 'manual', { nova: true, erro: { col: 'd', msg: 'Data não existe' } }),
+    L('03/10', 'Luvas 14 oz', 'Venda de produtos', 'entrada', 0, 'Pix', '', 'pago', 'manual', { nova: true, txtv: '12,345', erro: { col: 'v', msg: 'Valor ambíguo' } }),
+    L('03/10', 'Faixa preta (bordada)', 'Venda de produtos', 'entrada', 9000, 'Pix', 'Leonardo Vieira', 'pago', 'manual', { nova: true }),
+    L('04/10', 'Água', 'Água', 'saida', 18750, 'Boleto', '', 'pago', 'manual', { nova: true }),
+    L('04/10', 'Produtos de limpeza', 'Limpeza e manutenção', 'saida', 12690, 'Cartão de débito', '', 'pago', 'manual', { nova: true }),
+  ]
+  var SETEMBRO = [
+    L('30/09', 'Contador — setembro', 'Contador', 'saida', 45000, 'Pix', '', 'pago'),
+    L('28/09', 'Divulgação — impulsionar post Kids', 'Divulgação', 'saida', 15000, 'Cartão de crédito', '', 'pago'),
+    L('25/09', 'Comissão — Gabriel Teixeira', 'Comissão de professores', 'saida', 312000, 'Pix', 'Gabriel Teixeira', 'pago', 'remuneracao'),
+    L('22/09', 'Luz', 'Luz', 'saida', 43820, 'Boleto', '', 'pago', 'despesa_fixa'),
+    L('20/09', 'Mensalidade setembro — Pedro Henrique Sá', 'Mensalidades', 'entrada', 22000, 'Pix', 'Pedro Henrique Sá', 'pago', 'mensalidade'),
+    L('15/09', 'Internet', 'Internet e telefone', 'saida', 12000, 'Boleto', '', 'pago', 'despesa_fixa'),
+    L('12/09', 'Exame de graduação — Jiu-Jitsu (6 alunos)', 'Exames de graduação', 'entrada', 72000, 'Pix', '', 'pago'),
+    L('10/09', 'Aluguel da sala', 'Aluguel', 'saida', 350000, 'Pix', '', 'pago', 'despesa_fixa'),
+    L('10/09', 'Mensalidade setembro — Bruno Almeida', 'Mensalidades', 'entrada', 15000, 'Pix', 'Bruno Almeida', 'pago', 'mensalidade'),
+    L('08/09', 'Sacos de pancada 1,20 m × 2', 'Equipamento (tatame, luvas, sacos)', 'saida', 98000, 'Cartão de crédito', '', 'pago'),
+    L('05/09', 'Salário — Igor Pereira', 'Salários', 'saida', 160000, 'Pix', 'Igor Pereira', 'pago', 'despesa_fixa'),
+    L('05/09', 'Mensalidade setembro — Carla Souza', 'Mensalidades', 'entrada', 22000, 'Pix', 'Carla Souza', 'pago', 'mensalidade'),
+    L('02/09', 'Kimono A1 azul', 'Venda de produtos', 'entrada', 32000, 'Dinheiro', 'Sofia Brandão', 'pago'),
+    L('01/09', 'Mensalidade setembro — Juliana Prates', 'Mensalidades', 'entrada', 12000, 'Pix', 'Juliana Prates', 'pago', 'mensalidade'),
+  ]
+  // totais do mês inteiro (o filtro tem 312 linhas; a tela mostra uma parte): base do painel
+  var BASE = { outubro: { ent: 2438000, sai: 1591240, aRec: 396000, aPag: 214000 }, setembro: { ent: 3528400, sai: 2541080, aRec: 0, aPag: 0 } }
+
+  /* ------------------------------------------------ a planilha */
+  var COLS = [
+    { k: 'd', rot: 'Data' }, { k: 'desc', rot: 'Descrição', cls: 'ad-c-desc' }, { k: 'cat', rot: 'Categoria' },
+    { k: 'tipo', rot: 'Tipo', larg: 80 }, { k: 'v', rot: 'Valor', cls: 'ad-c-val', larg: 128 }, { k: 'forma', rot: 'Forma', larg: 136 },
+    { k: 'pes', rot: 'Pessoa' }, { k: 'sit', rot: 'Situação', larg: 112 }, { k: 'ori', rot: 'Origem', larg: 168 },
+  ]
+  function textoCel(l, k) {
+    if (k === 'v') return l.txtv || (l.tipo === 'saida' ? '−' : '') + brl(l.v)
+    if (k === 'tipo') return l.tipo === 'saida' ? 'Saída' : 'Entrada'
+    if (k === 'sit') return l.sit === 'pago' ? 'Pago' : 'Pendente'
+    return l[k] || ''
+  }
+  function htmlCel(l, k, travado) {
+    if (l.erro && l.erro.col === k) return '<span class="ad-celmsg">' + ic('i-alerta') + esc(textoCel(l, k)) + ' · ' + l.erro.msg + '</span>'
+    if (k === 'v') return '<span class="' + (l.tipo === 'saida' ? 'neg' : 'pos') + '">' + esc(textoCel(l, k)) + '</span>'
+    if (k === 'sit') return l.sit === 'pago' ? '<span class="ad-selo ad-selo--ok">Pago</span>' : '<span class="ad-selo ad-selo--pend">Pendente</span>'
+    if (k === 'ori') {
+      if (travado) return '<span class="ad-origem">' + ic('i-cadeado') + 'mês fechado</span>'
+      if (l.nova) return '<span class="ad-selo ad-selo--marca">nova</span>'
+      if (l.ori === 'mensalidade' && l.sit === 'pendente') return '<button class="ad-btn" data-acao="pagar">Marcar como paga</button>'
+      var o = { mensalidade: 'gerada da matrícula', despesa_fixa: l.estimado ? 'despesa fixa · estimado' : 'despesa fixa', remuneracao: 'remuneração', manual: l.evento ? 'evento: Card Lomba' : 'digitada' }[l.ori]
+      return '<span class="ad-origem">' + (l.ori === 'mensalidade' ? ic('i-trocar') : l.ori === 'despesa_fixa' ? ic('i-relogio') : '') + o + '</span>'
+    }
+    if (k === 'pes' && !l[k]) return '<span class="sec">—</span>'
+    if (k === 'forma' && !l[k]) return '<span class="sec">—</span>'
+    return esc(textoCel(l, k))
+  }
+
+  function Planilha(tab) {
+    var nome = tab.dataset.planilha, estado = tab.dataset.estado
+    var travado = estado === 'fechado'
+    var linhas = (estado === 'colar' ? COLADAS.concat(OUTUBRO.slice(1, 8)) : nome === 'setembro' ? SETEMBRO : OUTUBRO).map(function (l) { return Object.assign({}, l) })
+    var base = BASE[nome], visBase = soma(linhas)
+    var moldura = tab.closest('.ad-grade-moldura'), quadro = tab.closest('.ad-quadro')
+    var desfeitos = [], refeitos = [], ativa = { r: 0, c: 4 }, ancora = null, editando = null
+    if (estado === 'colar') ativa = { r: 3, c: 0 }
+    if (travado) ativa = { r: 0, c: 1 }
+
+    function soma(ls) { var t = { ent: 0, sai: 0, aRec: 0, aPag: 0 }; ls.forEach(function (l) { if (l.erro) return; if (l.sit === 'pago') t[l.tipo === 'saida' ? 'sai' : 'ent'] += l.v; else t[l.tipo === 'saida' ? 'aPag' : 'aRec'] += l.v }); return t }
+    function totais() {
+      var s = soma(linhas), t = {}; for (var k in base) t[k] = base[k] - visBase[k] + s[k]; return t
+    }
+    function desenhar() {
+      var h = '<thead><tr><th scope="col" class="ad-c-num">#</th>' + COLS.map(function (c) { return '<th scope="col"' + (c.larg ? ' style="width:' + c.larg + 'px"' : '') + (c.k === 'v' ? ' class="dir"' : '') + '>' + c.rot + '</th>' }).join('') + '</tr></thead><tbody>'
+      linhas.forEach(function (l, r) {
+        h += '<tr' + (l.sel ? ' aria-selected="true"' : '') + (l.nova && estado === 'colar' ? ' class="ad-linha-nova"' : '') + (travado ? ' class="ad-linha-travada"' : '') + '><td class="ad-c-num" role="rowheader">' + (r + 1) + '</td>'
+        COLS.forEach(function (c, ci) {
+          var at = r === ativa.r && ci === ativa.c
+          var cls = [c.cls || '']
+          if (at) cls.push('ad-ativa')
+          if (l.erro && l.erro.col === c.k) cls.push('ad-erro-cel')
+          if (dentroIntervalo(r, ci)) cls.push('ad-intervalo')
+          h += '<td role="gridcell" data-r="' + r + '" data-c="' + ci + '" tabindex="' + (at ? 0 : -1) + '" class="' + cls.join(' ').trim() + '"' + (travado ? ' aria-readonly="true"' : '') + '>' + htmlCel(l, c.k, travado) + '</td>'
+        })
+        h += '</tr>'
+      })
+      var t = totais()
+      h += '</tbody><tfoot class="folha-moldura"><tr><td class="ad-c-num"></td><td colspan="3">Totais do filtro<span>' + (travado ? '287 linhas · congelados no fechamento' : '312 linhas · as pagas contam no resultado') + '</span></td>' +
+        '<td>Resultado<span>caixa</span></td><td class="ad-c-val">' + brl(t.ent - t.sai) + '<span>entrou − saiu</span></td>' +
+        '<td colspan="2">Entrou <b class="pos">' + brl(t.ent, true) + '</b><span>Saiu <b class="neg">−' + brl(t.sai) + '</b></span></td>' +
+        '<td colspan="2">Pendentes<span>a receber ' + brl(t.aRec) + ' · a pagar ' + brl(t.aPag) + '</span></td></tr></tfoot>'
+      tab.innerHTML = h
+      // só no modo prancha (o desenho para a captura) a célula já aparece em edição; no modo app (?tela=) começa parada
+      if (estado === 'edicao' && editando === null && !tab.dataset.iniciou && !Q.get('tela')) { tab.dataset.iniciou = '1'; editar('150,00', true) }
+      lote()
+    }
+    function dentroIntervalo(r, c) { if (!ancora) return false; return r >= Math.min(ancora.r, ativa.r) && r <= Math.max(ancora.r, ativa.r) && c >= Math.min(ancora.c, ativa.c) && c <= Math.max(ancora.c, ativa.c) && !(r === ativa.r && c === ativa.c) }
+    function cel(r, c) { return tab.querySelector('td[data-r="' + r + '"][data-c="' + c + '"]') }
+    function status(txt, icone) {
+      var s = moldura && moldura.querySelector('[data-salvo]'); if (s) s.innerHTML = ic(icone || 'i-marcar') + txt
+      var c = moldura && moldura.querySelector('[data-celula]'); if (c) c.textContent = COLS[ativa.c].rot + ', linha ' + (ativa.r + 1)
+    }
+    function lote() {
+      var sel = linhas.filter(function (l) { return l.sel }), el = moldura && moldura.querySelector('[data-lote]')
+      if (!el) return
+      el.hidden = !sel.length
+      var t = moldura.querySelector('[data-lote-txt]'); if (t) t.textContent = sel.length + ' linhas selecionadas · soma ' + brl(sel.reduce(function (s, l) { return s + (l.tipo === 'saida' ? -l.v : l.v) }, 0))
+    }
+    function mover(r, c, estender) {
+      r = Math.max(0, Math.min(linhas.length - 1, r)); c = Math.max(0, Math.min(COLS.length - 1, c))
+      if (estender) { if (!ancora) ancora = { r: ativa.r, c: ativa.c } } else ancora = null
+      editando = null; ativa = { r: r, c: c }; desenhar(); var td = cel(r, c); td && td.focus(); status(travado ? 'Só leitura' : 'Pronto', travado ? 'i-cadeado' : 'i-marcar')
+    }
+    function aviso(txt, comDesfazer) {
+      if (!quadro) return
+      var a = quadro.querySelector(':scope > .ad-aviso'); if (!a) { a = document.createElement('div'); a.className = 'ad-aviso folha-moldura'; a.setAttribute('role', 'status'); quadro.appendChild(a) }
+      a.style.display = ''
+      a.innerHTML = '<span>' + esc(txt) + '</span>' + (comDesfazer ? '<button class="ad-btn" data-acao="desfazer">Desfazer <kbd>Ctrl Z</kbd></button>' : '')
+      a.style.animation = 'none'; void a.offsetWidth; a.style.animation = ''
+      clearTimeout(a._t); a._t = setTimeout(function () { a.style.display = 'none' }, 5000)
+    }
+    function editar(inicial, semFoco) {
+      if (travado) { aviso('Setembro está fechado: nada foi mudado.'); return }
+      var c = COLS[ativa.c]; if (c.k === 'ori') return
+      var l = linhas[ativa.r], td = cel(ativa.r, ativa.c)
+      editando = { r: ativa.r, c: ativa.c }
+      td.classList.add('ad-editando', 'campo__caixa'); td.removeAttribute('tabindex')
+      td.innerHTML = '<input aria-label="' + c.rot + ', linha ' + (ativa.r + 1) + '" value="' + esc(inicial != null ? inicial : textoCel(l, c.k)) + '">'
+      var inp = td.querySelector('input'); if (!semFoco) { inp.focus(); inp.setSelectionRange(inp.value.length, inp.value.length) }
+      status('Editando · Enter grava e desce · Esc cancela', 'i-nuvem')
+    }
+    function ler(k, txt, l) {
+      txt = txt.trim()
+      if (k === 'v') {
+        var neg = /^-|^−/.test(txt); var t = txt.replace(/^[-−]/, '').replace(/r\$\s?/i, '').trim()
+        if (/^\d{1,3},\d{3}$/.test(t)) return { erro: 'Valor ambíguo' }
+        if (/,/.test(t)) t = t.replace(/\./g, '').replace(',', '.'); else if (/^\d{1,3}(\.\d{3})+$/.test(t)) t = t.replace(/\./g, '')
+        var n = Math.round(parseFloat(t) * 100); if (!(n > 0)) return { erro: 'Valor ilegível' }
+        return { v: n, tipo: neg ? 'saida' : l.tipo }
+      }
+      if (k === 'd') { var m = txt.match(/^(\d{1,2})\/(\d{1,2})/); if (!m || +m[2] < 1 || +m[2] > 12 || +m[1] < 1 || +m[1] > new Date(2026, +m[2], 0).getDate()) return { erro: 'Data não existe' }; return { d: m[1].padStart(2, '0') + '/' + m[2].padStart(2, '0') } }
+      if (k === 'tipo') { if (/^e/i.test(txt)) return { tipo: 'entrada' }; if (/^s/i.test(txt)) return { tipo: 'saida' }; return { erro: 'Entrada ou saída?' } }
+      if (k === 'sit') { if (/^pa/i.test(txt)) return { sit: 'pago' }; if (/^pe/i.test(txt)) return { sit: 'pendente' }; return { erro: 'Pago ou pendente?' } }
+      if (k === 'cat') { var achou = CATS.filter(function (c) { return c.toLowerCase().indexOf(txt.toLowerCase()) === 0 }); if (achou.length === 1) return { cat: achou[0] }; if (CATS.indexOf(txt) >= 0) return { cat: txt }; return { erro: achou.length ? 'Mais de uma categoria começa assim' : 'Categoria não existe' } }
+      if (k === 'desc') { if (!txt || txt.length > 200) return { erro: 'De 1 a 200 letras' }; return { desc: txt } }
+      var o = {}; o[k] = txt; return o
+    }
+    function gravar(dr, dc) {
+      var td = cel(editando.r, editando.c), inp = td.querySelector('input'), l = linhas[editando.r], c = COLS[editando.c]
+      var res = ler(c.k, inp.value, l)
+      if (res.erro) { td.classList.add('ad-erro-cel'); status(res.erro + ': nada foi gravado', 'i-alerta'); inp.setAttribute('aria-invalid', 'true'); return false }
+      var antes = {}; for (var k in res) antes[k] = l[k]
+      var mudou = Object.keys(res).some(function (k) { return res[k] !== l[k] })
+      if (mudou) { Object.assign(l, res); desfeitos.push({ r: editando.r, antes: antes, depois: res, rot: c.rot }); if (desfeitos.length > 100) desfeitos.shift(); refeitos = [] }
+      var r = editando.r, cc = editando.c; editando = null
+      mover(r + dr, cc + dc)
+      if (mudou) { status('Salvando…', 'i-nuvem'); var td2 = cel(r, cc); td2 && td2.classList.add('ad-gravou'); setTimeout(function () { status('Salvo às ' + new Date().toTimeString().slice(0, 5)) }, 500) }
+      return true
+    }
+    function cancelar() { var r = editando.r, c = editando.c; editando = null; mover(r, c); status('Cancelado: nada mudou', 'i-desfazer') }
+    function aplicar(pilhaDe, pilhaPara, chave) {
+      var a = pilhaDe.pop(); if (!a) { aviso('Nada para ' + (chave === 'antes' ? 'desfazer' : 'refazer') + '.'); return }
+      if (a.linhas) { linhas.splice(0, a.linhas.length); visBase = visBase; pilhaPara.push(a); mover(0, 0); aviso(a.linhas.length + ' linhas coladas foram desfeitas.'); return }
+      Object.assign(linhas[a.r], a[chave]); pilhaPara.push(a); mover(a.r, ativa.c)
+      aviso((chave === 'antes' ? 'Desfeito: ' : 'Refeito: ') + a.rot + ' da linha ' + (a.r + 1), chave !== 'antes')
+    }
+    function colar(texto) {
+      var ls = texto.replace(/\r/g, '').split('\n').filter(function (x) { return x.trim() })
+      if (ls.length < 2 && ls[0] && ls[0].indexOf('\t') < 0) { editar(ls[0]); return }
+      var novas = ls.map(function (x) {
+        var p = x.split('\t'), l = L(p[0] || '', p[1] || '', p[2] || '', 'entrada', 0, p[5] || '', p[6] || '', 'pago', 'manual', { nova: true })
+        var v = ler('v', p[4] || p[3] || '', l); if (v.erro) { l.txtv = p[4] || p[3] || ''; l.erro = { col: 'v', msg: v.erro } } else Object.assign(l, v)
+        var d = ler('d', p[0] || '', l); if (d.erro) l.erro = { col: 'd', msg: d.erro }
+        return l
+      })
+      linhas = novas.concat(linhas); desfeitos.push({ linhas: novas }); refeitos = []
+      mover(0, 0); var erros = novas.filter(function (l) { return l.erro }).length
+      var pr = novas.length - erros
+      aviso(novas.length + ' linhas coladas · ' + pr + (pr === 1 ? ' pronta · ' : ' prontas · ') + erros + ' com erro. Nada foi gravado ainda.', true)
+    }
+    tab.addEventListener('keydown', function (e) {
+      var ctrl = e.ctrlKey || e.metaKey
+      if (editando) {
+        if (e.key === 'Enter') { e.preventDefault(); gravar(e.shiftKey ? -1 : 1, 0) }
+        else if (e.key === 'Tab') { e.preventDefault(); gravar(0, e.shiftKey ? -1 : 1) }
+        else if (e.key === 'Escape') { e.preventDefault(); cancelar() }
+        return
+      }
+      var k = e.key
+      if (ctrl && (k === 'z' || k === 'Z') && !e.shiftKey) { e.preventDefault(); aplicar(desfeitos, refeitos, 'antes'); return }
+      if (ctrl && (k === 'y' || k === 'Y' || ((k === 'z' || k === 'Z') && e.shiftKey))) { e.preventDefault(); aplicar(refeitos, desfeitos, 'depois'); return }
+      if (k === 'ArrowDown') { e.preventDefault(); mover(ativa.r + 1, ativa.c, e.shiftKey) }
+      else if (k === 'ArrowUp') { e.preventDefault(); mover(ativa.r - 1, ativa.c, e.shiftKey) }
+      else if (k === 'ArrowLeft') { e.preventDefault(); mover(ativa.r, ativa.c - 1, e.shiftKey) }
+      else if (k === 'ArrowRight') { e.preventDefault(); mover(ativa.r, ativa.c + 1, e.shiftKey) }
+      else if (k === 'Home') { e.preventDefault(); mover(ctrl ? 0 : ativa.r, 0) }
+      else if (k === 'End') { e.preventDefault(); mover(ctrl ? linhas.length - 1 : ativa.r, COLS.length - 1) }
+      else if (k === 'Tab') { if (ativa.c < COLS.length - 1 && !e.shiftKey) { e.preventDefault(); mover(ativa.r, ativa.c + 1) } else if (ativa.c > 0 && e.shiftKey) { e.preventDefault(); mover(ativa.r, ativa.c - 1) } }
+      else if (k === 'Enter' || k === 'F2') { e.preventDefault(); editar() }
+      else if (k === 'Escape') { ancora = null; desenhar(); cel(ativa.r, ativa.c).focus() }
+      else if (k === ' ' && e.shiftKey) { e.preventDefault(); linhas[ativa.r].sel = !linhas[ativa.r].sel; desenhar(); cel(ativa.r, ativa.c).focus() }
+      else if (k.length === 1 && !ctrl && !e.altKey) { e.preventDefault(); editar(k) }
+    })
+    tab.addEventListener('paste', function (e) {
+      if (editando) return
+      e.preventDefault(); if (travado) { aviso('Setembro está fechado: nada foi colado.'); return }
+      colar((e.clipboardData || window.clipboardData).getData('text'))
+    })
+    tab.addEventListener('mousedown', function (e) {
+      var td = e.target.closest('td[data-r]'); if (!td || td.classList.contains('ad-editando') || e.target.closest('button')) return
+      e.preventDefault(); mover(+td.dataset.r, +td.dataset.c, e.shiftKey)
+    })
+    tab.addEventListener('dblclick', function (e) { if (e.target.closest('td[data-r]') && !editando) editar() })
+    tab.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-acao="pagar"]'); if (!b) return
+      var r = +b.closest('td').dataset.r, l = linhas[r], antes = { sit: l.sit, forma: l.forma, ori: l.ori }
+      Object.assign(l, { sit: 'pago', forma: 'Pix' }); desfeitos.push({ r: r, antes: antes, depois: { sit: 'pago', forma: 'Pix' }, rot: 'Pagamento' }); refeitos = []
+      mover(r, 7); aviso('Mensalidade de ' + l.desc.split('— ')[1] + ' marcada como paga (Pix, hoje).', true)
+    })
+    if (quadro) quadro.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-acao]'); if (!b) return
+      if (b.dataset.acao === 'desfazer') { aplicar(desfeitos, refeitos, 'antes') }
+      if (b.dataset.acao === 'nova-linha') { novaLinha() }
+    })
+    function novaLinha() { linhas.unshift(L('15/10', '', '', 'entrada', 0, '', '', 'pendente', 'manual', { nova: true })); desfeitos.push({ linhas: [linhas[0]] }); mover(0, 1); editar('') }
+    tab.addEventListener('keydown', function (e) { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); if (!editando) novaLinha() } }, true)
+    desenhar()
+    if (estado === 'edicao') {
+      // estado do desenho: Valor da linha nova sendo digitado; o desfazer anterior foi a categoria do tatame
+      desfeitos.push({ r: 4, antes: { cat: 'Outras saídas' }, depois: { cat: 'Equipamento (tatame, luvas, sacos)' }, rot: 'Categoria' })
+    }
+  }
+  document.querySelectorAll('table[data-planilha]').forEach(Planilha)
+
+  // lista de lançamentos do celular
+  var dias = {}
+  OUTUBRO.slice(1).concat([OUTUBRO[0]]).forEach(function (l) { (dias[l.d] = dias[l.d] || []).push(l) })
+  var ordemDias = Object.keys(dias).sort(function (a, b) { return b.localeCompare(a) })
+  document.querySelectorAll('[data-lista-lanc]').forEach(function (el) {
+    el.innerHTML = ordemDias.map(function (d) {
+      return '<h3 class="ad-lanc__dia">' + d + '/2026</h3>' + dias[d].map(function (l) {
+        return '<button class="linha" type="button"><span class="linha__txt"><b>' + esc(l.desc) + '</b><span>' + esc(l.cat) + (l.forma ? ' · ' + esc(l.forma) : '') + '</span></span><span class="linha__val"><b class="' + (l.tipo === 'saida' ? 'neg' : 'pos') + '">' + (l.tipo === 'saida' ? '−' : '+') + brl(l.v) + '</b>' + (l.sit === 'pago' ? '<span class="ad-selo ad-selo--ok">Pago</span>' : '<span class="ad-selo ad-selo--pend">Pendente</span>') + '</span></button>'
+      }).join('')
+    }).join('')
+  })
+
+  /* ------------------------------------------------ tabelas */
+  function tabela(sel, cab, linhas, pe) {
+    document.querySelectorAll('table[data-tabela="' + sel + '"]').forEach(function (t) {
+      t.innerHTML = '<thead><tr>' + cab.map(function (c) { var d = c.charAt(0) === '>'; return '<th scope="col"' + (d ? ' class="dir"' : '') + '>' + (d ? c.slice(1) : c) + '</th>' }).join('') + '</tr></thead><tbody>' +
+        linhas.map(function (l) { return '<tr>' + l.map(function (v, i) { var d = cab[i].charAt(0) === '>'; return '<td' + (d ? ' class="dir"' : '') + '>' + v + '</td>' }).join('') + '</tr>' }).join('') + '</tbody>' +
+        (pe ? '<tfoot class="folha-moldura"><tr>' + pe.map(function (v, i) { return '<td' + (cab[i].charAt(0) === '>' ? ' class="dir"' : '') + '>' + v + '</td>' }).join('') + '</tr></tfoot>' : '')
+    })
+  }
+  var ok = function (t) { return '<span class="ad-selo ad-selo--ok">' + t + '</span>' }, pe = function (t) { return '<span class="ad-selo ad-selo--pend">' + t + '</span>' }, er = function (t) { return '<span class="ad-selo ad-selo--erro">' + t + '</span>' }, ne = function (t) { return '<span class="ad-selo">' + t + '</span>' }
+  var b = function (t) { return '<b>' + t + '</b>' }
+  var ALUNOS = [
+    ['Aline Castro', '(51) 90000-0013', ok('Matriculado'), 'Muay Thai 2×', 'Muay Thai', '—', 'dia 10', er('5 dias · R$ 120,00'), '09/01/2026', '6'],
+    ['Bruno Almeida', '(51) 90000-0001', ok('Matriculado'), 'Muay Thai livre', 'Muay Thai', '—', 'dia 10', '<span class="sec">em dia</span>', '02/03/2026', '14'],
+    ['Carla Souza', '(51) 90000-0002', ok('Matriculado'), 'Combo 2 modalidades', 'Muay Thai · Jiu-Jitsu', '—', 'dia 5', '<span class="sec">em dia</span>', '05/11/2025', '17'],
+    ['Davi Lima', '—', ok('Matriculado'), 'Muay Thai Kids', 'Muay Thai (Kids)', 'Fernanda Lima', 'dia 10', er('5 dias · R$ 110,00'), '01/02/2026', '9'],
+    ['Diego Fontoura', '(51) 90000-0015', ok('Matriculado'), 'Muay Thai livre', 'Muay Thai', '—', 'dia 13', er('32 dias · R$ 150,00'), '20/07/2025', '1'],
+    ['Juliana Prates', '(51) 90000-0008', ok('Matriculado'), 'Muay Thai 2×', 'Muay Thai', '—', 'dia 1', '<span class="sec">em dia</span>', '01/04/2026', '8'],
+    ['Larissa Becker', '(51) 90000-0005', ok('Matriculado'), 'Muay Thai 2×', 'Muay Thai', '—', 'dia 20', pe('a vencer'), '13/10/2026', '1'],
+    ['Matheus Kunz', '(51) 90000-0006', ok('Matriculado'), 'Combo 2 modalidades', 'Muay Thai · Boxe', '—', 'dia 15', pe('vence hoje'), '15/08/2025', '11'],
+    ['Pedro Henrique Sá', '(51) 90000-0012', ok('Matriculado'), 'Combo 2 modalidades', 'Muay Thai · Jiu-Jitsu', '—', 'dia 20', pe('a vencer'), '20/02/2026', '15'],
+    ['Rafaela Nunes', '(51) 90000-0016', ok('Matriculado'), 'Muay Thai livre', 'Muay Thai', '—', 'dia 15', pe('vence hoje'), '03/05/2026', '12'],
+    ['Renan Duarte', '(51) 90000-0011', ok('Matriculado'), 'Muay Thai 2×', 'Muay Thai', '—', 'dia 5', er('41 dias · R$ 240,00'), '15/04/2025', '2'],
+    ['Tatiane Moura', '(51) 90000-0010', ok('Matriculado'), 'Muay Thai trimestral', 'Muay Thai', '—', 'out/nov/dez', '<span class="sec">em dia</span>', '01/10/2025', '10'],
+    ['Thiago Ramos', '(51) 90000-0017', ok('Matriculado'), 'MMA', 'MMA · Muay Thai', '—', 'dia 25', pe('a vencer'), '07/06/2026', '13'],
+    ['Vinícius Hoffmann', '(51) 90000-0009', ok('Matriculado'), 'Muay Thai livre', 'Muay Thai', '—', 'dia 10', er('35 dias · R$ 150,00'), '11/11/2024', '0'],
+    ['Yasmin Correa', '—', ok('Matriculado'), 'Muay Thai Kids', 'Muay Thai (Kids)', 'Paulo Correa', 'dia 10', '<span class="sec">em dia</span>', '01/03/2026', '7'],
+  ]
+  tabela('alunos', ['Nome', 'Telefone', 'Situação', 'Plano', 'Modalidades', 'Responsável', 'Vence', 'Cobrança', 'Desde', '>Aulas em 30 dias'], ALUNOS.map(function (a) { return [b('<a href="?tela=' + (a[5] !== '—' ? 'ficha-kids' : 'ficha-aluno') + '">' + a[0] + '</a>')].concat(a.slice(1)) }))
+  document.querySelectorAll('[data-lista-alunos]').forEach(function (el) {
+    el.innerHTML = ALUNOS.map(function (a) { return '<button class="linha" type="button"><span class="linha__txt"><b>' + a[0] + '</b><span>' + a[3] + (a[5] !== '—' ? ' · resp. ' + a[5] : '') + '</span></span><span class="linha__val">' + a[7] + '</span></button>' }).join('')
+  })
+  tabela('cobrancas', ['Aluno', 'Quem paga', 'Cobrança', 'Vencimento', '>Valor', '>Desconto', 'Situação', 'Ação'], [
+    [b('Davi Lima'), 'Fernanda Lima', 'Mensalidade · Muay Thai Kids', '10/10', '<b>R$ 110,00</b>', '—', er('atrasada 5 dias'), '<button class="ad-btn ad-btn--primario">Marcar como paga</button>'],
+    [b('Elisa Lima'), 'Fernanda Lima', 'Mensalidade · Jiu-Jitsu Kids', '10/10', '<b>R$ 99,00</b>', 'família −R$ 11,00', er('atrasada 5 dias'), '<button class="ad-btn">Marcar como paga</button>'],
+    [b('Aline Castro'), 'Aline Castro', 'Mensalidade · Muay Thai 2×', '10/10', '<b>R$ 120,00</b>', '—', er('atrasada 5 dias'), '<button class="ad-btn">Marcar como paga</button>'],
+    [b('Matheus Kunz'), 'Matheus Kunz', 'Mensalidade · Combo 2', '15/10', '<b>R$ 220,00</b>', '—', pe('vence hoje'), '<button class="ad-btn">Marcar como paga</button>'],
+    [b('Rafaela Nunes'), 'Rafaela Nunes', 'Mensalidade · Muay Thai livre', '15/10', '<b>R$ 150,00</b>', '—', pe('vence hoje'), '<button class="ad-btn">Marcar como paga</button>'],
+    [b('Larissa Becker'), 'Larissa Becker', 'Taxa de matrícula', '20/10', '<b>R$ 50,00</b>', '—', ne('a vencer'), '<button class="ad-btn">Marcar como paga</button>'],
+    [b('Pedro Henrique Sá'), 'Pedro Henrique Sá', 'Mensalidade · Combo 2', '20/10', '<b>R$ 220,00</b>', '—', ne('a vencer'), '<button class="ad-btn">Marcar como paga</button>'],
+    [b('Bruno Almeida'), 'Bruno Almeida', 'Mensalidade · Muay Thai livre', '10/10', '<b>R$ 150,00</b>', '—', ok('paga 10/10 · Pix'), '<button class="ad-btn ad-btn--plano">Desfazer pagamento</button>'],
+    [b('Carla Souza'), 'Carla Souza', 'Mensalidade · Combo 2', '05/10', '<b>R$ 220,00</b>', '—', ok('paga 05/10 · Pix'), '<button class="ad-btn ad-btn--plano">Desfazer pagamento</button>'],
+    [b('Helena Martins'), 'Helena Martins', 'Mensalidade · Muay Thai 2×', '10/10', '<b>R$ 0,00</b>', 'funcionário −100 %', ne('isenta'), '—'],
+  ])
+  tabela('cobrancas-bruno', ['Mês', 'Vencimento', '>Valor', 'Situação', 'Pago em', 'Forma'], [
+    ['Outubro', '10/10/2026', 'R$ 150,00', ok('Paga'), '10/10/2026', 'Pix'], ['Setembro', '10/09/2026', 'R$ 150,00', ok('Paga'), '09/09/2026', 'Pix'],
+    ['Agosto', '10/08/2026', 'R$ 150,00', ok('Paga'), '12/08/2026', 'Dinheiro'], ['Julho', '10/07/2026', 'R$ 150,00', ok('Paga'), '10/07/2026', 'Pix'],
+    ['Junho', '10/06/2026', 'R$ 150,00', ok('Paga'), '10/06/2026', 'Pix'], ['Maio', '10/05/2026', 'R$ 150,00', ok('Paga'), '14/05/2026', 'Cartão de débito'],
+    ['Abril', '10/04/2026', 'R$ 150,00', ok('Paga'), '10/04/2026', 'Pix'], ['Março', '10/03/2026', 'R$ 150,00', ok('Paga'), '02/03/2026', 'Pix'],
+    ['Matrícula', '02/03/2026', 'R$ 50,00', ok('Paga'), '02/03/2026', 'Pix'],
+  ], ['Total pago em 2026', '', '<b>R$ 1.250,00</b>', '', '', ''])
+  tabela('cobrancas-fernanda', ['Aluno', 'Mês', 'Vencimento', '>Valor', 'Situação', 'Ação'], [
+    [b('Davi Lima'), 'Outubro', '10/10/2026', 'R$ 110,00', er('atrasada 5 dias'), '<button class="ad-btn">Marcar como paga</button>'],
+    [b('Elisa Lima'), 'Outubro', '10/10/2026', 'R$ 99,00', er('atrasada 5 dias'), '<button class="ad-btn">Marcar como paga</button>'],
+    [b('Davi Lima'), 'Setembro', '10/09/2026', 'R$ 110,00', ok('paga 10/09'), '—'],
+    [b('Elisa Lima'), 'Setembro', '10/09/2026', 'R$ 99,00', ok('paga 10/09'), '—'],
+    [b('Davi Lima'), 'Agosto', '10/08/2026', 'R$ 110,00', ok('paga 08/08'), '—'],
+    [b('Elisa Lima'), 'Agosto', '10/08/2026', 'R$ 99,00', ok('paga 08/08'), '—'],
+    [b('Elisa Lima'), 'Matrícula', '01/08/2026', 'R$ 50,00', ok('paga 01/08'), '—'],
+  ], ['Em aberto', '', '', '<b class="neg">R$ 209,00</b>', '', ''])
+  tabela('equipe', ['Nome', 'Função', 'Modalidades', 'Remuneração', 'Desde', '>Do mês (calculada)'], [
+    [b('Gabriel Teixeira'), 'Professor', 'Muay Thai', 'comissão 40 %', '01/01/2025', 'R$ 3.320,00'],
+    [b('Helena Martins'), 'Professora', 'Jiu-Jitsu', 'fixo R$ 800,00 + 20 %', '01/06/2025', 'R$ 2.084,00'],
+    [b('André Lopes'), 'Professor', 'Boxe', 'por aula · R$ 60,00 × 16', '10/02/2025', 'R$ 960,00'],
+    [b('Rodrigo Saldanha'), 'Professor', 'Luta Livre · MMA', 'comissão 35 %', '03/03/2026', 'R$ 1.354,00'],
+    [b('Bianca Freitas'), 'Professora', 'Muay Thai Kids', 'por aula · R$ 50,00 × 8', '01/08/2025', 'R$ 400,00'],
+    [b('Igor Pereira'), 'Recepção', '—', 'fixo R$ 1.600,00', '01/02/2026', 'R$ 1.600,00'],
+    [b('Camila Rocha'), 'Recepção', '—', 'fixo R$ 900,00 (meio período)', '05/05/2026', 'R$ 900,00'],
+    [b('Sônia Prado'), 'Limpeza', '—', 'fixo R$ 600,00', '01/01/2025', 'R$ 600,00'],
+    [b('Alex'), 'Administrativo (dono)', '—', 'sem remuneração', '01/01/2024', '—'],
+  ])
+  tabela('modalidades', ['Modalidade', '>Entrou', '>Do total', '>Matriculados', '>Por aluno', '>vs 2º tri'], [
+    [b('Muay Thai'), 'R$ 21.640,00', '37 %', '92', 'R$ 78,40', '<span class="pos">+8 %</span>'],
+    [b('Jiu-Jitsu'), 'R$ 14.880,00', '25 %', '48', 'R$ 103,33', '<span class="pos">+3 %</span>'],
+    [b('Boxe'), 'R$ 8.460,00', '14 %', '31', 'R$ 90,97', '<span class="neg">−4 %</span>'],
+    [b('MMA'), 'R$ 7.680,00', '13 %', '22', 'R$ 116,36', '<span class="pos">+21 %</span>'],
+    [b('Luta Livre'), 'R$ 5.020,00', '9 %', '17', 'R$ 98,43', '0 %'],
+    [b('Sem modalidade'), 'R$ 1.320,00', '2 %', '—', '—', '—'],
+  ], ['Total', '<b>R$ 59.000,00</b>', '100 %', '', '', ''])
+  tabela('professores', ['Professor', 'Tipo', '>Base', '>A pagar'], [
+    [b('Gabriel Teixeira'), 'comissão 40 % · Muay Thai', 'R$ 8.300,00', 'R$ 3.320,00'],
+    [b('Helena Martins'), 'fixo + 20 % · Jiu-Jitsu', 'R$ 6.420,00', 'R$ 2.084,00'],
+    [b('Rodrigo Saldanha'), 'comissão 35 % · LL e MMA', 'R$ 3.868,00', 'R$ 1.354,00'],
+    [b('André Lopes'), 'R$ 60,00 por aula · Boxe', '16 aulas', 'R$ 960,00'],
+    [b('Bianca Freitas'), 'R$ 50,00 por aula · Kids', '8 aulas', 'R$ 400,00'],
+  ])
+  tabela('eventos', ['Evento', 'Data', '>Entrou', '>Saiu', '>Resultado'], [
+    [b('Exame de graduação Muay Thai'), '27/06', 'R$ 2.400,00', 'R$ 380,00', '<span class="pos">+R$ 2.020,00</span>'],
+    [b('Campeonato Gaúcho (viagem)'), '19/07', 'R$ 600,00', 'R$ 2.180,00', '<span class="neg">−R$ 1.580,00</span>'],
+    [b('Seminário de Jiu-Jitsu'), '22/08', 'R$ 3.150,00', 'R$ 1.200,00', '<span class="pos">+R$ 1.950,00</span>'],
+    [b('Card Lomba do Pinheiro'), '21/11', 'R$ 0,00', 'R$ 240,00', '<span class="neg">−R$ 240,00</span>'],
+  ])
+  document.querySelectorAll('[data-hbarras]').forEach(function (el) {
+    var d = [['Muay Thai', 2164000], ['Jiu-Jitsu', 1488000], ['Boxe', 846000], ['MMA', 768000], ['Luta Livre', 502000], ['Sem modalidade', 132000]]
+    el.innerHTML = d.map(function (m, i) { return '<div class="ad-hbarra' + (i === 0 ? ' ad-hbarra--destaque' : '') + '"><span class="t13b forte">' + m[0] + '</span><span class="ad-hbarra__trilho"><span class="ad-hbarra__cheio" style="display:block;width:' + Math.round(m[1] / d[0][1] * 100) + '%"></span></span><span class="t13b num">' + brl(m[1]) + '</span></div>' }).join('')
+  })
+  tabela('previa', ['Linha', 'Data', 'Descrição', 'Categoria', 'Tipo', '>Valor', 'Pessoa', 'Situação'], [
+    ['4', '01/10/2026', 'Mensal Bruno', 'Mensalidades', 'Entrada', 'R$ 150,00', 'Bruno Almeida', ok('Pago')],
+    ['5', '01/10/2026', 'Mensal Juliana', 'Mensalidades', 'Entrada', 'R$ 120,00', 'Juliana Prates', ok('Pago')],
+    ['6', '02/10/2026', 'Kimono A2', 'Kimono → Venda de produtos', 'Entrada', 'R$ 320,00', 'Tatiane Moura', ok('Pago')],
+    ['7', '03/10/2026', 'Mensal Léo', 'Mensalidades', 'Entrada', 'R$ 140,00', '<span class="ate">"Léo" não achado: vai na observação</span>', ok('Pago')],
+    ['8', '05/10/2026', 'Salário Igor', 'Salários', 'Saída', 'R$ 1.600,00', 'Igor Pereira', ok('Pago')],
+    ['9', '10/10/2026', 'Aluguel', 'Aluguel', 'Saída', 'R$ 3.500,00', '—', ok('Pago')],
+    ['10', '20/10/2026', 'Luz', 'Luz', 'Saída', 'R$ 450,00', '—', pe('Pendente (data futura)')],
+  ])
+  tabela('origens', ['Origem', '>Contatos', '>Fizeram', '>Matrículas', '>Conversão'], [
+    [b('Instagram'), '18', '8', '5', '28 %'], [b('WhatsApp'), '9', '4', '2', '22 %'], [b('Indicação'), '6', '3', '2', '33 %'], [b('Passou na porta'), '3', '1', '0', '0 %'], [b('Não informado'), '2', '0', '0', '—'],
+  ], ['Total', '<b>38</b>', '<b>16</b>', '<b>9</b>', '<b>24 %</b>'])
+  tabela('historico', ['Quando', 'Quem', 'O que mudou'], [
+    ['15/10 10:42', 'Alex', 'mudou o lançamento "Tatame EVA 1 m² × 6" · Categoria: Outras saídas → <b>Equipamento</b>'],
+    ['15/10 10:00', 'Alex', 'mudou o lançamento "Tatame EVA 1 m² × 6" · Valor: R$ 1.040,00 → <b>R$ 1.140,00</b>'],
+    ['14/10 19:12', 'Igor (recepção)', 'criou o lançamento "Inscrição — Card Lomba do Pinheiro" · R$ 240,00 · Pix'],
+    ['13/10 21:05', 'Alex', 'matriculou <b>Larissa Becker</b> no Muay Thai 2× (veio do funil, indicação de Carla Souza)'],
+    ['13/10 21:05', 'Alex', 'aplicou o desconto de indicação em Carla Souza e Larissa Becker · −10 % até 31/12'],
+    ['12/10 08:00', 'sistema', 'criou o lembrete "Cobrar Renan Duarte" (pessoa inadimplente)'],
+    ['10/10 19:40', 'Igor (recepção)', 'marcou como paga a mensalidade de outubro de <b>Bruno Almeida</b> · Pix · R$ 150,00'],
+    ['08/10 14:20', 'Alex', 'importou "caixa-raca-2026.xlsx" · 117 linhas (9 repetidas ficaram de fora)'],
+    ['03/10 18:12', 'Alex', 'fechou <b>setembro</b> · entrou R$ 35.284,00 · saiu R$ 25.410,80 · resultado R$ 9.873,20'],
+    ['02/10 09:30', 'Alex', 'reabriu <b>agosto</b> · motivo: "a conta de luz chegou depois" · e fechou de novo às 09:41'],
+    ['01/10 00:05', 'sistema', 'gerou as mensalidades de outubro · 186 geradas · 9 de fora (7 trancadas, 2 isentas)'],
+    ['01/10 00:05', 'sistema', 'gerou as despesas fixas de outubro · 5 linhas pendentes (luz e água "estimado")'],
+    ['30/09 16:48', 'Alex', 'mudou a regra de cobrança · Dias para chamar de volta: 2 → <b>3</b>'],
+  ])
+  tabela('despesas', ['Descrição', 'Categoria', '>Valor', 'Vence', 'Forma', 'Pessoa', 'Desde', 'Outubro', 'Ação'], [
+    [b('Aluguel da sala'), 'Aluguel', 'R$ 3.500,00', 'dia 10', 'Pix', '—', 'jan/2026', ok('pago 10/10'), '<button class="ad-btn">Lembrar todo mês</button>'],
+    [b('Salário — Igor Pereira'), 'Salários', 'R$ 1.600,00', 'dia 5', 'Pix', 'Igor Pereira', 'fev/2026', ok('pago 05/10'), '<button class="ad-btn">Lembrar todo mês</button>'],
+    [b('Salário — Camila Rocha'), 'Salários', 'R$ 900,00', 'dia 5', 'Pix', 'Camila Rocha', 'mai/2026', ok('pago 05/10'), '<button class="ad-btn">Lembrar todo mês</button>'],
+    [b('Salário — Sônia Prado'), 'Salários', 'R$ 600,00', 'dia 5', 'Pix', 'Sônia Prado', 'jan/2026', ok('pago 05/10'), '<button class="ad-btn">Lembrar todo mês</button>'],
+    [b('Luz'), 'Luz', 'R$ 450,00 · média de 3 meses', 'dia 20', 'Boleto', '—', 'jan/2026', pe('pendente · estimado'), '<button class="ad-btn">Conferir a conta</button>'],
+    [b('Água'), 'Água', 'R$ 187,50 · média de 3 meses', 'dia 4', 'Boleto', '—', 'jan/2026', ok('pago 04/10'), '<button class="ad-btn">Lembrar todo mês</button>'],
+    [b('Internet'), 'Internet e telefone', 'R$ 120,00', 'dia 15', 'Boleto', '—', 'jan/2026', pe('pendente · vence hoje'), '<button class="ad-btn">Lembrar todo mês</button>'],
+    [b('Contador'), 'Contador', 'R$ 450,00', 'dia 30', 'Pix', '—', 'jan/2026', pe('pendente'), '<button class="ad-btn">Lembrar todo mês</button>'],
+    [b('Hospedagem do app'), 'Impostos e taxas', 'R$ 162,00', 'dia 1', 'Cartão de crédito', '—', 'nov/2026', ne('começa em novembro'), '<button class="ad-btn">Lembrar todo mês</button>'],
+  ], ['Total por mês', '', '<b>R$ 7.969,50</b>', '', '', '', '', '', ''])
+  tabela('inadimplentes', ['Quem paga', 'Alunos', '>Deve', 'Atraso mais antigo', 'Cobranças', 'Ação'], [
+    [b('Renan Duarte'), 'Renan', '<b class="neg">R$ 240,00</b>', er('41 dias'), 'setembro e outubro', '<button class="ad-btn ad-btn--primario">Cobrar</button>'],
+    [b('Vinícius Hoffmann'), 'Vinícius', '<b class="neg">R$ 150,00</b>', er('35 dias'), 'setembro', '<button class="ad-btn">Cobrar</button>'],
+    [b('Diego Fontoura'), 'Diego', '<b class="neg">R$ 150,00</b>', er('32 dias'), 'setembro', '<button class="ad-btn">Cobrar</button>'],
+    [b('Fernanda Lima'), 'Davi e Elisa (Kids)', '<b class="neg">R$ 209,00</b>', pe('5 dias'), 'outubro (2)', '<button class="ad-btn">Cobrar</button>'],
+    [b('Aline Castro'), 'Aline', '<b class="neg">R$ 120,00</b>', pe('5 dias'), 'outubro', '<button class="ad-btn">Cobrar</button>'],
+    [b('Paulo Correa'), 'Yasmin (Kids)', '<b class="neg">R$ 110,00</b>', pe('5 dias'), 'outubro', '<button class="ad-btn">Cobrar</button>'],
+    [b('Thiago Ramos'), 'Thiago', '<b class="neg">R$ 160,00</b>', pe('5 dias'), 'outubro', '<button class="ad-btn">Cobrar</button>'],
+    [b('Bianca Lemos'), 'Bianca', '<b class="neg">R$ 50,00</b>', pe('3 dias'), 'taxa de matrícula', '<button class="ad-btn">Cobrar</button>'],
+    [b('Eduardo Neves'), 'Eduardo', '<b class="neg">R$ 120,00</b>', pe('2 dias'), 'outubro', '<button class="ad-btn">Cobrar</button>'],
+    [b('Marina Kasper'), 'Marina', '<b class="neg">R$ 220,00</b>', pe('1 dia'), 'outubro', '<button class="ad-btn">Cobrar</button>'],
+    [b('Gustavo Pires'), 'Gustavo', '<b class="neg">R$ 161,00</b>', pe('1 dia'), 'exame de graduação', '<button class="ad-btn">Cobrar</button>'],
+  ], ['11 pessoas', '', '<b>R$ 1.690,00</b>', '', '', ''])
+  tabela('exportar', ['Data', 'Descrição', 'Categoria', 'Tipo', '>Valor', '>Valor (±)', 'Forma', 'Pessoa', 'Situação'], [
+    ['01/10/2026', 'Mensalidade outubro/2026 — Juliana Prates', 'Mensalidades', 'Entrada', '120,00', '120,00', 'Pix', 'Juliana Prates', 'Pago'],
+    ['02/10/2026', 'Kimono A2 branco', 'Venda de produtos', 'Entrada', '320,00', '320,00', 'Pix', 'Tatiane Moura', 'Pago'],
+    ['03/10/2026', 'Mensalidade outubro/2026 — Leonardo Vieira', 'Mensalidades', 'Entrada', '140,00', '140,00', 'Dinheiro', 'Leonardo Vieira', 'Pago'],
+    ['05/10/2026', 'Salário — Igor Pereira', 'Salários', 'Saída', '1600,00', '-1600,00', 'Pix', 'Igor Pereira', 'Pago'],
+    ['05/10/2026', 'Mensalidade outubro/2026 — Carla Souza', 'Mensalidades', 'Entrada', '220,00', '220,00', 'Pix', 'Carla Souza', 'Pago'],
+  ])
+  tabela('ano', ['Mês', '>Entrou', '>Saiu', '>Resultado', '>Matriculados', 'Fechamento'], [
+    ['nov/2025', 'R$ 29.840,00', 'R$ 24.630,00', 'R$ 5.210,00', '168', ok('fechado')], ['dez/2025', 'R$ 27.120,00', 'R$ 23.140,00', 'R$ 3.980,00', '163', ok('fechado')],
+    ['jan/2026', 'R$ 25.900,00', 'R$ 23.760,00', 'R$ 2.140,00', '159', ok('fechado')], ['fev/2026', 'R$ 31.480,00', 'R$ 25.460,00', 'R$ 6.020,00', '171', ok('fechado')],
+    ['mar/2026', 'R$ 33.210,00', 'R$ 25.760,00', 'R$ 7.450,00', '177', ok('fechado')], ['abr/2026', 'R$ 32.640,00', 'R$ 25.760,00', 'R$ 6.880,00', '178', ok('fechado')],
+    ['mai/2026', 'R$ 33.020,00', 'R$ 25.900,00', 'R$ 7.120,00', '180', ok('fechado')], ['jun/2026', 'R$ 32.150,00', 'R$ 26.210,00', 'R$ 5.940,00', '179', ok('fechado')],
+    ['jul/2026', 'R$ 31.300,00', 'R$ 32.120,00', '<span class="neg">−R$ 820,00</span>', '177', ok('fechado')], ['ago/2026', 'R$ 33.900,00', 'R$ 27.600,00', 'R$ 6.300,00', '181', ok('fechado')],
+    ['set/2026', 'R$ 35.284,00', 'R$ 25.410,80', 'R$ 9.873,20', '183', ok('fechado')], ['out/2026', 'R$ 24.380,00', 'R$ 15.912,40', 'R$ 8.467,60', '186', pe('aberto · até 15/10')],
+  ], ['12 meses', '<b>R$ 370.224,00</b>', '<b>R$ 301.662,20</b>', '<b>R$ 68.561,80</b>', '', ''])
+  tabela('filtrados', ['Nome', 'Plano', '>Deve', 'Atraso', 'Telefone', 'Ação'], [
+    [b('<a href="?tela=ficha-aluno">Renan Duarte</a>'), 'Muay Thai 2×', '<b class="neg">R$ 240,00</b>', er('41 dias'), '(51) 90000-0011', '<button class="ad-btn">Cobrar</button>'],
+    [b('<a href="?tela=ficha-aluno">Vinícius Hoffmann</a>'), 'Muay Thai livre', '<b class="neg">R$ 150,00</b>', er('35 dias'), '(51) 90000-0009', '<button class="ad-btn">Cobrar</button>'],
+    [b('<a href="?tela=ficha-aluno">Diego Fontoura</a>'), 'Muay Thai livre', '<b class="neg">R$ 150,00</b>', er('32 dias'), '(51) 90000-0015', '<button class="ad-btn">Cobrar</button>'],
+  ], ['3 pessoas', '', '<b>R$ 540,00</b>', '', '', ''])
+
+  // mapa de colunas da importação
+  document.querySelectorAll('[data-mapa]').forEach(function (el) {
+    var cols = [['DATA', 'Data', '01/10/2026'], ['HISTÓRICO', 'Descrição', 'Mensal Bruno'], ['ENTRADA', 'Entrada (valor)', 'R$ 150,00'], ['SAÍDA', 'Saída (valor)', '—'], ['TIPO PGTO', 'Forma de pagamento', 'pix'], ['ALUNO', 'Pessoa', 'Bruno'], ['CATEGORIA', 'Categoria', 'Mensal'], ['OBS', 'Observação', '—'], ['SALDO', 'Ignorar', 'R$ 4.180,00']]
+    var ops = ['Data', 'Descrição', 'Valor', 'Valor com sinal', 'Entrada (valor)', 'Saída (valor)', 'Tipo', 'Categoria', 'Forma de pagamento', 'Pessoa', 'Situação', 'Modalidade', 'Observação', 'Ignorar']
+    el.innerHTML = cols.map(function (c) { return '<div class="ad-mapa__col' + (c[1] === 'Ignorar' ? ' ad-mapa__col--ignorada' : '') + '"><header>' + ic(c[1] === 'Ignorar' ? 'i-fechar' : 'i-seta-direita') + '<b>' + c[0] + '</b></header><label class="campo"><span>Vira</span><span class="campo__caixa"><select aria-label="Papel da coluna ' + c[0] + '">' + ops.map(function (o) { return '<option' + (o === c[1] ? ' selected' : '') + '>' + o + '</option>' }).join('') + '</select></span></label><p>1ª linha: ' + c[2] + (c[0] === 'SALDO' ? ' (conta da planilha, não entra)' : '') + '</p></div>' }).join('')
+  })
+  // funil
+  document.querySelectorAll('[data-funil]').forEach(function (el) {
+    var C = [
+      ['Interessados', 17, 'chegaram e não marcaram', [['Thaís Andrade', 'Muay Thai · Instagram · 14/10'], ['Gustavo Pires', 'Boxe · WhatsApp · 13/10'], ['Lucas e Maria Prado', 'Jiu-Jitsu Kids · indicação de Carla · 12/10'], ['Rogério Mello', 'MMA · passou na porta · 09/10']], 'Marcar aula'],
+      ['Aula marcada', 5, 'com turma e data', [['Bianca Lemos', 'Muay Thai · ter 20/10, 20h'], ['Fábio Nunes', 'Boxe · qui 22/10, 21h'], ['Joana Vidal', 'Jiu-Jitsu · seg 19/10, 20h']], 'Lembrar'],
+      ['Fez a aula', 7, 'falta decidir', [['Larissa Becker', 'Muay Thai · fez 11/10 · indicação'], ['Henrique Bastos', 'MMA · fez 10/10'], ['Paula Teles', 'Muay Thai · fez 09/10']], 'Matricular'],
+      ['Matriculados', 9, 'no mês', [['Larissa Becker', 'Muay Thai 2× · 13/10 · −10 % indicação'], ['Eduardo Neves', 'Boxe 2× · 08/10'], ['Marina Kasper', 'Combo 2 · 05/10']], ''],
+    ]
+    el.innerHTML = C.map(function (c, i) {
+      return '<section class="ad-funil__col" aria-label="' + c[0] + '"><header><h2 class="ad-h2">' + c[0] + '</h2><b>' + c[1] + '</b><span>' + c[2] + '</span></header>' + c[3].map(function (p) {
+        return '<div class="ad-cartao' + (i === 2 ? ' ad-cartao--quente' : '') + '"><b>' + p[0] + '</b><span>' + p[1] + '</span>' + (c[4] ? '<div class="ad-acoes"><button class="ad-btn">' + c[4] + '</button><button class="ad-btn ad-btn--icone" aria-label="WhatsApp de ' + p[0] + '">' + ic('i-conversa') + '</button></div>' : '') + '</div>'
+      }).join('') + (c[1] > c[3].length ? '<a class="ad-btn ad-btn--plano" href="?tela=funil">Ver mais ' + (c[1] - c[3].length) + '</a>' : '') + '</section>'
+    }).join('')
+  })
+  document.querySelectorAll('[data-volta]').forEach(function (el) {
+    el.innerHTML = [['Larissa Becker', 'fez 11/10 · Muay Thai · indicação de Carla'], ['Henrique Bastos', 'fez 10/10 · MMA · Instagram'], ['Paula Teles', 'fez 09/10 · Muay Thai · WhatsApp'], ['Sérgio Antunes', 'fez 08/10 · Boxe · Instagram']].map(function (p) {
+      return '<li><span class="ad-lista__txt"><b>' + p[0] + '</b><span>' + p[1] + '</span></span><button class="ad-btn ad-btn--icone" aria-label="WhatsApp de ' + p[0] + '">' + ic('i-conversa') + '</button><button class="ad-btn">Lembrar</button></li>'
+    }).join('')
+  })
+  // calendário de outubro de 2026 (1º de outubro é quinta)
+  document.querySelectorAll('[data-cal]').forEach(function (el) {
+    var marcas = { 1: [1, 'mensalidades'], 5: [1, 'salário'], 10: [1, 'aluguel'], 12: [0, 'cobrar'], 15: [1, 'internet'], 18: [0, 'tatame'], 20: [1, 'luz'], 22: [0, 'card'], 24: [0, 'exame'], 30: [0, 'contador'] }
+    var h = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'].map(function (d) { return '<span class="ad-cal__sem">' + d + '</span>' }).join('')
+    for (var i = 0; i < 4; i++) h += '<div class="ad-cal__dia ad-cal__dia--fora"><b>' + (27 + i) + '</b></div>'
+    for (var d = 1; d <= 31; d++) { var m = marcas[d]; h += '<div class="ad-cal__dia' + (d === 15 ? ' ad-cal__dia--hoje' : '') + '"><b>' + d + '</b>' + (m ? '<i class="ad-cal__marca' + (m[0] ? ' ad-cal__marca--viva' : '') + '"></i><span>' + m[1] + '</span>' : '') + '</div>' }
+    el.innerHTML = h
+  })
+
+  /* ------------------------------------------------ atalhos globais: Ctrl+K busca, / filtro, N nota, L lembrete */
+  document.addEventListener('keydown', function (e) {
+    var t = e.target, digitando = t.closest && t.closest('input, select, textarea, .ad-editando')
+    var q = document.querySelector('.ad-quadro--atual') || document.querySelector('.ad-quadro')
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) { e.preventDefault(); var i = q.querySelector('.ad-busca input'); i && i.focus() }
+    if (digitando || e.ctrlKey || e.metaKey || e.altKey || (t.closest && t.closest('.ad-grade'))) return
+    if (e.key === '/') { e.preventDefault(); var f = q.querySelector('.ad-frase .ad-btn, .ad-coluna input, .ad-topo .ad-btn'); f && f.focus() }
+  })
+})()
+</script>
+</body>
+</html>

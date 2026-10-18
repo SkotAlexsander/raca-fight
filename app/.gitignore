@@ -1,0 +1,39 @@
+# dependências
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# build nativo (gerado por `expo prebuild`; não versionar enquanto for managed)
+ios/
+android/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# segredos — NUNCA versionar
+.env
+.env.*
+!.env.exemplo
+
+# Metro
+.metro-health-check*
+
+# editores e sistema
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.vscode/*
+!.vscode/extensions.json
+
+# chaves de envio às lojas (EAS Submit)
+segredos/

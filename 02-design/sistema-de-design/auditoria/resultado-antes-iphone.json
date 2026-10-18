@@ -1,0 +1,4182 @@
+{
+ "data": "2026-10-10T18:38:28.946Z",
+ "total": 528,
+ "resultados": [
+  {
+   "pagina": "mockup",
+   "rodada": "360 × 640",
+   "aparelho": null,
+   "largura": 360,
+   "altura": 640,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "360 × 640",
+   "aparelho": null,
+   "largura": 360,
+   "altura": 640,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 3,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "360 × 640",
+   "aparelho": null,
+   "largura": 360,
+   "altura": 640,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "360 × 640",
+   "aparelho": null,
+   "largura": 360,
+   "altura": 640,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 3,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "390 × 844",
+   "aparelho": null,
+   "largura": 390,
+   "altura": 844,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "390 × 844",
+   "aparelho": null,
+   "largura": 390,
+   "altura": 844,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 2,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "390 × 844",
+   "aparelho": null,
+   "largura": 390,
+   "altura": 844,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "390 × 844",
+   "aparelho": null,
+   "largura": 390,
+   "altura": 844,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 2,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "430 × 932",
+   "aparelho": null,
+   "largura": 430,
+   "altura": 932,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "430 × 932",
+   "aparelho": null,
+   "largura": 430,
+   "altura": 932,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "430 × 932",
+   "aparelho": null,
+   "largura": 430,
+   "altura": 932,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "430 × 932",
+   "aparelho": null,
+   "largura": 430,
+   "altura": 932,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "768 × 1024",
+   "aparelho": null,
+   "largura": 768,
+   "altura": 1024,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 4,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "768 × 1024",
+   "aparelho": null,
+   "largura": 768,
+   "altura": 1024,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "768 × 1024",
+   "aparelho": null,
+   "largura": 768,
+   "altura": 1024,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 4,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "768 × 1024",
+   "aparelho": null,
+   "largura": 768,
+   "altura": 1024,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "1280 × 800",
+   "aparelho": null,
+   "largura": 1280,
+   "altura": 800,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "1280 × 800",
+   "aparelho": null,
+   "largura": 1280,
+   "altura": 800,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "1280 × 800",
+   "aparelho": null,
+   "largura": 1280,
+   "altura": 800,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "1280 × 800",
+   "aparelho": null,
+   "largura": 1280,
+   "altura": 800,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "1440 × 900",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "1440 × 900",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "1440 × 900",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "1440 × 900",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "2040 × 790",
+   "aparelho": null,
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "2040 × 790",
+   "aparelho": null,
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 1,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "2040 × 790",
+   "aparelho": null,
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "2040 × 790",
+   "aparelho": null,
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 1,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "360 × 640",
+   "aparelho": null,
+   "largura": 360,
+   "altura": 640,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "360 × 640",
+   "aparelho": null,
+   "largura": 360,
+   "altura": 640,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "360 × 640",
+   "aparelho": null,
+   "largura": 360,
+   "altura": 640,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "360 × 640",
+   "aparelho": null,
+   "largura": 360,
+   "altura": 640,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "390 × 844",
+   "aparelho": null,
+   "largura": 390,
+   "altura": 844,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "390 × 844",
+   "aparelho": null,
+   "largura": 390,
+   "altura": 844,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "390 × 844",
+   "aparelho": null,
+   "largura": 390,
+   "altura": 844,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "390 × 844",
+   "aparelho": null,
+   "largura": 390,
+   "altura": 844,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "430 × 932",
+   "aparelho": null,
+   "largura": 430,
+   "altura": 932,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "430 × 932",
+   "aparelho": null,
+   "largura": 430,
+   "altura": 932,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "430 × 932",
+   "aparelho": null,
+   "largura": 430,
+   "altura": 932,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "430 × 932",
+   "aparelho": null,
+   "largura": 430,
+   "altura": 932,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "768 × 1024",
+   "aparelho": null,
+   "largura": 768,
+   "altura": 1024,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "768 × 1024",
+   "aparelho": null,
+   "largura": 768,
+   "altura": 1024,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "768 × 1024",
+   "aparelho": null,
+   "largura": 768,
+   "altura": 1024,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "768 × 1024",
+   "aparelho": null,
+   "largura": 768,
+   "altura": 1024,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "1280 × 800",
+   "aparelho": null,
+   "largura": 1280,
+   "altura": 800,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "1280 × 800",
+   "aparelho": null,
+   "largura": 1280,
+   "altura": 800,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "1280 × 800",
+   "aparelho": null,
+   "largura": 1280,
+   "altura": 800,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "1280 × 800",
+   "aparelho": null,
+   "largura": 1280,
+   "altura": 800,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "1440 × 900",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "1440 × 900",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "1440 × 900",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "1440 × 900",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "2040 × 790",
+   "aparelho": null,
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "2040 × 790",
+   "aparelho": null,
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "2040 × 790",
+   "aparelho": null,
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "2040 × 790",
+   "aparelho": null,
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "amostra 324",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "amostra 324",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 6,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "amostra 324",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "amostra 324",
+   "aparelho": null,
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 6,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 375 × 667",
+   "aparelho": "iphone-se",
+   "largura": 375,
+   "altura": 667,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 375 × 667",
+   "aparelho": "iphone-se",
+   "largura": 375,
+   "altura": 667,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 6,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 375 × 667",
+   "aparelho": "iphone-se",
+   "largura": 375,
+   "altura": 667,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 375 × 667",
+   "aparelho": "iphone-se",
+   "largura": 375,
+   "altura": 667,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 6,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-se 375 × 667",
+   "aparelho": null,
+   "largura": 375,
+   "altura": 667,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-se 375 × 667",
+   "aparelho": null,
+   "largura": 375,
+   "altura": 667,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-se 375 × 667",
+   "aparelho": null,
+   "largura": 375,
+   "altura": 667,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-se 375 × 667",
+   "aparelho": null,
+   "largura": 375,
+   "altura": 667,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 1440 × 900",
+   "aparelho": "iphone-se",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 1440 × 900",
+   "aparelho": "iphone-se",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 1440 × 900",
+   "aparelho": "iphone-se",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 1440 × 900",
+   "aparelho": "iphone-se",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 2040 × 790",
+   "aparelho": "iphone-se",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 2040 × 790",
+   "aparelho": "iphone-se",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 2040 × 790",
+   "aparelho": "iphone-se",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-se 2040 × 790",
+   "aparelho": "iphone-se",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-se, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×667 (iPhone SE (3ª geração))"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 1 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 2 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 3 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__gesto",
+     "detalhe": "iPhone SE (3ª geração) tem botão Início, não indicador"
+    },
+    {
+     "tipo": "aparelho",
+     "onde": "tela 4 › div.celular__ilha",
+     "detalhe": "iPhone SE (3ª geração) não tem recorte na tela"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 375 × 812",
+   "aparelho": "iphone-13-mini",
+   "largura": 375,
+   "altura": 812,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 375 × 812",
+   "aparelho": "iphone-13-mini",
+   "largura": 375,
+   "altura": 812,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 6,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 375 × 812",
+   "aparelho": "iphone-13-mini",
+   "largura": 375,
+   "altura": 812,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 375 × 812",
+   "aparelho": "iphone-13-mini",
+   "largura": 375,
+   "altura": 812,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 6,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-13-mini 375 × 812",
+   "aparelho": null,
+   "largura": 375,
+   "altura": 812,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-13-mini 375 × 812",
+   "aparelho": null,
+   "largura": 375,
+   "altura": 812,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-13-mini 375 × 812",
+   "aparelho": null,
+   "largura": 375,
+   "altura": 812,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-13-mini 375 × 812",
+   "aparelho": null,
+   "largura": 375,
+   "altura": 812,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 1440 × 900",
+   "aparelho": "iphone-13-mini",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 1440 × 900",
+   "aparelho": "iphone-13-mini",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 1440 × 900",
+   "aparelho": "iphone-13-mini",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 1440 × 900",
+   "aparelho": "iphone-13-mini",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 2040 × 790",
+   "aparelho": "iphone-13-mini",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 2040 × 790",
+   "aparelho": "iphone-13-mini",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 2040 × 790",
+   "aparelho": "iphone-13-mini",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-13-mini 2040 × 790",
+   "aparelho": "iphone-13-mini",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-13-mini, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 375×812 (iPhone 13 mini)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 393 × 852",
+   "aparelho": "iphone-16",
+   "largura": 393,
+   "altura": 852,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 393 × 852",
+   "aparelho": "iphone-16",
+   "largura": 393,
+   "altura": 852,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 393 × 852",
+   "aparelho": "iphone-16",
+   "largura": 393,
+   "altura": 852,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 393 × 852",
+   "aparelho": "iphone-16",
+   "largura": 393,
+   "altura": 852,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-16 393 × 852",
+   "aparelho": null,
+   "largura": 393,
+   "altura": 852,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-16 393 × 852",
+   "aparelho": null,
+   "largura": 393,
+   "altura": 852,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-16 393 × 852",
+   "aparelho": null,
+   "largura": 393,
+   "altura": 852,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-16 393 × 852",
+   "aparelho": null,
+   "largura": 393,
+   "altura": 852,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 1440 × 900",
+   "aparelho": "iphone-16",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 1440 × 900",
+   "aparelho": "iphone-16",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 1440 × 900",
+   "aparelho": "iphone-16",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 1440 × 900",
+   "aparelho": "iphone-16",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 2040 × 790",
+   "aparelho": "iphone-16",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 2040 × 790",
+   "aparelho": "iphone-16",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 2040 × 790",
+   "aparelho": "iphone-16",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "1px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16 2040 × 790",
+   "aparelho": "iphone-16",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 393×852 (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "5px dentro do inset do topo (59, iPhone 16)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 5px acima do fim da área segura/recorte (iPhone 16)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 440 × 956",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 440,
+   "altura": 956,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 440 × 956",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 440,
+   "altura": 956,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 440 × 956",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 440,
+   "altura": 956,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 440 × 956",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 440,
+   "altura": 956,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-16-pro-max 440 × 956",
+   "aparelho": null,
+   "largura": 440,
+   "altura": 956,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-16-pro-max 440 × 956",
+   "aparelho": null,
+   "largura": 440,
+   "altura": 956,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-16-pro-max 440 × 956",
+   "aparelho": null,
+   "largura": 440,
+   "altura": 956,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1
+  },
+  {
+   "pagina": "logo",
+   "rodada": "iphone-16-pro-max 440 × 956",
+   "aparelho": null,
+   "largura": 440,
+   "altura": 956,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [],
+   "truncPermitidos": 0,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 1440 × 900",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 1440 × 900",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 1440 × 900",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 1440 × 900",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 1440,
+   "altura": 900,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 4,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 2040 × 790",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 2040 × 790",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "claro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1.6
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 2040 × 790",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 100,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.botao.botao--icone",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "2px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › button.chip-visao \"Academia\"",
+     "detalhe": "4px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 5,
+   "escala": 1
+  },
+  {
+   "pagina": "mockup",
+   "rodada": "iphone-16-pro-max 2040 × 790",
+   "aparelho": "iphone-16-pro-max",
+   "largura": 2040,
+   "altura": 790,
+   "tema": "escuro",
+   "fonte": 160,
+   "achados": [
+    {
+     "tipo": "aparelho",
+     "onde": "página",
+     "detalhe": "pedi iphone-16-pro-max, o mockup mostra (sem data-aparelho)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 1 › div.celular \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 2 › div.celular \"Treinos prontos Qual é o seu objetiv\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 3 › div.celular \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "moldura fora da proporção",
+     "onde": "tela 4 › div.celular \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "tela de 390.0×844.0, devia ser 440×956 (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 1 › p.legenda.texto-secundario \"Olá, Ana · Quarta\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 1 › header.cabecalho.cabecalho--raiz \"Olá, Ana · Quarta Treino A — Peito e\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 2 › h2.titulo-1 \"Treinos prontos\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 2 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Treinos prontos\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 3 › p.legenda.texto-secundario \"Academia Corpo & Vida\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 3 › header.cabecalho.cabecalho--superficie \"Academia Corpo & Vida Perfil do alun\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "fora da área segura",
+     "onde": "tela 4 › h2.titulo-1 \"Dieta de hoje\"",
+     "detalhe": "8px dentro do inset do topo (62, iPhone 16 Pro Max)"
+    },
+    {
+     "tipo": "cabeçalho sob o recorte",
+     "onde": "tela 4 › header.cabecalho.cabecalho--raiz.cabecalho--grande \"Dieta de hoje Plus Plano da personal\"",
+     "detalhe": "começa 8px acima do fim da área segura/recorte (iPhone 16 Pro Max)"
+    }
+   ],
+   "truncPermitidos": 1,
+   "escala": 1.6
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+<section class="parte" id="anatomia">
+  <p class="parte__olho">Parte 9 · mapa muscular</p>
+  <h1 class="parte__titulo">O corpo cinza e o músculo vermelho <span class="decidir" style="font-size:11px;vertical-align:8px">aguarda o Alex</span></h1>
+  <p class="parte__lide">O Alex pediu que todo ícone de músculo vire "uma demonstração do corpo em cinza e o músculo em vermelho". Foram testados dois caminhos: um mapa em vetor (A) e imagem gerada por IA (B). A recomendação é <strong>A em todos os tamanhos</strong>. Nada disso entrou no app ainda: as telas continuam com as ilustrações de exercício até o Alex aprovar.</p>
+
+  <div class="grade grade--2">
+    <figure style="margin:0"><img src="_capturas/anatomia-caso-claro.png" alt="Peitoral no supino reto, mapa em vetor, tema claro"><figcaption><b>Peitoral · supino reto, claro.</b> Miniaturas de 48, 56 e 64, a linha da lista e o detalhe de frente e de costas. Vermelho forte é o músculo principal; vermelho claro, os que ajudam.</figcaption></figure>
+    <figure style="margin:0"><img src="_capturas/anatomia-caso-escuro.png" alt="O mesmo caso no tema escuro"><figcaption><b>O mesmo, no escuro.</b> Só a cor muda: corpo <code>#3A4446</code> e músculo <code>#FF6369</code> (3,46:1). No claro, <code>#CDD3D6</code> e <code>#CE2C31</code> (3,45:1).</figcaption></figure>
+  </div>
+  <figure><img src="_capturas/anatomia-contexto-claro.png" alt="A lista do treino com as ilustrações de hoje e com o mapa muscular"><figcaption><b>Na lista do treino:</b> hoje (as ilustrações do agente R) e com o mapa. Embaixo, o palco do modo treino.</figcaption></figure>
+  <figure><img src="_capturas/anatomia-filtros-claro.png" alt="Filtro com mini corpo e a Evolução com o corpo pintado por volume"><figcaption><b>Filtros e Evolução:</b> o chip ganha um mini corpo de 24 px (Cardio fica só com o texto); na Evolução, o corpo pintado pelo volume de cada grupo, com a lista em quilos.</figcaption></figure>
+
+  <div class="caixa caixa--decisao"><span class="caixa__rotulo">Aguarda a aprovação do Alex · <span class="decidir">decidir</span></span><p><strong>A, vetor</strong> (recomendado): o mesmo corpo nas 28 miniaturas, os músculos de cada exercício conferidos no ExRx, cerca de 124 KB para o app inteiro e exercício novo é uma linha no JSON. <strong>B, IA</strong>: não rodou, porque o token da Cloudflare não tem permissão de Workers AI; mesmo que acerte, serve só para imagem grande. Também falta decidir, na Evolução, se o corpo pintado <strong>substitui a rosca</strong> ou entra <strong>junto</strong> dela. O comparativo inteiro está em <code>02-design/anatomia/comparativo.html</code>.</p></div>
+</section>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Academia Plus — monograma A mais">
+  <title>Academia Plus — caminho C: A+, tema escuro</title>
+  <!-- Um "A" sem travessão; no lugar do travessão, um sinal de mais. Lê-se "A+". -->
+  <g fill="none" stroke="#6BD3C2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M208 880 L512 176 L816 880" stroke-width="128"/>
+    <path d="M512 536 V792 M384 664 H640" stroke-width="80"/>
+  </g>
+</svg>

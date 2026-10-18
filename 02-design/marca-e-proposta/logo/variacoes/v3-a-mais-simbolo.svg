@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Academia Plus — Monograma A+ com a barra">
+  <title>Variação: Monograma A+ com a barra</title>
+  <g fill="currentColor">
+    <path d="M424 176H600L872 880H704L512 376L320 880H152Z"/>
+    <rect x="88" y="616" width="848" height="72" rx="20"/>
+    <rect x="88" y="516" width="96" height="272" rx="36"/>
+    <rect x="840" y="516" width="96" height="272" rx="36"/>
+    <path d="M760 160A40 40 0 0 1 840 160V208H888A40 40 0 0 1 888 288H840V336A40 40 0 0 1 760 336V288H712A40 40 0 0 1 712 208H760V160Z"/>
+  </g>
+</svg>

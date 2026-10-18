@@ -1,0 +1,33 @@
+# dependências e gerados
+node_modules/
+dist/
+dist-entrega/
+.expo/
+web-build/
+android/
+ios/
+test-results/
+playwright-report/
+*.tsbuildinfo
+.metro-health-check*
+
+# segredos — NUNCA versionar
+.env
+.env.*
+!.env.exemplo
+*.jks
+*.keystore
+*.p8
+*.p12
+*.key
+*.mobileprovision
+segredos/
+
+# binários de entrega (ficam em A:\Projetos)
+*.apk
+*.aab
+
+# sistema
+.DS_Store
+Thumbs.db
+*.log

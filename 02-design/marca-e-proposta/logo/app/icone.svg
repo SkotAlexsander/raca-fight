@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Academia Plus">
+  <title>Ícone do app (iOS e loja): 1024, fundo cheio na cor da marca, sem transparência</title>
+  <rect width="1024" height="1024" fill="#007761"/>
+  <g fill="currentColor" color="#FFFFFF">
+    <rect x="192" y="462.77" width="640" height="98.46" rx="49.23"/>
+    <rect x="272" y="364.31" width="92.31" height="295.38" rx="33.85"/>
+    <rect x="659.69" y="364.31" width="92.31" height="295.38" rx="33.85"/>
+    <rect x="450.46" y="192" width="123.08" height="640" rx="61.54"/>
+  </g>
+</svg>

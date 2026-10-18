@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academia Plus — logo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Gerado por fonte/gerar.py a partir de fonte/comparativo-modelo.html. Não editar aqui. -->
+<style>
+  /* Medidas do sistema de design (tokens.json 1.8.0): espaço de 4 em 4 (em px), texto em rem na escala
+     fechada (13 · 16 · 20 · 25 · 31), alvo de toque de 48. Cores: tokens-marca.json 1.2.0. */
+  :root { --fundo:#F4F8F7; --superficie:#FFFFFF; --texto:#131D1C; --texto2:#4A5958; --marca:#007761; --borda:#D0DAD9;
+          --largura-maxima:1080px; color-scheme:light }
+  [data-tema="escuro"] { --fundo:#070C0C; --superficie:#121A19; --texto:#E9F2F1; --texto2:#A3B1B0; --marca:#39F0CD; --borda:#2A3433; color-scheme:dark }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--fundo); color:var(--texto); font-family:Figtree, system-ui, sans-serif; font-size:1rem; line-height:1.5rem; padding:24px 16px 64px }
+  body > * { max-width:var(--largura-maxima); margin-left:auto; margin-right:auto }
+  h1 { font-size:1.9375rem; line-height:2.375rem; margin:0 0 8px }
+  h2 { font-size:1.25rem; line-height:1.625rem; margin:0 0 4px }
+  h2 small { font-size:inherit; font-weight:400; color:var(--texto2) }
+  h3 { font-size:1rem; line-height:1.5rem; margin:0 0 8px }
+  p { margin:0 0 12px } .sub { color:var(--texto2); margin-bottom:24px }
+  ul { margin:0 0 12px; padding-left:20px } li { margin-bottom:4px }
+  figure { margin:0 }
+  figcaption, .legenda { font-size:0.8125rem; line-height:1rem; color:var(--texto2) }
+  figcaption { margin-top:8px; text-align:center }
+  button { font:inherit; font-weight:600; line-height:1.5rem; min-height:40px; position:relative; padding:0 16px; border-radius:999px; border:1px solid var(--borda); background:var(--superficie); color:var(--texto); cursor:pointer }
+  button::before { content:""; position:absolute; left:50%; top:50%; width:max(100%, 48px); height:max(100%, 48px); transform:translate(-50%, -50%) }
+  .topo { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; justify-content:space-between; margin-bottom:24px }
+  .topo .sub { margin:0; flex:1 1 320px }
+
+  .caminho, .bloco { background:var(--superficie); border:1px solid var(--borda); border-radius:16px; padding:20px; margin-bottom:20px }
+  .caminho > p, .bloco > p { color:var(--texto2) }
+  .escolhida { border-color:var(--marca); box-shadow:0 0 0 1px var(--marca) }   /* sem mudar a espessura da borda: as 3 variações ficam na mesma posição */
+
+  /* As 3 variações com a mesma disposição: símbolo no claro, no escuro, o ícone e os tamanhos pequenos */
+  .linha { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:16px; align-items:start; margin-top:16px }
+  @media (max-width: 599.98px) { .linha { grid-template-columns:repeat(2, minmax(0, 1fr)) } }
+  .quadro { aspect-ratio:1; border-radius:12px; display:grid; place-items:center; overflow:hidden }
+  .quadro > svg { width:72%; height:72% }
+  .quadro--claro { background:#FFFFFF; color:#007761; border:1px solid #D0DAD9 }
+  .quadro--escuro { background:#070C0C; color:#39F0CD }
+  .quadro--icone { background:transparent }
+  .quadro--icone > .app { width:84%; height:auto; aspect-ratio:1 }
+  .quadro--mono { background:var(--fundo); color:var(--texto) }
+  .pequenos { display:flex; gap:12px; align-items:center; justify-content:center; background:var(--fundo) }
+
+  /* ícone do app: fundo na cor da marca, símbolo branco com 62,5 % do lado; máscara do iOS (superelipse) */
+  .app { flex:none; display:grid; place-items:center; background:#007761; color:#FFFFFF; clip-path:url(#mascara-ios) }
+  .app > svg { width:62.5%; height:62.5% }
+  .app--escuro { background:#0A332C; color:#39F0CD }
+  .app--android > svg { width:66%; height:66% }          /* a camada da frente tem 108 dp e a máscara mostra 72: 0,44 × 1,5 */
+  .app--redondo { clip-path:circle(50%) }
+  .app--squircle { clip-path:url(#mascara-squircle) }
+  .app--ref { background:#000 }
+  .app--ref > img { width:100%; height:100%; display:block }
+  .t16 { width:16px; height:16px } .t24 { width:24px; height:24px } .t32 { width:32px; height:32px } .t48 { width:48px; height:48px }
+  .t60 { width:60px; height:60px } .t64 { width:64px; height:64px } .t180 { width:180px; height:180px } .t1024 { width:1024px; height:1024px }
+
+  /* tamanho real: a faixa rola de lado no celular; 1024 só abrindo */
+  .faixa { display:flex; gap:24px; align-items:flex-end; overflow-x:auto; padding:12px 0 8px; margin-bottom:8px }
+  .faixa figure { flex:none; display:flex; flex-direction:column; align-items:center }
+  details { margin-bottom:16px }
+  summary { cursor:pointer; min-height:48px; display:flex; align-items:center; gap:8px; color:var(--texto2) }
+  summary::before { content:"▸" } details[open] > summary::before { content:"▾" }
+  .rola { overflow-x:auto; padding-bottom:8px }
+
+  /* no celular: tela inicial clara e escura (fundo de tela liso, para o contraste do rótulo ser medido) */
+  .telas { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px; margin-bottom:16px }
+  @media (max-width: 599.98px) { .telas { grid-template-columns:minmax(0, 1fr) } }
+  .inicial { border-radius:16px; padding:20px 12px; display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:16px 8px; justify-items:center }
+  .inicial--claro { background:#DCE5E3; color:#131D1C }
+  .inicial--escuro { background:#141414; color:#E9F2F1 }
+  .inicial figure { display:flex; flex-direction:column; align-items:center; min-width:0; max-width:100% }
+  .inicial figcaption { color:inherit; margin-top:4px; max-width:100%; overflow-wrap:anywhere }
+  .inicial h3 { grid-column:1 / -1; justify-self:start; margin:0 }
+  .vazio { width:60px; height:60px; clip-path:url(#mascara-ios); background:#9AA6A4 }
+  .inicial--escuro .vazio { background:#3A4241 }
+
+  /* wordmark e selo */
+  .marca-final { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px; margin-top:16px }
+  @media (max-width: 599.98px) { .marca-final { grid-template-columns:minmax(0, 1fr) } }
+  .painel { border-radius:12px; padding:24px 20px; display:flex; flex-direction:column; gap:16px; align-items:flex-start }
+  .painel--claro { background:#FFFFFF; border:1px solid #D0DAD9; color:#131D1C }
+  .painel--escuro { background:#070C0C; color:#E9F2F1 }
+  .painel--mono { background:var(--fundo); color:var(--texto) }
+  .painel--claro .legenda { color:#4A5958 } .painel--escuro .legenda { color:#A3B1B0 }
+  .wm { display:block; width:100%; max-width:440px; height:auto; aspect-ratio:var(--wm-proporcao) }
+  .painel--claro .wm { color:#007761; --wm-texto:#131D1C }
+  .painel--escuro .wm { color:#39F0CD; --wm-texto:#E9F2F1 }
+  .painel--mono .wm { color:currentColor; --wm-texto:currentColor }
+  .linha-selo { display:flex; flex-wrap:wrap; gap:16px; align-items:center }
+  .selo { display:inline-flex; align-items:center; min-height:24px; padding:0 12px; border-radius:999px; background:#EAB444; color:#3A2B0D; font-weight:700; font-size:0.8125rem; line-height:1rem }
+  .painel--escuro .selo { background:#F8C153; color:#2F2207 }
+  .simbolo-texto { width:24px; height:24px; color:#007761 } .painel--escuro .simbolo-texto { color:#39F0CD }
+
+  .refs { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:16px; margin-top:16px }
+  @media (max-width: 599.98px) { .refs { grid-template-columns:minmax(0, 1fr) } }
+  .ref { display:flex; flex-direction:column; align-items:center; gap:12px; padding:16px; border-radius:12px; background:#141414; color:#E9F2F1 }
+  .ref .legenda { color:#C9D3D1; text-align:center }
+  .ref__linha { display:flex; gap:12px; align-items:center }
+</style>
+</head>
+<body>
+<!--SIMBOLOS-->
+<script>
+  // O tema da página; as amostras de claro e escuro têm cor própria e não mudam.
+  function alternarTema() {
+    const raiz = document.documentElement
+    raiz.dataset.tema = raiz.dataset.tema === 'escuro' ? 'claro' : 'escuro'
+  }
+</script>
+
+<header class="topo">
+  <div>
+    <h1>Academia Plus — logo</h1>
+    <p class="sub">Três variações para o logo dizer "academia" na hora e guardar o "+" de Plus. A primeira é a escolhida e já está no app. Funciona por file://.</p>
+  </div>
+  <button type="button" onclick="alternarTema()">Alternar tema</button>
+</header>
+
+<!--VARIACOES-->
+
+<section class="caminho escolhida" id="final">
+  <h2>A versão final <small>(variação 1)</small></h2>
+  <p>Símbolo, wordmark "Academia Plus" em Archivo ExtraBold convertida em contorno, a versão de uma cor e o selo do plano. O "+" é sempre verde ou branco; o dourado é só da palavra Plus no selo, e os dois nunca se encostam.</p>
+  <div class="marca-final">
+    <div class="painel painel--claro"><!--WM--><div class="linha-selo"><svg class="simbolo-texto" aria-hidden="true"><use href="#s-v1"/></svg><span class="selo">Plus</span><span class="legenda">claro: #007761 e #131D1C</span></div></div>
+    <div class="painel painel--escuro"><!--WM--><div class="linha-selo"><svg class="simbolo-texto" aria-hidden="true"><use href="#s-v1"/></svg><span class="selo">Plus</span><span class="legenda">escuro: #39F0CD e #E9F2F1</span></div></div>
+    <div class="painel painel--mono"><!--WM--><span class="legenda">uma cor (currentColor): carimbo, bordado, impressão</span></div>
+    <div class="painel painel--mono"><div class="linha-selo"><span class="app t60" aria-hidden="true"><svg><use href="#s-v1"/></svg></span><span class="app app--android app--redondo t60" aria-hidden="true"><svg><use href="#s-v1"/></svg></span><span class="app app--escuro t60" aria-hidden="true"><svg><use href="#s-v1"/></svg></span></div><span class="legenda">ícone do iPhone, adaptativo do Android e o iPhone no modo escuro</span></div>
+  </div>
+</section>
+
+<section class="bloco" id="tamanhos">
+  <h2>Tamanho real, de 16 a 1024</h2>
+  <p>O ícone do app em pixels de tela. O 16 é o da aba do navegador e da lista de ajustes; o 180, o do iPhone com tela Retina; o 1024, o da loja.</p>
+  <!--TAMANHOS-->
+</section>
+
+<section class="bloco" id="celular">
+  <h2>No celular</h2>
+  <p>Na tela inicial do iPhone (máscara de superelipse), no claro e no escuro, e no Android com as duas máscaras mais comuns: o círculo (Pixel) e o squircle (Samsung). No Android a arte é a camada da frente do ícone adaptativo, com a cor da marca de fundo.</p>
+  <!--CELULAR-->
+</section>
+
+<section class="bloco" id="referencias">
+  <h2>Ao lado das referências</h2>
+  <p>Os ícones das refs. 03 e 04 são o haltere de ícone genérico: duas anilhas em degrau de cada lado, sem mais nada. A variação 1 tem a barra, mas o que se vê primeiro é o "+".</p>
+  <div class="refs">
+    <!--REFS-->
+  </div>
+</section>
+
+<section class="bloco" id="porque">
+  <h2>Por que a variação 1</h2>
+  <ul>
+    <li><strong>Lê nos três tamanhos que importam.</strong> Em 16 e 24 é um "+" com dois blocos; em 48 aparecem a barra e as anilhas; em 180 e 1024, a ponta da barra para fora da anilha. A 2 vira cruz de farmácia em 16, e a 3 vira um "A" borrado.</li>
+    <li><strong>Diz "academia" e "a mais" num desenho só</strong>, sem depender de letra. O monograma pede o nome ao lado para fazer sentido.</li>
+    <li><strong>Não é o haltere genérico.</strong> O braço vertical é o traço mais grosso e passa muito das anilhas; sem ele, sobra uma barra, e não as duas anilhas em degrau das referências.</li>
+    <li><strong>Continua o que já estava no app</strong> (o caminho A), então abertura, aba Plus e selo de vidro mudam de desenho, não de lugar.</li>
+    <li><strong>É simples de construir:</strong> quatro retângulos arredondados, fáceis de animar na abertura e de redesenhar na grade 24 dos ícones.</li>
+  </ul>
+</section>
+</body>
+</html>

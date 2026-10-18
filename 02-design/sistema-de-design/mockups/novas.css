@@ -1,0 +1,366 @@
+/* =====================================================================
+   Academia Plus — novas.css (agente P, P09, 10/10/2026)
+   As 5 telas novas: Início do aluno, Evolução (com o vazio), Modo treino (série e descanso),
+   Comemoração e Painel do dono. Carrega DEPOIS do sistema.css do agente N (tokens 1.6.0) e não o
+   altera. Usa os tokens dele (--cor-viva, --cor-progresso, --vidro-*, --foto-*, --raio-capa,
+   --numero-gigante...). O que ainda não existe nos tokens tem o prefixo --p- e está listado em
+   docs/revisao/P-TELAS-NOVAS.md, seção 5, para o agente Q passar ao tokens.json.
+   Nada abaixo do bloco de tokens usa cor literal.
+   ===================================================================== */
+
+/* ---------- 1. TOKENS ----------
+   As variáveis locais --p- do agente P viraram tokens na 1.7.0 (agente Q): grafico, mapa, aviso, telas, descanso,
+   comemoracao, tipografia.escala.numeroDestaque e legendaGrafico, foto.desfoqueDescanso, definidas no sistema.css.
+   O vidro escuro fixo virou a variante .vidro--escuro do componente 20, e a barra de abas é a encostada do sistema. */
+
+/* ---------- 2. PÁGINA (só do mockup) ---------- */
+
+.p-nota-topo { color: var(--cor-texto-secundario); max-width: 80ch; }
+.p-decisoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--espaco-4); }
+.p-decisoes > div { background: var(--cor-superficie); border-radius: var(--raio-cartao); padding: var(--espaco-4); box-shadow: var(--sombra-2); display: flex; flex-direction: column; gap: var(--espaco-2); }
+.p-decisoes h3 { font-size: var(--tipo-titulo-3); line-height: var(--linha-titulo-3); }
+.p-decisoes p, .p-decisoes li { font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); color: var(--cor-texto-secundario); }
+.p-decisoes ul { padding-left: 1.1em; display: flex; flex-direction: column; gap: var(--espaco-1); }
+
+/* ---------- 3. TELA: estrutura comum ---------- */
+
+.p-tela { position: relative; isolation: isolate; }
+/* conteúdo que rola por baixo da barra de abas flutuante */
+.p-rolagem { flex: 1; overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; gap: var(--espaco-5); padding: 0 var(--margem-lateral) var(--espaco-8); scrollbar-width: none; container-type: inline-size; }
+.p-rolagem::-webkit-scrollbar { display: none; }
+.p-rolagem > * { flex: none; }
+a.p-cartao, a.p-ativos, a.p-quadro, a.p-proximo, a.p-atalho { text-decoration: none; color: inherit; }
+.p-rolagem--sob-foto { padding-top: 0; }
+
+/* a barra de status fica clara sobre foto, nos dois temas (a foto é uma ilha escura) */
+.p-tela--foto-topo .celular__status { color: var(--foto-texto); }
+.p-tela--foto-topo .celular__inset-topo { position: absolute; left: 0; right: 0; top: 0; z-index: 3; }
+
+/* texto */
+.p-sobretitulo { font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); color: var(--cor-texto-secundario); font-weight: 500; }
+.p-titulo-grande { font-size: var(--tipo-titulo-2); line-height: var(--linha-titulo-2); font-weight: 700; letter-spacing: -0.02em; }
+.p-titulo-secao { font-size: var(--tipo-titulo-3); line-height: var(--linha-titulo-3); font-weight: 700; }
+.p-texto-2 { color: var(--cor-texto-secundario); font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); }
+.p-numero { font-family: var(--fonte-numero); font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+.p-numero-hero { font-family: var(--fonte-numero); font-weight: 800; font-size: var(--tipo-numero-destaque); line-height: var(--linha-numero-destaque); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.p-numero small { font-size: var(--tipo-legenda); line-height: var(--linha-legenda); font-weight: 700; letter-spacing: 0; margin-left: var(--espaco-1); }
+.p-numero-hero small { font-size: var(--tipo-titulo-3); line-height: var(--linha-titulo-3); font-weight: 700; letter-spacing: 0; margin-left: var(--espaco-1); }
+.p-numero-medio { font-family: var(--fonte-numero); font-weight: 800; font-size: var(--tipo-numero-medio); line-height: var(--linha-numero-medio); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.p-icone { width: var(--icone-medio); height: var(--icone-medio); flex: none; fill: none; stroke: currentColor; stroke-width: var(--icone-traco); stroke-linecap: round; stroke-linejoin: round; }
+.p-icone--pequeno { width: var(--icone-pequeno); height: var(--icone-pequeno); }
+.p-icone--cheio { fill: currentColor; }
+
+/* ---------- 4. PEÇAS ---------- */
+
+/* Vidro (o componente 20 do N): desfoque translúcido, borda clara de 1 px, fio de luz em cima.
+   A camada de contraste é a própria --vidro-fundo (60 % no escuro, 80 % no claro) somada ao
+   gradiente escuro da foto por baixo. Com "Reduzir transparência" o N troca --vidro-fundo pela cor sólida. */
+.p-vidro {
+  background: var(--vidro-fundo); color: var(--vidro-texto);
+  -webkit-backdrop-filter: blur(var(--vidro-desfoque)) saturate(var(--vidro-saturacao));
+  backdrop-filter: blur(var(--vidro-desfoque)) saturate(var(--vidro-saturacao));
+  border: var(--borda-fina) solid var(--vidro-borda); box-shadow: var(--vidro-brilho-topo), var(--vidro-sombra);
+  border-radius: var(--raio-vidro);
+}
+.p-vidro .p-texto-2, .p-vidro .p-sobretitulo { color: var(--vidro-texto-secundario); }
+
+/* botão redondo de vidro (48) sobre a foto */
+.p-botao-vidro { width: var(--controle-icone); height: var(--controle-icone); border-radius: var(--raio-redondo); display: inline-grid; place-items: center; flex: none; color: var(--vidro-texto); cursor: pointer; }
+.p-botao-vidro:focus-visible, .p-botao:focus-visible, .p-atalho:focus-visible, .p-cartao-tocavel:focus-visible, .p-aba:focus-visible, .p-chip:focus-visible, .p-passo button:focus-visible, .p-legenda-rosca button:focus-visible { outline: var(--borda-foco) solid var(--cor-foco); outline-offset: 2px; }
+
+/* botões em pílula */
+.p-botao { display: inline-flex; align-items: center; justify-content: center; gap: var(--espaco-2); min-height: var(--controle-primario); padding: 0 var(--espaco-5); border-radius: var(--raio-botao); font: 700 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); border: 0; cursor: pointer; position: relative; overflow: hidden; transition: transform var(--duracao-rapida) var(--curva-padrao); }
+.p-botao:active { transform: scale(var(--escala-toque)); }
+.p-botao--vivo { background: var(--cor-viva); color: var(--cor-viva-texto); box-shadow: var(--sombra-viva); }
+.p-botao--grande { min-height: var(--controle-primario); font-size: var(--tipo-corpo); }
+.p-botao--largo { width: 100%; }
+.p-botao--escuro { background: var(--cor-viva-texto); color: var(--cor-viva); }
+.p-botao--contorno { background: transparent; color: var(--cor-texto); box-shadow: inset 0 0 0 var(--borda-media) var(--cor-borda); }
+.p-botao--vidro { min-height: var(--controle-secundario); }
+.p-botao__seta { width: 28px; height: 28px; margin-right: calc(-1 * var(--espaco-2)); border-radius: var(--raio-redondo); background: var(--cor-viva-texto); color: var(--cor-viva); display: grid; place-items: center; }
+
+/* chip / pílula de filtro */
+.p-chips { display: flex; gap: var(--espaco-2); flex-wrap: wrap; }
+.p-chip { min-height: var(--controle-chip); padding: 0 var(--espaco-3); border-radius: var(--raio-pilula); display: inline-flex; align-items: center; gap: var(--espaco-2); font: 600 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--vidro-texto); background: transparent; border: var(--borda-fina) solid var(--vidro-borda); cursor: pointer; }
+.p-chip[aria-pressed="true"] { background: var(--cor-viva); color: var(--cor-viva-texto); border-color: transparent; }
+
+/* selo do Plus (dourado só aqui) */
+.p-selo-plus { display: inline-flex; align-items: center; gap: var(--espaco-1); padding: var(--espaco-1) var(--espaco-2); border-radius: var(--raio-pilula); background: var(--cor-plus); color: var(--cor-plus-texto); font: 700 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); }
+
+/* cartão de superfície */
+.p-cartao { background: var(--cor-superficie); border-radius: var(--raio-cartao); padding: var(--espaco-4); box-shadow: var(--sombra-2); display: flex; flex-direction: column; gap: var(--espaco-3); position: relative; }
+.p-cartao__topo { display: flex; align-items: baseline; justify-content: space-between; gap: var(--espaco-3); }
+/* cartão que afunda no toque (movimento/00-CATALOGO.md › 4.5): 0,98, desce 1 px, perde a sombra, camada de 8/12 % */
+.p-cartao-tocavel { cursor: pointer; transition: transform var(--duracao-media) var(--mola-toque), box-shadow var(--duracao-rapida) var(--curva-padrao); }
+.p-cartao-tocavel::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--cor-texto); opacity: 0; pointer-events: none; transition: opacity var(--duracao-rapida) var(--curva-padrao); }
+.p-cartao-tocavel:active { transform: translateY(1px) scale(var(--escala-toque)); box-shadow: none; transition-duration: var(--duracao-rapida); transition-timing-function: var(--curva-padrao); }
+.p-cartao-tocavel:active::after { opacity: var(--camada-toque); }
+[data-movimento="reduzido"] .p-cartao-tocavel:active { transform: none; }
+
+/* passo − valor + (alvos de 48) */
+.p-passo { display: grid; grid-template-columns: var(--controle-passo) 1fr var(--controle-passo); align-items: center; border-radius: var(--raio-pilula); background: color-mix(in srgb, var(--vidro-texto) 10%, transparent); min-height: var(--alvo-confortavel); padding: 4px; }
+.p-passo button { width: var(--controle-passo); height: var(--controle-passo); border-radius: var(--raio-redondo); border: 0; background: transparent; color: var(--vidro-texto); display: grid; place-items: center; cursor: pointer; }
+.p-passo button:active { background: color-mix(in srgb, var(--vidro-texto) 14%, transparent); }
+.p-passo__valor { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0; }
+.p-passo__valor .p-numero { font-size: var(--tipo-numero-medio); line-height: var(--linha-numero-medio); }
+.p-passo__valor span:last-child { font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); color: var(--vidro-texto-secundario); }
+
+/* ---------- 5. BARRA DE ABAS FLUTUANTE (vidro) ---------- */
+
+  background: var(--vidro-barra); -webkit-backdrop-filter: blur(var(--vidro-desfoque)) saturate(var(--vidro-saturacao)); backdrop-filter: blur(var(--vidro-desfoque)) saturate(var(--vidro-saturacao));
+  border: var(--borda-fina) solid var(--vidro-borda); box-shadow: var(--vidro-brilho-topo), var(--vidro-sombra); }
+/* o "+" da marca no lugar da estrela do Plus */
+.p-aba__mais { width: var(--icone-medio); height: var(--icone-medio); display: grid; place-items: center; border-radius: 8px; background: var(--cor-plus); color: var(--cor-plus-texto); }
+.p-aba__mais .p-icone { width: 16px; height: 16px; stroke-width: 3; }
+.p-gesto { position: absolute; left: 50%; bottom: var(--moldura-gesto-base); width: var(--moldura-gesto-largura); height: var(--moldura-gesto-altura); margin-left: calc(var(--moldura-gesto-largura) / -2); border-radius: var(--raio-redondo); background: var(--cor-texto); opacity: 0.6; z-index: 31; }
+.p-gesto--claro { background: var(--foto-texto); }
+[data-aparelho="iphone-se"] .p-gesto { display: none; }
+
+/* ---------- 6. TELA 1 · INÍCIO ---------- */
+
+.p-saudacao { display: flex; align-items: center; gap: var(--espaco-3); padding-top: var(--espaco-2); }
+.p-avatar { width: max(var(--controle-icone), calc(var(--linha-titulo-3) + 8px)); height: max(var(--controle-icone), calc(var(--linha-titulo-3) + 8px)); border-radius: var(--raio-redondo); flex: none; display: grid; place-items: center; background: var(--cor-marca-suave); color: var(--cor-texto); font: 700 var(--tipo-titulo-3)/var(--linha-titulo-3) var(--fonte-interface); }
+.p-saudacao__texto { flex: 1; min-width: 0; }
+.p-sino { width: var(--controle-icone); height: var(--controle-icone); border-radius: var(--raio-redondo); display: grid; place-items: center; background: var(--cor-superficie); color: var(--cor-texto); box-shadow: var(--sombra-1); position: relative; }
+.p-sino::after { content: ""; position: absolute; top: 8px; right: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--cor-progresso); box-shadow: 0 0 0 2px var(--cor-superficie); }
+
+/* aviso da academia (Parte 4 do mapa): só texto, até 160 caracteres, dispensável */
+.p-aviso { display: grid; grid-template-columns: 1fr var(--controle-icone); gap: var(--espaco-1) var(--espaco-2); align-items: start; padding: var(--espaco-3) var(--espaco-1) var(--espaco-3) var(--espaco-4); border-radius: var(--raio-cartao); background: var(--aviso-fundo); box-shadow: var(--sombra-2), inset 3px 0 0 var(--aviso-fio); }
+.p-aviso__de { display: flex; align-items: center; gap: var(--espaco-2); font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); color: var(--cor-texto-secundario); font-weight: 600; }
+.p-aviso__texto { grid-column: 1; font-size: var(--tipo-corpo); line-height: var(--linha-corpo); }
+.p-aviso__fechar { grid-column: 2; grid-row: 1 / span 2; width: var(--controle-icone); height: var(--controle-icone); border-radius: var(--raio-redondo); border: 0; background: transparent; color: var(--cor-texto-secundario); display: grid; place-items: center; cursor: pointer; }
+.p-aviso[hidden] { display: none; }
+
+/* sequência da semana em bolinhas */
+.p-semana { display: flex; flex-direction: column; gap: var(--espaco-3); }
+.p-semana__topo { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--espaco-3); }
+.p-semana__conta { display: flex; align-items: baseline; gap: var(--espaco-2); }
+.p-semana__conta .p-numero-hero { color: var(--cor-texto); font-size: var(--tipo-titulo-1); line-height: var(--linha-titulo-1); } /* 31: o herói do Início é o treino de hoje */
+.p-capa .p-titulo-grande { font-size: var(--tipo-titulo-1); line-height: var(--linha-titulo-1); } /* o herói do Início */
+.p-dias { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--espaco-1); list-style: none; margin: var(--espaco-4) 0; padding: 0; }
+.p-dia { display: flex; flex-direction: column; align-items: center; gap: var(--espaco-1); min-height: var(--alvo-minimo); }
+.p-dia__letra { font: 600 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--cor-texto-secundario); }
+.p-dia__bola { width: var(--bolinha-semana); height: var(--bolinha-semana); border-radius: 50%; display: grid; place-items: center; background: var(--mapa-vazio); color: var(--cor-texto-secundario); }
+.p-dia--feito .p-dia__bola { background: var(--cor-progresso); color: var(--cor-marca-texto); }
+.p-dia--hoje .p-dia__letra { color: var(--cor-texto); }
+.p-dia--hoje .p-dia__bola { background: transparent; box-shadow: inset 0 0 0 var(--borda-media) var(--cor-progresso); color: var(--cor-texto); font: 700 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); }
+.p-dia--descanso .p-dia__bola { background: transparent; box-shadow: inset 0 0 0 var(--borda-fina) var(--cor-borda); }
+
+/* cartão grande do treino de hoje: foto escura + vidro */
+.p-capa { position: relative; min-height: var(--capa-inicio); border-radius: var(--raio-capa); overflow: hidden; background: var(--foto-fundo-sem-foto); color: var(--foto-texto); display: flex; flex-direction: column; justify-content: space-between; padding: var(--espaco-3); isolation: isolate; }
+.p-capa > img, .p-foto > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.p-capa::before, .p-foto::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--foto-luz-lateral), var(--foto-gradiente-capa); pointer-events: none; }
+.p-capa__etiqueta { align-self: flex-start; display: inline-flex; align-items: center; gap: var(--espaco-2); min-height: 36px; padding: 0 var(--espaco-3); border-radius: var(--raio-pilula); font: 700 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); }
+.p-capa__painel { padding: var(--espaco-4); display: flex; flex-direction: column; gap: var(--espaco-3); }
+.p-capa__linha { display: flex; align-items: center; justify-content: space-between; gap: var(--espaco-3); }
+.p-capa__meta { display: flex; flex-wrap: wrap; gap: var(--espaco-1) var(--espaco-3); }
+.p-capa__meta span { display: inline-flex; align-items: center; gap: var(--espaco-1); }
+
+/* dieta de hoje (Plus) */
+.p-dieta { display: grid; grid-template-columns: 64px 1fr var(--icone-medio); gap: var(--espaco-3); align-items: center; }
+.p-dieta__anel { width: 64px; height: 64px; position: relative; display: grid; place-items: center; }
+.p-dieta__anel svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.p-dieta__anel .trilho { stroke: var(--cor-trilho); }
+.p-dieta__anel .valor { stroke: var(--cor-progresso); }
+
+/* atalhos */
+.p-atalhos { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--espaco-3); }
+.p-atalho { min-height: var(--controle-maximo); display: flex; align-items: center; gap: var(--espaco-3); padding: var(--espaco-3); border-radius: var(--raio-grande); background: var(--cor-superficie); box-shadow: var(--sombra-2); color: var(--cor-texto); text-decoration: none; font: 600 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); position: relative; }
+.p-atalho__icone { width: 40px; height: 40px; border-radius: var(--raio-medio); display: grid; place-items: center; background: var(--cor-marca-suave); color: var(--cor-marca); flex: none; }
+
+/* ---------- 7. TELA 2 · EVOLUÇÃO ---------- */
+
+.p-foto { position: relative; isolation: isolate; color: var(--foto-texto); overflow: hidden; flex: none; }
+.p-foto--evolucao { min-height: var(--foto-topo-evolucao); margin: 0 calc(-1 * var(--margem-lateral)); padding: var(--espaco-1) var(--margem-lateral) var(--espaco-4); display: flex; flex-direction: column; justify-content: flex-start; }
+.p-foto--evolucao::before { background: var(--foto-gradiente); }
+.p-foto__barra { display: flex; align-items: center; justify-content: space-between; gap: var(--espaco-2); }
+.p-hero { display: flex; flex-direction: column; gap: var(--espaco-3); padding: var(--espaco-4); margin-top: calc(-1 * var(--espaco-16)); position: relative; z-index: 1; }
+.p-hero__linha { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--espaco-3); flex-wrap: wrap; }
+.p-delta { display: inline-flex; align-items: center; gap: var(--espaco-1); font: 700 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--vidro-destaque); }
+.p-seletor-exercicio { min-height: var(--controle-secundario); display: inline-flex; align-items: center; gap: var(--espaco-2); align-self: flex-start; padding: 0 var(--espaco-3) 0 var(--espaco-4); border-radius: var(--raio-pilula); border: var(--borda-fina) solid var(--vidro-borda); background: transparent; color: var(--vidro-texto); font: 700 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); cursor: pointer; }
+
+/* gráficos (SVG inline, sem biblioteca) */
+.p-grafico { position: relative; }
+.p-grafico svg { display: block; width: 100%; height: auto; overflow: visible; }
+.p-grafico text { font-family: var(--fonte-interface); font-size: var(--tipo-legenda-grafico); fill: var(--cor-texto-secundario); font-variant-numeric: tabular-nums; }
+.p-grafico .rotulo-valor { fill: var(--cor-texto); font-weight: 700; font-size: var(--tipo-legenda-grafico); }
+.p-grafico .grade { stroke: var(--grafico-grade); stroke-width: 1; }
+.p-grafico .linha { fill: none; stroke: var(--cor-progresso); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.p-grafico .area { fill: var(--grafico-area); }
+.p-grafico .ponto { fill: var(--cor-progresso); stroke: var(--cor-superficie); stroke-width: 2; }
+.p-grafico .barra { fill: var(--grafico-neutro-1); }
+.p-grafico .barra--destaque { fill: var(--cor-progresso); }
+.p-grafico .barra--andamento { fill: url(#p-hachura); stroke: var(--cor-progresso); stroke-width: 1.5; }
+.p-grafico .meta { stroke: var(--cor-texto-secundario); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.p-grafico .cursor { stroke: var(--cor-texto-secundario); stroke-width: 1; opacity: 0; }
+.p-grafico .ponto-cursor { fill: var(--cor-progresso); stroke: var(--cor-superficie); stroke-width: 2; opacity: 0; }
+.p-grafico [data-dica] { cursor: crosshair; }
+.p-grafico [data-dica]:focus { outline: none; }
+.p-grafico [data-dica]:focus-visible { outline: none; stroke: var(--cor-foco); stroke-width: 2; }
+.p-hachura-traco { stroke: var(--cor-progresso); stroke-width: 1.5; opacity: 0.55; }
+.p-dica { position: absolute; z-index: 5; pointer-events: none; padding: var(--espaco-2) var(--espaco-3); border-radius: var(--raio-medio); background: var(--cor-toast-fundo); color: var(--cor-toast-texto); font: 600 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); white-space: nowrap; box-shadow: var(--sombra-3); transform: translate(-50%, calc(-100% - 10px)); opacity: 0; transition: opacity var(--duracao-rapida) var(--curva-padrao); }
+.p-dica[data-visivel] { opacity: 1; }
+.p-tabela { margin-top: var(--espaco-1); }
+.p-tabela summary { position: relative; min-height: var(--controle-secundario); display: inline-flex; align-items: center; color: var(--cor-marca); font: 600 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); cursor: pointer; list-style: none; }
+.p-tabela summary::-webkit-details-marker { display: none; }
+.p-tabela table { width: 100%; border-collapse: collapse; font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); font-variant-numeric: tabular-nums; }
+.p-tabela th, .p-tabela td { text-align: left; padding: 4px 0; border-bottom: var(--borda-fina) solid var(--cor-regua); }
+.p-tabela td:last-child, .p-tabela th:last-child { text-align: right; }
+
+/* mapa de dias do mês */
+.p-mapa { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--espaco-2); justify-items: center; }
+.p-mapa__cab { font: 600 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--cor-texto-secundario); }
+.p-mapa__dia { width: var(--dia-mapa); height: var(--dia-mapa); border-radius: var(--raio-medio); display: grid; place-items: center; background: var(--mapa-vazio); color: var(--cor-texto-secundario); font: 600 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); font-variant-numeric: tabular-nums; }
+.p-mapa__dia--treino { background: var(--cor-progresso); color: var(--cor-marca-texto); }
+.p-mapa__dia--hoje { background: transparent; box-shadow: inset 0 0 0 var(--borda-media) var(--cor-progresso); color: var(--cor-texto); }
+.p-mapa__dia--futuro { background: var(--mapa-futuro); box-shadow: inset 0 0 0 var(--borda-fina) var(--cor-regua); }
+.p-mapa__dia--fora { visibility: hidden; }
+.p-legenda-mapa { display: flex; gap: var(--espaco-4); flex-wrap: wrap; }
+.p-legenda-mapa span { display: inline-flex; align-items: center; gap: var(--espaco-2); }
+.p-legenda-mapa i { width: 14px; height: 14px; border-radius: 4px; display: inline-block; background: var(--cor-progresso); }
+.p-legenda-mapa i.vazio { background: var(--mapa-vazio); }
+
+/* rosca */
+.p-rosca { display: grid; grid-template-columns: 148px 1fr; gap: var(--espaco-4); align-items: center; }
+@container (max-width: 300px) { .p-rosca { grid-template-columns: 1fr; justify-items: center; } }
+.p-rosca__svg { position: relative; width: 148px; height: 148px; }
+.p-rosca__svg svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.p-rosca__svg circle { fill: none; stroke-width: 22; transition: stroke var(--duracao-media) var(--curva-padrao); }
+.p-rosca__centro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.p-legenda-rosca { list-style: none; display: flex; flex-direction: column; width: 100%; }
+.p-legenda-rosca button { width: 100%; min-height: var(--alvo-minimo); display: grid; grid-template-columns: 14px 1fr auto; gap: var(--espaco-2); align-items: center; border: 0; background: transparent; color: var(--cor-texto); text-align: left; padding: 0 var(--espaco-1); border-radius: var(--raio-medio); font: 500 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); cursor: pointer; }
+.p-legenda-rosca button[aria-pressed="true"] { background: var(--cor-marca-suave); font-weight: 700; }
+.p-legenda-rosca i { width: 14px; height: 14px; border-radius: 4px; }
+.p-legenda-rosca b { font-variant-numeric: tabular-nums; }
+
+/* estado vazio da Evolução */
+.p-vazio { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--espaco-3); padding: var(--espaco-4) var(--espaco-2); }
+.p-vazio img { width: 120px; height: 120px; }
+.p-fantasma { border-radius: var(--raio-cartao); border: var(--borda-media) dashed var(--cor-borda); padding: var(--espaco-4); display: flex; flex-direction: column; gap: var(--espaco-2); }
+.p-fantasma svg { width: 100%; height: auto; display: block; }
+.p-fantasma .linha-fantasma { fill: none; stroke: var(--cor-borda); stroke-width: 2; stroke-dasharray: 6 6; stroke-linecap: round; }
+.tema-claro-so { display: block; }
+.tema-escuro-so { display: none; }
+[data-tema="escuro"] .tema-claro-so { display: none; }
+[data-tema="escuro"] .tema-escuro-so { display: block; }
+@media (prefers-color-scheme: dark) { :root:not([data-tema]) .tema-claro-so { display: none; } :root:not([data-tema]) .tema-escuro-so { display: block; } }
+
+/* ---------- 8. TELA 3 · MODO TREINO (sempre escuro, tela cheia) ---------- */
+
+.p-treino { background: var(--foto-fundo-sem-foto); color: var(--foto-texto); }
+.p-treino__foto { position: absolute; inset: 0; z-index: -2; }
+.p-treino__foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.p-treino__foto::after { content: ""; position: absolute; inset: 0; background: var(--foto-luz-lateral), var(--foto-gradiente); }
+.p-treino__foto--descanso::before { content: ""; position: absolute; inset: 0; z-index: 1; -webkit-backdrop-filter: blur(var(--foto-desfoque-descanso)) brightness(0.8); backdrop-filter: blur(var(--foto-desfoque-descanso)) brightness(0.8); }
+.p-treino__corpo { position: absolute; inset: var(--inset-topo) 0 var(--inset-base-app); display: flex; flex-direction: column; padding: var(--espaco-2) var(--margem-lateral) var(--espaco-3); overflow-y: auto; scrollbar-width: none; gap: var(--espaco-3); }
+.p-treino__barra { display: grid; grid-template-columns: var(--controle-icone) 1fr var(--controle-icone); align-items: center; gap: var(--espaco-2); }
+.p-treino__titulo { text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--espaco-2); }
+.p-treino__titulo span { font: 600 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--foto-texto-secundario); }
+.p-segmentos { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--espaco-1); width: 152px; } /* um traço por exercício do dia (o dia A do ABC tem 7) */
+.p-segmentos i { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.28); }
+.p-segmentos i.feito { background: var(--cor-viva); }
+.p-segmentos i.atual { background: linear-gradient(90deg, var(--cor-viva) 33%, rgba(255, 255, 255, 0.28) 33%); }
+.p-treino__palco { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: safe flex-end; gap: var(--espaco-1); padding-bottom: var(--espaco-2); min-height: 0; }
+.p-treino__exercicio { font: 700 var(--tipo-titulo-2)/var(--linha-titulo-2) var(--fonte-interface); letter-spacing: -0.02em; text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
+.p-treino__grupo { color: var(--foto-texto-secundario); font: 600 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); }
+.p-gigante { display: flex; align-items: baseline; gap: var(--espaco-3); }
+.p-gigante .numero-gigante { color: var(--cor-marca); text-shadow: 0 0 40px rgba(196, 32, 36, 0.35); } /* 2.0.0 (AL): o vermelho cru dá 2,5:1 sobre a foto escura; o número é texto, então vai no vermelho claro (marca do escuro) */
+.p-gigante span:last-child { font: 600 var(--tipo-titulo-2)/var(--linha-titulo-2) var(--fonte-interface); color: var(--foto-texto); }
+[data-aparelho="iphone-se"] .p-gigante .numero-gigante, [data-aparelho="iphone-13-mini"] .p-gigante .numero-gigante { font-size: var(--tipo-numero-gigante-pequeno); line-height: var(--linha-numero-gigante-pequeno); }
+.p-painel { padding: var(--espaco-4); display: flex; flex-direction: column; gap: var(--espaco-3); }
+.p-painel__topo { display: flex; align-items: center; justify-content: space-between; gap: var(--espaco-3); }
+.p-series { display: flex; gap: var(--espaco-2); }
+.p-series i { width: max(28px, calc(var(--linha-legenda) + 12px)); height: max(28px, calc(var(--linha-legenda) + 12px)); border-radius: 50%; display: grid; place-items: center; font: 700 var(--tipo-legenda)/var(--linha-legenda) var(--fonte-interface); font-style: normal; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.4); color: var(--vidro-texto); }
+.p-series i.feita { background: var(--cor-viva); color: var(--cor-viva-texto); box-shadow: none; }
+.p-series i.atual { box-shadow: inset 0 0 0 2px var(--cor-viva); }
+.p-series svg { width: 16px; height: 16px; }
+.p-painel__passos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--espaco-2); }
+@container (max-width: 330px) { .p-painel__passos { grid-template-columns: 1fr; } }
+.p-proximo { display: grid; grid-template-columns: 1fr var(--alvo-minimo); align-items: center; gap: var(--espaco-2); min-height: var(--alvo-minimo); padding-top: var(--espaco-2); border-top: var(--borda-fina) solid var(--vidro-borda); }
+.p-proximo b { display: block; font: 700 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); }
+.p-registro { font: 500 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--vidro-texto-secundario); min-height: var(--linha-corpo-pequeno); }
+.p-feita-linha { display: flex; align-items: center; gap: var(--espaco-2); min-height: var(--alvo-minimo); }
+.p-feita-linha .p-icone { color: var(--cor-marca); }
+.p-feita-linha span { flex: 1; }
+.p-feita-linha button { position: relative; min-height: var(--controle-secundario); border: 0; background: transparent; color: var(--cor-marca); font: 700 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); padding: 0 var(--espaco-3); cursor: pointer; }
+
+/* anel do descanso (movimento/00-CATALOGO.md › 4.3a): esvazia linear; últimos 10 s em atenção */
+.p-descanso { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--espaco-5); }
+.p-anel { position: relative; width: var(--anel-descanso); height: var(--anel-descanso); }
+.p-anel svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.p-anel .trilho { fill: none; stroke: rgba(255, 255, 255, 0.16); stroke-width: var(--anel-descanso-traco); }
+.p-anel .valor { fill: none; stroke: var(--cor-viva); stroke-width: var(--anel-descanso-traco); stroke-linecap: round; transition: stroke var(--duracao-media) var(--curva-padrao); filter: drop-shadow(0 0 10px rgba(196, 32, 36, 0.45)); }
+.p-anel--acabando .valor { stroke: var(--cor-atencao); filter: none; }
+[data-movimento="reduzido"] .p-anel .valor { transition: none; }
+.p-anel__centro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--espaco-1); }
+.p-anel__centro .numero-cronometro-tela, .p-anel__tempo { font-family: var(--fonte-numero); font-weight: 800; font-size: var(--tipo-numero-cronometro); line-height: var(--linha-numero-cronometro); font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+.p-anel__centro span:first-child { font: 600 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); color: var(--foto-texto-secundario); }
+.p-controles { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--espaco-2); width: 100%; }
+.p-controles .p-botao { padding: 0 var(--espaco-2); color: var(--vidro-texto); }
+
+/* ---------- 9. TELA 4 · COMEMORAÇÃO (cor cheia) ---------- */
+
+.p-comemoracao { background: var(--cor-viva); color: var(--cor-viva-texto); }
+.p-comemoracao .celular__status { color: var(--cor-viva-texto); }
+.p-comemoracao__corpo { position: absolute; inset: var(--inset-topo) 0 var(--inset-base-app); display: flex; flex-direction: column; align-items: stretch; padding: var(--espaco-8) var(--margem-lateral) var(--espaco-3); overflow-y: auto; scrollbar-width: none; gap: var(--espaco-5); }
+.p-comemoracao__check { width: var(--check-comemoracao); height: var(--check-comemoracao); align-self: center; margin-top: var(--espaco-6); }
+.p-comemoracao__check circle { fill: var(--cor-viva-texto); }
+.p-comemoracao__check path { fill: none; stroke: var(--cor-viva); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+.p-comemoracao h2 { font: 800 var(--tipo-titulo-entrada)/var(--linha-titulo-entrada) var(--fonte-numero); letter-spacing: -0.03em; text-align: center; }
+.p-comemoracao__sub { text-align: center; font: 600 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); }
+.p-numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr)); gap: var(--espaco-2); }
+.p-numeros > div { display: flex; flex-direction: column; align-items: center; padding: var(--espaco-3) var(--espaco-1); border-radius: var(--raio-grande); background: color-mix(in srgb, var(--cor-viva-texto) 8%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cor-viva-texto) 14%, transparent); }
+.p-numeros .p-numero { font-size: var(--tipo-numero-carga); line-height: var(--linha-numero-carga); }
+.p-numeros span:last-child { font: 600 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); }
+.p-destaque { display: flex; gap: var(--espaco-3); align-items: center; padding: var(--espaco-3) var(--espaco-4); border-radius: var(--raio-grande); background: #1C1C1C; color: #FFFFFF; /* 2.0.0 (AL): o preto da marca sobre o vermelho cheio */ font: 600 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); }
+.p-destaque b { color: #FF6B6B; }
+.p-comemoracao__acoes { margin-top: auto; display: flex; flex-direction: column; gap: var(--espaco-2); }
+.p-botao--texto-escuro { overflow: visible; white-space: normal; text-align: center; background: transparent; color: var(--cor-viva-texto); min-height: var(--controle-secundario); text-decoration: underline; text-underline-offset: 3px; }
+.p-comemoracao .p-gesto { background: var(--cor-viva-texto); }
+.p-entra { opacity: 1; }
+
+/* ---------- 10. TELA 5 · PAINEL DO DONO (mais denso) ---------- */
+
+.p-foto--dono { min-height: var(--foto-topo-dono); margin: 0 calc(-1 * var(--margem-lateral)); padding: var(--espaco-2) var(--margem-lateral) var(--espaco-16); display: flex; flex-direction: column; justify-content: flex-end; gap: var(--espaco-1); }
+.p-foto--dono::before { background: linear-gradient(180deg, rgba(10, 10, 10, 0.62) 0%, rgba(10, 10, 10, 0.58) 45%, rgba(10, 10, 10, 0.94) 100%); } /* a foto da sala é clara no meio: o véu não abre (a 160 % o texto sobe até ali) */
+.p-foto--dono .p-sobretitulo { color: var(--foto-texto-secundario); }
+.p-densa { gap: var(--espaco-3); }
+.p-ativos { padding: var(--espaco-4); display: flex; flex-direction: column; gap: var(--espaco-2); margin-top: calc(-1 * var(--espaco-12)); position: relative; z-index: 1; }
+.p-medidor { height: 8px; border-radius: 4px; background: color-mix(in srgb, var(--vidro-texto) 16%, transparent); overflow: hidden; }
+.p-medidor i { display: block; height: 100%; border-radius: 4px; background: var(--vidro-destaque); }
+.p-grade-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--espaco-3); }
+.p-quadro { background: var(--cor-superficie); border-radius: var(--raio-grande); padding: var(--espaco-3); box-shadow: var(--sombra-2); display: flex; flex-direction: column; gap: var(--espaco-1); min-height: 112px; position: relative; color: var(--cor-texto); text-decoration: none; }
+.p-quadro .p-numero-medio { margin-top: auto; }
+.p-quadro__rotulo { display: flex; align-items: center; gap: var(--espaco-2); font: 600 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--cor-texto-secundario); }
+.p-quadro__acao { display: inline-flex; align-items: center; gap: var(--espaco-1); font: 700 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--cor-marca); min-height: 24px; }
+.p-quadro--atencao .p-quadro__rotulo .p-icone { color: var(--cor-atencao); }
+.p-personais { list-style: none; display: flex; flex-direction: column; }
+.p-personais li { display: grid; grid-template-columns: 1fr auto; gap: var(--espaco-1) var(--espaco-3); align-items: center; min-height: var(--alvo-minimo); padding: var(--espaco-1) 0; }
+.p-personais li + li { border-top: var(--borda-fina) solid var(--cor-regua); }
+.p-personais .p-medidor { grid-column: 1 / -1; height: 6px; background: var(--cor-trilho); }
+.p-personais .p-medidor i { background: var(--cor-progresso); }
+.p-personais li.sem { color: var(--cor-atencao); font-weight: 700; }
+.p-personais li.sem a { position: relative; color: var(--cor-marca); font-weight: 700; min-height: var(--controle-secundario); display: inline-flex; align-items: center; }
+.p-privacidade { display: flex; gap: var(--espaco-2); align-items: flex-start; color: var(--cor-texto-secundario); font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); }
+
+/* ---------- 11. MOVIMENTO REDUZIDO E TRANSPARÊNCIA ---------- */
+
+/* sem o desfoque: o vidro já vira sólido pelos tokens do N; a foto do descanso fica só escurecida */
+[data-transparencia="reduzida"] .p-treino__foto--descanso::before { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(0, 0, 0, 0.55); }
+@media (prefers-reduced-transparency: reduce) { :root:not([data-transparencia="normal"]) .p-treino__foto--descanso::before { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(0, 0, 0, 0.55); } }
+[data-movimento="reduzido"] .p-aba, [data-movimento="reduzido"] .p-rosca__svg circle { transition-duration: var(--duracao-esmaecer); }
+
+/* faixa de contraste atrás da barra de status quando o conteúdo rola por baixo dela */
+.p-tela .celular__inset-topo { position: relative; z-index: 3; }
+.p-tela:has(.p-rolagem) .celular__inset-topo::before { content: ""; position: absolute; inset: 0 0 -12px; pointer-events: none; background: linear-gradient(to bottom, var(--cor-fundo) 0%, color-mix(in srgb, var(--cor-fundo) 92%, transparent) 70%, transparent); }
+.p-tela--foto-topo:has(.p-rolagem) .celular__inset-topo::before { background: linear-gradient(to bottom, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.6) 70%, transparent); }
+
+/* junção do P09 (agente Q): o inset do topo das fotos é um espaçador (::after em primeiro lugar), fora da escala de 4 de propósito;
+   a foto cresce com a fonte do sistema (min-height) em vez de empurrar o texto para baixo da ilha */
+.p-foto--evolucao::after, .p-foto--dono::after { content: ""; order: -1; flex: none; height: var(--inset-topo); }
+.p-foto--evolucao > :last-child { margin-top: auto; }
+.p-foto--dono::after { margin-bottom: auto; }
+/* com a fonte do sistema ampliada, os atalhos vão para uma coluna (o rótulo não cabe em meia largura) */
+[data-fonte="ampliada"] .p-atalhos, [data-fonte="maxima"] .p-atalhos { grid-template-columns: 1fr; }
+/* nada encolhe nas colunas que rolam (com a fonte ampliada os blocos se espremiam e o texto passava por cima da barra do treino) */
+.p-treino__corpo > *, .p-comemoracao__corpo > *, .p-rolagem > * { flex-shrink: 0; }

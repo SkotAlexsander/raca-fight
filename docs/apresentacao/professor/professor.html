@@ -1,0 +1,808 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Raça Fight · Professor e recepção, a equipe no tatame</title>
+<style>/* Raça Fight — Professor e recepção. PDF para o dono, A4 deitado, uma ideia por página (agente AS, 15/10/2026).
+   Base: o admin.css do AR (mesmo visual, para os três PDFs serem uma família), mais o celular: as capturas das telas
+   prontas do AL e o esboço em HTML das telas que ainda não foram desenhadas. Escala de tipo fechada: 13 · 16 · 20 · 25 · 31 · 39 · 49 · 61.
+   Fontes embutidas de fontes/: Figtree (texto) e Archivo variável (títulos). SIL OFL. */
+
+@font-face { font-family: 'Figtree'; font-weight: 400; src: url('fontes/figtree-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 500; src: url('fontes/figtree-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 600; src: url('fontes/figtree-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 700; src: url('fontes/figtree-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Archivo'; font-weight: 100 900; font-stretch: 62% 125%; src: url('fontes/Archivo-variavel.ttf') format('truetype'); }
+
+:root {
+  --vermelho: #C42024; --vermelho-escuro: #9E1A1D; --vermelho-suave: #FBE6E6;
+  --preto: #1C1C1C; --grafite: #343434; --tinta: #1C1C1C; --sec: #545454; --ter: #6B6B6B;
+  --linha: #E2E2E2; --linha-forte: #CFCFCF; --fundo: #F5F5F5; --papel: #FFFFFF;
+  --ok: #0A7E3A; --ok-fundo: #E5F4EA; --atencao: #B74D00; --atencao-fundo: #FDEEE3; --erro: #B3261E;
+  --t13: 13px; --t16: 16px; --t20: 20px; --t25: 25px; --t31: 31px; --t39: 39px; --t49: 49px; --t61: 61px;
+  --texto: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+  --titulo: 'Archivo', 'Figtree', 'Segoe UI', sans-serif;
+  --mono: Consolas, 'Cascadia Mono', monospace;
+}
+
+@page { size: A4 landscape; margin: 0; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font: 400 var(--t13)/1.5 var(--texto); color: var(--tinta); background: var(--papel); -webkit-font-smoothing: antialiased; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+b, strong { font-weight: 700; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ── a página ───────────────────────────────────────── */
+.pg { width: 297mm; height: 210mm; padding: 12mm 15mm 0; display: flex; flex-direction: column; break-after: page; overflow: hidden; position: relative; background: var(--papel); }
+.pg:last-child { break-after: auto; }
+.pg__topo { flex: none; margin-bottom: 14px; }
+.olho { font: 700 var(--t13)/1.2 var(--texto); letter-spacing: .12em; text-transform: uppercase; color: var(--vermelho); margin-bottom: 6px; }
+.olho span { color: var(--ter); }
+h1 { margin: 0; font: 800 var(--t31)/1.08 var(--titulo); font-stretch: 78%; letter-spacing: -.005em; text-transform: uppercase; }
+.lide { margin-top: 8px; font-size: var(--t16); line-height: 1.45; color: var(--sec); max-width: 230mm; }
+.pg__corpo { flex: 1; min-height: 0; position: relative; }
+.pg__rodape { flex: none; height: 11mm; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid var(--linha); font-size: var(--t13); color: var(--ter); margin-top: 8px; }
+.pg__rodape b { color: var(--vermelho); font-weight: 700; letter-spacing: .06em; }
+.pg__rodape .exemplo { color: var(--sec); }
+.pg__rodape .exemplo::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--vermelho); margin-right: 6px; vertical-align: 0; }
+
+/* ── colunas e blocos de texto ──────────────────────── */
+.duas { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.quatro { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.lado { display: grid; grid-template-columns: 76mm 1fr; gap: 20px; height: 100%; }
+.lado--largo { grid-template-columns: 1fr 86mm; }
+.pilha > * + * { margin-top: 14px; }
+.bloco h3 { margin: 0 0 6px; font: 700 var(--t16)/1.3 var(--texto); display: flex; align-items: center; gap: 8px; }
+.bloco h3::before { content: ""; width: 4px; height: 16px; background: var(--vermelho); border-radius: 1px; flex: none; }
+.bloco--cinza h3::before { background: var(--preto); }
+.lista { list-style: none; }
+.lista li { position: relative; padding-left: 14px; margin: 4px 0; font-size: var(--t13); line-height: 1.45; }
+.lista li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 1px; background: var(--vermelho); }
+.lista--16 li { font-size: var(--t16); line-height: 1.4; margin: 6px 0; padding-left: 16px; }
+.lista--16 li::before { top: .55em; }
+.texto16 { font-size: var(--t16); line-height: 1.45; }
+.sec { color: var(--sec); }
+.ter { color: var(--ter); }
+.pequeno { font-size: var(--t13); }
+.caixa { border-radius: 8px; padding: 10px 14px; background: var(--fundo); font-size: var(--t13); }
+.caixa--vermelha { background: var(--vermelho-suave); border-left: 4px solid var(--vermelho); }
+.caixa--preta { background: var(--preto); color: #fff; }
+.caixa--atencao { background: var(--atencao-fundo); border-left: 4px solid var(--atencao); }
+.caixa b.rot { display: block; font-size: var(--t13); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 2px; }
+.caixa--vermelha b.rot { color: var(--vermelho-escuro); }
+.caixa--atencao b.rot { color: var(--atencao); }
+.legenda { margin-top: 6px; font-size: var(--t13); color: var(--ter); }
+.legenda b { color: var(--sec); font-weight: 600; }
+.selo { display: inline-block; padding: 1px 8px; border-radius: 10px; font: 700 var(--t13)/1.5 var(--texto); background: var(--fundo); color: var(--sec); white-space: nowrap; }
+.selo--vermelho { background: var(--vermelho-suave); color: var(--vermelho-escuro); }
+.selo--ok { background: var(--ok-fundo); color: var(--ok); }
+.selo--atencao { background: var(--atencao-fundo); color: var(--atencao); }
+.selo--preto { background: var(--preto); color: #fff; }
+
+/* tabela de leitura (fora dos quadros de tela) */
+table { width: 100%; border-collapse: collapse; font-size: var(--t13); line-height: 1.4; }
+th { text-align: left; font-weight: 700; color: var(--sec); padding: 6px 10px 6px 0; border-bottom: 2px solid var(--preto); vertical-align: bottom; }
+td { padding: 6px 10px 6px 0; border-bottom: 1px solid var(--linha); vertical-align: top; }
+td:last-child, th:last-child { padding-right: 0; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.destaque td { background: var(--vermelho-suave); }
+tfoot td { border-top: 2px solid var(--preto); border-bottom: 0; font-weight: 700; }
+.tabela-16 { font-size: var(--t16); }
+.tabela-16 th { font-size: var(--t13); }
+
+/* ── quadro de tela (esboço do app admin) ───────────── */
+.quadro { margin: 0; }
+.tela { border: 1px solid var(--linha-forte); border-radius: 10px; overflow: hidden; background: var(--papel); box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 6px 18px rgba(0,0,0,.06); display: flex; flex-direction: column; }
+.tela__barra { flex: none; height: 34px; background: var(--preto); color: #fff; display: flex; align-items: center; gap: 12px; padding: 0 12px; font-size: var(--t13); }
+.tela__barra .logo { height: 15px; display: block; }
+.tela__barra .logo-texto { font: 800 var(--t13)/1 var(--titulo); font-stretch: 80%; letter-spacing: .04em; }
+.tela__barra .onde { color: #fff; font-weight: 600; padding-left: 12px; border-left: 1px solid #4A4A4A; }
+.tela__barra .onde span { color: #B8B8B8; font-weight: 400; }
+.tela__barra .dir { margin-left: auto; display: flex; align-items: center; gap: 10px; color: #D6D6D6; }
+.tela__barra .busca { background: #2C2C2C; border-radius: 6px; padding: 2px 10px; color: #B8B8B8; min-width: 150px; }
+.tela__barra .avatar { width: 22px; height: 22px; border-radius: 11px; background: var(--vermelho); color: #fff; display: grid; place-items: center; font-weight: 700; }
+.tela__corpo { flex: 1; min-height: 0; padding: 12px; background: var(--fundo); display: flex; flex-direction: column; gap: 10px; }
+.tela--celular { width: 250px; border-radius: 22px; border: 6px solid var(--preto); }
+.tela img { display: block; width: 100%; }
+.tela-captura { display: block; width: 100%; border: 1px solid var(--linha-forte); border-radius: 10px; }
+.esboco { font-size: var(--t13); color: var(--ter); }
+
+/* componentes dentro da tela */
+.cx { background: var(--papel); border: 1px solid var(--linha); border-radius: 8px; padding: 10px 12px; min-width: 0; }
+.cx__rot { font-size: var(--t13); color: var(--sec); font-weight: 600; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.cx__rot a { color: var(--vermelho); font-weight: 600; text-decoration: none; }
+.kpi { font: 700 var(--t20)/1.15 var(--texto); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.kpi--heroi { font-size: var(--t25); }
+.kpi small { font-size: var(--t13); font-weight: 500; color: var(--sec); letter-spacing: 0; }
+.neg { color: var(--erro); }
+.pos { color: var(--ok); }
+.lin { display: flex; justify-content: space-between; gap: 10px; font-size: var(--t13); padding: 3px 0; }
+.lin + .lin { border-top: 1px solid var(--linha); }
+.lin b { font-variant-numeric: tabular-nums; }
+.bt { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 6px; font: 600 var(--t13)/1 var(--texto); border: 1px solid var(--linha-forte); background: var(--papel); color: var(--tinta); white-space: nowrap; }
+.bt--p { background: var(--vermelho); border-color: var(--vermelho); color: #fff; }
+.bt--esc { background: var(--preto); border-color: var(--preto); color: #fff; }
+.bts { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.chip { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 12px; font-size: var(--t13); border: 1px solid var(--linha-forte); background: var(--papel); white-space: nowrap; }
+.chip--on { background: var(--preto); border-color: var(--preto); color: #fff; }
+.chip--verm { background: var(--vermelho); border-color: var(--vermelho); color: #fff; }
+.frase { background: var(--papel); border: 1px solid var(--linha); border-left: 4px solid var(--vermelho); border-radius: 6px; padding: 6px 10px; font-size: var(--t13); }
+.grade-t { width: 100%; border-collapse: collapse; font-size: var(--t13); line-height: 1.3; background: var(--papel); }
+.grade-t th { font-weight: 600; color: var(--sec); background: #FAFAFA; border-bottom: 1px solid var(--linha-forte); padding: 6px 8px; white-space: nowrap; }
+.grade-t td { padding: 5px 8px; border-bottom: 1px solid var(--linha); white-space: nowrap; vertical-align: middle; }
+.grade-t td.n, .grade-t th.n { text-align: right; font-variant-numeric: tabular-nums; }
+.grade-t td.quebra { white-space: normal; }
+.grade-t tr.sel td { background: #FFF6F6; }
+.grade-t td.editando { outline: 2px solid var(--vermelho); outline-offset: -2px; background: #fff; }
+.grade-t td.erro { outline: 2px solid var(--erro); outline-offset: -2px; background: #FDECEB; }
+.grade-t tr.pend td { color: var(--sec); }
+.grade-t tfoot td { position: static; font-weight: 700; background: #FAFAFA; border-top: 2px solid var(--preto); border-bottom: 0; }
+.tabela-cx { border: 1px solid var(--linha); border-radius: 8px; overflow: hidden; background: var(--papel); }
+.abas { display: flex; gap: 4px; border-bottom: 1px solid var(--linha-forte); }
+.aba { padding: 5px 10px; font-size: var(--t13); color: var(--sec); border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+.aba--on { color: var(--tinta); font-weight: 700; border-color: var(--vermelho); }
+.aba b { font-variant-numeric: tabular-nums; }
+.folha { background: var(--papel); border: 1px solid var(--linha-forte); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.14); padding: 12px 14px; font-size: var(--t13); }
+.folha h4 { margin: 0 0 6px; font: 700 var(--t16)/1.3 var(--texto); }
+.campo { display: grid; grid-template-columns: 70px 1fr; gap: 8px; align-items: center; margin: 5px 0; }
+.campo span { color: var(--sec); }
+.campo i { font-style: normal; border: 1px solid var(--linha-forte); border-radius: 6px; padding: 3px 8px; background: #fff; }
+.barras { display: flex; align-items: flex-end; gap: 4px; }
+.lateral { display: flex; flex-direction: column; gap: 6px; font-size: var(--t13); }
+.lateral .t { font-weight: 700; color: var(--sec); margin-top: 4px; }
+.balao { background: #DCF8C6; border-radius: 10px 10px 10px 2px; padding: 8px 10px; font-size: var(--t13); line-height: 1.45; color: #111; box-shadow: 0 1px 1px rgba(0,0,0,.12); }
+.whats { background: #EFE7DE; border-radius: 10px; padding: 10px; }
+.whats__topo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: var(--t13); margin-bottom: 8px; }
+.whats__topo i { width: 22px; height: 22px; border-radius: 11px; background: #8A8A8A; display: inline-block; }
+
+/* ── capa ───────────────────────────────────────────── */
+.capa { padding: 0; flex-direction: row; background: var(--preto); color: #fff; }
+.capa__texto { flex: 1; padding: 16mm 16mm 12mm; display: flex; flex-direction: column; }
+.capa__logo { width: 92mm; display: block; }
+.capa__olho { margin-top: 18mm; font: 700 var(--t13)/1.2 var(--texto); letter-spacing: .16em; text-transform: uppercase; color: #FF6B6E; }
+.capa__titulo { margin: 4mm 0 0; font: 800 var(--t61)/.98 var(--titulo); font-stretch: 72%; text-transform: uppercase; letter-spacing: -.01em; }
+.capa__titulo em { font-style: normal; color: var(--vermelho); }
+.capa__sub { margin-top: 7mm; max-width: 140mm; font-size: var(--t20); line-height: 1.4; color: #E4E4E4; }
+.capa__ficha { margin-top: auto; display: grid; grid-template-columns: repeat(4, auto); gap: 18px; padding-top: 12px; border-top: 1px solid #4A4A4A; font-size: var(--t13); color: #D0D0D0; }
+.capa__ficha b { display: block; color: #fff; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 2px; }
+.capa__foto { width: 104mm; position: relative; background: #000 center / cover no-repeat; }
+.capa__foto::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5mm; background: var(--vermelho); }
+.capa__nota { margin-top: 8px; font-size: var(--t13); color: #A8A8A8; }
+
+/* ── diagrama dos três apps ─────────────────────────── */
+.apps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: stretch; }
+.app { border: 1px solid var(--linha-forte); border-radius: 12px; padding: 14px 16px; background: var(--papel); display: flex; flex-direction: column; gap: 8px; }
+.app--admin { border: 2px solid var(--vermelho); }
+.app__topo { display: flex; align-items: center; gap: 10px; }
+.app__icone { width: 36px; height: 36px; border-radius: 8px; background: var(--preto); display: grid; place-items: center; flex: none; }
+.app--admin .app__icone { background: var(--vermelho); }
+.app__nome { font: 800 var(--t20)/1.1 var(--titulo); font-stretch: 80%; text-transform: uppercase; }
+.app__quem { font-size: var(--t13); color: var(--sec); }
+.banco { margin: 0 auto; width: 70%; border-radius: 12px; background: var(--preto); color: #fff; padding: 12px 18px; display: flex; align-items: center; gap: 14px; justify-content: center; text-align: left; }
+.banco b { font: 800 var(--t20)/1.1 var(--titulo); font-stretch: 80%; text-transform: uppercase; }
+.fios { height: 34px; position: relative; }
+.fios svg { width: 100%; height: 100%; display: block; }
+
+/* ── sumário ────────────────────────────────────────── */
+.sumario { list-style: none; columns: 2; column-gap: 26px; }
+.sumario li { display: flex; gap: 10px; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--linha); break-inside: avoid; font-size: var(--t13); }
+.sumario li b { font-weight: 700; }
+.sumario li .p { margin-left: auto; color: var(--vermelho); font-weight: 700; font-variant-numeric: tabular-nums; }
+.sumario li .i { color: var(--ter); font-variant-numeric: tabular-nums; min-width: 18px; }
+
+/* ── antes / depois ─────────────────────────────────── */
+.antes-depois { display: grid; grid-template-columns: 1fr 34px 1fr; gap: 12px; height: 100%; }
+.seta-grande { align-self: center; justify-self: center; }
+.lado-ad { border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.lado-ad--hoje { background: var(--fundo); }
+.lado-ad--amanha { background: var(--preto); color: #fff; }
+.lado-ad h2 { margin: 0; font: 800 var(--t25)/1.1 var(--titulo); font-stretch: 78%; text-transform: uppercase; }
+.lado-ad--amanha h2 em { font-style: normal; color: #FF6B6E; }
+.lado-ad--amanha .lista li::before { background: #FF6B6E; }
+.xls { border: 1px solid #BFBFBF; background: #fff; font: var(--t13)/1.2 'Calibri', 'Segoe UI', sans-serif; border-collapse: collapse; width: 100%; }
+.xls td, .xls th { border: 1px solid #D4D4D4; padding: 3px 6px; white-space: nowrap; }
+.xls th { background: #F2F2F2; font-weight: 600; color: #444; text-align: center; }
+.xls .cab td { font-weight: 700; background: #E7F0E1; }
+.xls td.n { text-align: right; }
+.xls .rabisco { color: #9E1A1D; font-style: italic; }
+.vem { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: var(--t13); align-items: baseline; }
+.vem b { font: 700 var(--t20)/1.1 var(--texto); font-variant-numeric: tabular-nums; color: #fff; white-space: nowrap; }
+
+/* ── gráficos simples em HTML ───────────────────────── */
+.hbar { display: grid; grid-template-columns: 96px 1fr 104px; gap: 8px; align-items: center; font-size: var(--t13); margin: 5px 0; }
+.hbar__trilho { height: 14px; background: #EFEFEF; border-radius: 3px; overflow: hidden; }
+.hbar__valor { height: 100%; background: #9A9A9A; border-radius: 3px; }
+.hbar--destaque .hbar__valor { background: var(--vermelho); }
+.hbar .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* ── decisões e passos ──────────────────────────────── */
+.perguntas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
+.pergunta { border: 1px solid var(--linha); border-radius: 10px; padding: 10px 14px; background: var(--papel); }
+.pergunta__q { font: 700 var(--t16)/1.3 var(--texto); }
+.pergunta__q .cod { font: 700 var(--t13)/1 var(--texto); color: var(--vermelho); margin-right: 6px; }
+.pergunta__r { margin-top: 4px; font-size: var(--t13); color: var(--sec); }
+.pergunta__r b { color: var(--tinta); font-weight: 600; }
+.passos { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; counter-reset: passo; }
+.passo { position: relative; padding: 0 12px 0 0; }
+.passo__n { width: 34px; height: 34px; border-radius: 17px; background: var(--preto); color: #fff; display: grid; place-items: center; font: 800 var(--t16)/1 var(--titulo); position: relative; z-index: 1; }
+.passo--agora .passo__n { background: var(--vermelho); }
+.passo::after { content: ""; position: absolute; left: 34px; right: 0; top: 16px; height: 2px; background: var(--linha-forte); }
+.passo:last-child::after { display: none; }
+.passo h4 { margin: 10px 0 4px; font: 700 var(--t16)/1.3 var(--texto); }
+.passo p { font-size: var(--t13); color: var(--sec); }
+.passo .quem { margin-top: 6px; font-size: var(--t13); font-weight: 600; color: var(--tinta); }
+
+/* ── custos ─────────────────────────────────────────── */
+.degraus { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 14px; align-items: stretch; }
+.degrau { border: 1px solid var(--linha-forte); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; background: var(--papel); }
+.degrau--rec { border: 2px solid var(--vermelho); box-shadow: 0 6px 18px rgba(196,32,36,.12); }
+.degrau__nome { font: 800 var(--t25)/1 var(--titulo); font-stretch: 78%; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.degrau__para { font-size: var(--t13); color: var(--sec); }
+.degrau__preco { font: 700 var(--t31)/1 var(--texto); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.degrau__preco small { font-size: var(--t13); font-weight: 500; color: var(--sec); letter-spacing: 0; }
+.degrau .lin { font-size: var(--t13); }
+
+/* ajustes depois da primeira conferência */
+.tela__barra .logo { width: auto; flex: none; }
+.tela__barra .onde, .tela__barra .dir { white-space: nowrap; flex: none; }
+.kpi { white-space: nowrap; }
+.tabela-cx { flex-shrink: 0; }
+.cx, .folha { flex-shrink: 0; }
+.sumario li { padding: 3px 0; }
+.grade-t td { padding: 4px 8px; }
+.grade-t .selo, .lin .selo { line-height: 1.35; padding: 0 7px; }
+.cx { padding: 8px 10px; }
+.lin b { white-space: nowrap; }
+.pergunta__r { font-size: var(--t16); line-height: 1.4; } .passo p { font-size: var(--t16); line-height: 1.4; }
+
+/* ══ PDF do professor (AS): celulares ══════════════════════════════ */
+.fones { display: flex; gap: 18px; align-items: flex-start; }
+.fone { margin: 0; flex: none; width: 220px; }
+.fone--p { width: 196px; }
+.fone > img { display: block; width: 100%; }
+.fone figcaption { margin-top: 6px; font-size: var(--t13); line-height: 1.4; color: var(--ter); }
+.fone figcaption b { color: var(--sec); font-weight: 600; }
+
+/* o esboço de tela de celular, na marca (claro), para o que o AL ainda não desenhou */
+.cel { width: 220px; height: 462px; border: 7px solid var(--preto); border-radius: 30px; background: var(--fundo); overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: 0 6px 18px rgba(0,0,0,.10); }
+.fone--p .cel { height: 412px; }
+.cel__status { flex: none; height: 24px; display: flex; align-items: center; justify-content: space-between; padding: 2px 18px 0; font: 600 var(--t13)/1 var(--texto); }
+.cel__status i { width: 54px; height: 14px; border-radius: 7px; background: var(--preto); }
+.cel__status s { text-decoration: none; display: flex; gap: 2px; align-items: flex-end; }
+.cel__status s u { display: block; width: 3px; background: var(--tinta); border-radius: 1px; }
+.cel__topo { flex: none; padding: 4px 12px 8px; display: flex; align-items: center; gap: 8px; }
+.cel__topo .volta { width: 26px; height: 26px; border-radius: 13px; background: var(--papel); display: grid; place-items: center; box-shadow: 0 1px 3px rgba(0,0,0,.12); flex: none; }
+.cel__sobre { font-size: var(--t13); color: var(--sec); line-height: 1.2; }
+.cel__titulo { font: 700 var(--t20)/1.15 var(--texto); }
+.cel__corpo { flex: 1; min-height: 0; padding: 0 9px 8px; display: flex; flex-direction: column; gap: 7px; overflow: hidden; font-size: var(--t13); line-height: 1.3; }
+.cel__abas { flex: none; height: 46px; background: var(--papel); border-top: 1px solid var(--linha); display: flex; align-items: center; justify-content: space-around; padding: 0 6px 4px; }
+.cel__aba { display: flex; align-items: center; gap: 4px; color: var(--ter); height: 28px; padding: 0 6px; border-radius: 14px; }
+.cel__aba--on { background: var(--vermelho-suave); color: var(--vermelho); font: 700 var(--t13)/1 var(--texto); padding: 0 9px 0 7px; }
+.cel__aba svg, .ic { width: 17px; height: 17px; flex: none; }
+.ic--p { width: 14px; height: 14px; }
+.cel__folha { position: absolute; left: 0; right: 0; bottom: 0; background: var(--papel); border-radius: 18px 18px 0 0; box-shadow: 0 -8px 24px rgba(0,0,0,.18); padding: 8px 12px 12px; display: flex; flex-direction: column; gap: 7px; font-size: var(--t13); line-height: 1.3; z-index: 2; }
+.cel__folha::before { content: ""; align-self: center; width: 34px; height: 4px; border-radius: 2px; background: var(--linha-forte); margin-bottom: 2px; }
+.cel__folha h4 { margin: 0; font: 700 var(--t16)/1.25 var(--texto); }
+.cel__veu { position: absolute; inset: 0; background: rgba(0,0,0,.32); z-index: 1; }
+/* peças dentro do esboço */
+.c-cartao { background: var(--papel); border-radius: 12px; padding: 8px 10px; box-shadow: 0 1px 2px rgba(0,0,0,.06); display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
+.c-cartao--escuro { background: var(--preto); color: #fff; }
+.c-cartao--escuro .c-sec { color: #CFCFCF; }
+.c-sec { color: var(--sec); }
+.c-titulo { font: 700 var(--t13)/1.3 var(--texto); }
+.c-grupo { font: 700 var(--t13)/1.2 var(--texto); margin-top: 2px; display: flex; justify-content: space-between; gap: 6px; flex-shrink: 0; }
+.c-grupo span { font-weight: 400; color: var(--sec); }
+.c-lista { background: var(--papel); border-radius: 12px; overflow: hidden; flex-shrink: 0; }
+.c-ln { display: flex; align-items: center; gap: 8px; padding: 6px 9px; min-height: 34px; }
+.c-ln + .c-ln { border-top: 1px solid var(--linha); }
+.c-ln__txt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.c-ln__txt b { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.c-ln__txt small { font-size: var(--t13); color: var(--sec); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.c-ln__txt small.quebra { white-space: normal; }
+.c-ln__hora { font: 700 var(--t13)/1 var(--texto); font-variant-numeric: tabular-nums; width: 36px; flex: none; }
+.c-ln--minha { background: #FFF6F6; }
+.c-ln--minha .c-ln__hora { color: var(--vermelho); }
+.c-av { width: 26px; height: 26px; border-radius: 13px; background: #EDEDED; color: var(--sec); display: grid; place-items: center; font: 700 var(--t13)/1 var(--texto); flex: none; letter-spacing: -.02em; }
+.c-selo { font: 700 var(--t13)/1 var(--texto); padding: 3px 7px; border-radius: 9px; background: #EFEFEF; color: var(--sec); white-space: nowrap; flex: none; }
+.c-selo--v { background: var(--vermelho-suave); color: var(--vermelho-escuro); }
+.c-selo--ok { background: var(--ok-fundo); color: var(--ok); }
+.c-selo--at { background: var(--atencao-fundo); color: var(--atencao); }
+.c-selo--p { background: var(--preto); color: #fff; }
+.c-chips { display: flex; gap: 5px; flex-wrap: nowrap; overflow: hidden; flex-shrink: 0; }
+.c-chip { font-size: var(--t13); padding: 3px 9px; border-radius: 12px; border: 1px solid var(--linha-forte); background: var(--papel); white-space: nowrap; }
+.c-chip--on { background: var(--preto); border-color: var(--preto); color: #fff; }
+.c-bt { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 34px; border-radius: 17px; background: var(--vermelho); color: #fff; font: 700 var(--t13)/1 var(--texto); flex-shrink: 0; padding: 0 12px; }
+.c-bt--sec { background: var(--papel); color: var(--tinta); border: 1px solid var(--linha-forte); }
+.c-bt--p { min-height: 28px; }
+.c-bts { display: flex; gap: 6px; flex-shrink: 0; }
+.c-bts > * { flex: 1; }
+.c-campo { display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; }
+.c-campo span { color: var(--sec); }
+.c-campo i { font-style: normal; background: var(--papel); border: 1px solid var(--linha-forte); border-radius: 8px; padding: 4px 8px; }
+.c-check { width: 22px; height: 22px; border-radius: 11px; border: 2px solid var(--linha-forte); flex: none; display: grid; place-items: center; }
+.c-check--on { background: var(--vermelho); border-color: var(--vermelho); color: #fff; }
+.c-busca { display: flex; align-items: center; gap: 6px; background: var(--papel); border-radius: 10px; padding: 5px 9px; color: var(--ter); flex-shrink: 0; }
+.c-chave { width: 30px; height: 18px; border-radius: 9px; background: var(--linha-forte); position: relative; flex: none; }
+.c-chave::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 7px; background: #fff; }
+.c-chave--on { background: var(--vermelho); }
+.c-chave--on::after { left: 14px; }
+.c-num { font: 700 var(--t20)/1 var(--texto); font-variant-numeric: tabular-nums; }
+.c-numeros { display: flex; gap: 14px; align-items: baseline; }
+.faixa-d { display: block; flex: none; }
+.riscado { text-decoration: line-through; color: var(--ter); }
+
+/* blocos de página */
+.nao { border-radius: 10px; padding: 10px 14px; background: var(--preto); color: #fff; }
+.nao h3 { margin: 0 0 6px; font: 700 var(--t16)/1.3 var(--texto); }
+.nao .lista li::before { background: #FF6B6E; }
+.linha-tempo { display: grid; grid-template-columns: repeat(6, 1fr); position: relative; margin-top: 4px; }
+.linha-tempo::before { content: ""; position: absolute; left: 8%; right: 8%; top: 25px; height: 3px; background: var(--linha-forte); }
+.marco { position: relative; text-align: center; padding: 0 8px; }
+.marco__hora { width: 52px; height: 52px; margin: 0 auto 8px; border-radius: 26px; background: var(--papel); border: 3px solid var(--preto); display: grid; place-items: center; font: 800 var(--t13)/1 var(--titulo); font-stretch: 85%; position: relative; z-index: 1; }
+.marco--v .marco__hora { border-color: var(--vermelho); background: var(--vermelho); color: #fff; }
+.marco h4 { margin: 0 0 4px; font: 700 var(--t16)/1.25 var(--texto); }
+.marco p { font-size: var(--t13); color: var(--sec); }
+.grade-real td, .grade-real th { text-align: center; padding: 5px 6px; }
+.grade-real td:first-child, .grade-real th:first-child, .grade-real td.e { text-align: left; }
+.grade-real td.h { font-weight: 700; color: var(--vermelho-escuro); background: var(--vermelho-suave); }
+.passos-v { counter-reset: pv; list-style: none; }
+.passos-v li { position: relative; padding-left: 32px; margin: 0 0 9px; font-size: var(--t16); line-height: 1.4; }
+.passos-v li::before { counter-increment: pv; content: counter(pv); position: absolute; left: 0; top: 1px; width: 22px; height: 22px; border-radius: 11px; background: var(--preto); color: #fff; display: grid; place-items: center; font: 700 var(--t13)/1 var(--texto); }
+.passos-v li.v::before { background: var(--vermelho); }
+.passos-v--13 li { font-size: var(--t13); margin-bottom: 6px; }
+.matriz td, .matriz th { text-align: center; }
+.matriz td:first-child, .matriz th:first-child { text-align: left; }
+.sim { color: var(--ok); font-weight: 700; }
+.naov { color: var(--erro); font-weight: 700; }
+.foto-fixa { width: 100%; display: block; border-radius: 10px; object-fit: cover; }
+.cartaz { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.cartaz > div { border-radius: 12px; padding: 12px 14px; background: var(--fundo); }
+.cartaz b { display: block; font: 800 var(--t25)/1.05 var(--titulo); font-stretch: 78%; text-transform: uppercase; margin-bottom: 4px; }
+.cartaz small { font-size: var(--t13); color: var(--sec); }
+.notif { display: flex; gap: 10px; align-items: flex-start; background: #ECECEC; border-radius: 14px; padding: 10px 12px; font-size: var(--t13); line-height: 1.35; }
+.notif i { width: 30px; height: 30px; border-radius: 8px; background: var(--preto); flex: none; }
+.notif b { display: block; }
+
+/* ajustes depois da primeira conferência (AS) */
+.cel__aba { padding: 0 3px; }
+.cel__aba--on { padding: 0 8px 0 6px; }
+.c-chip { padding: 3px 8px; }
+.c-ln__txt b, .c-ln__txt small { white-space: normal; overflow: visible; text-overflow: clip; }
+.sumario--2 { columns: 2; column-gap: 18px; }
+.passo-n { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 10px; background: var(--vermelho); color: #fff; font: 700 var(--t13)/1 var(--texto); margin-right: 6px; vertical-align: 1px; }
+.fone--p .cel { width: 196px; }
+.grade-real th.e { text-align: left; }
+.regua-tab .faixa-d { display: inline-block; vertical-align: -2px; margin-right: 8px; }
+
+/* AV, 16/10: a captura do app construído (390 × 844), com o canto do celular */
+.fone--app > img { border-radius: 18px; border: 1px solid #2E2E2E; background: #121212; }
+</style></head><body>
+<section class="pg capa" id="capa">
+    <div class="capa__texto">
+      <img class="capa__logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii01NCAtODAgMTA3OCA0MTgiIHdpZHRoPSIxMDc4IiBoZWlnaHQ9IjQxOCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InQiPjx0aXRsZSBpZD0idCI+Q2VudHJvIGRlIFRyZWluYW1lbnRvIFJhw6dhIEZpZ2h0IEdyYXZhdGHDrSAobG9nbyBwcm92aXPDs3Jpbyk8L3RpdGxlPjwhLS0gUFJPVklTw5NSSU86IHJlY29uc3RydcOnw6NvIGRvIGxvZ28gZGEgUmHDp2EgRmlnaHQgYSBwYXJ0aXIgZGFzIGZvdG9zIGRvIEluc3RhZ3JhbSAoYWdlbnRlIEFMLCAxNS8xMC8yMDI2KS4gVHJvY2FyIHBlbG8gYXJxdWl2byBvcmlnaW5hbCBkYSBhY2FkZW1pYS4gLS0+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTMwIDBIMTgyQTQwIDQwIDAgMCAxIDIyMiA0MFY0NEE0MCA0MCAwIDAgMSAxODIgODRIMFY1MkgxODJBOCA4IDAgMCAwIDE5MCA0NFY0MEE4IDggMCAwIDAgMTgyIDMySDE0Wk0wIDUySDMyVjE0MEgwWk0xMjAgODRIMTYyTDIzNCAxNDBIMTkyWk0yNTYgMTQwTDM4MCAwSDQxNkw0OTIgMTQwWk0zMjIgMTA4SDQ0MEwzOTQgNDZaTTczOCAwSDU2NkE0NiA0NiAwIDAgMCA1MjAgNDZWOTRBNDYgNDYgMCAwIDAgNTY2IDE0MEg3MzhWMTA4SDU2NkExNCAxNCAwIDAgMSA1NTIgOTRWNDZBMTQgMTQgMCAwIDEgNTY2IDMySDczOFpNNzU0IDE0MEw4NzggMEg5MTRMOTkwIDE0MFpNODIwIDEwOEg5MzhMODkyIDQ2Wk02MjIgMTUwSDY0Mkw2MzYgMTkwSDYxNloiLz48cGF0aCBmaWxsPSIjRkZGRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0tMzAgMTY4SDEwMDBWMjU2SDU4Wk0tMTAuNjkgMTc2SDk5MlYyNDhINjEuMzFaIi8+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTEwOC45MyAyMzBWMTg5LjkxSDE0OC4zOVYxOTguNzFIMTIwLjhWMjA2LjhIMTQ1LjM0VjIxNS42SDEyMC44VjIzMFpNMTYxLjUyIDIzMFYxODkuOTFIMTczLjM5VjIzMFpNMjExLjkgMjMwLjdRMTk5Ljc0IDIzMC43IDE5My42NCAyMjUuNTdRMTg3LjU1IDIyMC40NCAxODcuNTUgMjA5Ljk3UTE4Ny41NSAyMDMuMTEgMTkwLjcyIDE5OC40OVExOTMuODkgMTkzLjg4IDE5OS44OSAxOTEuNTRRMjA1Ljg5IDE4OS4yMSAyMTQuMzEgMTg5LjIxUTIxOS41MiAxODkuMjEgMjIzLjk3IDE5MC4xNVEyMjguNDIgMTkxLjA4IDIzMS43NiAxOTIuOTVRMjM1LjEgMTk0LjgyIDIzNi45NCAxOTcuNjVRMjM4Ljc5IDIwMC40OCAyMzguNzkgMjA0LjI3SDIyNy4yNVEyMjcuMjUgMjAyLjY1IDIyNi4yNCAyMDEuNDRRMjI1LjI0IDIwMC4yNCAyMjMuNDkgMTk5LjQ5UTIyMS43NCAxOTguNzQgMjE5LjUxIDE5OC4zN1EyMTcuMjkgMTk4LjAxIDIxNC44MiAxOTguMDFRMjExLjMxIDE5OC4wMSAyMDguNTEgMTk4LjcxUTIwNS43MSAxOTkuNCAyMDMuNzQgMjAwLjgyUTIwMS43OCAyMDIuMjQgMjAwLjc1IDIwNC4zNVExOTkuNzIgMjA2LjQ1IDE5OS43MiAyMDkuMjRWMjEwLjY0UTE5OS43MiAyMTQuNTkgMjAxLjM3IDIxNy4wN1EyMDMuMDIgMjE5LjU2IDIwNi4xNyAyMjAuNzNRMjA5LjMyIDIyMS45IDIxMy44NCAyMjEuOVEyMTcuOTUgMjIxLjkgMjIwLjk2IDIyMS4xNlEyMjMuOTYgMjIwLjQyIDIyNS41OSAyMTguOTlRMjI3LjIxIDIxNy41NSAyMjcuMjEgMjE1LjU4VjIxNS4yNEgyMTMuMTlWMjA3LjYxSDIzOC44NVYyMzBIMjMxLjkxTDIzMC43OSAyMjUuMlEyMjguNTQgMjI3LjA3IDIyNS42NCAyMjguMzFRMjIyLjc1IDIyOS41NCAyMTkuMzEgMjMwLjEyUTIxNS44NiAyMzAuNyAyMTEuOSAyMzAuN1pNMjU0LjI3IDIzMFYxODkuOTFIMjY2LjE1VjIwNC44M0gyOTAuMjFWMTg5LjkxSDMwMi4wOFYyMzBIMjkwLjIxVjIxNC4zOUgyNjYuMTVWMjMwWk0zMzEuODEgMjMwVjE5OS40N0gzMTQuNDRWMTg5LjkxSDM2MS4wNVYxOTkuNDdIMzQzLjY4VjIzMFoiLz48cGF0aCBmaWxsPSIjRkZGRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik04MzIgMTc4SDk2NlYyNDZIODMyWk04MzggMTg0VjI0MEg5NjBWMTg0WiIvPjxwYXRoIGZpbGw9IiNDNDIwMjQiIGQ9Ik04MzggMTg0SDk2MFYyNDBIODM4WiIvPjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xMzYuMzIgLTI1LjQ4UTEzMCAtMjUuNDggMTI1LjggLTI3LjI1UTEyMS41OSAtMjkuMDIgMTE5LjUgLTMyLjQ4UTExNy40MSAtMzUuOTUgMTE3LjQxIC00MS4wNFExMTcuNDEgLTQ4LjUgMTIyLjI1IC01Mi41NVExMjcuMDkgLTU2LjU5IDEzNi4zNCAtNTYuNTlRMTQxLjUxIC01Ni41OSAxNDUuNDQgLTU1LjA0UTE0OS4zNyAtNTMuNDkgMTUxLjU4IC01MC42N1ExNTMuOCAtNDcuODYgMTUzLjggLTQ0LjAzSDE0NS4xMlExNDUuMTIgLTQ1Ljg4IDE0NCAtNDcuMjJRMTQyLjg4IC00OC41NSAxNDAuODggLTQ5LjI3UTEzOC44OCAtNDkuOTkgMTM2LjE5IC00OS45OVExMzMuMDcgLTQ5Ljk5IDEzMC45MiAtNDguOTRRMTI4Ljc2IC00Ny44OCAxMjcuNjYgLTQ2UTEyNi41NiAtNDQuMTEgMTI2LjU2IC00MS42MVYtNDAuNTJRMTI2LjU2IC0zOC4wNSAxMjcuNjYgLTM2LjE0UTEyOC43NiAtMzQuMjMgMTMwLjg5IC0zMy4xNVExMzMuMDIgLTMyLjA3IDEzNi4wOSAtMzIuMDdRMTM4Ljk4IC0zMi4wNyAxNDEuMDUgLTMyLjc2UTE0My4xMiAtMzMuNDUgMTQ0LjI0IC0zNC43NlExNDUuMzYgLTM2LjA3IDE0NS4zNiAtMzcuOUgxNTMuODJRMTUzLjgyIC0zNC4xOSAxNTEuNjkgLTMxLjM4UTE0OS41NSAtMjguNTggMTQ1LjY0IC0yNy4wM1ExNDEuNzIgLTI1LjQ4IDEzNi4zMiAtMjUuNDhaTTE1OSAtMjZWLTU2LjA3SDE5MC4zNFYtNDkuNDdIMTY3LjkzVi00NC40MkgxODcuNTVWLTM4LjAzSDE2Ny45M1YtMzIuNkgxOTAuNjlWLTI2Wk0xOTUuODUgLTI2Vi01Ni4wN0gyMDMuODFMMjE5LjQgLTQyLjA0UTIxOS44IC00MS43IDIyMC40MiAtNDEuMDhRMjIxLjA0IC00MC40NyAyMjEuNzIgLTM5LjgxUTIyMi4zOSAtMzkuMTUgMjIyLjkxIC0zOC42MUgyMjMuMzFRMjIzLjI5IC0zOS4zOCAyMjMuMjYgLTQwLjU3UTIyMy4yMyAtNDEuNzYgMjIzLjIzIC00Mi42OFYtNTYuMDdIMjMxLjY1Vi0yNkgyMjMuOEwyMDguNTkgLTM5LjczUTIwNy41NiAtNDAuNjUgMjA2LjQxIC00MS43OFEyMDUuMjYgLTQyLjkxIDIwNC41NyAtNDMuNkgyMDQuMjFRMjA0LjIzIC00MyAyMDQuMjUgLTQxLjc1UTIwNC4yNyAtNDAuNDkgMjA0LjI3IC0zOS4wNFYtMjZaTTI0OC41NiAtMjZWLTQ4LjlIMjM1LjUzVi01Ni4wN0gyNzAuNDlWLTQ4LjlIMjU3LjQ2Vi0yNlpNMjc0LjM1IC0yNlYtNTYuMDdIMjk5LjM4UTMwMi42NiAtNTYuMDcgMzA0LjgyIC01NC43MlEzMDYuOTcgLTUzLjM3IDMwOC4wNSAtNTEuMTZRMzA5LjEyIC00OC45NiAzMDkuMTIgLTQ2LjM2UTMwOS4xMiAtNDMuNSAzMDcuNzcgLTQxLjE2UTMwNi40MiAtMzguODIgMzAzLjcgLTM3LjQ2TDMwOS44NCAtMjZIMjk5LjhMMjk0LjgxIC0zNkgyODMuMjZWLTI2Wk0yODMuMjYgLTQyLjU4SDI5Ni40N1EyOTguMDcgLTQyLjU4IDI5OS4wNCAtNDMuNTVRMzAwIC00NC41MSAzMDAgLTQ2LjExUTMwMCAtNDcuMTggMjk5LjU2IC00Ny45NFEyOTkuMTMgLTQ4LjY5IDI5OC4zNSAtNDkuMDhRMjk3LjU2IC00OS40NyAyOTYuNDcgLTQ5LjQ3SDI4My4yNlpNMzMyLjY0IC0yNS40OFEzMjYuNiAtMjUuNDggMzIyLjE2IC0yNy4zM1EzMTcuNzMgLTI5LjE4IDMxNS4zMyAtMzIuNjVRMzEyLjkzIC0zNi4xMyAzMTIuOTMgLTQxLjAyUTMxMi45MyAtNDUuOTYgMzE1LjMzIC00OS40NFEzMTcuNzMgLTUyLjkyIDMyMi4xNiAtNTQuNzVRMzI2LjYgLTU2LjU5IDMzMi42NCAtNTYuNTlRMzM4Ljc3IC01Ni41OSAzNDMuMTggLTU0Ljc1UTM0Ny42IC01Mi45MiAzNTAgLTQ5LjQ0UTM1Mi40IC00NS45NiAzNTIuNCAtNDEuMDJRMzUyLjQgLTM2LjEzIDM1MCAtMzIuNjVRMzQ3LjYgLTI5LjE4IDM0My4xOCAtMjcuMzNRMzM4Ljc3IC0yNS40OCAzMzIuNjQgLTI1LjQ4Wk0zMzIuNjYgLTMyLjA3UTMzNS4wMiAtMzIuMDcgMzM2Ljk2IC0zMi42NVEzMzguOSAtMzMuMjMgMzQwLjMxIC0zNC4zM1EzNDEuNzIgLTM1LjQyIDM0Mi40OCAtMzcuMDFRMzQzLjI0IC0zOC41OSAzNDMuMjQgLTQwLjU2Vi00MS41OVEzNDMuMjQgLTQzLjU2IDM0Mi40OCAtNDUuMTJRMzQxLjcyIC00Ni42OSAzNDAuMzEgLTQ3Ljc3UTMzOC45IC00OC44NiAzMzYuOTYgLTQ5LjQzUTMzNS4wMiAtNDkuOTkgMzMyLjY2IC00OS45OVEzMzAuMzEgLTQ5Ljk5IDMyOC4zNyAtNDkuNDNRMzI2LjQyIC00OC44NiAzMjUuMDEgLTQ3Ljc3UTMyMy42IC00Ni42OSAzMjIuODUgLTQ1LjEyUTMyMi4xIC00My41NiAzMjIuMSAtNDEuNTlWLTQwLjU2UTMyMi4xIC0zOC41OSAzMjIuODUgLTM3LjAxUTMyMy42IC0zNS40MiAzMjUuMDEgLTM0LjMzUTMyNi40MiAtMzMuMjMgMzI4LjM3IC0zMi42NVEzMzAuMzEgLTMyLjA3IDMzMi42NiAtMzIuMDdaTTM3MC4wMyAtMjZWLTU2LjA3SDM4Ni44NFEzOTIuNCAtNTYuMDcgMzk2LjQxIC01NC4zM1E0MDAuNDMgLTUyLjU5IDQwMi41OSAtNDkuMjNRNDA0Ljc0IC00NS44NyA0MDQuNzQgLTQxLjAyUTQwNC43NCAtMzYuMTkgNDAyLjU5IC0zMi44NFE0MDAuNDMgLTI5LjQ4IDM5Ni40MSAtMjcuNzRRMzkyLjQgLTI2IDM4Ni44NCAtMjZaTTM3OC45MyAtMzIuNkgzODYuMzJRMzg4LjQgLTMyLjYgMzkwLjA4IC0zMy4xNFEzOTEuNzcgLTMzLjY5IDM5My4wMSAtMzQuNzFRMzk0LjI0IC0zNS43MyAzOTQuOTEgLTM3LjJRMzk1LjU3IC0zOC42NyAzOTUuNTcgLTQwLjU0Vi00MS41N1EzOTUuNTcgLTQzLjQ1IDM5NC45MSAtNDQuOVEzOTQuMjQgLTQ2LjM2IDM5My4wMSAtNDcuMzhRMzkxLjc3IC00OC40IDM5MC4wOCAtNDguOTNRMzg4LjQgLTQ5LjQ3IDM4Ni4zMiAtNDkuNDdIMzc4LjkzWk00MDkuOTMgLTI2Vi01Ni4wN0g0NDEuMjhWLTQ5LjQ3SDQxOC44NlYtNDQuNDJINDM4LjQ5Vi0zOC4wM0g0MTguODZWLTMyLjZINDQxLjYzVi0yNlpNNDY5LjU4IC0yNlYtNDguOUg0NTYuNTVWLTU2LjA3SDQ5MS41MlYtNDguOUg0NzguNDlWLTI2Wk00OTUuMzggLTI2Vi01Ni4wN0g1MjAuNFE1MjMuNjkgLTU2LjA3IDUyNS44NCAtNTQuNzJRNTI3Ljk5IC01My4zNyA1MjkuMDcgLTUxLjE2UTUzMC4xNSAtNDguOTYgNTMwLjE1IC00Ni4zNlE1MzAuMTUgLTQzLjUgNTI4Ljc5IC00MS4xNlE1MjcuNDQgLTM4LjgyIDUyNC43MiAtMzcuNDZMNTMwLjg3IC0yNkg1MjAuODJMNTE1Ljg0IC0zNkg1MDQuMjhWLTI2Wk01MDQuMjggLTQyLjU4SDUxNy41UTUxOS4xIC00Mi41OCA1MjAuMDYgLTQzLjU1UTUyMS4wMiAtNDQuNTEgNTIxLjAyIC00Ni4xMVE1MjEuMDIgLTQ3LjE4IDUyMC41OSAtNDcuOTRRNTIwLjE1IC00OC42OSA1MTkuMzcgLTQ5LjA4UTUxOC41OSAtNDkuNDcgNTE3LjUgLTQ5LjQ3SDUwNC4yOFpNNTM1LjI0IC0yNlYtNTYuMDdINTY2LjU4Vi00OS40N0g1NDQuMTdWLTQ0LjQySDU2My43OVYtMzguMDNINTQ0LjE3Vi0zMi42SDU2Ni45M1YtMjZaTTU3Mi4wOSAtMjZWLTU2LjA3SDU4MC45OVYtMjZaTTU4Ny41MSAtMjZWLTU2LjA3SDU5NS40N0w2MTEuMDYgLTQyLjA0UTYxMS40NiAtNDEuNyA2MTIuMDggLTQxLjA4UTYxMi43IC00MC40NyA2MTMuMzggLTM5LjgxUTYxNC4wNSAtMzkuMTUgNjE0LjU3IC0zOC42MUg2MTQuOTdRNjE0Ljk1IC0zOS4zOCA2MTQuOTIgLTQwLjU3UTYxNC44OSAtNDEuNzYgNjE0Ljg5IC00Mi42OFYtNTYuMDdINjIzLjMyVi0yNkg2MTUuNDZMNjAwLjI2IC0zOS43M1E1OTkuMjIgLTQwLjY1IDU5OC4wNyAtNDEuNzhRNTk2LjkyIC00Mi45MSA1OTYuMjMgLTQzLjZINTk1Ljg4UTU5NS45IC00MyA1OTUuOTIgLTQxLjc1UTU5NS45NCAtNDAuNDkgNTk1Ljk0IC0zOS4wNFYtMjZaTTYyNi44IC0yNiA2NDEuNTggLTU2LjA3SDY1MS40OEw2NjYuMjYgLTI2SDY1Ni42M0w2NTQuMzUgLTMwLjgySDYzOC4yMkw2MzUuOTcgLTI2Wk02NDEuMiAtMzcuMzRINjUxLjM3TDY0OC42NCAtNDMuNDVRNjQ4LjQ2IC00My44NiA2NDguMTYgLTQ0LjYxUTY0Ny44NSAtNDUuMzYgNjQ3LjUyIC00Ni4yMVE2NDcuMTggLTQ3LjA3IDY0Ni45IC00Ny44UTY0Ni42MiAtNDguNTMgNjQ2LjQ4IC00OC44OUg2NDYuMTZRNjQ1LjgzIC00OC4wOCA2NDUuNDIgLTQ3LjA0UTY0NSAtNDYgNjQ0LjYxIC00NS4wMlE2NDQuMjIgLTQ0LjA0IDY0My45NCAtNDMuNDNaTTY2OS43MyAtMjZWLTU2LjA3SDY4My42Nkw2ODguODIgLTQzLjAzUTY4OS4xNSAtNDIuMjEgNjg5LjU3IC00MC45OVE2ODkuOTkgLTM5Ljc3IDY5MC40MiAtMzguNDhRNjkwLjg0IC0zNy4yIDY5MS4xNiAtMzYuMjFINjkxLjQ3UTY5MS43NyAtMzcuMTIgNjkyLjE4IC0zOC4zNFE2OTIuNiAtMzkuNTUgNjkzLjA0IC00MC44MVE2OTMuNDkgLTQyLjA2IDY5My44NCAtNDIuOTlMNjk4Ljk5IC01Ni4wN0g3MTIuNTRWLTI2SDcwMy42M1YtNDEuNTJRNzAzLjYzIC00Mi40NSA3MDMuNjUgLTQzLjU4UTcwMy42OCAtNDQuNzEgNzAzLjcyIC00NS44MVE3MDMuNzYgLTQ2LjkxIDcwMy43OCAtNDcuNzFINzAzLjQzUTcwMy4xNyAtNDYuODYgNzAyLjc4IC00NS43MlE3MDIuNCAtNDQuNTcgNzAyLjAxIC00My40NVE3MDEuNjMgLTQyLjMzIDcwMS4zIC00MS41Mkw2OTUgLTI2SDY4Ni44NEw2ODAuNTIgLTQxLjUyUTY4MC4wNyAtNDIuNjggNjc5LjY2IC00My44NVE2NzkuMjQgLTQ1LjAzIDY3OC45MiAtNDYuMDVRNjc4LjYgLTQ3LjA3IDY3OC4zOCAtNDcuNzFINjc4LjAzUTY3OC4wNyAtNDcuMDkgNjc4LjA5IC00Ni4wN1E2NzguMTIgLTQ1LjA1IDY3OC4xNCAtNDMuODdRNjc4LjE2IC00Mi43IDY3OC4xNiAtNDEuNTJWLTI2Wk03MTkuMDQgLTI2Vi01Ni4wN0g3NTAuMzlWLTQ5LjQ3SDcyNy45N1YtNDQuNDJINzQ3LjZWLTM4LjAzSDcyNy45N1YtMzIuNkg3NTAuNzRWLTI2Wk03NTUuODkgLTI2Vi01Ni4wN0g3NjMuODVMNzc5LjQ0IC00Mi4wNFE3NzkuODQgLTQxLjcgNzgwLjQ2IC00MS4wOFE3ODEuMDkgLTQwLjQ3IDc4MS43NiAtMzkuODFRNzgyLjQzIC0zOS4xNSA3ODIuOTUgLTM4LjYxSDc4My4zNVE3ODMuMzMgLTM5LjM4IDc4My4zIC00MC41N1E3ODMuMjcgLTQxLjc2IDc4My4yNyAtNDIuNjhWLTU2LjA3SDc5MS43Vi0yNkg3ODMuODRMNzY4LjY0IC0zOS43M1E3NjcuNiAtNDAuNjUgNzY2LjQ1IC00MS43OFE3NjUuMyAtNDIuOTEgNzY0LjYxIC00My42SDc2NC4yNlE3NjQuMjggLTQzIDc2NC4zIC00MS43NVE3NjQuMzIgLTQwLjQ5IDc2NC4zMiAtMzkuMDRWLTI2Wk04MDguNiAtMjZWLTQ4LjlINzk1LjU3Vi01Ni4wN0g4MzAuNTRWLTQ4LjlIODE3LjUxVi0yNlpNODUyLjgyIC0yNS40OFE4NDYuNzcgLTI1LjQ4IDg0Mi4zNCAtMjcuMzNRODM3LjkxIC0yOS4xOCA4MzUuNTEgLTMyLjY1UTgzMy4xMSAtMzYuMTMgODMzLjExIC00MS4wMlE4MzMuMTEgLTQ1Ljk2IDgzNS41MSAtNDkuNDRRODM3LjkxIC01Mi45MiA4NDIuMzQgLTU0Ljc1UTg0Ni43NyAtNTYuNTkgODUyLjgyIC01Ni41OVE4NTguOTUgLTU2LjU5IDg2My4zNiAtNTQuNzVRODY3Ljc4IC01Mi45MiA4NzAuMTcgLTQ5LjQ0UTg3Mi41NyAtNDUuOTYgODcyLjU3IC00MS4wMlE4NzIuNTcgLTM2LjEzIDg3MC4xNyAtMzIuNjVRODY3Ljc4IC0yOS4xOCA4NjMuMzYgLTI3LjMzUTg1OC45NSAtMjUuNDggODUyLjgyIC0yNS40OFpNODUyLjg0IC0zMi4wN1E4NTUuMiAtMzIuMDcgODU3LjE0IC0zMi42NVE4NTkuMDggLTMzLjIzIDg2MC40OSAtMzQuMzNRODYxLjkgLTM1LjQyIDg2Mi42NiAtMzcuMDFRODYzLjQyIC0zOC41OSA4NjMuNDIgLTQwLjU2Vi00MS41OVE4NjMuNDIgLTQzLjU2IDg2Mi42NiAtNDUuMTJRODYxLjkgLTQ2LjY5IDg2MC40OSAtNDcuNzdRODU5LjA4IC00OC44NiA4NTcuMTQgLTQ5LjQzUTg1NS4yIC00OS45OSA4NTIuODQgLTQ5Ljk5UTg1MC40OSAtNDkuOTkgODQ4LjU0IC00OS40M1E4NDYuNiAtNDguODYgODQ1LjE5IC00Ny43N1E4NDMuNzggLTQ2LjY5IDg0My4wMyAtNDUuMTJRODQyLjI4IC00My41NiA4NDIuMjggLTQxLjU5Vi00MC41NlE4NDIuMjggLTM4LjU5IDg0My4wMyAtMzcuMDFRODQzLjc4IC0zNS40MiA4NDUuMTkgLTM0LjMzUTg0Ni42IC0zMy4yMyA4NDguNTQgLTMyLjY1UTg1MC40OSAtMzIuMDcgODUyLjg0IC0zMi4wN1oiLz48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNjQxLjAzIDMxNC41OVE2MzAuNjkgMzE0LjU5IDYyNS41MSAzMTAuMjNRNjIwLjMzIDMwNS44NyA2MjAuMzMgMjk2Ljk3UTYyMC4zMyAyOTEuMTUgNjIzLjAzIDI4Ny4yMlE2MjUuNzIgMjgzLjI5IDYzMC44MiAyODEuMzFRNjM1LjkyIDI3OS4zMyA2NDMuMDggMjc5LjMzUTY0Ny41MSAyNzkuMzMgNjUxLjI5IDI4MC4xMlE2NTUuMDggMjgwLjkyIDY1Ny45MSAyODIuNTFRNjYwLjc1IDI4NC4xIDY2Mi4zMiAyODYuNVE2NjMuODkgMjg4LjkxIDY2My44OSAyOTIuMTNINjU0LjA4UTY1NC4wOCAyOTAuNzUgNjUzLjIyIDI4OS43M1E2NTIuMzcgMjg4LjcgNjUwLjg4IDI4OC4wNlE2NDkuMzkgMjg3LjQzIDY0Ny41IDI4Ny4xMlE2NDUuNjEgMjg2LjgxIDY0My41MSAyODYuODFRNjQwLjUzIDI4Ni44MSA2MzguMTUgMjg3LjRRNjM1Ljc3IDI4Ny45OSA2MzQuMSAyODkuMlE2MzIuNDMgMjkwLjQgNjMxLjU1IDI5Mi4xOVE2MzAuNjggMjkzLjk4IDYzMC42OCAyOTYuMzZWMjk3LjU1UTYzMC42OCAzMDAuOSA2MzIuMDggMzAzLjAxUTYzMy40OCAzMDUuMTIgNjM2LjE2IDMwNi4xMlE2MzguODQgMzA3LjEyIDY0Mi42OCAzMDcuMTJRNjQ2LjE4IDMwNy4xMiA2NDguNzMgMzA2LjQ5UTY1MS4yOSAzMDUuODYgNjUyLjY3IDMwNC42NFE2NTQuMDUgMzAzLjQyIDY1NC4wNSAzMDEuNzRWMzAxLjQ1SDY0Mi4xM1YyOTQuOTdINjYzLjk0VjMxNEg2NTguMDRMNjU3LjA5IDMwOS45MlE2NTUuMTcgMzExLjUxIDY1Mi43MSAzMTIuNTZRNjUwLjI1IDMxMy42MSA2NDcuMzMgMzE0LjFRNjQ0LjQgMzE0LjU5IDY0MS4wMyAzMTQuNTlaTTY3Ny45NSAzMTRWMjc5LjkySDcwNi4zMVE3MTAuMDQgMjc5LjkyIDcxMi40OCAyODEuNDVRNzE0LjkyIDI4Mi45OCA3MTYuMTQgMjg1LjQ4UTcxNy4zNiAyODcuOTggNzE3LjM2IDI5MC45M1E3MTcuMzYgMjk0LjE3IDcxNS44MiAyOTYuODJRNzE0LjI5IDI5OS40NyA3MTEuMjEgMzAxLjAxTDcxOC4xNyAzMTRINzA2Ljc5TDcwMS4xNCAzMDIuNjdINjg4LjA0VjMxNFpNNjg4LjA0IDI5NS4yMUg3MDMuMDJRNzA0Ljg0IDI5NS4yMSA3MDUuOTIgMjk0LjExUTcwNy4wMSAyOTMuMDIgNzA3LjAxIDI5MS4yMVE3MDcuMDEgMjg5Ljk5IDcwNi41MiAyODkuMTRRNzA2LjAzIDI4OC4yOCA3MDUuMTQgMjg3Ljg0UTcwNC4yNSAyODcuNCA3MDMuMDIgMjg3LjRINjg4LjA0Wk03MjYuNzEgMzE0IDc0My40NyAyNzkuOTJINzU0LjY4TDc3MS40NCAzMTRINzYwLjUyTDc1Ny45NCAzMDguNTRINzM5LjY2TDczNy4xMSAzMTRaTTc0My4wNCAzMDEuMTVINzU0LjU3TDc1MS40NiAyOTQuMjJRNzUxLjI3IDI5My43NiA3NTAuOTIgMjkyLjkxUTc1MC41NyAyOTIuMDYgNzUwLjE5IDI5MS4wOVE3NDkuODIgMjkwLjEzIDc0OS41IDI4OS4yOVE3NDkuMTggMjg4LjQ2IDc0OS4wMiAyODguMDZINzQ4LjY2UTc0OC4yOSAyODguOTcgNzQ3LjgxIDI5MC4xNVE3NDcuMzQgMjkxLjM0IDc0Ni45IDI5Mi40NFE3NDYuNDYgMjkzLjU1IDc0Ni4xNCAyOTQuMjVaTTc5NS4yNiAzMTQgNzc4LjgyIDI3OS45Mkg3OTAuMDVMNzk3LjQ5IDI5Ni40OVE3OTcuOTUgMjk3LjQ2IDc5OC41MiAyOTguODdRNzk5LjA4IDMwMC4yOCA3OTkuNjYgMzAxLjcyUTgwMC4yMyAzMDMuMTYgODAwLjYzIDMwNC4yNkg4MDFRODAxLjM3IDMwMy4yNiA4MDEuOTEgMzAxLjg3UTgwMi40NCAzMDAuNDkgODAzLjAzIDI5OS4wNlE4MDMuNjMgMjk3LjY0IDgwNC4xNCAyOTYuNTFMODExLjY2IDI3OS45Mkg4MjIuMzlMODA1Ljk0IDMxNFpNODI5Ljc2IDMxNCA4NDYuNTEgMjc5LjkySDg1Ny43M0w4NzQuNDggMzE0SDg2My41N0w4NjAuOTkgMzA4LjU0SDg0Mi43MUw4NDAuMTYgMzE0Wk04NDYuMDggMzAxLjE1SDg1Ny42MUw4NTQuNTEgMjk0LjIyUTg1NC4zMiAyOTMuNzYgODUzLjk3IDI5Mi45MVE4NTMuNjIgMjkyLjA2IDg1My4yNCAyOTEuMDlRODUyLjg2IDI5MC4xMyA4NTIuNTUgMjg5LjI5UTg1Mi4yMyAyODguNDYgODUyLjA3IDI4OC4wNkg4NTEuN1E4NTEuMzQgMjg4Ljk3IDg1MC44NiAyOTAuMTVRODUwLjM5IDI5MS4zNCA4NDkuOTUgMjkyLjQ0UTg0OS41MSAyOTMuNTUgODQ5LjE5IDI5NC4yNVpNODk3LjIyIDMxNFYyODguMDVIODgyLjQ1VjI3OS45Mkg5MjIuMDhWMjg4LjA1SDkwNy4zMVYzMTRaTTkzMC4wMyAzMTQgOTQ2Ljc4IDI3OS45Mkg5NThMOTc0Ljc1IDMxNEg5NjMuODRMOTYxLjI2IDMwOC41NEg5NDIuOThMOTQwLjQzIDMxNFpNOTQ2LjM1IDMwMS4xNUg5NTcuODhMOTU0Ljc4IDI5NC4yMlE5NTQuNTkgMjkzLjc2IDk1NC4yNCAyOTIuOTFROTUzLjg5IDI5Mi4wNiA5NTMuNTEgMjkxLjA5UTk1My4xNCAyOTAuMTMgOTUyLjgyIDI4OS4yOVE5NTIuNSAyODguNDYgOTUyLjM0IDI4OC4wNkg5NTEuOTdROTUxLjYxIDI4OC45NyA5NTEuMTMgMjkwLjE1UTk1MC42NiAyOTEuMzQgOTUwLjIyIDI5Mi40NFE5NDkuNzggMjkzLjU1IDk0OS40NiAyOTQuMjVaTTk4NS43IDMxNFYyNzkuOTJIOTk1Ljc5VjMxNFpNOTg1LjM0IDI3Ni45MSA5OTEuMDcgMjcwLjMySDEwMDEuMThWMjcwLjU3TDk5Mi43OSAyNzYuOTFaIi8+PC9zdmc+Cg==" alt="Centro de Treinamento Raça Fight Gravataí">
+      <p class="capa__olho">Versão · 16 de outubro de 2026</p>
+      <h1 class="capa__titulo">A equipe<br>no <em>tatame</em></h1>
+      <p class="capa__sub">O que o professor e a recepção recebem no app: a aula da hora, a chamada em poucos toques, a graduação de cada aluno, o cronômetro de rounds e a aula experimental do balcão até a matrícula.</p>
+      <div class="capa__ficha">
+        <div><b>Para</b>Raça Fight Gravataí</div>
+        <div><b>O quê</b>O app da equipe (professor e recepção)</div>
+        <div><b>Junto com</b>o Admin (o seu) e o app do aluno</div>
+        <div><b>Situação</b>construído, com dados de exemplo; falta o servidor</div>
+      </div>
+      <p class="capa__nota">Logo provisório, redesenhado a partir das fotos da academia: entra o arquivo original assim que chegar.</p>
+    </div>
+    <div class="capa__foto" style="background-image:url('_capturas/fotos/capa.jpg');background-position:40% 50%"></div></section>
+<section class="pg" id="resumo">
+    <header class="pg__topo"><p class="olho">Em uma página</p><h1>O app de quem dá a aula e de quem abre a porta</h1><p class="lide">O professor e a recepção usam o mesmo app, cada um com as abas do seu trabalho. Tudo o que fazem aparece no seu Admin, e nada do que é dinheiro aparece para eles.</p></header>
+    <div class="pg__corpo"><div class="duas" style="grid-template-columns:1fr 1.05fr;gap:26px">
+      <div class="pilha">
+        <div class="bloco "><h3>O que muda no dia da equipe</h3><ul class="lista lista--16"><li><b>A aula da hora abre sozinha.</b> O professor abre o app e já vê a próxima aula, quantos alunos avisaram que chegaram e quem vem para a aula experimental.</li><li><b>A chamada leva poucos toques.</b> O aluno marca "Estou na aula" no celular; o professor só confirma. Funciona sem sinal no tatame.</li><li><b>A graduação deixa de ficar na memória.</b> O app conta aulas e tempo de cada aluno e mostra quem já pode ser avaliado. Quem gradua continua sendo o professor.</li><li><b>O cronômetro de rounds e o aviso para a turma</b> ficam no mesmo app.</li><li><b>A recepção cuida da aula experimental</b> do primeiro "oi" no WhatsApp até a matrícula que você faz no Admin.</li></ul></div>
+        <div class="caixa caixa--vermelha"><b class="rot">Sobre os exemplos deste documento</b>As telas marcadas "Tela do app" são o app construído, rodando com uma academia de exemplo: nomes inventados, horários da grade real. As poucas marcadas "Esboço da tela" ainda não existem no app. O servidor com os dados reais ainda não existe.</div>
+      </div>
+      <div class="bloco bloco--cinza"><h3>O que tem aqui</h3>
+        <ol class="sumario sumario--2">
+          <li><b>Os três apps</b><span class="p">3</span></li><li><b>Como a equipe entra</b><span class="p">4</span></li><li><b>Hoje, a aula da hora</b><span class="p">5</span></li><li><b>A chamada</b><span class="p">6</span></li><li><b>A presença segura</b><span class="p">7</span></li><li><b>Turmas e a grade</b><span class="p">8</span></li><li><b>Cancelar ou passar aula</b><span class="p">9</span></li><li><b>Alunos</b><span class="p">10</span></li><li><b>A ficha do aluno</b><span class="p">11</span></li><li><b>A régua de graduação</b><span class="p">12</span></li><li><b>Quem atingiu os mínimos</b><span class="p">13</span></li><li><b>O exame</b><span class="p">14</span></li><li><b>Cronômetro de rounds</b><span class="p">15</span></li><li><b>Aviso para a turma</b><span class="p">16</span></li><li><b>Técnicas em vídeo</b><span class="p">17</span></li><li><b>Eventos e atletas</b><span class="p">18</span></li><li><b>O perfil do professor</b><span class="p">19</span></li><li><b>Recepção: o balcão</b><span class="p">20</span></li><li><b>Aula experimental</b><span class="p">21</span></li><li><b>Interessado e Kids</b><span class="p">22</span></li><li><b>Privacidade</b><span class="p">23</span></li><li><b>O que decidir</b><span class="p">24</span></li><li><b>Próximos passos</b><span class="p">25</span></li>
+        </ol>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span></span><span>2 / 25</span></footer>
+  </section>
+<section class="pg" id="tres-apps">
+    <header class="pg__topo"><p class="olho">Como tudo se liga</p><h1>Três apps, e o lugar do professor</h1><p class="lide">O aluno, a equipe e você usam apps diferentes, ligados ao mesmo banco de dados. O "Estou na aula" do aluno aparece na chamada do professor; a matrícula que você faz no Admin libera o aluno para a aula.</p></header>
+    <div class="pg__corpo">
+    <div class="apps">
+      <div class="app"><div class="app__topo"><span class="app__icone" style="background:var(--preto)"><svg class="ic" style="color:#fff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span><div><div class="app__nome">Aluno</div><div class="app__quem">no celular · o aluno e o responsável pelo Kids</div></div></div>
+        <ul class="lista lista--16"><li>Horários, turmas e avisos</li><li>O "Estou na aula" e as próprias presenças</li><li>A própria faixa e o histórico</li><li>Técnicas, eventos e professores</li></ul></div>
+      <div class="app app--admin"><div class="app__topo"><span class="app__icone" style="background:var(--vermelho)"><svg class="ic" style="color:#fff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span><div><div class="app__nome">Professor e recepção</div><div class="app__quem">no celular · a equipe · <b style="color:var(--vermelho)">este documento</b></div></div></div>
+        <ul class="lista lista--16"><li>A aula do dia e a chamada</li><li>A presença e a graduação dos alunos dele</li><li>Cronômetro de rounds e aviso para a turma</li><li>A recepção: o balcão e a aula experimental</li></ul></div>
+      <div class="app"><div class="app__topo"><span class="app__icone" style="background:var(--preto)"><svg class="ic" style="color:#fff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><div><div class="app__nome">Admin (o seu)</div><div class="app__quem">no computador e no celular · só o dono</div></div></div>
+        <ul class="lista lista--16"><li>Alunos, matrículas e mensalidades</li><li>Turmas, horários e a régua de graduação</li><li>Quanto entra e quanto sai</li><li>Equipe, relatórios e o histórico</li></ul></div>
+    </div>
+    <div class="fios"><svg viewBox="0 0 1000 34" preserveAspectRatio="none"><path d="M166 0 V16 H834 V0 M500 16 V34" fill="none" stroke="#CFCFCF" stroke-width="2"/></svg></div>
+    <div class="banco" style="width:86%;justify-content:flex-start;gap:18px;padding:12px 20px">
+      <span style="color:#FF6B6E;flex:none"><svg class="ic" style="width:30px;height:30px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 11h11a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg></span>
+      <div><b>O professor nunca vê valores</b><div class="texto16" style="color:#E4E4E4">Nem mensalidade, nem plano, nem quem está atrasado, nem salário de ninguém. O aluno em atraso treina normalmente e o professor não fica sabendo: se a academia quiser bloquear, quem decide é você, no Admin. A regra fica dentro do banco de dados, não só na tela.</div></div></div>
+    <p class="legenda" style="text-align:center;margin-top:10px">Se você também dá aula, entra no app da equipe como professor das suas turmas, e no Admin como dono.</p></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span></span><span>3 / 25</span></footer>
+  </section>
+<section class="pg" id="entrar">
+    <header class="pg__topo"><p class="olho">Parte 1 · Entrar</p><h1>Como o professor e a recepção entram no app</h1><p class="lide">É o mesmo app do aluno, pela porta "Sou da equipe". Você passa um código da equipe (ou manda um convite), a pessoa diz o papel, e você confirma no Admin. Sem a sua confirmação, ninguém entra como equipe.</p></header>
+    <div class="pg__corpo"><div class="fones" style="justify-content:space-between">
+      <figure class="fone fone--p fone--app" data-tela="boas-vindas"><img src="../app-capturas/boas-vindas.png" alt="Tela boas-vindas"><figcaption><b>Tela do app.</b> <span class="passo-n">1</span>Abre o app e toca em "Sou da equipe".</figcaption></figure>
+      <figure class="fone fone--p fone--app" data-tela="equipe-entrar"><img src="../app-capturas/equipe-entrar.png" alt="Tela equipe-entrar"><figcaption><b>Tela do app.</b> <span class="passo-n">2</span>Cria a conta (Apple, Google ou e-mail) ou usa o convite.</figcaption></figure>
+      <figure class="fone fone--p fone--app" data-tela="equipe-convite"><img src="../app-capturas/equipe-convite.png" alt="Tela equipe-convite"><figcaption><b>Tela do app.</b> <span class="passo-n">3</span>Digita o código da equipe, diz o papel e espera você confirmar no Admin.</figcaption></figure>
+      <figure class="fone fone--p fone--app" data-tela="dono"><img src="../app-capturas/dono.png" alt="Tela dono"><figcaption><b>Tela do app.</b> <span class="passo-n">4</span>O dono que abre este app é mandado para o Admin.</figcaption></figure>
+    </div>
+    <div class="caixa" style="margin-top:10px"><b>O código da equipe é diferente do código dos alunos.</b> "Dono" não aparece como opção: o dono entra pelo Admin. Quando alguém sai da equipe, você tira o acesso no Admin e ele some na hora.</div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span></span><span>4 / 25</span></footer>
+  </section>
+<section class="pg" id="hoje">
+    <header class="pg__topo"><p class="olho">Parte 2 · Hoje</p><h1>Hoje: a aula da hora em primeiro lugar</h1><p class="lide">A primeira coisa que o professor vê ao abrir o app é a resposta para "qual é a minha aula agora?". Exemplo: quinta-feira, 20:05, o Prof. Diego (nome inventado) tem Muay Thai Kids às 19h e Muay Thai às 20h, como na grade real.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:220px 1fr;gap:34px">
+      <figure class="fone  fone--app" data-tela="hoje"><img src="../app-capturas/hoje.png" alt="Tela hoje"><figcaption><b>Tela do app.</b> A aula das 20h em destaque: 4 check-ins e 1 aula experimental.</figcaption></figure>
+      <div class="pilha" style="padding-top:4px">
+        <div class="bloco "><h3>O que você vê</h3><ul class="lista lista--16"><li>A próxima aula em destaque: hora, turma, quantos alunos já marcaram "Estou na aula" e quantos vêm para a aula experimental</li><li>As outras aulas dele no dia, com a chamada já fechada ou ainda aberta</li><li>As aulas em que ele substitui outro professor</li><li>Atalhos: Cronômetro, Eventos e Aviso para uma turma</li></ul></div><div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista lista--16"><li>Abrir a chamada da aula com um toque</li><li>Abrir o cronômetro de rounds para comandar o treino</li><li>Mandar um aviso para uma das turmas dele</li><li>Ver e criar eventos (exame, aulão, campeonato)</li></ul></div>
+        <div class="caixa caixa--preta"><b class="rot" style="color:#FF8A8C">Nada de dinheiro nesta tela</b>Nenhum número desta tela é valor. O professor vê presença, faixa e aula; mensalidade e atraso ficam só no seu Admin.</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span></span><span>5 / 25</span></footer>
+  </section>
+<section class="pg" id="chamada">
+    <header class="pg__topo"><p class="olho">Parte 3 · Presença</p><h1>A chamada: o aluno avisa, o professor confirma</h1><p class="lide">O aluno toca em "Estou na aula" quando chega. A presença fica esperando o professor. Na chamada, o professor confirma todos de uma vez, marca quem veio sem celular e fecha.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:auto 1fr;gap:26px">
+      <div class="fones" style="gap:14px">
+        <figure class="fone fone--p fone--app" data-tela="aluno-inicio"><img src="../app-capturas/aluno-inicio.png" alt="Tela aluno-inicio"><figcaption><b>Tela do app.</b> <span class="passo-n">1</span>No app do aluno: "Estou na aula" aparece de 30 min antes a 30 min depois do início.</figcaption></figure>
+        <figure class="fone fone--p fone--app" data-tela="aluno-checkin-feito"><img src="../app-capturas/aluno-checkin-feito.png" alt="Tela aluno-checkin-feito"><figcaption><b>Tela do app.</b> <span class="passo-n">2</span>Marcado. Fica pendente até o professor fechar a chamada.</figcaption></figure>
+        <figure class="fone fone--p fone--app" data-tela="chamada"><img src="../app-capturas/chamada.png" alt="Tela chamada"><figcaption><b>Tela do app.</b> <span class="passo-n">3</span>No app do professor: os três grupos da chamada.</figcaption></figure>
+      </div>
+      <div class="pilha">
+        <div class="bloco "><h3>Na chamada, o professor</h3><ul class="lista lista--16"><li><b>Confirma</b> quem marcou "Estou na aula" (já vem marcado)</li><li><b>Marca presente</b> quem é da turma e veio sem celular, e as crianças, que não têm app</li><li><b>Desmarca</b> quem marcou de casa e não veio</li><li><b>Recebe a aula experimental</b>: vê o nome de quem vem conhecer a academia</li><li><b>Põe um aluno de outra turma</b> que veio treinar hoje (botão "Aluno de outra turma")</li><li><b>Fecha a chamada</b>: a presença fica confirmada</li></ul></div>
+        <div class="caixa caixa--vermelha"><b class="rot">Turma de duas modalidades</b>No Jiu-Jitsu / Luta Livre de segunda e quarta, o aluno escolhe ao marcar em qual das duas a aula conta. Trocar a modalidade na chamada ainda não está no app.</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span></span><span>6 / 25</span></footer>
+  </section>
+<section class="pg" id="presenca">
+    <header class="pg__topo"><p class="olho">Parte 3 · Presença</p><h1>A presença segura</h1><p class="lide">Três regras protegem o aluno e o professor: a chamada esquecida não apaga ninguém, o tatame sem sinal não atrapalha, e o que foi errado se corrige com motivo, sem apagar.</p></header>
+    <div class="pg__corpo">
+    <p class="texto16" style="margin-bottom:10px"><b>Uma noite de quinta, na aula de Muay Thai das 20h:</b></p>
+    <div class="linha-tempo">
+      <div class="marco "><div class="marco__hora">19:30</div><h4>Abre o aviso</h4><p>O aluno já pode tocar em "Estou na aula".</p></div><div class="marco marco--v"><div class="marco__hora">20:00</div><h4>Começa a aula</h4><p>O professor abre a chamada e confirma.</p></div><div class="marco "><div class="marco__hora">20:30</div><h4>Fecha o aviso</h4><p>Depois disso, só o professor ou a recepção marcam.</p></div><div class="marco "><div class="marco__hora">23:00</div><h4>Lembrete</h4><p>Se a chamada ficou aberta, o professor recebe um aviso (se ligou).</p></div><div class="marco marco--v"><div class="marco__hora">23:59</div><h4>Confirma sozinha</h4><p>O que ficou pendente vira presença, com a marca "sem chamada".</p></div><div class="marco "><div class="marco__hora">7 dias</div><h4>Dá para corrigir</h4><p>O professor retira ou lança uma presença, sempre com motivo.</p></div>
+    </div>
+    <div class="tres" style="margin-top:22px">
+      <div class="caixa caixa--preta"><b class="rot" style="color:#FF8A8C">Sem sinal no tatame</b><span class="texto16">O "Estou na aula" e a chamada ficam guardados no celular e sobem sozinhos quando o sinal volta. A tela avisa: "Chamada guardada · sobe quando o sinal voltar". Nada se perde.</span></div>
+      <div class="caixa"><b class="rot">Por que confirmar sozinha às 23:59</b><span class="texto16">O aluno não pode perder a presença, e a graduação dele, porque o professor esqueceu de fechar a chamada.</span></div>
+      <div class="caixa"><b class="rot">O que não bloqueia</b><span class="texto16">Mensalidade atrasada não impede o "Estou na aula". Só a matrícula encerrada tira o direito. Se quiser bloquear por atraso, é decisão sua, no Admin.</span></div>
+    </div>
+    <p class="legenda" style="margin-top:10px">A janela de 30 min antes a 30 min depois é a proposta (pergunta L7); a academia muda no Admin. Aula cancelada não conta como falta para ninguém.</p></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span></span><span>7 / 25</span></footer>
+  </section>
+<section class="pg" id="turmas">
+    <header class="pg__topo"><p class="olho">Parte 4 · Turmas</p><h1>As turmas do professor, na grade real</h1><p class="lide">A grade abaixo é a que a Raça Fight publica. A turma (horário, público, professor) é montada por você no Admin; o professor vê as dele, com quantos alunos tem e quantos vêm por aula.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 220px;gap:30px">
+      <div class="pilha">
+        <table class="grade-real"><thead><tr><th>Turma</th><th class="e">Professor (exemplo)</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th></tr></thead>
+          <tbody><tr><td><b>Muay Thai — manhã</b></td><td class="e">Diego</td><td class="h">09h</td><td class=""></td><td class="h">09h</td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td><b>Muay Thai — noite 1</b></td><td class="e">Diego</td><td class="h">20h</td><td class="h">20h</td><td class="h">20h</td><td class="h">20h</td><td class=""></td><td class=""></td></tr><tr><td><b>Muay Thai — noite 2</b></td><td class="e">Diego</td><td class="h">21h</td><td class=""></td><td class="h">21h</td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td><b>Boxe — manhã</b></td><td class="e">Marcelo</td><td class=""></td><td class="h">09h</td><td class=""></td><td class="h">09h</td><td class=""></td><td class=""></td></tr><tr><td><b>Boxe — noite</b></td><td class="e">Marcelo</td><td class=""></td><td class="h">21h</td><td class=""></td><td class="h">21h</td><td class=""></td><td class=""></td></tr><tr><td><b>Jiu-Jitsu / Luta Livre</b></td><td class="e">Vitor</td><td class="h">20h</td><td class=""></td><td class="h">20h</td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td><b>MMA</b></td><td class="e">Sandro</td><td class=""></td><td class="h">20h</td><td class=""></td><td class="h">20h</td><td class=""></td><td class=""></td></tr><tr><td><b>Muay Thai Kids</b></td><td class="e">Diego</td><td class=""></td><td class="h">19h</td><td class=""></td><td class="h">19h</td><td class=""></td><td class=""></td></tr><tr><td><b>Jiu-Jitsu Kids</b></td><td class="e">Vitor</td><td class="h">19h</td><td class=""></td><td class="h">19h</td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td><b>OPEN (treino livre)</b></td><td class="e">escala do dono</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class="h">20h–22h</td><td class=""></td></tr><tr><td><b>Treino de competição</b></td><td class="e">só atletas</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class="h">10h–12h</td></tr></tbody></table>
+        <div class="duas" style="gap:16px">
+          <div class="caixa"><b class="rot">Aula aberta e competição</b>Na OPEN de sexta, qualquer aluno matriculado marca presença e diz o que vai treinar. No sábado, só quem o professor marcou como atleta.</div>
+          <div class="caixa caixa--atencao"><b class="rot">A decidir com a academia</b>As aulas das 20h e das 21h de Muay Thai são duas turmas, ou uma em dois horários? Quanto dura cada aula? Os exemplos usam duas turmas e 60 min (L1).</div>
+        </div>
+      </div>
+      <figure class="fone  fone--app" data-tela="turmas"><img src="../app-capturas/turmas.png" alt="Tela turmas"><figcaption><b>Tela do app.</b> As turmas do Prof. Diego, com os alunos e a média por aula (4 semanas). O exemplo tem poucos alunos por turma.</figcaption></figure>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>8 / 25</span></footer>
+  </section>
+<section class="pg" id="turma">
+    <header class="pg__topo"><p class="olho">Parte 4 · Turmas</p><h1>Cancelar uma aula ou passar a um substituto</h1><p class="lide">Dentro da turma, o professor vê os próximos horários e os alunos. Se não puder dar a aula, cancela ou passa para outro professor da modalidade, e os alunos ficam sabendo na hora.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:auto 1fr;gap:30px">
+      <div class="fones">
+        <figure class="fone  fone--app" data-tela="turma"><img src="../app-capturas/turma.png" alt="Tela turma"><figcaption><b>Tela do app.</b> A turma por dentro: as próximas aulas, com Passar e Cancelar.</figcaption></figure>
+        <figure class="fone  fone--app" data-tela="turma-cancelar"><img src="../app-capturas/turma-cancelar.png" alt="Tela turma-cancelar"><figcaption><b>Tela do app.</b> Cancelar: o motivo e o aviso que os alunos recebem.</figcaption></figure>
+      </div>
+      <div class="pilha">
+        <div class="bloco "><h3>O que você vê</h3><ul class="lista lista--16"><li>Os próximos horários da turma e quem dá cada um</li><li>Os alunos, com a faixa e a última presença</li><li>O aviso mais recente da turma</li></ul></div><div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista lista--16"><li>Cancelar uma aula antes do horário, com o motivo</li><li>Passar a aula a outro professor da mesma modalidade: ele vê a aula no "Hoje" dele e faz a chamada</li><li>Escrever um aviso só para essa turma</li></ul></div>
+        <div class="caixa"><b class="rot">O que só você muda, no Admin</b>Horário, público (adulto, Kids), professor responsável e vagas. Mudança de horário vale da semana seguinte em diante. Feriado: você cancela todas as aulas da data de uma vez (pergunta L16: o professor também cria turma? Recomendação: não).</div>
+        <div class="caixa caixa--vermelha"><b class="rot">Aviso automático</b>"Aula de Muay Thai Kids de quinta, 19:00, cancelada." Quem já tinha marcado presença não perde nada.</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>9 / 25</span></footer>
+  </section>
+<section class="pg" id="alunos">
+    <header class="pg__topo"><p class="olho">Parte 5 · Alunos</p><h1>Os alunos de cada professor</h1><p class="lide">O professor vê os alunos das modalidades dele, com a faixa e a última presença. Os filtros respondem às perguntas do dia a dia: quem sumiu, quem é novo, quem pode ser avaliado.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:220px 1fr;gap:34px">
+      <figure class="fone  fone--app" data-tela="alunos"><img src="../app-capturas/alunos.png" alt="Tela alunos"><figcaption><b>Tela do app.</b> A lista do Prof. Diego, filtro "Todos".</figcaption></figure>
+      <div class="pilha">
+        <table class="tabela-16"><thead><tr><th style="width:34%">Filtro</th><th>Quem aparece</th></tr></thead><tbody>
+          <tr><td><b>Todos</b></td><td>Os alunos das modalidades do professor</td></tr>
+          <tr><td><b>Sumidos</b></td><td>Sem presença há 14 dias ou mais (o aluno novo, há 7 dias): é hora de chamar de volta</td></tr>
+          <tr><td><b>Novos</b></td><td>Entraram nos últimos 90 dias</td></tr>
+          <tr><td><b>Kids</b></td><td>As crianças das turmas Kids, só com o primeiro nome</td></tr>
+          <tr><td><b>Atletas</b></td><td>Quem o professor marcou como equipe de competição</td></tr>
+          <tr><td><b>Atingiram os mínimos</b></td><td>Quem já cumpre tempo e aulas para ser avaliado</td></tr>
+        </tbody></table>
+        <div class="caixa"><b class="rot">A recepção</b>Vê todos os alunos da academia, com os mesmos filtros e mais "Vínculo pendente" (quem pediu para entrar pelo código e ainda não foi confirmado). A recepção não registra graduação.</div>
+        <p class="legenda">"Kruang amarelo" é o exemplo do cordão que aparece no Instagram; a régua de Muay Thai ainda depende da academia (L3).</p>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>10 / 25</span></footer>
+  </section>
+<section class="pg" id="ficha">
+    <header class="pg__topo"><p class="olho">Parte 5 · Alunos</p><h1>A ficha do aluno: o que o professor vê, e o que não vê</h1><p class="lide">A ficha mostra o aluno na luta: modalidades, faixa, presenças e turmas. Tudo o que é dinheiro, contato pessoal e saúde fica de fora, a não ser o que o próprio aluno autorizou.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:220px 1fr;gap:34px">
+      <figure class="fone  fone--app" data-tela="ficha"><img src="../app-capturas/ficha.png" alt="Tela ficha"><figcaption><b>Tela do app.</b> A ficha da Camila, vista pelo Prof. Diego.</figcaption></figure>
+      <div class="duas" style="gap:18px;align-items:start">
+        <div class="pilha">
+          <div class="bloco "><h3>O professor vê</h3><ul class="lista lista--16"><li>Nome e desde quando treina</li><li>Modalidades, faixa e graus em cada uma, e o histórico de graduações</li><li>A última aula e quantas aulas nos últimos 30 dias</li><li>As turmas em que o aluno está</li><li>Peso e restrições só se o aluno autorizou</li></ul></div>
+          <div class="bloco "><h3>O professor consegue</h3><ul class="lista lista--16"><li>Registrar uma graduação ou a faixa que o aluno trouxe de outra academia</li><li>Anular uma graduação errada, com o motivo (nada se apaga)</li><li>Ligar e desligar "atleta" na modalidade dele</li></ul></div>
+        </div>
+        <div class="nao"><h3>O professor NÃO vê</h3>
+          <ul class="lista lista--16"><li>Mensalidade, plano, preço ou desconto</li><li>Se o aluno está em atraso, nem quanto deve</li><li>O telefone do responsável pela criança, na chamada</li><li>A saúde do aluno (alergia, lesão, peso), se ele não autorizou</li><li>A frequência de um aluno para outro aluno: colega não vê colega</li></ul>
+          <p class="pequeno" style="margin-top:8px;color:#CFCFCF">Se o aluno tem uma modalidade fora da matrícula, a chamada só avisa "Sem esta modalidade na matrícula". Quem resolve é você, no Admin.</p>
+        </div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>11 / 25</span></footer>
+  </section>
+<section class="pg" id="regua">
+    <header class="pg__topo"><p class="olho">Parte 6 · Graduação</p><h1>Uma régua para cada modalidade, montada pela academia</h1><p class="lide">Cada modalidade gradua de um jeito, e algumas não graduam. Por isso a régua não fica presa no app: é uma lista que a academia monta no Admin, e o professor consulta.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 220px;gap:30px">
+      <div class="pilha">
+        <table class="tabela-16 regua-tab"><thead><tr><th style="width:24%">Modalidade</th><th style="width:32%">A régua no app</th><th>De onde vem</th></tr></thead><tbody>
+          <tr><td><b>Jiu-Jitsu</b></td><td><svg class="faixa-d" width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><rect x=".5" y=".5" width="39" height="9" rx="2" fill="#F5F5F5" stroke="#9A9A9A"/><rect x="25" y="1" width="10" height="8" fill="#1C1C1C"/></svg> pronta</td><td>A régua oficial da IBJJF (junho de 2026): faixas, graus, idade e tempo mínimos</td></tr>
+          <tr><td><b>Jiu-Jitsu Kids</b></td><td><svg class="faixa-d" width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><rect x=".5" y=".5" width="39" height="9" rx="2" fill="#8E8E8E" stroke="rgba(0,0,0,.25)"/><rect x="1" y="3.5" width="38" height="3" fill="#F5F5F5"/><rect x="25" y="1" width="10" height="8" fill="#1C1C1C"/></svg> pronta, falta o grau</td><td>IBJJF, de 4 a 15 anos. Falta escolher o modelo de graus (L5)</td></tr>
+          <tr class="destaque"><td><b>Muay Thai</b></td><td><svg class="faixa-d" width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><rect x=".5" y=".5" width="39" height="9" rx="2" fill="#F2C230" stroke="#9A9A9A"/><rect x="25" y="1" width="10" height="8" fill="#F2C230"/></svg> vazia</td><td>Não há régua única no Brasil. O professor da academia passa as cores do cordão em ordem (L3)</td></tr>
+          <tr class="destaque"><td><b>Luta Livre</b></td><td><svg class="faixa-d" width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><rect x=".5" y=".5" width="39" height="9" rx="2" fill="#F5F5F5" stroke="#9A9A9A"/><rect x="25" y="1" width="10" height="8" fill="#1C1C1C"/></svg> modelo a confirmar</td><td>Começa com branca, amarela, laranja, azul, roxa, marrom e preta, e o professor corrige (L4)</td></tr>
+          <tr><td><b>Boxe e MMA</b></td><td>sem faixa</td><td>Não têm graduação. O boxe pode ter níveis da academia, se o professor já usa (L6)</td></tr>
+        </tbody></table>
+        <div class="duas" style="gap:16px">
+          <div class="caixa"><b class="rot">Dois tipos de mínimo</b><b>Da federação</b>: idade e tempo na faixa (a IBJJF exige; a academia não diminui). <b>Da academia</b>: número de aulas, se vocês usam (L19). A tela mostra qual é qual.</div>
+          <div class="caixa"><b class="rot">O tempo conta do registro no app</b>Serve para a academia se organizar. Não substitui o registro na federação, e a tela diz isso.</div>
+        </div>
+      </div>
+      <figure class="fone  fone--app" data-tela="regua"><img src="../app-capturas/regua.png" alt="Tela regua"><figcaption><b>Tela do app.</b> As réguas, na aba Graduação: só o Jiu-Jitsu adulto (IBJJF) está pronto; as outras esperam a academia, no Admin.</figcaption></figure>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span></span><span>12 / 25</span></footer>
+  </section>
+<section class="pg" id="minimos">
+    <header class="pg__topo"><p class="olho">Parte 6 · Graduação</p><h1>Quem atingiu os mínimos. Quem gradua é o professor.</h1><p class="lide">A aba Graduação junta os alunos que já cumprem tempo, aulas e idade para o próximo grau ou faixa. O app nunca gradua sozinho: ele só mostra a lista, e o professor decide e registra.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:auto 1fr;gap:30px">
+      <div class="fones">
+        <figure class="fone  fone--app" data-tela="graduacao"><img src="../app-capturas/graduacao.png" alt="Tela graduacao"><figcaption><b>Tela do app.</b> A aba Graduação do Prof. Márcio (Jiu-Jitsu): dois alunos atingiram os mínimos. No Muay Thai, a régua ainda está a confirmar.</figcaption></figure>
+        <figure class="fone  fone--app" data-tela="registrar"><img src="../app-capturas/registrar.png" alt="Tela registrar"><figcaption><b>Tela do app.</b> Registrar a graduação do Lucas: a faixa e o grau, com a data de hoje.</figcaption></figure>
+      </div>
+      <div class="pilha">
+        <div class="bloco "><h3>O que você vê</h3><ul class="lista lista--16"><li>Por modalidade, quem cumpre todos os mínimos, de quem cumpre há mais tempo para o mais recente</li><li>As crianças que passam para a régua adulta este ano (aos 16, na IBJJF)</li><li>Os exames marcados e os já feitos</li><li>A régua da modalidade, a um toque</li></ul></div><div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista lista--16"><li>Registrar um grau ou uma faixa, com a data e quem graduou</li><li>Registrar a faixa que o aluno trouxe de outra academia</li><li>Anular um registro errado, com o motivo (fica riscado no histórico)</li></ul></div>
+        <div class="caixa caixa--vermelha"><b class="rot">Do lado do aluno</b>Ele recebe um aviso e uma comemoração na tela, com a faixa desenhada. Ele vê as aulas e o tempo desde a última graduação, mas não vê "pronto para graduar": a decisão continua sendo do professor (pergunta L20).</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>13 / 25</span></footer>
+  </section>
+<section class="pg" id="exame">
+    <header class="pg__topo"><p class="olho">Parte 6 · Graduação</p><h1>O exame de graduação, num dia só</h1><p class="lide">Para graduar vários alunos juntos, o professor marca um exame: os candidatos já vêm da lista de quem atingiu os mínimos. No dia, ele registra o resultado de cada um e fecha.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:220px 1fr;gap:34px">
+      <figure class="fone  fone--app" data-tela="exame"><img src="../app-capturas/exame.png" alt="Tela exame"><figcaption><b>Tela do app.</b> O exame de 25/10: o resultado de cada candidato e "Fechar o exame".</figcaption></figure>
+      <div class="pilha">
+        <ol class="passos-v">
+          <li><b>Marcar.</b> Modalidade, data, hora, local e quem avalia. Pode ser um mestre de fora.</li>
+          <li><b>Escolher os candidatos.</b> Os que atingiram os mínimos já vêm marcados; dá para tirar e pôr à mão.</li>
+          <li><b>Avisar.</b> Os candidatos recebem o aviso, e o exame aparece nos eventos deles.</li>
+          <li class="v"><b>No dia, o resultado.</b> Para cada um: aprovado (para qual grau ou faixa), não aprovado ou faltou.</li>
+          <li class="v"><b>Fechar.</b> Um toque cria as graduações de todos os aprovados de uma vez.</li>
+        </ol>
+        <div class="duas" style="gap:16px">
+          <div class="caixa"><b class="rot">Cada um vê só o seu</b>O resultado aparece para o aluno (e o responsável, no Kids) e para a equipe. Nunca numa lista para a turma.</div>
+          <div class="caixa caixa--atencao"><b class="rot">Taxa do exame</b>Se houver, é assunto do Admin. O app do aluno só diz "Taxa: veja com a recepção". O professor não lida com dinheiro.</div>
+        </div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>14 / 25</span></footer>
+  </section>
+<section class="pg" id="cronometro">
+    <header class="pg__topo"><p class="olho">Parte 7 · Cronômetro</p><h1>O cronômetro de rounds, para comandar a aula</h1><p class="lide">O professor escolhe o formato, aperta "Iniciar" e larga o celular: o gongo marca o começo e o fim de cada round, e uma batida avisa os 10 segundos finais. Com o celular na caixa de som, a turma inteira ouve.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:220px 1fr;gap:34px">
+      <figure class="fone  fone--app" data-tela="cronometro"><img src="../app-capturas/cronometro.png" alt="Tela cronometro"><figcaption><b>Tela do app.</b> Round 2 de 3, Muay Thai, em tela cheia.</figcaption></figure>
+      <div class="pilha">
+        <table class="tabela-16"><thead><tr><th>Formato pronto</th><th class="n">Round</th><th class="n">Intervalo</th><th class="n">Rounds</th><th>De onde vem</th></tr></thead><tbody>
+          <tr class="destaque"><td><b>Boxe</b></td><td class="n">3 min</td><td class="n">1 min</td><td class="n">3</td><td>regra olímpica (World Boxing)</td></tr>
+          <tr class="destaque"><td><b>Muay Thai</b></td><td class="n">3 min</td><td class="n">1 min</td><td class="n">3</td><td>regra amadora (IFMA)</td></tr>
+          <tr class="destaque"><td><b>MMA</b></td><td class="n">5 min</td><td class="n">1 min</td><td class="n">3</td><td>regras unificadas do MMA</td></tr>
+          <tr><td><b>Rola de Jiu-Jitsu</b></td><td class="n">5 min</td><td class="n">1 min</td><td class="n">6</td><td>prática de academia</td></tr>
+          <tr><td><b>Saco</b></td><td class="n">2 min</td><td class="n">30 s</td><td class="n">6</td><td>prática de academia</td></tr>
+        </tbody></table>
+        <div class="tres">
+          <div class="caixa"><b class="rot">Muda na hora</b>Os números de cada formato se ajustam antes de começar: 8 rounds de saco, por exemplo.</div>
+          <div class="caixa"><b class="rot">Para ler de longe</b>Tela cheia, escura, só a fase, o tempo e "Round 2 de 3". A tela não apaga enquanto roda.</div>
+          <div class="caixa"><b class="rot">Toca no silencioso</b>Com o app aberto, o gongo toca mesmo com o celular no silencioso. Com o app fechado, vale a notificação.</div>
+        </div>
+        <p class="legenda">O aluno tem o mesmo cronômetro para treinar em casa. Salvar os tempos próprios do professor e mostrar aos alunos fica para depois da primeira versão (L21).</p>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span></span><span>15 / 25</span></footer>
+  </section>
+<section class="pg" id="aviso">
+    <header class="pg__topo"><p class="olho">Parte 8 · Avisos</p><h1>Aviso só para a turma</h1><p class="lide">"Hoje é sparring, tragam protetor bucal." O professor escreve para os alunos de uma turma dele (e os responsáveis, no Kids), sem incomodar a academia inteira.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:220px 1fr;gap:34px">
+      <figure class="fone  " data-tela="aviso">
+    <div class="cel">
+      <div class="cel__status"><span>19:52</span><i></i><s><u style="height:5px"></u><u style="height:8px"></u><u style="height:11px"></u></s></div>
+      <div class="cel__topo"><span class="volta"><svg class="ic ic--p" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span><div><div class="cel__sobre">Aviso para a turma</div><div class="cel__titulo">Novo aviso</div></div></div>
+      <div class="cel__corpo">
+        <div class="c-campo"><span>Para</span><i>Muay Thai — noite 1</i></div>
+        <div class="c-campo"><span>Mensagem</span><i style="min-height:84px">Hoje é sparring: tragam protetor bucal e caneleira.</i></div>
+        <div class="c-sec" style="text-align:right">52 de 160</div>
+        <div class="c-cartao"><span class="c-sec">Vai para os 31 alunos da turma Muay Thai — noite 1.</span></div>
+        <div class="c-bt">Enviar</div></div>
+      <nav class="cel__abas"><span class="cel__aba"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7v5l3 2"/></svg></span><span class="cel__aba cel__aba--on"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7.5h15l-3 11H3z"/><path d="M11 7.5l-3 11"/><path d="M16 7.5l-3 11"/><path d="M4.5 13h15"/></svg>Turmas</span><span class="cel__aba"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.5" cy="8" r="3.75"/><path d="M2.75 21a6.75 6.75 0 0 1 13.5 0"/><path d="M15.5 4.5a3.75 3.75 0 0 1 0 7"/><path d="M18.5 15a6.75 6.75 0 0 1 2.75 6"/></svg></span><span class="cel__aba"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8h7"/><path d="M14.5 8h7"/><path d="M2.5 12h7"/><path d="M14.5 12h7"/><path d="M11 6h2a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1 -1.5 1.5h-2a1.5 1.5 0 0 1 -1.5 -1.5v-5A1.5 1.5 0 0 1 11 6z"/><path d="M10.5 14l-2.5 7"/><path d="M13.5 14l2.5 7"/></svg></span><span class="cel__aba"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></span></nav>
+      
+    </div><figcaption><b>Esboço da tela.</b> Novo aviso. No app construído, o botão do professor ainda volta ao Hoje: defeito anotado para corrigir.</figcaption></figure>
+      <div class="pilha">
+        <div class="duas" style="gap:18px;align-items:start">
+          <div class="bloco "><h3>As regras do aviso</h3><ul class="lista lista--16"><li>Até 160 letras, sem link, sem resposta</li><li>Não cita aluno pelo nome nem fala de saúde</li><li>Uma notificação por turma por dia; os outros avisos do dia aparecem só dentro do app</li><li>Respeita o silêncio das 22h às 7h</li></ul></div>
+          <div class="pilha">
+            <p class="pequeno ter">Como chega no celular do aluno:</p>
+            <div class="notif"><i></i><span><b>Raça Fight · Muay Thai — noite 1</b>Hoje é sparring: tragam protetor bucal e caneleira.</span></div>
+            <div class="notif"><i></i><span><b>Raça Fight</b>Aula de Muay Thai Kids de quinta, 19:00, cancelada.</span></div>
+            <p class="legenda">O cancelamento de aula avisa sozinho, mesmo que a turma já tenha recebido outro aviso no dia.</p>
+          </div>
+        </div>
+        <div class="caixa caixa--atencao"><b class="rot">A decidir</b>O aviso para a academia inteira continua com você e a recepção. O professor também pode escrever para todos? Recomendação: não, só para as turmas dele (L31).</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>16 / 25</span></footer>
+  </section>
+<section class="pg" id="tecnicas">
+    <header class="pg__topo"><p class="olho">Parte 9 · Técnicas</p><h1>Técnicas em vídeo, para rever em casa</h1><p class="lide">Os vídeos que a academia já posta, como "Golpes básicos" e "Golpes de curta distância", viram uma biblioteca por modalidade dentro do app. O professor publica; o aluno revê o que viu na aula.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:auto 1fr;gap:30px">
+      <div class="fones">
+        <figure class="fone fone--p fone--app" data-tela="tecnicas"><img src="../app-capturas/tecnicas.png" alt="Tela tecnicas"><figcaption><b>Tela do app.</b> As técnicas, por modalidade.</figcaption></figure>
+        <figure class="fone fone--p " data-tela="tecnica-nova">
+    <div class="cel">
+      <div class="cel__status"><span>19:52</span><i></i><s><u style="height:5px"></u><u style="height:8px"></u><u style="height:11px"></u></s></div>
+      <div class="cel__topo"><span class="volta"><svg class="ic ic--p" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span><div><div class="cel__sobre">Muay Thai</div><div class="cel__titulo">Nova técnica</div></div></div>
+      <div class="cel__corpo">
+          <div class="c-campo"><span>Título</span><i>Defesa do chute baixo</i></div>
+          <div class="c-campo"><span>Nível</span><i>Intermediário</i></div>
+          <div class="c-campo"><span>Link do vídeo</span><i>instagram.com/p/…</i></div>
+          <div class="c-bts"><span class="c-bt c-bt--sec c-bt--p">Rascunho</span><span class="c-bt c-bt--p">Publicar</span></div></div>
+      <nav class="cel__abas"><span class="cel__aba"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7v5l3 2"/></svg></span><span class="cel__aba cel__aba--on"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7.5h15l-3 11H3z"/><path d="M11 7.5l-3 11"/><path d="M16 7.5l-3 11"/><path d="M4.5 13h15"/></svg>Turmas</span><span class="cel__aba"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.5" cy="8" r="3.75"/><path d="M2.75 21a6.75 6.75 0 0 1 13.5 0"/><path d="M15.5 4.5a3.75 3.75 0 0 1 0 7"/><path d="M18.5 15a6.75 6.75 0 0 1 2.75 6"/></svg></span><span class="cel__aba"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8h7"/><path d="M14.5 8h7"/><path d="M2.5 12h7"/><path d="M14.5 12h7"/><path d="M11 6h2a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1 -1.5 1.5h-2a1.5 1.5 0 0 1 -1.5 -1.5v-5A1.5 1.5 0 0 1 11 6z"/><path d="M10.5 14l-2.5 7"/><path d="M13.5 14l2.5 7"/></svg></span><span class="cel__aba"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></span></nav>
+      
+    </div><figcaption><b>Esboço da tela.</b> Publicar uma técnica nova: ainda não existe no app.</figcaption></figure>
+      </div>
+      <div class="pilha">
+        <div class="bloco "><h3>O que você vê</h3><ul class="lista lista--16"><li>As técnicas da modalidade dele, publicadas e em rascunho</li></ul></div><div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista lista--16"><li>Publicar com título, nível e o link do vídeo</li><li>Guardar como rascunho e publicar depois</li><li>Arquivar o que saiu de uso, sem apagar</li></ul></div>
+        <div class="caixa"><b class="rot">Todo aluno vê todas as modalidades</b>Quem faz Muay Thai pode ver o Jiu-Jitsu: a biblioteca também mostra a academia. As técnicas marcadas "abertas" aparecem até para quem ainda não é aluno.</div>
+        <div class="caixa caixa--atencao"><b class="rot">A decidir: onde fica o vídeo</b>Recomendação para a primeira versão: colar o link do Instagram ou do YouTube, onde os vídeos já estão. Sem custo de armazenamento (L30).</div>
+        <p class="legenda">Sem curtida, sem comentário e sem contagem de visualização. Vídeo com criança só com a autorização do responsável.</p>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>17 / 25</span></footer>
+  </section>
+<section class="pg" id="eventos">
+    <header class="pg__topo"><p class="olho">Parte 10 · Eventos</p><h1>Eventos, lutas e os atletas da casa</h1><p class="lide">Exame, aulão, seminário, campeonato e a noite de lutas. O professor cadastra o evento e a luta do atleta dele ("[atleta] vs [adversário], 60 kg, semi-pró") e, depois, o resultado.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:auto 1fr;gap:30px">
+      <div class="fones">
+        <figure class="fone  fone--app" data-tela="eventos"><img src="../app-capturas/eventos.png" alt="Tela eventos"><figcaption><b>Tela do app.</b> Os eventos, como a equipe vê.</figcaption></figure>
+        <figure class="fone  fone--app" data-tela="evento"><img src="../app-capturas/evento.png" alt="Tela evento"><figcaption><b>Tela do app.</b> A noite de lutas: a luta do atleta e quem vai.</figcaption></figure>
+      </div>
+      <div class="pilha">
+        <div class="bloco "><h3>O que você vê</h3><ul class="lista lista--16"><li>Os próximos eventos e os já feitos</li><li>Quantos e quais alunos marcaram "Vou participar" (só a equipe vê)</li><li>As lutas marcadas dos atletas dele</li></ul></div><div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista lista--16"><li>Criar evento: tipo, data, local e, se for campeonato, o link da inscrição</li><li>Cadastrar a luta: atleta, adversário, categoria e nível</li><li>Registrar o resultado e como foi</li></ul></div>
+        <div class="caixa caixa--preta"><b class="rot" style="color:#FF8A8C">A área "Atletas" é só de quem aceitou</b>O atleta escolhe se aparece, com foto, faixa e lutas, para os outros alunos. A chave nasce desligada. Quem não ligou tem as lutas visíveis só para a equipe. Criança só com a autorização do responsável.</div>
+        <p class="legenda">Sem ranking e sem placar entre alunos: o resultado é a história do atleta. A cobrança de inscrição, se houver, é do Admin. Os nomes do exemplo são inventados.</p>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>18 / 25</span></footer>
+  </section>
+<section class="pg" id="perfil">
+    <header class="pg__topo"><p class="olho">Parte 11 · Perfil</p><h1>O perfil profissional do professor</h1><p class="lide">É o que os alunos e quem ainda não é aluno veem na área "Professores": quem é, o que ensina e a graduação em cada modalidade. Sem preço e sem nota: professor não se avalia com estrelas.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:auto 1fr;gap:30px">
+      <div class="fones">
+        <figure class="fone fone--p fone--app" data-tela="perfil"><img src="../app-capturas/perfil.png" alt="Tela perfil"><figcaption><b>Tela do app.</b> O perfil, como o professor edita.</figcaption></figure>
+        <figure class="fone fone--p fone--app" data-tela="avisos-equipe"><img src="../app-capturas/avisos-equipe.png" alt="Tela avisos-equipe"><figcaption><b>Tela do app.</b> Os avisos que a equipe escolhe receber.</figcaption></figure>
+      </div>
+      <div class="pilha">
+        <div class="bloco "><h3>O que você vê</h3><ul class="lista lista--16"><li>A própria foto, nome, modalidades e a graduação em cada uma</li><li>As turmas dele, que aparecem no perfil</li><li>Os avisos da equipe que escolheu receber</li></ul></div><div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista lista--16"><li>Editar foto, "Sobre mim" e formação</li><li>Esconder o perfil dos alunos</li><li>Ligar e desligar cada aviso</li><li>Trocar para a visão de aluno, se também treina</li></ul></div>
+        <div class="caixa"><b class="rot">"Informado pelo professor"</b>A graduação do professor é ele quem informa. Você confirma no Admin; até lá, a tela diz "informado pelo professor". O registro profissional (CREF) é opcional, até a academia decidir (L18).</div>
+        <div class="caixa caixa--preta"><b class="rot" style="color:#FF8A8C">Sem preço, sem nota</b>O perfil não mostra quanto o professor cobra, quanto ganha nem uma nota dada por aluno. Também não conta quantos alunos ele tem.</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>19 / 25</span></footer>
+  </section>
+<section class="pg" id="recepcao">
+    <header class="pg__topo"><p class="olho">Parte 12 · Recepção</p><h1>A recepção: todas as aulas do dia, e o balcão</h1><p class="lide">A recepção tem quatro abas: Hoje, Alunos, Experimentais e Perfil. No "Hoje", vê todas as aulas da academia, e marca a presença de quem chega pelo balcão e não usa o app.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:auto 1fr;gap:30px">
+      <div class="fones">
+        <figure class="fone  fone--app" data-tela="recepcao-hoje"><img src="../app-capturas/recepcao-hoje.png" alt="Tela recepcao-hoje"><figcaption><b>Tela do app.</b> Todas as aulas de quinta, de todos os professores.</figcaption></figure>
+        <figure class="fone  fone--app" data-tela="recepcao-balcao"><img src="../app-capturas/recepcao-balcao.png" alt="Tela recepcao-balcao"><figcaption><b>Tela do app.</b> A chamada do MMA aberta pela recepção: "Aluno de outra turma" põe quem chegou sem o app.</figcaption></figure>
+      </div>
+      <div class="pilha">
+        <div class="bloco "><h3>O que você vê</h3><ul class="lista lista--16"><li>Todas as aulas do dia, de todos os professores</li><li>Quantos marcaram presença e quantos experimentais vêm em cada uma</li><li>Todos os alunos, com o filtro "Vínculo pendente"</li></ul></div><div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista lista--16"><li>Marcar a presença de quem chega pelo balcão</li><li>Fazer a chamada, se o professor pedir</li><li>Cancelar uma aula ou passar a um substituto</li><li>Confirmar de uma vez quem pediu para entrar como aluno</li><li>Escrever o aviso para a academia inteira</li></ul></div>
+        <div class="caixa"><b class="rot">A recepção não gradua</b>Ela vê a faixa dos alunos, mas não registra graduação: isso é do professor da modalidade (e de você).</div>
+        <div class="caixa caixa--atencao"><b class="rot">A recepção e o dinheiro</b>Se a recepção lança pagamento, e o que ela vê do financeiro, se decide no Admin (pergunta A1 do PDF do Admin). Neste app, nada de valor aparece.</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>20 / 25</span></footer>
+  </section>
+<section class="pg" id="experimental">
+    <header class="pg__topo"><p class="olho">Parte 12 · Recepção</p><h1>A aula experimental, do WhatsApp até a matrícula</h1><p class="lide">Quem quer conhecer toca em "Agendar aula experimental grátis" no app, escolhe a modalidade e cai no WhatsApp da academia com a mensagem pronta. Dali em diante, a recepção acompanha cada um.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:220px 1fr;gap:34px">
+      <figure class="fone  fone--app" data-tela="experimentais"><img src="../app-capturas/experimentais.png" alt="Tela experimentais"><figcaption><b>Tela do app.</b> A lista de aulas experimentais da recepção.</figcaption></figure>
+      <div class="pilha">
+        <ol class="passos-v">
+          <li><b>O interessado</b> toca no botão do app e manda a mensagem pronta: "Olá! Quero agendar uma aula experimental de Muay Thai na Raça Fight." O app não guarda nada nesse toque.</li>
+          <li><b>A recepção registra</b> no app: nome, WhatsApp, modalidade, a aula e, se veio por indicação, o código do "Traga um amiguinho".</li>
+          <li class="v"><b>O professor vê</b> o nome na chamada, com o selo "Experimental". Marcou presente, a recepção vê "veio". O professor não vê o WhatsApp de ninguém.</li>
+          <li><b>Faltou?</b> A recepção marca e pode remarcar para outra aula.</li>
+          <li class="v"><b>Gostou?</b> A recepção toca em "Matricular" e a matrícula acontece no Admin, onde se escolhe o plano. O convite do app vai para o WhatsApp ou o e-mail do novo aluno.</li>
+        </ol>
+        <div class="duas" style="gap:16px">
+          <div class="caixa"><b class="rot">Uma grátis por modalidade</b>Se o mesmo WhatsApp já fez uma experimental de Muay Thai, a tela avisa. Quem decide é a recepção (proposta L24).</div>
+          <div class="caixa"><b class="rot">Os números ficam no Admin</b>Quantas experimentais no mês, quantas vieram e quantas viraram matrícula: você vê no funil do Admin.</div>
+        </div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>21 / 25</span></footer>
+  </section>
+<section class="pg" id="kids">
+    <header class="pg__topo"><p class="olho">Parte 12 · Recepção</p><h1>O cadastro do interessado e da criança, com o responsável</h1><p class="lide">Para uma criança, quem marca a aula experimental e quem entra no app é o responsável. A criança não tem conta: ela aparece dentro da conta do pai, da mãe ou de quem cuida dela.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:auto 1fr;gap:30px">
+      <div class="fones">
+        <figure class="fone  fone--app" data-tela="experimental-nova"><img src="../app-capturas/experimental-nova.png" alt="Tela experimental-nova"><figcaption><b>Tela do app.</b> Nova experimental para uma criança, com o aviso de que esse WhatsApp já fez uma.</figcaption></figure>
+        <figure class="fone  fone--app" data-tela="aluno-kids"><img src="../app-capturas/aluno-kids.png" alt="Tela aluno-kids"><figcaption><b>Tela do app.</b> O Pedro, do Kids, visto pela recepção: só o primeiro nome, a faixa e a presença.</figcaption></figure>
+      </div>
+      <div class="pilha">
+        <ol class="passos-v passos-v--13" style="font-size:16px">
+          <li style="font-size:16px"><b>Na experimental</b>, a recepção anota o primeiro nome e a idade da criança, o nome e o WhatsApp do responsável e, se houver, o código de indicação.</li>
+          <li style="font-size:16px"><b>Na matrícula</b> (Admin), a criança entra como dependente na conta do responsável, que é quem paga.</li>
+          <li style="font-size:16px"><b>No app</b>, o responsável vê as presenças, a faixa e os avisos da turma, e pode marcar "está na aula" pela criança.</li>
+        </ol>
+        <div class="caixa caixa--preta"><b class="rot" style="color:#FF8A8C">Autorização de imagem: nasce desligada</b><span class="texto16">Sem ela, nenhuma foto da criança aparece no app, nem em Atletas, nem em eventos, nem em vídeo de técnica. O responsável liga e desliga quando quiser. O termo de imagem das redes sociais da academia é outro, em papel (L28).</span></div>
+        <div class="duas" style="gap:16px">
+          <div class="caixa"><b class="rot">Saúde da criança</b>Alergia, asma, restrição: o responsável preenche se quiser, e a equipe só vê se ele autorizar.</div>
+          <div class="caixa caixa--atencao"><b class="rot">A decidir</b>A idade das turmas Kids (L14). E se o adolescente de 16 e 17 anos tem conta própria (L27).</div>
+        </div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span class="exemplo">Nomes inventados · horários da grade real da academia</span><span>22 / 25</span></footer>
+  </section>
+<section class="pg" id="privacidade">
+    <header class="pg__topo"><p class="olho">Privacidade e LGPD</p><h1>O que fica com quem</h1><p class="lide">Cada pessoa vê só o que precisa. A regra fica dentro do banco de dados: mesmo que alguém tente abrir pelo caminho errado, o banco não entrega. Dado de criança tem cuidado extra, como manda a lei.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 78mm;height:auto;gap:22px">
+      <table class="matriz"><thead><tr><th style="width:24%"></th><th>Aluno</th><th>Responsável</th><th>Professor</th><th>Recepção</th><th>Dono</th><th>Outros alunos</th></tr></thead>
+        <tbody><tr><td><b>Presença</b></td><td>as dele</td><td>da criança</td><td>das aulas dele</td><td><span class="sim">sim</span></td><td><span class="sim">sim</span></td><td><span class="naov">não</span></td></tr><tr><td><b>Faixa e graduação</b></td><td>as dele</td><td>da criança</td><td>das modalidades dele</td><td><span class="sim">sim</span></td><td><span class="sim">sim</span></td><td>só em Atletas, se aceitou</td></tr><tr><td><b>Mensalidade, plano e atraso</b></td><td>a decidir (A2)</td><td>a decidir (A2)</td><td><span class="naov">não</span></td><td>a decidir (A1)</td><td><span class="sim">sim</span></td><td><span class="naov">não</span></td></tr><tr><td><b>Telefone e e-mail</b></td><td>os dele</td><td>os dele</td><td><span class="naov">não</span></td><td><span class="sim">sim</span></td><td><span class="sim">sim</span></td><td><span class="naov">não</span></td></tr><tr><td><b>Saúde e peso</b></td><td>os dele</td><td>da criança</td><td>se autorizou</td><td>se autorizou</td><td>se autorizou</td><td><span class="naov">não</span></td></tr><tr><td><b>Foto da criança</b></td><td>—</td><td>decide</td><td>se autorizou</td><td>se autorizou</td><td>se autorizou</td><td>se autorizou</td></tr><tr><td><b>WhatsApp do interessado</b></td><td>—</td><td>—</td><td><span class="naov">não</span></td><td><span class="sim">sim</span></td><td><span class="sim">sim</span></td><td><span class="naov">não</span></td></tr><tr><td><b>Resultado de exame</b></td><td>o dele</td><td>da criança</td><td><span class="sim">sim</span></td><td><span class="sim">sim</span></td><td><span class="sim">sim</span></td><td><span class="naov">não</span></td></tr></tbody></table>
+      <div class="pilha">
+        <div class="caixa caixa--preta"><b class="rot" style="color:#FF8A8C">Dado de criança</b>A criança não tem conta; o responsável responde por ela. Coleta-se só o necessário para a aula. O que pede autorização (imagem, saúde) pede a do responsável, separada e em destaque (LGPD, art. 14).</div>
+        <div class="caixa"><b class="rot">Presença diz onde a pessoa está</b>Por isso nunca vai em notificação com nome, nem para colegas. Na tela bloqueada, os avisos da equipe não mostram nome de aluno.</div>
+        <div class="caixa"><b class="rot">Quem não virou aluno</b>O cadastro do interessado é apagado 180 dias depois da última aula experimental (proposta L23).</div>
+        <div class="caixa"><b class="rot">Nada some</b>Presença e graduação não se apagam: anulam-se com motivo, e fica registrado quem fez.</div>
+      </div>
+    </div>
+    <p class="legenda" style="margin-top:8px">A1 e A2 são perguntas do PDF do Admin: se a recepção lança pagamento e se o aluno vê a própria mensalidade. "Se autorizou": só com a chave ligada pelo aluno ou, na criança, pelo responsável.</p></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span></span><span>23 / 25</span></footer>
+  </section>
+<section class="pg" id="decidir">
+    <header class="pg__topo"><p class="olho">O que decidir</p><h1>Seis respostas do tatame que destravam a construção</h1><p class="lide">Sem estas respostas, a graduação e a grade não podem ser montadas do jeito da Raça Fight. A maioria é para o professor de cada modalidade responder, e cabe numa conversa.</p></header>
+    <div class="pg__corpo"><div class="perguntas">
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">L3</span>Qual é a ordem das cores do cordão do Muay Thai? Tem graus, tempo e número de aulas para cada? Vocês dizem kruang ou prajied? O Kids tem régua própria?</div><p class="pergunta__r"><b>Sugestão:</b> uma foto do quadro da academia, ou a lista escrita pelo professor de Muay Thai. O app nasce com a régua vazia, para preencher.</p></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">L4</span>A Luta Livre de vocês é a Esportiva, sem kimono? Qual é a ordem das faixas?</div><p class="pergunta__r"><b>Sugestão:</b> começar com branca, amarela, laranja, azul, roxa, marrom e preta, e o professor corrige.</p></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">L5</span>No Jiu-Jitsu Kids, os graus são de três em três meses (3 por faixa), de quatro em quatro (2 por faixa) ou todo mês (11 por faixa)?</div><p class="pergunta__r"><b>Sugestão:</b> de quatro em quatro meses, 2 graus por faixa: é o mais simples de explicar aos pais.</p></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">L19</span>Há um número mínimo de aulas para cada grau e cada faixa, em cada modalidade?</div><p class="pergunta__r"><b>Sugestão:</b> se não houver, a lista "atingiram os mínimos" mostra todos, de quem tem mais aulas desde a última graduação para quem tem menos.</p></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">L1</span>O Muay Thai das 20h e o das 21h são turmas diferentes, ou a mesma turma em dois horários? Quanto dura cada aula?</div><p class="pergunta__r"><b>Sugestão:</b> duas turmas (noite 1 e noite 2), de 60 minutos, até a resposta.</p></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">L14</span>De que idade a que idade são as turmas Kids de Muay Thai e de Jiu-Jitsu?</div><p class="pergunta__r"><b>Sugestão:</b> perguntar ao professor de cada uma. A régua Kids da IBJJF vai de 4 a 15 anos.</p></div>
+    </div>
+    <div class="caixa" style="margin-top:10px"><b class="rot">Outras, sem pressa</b>A janela do "Estou na aula" (L7) · a OPEN conta para a graduação? (L10) · o professor vê o telefone do responsável? (L29) · termo de responsabilidade na experimental, com advogado (L25) · os professores e atletas reais aceitam aparecer com nome e foto? (L34)</div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span></span><span>24 / 25</span></footer>
+  </section>
+<section class="pg" id="passos">
+    <header class="pg__topo"><p class="olho">Próximos passos</p><h1>Do sim até a equipe no app</h1><p class="lide">O Admin vem primeiro; o app da equipe e o do aluno vêm depois, ligados ao mesmo banco. O prazo de cada etapa se combina com o Alex quando as respostas chegarem.</p></header>
+    <div class="pg__corpo"><div class="passos">
+      <div class="passo passo--agora"><div class="passo__n">1</div><h4>Vocês respondem</h4><p>As seis perguntas da página anterior, com o professor de cada modalidade.</p><p class="quem">Academia</p></div><div class="passo "><div class="passo__n">2</div><h4>A régua montada</h4><p>Muay Thai, Luta Livre e os graus do Kids entram no Admin, do jeito da academia.</p><p class="quem">Professores e Alex</p></div><div class="passo "><div class="passo__n">3</div><h4>Servidor no ar</h4><p>O app construído (as telas deste documento) passa a gravar no banco de verdade, junto com o Admin.</p><p class="quem">Alex</p></div><div class="passo "><div class="passo__n">4</div><h4>Teste no tatame</h4><p>Uma turma usa a chamada por duas semanas, inclusive sem sinal, antes de abrir para todos.</p><p class="quem">Academia e Alex</p></div><div class="passo "><div class="passo__n">5</div><h4>Equipe no app</h4><p>Cada professor e a recepção entram com o código da equipe e você confirma.</p><p class="quem">Todos</p></div>
+    </div>
+    <div class="duas" style="margin-top:22px;grid-template-columns:1fr 92mm;gap:20px;align-items:stretch">
+      <div class="pilha">
+        <div class="bloco "><h3>O que já está pronto</h3><ul class="lista lista--16"><li>As regras de turma, presença, graduação, cronômetro, eventos, aula experimental e Kids, escritas</li><li>O app da equipe construído: Hoje, chamada, turmas, alunos, graduação, cronômetro, eventos e recepção, com dados de exemplo</li><li>Falta: o servidor, publicar técnica, trocar a modalidade na chamada e o aviso da turma pelo professor</li></ul></div>
+        <div class="caixa caixa--vermelha"><b class="rot">O pedido de hoje</b>Uma conversa de meia hora com o professor de Muay Thai e o de Jiu-Jitsu e Luta Livre responde quase tudo da página anterior. Com isso, a próxima versão deste documento já mostra a régua de vocês.</div>
+      </div>
+      <div style="border-radius:12px;background:#000 50% 40% / cover no-repeat url('_capturas/fotos/luva.jpg');min-height:250px"></div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Professor e recepção · versão de 16/10/2026</span><span></span><span>25 / 25</span></footer>
+  </section>
+</body></html>

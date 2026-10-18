@@ -1,0 +1,38 @@
+{
+  "claro": {
+    "principal/corpo": 3.45,
+    "secundario/corpo": 1.84,
+    "principal/secundario": 1.87,
+    "principal/ladrilho": 4.52,
+    "principal/superficie": 5.21,
+    "principal/fundo": 4.87,
+    "corpo/ladrilho": 1.31,
+    "corpo/superficie": 1.51,
+    "corpo/fundo": 1.41,
+    "contorno/ladrilho": 2.23,
+    "contorno/superficie": 2.57,
+    "contorno/fundo": 2.4
+  },
+  "escuro": {
+    "principal/corpo": 3.46,
+    "secundario/corpo": 1.87,
+    "principal/secundario": 1.84,
+    "principal/ladrilho": 4.89,
+    "principal/superficie": 6.1,
+    "principal/fundo": 6.79,
+    "principal/superficieElevada": 5.47,
+    "corpo/ladrilho": 1.42,
+    "corpo/superficie": 1.76,
+    "corpo/fundo": 1.96,
+    "corpo/superficieElevada": 1.58,
+    "contorno/ladrilho": 2.54,
+    "contorno/superficie": 3.16,
+    "contorno/fundo": 3.52,
+    "contorno/superficieElevada": 2.84
+  },
+  "pedido-original": {
+    "#E5484D/#9AA3A7": 1.52,
+    "#E5484D/#FFFFFF": 3.91,
+    "#9AA3A7/#FFFFFF": 2.57
+  }
+}

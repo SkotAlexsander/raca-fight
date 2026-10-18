@@ -1,0 +1,16 @@
+# P02 — Organização e arquitetura do código (→ `03-arquitetura/` e `app/`)
+
+Leia `00-prompts/P00-CONTEXTO.md` e `CLAUDE.md`. Português do Brasil em tudo, inclusive nomes de pasta, arquivo, tipo e função no código. Nunca resolva um **[decidir]**: modele de um jeito que as duas opções caibam (ex.: `academiaId` em tudo, mesmo que a v1 tenha uma academia só).
+
+## Parte 1 — `03-arquitetura/`
+
+1. `00-STACK.md` — a escolha de stack para app de telefone (Android + iOS) com justificativa. Proposta de partida a confirmar: **Expo (React Native) + TypeScript** no app; backend com banco Postgres, autenticação e tempo real (ex.: Supabase) — compare com 1 ou 2 alternativas e diga o que faria mudar. Registre a decisão também em `docs/decisoes.md` (acrescente, não reescreva).
+2. `01-MODELO-DE-DADOS.md` — entidades e relações: Academia, Usuario, Papel/Vinculo (um usuário pode ser aluno numa academia e funcionário na mesma), PerfilCorporal (opcional, histórico de medições), Objetivo, Exercicio (biblioteca), Treino (modelo pronto ou do aluno), DiaDeTreino, ExercicioDoTreino, Serie, TreinoRealizado (execução), AssinaturaPlus, PlanoDeDieta, Refeicao, ItemDeRefeicao, Conversa/Mensagem (se chat próprio — marque [decidir]). Para cada: campos, tipos, unidades inteiras (gramas, milímetros, segundos), quem pode ler e escrever (regras de acesso por papel, pensando em RLS).
+3. `02-ESTRUTURA-DO-CODIGO.md` — a árvore de pastas do `app/` explicada pasta por pasta, e as camadas: `dominio/` (TypeScript puro, sem React, testável com `node:test`), `dados/` (acesso ao backend, única fronteira), `telas/` separadas por visão (`aluno/`, `academia/`) com `compartilhado/`, `componentes/`, `tema/`, `navegacao/`. Regra: se dá para fazer em TypeScript puro, fica no domínio.
+4. `03-DECISOES-TECNICAS.md` — navegação por papel (como o app decide a visão ao entrar), estado offline (o aluno treina sem sinal na academia — o que precisa funcionar offline e como sincroniza), notificações, pagamento do Plus (loja vs. Pix/cartão — marque [decidir]), segurança de dado de saúde (LGPD: o que nunca sai do servidor, o que nunca vai para log), testes (domínio com `node:test`, telas com o que a stack escolhida oferece), como rodar.
+
+## Parte 2 — `app/` (esqueleto, sem instalar nada)
+
+Crie a estrutura real de pastas e os arquivos de partida, **sem rodar `npm install` nem `create-expo-app`**: `package.json` com os scripts e dependências que a stack escolhida pede (versões reais e estáveis que você conheça), `tsconfig.json`, `app.json` (Expo), `.gitignore`, `LEIA-ME.md` do app (como instalar e rodar). Em `dominio/`, escreva de verdade os **tipos** do modelo de dados (`tipos.ts`), as **unidades** (`unidades.ts`: gramas↔kg, mm↔cm/m, segundos↔mm:ss, com teste ao lado em `*.test.ts` usando `node:test` e `node:assert/strict`) e a **estrutura de treino** (`treino.ts`: criar treino vazio, adicionar dia, adicionar exercício, adicionar série, calcular volume e duração estimada — com teste). As demais pastas recebem um `LEIA-ME.md` de uma ou duas linhas dizendo o que vai ali. Rode os testes do domínio com `node --test` e confirme que passam (Node 24 roda `.ts` direto; não use `enum`, *parameter properties* nem `import` sem `.ts`).
+
+Entregue no relatório final: a árvore criada, o que ficou decidido, o que ficou [decidir], e o resultado dos testes.

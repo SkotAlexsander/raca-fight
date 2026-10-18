@@ -1,0 +1,158 @@
+<section class="parte" id="arquitetura">
+  <p class="parte__olho">Parte 10</p>
+  <h1 class="parte__titulo">Como é construído</h1>
+  <p class="parte__lide">A parte técnica em linguagem de gente. Cada escolha tem um motivo, uma alternativa que perdeu e o que faria mudar de ideia. Tudo está registrado em <code>docs/decisoes.md</code>.</p>
+
+  <h2>Com o que é feito</h2>
+  <div class="camadas">
+    <div class="camada camada--ui"><b>O app no celular</b><span><strong>Expo / React Native</strong> com TypeScript: um código só vira o app de Android e o de iPhone. Permite gerar a versão de iPhone sem ter um Mac e corrigir texto e tela sem esperar a revisão da loja.</span></div>
+    <div class="camada camada--nucleo"><b>As regras</b><span>Treino, unidades, alimentação, Plus: escritas em TypeScript puro, sem depender de tela nem de internet. São a parte mais importante e a mais fácil de testar. Hoje já existem as regras de treino e de unidades, com testes automáticos passando.</span></div>
+    <div class="camada camada--ponte"><b>A ponte</b><span>Uma única pasta conversa com o servidor e guarda a cópia local no celular. Se o servidor mudar um dia, muda uma pasta.</span></div>
+    <div class="camada camada--banco"><b>O servidor</b><span><strong>Supabase</strong>: banco de dados Postgres, login (e-mail, Google, Apple), mensagens em tempo real e arquivos. É um serviço pronto: ninguém precisa operar servidor na primeira versão.</span></div>
+  </div>
+  <table class="tabela-compacta">
+    <thead><tr><th>Alternativa</th><th>Por que perdeu</th><th>O que faria voltar a ela</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Flutter</td><td>Língua nova (Dart) e precisa de Mac para o iPhone</td><td>App com animação pesada o tempo todo</td></tr>
+      <tr><td class="chave">Dois apps nativos</td><td>Dois códigos para uma equipe de um</td><td>Nada à vista</td></tr>
+      <tr><td class="chave">Firebase</td><td>Guarda documentos soltos; treino → dia → exercício → série é uma estrutura encadeada, e a regra "quem vê o quê" fica difícil</td><td>Se o offline precisar de edição completa</td></tr>
+      <tr><td class="chave">Servidor próprio</td><td>Ninguém para operar na primeira versão</td><td>Custo do serviço disparar com muitas academias</td></tr>
+    </tbody>
+  </table>
+
+
+  <h2>Como o app decide a visão ao entrar</h2>
+  <div class="fluxo">
+    <div class="fluxo__passo"><b>Sem login</b>Tela de entrada: entrar, criar conta, código da academia.</div>
+    <div class="fluxo__seta">›</div>
+    <div class="fluxo__passo"><b>Logado</b>O app carrega os vínculos da pessoa (e guarda uma cópia para abrir sem sinal).</div>
+    <div class="fluxo__seta">›</div>
+    <div class="fluxo__passo"><b>Nenhum vínculo</b>"Entre com o código da sua academia". A conta existe, só não tem academia.</div>
+    <div class="fluxo__seta">›</div>
+    <div class="fluxo__passo"><b>Um vínculo</b>Vai direto: aluno para a visão do aluno, qualquer outro papel para a da academia.</div>
+    <div class="fluxo__seta">›</div>
+    <div class="fluxo__passo"><b>Dois ou mais</b>Usa a última escolha, ou pergunta "Entrar como…". O Perfil sempre tem "Trocar de visão".</div>
+  </div>
+  <p>A visão nunca é escolhida à mão numa tela "sou academia / sou aluno": quem escolhe errado vê uma tela vazia. As duas portas da entrada ("Sou aluno" e "Sou da academia", Parte 9) escolhem só o caminho do cadastro, nunca a visão: depois de entrar, a visão continua vindo do vínculo, e o papel na academia é sempre o dono quem dá. E a tela esconder um botão não basta: o banco de dados também recusa o que o papel não pode fazer.</p>
+</section>
+
+<section class="parte" id="dados">
+  <p class="parte__olho">Parte 10 · continuação</p>
+  <h1 class="parte__titulo">Os dados, em um desenho</h1>
+  <p class="parte__lide">O que o app guarda e como as coisas se ligam. As caixas com borda vermelha tracejada são dado de saúde: só o aluno e quem ele autorizou enxergam.</p>
+  <p>Dezoito tipos de registro, em cinco grupos. Peso e carga são guardados em gramas, altura em milímetros, tempo em segundos e dinheiro em centavos: números inteiros, sem arredondamento escondido. A vírgula e o "kg" só aparecem na tela.</p>
+  <div class="diagrama">
+<svg viewBox="0 0 772 384" xmlns="http://www.w3.org/2000/svg" font-family="Figtree, Segoe UI, sans-serif">
+<defs><marker id="s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8A9796"/></marker></defs>
+<text x="8" y="18" font-size="12" font-weight="700" fill="#007761">Conta e academia</text>
+<rect x="8" y="34" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="17" y="51" font-size="11.5" font-weight="700" fill="#131D1C">Academia</text>
+<text x="17" y="65" font-size="9.5" fill="#556463">código de vínculo</text>
+<rect x="8" y="88" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="17" y="105" font-size="11.5" font-weight="700" fill="#131D1C">Vínculo</text>
+<text x="17" y="119" font-size="9.5" fill="#556463">papel + estado</text>
+<rect x="8" y="142" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="17" y="159" font-size="11.5" font-weight="700" fill="#131D1C">Usuário</text>
+<text x="17" y="173" font-size="9.5" fill="#556463">nome, e-mail, foto</text>
+<text x="160" y="18" font-size="12" font-weight="700" fill="#007761">Corpo do aluno</text>
+<rect x="160" y="34" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="169" y="51" font-size="11.5" font-weight="700" fill="#131D1C">Perfil do aluno</text>
+<text x="169" y="65" font-size="9.5" fill="#556463">objetivo, restrições</text>
+<rect x="160" y="88" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="169" y="105" font-size="11.5" font-weight="700" fill="#131D1C">Medição</text>
+<text x="169" y="119" font-size="9.5" fill="#556463">peso em gramas…</text>
+<rect x="160" y="142" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="169" y="159" font-size="11.5" font-weight="700" fill="#131D1C">Histórico de objetivo</text>
+<text x="169" y="173" font-size="9.5" fill="#556463">quando mudou</text>
+<text x="312" y="18" font-size="12" font-weight="700" fill="#007761">Treino</text>
+<rect x="312" y="34" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="321" y="51" font-size="11.5" font-weight="700" fill="#131D1C">Treino</text>
+<text x="321" y="65" font-size="9.5" fill="#556463">origem, ativo</text>
+<rect x="312" y="88" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="321" y="105" font-size="11.5" font-weight="700" fill="#131D1C">Dia de treino</text>
+<text x="321" y="119" font-size="9.5" fill="#556463">A, B, C…</text>
+<line x1="382.0" y1="74" x2="382.0" y2="87" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="312" y="142" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="321" y="159" font-size="11.5" font-weight="700" fill="#131D1C">Exercício do dia</text>
+<text x="321" y="173" font-size="9.5" fill="#556463">ordem, observação</text>
+<line x1="382.0" y1="128" x2="382.0" y2="141" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="312" y="196" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="321" y="213" font-size="11.5" font-weight="700" fill="#131D1C">Série</text>
+<text x="321" y="227" font-size="9.5" fill="#556463">reps, carga, descanso</text>
+<line x1="382.0" y1="182" x2="382.0" y2="195" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="312" y="260" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="321" y="277" font-size="11.5" font-weight="700" fill="#131D1C">Exercício</text>
+<text x="321" y="291" font-size="9.5" fill="#556463">biblioteca</text>
+<text x="464" y="18" font-size="12" font-weight="700" fill="#007761">O que foi feito</text>
+<rect x="464" y="34" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="473" y="51" font-size="11.5" font-weight="700" fill="#131D1C">Treino realizado</text>
+<text x="473" y="65" font-size="9.5" fill="#556463">data, duração</text>
+<rect x="464" y="88" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="473" y="105" font-size="11.5" font-weight="700" fill="#131D1C">Série realizada</text>
+<text x="473" y="119" font-size="9.5" fill="#556463">reps e carga reais</text>
+<line x1="534.0" y1="74" x2="534.0" y2="87" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<text x="616" y="18" font-size="12" font-weight="700" fill="#9A6100">Plus</text>
+<rect x="616" y="34" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="625" y="51" font-size="11.5" font-weight="700" fill="#131D1C">Assinatura Plus</text>
+<text x="625" y="65" font-size="9.5" fill="#556463">estado, personal</text>
+<rect x="616" y="88" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="625" y="105" font-size="11.5" font-weight="700" fill="#131D1C">Plano alimentar</text>
+<text x="625" y="119" font-size="9.5" fill="#556463">vigência</text>
+<line x1="686.0" y1="74" x2="686.0" y2="87" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="616" y="142" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="625" y="159" font-size="11.5" font-weight="700" fill="#131D1C">Refeição</text>
+<text x="625" y="173" font-size="9.5" fill="#556463">horário, opcional</text>
+<line x1="686.0" y1="128" x2="686.0" y2="141" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="616" y="196" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="625" y="213" font-size="11.5" font-weight="700" fill="#131D1C">Item</text>
+<text x="625" y="227" font-size="9.5" fill="#556463">texto livre (v1)</text>
+<line x1="686.0" y1="182" x2="686.0" y2="195" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="616" y="250" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="625" y="267" font-size="11.5" font-weight="700" fill="#131D1C">Refeição marcada</text>
+<text x="625" y="281" font-size="9.5" fill="#556463">feita / não segui</text>
+<path d="M756 164 H764 V270 H757" fill="none" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="616" y="304" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="625" y="321" font-size="11.5" font-weight="700" fill="#131D1C">Conversa → Mensagem</text>
+<text x="625" y="335" font-size="9.5" fill="#556463">se for chat no app</text>
+<line x1="78.0" y1="74" x2="78.0" y2="87" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<line x1="78.0" y1="142" x2="78.0" y2="129" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<path d="M148 162 H154 V54 H159" fill="none" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<path d="M154 108 H159" fill="none" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<path d="M148 162 H159" fill="none" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<path d="M452 162 H458 V280 H453" fill="none" stroke="#8A9796" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#s)"/>
+<path d="M452 54 H463" fill="none" stroke="#8A9796" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#s)"/>
+<path d="M756 54 H769 V324 H757" fill="none" stroke="#8A9796" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#s)"/>
+<rect x="8" y="362" width="22" height="12" rx="3" fill="#fff" stroke="#C21725" stroke-dasharray="4 3"/><text x="36" y="372" font-size="10" fill="#556463">dado de saúde: só o aluno e quem ele autorizou</text>
+<line x1="300" y1="368" x2="330" y2="368" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/><text x="336" y="372" font-size="10" fill="#556463">um para muitos</text>
+<line x1="440" y1="368" x2="470" y2="368" stroke="#8A9796" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#s)"/><text x="476" y="372" font-size="10" fill="#556463">aponta para</text>
+</svg>
+  </div>
+  <p class="pequeno discreto">Toda informação de academia carrega a identificação da academia. Assim, a dúvida "uma academia ou várias" <span class="decidir">decidir</span> não trava o código: as duas respostas cabem no mesmo banco. Nada se apaga de verdade: treino, exercício e assinatura são arquivados, porque o histórico faz parte do produto.</p>
+  <h2>Como se garante que funciona</h2>
+  <p>Toda regra nova nasce com teste automático antes da tela. As regras rodam com o próprio Node, sem instalar nada. As permissões do banco serão testadas entrando como cada papel e tentando ler o que não deveria. Antes de publicar, um robô percorre os caminhos principais no emulador.</p>
+</section>
+
+<section class="parte" id="arquitetura-2">
+  <p class="parte__olho">Parte 10 · continuação</p>
+  <h1 class="parte__titulo">Sem sinal, e com privacidade</h1>
+  <p class="parte__lide">Duas promessas pesam mais que o resto na parte técnica: o treino nunca se perde por falta de internet, e dado de saúde nunca vaza por descuido.</p>
+
+  <h2>Quando não há sinal</h2>
+  <div class="grade grade--2">
+    <div class="cartela" style="border-top:3px solid var(--ok)"><h4>Funciona</h4><p>Abrir o app já logado · ver os treinos e o treino do dia · ver a biblioteca de exercícios · <strong>registrar o treino feito</strong> · ver a alimentação do dia e marcar refeição · cronômetro.</p></div>
+    <div class="cartela" style="border-top:3px solid var(--atencao)"><h4>Avisa e espera o sinal</h4><p>Montar ou editar treino · escolher treino pronto novo · conversa · assinar o Plus · toda a visão da academia (a recepção tem Wi-Fi).</p></div>
+  </div>
+  <p>O celular guarda uma cópia do que o aluno precisa ver e uma <strong>fila</strong> do que ele fez. Quando a internet volta, a fila sobe sozinha, em ordem. Como o treino feito nasce só no celular do aluno, não há briga entre duas versões: vale a do celular. Montar treino sem sinal ficou de fora porque aí, sim, o aluno e o instrutor poderiam editar a mesma coisa ao mesmo tempo.</p>
+
+  <h2>Dado de saúde (LGPD)</h2>
+  <ul>
+    <li><strong>A regra mora no banco, não na tela.</strong> O próprio banco de dados recusa mostrar peso, medidas, alimentação e conversa a quem não tem permissão. Esconder o botão é só cortesia; quem garante é o servidor.</li>
+    <li><strong>Nunca em registro de erro nem em estatística.</strong> Antes de qualquer registro técnico, os campos de saúde viram "[redigido]", e um teste automático vigia essa lista.</li>
+    <li><strong>Nunca na notificação.</strong> "Seu personal enviou o seu plano", nunca o conteúdo. A notificação passa por servidores da Apple e do Google.</li>
+    <li><strong>Fora do backup automático do celular</strong>, e a sessão guardada no cofre do sistema.</li>
+    <li><strong>Direitos do aluno desde o primeiro dia:</strong> exportar todos os dados num arquivo legível e apagar a conta. Ao apagar, os treinos viram contagem sem nome para os números da academia.</li>
+    <li><strong>Menor de idade</strong> só guarda dado de saúde com o consentimento de um responsável.</li>
+  </ul>
+  <div class="caixa caixa--regra"><span class="caixa__rotulo">O que não se fez, de propósito</span><p>Não se bloqueia captura de tela: o aluno tem direito ao próprio dado. Não se cifra campo por campo no celular: perderia busca e tempo real. Isso mudaria se o Alex quiser que nem quem opera o banco consiga ler.</p></div>
+
+</section>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Ícone — Monograma A+ com a barra">
+  <title>Variação: Monograma A+ com a barra — ícone do app</title>
+  <rect width="1024" height="1024" fill="#007761"/>
+  <g fill="currentColor" color="#FFFFFF">
+    <path d="M444.31 253.54H579.69L788.92 795.08H659.69L512 407.38L364.31 795.08H235.08Z"/>
+    <rect x="185.85" y="592" width="652.31" height="55.38" rx="15.38"/>
+    <rect x="185.85" y="515.08" width="73.85" height="209.23" rx="27.69"/>
+    <rect x="764.31" y="515.08" width="73.85" height="209.23" rx="27.69"/>
+    <path d="M702.77 241.23A30.77 30.77 0 0 1 764.31 241.23V278.15H801.23A30.77 30.77 0 0 1 801.23 339.69H764.31V376.62A30.77 30.77 0 0 1 702.77 376.62V339.69H665.85A30.77 30.77 0 0 1 665.85 278.15H702.77V241.23Z"/>
+  </g>
+</svg>

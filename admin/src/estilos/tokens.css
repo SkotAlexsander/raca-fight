@@ -1,0 +1,141 @@
+/* GERADO por ferramentas/gerar-tokens-css.mjs a partir de tokens.json 2.0.0 (2026-10-15). Não edite à mão. */
+
+:root {
+  --rf-vermelho: #C42024;
+  --rf-preto: #1C1C1C;
+  --rf-grafite: #343434;
+  --rf-branco: #FFFFFF;
+  --fonte: Figtree, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fonte-numero: Archivo, Figtree, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --t13: 0.8125rem;
+  --l13: 1rem;
+  --l13b: 1.125rem;
+  --t16: 1rem;
+  --l16: 1.5rem;
+  --t20: 1.25rem;
+  --l20: 1.625rem;
+  --t25: 1.5625rem;
+  --l25: 1.875rem;
+  --t31: 1.9375rem;
+  --l31: 2.375rem;
+  --alvo: 44px;
+  --alvo-celular: 48px;
+  --raio: 8px;
+  --raio-p: 4px;
+  --lateral: 232px;
+  --ad-lateral: #1C1C1C;
+  --ad-lateral-texto: #F5F5F5;
+  --ad-lateral-texto-2: #ADADAD;
+  --dur-rapida: 120ms;
+  --dur-media: 200ms;
+  --dur-lenta: 320ms;
+  --dur-reduzida: 160ms;
+  --dur-aviso: 5000ms;
+  --curva: cubic-bezier(0.2, 0, 0, 1);
+  --curva-entrada: cubic-bezier(0, 0, 0.2, 1);
+
+  /* ESCURO é o principal */
+  color-scheme: dark;
+  --ad-fundo: #141414;
+  --ad-superficie: #1C1C1C;
+  --ad-elevada: #262626;
+  --ad-texto: #F5F5F5;
+  --ad-texto-2: #ADADAD;
+  --ad-borda: #343434;
+  --ad-marca: #FF6B6B;
+  --ad-marca-texto: #1C1C1C;
+  --ad-marca-suave: #3A1517;
+  --ad-viva: #C42024;
+  --ad-viva-texto: #FFFFFF;
+  --ad-sucesso: #67D283;
+  --ad-atencao: #FDA16B;
+  --ad-erro: #FF8A80;
+  --ad-foco: #FF6B6B;
+  --ad-trilho: #2E2E2E;
+  --ad-regua: rgba(245, 245, 245, 0.10);
+  --ad-veu: rgba(0, 0, 0, 0.64);
+  --ad-zebra: #232323;
+  --ad-selecao: #3A1517;
+  --ad-barra: #5C5C5C;
+  --ad-sombra: 0 8px 24px rgba(0, 0, 0, .48), 0 0 0 1px #343434;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-tema="escuro"]) {
+    color-scheme: light;
+    --ad-fundo: #F5F5F5;
+    --ad-superficie: #FFFFFF;
+    --ad-elevada: #FFFFFF;
+    --ad-texto: #1C1C1C;
+    --ad-texto-2: #545454;
+    --ad-borda: #D6D6D6;
+    --ad-marca: #C42024;
+    --ad-marca-texto: #FFFFFF;
+    --ad-marca-suave: #FBE6E6;
+    --ad-viva: #C42024;
+    --ad-viva-texto: #FFFFFF;
+    --ad-sucesso: #087033; /* só do admin: ver SO_DO_ADMIN */
+    --ad-atencao: #A84700; /* só do admin: ver SO_DO_ADMIN */
+    --ad-erro: #B3261E;
+    --ad-foco: #C42024;
+    --ad-trilho: #E2E2E2;
+    --ad-regua: rgba(28, 28, 28, 0.10);
+    --ad-veu: rgba(0, 0, 0, 0.48);
+    --ad-zebra: #F5F5F5;
+    --ad-selecao: #FDF1F1;
+    --ad-barra: #A3A3A3;
+    --ad-sombra: 0 8px 24px rgba(0, 0, 0, .16), 0 0 0 1px #D6D6D6;
+  }
+}
+
+:root[data-tema="claro"] {
+  color-scheme: light;
+  --ad-fundo: #F5F5F5;
+  --ad-superficie: #FFFFFF;
+  --ad-elevada: #FFFFFF;
+  --ad-texto: #1C1C1C;
+  --ad-texto-2: #545454;
+  --ad-borda: #D6D6D6;
+  --ad-marca: #C42024;
+  --ad-marca-texto: #FFFFFF;
+  --ad-marca-suave: #FBE6E6;
+  --ad-viva: #C42024;
+  --ad-viva-texto: #FFFFFF;
+  --ad-sucesso: #087033; /* só do admin: ver SO_DO_ADMIN */
+  --ad-atencao: #A84700; /* só do admin: ver SO_DO_ADMIN */
+  --ad-erro: #B3261E;
+  --ad-foco: #C42024;
+  --ad-trilho: #E2E2E2;
+  --ad-regua: rgba(28, 28, 28, 0.10);
+  --ad-veu: rgba(0, 0, 0, 0.48);
+  --ad-zebra: #F5F5F5;
+  --ad-selecao: #FDF1F1;
+  --ad-barra: #A3A3A3;
+  --ad-sombra: 0 8px 24px rgba(0, 0, 0, .16), 0 0 0 1px #D6D6D6;
+}
+
+:root[data-tema="escuro"] {
+  color-scheme: dark;
+  --ad-fundo: #141414;
+  --ad-superficie: #1C1C1C;
+  --ad-elevada: #262626;
+  --ad-texto: #F5F5F5;
+  --ad-texto-2: #ADADAD;
+  --ad-borda: #343434;
+  --ad-marca: #FF6B6B;
+  --ad-marca-texto: #1C1C1C;
+  --ad-marca-suave: #3A1517;
+  --ad-viva: #C42024;
+  --ad-viva-texto: #FFFFFF;
+  --ad-sucesso: #67D283;
+  --ad-atencao: #FDA16B;
+  --ad-erro: #FF8A80;
+  --ad-foco: #FF6B6B;
+  --ad-trilho: #2E2E2E;
+  --ad-regua: rgba(245, 245, 245, 0.10);
+  --ad-veu: rgba(0, 0, 0, 0.64);
+  --ad-zebra: #232323;
+  --ad-selecao: #3A1517;
+  --ad-barra: #5C5C5C;
+  --ad-sombra: 0 8px 24px rgba(0, 0, 0, .48), 0 0 0 1px #343434;
+}

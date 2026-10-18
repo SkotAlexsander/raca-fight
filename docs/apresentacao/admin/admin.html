@@ -1,0 +1,695 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Raça Fight · Admin, o painel do dono</title>
+<style>/* Raça Fight — Admin. PDF para o dono, A4 deitado, uma ideia por página (agente AR, 15/10/2026).
+   Marca: vermelho #C42024, preto #1C1C1C, branco (02-design/referencias/raca-fight/01-DADOS-REAIS.md; contraste medido em
+   02-design/sistema-de-design/raca-fight/contraste.json). Escala de tipo fechada do projeto: 13 · 16 · 20 · 25 · 31 · 39 · 49 · 61.
+   Fontes embutidas de fontes/: Figtree (texto) e Archivo variável (títulos, estreita e pesada como os cartazes da academia). SIL OFL. */
+
+@font-face { font-family: 'Figtree'; font-weight: 400; src: url('fontes/figtree-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 500; src: url('fontes/figtree-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 600; src: url('fontes/figtree-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 700; src: url('fontes/figtree-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Archivo'; font-weight: 100 900; font-stretch: 62% 125%; src: url('fontes/Archivo-variavel.ttf') format('truetype'); }
+
+:root {
+  --vermelho: #C42024; --vermelho-escuro: #9E1A1D; --vermelho-suave: #FBE6E6;
+  --preto: #1C1C1C; --grafite: #343434; --tinta: #1C1C1C; --sec: #545454; --ter: #6B6B6B;
+  --linha: #E2E2E2; --linha-forte: #CFCFCF; --fundo: #F5F5F5; --papel: #FFFFFF;
+  --ok: #0A7E3A; --ok-fundo: #E5F4EA; --atencao: #B74D00; --atencao-fundo: #FDEEE3; --erro: #B3261E;
+  --t13: 13px; --t16: 16px; --t20: 20px; --t25: 25px; --t31: 31px; --t39: 39px; --t49: 49px; --t61: 61px;
+  --texto: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+  --titulo: 'Archivo', 'Figtree', 'Segoe UI', sans-serif;
+  --mono: Consolas, 'Cascadia Mono', monospace;
+}
+
+@page { size: A4 landscape; margin: 0; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font: 400 var(--t13)/1.5 var(--texto); color: var(--tinta); background: var(--papel); -webkit-font-smoothing: antialiased; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+b, strong { font-weight: 700; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ── a página ───────────────────────────────────────── */
+.pg { width: 297mm; height: 210mm; padding: 12mm 15mm 0; display: flex; flex-direction: column; break-after: page; overflow: hidden; position: relative; background: var(--papel); }
+.pg:last-child { break-after: auto; }
+.pg__topo { flex: none; margin-bottom: 14px; }
+.olho { font: 700 var(--t13)/1.2 var(--texto); letter-spacing: .12em; text-transform: uppercase; color: var(--vermelho); margin-bottom: 6px; }
+.olho span { color: var(--ter); }
+h1 { margin: 0; font: 800 var(--t31)/1.08 var(--titulo); font-stretch: 78%; letter-spacing: -.005em; text-transform: uppercase; }
+.lide { margin-top: 8px; font-size: var(--t16); line-height: 1.45; color: var(--sec); max-width: 230mm; }
+.pg__corpo { flex: 1; min-height: 0; position: relative; }
+.pg__rodape { flex: none; height: 11mm; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid var(--linha); font-size: var(--t13); color: var(--ter); margin-top: 8px; }
+.pg__rodape b { color: var(--vermelho); font-weight: 700; letter-spacing: .06em; }
+.pg__rodape .exemplo { color: var(--sec); }
+.pg__rodape .exemplo::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--vermelho); margin-right: 6px; vertical-align: 0; }
+
+/* ── colunas e blocos de texto ──────────────────────── */
+.duas { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.quatro { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.lado { display: grid; grid-template-columns: 76mm 1fr; gap: 20px; height: 100%; }
+.lado--largo { grid-template-columns: 1fr 86mm; }
+.pilha > * + * { margin-top: 14px; }
+.bloco h3 { margin: 0 0 6px; font: 700 var(--t16)/1.3 var(--texto); display: flex; align-items: center; gap: 8px; }
+.bloco h3::before { content: ""; width: 4px; height: 16px; background: var(--vermelho); border-radius: 1px; flex: none; }
+.bloco--cinza h3::before { background: var(--preto); }
+.lista { list-style: none; }
+.lista li { position: relative; padding-left: 14px; margin: 4px 0; font-size: var(--t13); line-height: 1.45; }
+.lista li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 1px; background: var(--vermelho); }
+.lista--16 li { font-size: var(--t16); line-height: 1.4; margin: 6px 0; padding-left: 16px; }
+.lista--16 li::before { top: .55em; }
+.texto16 { font-size: var(--t16); line-height: 1.45; }
+.sec { color: var(--sec); }
+.ter { color: var(--ter); }
+.pequeno { font-size: var(--t13); }
+.caixa { border-radius: 8px; padding: 10px 14px; background: var(--fundo); font-size: var(--t13); }
+.caixa--vermelha { background: var(--vermelho-suave); border-left: 4px solid var(--vermelho); }
+.caixa--preta { background: var(--preto); color: #fff; }
+.caixa--atencao { background: var(--atencao-fundo); border-left: 4px solid var(--atencao); }
+.caixa b.rot { display: block; font-size: var(--t13); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 2px; }
+.caixa--vermelha b.rot { color: var(--vermelho-escuro); }
+.caixa--atencao b.rot { color: var(--atencao); }
+.legenda { margin-top: 6px; font-size: var(--t13); color: var(--ter); }
+.legenda b { color: var(--sec); font-weight: 600; }
+.selo { display: inline-block; padding: 1px 8px; border-radius: 10px; font: 700 var(--t13)/1.5 var(--texto); background: var(--fundo); color: var(--sec); white-space: nowrap; }
+.selo--vermelho { background: var(--vermelho-suave); color: var(--vermelho-escuro); }
+.selo--ok { background: var(--ok-fundo); color: var(--ok); }
+.selo--atencao { background: var(--atencao-fundo); color: var(--atencao); }
+.selo--preto { background: var(--preto); color: #fff; }
+
+/* tabela de leitura (fora dos quadros de tela) */
+table { width: 100%; border-collapse: collapse; font-size: var(--t13); line-height: 1.4; }
+th { text-align: left; font-weight: 700; color: var(--sec); padding: 6px 10px 6px 0; border-bottom: 2px solid var(--preto); vertical-align: bottom; }
+td { padding: 6px 10px 6px 0; border-bottom: 1px solid var(--linha); vertical-align: top; }
+td:last-child, th:last-child { padding-right: 0; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.destaque td { background: var(--vermelho-suave); }
+tfoot td { border-top: 2px solid var(--preto); border-bottom: 0; font-weight: 700; }
+.tabela-16 { font-size: var(--t16); }
+.tabela-16 th { font-size: var(--t13); }
+
+/* ── quadro de tela (esboço do app admin) ───────────── */
+.quadro { margin: 0; }
+.tela { border: 1px solid var(--linha-forte); border-radius: 10px; overflow: hidden; background: var(--papel); box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 6px 18px rgba(0,0,0,.06); display: flex; flex-direction: column; }
+.tela__barra { flex: none; height: 34px; background: var(--preto); color: #fff; display: flex; align-items: center; gap: 12px; padding: 0 12px; font-size: var(--t13); }
+.tela__barra .logo { height: 15px; display: block; }
+.tela__barra .logo-texto { font: 800 var(--t13)/1 var(--titulo); font-stretch: 80%; letter-spacing: .04em; }
+.tela__barra .onde { color: #fff; font-weight: 600; padding-left: 12px; border-left: 1px solid #4A4A4A; }
+.tela__barra .onde span { color: #B8B8B8; font-weight: 400; }
+.tela__barra .dir { margin-left: auto; display: flex; align-items: center; gap: 10px; color: #D6D6D6; }
+.tela__barra .busca { background: #2C2C2C; border-radius: 6px; padding: 2px 10px; color: #B8B8B8; min-width: 150px; }
+.tela__barra .avatar { width: 22px; height: 22px; border-radius: 11px; background: var(--vermelho); color: #fff; display: grid; place-items: center; font-weight: 700; }
+.tela__corpo { flex: 1; min-height: 0; padding: 12px; background: var(--fundo); display: flex; flex-direction: column; gap: 10px; }
+.tela--celular { width: 250px; border-radius: 22px; border: 6px solid var(--preto); }
+.tela img { display: block; width: 100%; }
+.tela-captura { display: block; width: 100%; border: 1px solid var(--linha-forte); border-radius: 10px; }
+.esboco { font-size: var(--t13); color: var(--ter); }
+
+/* componentes dentro da tela */
+.cx { background: var(--papel); border: 1px solid var(--linha); border-radius: 8px; padding: 10px 12px; min-width: 0; }
+.cx__rot { font-size: var(--t13); color: var(--sec); font-weight: 600; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.cx__rot a { color: var(--vermelho); font-weight: 600; text-decoration: none; }
+.kpi { font: 700 var(--t20)/1.15 var(--texto); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.kpi--heroi { font-size: var(--t25); }
+.kpi small { font-size: var(--t13); font-weight: 500; color: var(--sec); letter-spacing: 0; }
+.neg { color: var(--erro); }
+.pos { color: var(--ok); }
+.lin { display: flex; justify-content: space-between; gap: 10px; font-size: var(--t13); padding: 3px 0; }
+.lin + .lin { border-top: 1px solid var(--linha); }
+.lin b { font-variant-numeric: tabular-nums; }
+.bt { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 6px; font: 600 var(--t13)/1 var(--texto); border: 1px solid var(--linha-forte); background: var(--papel); color: var(--tinta); white-space: nowrap; }
+.bt--p { background: var(--vermelho); border-color: var(--vermelho); color: #fff; }
+.bt--esc { background: var(--preto); border-color: var(--preto); color: #fff; }
+.bts { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.chip { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 12px; font-size: var(--t13); border: 1px solid var(--linha-forte); background: var(--papel); white-space: nowrap; }
+.chip--on { background: var(--preto); border-color: var(--preto); color: #fff; }
+.chip--verm { background: var(--vermelho); border-color: var(--vermelho); color: #fff; }
+.frase { background: var(--papel); border: 1px solid var(--linha); border-left: 4px solid var(--vermelho); border-radius: 6px; padding: 6px 10px; font-size: var(--t13); }
+.grade-t { width: 100%; border-collapse: collapse; font-size: var(--t13); line-height: 1.3; background: var(--papel); }
+.grade-t th { font-weight: 600; color: var(--sec); background: #FAFAFA; border-bottom: 1px solid var(--linha-forte); padding: 6px 8px; white-space: nowrap; }
+.grade-t td { padding: 5px 8px; border-bottom: 1px solid var(--linha); white-space: nowrap; vertical-align: middle; }
+.grade-t td.n, .grade-t th.n { text-align: right; font-variant-numeric: tabular-nums; }
+.grade-t td.quebra { white-space: normal; }
+.grade-t tr.sel td { background: #FFF6F6; }
+.grade-t td.editando { outline: 2px solid var(--vermelho); outline-offset: -2px; background: #fff; }
+.grade-t td.erro { outline: 2px solid var(--erro); outline-offset: -2px; background: #FDECEB; }
+.grade-t tr.pend td { color: var(--sec); }
+.grade-t tfoot td { position: static; font-weight: 700; background: #FAFAFA; border-top: 2px solid var(--preto); border-bottom: 0; }
+.tabela-cx { border: 1px solid var(--linha); border-radius: 8px; overflow: hidden; background: var(--papel); }
+.abas { display: flex; gap: 4px; border-bottom: 1px solid var(--linha-forte); }
+.aba { padding: 5px 10px; font-size: var(--t13); color: var(--sec); border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+.aba--on { color: var(--tinta); font-weight: 700; border-color: var(--vermelho); }
+.aba b { font-variant-numeric: tabular-nums; }
+.folha { background: var(--papel); border: 1px solid var(--linha-forte); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.14); padding: 12px 14px; font-size: var(--t13); }
+.folha h4 { margin: 0 0 6px; font: 700 var(--t16)/1.3 var(--texto); }
+.campo { display: grid; grid-template-columns: 70px 1fr; gap: 8px; align-items: center; margin: 5px 0; }
+.campo span { color: var(--sec); }
+.campo i { font-style: normal; border: 1px solid var(--linha-forte); border-radius: 6px; padding: 3px 8px; background: #fff; }
+.barras { display: flex; align-items: flex-end; gap: 4px; }
+.lateral { display: flex; flex-direction: column; gap: 6px; font-size: var(--t13); }
+.lateral .t { font-weight: 700; color: var(--sec); margin-top: 4px; }
+.balao { background: #DCF8C6; border-radius: 10px 10px 10px 2px; padding: 8px 10px; font-size: var(--t13); line-height: 1.45; color: #111; box-shadow: 0 1px 1px rgba(0,0,0,.12); }
+.whats { background: #EFE7DE; border-radius: 10px; padding: 10px; }
+.whats__topo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: var(--t13); margin-bottom: 8px; }
+.whats__topo i { width: 22px; height: 22px; border-radius: 11px; background: #8A8A8A; display: inline-block; }
+
+/* ── capa ───────────────────────────────────────────── */
+.capa { padding: 0; flex-direction: row; background: var(--preto); color: #fff; }
+.capa__texto { flex: 1; padding: 16mm 16mm 12mm; display: flex; flex-direction: column; }
+.capa__logo { width: 92mm; display: block; }
+.capa__olho { margin-top: 18mm; font: 700 var(--t13)/1.2 var(--texto); letter-spacing: .16em; text-transform: uppercase; color: #FF6B6E; }
+.capa__titulo { margin: 4mm 0 0; font: 800 var(--t61)/.98 var(--titulo); font-stretch: 72%; text-transform: uppercase; letter-spacing: -.01em; }
+.capa__titulo em { font-style: normal; color: var(--vermelho); }
+.capa__sub { margin-top: 7mm; max-width: 140mm; font-size: var(--t20); line-height: 1.4; color: #E4E4E4; }
+.capa__ficha { margin-top: auto; display: grid; grid-template-columns: repeat(4, auto); gap: 18px; padding-top: 12px; border-top: 1px solid #4A4A4A; font-size: var(--t13); color: #D0D0D0; }
+.capa__ficha b { display: block; color: #fff; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 2px; }
+.capa__foto { width: 104mm; position: relative; background: #000 center / cover no-repeat; }
+.capa__foto::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5mm; background: var(--vermelho); }
+.capa__nota { margin-top: 8px; font-size: var(--t13); color: #A8A8A8; }
+
+/* ── diagrama dos três apps ─────────────────────────── */
+.apps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: stretch; }
+.app { border: 1px solid var(--linha-forte); border-radius: 12px; padding: 14px 16px; background: var(--papel); display: flex; flex-direction: column; gap: 8px; }
+.app--admin { border: 2px solid var(--vermelho); }
+.app__topo { display: flex; align-items: center; gap: 10px; }
+.app__icone { width: 36px; height: 36px; border-radius: 8px; background: var(--preto); display: grid; place-items: center; flex: none; }
+.app--admin .app__icone { background: var(--vermelho); }
+.app__nome { font: 800 var(--t20)/1.1 var(--titulo); font-stretch: 80%; text-transform: uppercase; }
+.app__quem { font-size: var(--t13); color: var(--sec); }
+.banco { margin: 0 auto; width: 70%; border-radius: 12px; background: var(--preto); color: #fff; padding: 12px 18px; display: flex; align-items: center; gap: 14px; justify-content: center; text-align: left; }
+.banco b { font: 800 var(--t20)/1.1 var(--titulo); font-stretch: 80%; text-transform: uppercase; }
+.fios { height: 34px; position: relative; }
+.fios svg { width: 100%; height: 100%; display: block; }
+
+/* ── sumário ────────────────────────────────────────── */
+.sumario { list-style: none; columns: 2; column-gap: 26px; }
+.sumario li { display: flex; gap: 10px; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--linha); break-inside: avoid; font-size: var(--t13); }
+.sumario li b { font-weight: 700; }
+.sumario li .p { margin-left: auto; color: var(--vermelho); font-weight: 700; font-variant-numeric: tabular-nums; }
+.sumario li .i { color: var(--ter); font-variant-numeric: tabular-nums; min-width: 18px; }
+
+/* ── antes / depois ─────────────────────────────────── */
+.antes-depois { display: grid; grid-template-columns: 1fr 34px 1fr; gap: 12px; height: 100%; }
+.seta-grande { align-self: center; justify-self: center; }
+.lado-ad { border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.lado-ad--hoje { background: var(--fundo); }
+.lado-ad--amanha { background: var(--preto); color: #fff; }
+.lado-ad h2 { margin: 0; font: 800 var(--t25)/1.1 var(--titulo); font-stretch: 78%; text-transform: uppercase; }
+.lado-ad--amanha h2 em { font-style: normal; color: #FF6B6E; }
+.lado-ad--amanha .lista li::before { background: #FF6B6E; }
+.xls { border: 1px solid #BFBFBF; background: #fff; font: var(--t13)/1.2 'Calibri', 'Segoe UI', sans-serif; border-collapse: collapse; width: 100%; }
+.xls td, .xls th { border: 1px solid #D4D4D4; padding: 3px 6px; white-space: nowrap; }
+.xls th { background: #F2F2F2; font-weight: 600; color: #444; text-align: center; }
+.xls .cab td { font-weight: 700; background: #E7F0E1; }
+.xls td.n { text-align: right; }
+.xls .rabisco { color: #9E1A1D; font-style: italic; }
+.vem { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: var(--t13); align-items: baseline; }
+.vem b { font: 700 var(--t20)/1.1 var(--texto); font-variant-numeric: tabular-nums; color: #fff; white-space: nowrap; }
+
+/* ── gráficos simples em HTML ───────────────────────── */
+.hbar { display: grid; grid-template-columns: 96px 1fr 104px; gap: 8px; align-items: center; font-size: var(--t13); margin: 5px 0; }
+.hbar__trilho { height: 14px; background: #EFEFEF; border-radius: 3px; overflow: hidden; }
+.hbar__valor { height: 100%; background: #9A9A9A; border-radius: 3px; }
+.hbar--destaque .hbar__valor { background: var(--vermelho); }
+.hbar .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* ── decisões e passos ──────────────────────────────── */
+.perguntas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
+.pergunta { border: 1px solid var(--linha); border-radius: 10px; padding: 10px 14px; background: var(--papel); }
+.pergunta__q { font: 700 var(--t16)/1.3 var(--texto); }
+.pergunta__q .cod { font: 700 var(--t13)/1 var(--texto); color: var(--vermelho); margin-right: 6px; }
+.pergunta__r { margin-top: 4px; font-size: var(--t13); color: var(--sec); }
+.pergunta__r b { color: var(--tinta); font-weight: 600; }
+.passos { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; counter-reset: passo; }
+.passo { position: relative; padding: 0 12px 0 0; }
+.passo__n { width: 34px; height: 34px; border-radius: 17px; background: var(--preto); color: #fff; display: grid; place-items: center; font: 800 var(--t16)/1 var(--titulo); position: relative; z-index: 1; }
+.passo--agora .passo__n { background: var(--vermelho); }
+.passo::after { content: ""; position: absolute; left: 34px; right: 0; top: 16px; height: 2px; background: var(--linha-forte); }
+.passo:last-child::after { display: none; }
+.passo h4 { margin: 10px 0 4px; font: 700 var(--t16)/1.3 var(--texto); }
+.passo p { font-size: var(--t13); color: var(--sec); }
+.passo .quem { margin-top: 6px; font-size: var(--t13); font-weight: 600; color: var(--tinta); }
+
+/* ── custos ─────────────────────────────────────────── */
+.degraus { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 14px; align-items: stretch; }
+.degrau { border: 1px solid var(--linha-forte); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; background: var(--papel); }
+.degrau--rec { border: 2px solid var(--vermelho); box-shadow: 0 6px 18px rgba(196,32,36,.12); }
+.degrau__nome { font: 800 var(--t25)/1 var(--titulo); font-stretch: 78%; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.degrau__para { font-size: var(--t13); color: var(--sec); }
+.degrau__preco { font: 700 var(--t31)/1 var(--texto); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.degrau__preco small { font-size: var(--t13); font-weight: 500; color: var(--sec); letter-spacing: 0; }
+.degrau .lin { font-size: var(--t13); }
+
+/* ajustes depois da primeira conferência */
+.tela__barra .logo { width: auto; flex: none; }
+.tela__barra .onde, .tela__barra .dir { white-space: nowrap; flex: none; }
+.kpi { white-space: nowrap; }
+.tabela-cx { flex-shrink: 0; }
+.cx, .folha { flex-shrink: 0; }
+.sumario li { padding: 3px 0; }
+.grade-t td { padding: 4px 8px; }
+.grade-t .selo, .lin .selo { line-height: 1.35; padding: 0 7px; }
+.cx { padding: 8px 10px; }
+.lin b { white-space: nowrap; }
+.pergunta__r { font-size: var(--t16); line-height: 1.4; } .passo p { font-size: var(--t16); line-height: 1.4; }
+
+/* recortes das capturas do AK */
+.recortes { display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap; }
+.recortes--pilha { flex-direction: column; }
+.recorte { position: relative; overflow: hidden; border-radius: 8px; border: 1px solid #2E2E2E; background: #141414; flex: none; }
+.recorte img { position: absolute; max-width: none; display: block; }
+.bloco--sem h3::before { display: none; }
+.sumario li { padding: 2px 0; }
+</style></head><body>
+<section class="pg capa" id="capa">
+    <div class="capa__texto">
+      <img class="capa__logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii01NCAtODAgMTA3OCA0MTgiIHdpZHRoPSIxMDc4IiBoZWlnaHQ9IjQxOCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InQiPjx0aXRsZSBpZD0idCI+Q2VudHJvIGRlIFRyZWluYW1lbnRvIFJhw6dhIEZpZ2h0IEdyYXZhdGHDrSAobG9nbyBwcm92aXPDs3Jpbyk8L3RpdGxlPjwhLS0gUFJPVklTw5NSSU86IHJlY29uc3RydcOnw6NvIGRvIGxvZ28gZGEgUmHDp2EgRmlnaHQgYSBwYXJ0aXIgZGFzIGZvdG9zIGRvIEluc3RhZ3JhbSAoYWdlbnRlIEFMLCAxNS8xMC8yMDI2KS4gVHJvY2FyIHBlbG8gYXJxdWl2byBvcmlnaW5hbCBkYSBhY2FkZW1pYS4gLS0+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTMwIDBIMTgyQTQwIDQwIDAgMCAxIDIyMiA0MFY0NEE0MCA0MCAwIDAgMSAxODIgODRIMFY1MkgxODJBOCA4IDAgMCAwIDE5MCA0NFY0MEE4IDggMCAwIDAgMTgyIDMySDE0Wk0wIDUySDMyVjE0MEgwWk0xMjAgODRIMTYyTDIzNCAxNDBIMTkyWk0yNTYgMTQwTDM4MCAwSDQxNkw0OTIgMTQwWk0zMjIgMTA4SDQ0MEwzOTQgNDZaTTczOCAwSDU2NkE0NiA0NiAwIDAgMCA1MjAgNDZWOTRBNDYgNDYgMCAwIDAgNTY2IDE0MEg3MzhWMTA4SDU2NkExNCAxNCAwIDAgMSA1NTIgOTRWNDZBMTQgMTQgMCAwIDEgNTY2IDMySDczOFpNNzU0IDE0MEw4NzggMEg5MTRMOTkwIDE0MFpNODIwIDEwOEg5MzhMODkyIDQ2Wk02MjIgMTUwSDY0Mkw2MzYgMTkwSDYxNloiLz48cGF0aCBmaWxsPSIjRkZGRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0tMzAgMTY4SDEwMDBWMjU2SDU4Wk0tMTAuNjkgMTc2SDk5MlYyNDhINjEuMzFaIi8+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTEwOC45MyAyMzBWMTg5LjkxSDE0OC4zOVYxOTguNzFIMTIwLjhWMjA2LjhIMTQ1LjM0VjIxNS42SDEyMC44VjIzMFpNMTYxLjUyIDIzMFYxODkuOTFIMTczLjM5VjIzMFpNMjExLjkgMjMwLjdRMTk5Ljc0IDIzMC43IDE5My42NCAyMjUuNTdRMTg3LjU1IDIyMC40NCAxODcuNTUgMjA5Ljk3UTE4Ny41NSAyMDMuMTEgMTkwLjcyIDE5OC40OVExOTMuODkgMTkzLjg4IDE5OS44OSAxOTEuNTRRMjA1Ljg5IDE4OS4yMSAyMTQuMzEgMTg5LjIxUTIxOS41MiAxODkuMjEgMjIzLjk3IDE5MC4xNVEyMjguNDIgMTkxLjA4IDIzMS43NiAxOTIuOTVRMjM1LjEgMTk0LjgyIDIzNi45NCAxOTcuNjVRMjM4Ljc5IDIwMC40OCAyMzguNzkgMjA0LjI3SDIyNy4yNVEyMjcuMjUgMjAyLjY1IDIyNi4yNCAyMDEuNDRRMjI1LjI0IDIwMC4yNCAyMjMuNDkgMTk5LjQ5UTIyMS43NCAxOTguNzQgMjE5LjUxIDE5OC4zN1EyMTcuMjkgMTk4LjAxIDIxNC44MiAxOTguMDFRMjExLjMxIDE5OC4wMSAyMDguNTEgMTk4LjcxUTIwNS43MSAxOTkuNCAyMDMuNzQgMjAwLjgyUTIwMS43OCAyMDIuMjQgMjAwLjc1IDIwNC4zNVExOTkuNzIgMjA2LjQ1IDE5OS43MiAyMDkuMjRWMjEwLjY0UTE5OS43MiAyMTQuNTkgMjAxLjM3IDIxNy4wN1EyMDMuMDIgMjE5LjU2IDIwNi4xNyAyMjAuNzNRMjA5LjMyIDIyMS45IDIxMy44NCAyMjEuOVEyMTcuOTUgMjIxLjkgMjIwLjk2IDIyMS4xNlEyMjMuOTYgMjIwLjQyIDIyNS41OSAyMTguOTlRMjI3LjIxIDIxNy41NSAyMjcuMjEgMjE1LjU4VjIxNS4yNEgyMTMuMTlWMjA3LjYxSDIzOC44NVYyMzBIMjMxLjkxTDIzMC43OSAyMjUuMlEyMjguNTQgMjI3LjA3IDIyNS42NCAyMjguMzFRMjIyLjc1IDIyOS41NCAyMTkuMzEgMjMwLjEyUTIxNS44NiAyMzAuNyAyMTEuOSAyMzAuN1pNMjU0LjI3IDIzMFYxODkuOTFIMjY2LjE1VjIwNC44M0gyOTAuMjFWMTg5LjkxSDMwMi4wOFYyMzBIMjkwLjIxVjIxNC4zOUgyNjYuMTVWMjMwWk0zMzEuODEgMjMwVjE5OS40N0gzMTQuNDRWMTg5LjkxSDM2MS4wNVYxOTkuNDdIMzQzLjY4VjIzMFoiLz48cGF0aCBmaWxsPSIjRkZGRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik04MzIgMTc4SDk2NlYyNDZIODMyWk04MzggMTg0VjI0MEg5NjBWMTg0WiIvPjxwYXRoIGZpbGw9IiNDNDIwMjQiIGQ9Ik04MzggMTg0SDk2MFYyNDBIODM4WiIvPjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xMzYuMzIgLTI1LjQ4UTEzMCAtMjUuNDggMTI1LjggLTI3LjI1UTEyMS41OSAtMjkuMDIgMTE5LjUgLTMyLjQ4UTExNy40MSAtMzUuOTUgMTE3LjQxIC00MS4wNFExMTcuNDEgLTQ4LjUgMTIyLjI1IC01Mi41NVExMjcuMDkgLTU2LjU5IDEzNi4zNCAtNTYuNTlRMTQxLjUxIC01Ni41OSAxNDUuNDQgLTU1LjA0UTE0OS4zNyAtNTMuNDkgMTUxLjU4IC01MC42N1ExNTMuOCAtNDcuODYgMTUzLjggLTQ0LjAzSDE0NS4xMlExNDUuMTIgLTQ1Ljg4IDE0NCAtNDcuMjJRMTQyLjg4IC00OC41NSAxNDAuODggLTQ5LjI3UTEzOC44OCAtNDkuOTkgMTM2LjE5IC00OS45OVExMzMuMDcgLTQ5Ljk5IDEzMC45MiAtNDguOTRRMTI4Ljc2IC00Ny44OCAxMjcuNjYgLTQ2UTEyNi41NiAtNDQuMTEgMTI2LjU2IC00MS42MVYtNDAuNTJRMTI2LjU2IC0zOC4wNSAxMjcuNjYgLTM2LjE0UTEyOC43NiAtMzQuMjMgMTMwLjg5IC0zMy4xNVExMzMuMDIgLTMyLjA3IDEzNi4wOSAtMzIuMDdRMTM4Ljk4IC0zMi4wNyAxNDEuMDUgLTMyLjc2UTE0My4xMiAtMzMuNDUgMTQ0LjI0IC0zNC43NlExNDUuMzYgLTM2LjA3IDE0NS4zNiAtMzcuOUgxNTMuODJRMTUzLjgyIC0zNC4xOSAxNTEuNjkgLTMxLjM4UTE0OS41NSAtMjguNTggMTQ1LjY0IC0yNy4wM1ExNDEuNzIgLTI1LjQ4IDEzNi4zMiAtMjUuNDhaTTE1OSAtMjZWLTU2LjA3SDE5MC4zNFYtNDkuNDdIMTY3LjkzVi00NC40MkgxODcuNTVWLTM4LjAzSDE2Ny45M1YtMzIuNkgxOTAuNjlWLTI2Wk0xOTUuODUgLTI2Vi01Ni4wN0gyMDMuODFMMjE5LjQgLTQyLjA0UTIxOS44IC00MS43IDIyMC40MiAtNDEuMDhRMjIxLjA0IC00MC40NyAyMjEuNzIgLTM5LjgxUTIyMi4zOSAtMzkuMTUgMjIyLjkxIC0zOC42MUgyMjMuMzFRMjIzLjI5IC0zOS4zOCAyMjMuMjYgLTQwLjU3UTIyMy4yMyAtNDEuNzYgMjIzLjIzIC00Mi42OFYtNTYuMDdIMjMxLjY1Vi0yNkgyMjMuOEwyMDguNTkgLTM5LjczUTIwNy41NiAtNDAuNjUgMjA2LjQxIC00MS43OFEyMDUuMjYgLTQyLjkxIDIwNC41NyAtNDMuNkgyMDQuMjFRMjA0LjIzIC00MyAyMDQuMjUgLTQxLjc1UTIwNC4yNyAtNDAuNDkgMjA0LjI3IC0zOS4wNFYtMjZaTTI0OC41NiAtMjZWLTQ4LjlIMjM1LjUzVi01Ni4wN0gyNzAuNDlWLTQ4LjlIMjU3LjQ2Vi0yNlpNMjc0LjM1IC0yNlYtNTYuMDdIMjk5LjM4UTMwMi42NiAtNTYuMDcgMzA0LjgyIC01NC43MlEzMDYuOTcgLTUzLjM3IDMwOC4wNSAtNTEuMTZRMzA5LjEyIC00OC45NiAzMDkuMTIgLTQ2LjM2UTMwOS4xMiAtNDMuNSAzMDcuNzcgLTQxLjE2UTMwNi40MiAtMzguODIgMzAzLjcgLTM3LjQ2TDMwOS44NCAtMjZIMjk5LjhMMjk0LjgxIC0zNkgyODMuMjZWLTI2Wk0yODMuMjYgLTQyLjU4SDI5Ni40N1EyOTguMDcgLTQyLjU4IDI5OS4wNCAtNDMuNTVRMzAwIC00NC41MSAzMDAgLTQ2LjExUTMwMCAtNDcuMTggMjk5LjU2IC00Ny45NFEyOTkuMTMgLTQ4LjY5IDI5OC4zNSAtNDkuMDhRMjk3LjU2IC00OS40NyAyOTYuNDcgLTQ5LjQ3SDI4My4yNlpNMzMyLjY0IC0yNS40OFEzMjYuNiAtMjUuNDggMzIyLjE2IC0yNy4zM1EzMTcuNzMgLTI5LjE4IDMxNS4zMyAtMzIuNjVRMzEyLjkzIC0zNi4xMyAzMTIuOTMgLTQxLjAyUTMxMi45MyAtNDUuOTYgMzE1LjMzIC00OS40NFEzMTcuNzMgLTUyLjkyIDMyMi4xNiAtNTQuNzVRMzI2LjYgLTU2LjU5IDMzMi42NCAtNTYuNTlRMzM4Ljc3IC01Ni41OSAzNDMuMTggLTU0Ljc1UTM0Ny42IC01Mi45MiAzNTAgLTQ5LjQ0UTM1Mi40IC00NS45NiAzNTIuNCAtNDEuMDJRMzUyLjQgLTM2LjEzIDM1MCAtMzIuNjVRMzQ3LjYgLTI5LjE4IDM0My4xOCAtMjcuMzNRMzM4Ljc3IC0yNS40OCAzMzIuNjQgLTI1LjQ4Wk0zMzIuNjYgLTMyLjA3UTMzNS4wMiAtMzIuMDcgMzM2Ljk2IC0zMi42NVEzMzguOSAtMzMuMjMgMzQwLjMxIC0zNC4zM1EzNDEuNzIgLTM1LjQyIDM0Mi40OCAtMzcuMDFRMzQzLjI0IC0zOC41OSAzNDMuMjQgLTQwLjU2Vi00MS41OVEzNDMuMjQgLTQzLjU2IDM0Mi40OCAtNDUuMTJRMzQxLjcyIC00Ni42OSAzNDAuMzEgLTQ3Ljc3UTMzOC45IC00OC44NiAzMzYuOTYgLTQ5LjQzUTMzNS4wMiAtNDkuOTkgMzMyLjY2IC00OS45OVEzMzAuMzEgLTQ5Ljk5IDMyOC4zNyAtNDkuNDNRMzI2LjQyIC00OC44NiAzMjUuMDEgLTQ3Ljc3UTMyMy42IC00Ni42OSAzMjIuODUgLTQ1LjEyUTMyMi4xIC00My41NiAzMjIuMSAtNDEuNTlWLTQwLjU2UTMyMi4xIC0zOC41OSAzMjIuODUgLTM3LjAxUTMyMy42IC0zNS40MiAzMjUuMDEgLTM0LjMzUTMyNi40MiAtMzMuMjMgMzI4LjM3IC0zMi42NVEzMzAuMzEgLTMyLjA3IDMzMi42NiAtMzIuMDdaTTM3MC4wMyAtMjZWLTU2LjA3SDM4Ni44NFEzOTIuNCAtNTYuMDcgMzk2LjQxIC01NC4zM1E0MDAuNDMgLTUyLjU5IDQwMi41OSAtNDkuMjNRNDA0Ljc0IC00NS44NyA0MDQuNzQgLTQxLjAyUTQwNC43NCAtMzYuMTkgNDAyLjU5IC0zMi44NFE0MDAuNDMgLTI5LjQ4IDM5Ni40MSAtMjcuNzRRMzkyLjQgLTI2IDM4Ni44NCAtMjZaTTM3OC45MyAtMzIuNkgzODYuMzJRMzg4LjQgLTMyLjYgMzkwLjA4IC0zMy4xNFEzOTEuNzcgLTMzLjY5IDM5My4wMSAtMzQuNzFRMzk0LjI0IC0zNS43MyAzOTQuOTEgLTM3LjJRMzk1LjU3IC0zOC42NyAzOTUuNTcgLTQwLjU0Vi00MS41N1EzOTUuNTcgLTQzLjQ1IDM5NC45MSAtNDQuOVEzOTQuMjQgLTQ2LjM2IDM5My4wMSAtNDcuMzhRMzkxLjc3IC00OC40IDM5MC4wOCAtNDguOTNRMzg4LjQgLTQ5LjQ3IDM4Ni4zMiAtNDkuNDdIMzc4LjkzWk00MDkuOTMgLTI2Vi01Ni4wN0g0NDEuMjhWLTQ5LjQ3SDQxOC44NlYtNDQuNDJINDM4LjQ5Vi0zOC4wM0g0MTguODZWLTMyLjZINDQxLjYzVi0yNlpNNDY5LjU4IC0yNlYtNDguOUg0NTYuNTVWLTU2LjA3SDQ5MS41MlYtNDguOUg0NzguNDlWLTI2Wk00OTUuMzggLTI2Vi01Ni4wN0g1MjAuNFE1MjMuNjkgLTU2LjA3IDUyNS44NCAtNTQuNzJRNTI3Ljk5IC01My4zNyA1MjkuMDcgLTUxLjE2UTUzMC4xNSAtNDguOTYgNTMwLjE1IC00Ni4zNlE1MzAuMTUgLTQzLjUgNTI4Ljc5IC00MS4xNlE1MjcuNDQgLTM4LjgyIDUyNC43MiAtMzcuNDZMNTMwLjg3IC0yNkg1MjAuODJMNTE1Ljg0IC0zNkg1MDQuMjhWLTI2Wk01MDQuMjggLTQyLjU4SDUxNy41UTUxOS4xIC00Mi41OCA1MjAuMDYgLTQzLjU1UTUyMS4wMiAtNDQuNTEgNTIxLjAyIC00Ni4xMVE1MjEuMDIgLTQ3LjE4IDUyMC41OSAtNDcuOTRRNTIwLjE1IC00OC42OSA1MTkuMzcgLTQ5LjA4UTUxOC41OSAtNDkuNDcgNTE3LjUgLTQ5LjQ3SDUwNC4yOFpNNTM1LjI0IC0yNlYtNTYuMDdINTY2LjU4Vi00OS40N0g1NDQuMTdWLTQ0LjQySDU2My43OVYtMzguMDNINTQ0LjE3Vi0zMi42SDU2Ni45M1YtMjZaTTU3Mi4wOSAtMjZWLTU2LjA3SDU4MC45OVYtMjZaTTU4Ny41MSAtMjZWLTU2LjA3SDU5NS40N0w2MTEuMDYgLTQyLjA0UTYxMS40NiAtNDEuNyA2MTIuMDggLTQxLjA4UTYxMi43IC00MC40NyA2MTMuMzggLTM5LjgxUTYxNC4wNSAtMzkuMTUgNjE0LjU3IC0zOC42MUg2MTQuOTdRNjE0Ljk1IC0zOS4zOCA2MTQuOTIgLTQwLjU3UTYxNC44OSAtNDEuNzYgNjE0Ljg5IC00Mi42OFYtNTYuMDdINjIzLjMyVi0yNkg2MTUuNDZMNjAwLjI2IC0zOS43M1E1OTkuMjIgLTQwLjY1IDU5OC4wNyAtNDEuNzhRNTk2LjkyIC00Mi45MSA1OTYuMjMgLTQzLjZINTk1Ljg4UTU5NS45IC00MyA1OTUuOTIgLTQxLjc1UTU5NS45NCAtNDAuNDkgNTk1Ljk0IC0zOS4wNFYtMjZaTTYyNi44IC0yNiA2NDEuNTggLTU2LjA3SDY1MS40OEw2NjYuMjYgLTI2SDY1Ni42M0w2NTQuMzUgLTMwLjgySDYzOC4yMkw2MzUuOTcgLTI2Wk02NDEuMiAtMzcuMzRINjUxLjM3TDY0OC42NCAtNDMuNDVRNjQ4LjQ2IC00My44NiA2NDguMTYgLTQ0LjYxUTY0Ny44NSAtNDUuMzYgNjQ3LjUyIC00Ni4yMVE2NDcuMTggLTQ3LjA3IDY0Ni45IC00Ny44UTY0Ni42MiAtNDguNTMgNjQ2LjQ4IC00OC44OUg2NDYuMTZRNjQ1LjgzIC00OC4wOCA2NDUuNDIgLTQ3LjA0UTY0NSAtNDYgNjQ0LjYxIC00NS4wMlE2NDQuMjIgLTQ0LjA0IDY0My45NCAtNDMuNDNaTTY2OS43MyAtMjZWLTU2LjA3SDY4My42Nkw2ODguODIgLTQzLjAzUTY4OS4xNSAtNDIuMjEgNjg5LjU3IC00MC45OVE2ODkuOTkgLTM5Ljc3IDY5MC40MiAtMzguNDhRNjkwLjg0IC0zNy4yIDY5MS4xNiAtMzYuMjFINjkxLjQ3UTY5MS43NyAtMzcuMTIgNjkyLjE4IC0zOC4zNFE2OTIuNiAtMzkuNTUgNjkzLjA0IC00MC44MVE2OTMuNDkgLTQyLjA2IDY5My44NCAtNDIuOTlMNjk4Ljk5IC01Ni4wN0g3MTIuNTRWLTI2SDcwMy42M1YtNDEuNTJRNzAzLjYzIC00Mi40NSA3MDMuNjUgLTQzLjU4UTcwMy42OCAtNDQuNzEgNzAzLjcyIC00NS44MVE3MDMuNzYgLTQ2LjkxIDcwMy43OCAtNDcuNzFINzAzLjQzUTcwMy4xNyAtNDYuODYgNzAyLjc4IC00NS43MlE3MDIuNCAtNDQuNTcgNzAyLjAxIC00My40NVE3MDEuNjMgLTQyLjMzIDcwMS4zIC00MS41Mkw2OTUgLTI2SDY4Ni44NEw2ODAuNTIgLTQxLjUyUTY4MC4wNyAtNDIuNjggNjc5LjY2IC00My44NVE2NzkuMjQgLTQ1LjAzIDY3OC45MiAtNDYuMDVRNjc4LjYgLTQ3LjA3IDY3OC4zOCAtNDcuNzFINjc4LjAzUTY3OC4wNyAtNDcuMDkgNjc4LjA5IC00Ni4wN1E2NzguMTIgLTQ1LjA1IDY3OC4xNCAtNDMuODdRNjc4LjE2IC00Mi43IDY3OC4xNiAtNDEuNTJWLTI2Wk03MTkuMDQgLTI2Vi01Ni4wN0g3NTAuMzlWLTQ5LjQ3SDcyNy45N1YtNDQuNDJINzQ3LjZWLTM4LjAzSDcyNy45N1YtMzIuNkg3NTAuNzRWLTI2Wk03NTUuODkgLTI2Vi01Ni4wN0g3NjMuODVMNzc5LjQ0IC00Mi4wNFE3NzkuODQgLTQxLjcgNzgwLjQ2IC00MS4wOFE3ODEuMDkgLTQwLjQ3IDc4MS43NiAtMzkuODFRNzgyLjQzIC0zOS4xNSA3ODIuOTUgLTM4LjYxSDc4My4zNVE3ODMuMzMgLTM5LjM4IDc4My4zIC00MC41N1E3ODMuMjcgLTQxLjc2IDc4My4yNyAtNDIuNjhWLTU2LjA3SDc5MS43Vi0yNkg3ODMuODRMNzY4LjY0IC0zOS43M1E3NjcuNiAtNDAuNjUgNzY2LjQ1IC00MS43OFE3NjUuMyAtNDIuOTEgNzY0LjYxIC00My42SDc2NC4yNlE3NjQuMjggLTQzIDc2NC4zIC00MS43NVE3NjQuMzIgLTQwLjQ5IDc2NC4zMiAtMzkuMDRWLTI2Wk04MDguNiAtMjZWLTQ4LjlINzk1LjU3Vi01Ni4wN0g4MzAuNTRWLTQ4LjlIODE3LjUxVi0yNlpNODUyLjgyIC0yNS40OFE4NDYuNzcgLTI1LjQ4IDg0Mi4zNCAtMjcuMzNRODM3LjkxIC0yOS4xOCA4MzUuNTEgLTMyLjY1UTgzMy4xMSAtMzYuMTMgODMzLjExIC00MS4wMlE4MzMuMTEgLTQ1Ljk2IDgzNS41MSAtNDkuNDRRODM3LjkxIC01Mi45MiA4NDIuMzQgLTU0Ljc1UTg0Ni43NyAtNTYuNTkgODUyLjgyIC01Ni41OVE4NTguOTUgLTU2LjU5IDg2My4zNiAtNTQuNzVRODY3Ljc4IC01Mi45MiA4NzAuMTcgLTQ5LjQ0UTg3Mi41NyAtNDUuOTYgODcyLjU3IC00MS4wMlE4NzIuNTcgLTM2LjEzIDg3MC4xNyAtMzIuNjVRODY3Ljc4IC0yOS4xOCA4NjMuMzYgLTI3LjMzUTg1OC45NSAtMjUuNDggODUyLjgyIC0yNS40OFpNODUyLjg0IC0zMi4wN1E4NTUuMiAtMzIuMDcgODU3LjE0IC0zMi42NVE4NTkuMDggLTMzLjIzIDg2MC40OSAtMzQuMzNRODYxLjkgLTM1LjQyIDg2Mi42NiAtMzcuMDFRODYzLjQyIC0zOC41OSA4NjMuNDIgLTQwLjU2Vi00MS41OVE4NjMuNDIgLTQzLjU2IDg2Mi42NiAtNDUuMTJRODYxLjkgLTQ2LjY5IDg2MC40OSAtNDcuNzdRODU5LjA4IC00OC44NiA4NTcuMTQgLTQ5LjQzUTg1NS4yIC00OS45OSA4NTIuODQgLTQ5Ljk5UTg1MC40OSAtNDkuOTkgODQ4LjU0IC00OS40M1E4NDYuNiAtNDguODYgODQ1LjE5IC00Ny43N1E4NDMuNzggLTQ2LjY5IDg0My4wMyAtNDUuMTJRODQyLjI4IC00My41NiA4NDIuMjggLTQxLjU5Vi00MC41NlE4NDIuMjggLTM4LjU5IDg0My4wMyAtMzcuMDFRODQzLjc4IC0zNS40MiA4NDUuMTkgLTM0LjMzUTg0Ni42IC0zMy4yMyA4NDguNTQgLTMyLjY1UTg1MC40OSAtMzIuMDcgODUyLjg0IC0zMi4wN1oiLz48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNjQxLjAzIDMxNC41OVE2MzAuNjkgMzE0LjU5IDYyNS41MSAzMTAuMjNRNjIwLjMzIDMwNS44NyA2MjAuMzMgMjk2Ljk3UTYyMC4zMyAyOTEuMTUgNjIzLjAzIDI4Ny4yMlE2MjUuNzIgMjgzLjI5IDYzMC44MiAyODEuMzFRNjM1LjkyIDI3OS4zMyA2NDMuMDggMjc5LjMzUTY0Ny41MSAyNzkuMzMgNjUxLjI5IDI4MC4xMlE2NTUuMDggMjgwLjkyIDY1Ny45MSAyODIuNTFRNjYwLjc1IDI4NC4xIDY2Mi4zMiAyODYuNVE2NjMuODkgMjg4LjkxIDY2My44OSAyOTIuMTNINjU0LjA4UTY1NC4wOCAyOTAuNzUgNjUzLjIyIDI4OS43M1E2NTIuMzcgMjg4LjcgNjUwLjg4IDI4OC4wNlE2NDkuMzkgMjg3LjQzIDY0Ny41IDI4Ny4xMlE2NDUuNjEgMjg2LjgxIDY0My41MSAyODYuODFRNjQwLjUzIDI4Ni44MSA2MzguMTUgMjg3LjRRNjM1Ljc3IDI4Ny45OSA2MzQuMSAyODkuMlE2MzIuNDMgMjkwLjQgNjMxLjU1IDI5Mi4xOVE2MzAuNjggMjkzLjk4IDYzMC42OCAyOTYuMzZWMjk3LjU1UTYzMC42OCAzMDAuOSA2MzIuMDggMzAzLjAxUTYzMy40OCAzMDUuMTIgNjM2LjE2IDMwNi4xMlE2MzguODQgMzA3LjEyIDY0Mi42OCAzMDcuMTJRNjQ2LjE4IDMwNy4xMiA2NDguNzMgMzA2LjQ5UTY1MS4yOSAzMDUuODYgNjUyLjY3IDMwNC42NFE2NTQuMDUgMzAzLjQyIDY1NC4wNSAzMDEuNzRWMzAxLjQ1SDY0Mi4xM1YyOTQuOTdINjYzLjk0VjMxNEg2NTguMDRMNjU3LjA5IDMwOS45MlE2NTUuMTcgMzExLjUxIDY1Mi43MSAzMTIuNTZRNjUwLjI1IDMxMy42MSA2NDcuMzMgMzE0LjFRNjQ0LjQgMzE0LjU5IDY0MS4wMyAzMTQuNTlaTTY3Ny45NSAzMTRWMjc5LjkySDcwNi4zMVE3MTAuMDQgMjc5LjkyIDcxMi40OCAyODEuNDVRNzE0LjkyIDI4Mi45OCA3MTYuMTQgMjg1LjQ4UTcxNy4zNiAyODcuOTggNzE3LjM2IDI5MC45M1E3MTcuMzYgMjk0LjE3IDcxNS44MiAyOTYuODJRNzE0LjI5IDI5OS40NyA3MTEuMjEgMzAxLjAxTDcxOC4xNyAzMTRINzA2Ljc5TDcwMS4xNCAzMDIuNjdINjg4LjA0VjMxNFpNNjg4LjA0IDI5NS4yMUg3MDMuMDJRNzA0Ljg0IDI5NS4yMSA3MDUuOTIgMjk0LjExUTcwNy4wMSAyOTMuMDIgNzA3LjAxIDI5MS4yMVE3MDcuMDEgMjg5Ljk5IDcwNi41MiAyODkuMTRRNzA2LjAzIDI4OC4yOCA3MDUuMTQgMjg3Ljg0UTcwNC4yNSAyODcuNCA3MDMuMDIgMjg3LjRINjg4LjA0Wk03MjYuNzEgMzE0IDc0My40NyAyNzkuOTJINzU0LjY4TDc3MS40NCAzMTRINzYwLjUyTDc1Ny45NCAzMDguNTRINzM5LjY2TDczNy4xMSAzMTRaTTc0My4wNCAzMDEuMTVINzU0LjU3TDc1MS40NiAyOTQuMjJRNzUxLjI3IDI5My43NiA3NTAuOTIgMjkyLjkxUTc1MC41NyAyOTIuMDYgNzUwLjE5IDI5MS4wOVE3NDkuODIgMjkwLjEzIDc0OS41IDI4OS4yOVE3NDkuMTggMjg4LjQ2IDc0OS4wMiAyODguMDZINzQ4LjY2UTc0OC4yOSAyODguOTcgNzQ3LjgxIDI5MC4xNVE3NDcuMzQgMjkxLjM0IDc0Ni45IDI5Mi40NFE3NDYuNDYgMjkzLjU1IDc0Ni4xNCAyOTQuMjVaTTc5NS4yNiAzMTQgNzc4LjgyIDI3OS45Mkg3OTAuMDVMNzk3LjQ5IDI5Ni40OVE3OTcuOTUgMjk3LjQ2IDc5OC41MiAyOTguODdRNzk5LjA4IDMwMC4yOCA3OTkuNjYgMzAxLjcyUTgwMC4yMyAzMDMuMTYgODAwLjYzIDMwNC4yNkg4MDFRODAxLjM3IDMwMy4yNiA4MDEuOTEgMzAxLjg3UTgwMi40NCAzMDAuNDkgODAzLjAzIDI5OS4wNlE4MDMuNjMgMjk3LjY0IDgwNC4xNCAyOTYuNTFMODExLjY2IDI3OS45Mkg4MjIuMzlMODA1Ljk0IDMxNFpNODI5Ljc2IDMxNCA4NDYuNTEgMjc5LjkySDg1Ny43M0w4NzQuNDggMzE0SDg2My41N0w4NjAuOTkgMzA4LjU0SDg0Mi43MUw4NDAuMTYgMzE0Wk04NDYuMDggMzAxLjE1SDg1Ny42MUw4NTQuNTEgMjk0LjIyUTg1NC4zMiAyOTMuNzYgODUzLjk3IDI5Mi45MVE4NTMuNjIgMjkyLjA2IDg1My4yNCAyOTEuMDlRODUyLjg2IDI5MC4xMyA4NTIuNTUgMjg5LjI5UTg1Mi4yMyAyODguNDYgODUyLjA3IDI4OC4wNkg4NTEuN1E4NTEuMzQgMjg4Ljk3IDg1MC44NiAyOTAuMTVRODUwLjM5IDI5MS4zNCA4NDkuOTUgMjkyLjQ0UTg0OS41MSAyOTMuNTUgODQ5LjE5IDI5NC4yNVpNODk3LjIyIDMxNFYyODguMDVIODgyLjQ1VjI3OS45Mkg5MjIuMDhWMjg4LjA1SDkwNy4zMVYzMTRaTTkzMC4wMyAzMTQgOTQ2Ljc4IDI3OS45Mkg5NThMOTc0Ljc1IDMxNEg5NjMuODRMOTYxLjI2IDMwOC41NEg5NDIuOThMOTQwLjQzIDMxNFpNOTQ2LjM1IDMwMS4xNUg5NTcuODhMOTU0Ljc4IDI5NC4yMlE5NTQuNTkgMjkzLjc2IDk1NC4yNCAyOTIuOTFROTUzLjg5IDI5Mi4wNiA5NTMuNTEgMjkxLjA5UTk1My4xNCAyOTAuMTMgOTUyLjgyIDI4OS4yOVE5NTIuNSAyODguNDYgOTUyLjM0IDI4OC4wNkg5NTEuOTdROTUxLjYxIDI4OC45NyA5NTEuMTMgMjkwLjE1UTk1MC42NiAyOTEuMzQgOTUwLjIyIDI5Mi40NFE5NDkuNzggMjkzLjU1IDk0OS40NiAyOTQuMjVaTTk4NS43IDMxNFYyNzkuOTJIOTk1Ljc5VjMxNFpNOTg1LjM0IDI3Ni45MSA5OTEuMDcgMjcwLjMySDEwMDEuMThWMjcwLjU3TDk5Mi43OSAyNzYuOTFaIi8+PC9zdmc+Cg==" alt="Centro de Treinamento Raça Fight Gravataí">
+      <p class="capa__olho">Proposta · 16 de outubro de 2026</p>
+      <h1 class="capa__titulo">O painel<br>do <em>dono</em></h1>
+      <p class="capa__sub">Tudo o que a planilha faz hoje, e o que ela não faz: a mensalidade que se gera sozinha, quem está devendo, quanto cada modalidade rende e o mês fechado sem conta à mão.</p>
+      <div class="capa__ficha">
+        <div><b>Para</b>Raça Fight Gravataí</div>
+        <div><b>O quê</b>O app do dono (Admin)</div>
+        <div><b>Junto com</b>o app do aluno e o do professor</div>
+        <div><b>Situação</b>construído, com dados de exemplo; falta o servidor</div>
+      </div>
+      <p class="capa__nota">Logo provisório, redesenhado a partir das fotos da academia: entra o arquivo original assim que chegar.</p>
+    </div>
+    <div class="capa__foto" style="background-image:url('_capturas/fotos/capa.jpg')"></div></section>
+<section class="pg" id="resumo">
+    <header class="pg__topo"><p class="olho">Em uma página</p><h1>O app do dono, ligado aos outros dois</h1><p class="lide">O Admin é o terceiro aplicativo da Raça Fight, ao lado do app do aluno e do app do professor. Ele substitui a planilha e mostra numa tela só o que hoje leva horas de conta.</p></header>
+    <div class="pg__corpo"><div class="duas" style="grid-template-columns:1.05fr 1fr;gap:28px">
+      <div class="pilha">
+        <div class="bloco lista--16"><h3>O que muda no seu dia</h3><ul class="lista "><li><b>A mensalidade sai pronta.</b> Um botão gera as do mês, com o desconto de cada um. Você só marca quem pagou.</li><li><b>Quem deve, na hora.</b> A lista de quem está atrasado, do maior atraso para o menor, com a mensagem de WhatsApp pronta.</li><li><b>O mês fechado sem calculadora.</b> Quanto entrou, quanto saiu, o resultado, a previsão e a comissão de cada professor.</li><li><b>A planilha cabe aqui dentro.</b> Ele lê a planilha que vocês já usam e devolve para o Excel quando você quiser.</li><li><b>Nada some.</b> Toda mudança fica registrada: quem fez, quando e de quanto para quanto.</li></ul></div>
+        <div class="caixa caixa--vermelha"><b class="rot">Sobre as telas e os números</b>As telas são o Admin construído, com uma academia de exemplo: nomes, preços e regras inventados. O servidor dos dados reais ainda não existe (p. 28).</div>
+      </div>
+      <div class="bloco bloco--cinza"><h3>O que tem aqui</h3>
+        <ol class="sumario" style="columns:1">
+          <li><b>Os três apps e o que cada um vê</b><span class="p">3</span></li><li><b>Painel: a academia numa tela</b><span class="p">5</span></li><li><b>Alunos, responsáveis e a família</b><span class="p">6</span></li><li><b>Equipe e o pagamento dela</b><span class="p">8</span></li><li><b>Financeiro: a planilha, colar e os atalhos do Excel</b><span class="p">9</span></li><li><b>As mensalidades do mês</b><span class="p">13</span></li><li><b>Despesa fixa e fechar o mês</b><span class="p">14</span></li><li><b>Cobrança e inadimplência</b><span class="p">16</span></li><li><b>Importar a planilha (até a de três colunas) e exportar</b><span class="p">17</span></li><li><b>Relatórios</b><span class="p">20</span></li><li><b>Filtro total</b><span class="p">22</span></li><li><b>Funil da aula experimental</b><span class="p">23</span></li><li><b>Turmas e horários</b><span class="p">24</span></li><li><b>Agenda, notas e lembretes</b><span class="p">25</span></li><li><b>Histórico de quem mexeu</b><span class="p">26</span></li><li><b>O que já roda e o que falta</b><span class="p">28</span></li><li><b>Quem vê o quê</b><span class="p">29</span></li><li><b>Segurança e LGPD</b><span class="p">30</span></li><li><b>Hospedagem e custo</b><span class="p">31</span></li><li><b>O que a academia precisa decidir</b><span class="p">33</span></li><li><b>Próximos passos</b><span class="p">35</span></li>
+        </ol>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span></span><span>2 / 35</span></footer>
+  </section>
+<section class="pg" id="tres-apps">
+    <header class="pg__topo"><p class="olho">Como tudo se liga</p><h1>Três apps, um banco de dados só</h1><p class="lide">O aluno, o professor e você usam apps diferentes, mas todos leem e escrevem no mesmo lugar. O check-in do aluno aparece na chamada do professor; a matrícula que você faz libera o check-in do aluno.</p></header>
+    <div class="pg__corpo">
+    <div class="apps">
+      <div class="app"><div class="app__topo"><span class="app__icone"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span><div><div class="app__nome">Aluno</div><div class="app__quem">no celular · o aluno e o responsável pelo Kids</div></div></div>
+        <ul class="lista lista--16"><li>Horários, turmas e avisos da academia</li><li>Check-in na aula e a própria presença</li><li>A própria graduação (faixa, cordão)</li><li>Pedir a aula experimental pelo WhatsApp</li><li>As próprias mensalidades, <b>se você quiser</b> (pergunta A2)</li></ul></div>
+      <div class="app"><div class="app__topo"><span class="app__icone"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span><div><div class="app__nome">Professor e recepção</div><div class="app__quem">no celular · a equipe</div></div></div>
+        <ul class="lista lista--16"><li>A aula do dia e a chamada</li><li>Presença e graduação dos alunos dele</li><li>Registrar quem quer fazer a aula experimental</li><li><b>Nunca vê valor:</b> nem mensalidade, nem atraso, nem salário</li><li>Aluno em atraso treina normal: quem decide é você</li></ul></div>
+      <div class="app app--admin"><div class="app__topo"><span class="app__icone"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><div><div class="app__nome">Admin (o seu)</div><div class="app__quem">no computador e no celular · só o dono</div></div></div>
+        <ul class="lista lista--16"><li>Todos os alunos, responsáveis e a equipe</li><li>Mensalidades, pagamentos e quem deve</li><li>Entradas, saídas, resultado e previsão</li><li>Comissão e salário de cada um</li><li>Relatórios, funil, lembretes e o histórico de tudo</li></ul></div>
+    </div>
+    <div class="fios"><svg viewBox="0 0 1000 34" preserveAspectRatio="none"><path d="M166 0 V16 H834 V0 M500 16 V34" fill="none" stroke="#CFCFCF" stroke-width="2"/></svg></div>
+    <div class="banco"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+      <div><b>Um banco de dados, em São Paulo</b><div class="pequeno" style="color:#D6D6D6">Guardado no Brasil, trancado (criptografado), com cópia de segurança todo dia. A regra de quem vê o quê fica dentro dele, não só na tela.</div></div></div>
+    <p class="legenda" style="text-align:center;margin-top:10px">O painel do dono sai do app da equipe e vem para o Admin. Se você também dá aula, entra no app do professor como professor.</p></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span></span><span>3 / 35</span></footer>
+  </section>
+<section class="pg" id="problema">
+    <header class="pg__topo"><p class="olho">O problema</p><h1>Hoje, a planilha. Amanhã, o painel.</h1><p class="lide">A planilha guarda o que foi digitado. Ela não avisa quem esqueceu de pagar, não sabe quanto o mês ainda vai render e não mostra quem mudou um valor.</p></header>
+    <div class="pg__corpo"><div class="antes-depois">
+      <div class="lado-ad lado-ad--hoje">
+        <h2>Hoje: a planilha</h2>
+        <table class="xls"><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+          <tr class="cab"><th>1</th><td>Data</td><td>Descrição</td><td>Entrada</td><td>Saída</td></tr>
+          <tr><th>2</th><td>01/10</td><td>Mensal Breno</td><td class="n">150,00</td><td></td></tr>
+          <tr><th>3</th><td>01/10</td><td>Mensal Juliana</td><td class="n">120,00</td><td></td></tr>
+          <tr><th>4</th><td>05/10</td><td>Salário Igor</td><td></td><td class="n">1.600,00</td></tr>
+          <tr><th>5</th><td>10/10</td><td>Aluguel</td><td></td><td class="n">3.500,00</td></tr>
+          <tr><th>6</th><td>…</td><td class="rabisco">quem falta pagar?</td><td></td><td></td></tr>
+          <tr><th>7</th><td></td><td><b>TOTAL</b></td><td class="n rabisco">?</td><td class="n rabisco">?</td></tr></table>
+        <ul class="lista lista--16"><li>Cada mensalidade do mês é digitada à mão, uma por uma.</li><li>Para saber quem deve, é preciso cruzar a lista de alunos com os pagamentos.</li><li>A comissão de cada professor sai na calculadora.</li><li>No meio do mês, com o aluguel e os salários já pagos, não dá para saber como o mês vai fechar.</li><li>Se alguém apaga ou muda uma linha, ninguém fica sabendo.</li></ul>
+      </div>
+      <div class="seta-grande"><svg width="34" height="34" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="#C42024" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="lado-ad lado-ad--amanha">
+        <h2>Amanhã: <em>o painel</em></h2>
+        <ul class="lista lista--16"><li><b>No dia 1, as mensalidades do mês ficam prontas sozinhas</b>, cada uma com o desconto certo. Você só marca quem pagou.</li><li><b>Quem deve sai numa lista pronta</b>, do maior atraso para o menor, com a mensagem de WhatsApp escrita.</li><li><b>A comissão de cada professor vem calculada</b> pela regra de cada um; você confere e lança.</li><li><b>Ao lado do resultado do mês, a previsão do fechamento</b>: o dia 15 deixa de assustar.</li><li><b>Tudo o que alguém muda fica registrado</b>: quem mudou, quando e de quanto para quanto.</li></ul>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span></span><span>4 / 35</span></footer>
+  </section>
+<section class="pg" id="painel">
+    <header class="pg__topo"><p class="olho">Parte 1 · Painel</p><h1>A academia inteira numa tela</h1><p class="lide">É a primeira coisa que abre. Cada número é um atalho: clicou, abre a lista que forma aquele número.</p></header>
+    <div class="pg__corpo"><figure class="quadro"><div class="recortes "><div class="recorte" style="width:1009px;height:505px"><img src="_capturas/admin/painel.jpg" alt="" style="width:1441px;left:-432px;top:-45px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> À esquerda, fora do recorte: alunos por modalidade e a equipe.</figcaption></figure>
+    <p class="texto16" style="margin-top:8px">O resultado até hoje vem com a <b>previsão do fechamento ao lado</b>. A comparação é sempre <b>no mesmo trecho</b> do mês anterior (1 a 15/09 contra 1 a 15/10), e setembro inteiro aparece à parte. Embaixo, os 12 meses; à direita, quem deve e o que fazer hoje.</p></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>5 / 35</span></footer>
+  </section>
+<section class="pg" id="alunos">
+    <header class="pg__topo"><p class="olho">Parte 2 · Pessoas</p><h1>Alunos e responsáveis do Kids</h1><p class="lide">Todo mundo que treina está aqui, mesmo quem nunca instalou o app. Criança entra com o responsável, que é quem paga e quem recebe a cobrança.</p></header>
+    <div class="pg__corpo"><figure class="quadro"><div class="recortes "><div class="recorte" style="width:1009px;height:365px"><img src="_capturas/admin/pessoas.jpg" alt="" style="width:1392px;left:-372px;top:-49px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> A frase do filtro fica em cima da tabela; os filtros salvos e as caixas de marcar ficam à esquerda, fora do recorte.</figcaption></figure>
+    <div class="duas" style="margin-top:12px"><div class="bloco "><h3>O que você vê</h3><ul class="lista "><li>Nome, plano, modalidades, responsável, dia de vencimento e se a cobrança está em dia</li><li>A ficha da pessoa: contato, matrículas, descontos, cobranças, notas e histórico</li></ul></div><div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista "><li>Cadastrar aluno, criança com responsável, e matricular num plano com o dia de vencimento</li><li>Trancar por um período (viagem, lesão): no trancamento não sai cobrança. O desconto de família é <b>sugerido</b>; quem aplica é você</li></ul></div></div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>6 / 35</span></footer>
+  </section>
+<section class="pg" id="familia">
+    <header class="pg__topo"><p class="olho">Parte 2 · Pessoas</p><h1>A família paga tudo de uma vez</h1><p class="lide">Na ficha do responsável ficam os filhos e todas as cobranças da família. Com duas ou mais em aberto, um botão marca todas como pagas.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 92mm;height:auto">
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:640px;height:209px"><img src="_capturas/admin/ficha-kids.jpg" alt="" style="width:1047px;left:-128px;top:-37px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Antes: duas mensalidades do Miguel em atraso, R$ 220,00 em aberto e o botão "Marcar as 2 como pagas".</figcaption></figure>
+        <figure class="quadro"><div class="recortes "><div class="recorte" style="width:400px;height:193px"><img src="_capturas/admin/ficha-kids-paga.jpg" alt="" style="width:1135px;left:-432px;top:-40px"></div><div class="recorte" style="width:230px;height:35px"><img src="_capturas/admin/ficha-kids-paga.jpg" alt="" style="width:1353px;left:-561px;top:-416px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Depois: as duas pagas, no mesmo clique, e o aviso.</figcaption></figure></div>
+      <div class="pilha">
+        <div class="bloco "><h3>Tudo ou nada</h3><ul class="lista lista--16"><li>As duas cobranças ficam pagas juntas. Se uma falhar, nenhuma fica paga: não existe família "meio paga"</li><li>O mesmo vale para matricular quem veio do funil: a pessoa, a matrícula e as cobranças entram juntas ou não entram</li></ul></div>
+        <div class="caixa"><b class="rot">Clique duplo não paga duas vezes</b>Enquanto grava, o botão fica desligado. O segundo clique é ignorado.</div>
+        <div class="caixa caixa--vermelha"><b class="rot">Hoje</b>O pagamento vai como Pix, com a data de hoje. Para outra forma, marque uma por uma.</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>7 / 35</span></footer>
+  </section>
+<section class="pg" id="funcionarios">
+    <header class="pg__topo"><p class="olho">Parte 2 · Pessoas</p><h1>A equipe e o pagamento dela</h1><p class="lide">Cada pessoa da equipe tem a função, as modalidades que dá e a regra de pagamento. O Admin calcula quanto cada um ganhou no mês.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 72mm;height:auto">
+      <div><figure class="quadro"><div class="recortes recortes--pilha"><div class="recorte" style="width:712px;height:282px"><img src="_capturas/admin/funcionarios.jpg" alt="" style="width:1376px;left:-169px;top:-48px"></div><div class="recorte" style="width:470px;height:198px"><img src="_capturas/admin/funcionarios.jpg" alt="" style="width:1362px;left:-882px;top:-198px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Em cima, a equipe com o ganho de outubro calculado; embaixo, a conta de uma professora com fixo + comissão.</figcaption></figure></div>
+      <div class="pilha">
+        <div class="bloco "><h3>O que você vê</h3><ul class="lista "><li>Quem é da equipe, a função e desde quando</li><li>A regra de cada um: fixo, comissão, por aula ou fixo + comissão</li><li>Quanto cada um ganhou no mês, já calculado</li></ul></div>
+        <div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista "><li>Cadastrar, mudar a regra e desligar alguém</li><li>Conferir a conta e lançar como saída com um clique: o Admin calcula, quem paga é você</li></ul></div>
+        <div class="caixa"><b class="rot">Comissão justa no combo</b>O aluno do combo conta metade para cada modalidade.</div>
+        <div class="caixa caixa--vermelha"><b class="rot">A decidir</b>Como a equipe é paga hoje (pergunta A19). As regras da tela são de exemplo. O Admin não faz folha de pagamento.</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>8 / 35</span></footer>
+  </section>
+<section class="pg" id="grade">
+    <header class="pg__topo"><p class="olho">Parte 3 · Financeiro</p><h1>A planilha, agora dentro do app</h1><p class="lide">Cada entrada e cada saída é uma linha, como no Excel, editada direto na célula. Os totais embaixo se refazem na hora.</p></header>
+    <div class="pg__corpo"><figure class="quadro"><div class="recortes "><div class="recorte" style="width:1009px;height:379px"><img src="_capturas/admin/lancamentos.jpg" alt="" style="width:1156px;left:-142px;top:-40px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Uma linha marcada (a faixa vermelha em cima mostra a soma e as ações em lote) e a célula ativa de borda vermelha. As mensalidades em aberto têm o botão "Marcar como paga".</figcaption></figure>
+    <div class="duas" style="margin-top:12px"><div class="bloco "><h3>O que você vê</h3><ul class="lista "><li>As linhas do mês, com os totais sempre à vista: entrou, saiu, resultado e o que falta receber e pagar</li><li>As mensalidades geradas entram sozinhas, prontas para marcar como pagas</li></ul></div><div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista "><li>Lançar e editar só pelo teclado (Enter, Tab, setas); marcar várias linhas e mudar todas de uma vez</li><li>"Apagar" é arquivar: a linha sai da conta, mas não some do histórico</li></ul></div></div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>9 / 35</span></footer>
+  </section>
+<section class="pg" id="colar">
+    <header class="pg__topo"><p class="olho">Parte 3 · Financeiro</p><h1>Colar linhas do Excel, sem nada entrar errado</h1><p class="lide">Cole linhas copiadas do Excel: antes de gravar, o Admin mostra a prévia e marca a célula com erro. Só grava quando você confirma.</p></header>
+    <div class="pg__corpo"><figure class="quadro"><div class="recortes "><div class="recorte" style="width:1009px;height:217px"><img src="_capturas/admin/colar.jpg" alt="" style="width:1156px;left:-142px;top:-40px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Oito linhas coladas: seis prontas e duas com erro (31/09 não existe; "12,345" não é valor). Nada foi gravado ainda.</figcaption></figure>
+    <div class="tres" style="margin-top:12px;grid-template-columns:1.1fr 1fr 1fr">
+      <div class="bloco "><h3>Você digita, o app entende</h3><p class="pequeno"><code style="font:600 13px var(--mono)">160</code> → R$ 160,00 · <code style="font:600 13px var(--mono)">R$ 1.600</code> → R$ 1.600,00 · <code style="font:600 13px var(--mono)">-20</code> → saída de R$ 20,00 · <code style="font:600 13px var(--mono)">5/10</code> → 05/10/2026 · <code style="font:600 13px var(--mono)">espécie</code> → Dinheiro · <code style="font:600 13px var(--mono)">doze</code> → <span class="neg">não grava</span></p><p class="pequeno ter" style="margin-top:4px">Conferido no motor do financeiro, com estas mesmas entradas.</p></div>
+      <div class="bloco "><h3>Desfazer e refazer</h3><ul class="lista lista--16"><li>Ctrl+Z desfaz e Ctrl+Y refaz</li><li>Colar 8 linhas conta como uma ação só</li></ul></div>
+      <div class="bloco "><h3>Errar sem medo</h3><ul class="lista lista--16"><li>Célula com erro fica vermelha e não grava</li><li>Mês fechado não muda sem reabrir, e reabrir pede o motivo</li></ul></div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>10 / 35</span></footer>
+  </section>
+<section class="pg" id="excel">
+    <header class="pg__topo"><p class="olho">Parte 3 · Financeiro</p><h1>Os atalhos do Excel funcionam aqui</h1><p class="lide">Quem vem da planilha não precisa reaprender. Colar uma coluna, preencher para baixo, apagar com Delete: cada um é uma ação só, e um Ctrl+Z desfaz tudo.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 78mm;height:auto">
+      <div class="pilha">
+        <figure class="quadro"><div class="recortes recortes--pilha"><div class="recorte" style="width:690px;height:99px"><img src="_capturas/admin/colar-coluna.jpg" alt="" style="width:1070px;left:-131px;top:-64px"></div><div class="recorte" style="width:300px;height:31px"><img src="_capturas/admin/colar-coluna.jpg" alt="" style="width:1224px;left:-462px;top:-377px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> <b>Colar uma coluna.</b> Quatro formas de pagamento copiadas do Excel, coladas na coluna Forma: preenchem as linhas de baixo, como no Excel.</figcaption></figure>
+        <figure class="quadro"><div class="recortes recortes--pilha"><div class="recorte" style="width:690px;height:99px"><img src="_capturas/admin/ctrl-d.jpg" alt="" style="width:1070px;left:-131px;top:-64px"></div><div class="recorte" style="width:240px;height:31px"><img src="_capturas/admin/ctrl-d.jpg" alt="" style="width:1231px;left:-495px;top:-380px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> <b>Ctrl+D.</b> Marcou da linha 1 até a 4 na coluna Forma: o "Pix" de cima desceu para as outras três.</figcaption></figure>
+      </div>
+      <div class="pilha">
+        <div class="bloco "><h3>O que mais funciona como no Excel</h3><ul class="lista lista--16"><li><b>Delete</b> limpa a célula; com linhas marcadas, arquiva</li><li><b>Ctrl+C</b> copia com a saída negativa: a SOMA no Excel dá o resultado</li><li><b>Ctrl+A</b> marca a grade inteira</li><li>Um valor colado num intervalo vai para todas as células dele</li><li>Clicar noutra célula grava a edição e vai para ela</li></ul></div>
+        <div class="caixa caixa--vermelha"><b class="rot">Ainda não tem</b>Fórmula na célula ("=150*2"), ordenar clicando no cabeçalho e imprimir o mês. Estão na lista de sugestões.</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>11 / 35</span></footer>
+  </section>
+<section class="pg" id="achar">
+    <header class="pg__topo"><p class="olho">Parte 3 · Financeiro</p><h1>Achar qualquer linha: por pessoa, por valor</h1><p class="lide">Na planilha, o filtro aceita a pessoa e uma faixa de valor, além de tipo, situação, categoria e forma. Cada filtro ligado vira uma etiqueta em cima da grade, que sai com um clique.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 98mm;height:auto">
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:610px;height:111px"><img src="_capturas/admin/filtro-lanc-aplicado.jpg" alt="" style="width:1109px;left:-136px;top:-39px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Entradas da Talita Sá entre R$ 100 e R$ 200: sobra uma linha, a mensalidade de MMA. As etiquetas em cima dizem o filtro inteiro.</figcaption></figure>
+        <figure class="quadro"><div class="recortes "><div class="recorte" style="width:330px;height:224px"><img src="_capturas/admin/filtro-lanc.jpg" alt="" style="width:1542px;left:-1212px;top:0px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> A gaveta do filtro: pessoa e valor "de / até".</figcaption></figure></div>
+      <div class="pilha">
+        <figure class="quadro"><div class="recortes "><div class="recorte" style="width:370px;height:267px"><img src="_capturas/admin/busca.jpg" alt="" style="width:1333px;left:-680px;top:0px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> <b>Ctrl+K</b>, em qualquer tela: pessoas, cobranças, lançamentos e notas numa busca só.</figcaption></figure>
+        <p class="pequeno sec">A pessoa se escreve pelo nome inteiro ou pelo começo dele em palavras inteiras ("Talita", "Talita Sá"). Com dois nomes que batem, o Admin pede mais e não adivinha.</p>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>12 / 35</span></footer>
+  </section>
+<section class="pg" id="mensalidades">
+    <header class="pg__topo"><p class="olho">Parte 3 · Financeiro</p><h1>A mensalidade se gera sozinha</h1><p class="lide">O Admin olha cada matrícula e cria a cobrança do mês, com o desconto e o dia de vencimento de cada aluno. Quando alguém paga, você marca, e a entrada aparece na planilha.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 62mm;height:auto">
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:760px;height:278px"><img src="_capturas/admin/cobrancas-lista.jpg" alt="" style="width:1147px;left:-141px;top:-43px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> As cobranças de outubro, por situação. Na Kids, quem paga é o responsável.</figcaption></figure></div>
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:222px;height:246px"><img src="_capturas/admin/cobrancas.jpg" alt="" style="width:1045px;left:-821px;top:-8px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> A gaveta "Marcar como paga".</figcaption></figure></div>
+    </div>
+    <div class="duas" style="margin-top:12px"><div class="bloco "><h3>O que você vê</h3><ul class="lista "><li>Cada cobrança com a situação calculada: a vencer, vence hoje, atrasada ou paga</li><li>O desconto ao lado (família, funcionário); no combo, o valor já vem dividido entre as modalidades</li></ul></div><div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista "><li>Gerar o mês no botão (gerar duas vezes não duplica nada)</li><li>Marcar como paga com a data e a forma, e desfazer se marcou errado. Data futura é recusada; valor maior que o esperado pede confirmação</li></ul></div></div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>13 / 35</span></footer>
+  </section>
+<section class="pg" id="despesas">
+    <header class="pg__topo"><p class="olho">Parte 3 · Financeiro</p><h1>A despesa fixa entra sozinha</h1><p class="lide">Aluguel, salários, luz, internet e contador viram linhas a pagar todo mês, no dia do vencimento, sem ninguém lembrar.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 70mm;height:auto">
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:715px;height:311px"><img src="_capturas/admin/despesas-fixas.jpg" alt="" style="width:1174px;left:-144px;top:-41px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Luz e água variam: entram pela média dos últimos 3 meses, marcadas "estimado" até alguém conferir a conta.</figcaption></figure></div>
+      <div class="pilha">
+        <div class="bloco "><h3>O que você vê</h3><ul class="lista "><li>Cada despesa com o valor, o dia, a forma e se já foi paga no mês</li><li>O total que se repete todo mês</li></ul></div>
+        <div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista "><li>Cadastrar uma vez e esquecer</li><li>"Conferir a conta": troca o valor estimado do mês pelo da conta, sem mexer nos meses seguintes</li><li>"Lembrar todo mês": vira lembrete na agenda</li></ul></div>
+        <div class="caixa caixa--vermelha"><b class="rot">A decidir</b>Gerar sozinho no dia 1 está desligado até a resposta da pergunta A6.</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>14 / 35</span></footer>
+  </section>
+<section class="pg" id="fechar">
+    <header class="pg__topo"><p class="olho">Parte 3 · Financeiro</p><h1>Mês fechado, números congelados</h1><p class="lide">Quando o mês acaba, você fecha: os números ficam guardados como foram para o contador, e ninguém muda uma linha sem reabrir o mês.</p></header>
+    <div class="pg__corpo"><figure class="quadro"><div class="recortes "><div class="recorte" style="width:1009px;height:208px"><img src="_capturas/admin/fechamento.jpg" alt="" style="width:1156px;left:-142px;top:-40px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Os 13 meses: outubro aberto, os outros fechados, com quem fechou e quando.</figcaption></figure>
+    <figure class="quadro"><div class="recortes "><div class="recorte" style="width:1009px;height:78px"><img src="_capturas/admin/fechado.jpg" alt="" style="width:1156px;left:-142px;top:-40px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Setembro na planilha: só leitura. Ao tentar editar, o aviso "nada foi mudado" e o caminho para reabrir com motivo.</figcaption></figure>
+    <p class="texto16" style="margin-top:8px">Antes de fechar, o Admin mostra o que está pendurado (linhas a pagar, cobranças em aberto). Reabrir pede o motivo, e o motivo fica no histórico.</p></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>15 / 35</span></footer>
+  </section>
+<section class="pg" id="inadimplencia">
+    <header class="pg__topo"><p class="olho">Parte 4 · Cobrança</p><h1>Quem deve, quanto e há quantos dias</h1><p class="lide">A lista de quem está devendo sai pronta, do maior atraso para o menor. Cobrar é um clique: abre a conversa no WhatsApp com a mensagem escrita.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 84mm;height:auto">
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:662px;height:322px"><img src="_capturas/admin/inadimplencia.jpg" alt="" style="width:1151px;left:-141px;top:-69px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Em cada linha, o botão Cobrar. Família aparece numa linha só ("Miguel (Kids)", setembro e outubro).</figcaption></figure></div>
+      <div class="pilha">
+        <figure class="quadro"><div class="recortes "><div class="recorte" style="width:318px;height:218px"><img src="_capturas/admin/inadimplencia.jpg" alt="" style="width:1106px;left:-780px;top:-66px"></div></div></figure>
+        <p class="pequeno sec">A mensagem sai pronta, sem dado de saúde. Quem envia é você: o Admin não manda nada sozinho. Atraso não bloqueia o treino nem aparece para o professor.</p>
+        <div class="caixa caixa--vermelha"><b class="rot">Se vocês decidirem cobrar multa e juros</b>Pergunta A3. Hoje está desligado. Com 2 % de multa e 1 % ao mês (o limite da lei) e 5 dias de tolerância, uma mensalidade de R$ 150,00 paga 35 dias depois do vencimento fica em <b>R$ 154,75</b> (conta do motor do financeiro).</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>16 / 35</span></footer>
+  </section>
+<section class="pg" id="importar">
+    <header class="pg__topo"><p class="olho">Parte 5 · Importar e exportar</p><h1>A planilha de vocês entra no Admin</h1><p class="lide">Ninguém começa do zero. Você manda o arquivo (Excel ou CSV), confere como cada coluna foi lida e só então grava. Se entrou errado, desfaz a importação inteira.</p></header>
+    <div class="pg__corpo"><figure class="quadro"><div class="recortes "><div class="recorte" style="width:1009px;height:139px"><img src="_capturas/admin/importar.jpg" alt="" style="width:1160px;left:-142px;top:-41px"></div><div class="recorte" style="width:690px;height:224px"><img src="_capturas/admin/importar.jpg" alt="" style="width:1165px;left:-143px;top:-193px"></div><div class="recorte" style="width:309px;height:221px"><img src="_capturas/admin/importar.jpg" alt="" style="width:1149px;left:-831px;top:-191px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Em cima, o que cada coluna da planilha vira (dá para trocar); embaixo, a prévia em grupos e as categorias novas para criar. A linha com 31/09 fica de fora, com o motivo.</figcaption></figure>
+    <div class="caixa caixa--vermelha" style="margin-top:8px"><b class="rot">O que falta para ficar perfeito</b>A planilha que vocês usam hoje (pergunta A13), mesmo de um mês só. A importação foi testada com planilhas montadas por nós.</div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>17 / 35</span></footer>
+  </section>
+<section class="pg" id="importar-curta">
+    <header class="pg__topo"><p class="olho">Parte 5 · Importar e exportar</p><h1>Até a planilha de três colunas entra</h1><p class="lide">Muita academia anota só "Data · Aluno · Valor". O Admin entende: pergunta se as linhas são entradas ou saídas, acha o aluno no cadastro e escreve a descrição.</p></header>
+    <div class="pg__corpo"><figure class="quadro"><div class="recortes "><div class="recorte" style="width:1009px;height:145px"><img src="_capturas/admin/importar-curta.jpg" alt="" style="width:1160px;left:-142px;top:-75px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Seis linhas coladas do Excel, sem tipo e sem descrição. A pergunta em cima responde por todas: "Entradas (o que recebi)".</figcaption></figure>
+    <div class="duas" style="margin-top:10px;grid-template-columns:minmax(0,1fr) 78mm;gap:18px">
+      <figure class="quadro"><div class="recortes "><div class="recorte" style="width:700px;height:177px"><img src="_capturas/admin/importar-curta.jpg" alt="" style="width:1181px;left:-145px;top:-242px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Cada linha vira uma entrada com o nome do aluno. Quem não está no cadastro ("Marcos Antunes") não trava: o nome vai na observação.</figcaption></figure>
+      <div class="pilha"><div class="bloco "><h3>E o que mais ela aceita</h3><ul class="lista lista--16"><li>"+150,00" e "150,00 D" do extrato do banco</li><li>Data com hora, da maquininha ("05/10/2026 14:30")</li><li>A linha "TOTAL" no fim da planilha, que sai sozinha</li></ul></div></div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>18 / 35</span></footer>
+  </section>
+<section class="pg" id="exportar">
+    <header class="pg__topo"><p class="olho">Parte 5 · Importar e exportar</p><h1>Tudo sai para o Excel quando você quiser</h1><p class="lide">Qualquer lista do Admin vira um arquivo que abre direto no Excel, com acento certo e valor como número. É o que você leva ao contador.</p></header>
+    <div class="pg__corpo"><figure class="quadro"><div class="recortes "><div class="recorte" style="width:1009px;height:228px"><img src="_capturas/admin/exportar.jpg" alt="" style="width:1755px;left:-733px;top:-63px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Como o Excel vai abrir: "Valor" sempre positivo, com o tipo ao lado, e "Valor (±)" com a saída negativa.</figcaption></figure>
+    <div class="tres" style="margin-top:14px">
+      <div class="bloco "><h3>O que sai</h3><ul class="lista lista--16"><li>O mês ou o ano inteiro</li><li>A planilha do jeito que estiver filtrada, a lista de alunos, de devedores ou de qualquer relatório</li></ul></div>
+      <div class="bloco "><h3>Como sai</h3><ul class="lista lista--16"><li>Acentos certos e vírgula nos centavos</li><li>A SOMA da coluna "Valor (±)" dá o resultado</li><li>Protegido contra fórmula escondida em texto</li></ul></div>
+      <div class="bloco "><h3>E depois</h3><ul class="lista lista--16"><li>O arquivo que sai volta igual pela importação</li><li>Arquivo .xlsx nativo fica para depois</li></ul></div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>19 / 35</span></footer>
+  </section>
+<section class="pg" id="relatorio-ano">
+    <header class="pg__topo"><p class="olho">Parte 6 · Relatórios</p><h1>O ano inteiro, mês a mês</h1><p class="lide">Quanto entrou, quanto saiu e o resultado de cada mês, com quantos alunos estavam matriculados e se o mês já está fechado.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 66mm;height:auto">
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:735px;height:398px"><img src="_capturas/admin/relatorio-ano.jpg" alt="" style="width:1461px;left:-715px;top:-88px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> A tabela do relatório do ano. Ao lado dela, na tela, o mesmo ano em barras.</figcaption></figure></div>
+      <div class="pilha">
+        <div class="bloco "><h3>Os relatórios</h3><ul class="lista "><li>Mês, ano, categoria, modalidade, forma de pagamento, professor, evento, inadimplência e funil</li><li>Todo relatório sai para o Excel</li></ul></div>
+        <div class="bloco "><h3>O que dá para ver aqui</h3><ul class="lista "><li>O mês no vermelho (no exemplo, julho)</li><li>Se o número de alunos acompanha o resultado</li></ul></div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>20 / 35</span></footer>
+  </section>
+<section class="pg" id="relatorio-modalidade">
+    <header class="pg__topo"><p class="olho">Parte 6 · Relatórios</p><h1>Onde está o dinheiro</h1><p class="lide">Qual modalidade paga o aluguel, quanto cada professor recebe e se o evento compensou. No combo, cada modalidade conta a sua metade.</p></header>
+    <div class="pg__corpo"><div class="lado" style="grid-template-columns:minmax(0,1fr) 78mm;height:auto">
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:700px;height:299px"><img src="_capturas/admin/relatorio-modalidade.jpg" alt="" style="width:1783px;left:-1070px;top:-107px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Quanto entrou de cada modalidade no período, por aluno, e contra o mesmo trecho do período anterior.</figcaption></figure></div>
+      <div class="pilha"><div class="bloco "><h3>O que dá para ver aqui</h3><ul class="lista lista--16"><li>Qual modalidade paga o aluguel</li><li>Quanto rende cada aluno de cada modalidade</li><li>Se a modalidade cresceu ou caiu</li></ul></div></div>
+    </div>
+    <div style="margin-top:10px"><figure class="quadro"><div class="recortes "><div class="recorte" style="width:496px;height:152px"><img src="_capturas/admin/relatorio-modalidade.jpg" alt="" style="width:1151px;left:-141px;top:-270px"></div><div class="recorte" style="width:496px;height:152px"><img src="_capturas/admin/relatorio-modalidade.jpg" alt="" style="width:1151px;left:-646px;top:-270px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> À esquerda, quanto cada professor recebe no mês pela regra dele; à direita, cada evento com o que entrou e saiu.</figcaption></figure></div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>21 / 35</span></footer>
+  </section>
+<section class="pg" id="filtro">
+    <header class="pg__topo"><p class="olho">Parte 7 · Filtro total</p><h1>Pergunte, e o Admin responde</h1><p class="lide">Os filtros se cruzam: modalidade, plano, situação, atraso, desconto, data de entrada. A pergunta aparece escrita em cima da resposta, e o filtro pode ser salvo com um nome.</p></header>
+    <div class="pg__corpo"><figure class="quadro"><div class="recortes "><div class="recorte" style="width:690px;height:267px"><img src="_capturas/admin/filtro.jpg" alt="" style="width:1333px;left:-357px;top:-93px;filter:brightness(2.2)"></div><div class="recorte" style="width:300px;height:361px"><img src="_capturas/admin/filtro.jpg" alt="" style="width:1412px;left:-1110px;top:-11px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> "Matriculados com mais de 30 dias de atraso": a resposta à esquerda (clareada aqui; na tela ela fica escurecida atrás do filtro) e o filtro aberto à direita, pronto para salvar com um nome.</figcaption></figure>
+    <div class="duas" style="margin-top:12px;grid-template-columns:1fr 1fr">
+      <div class="bloco "><h3>Outras perguntas que ele responde</h3><ul class="lista lista--16"><li>Quantas crianças estão no Kids?</li><li>Quem entrou este mês?</li><li>Quantos alunos tem cada modalidade?</li></ul></div>
+      <div class="bloco "><h3>Filtros salvos</h3><ul class="lista lista--16"><li>Ficam à esquerda da lista de alunos, com a contagem ao lado: "Inadimplentes há mais de 30 dias · 9"</li><li>Toda lista filtrada sai para o Excel</li></ul></div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>22 / 35</span></footer>
+  </section>
+<section class="pg" id="funil">
+    <header class="pg__topo"><p class="olho">Parte 8 · Funil</p><h1>Da mensagem no WhatsApp até a matrícula</h1><p class="lide">A aula experimental é a porta da academia. O funil mostra quem chamou, quem marcou, quem fez a aula e quem se matriculou, e de onde veio cada um.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 84mm;height:auto">
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:680px;height:274px"><img src="_capturas/admin/funil.jpg" alt="" style="width:1054px;left:-129px;top:-37px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> As quatro colunas do funil, com os botões de cada etapa (marcar aula, compareceu, matricular).</figcaption></figure>
+        <div class="duas" style="margin-top:12px"><div class="bloco "><h3>O que você vê</h3><ul class="lista "><li>Cada interessado na etapa em que está, com a modalidade e de onde veio</li><li>A conversão por origem: Instagram, WhatsApp, indicação, porta</li></ul></div><div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista "><li>Marcar a aula escolhendo um horário da grade de verdade; matricular direto do funil</li><li>Lembrar de chamar de volta quem fez a aula e sumiu (o prazo é seu, pergunta A15)</li></ul></div></div></div>
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:316px;height:426px"><img src="_capturas/admin/funil.jpg" alt="" style="width:1470px;left:-1143px;top:-87px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> "Chamar de volta", com lembrete pronto.</figcaption></figure></div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>23 / 35</span></footer>
+  </section>
+<section class="pg" id="turmas">
+    <header class="pg__topo"><p class="olho">Parte 9 · Turmas</p><h1>Turmas e horários, a grade do cartaz</h1><p class="lide">A grade da academia mora no Admin. O que você muda aqui aparece nos horários do app do aluno e nas aulas do professor.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 70mm;height:auto">
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:690px;height:200px"><img src="_capturas/admin/turmas.jpg" alt="" style="width:1380px;left:-169px;top:-117px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> A semana, dia a dia, de segunda a quinta (sexta e sábado ficam à direita, fora do recorte): as 11 turmas do cartaz atual da Raça Fight.</figcaption></figure>
+        <figure class="quadro"><div class="recortes "><div class="recorte" style="width:690px;height:122px"><img src="_capturas/admin/turmas.jpg" alt="" style="width:1113px;left:-136px;top:-270px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> A lista, com modalidade, público e professor (de exemplo).</figcaption></figure></div>
+      <div><figure class="quadro"><div class="recortes "><div class="recorte" style="width:262px;height:441px"><img src="_capturas/admin/turmas-gaveta.jpg" alt="" style="width:1224px;left:-962px;top:0px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Editar a turma: modalidades, público, professor, horários.</figcaption></figure></div>
+    </div>
+    <div class="caixa caixa--vermelha" style="margin-top:8px"><b class="rot">A decidir</b>A duração das aulas (pergunta L1: o exemplo usa 60 minutos) e quem é o professor de cada turma. Os nomes da tela são inventados.</div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>24 / 35</span></footer>
+  </section>
+<section class="pg" id="agenda">
+    <header class="pg__topo"><p class="olho">Parte 10 · Anotar e lembrar</p><h1>Agenda, notas e lembretes</h1><p class="lide">O caderno do dono dentro do app. Lembrete com data e repetição ("todo dia 10"), tarefa com prazo e responsável, e nota ligada a uma pessoa ou a um valor.</p></header>
+    <div class="pg__corpo"><figure class="quadro"><div class="recortes "><div class="recorte" style="width:1009px;height:278px"><img src="_capturas/admin/agenda.jpg" alt="" style="width:1160px;left:-142px;top:-41px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Hoje (atrasados, hoje, em breve), o calendário do mês com os vencimentos e as tarefas abertas.</figcaption></figure>
+    <div class="tres" style="margin-top:10px">
+      <div class="bloco "><h3>O que você consegue fazer</h3><ul class="lista "><li>Criar lembrete e nota num atalho (L e N no teclado)</li><li>Escrever a data como se fala: "amanhã", "20", "20/10"</li></ul></div>
+      <div class="bloco "><h3>Atalhos prontos</h3><ul class="lista "><li>A despesa fixa vira lembrete mensal</li><li>Quem deve vira "Cobrar fulano"; quem fez a aula vira "Chamar de volta"</li></ul></div>
+      <div class="bloco "><h3>O aviso no celular</h3><ul class="lista "><li>Às 8h: "Você tem 3 lembretes hoje", <b>sem o texto e sem valor</b>. Ainda não está ligado: depende do servidor</li></ul></div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>25 / 35</span></footer>
+  </section>
+<section class="pg" id="historico">
+    <header class="pg__topo"><p class="olho">Parte 11 · Histórico</p><h1>Quem mexeu, no quê, e quando</h1><p class="lide">Toda criação, mudança e arquivamento fica registrado, em frase. Quem grava é o próprio banco de dados, não a tela: ninguém pula o registro, e ninguém apaga, nem o dono.</p></header>
+    <div class="pg__corpo"><figure class="quadro"><div class="recortes recortes--pilha"><div class="recorte" style="width:1009px;height:47px"><img src="_capturas/admin/historico-cheio.jpg" alt="" style="width:1392px;left:-372px;top:-49px"></div><div class="recorte" style="width:1009px;height:148px"><img src="_capturas/admin/historico-cheio.jpg" alt="" style="width:1392px;left:-372px;top:-245px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> O mais novo primeiro. Em cima, um valor mudado agora ("Contador": R$ 450,00 → R$ 480,00); embaixo, lançamentos criados e meses fechados.</figcaption></figure>
+    <div class="duas" style="margin-top:10px">
+      <div class="bloco "><h3>Por que isso importa</h3><ul class="lista "><li>Um pagamento não some sem deixar rastro</li><li>Se o valor de alguém mudou, você sabe quem mudou e quando</li></ul></div>
+      <div class="caixa caixa--vermelha"><b class="rot">A decidir</b>Guardar o histórico para sempre ou por 5 anos, o prazo comum para documento fiscal (pergunta A14, confirmar com o contador).</div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>26 / 35</span></footer>
+  </section>
+<section class="pg" id="celular">
+    <header class="pg__topo"><p class="olho">No celular</p><h1>O mesmo Admin, no bolso</h1><p class="lide">No celular, a planilha vira uma lista por dia e cada linha abre numa folha para editar. A barra de baixo leva ao painel, às pessoas, às finanças e à agenda.</p></header>
+    <div class="pg__corpo"><div style="display:flex;gap:18px;justify-content:center;align-items:flex-start">
+      <figure class="quadro" style="width:196px"><div class="recorte" style="width:196px;height:424px;border-radius:14px"><img src="_capturas/admin/cel-painel.jpg" alt="" style="width:196px;left:0;top:0"></div><figcaption class="legenda" style="text-align:center"><b>Painel</b></figcaption></figure><figure class="quadro" style="width:196px"><div class="recorte" style="width:196px;height:424px;border-radius:14px"><img src="_capturas/admin/cel-lancamentos.jpg" alt="" style="width:196px;left:0;top:0"></div><figcaption class="legenda" style="text-align:center"><b>Lançamentos do mês</b></figcaption></figure><figure class="quadro" style="width:196px"><div class="recorte" style="width:196px;height:424px;border-radius:14px"><img src="_capturas/admin/cel-folha.jpg" alt="" style="width:196px;left:0;top:0"></div><figcaption class="legenda" style="text-align:center"><b>Editar uma linha</b></figcaption></figure><figure class="quadro" style="width:196px"><div class="recorte" style="width:196px;height:424px;border-radius:14px"><img src="_capturas/admin/cel-pessoas.jpg" alt="" style="width:196px;left:0;top:0"></div><figcaption class="legenda" style="text-align:center"><b>Alunos</b></figcaption></figure>
+    </div>
+    <p class="texto16" style="margin-top:10px;text-align:center">Abre no navegador e se instala como app, com ícone na tela inicial, sem passar pela loja (pergunta A23).</p></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span class="exemplo">Valores de exemplo e nomes inventados</span><span>27 / 35</span></footer>
+  </section>
+<section class="pg" id="motor">
+    <header class="pg__topo"><p class="olho">Onde estamos</p><h1>O Admin já roda. O servidor ainda não existe.</h1><p class="lide">As telas deste documento são o Admin construído, rodando no computador com uma academia de exemplo. Os dados ficam só naquele navegador. Para a academia usar de verdade, falta pôr o banco de dados no ar.</p></header>
+    <div class="pg__corpo"><table class="tabela-16"><thead><tr><th>O quê</th><th>Situação</th></tr></thead><tbody>
+          <tr><td>As telas do Admin, no PC e no celular</td><td><span class="selo selo--ok">prontas</span></td></tr>
+          <tr><td>O motor do financeiro (mensalidade, comissão, fechamento, importar)</td><td><span class="selo selo--ok">pronto · 500 testes</span></td></tr>
+          <tr><td>Os testes das telas e dos fluxos (lançar, colar, pagar, fechar, exportar, importar)</td><td><span class="selo selo--ok">passam · 40 + 5</span></td></tr>
+          <tr><td>As regras de quem vê o quê, dentro do banco</td><td><span class="selo selo--atencao">escritas · testadas num banco de teste</span></td></tr>
+          <tr><td>O servidor (Supabase em São Paulo) com os dados reais</td><td><span class="selo selo--vermelho">não existe · a conta não foi criada</span></td></tr>
+          <tr><td>Login com senha e código no celular</td><td><span class="selo selo--atencao">escrito · espera o servidor</span></td></tr>
+          <tr><td>Mensalidade gerada sozinha no dia 1 e o aviso das 8h</td><td><span class="selo selo--vermelho">não feito · espera o servidor</span></td></tr>
+        </tbody></table>
+    <div class="duas" style="margin-top:14px;grid-template-columns:minmax(0,1fr) 650px;gap:20px;align-items:start">
+      <div class="caixa caixa--vermelha texto16"><b class="rot">O que é de exemplo</b>Os nomes, os preços, os planos, as regras de pagamento da equipe e as regras de cobrança. O logo também é provisório.</div>
+      <figure class="quadro"><div class="recortes "><div class="recorte" style="width:650px;height:41px"><img src="_capturas/admin/ajustes.jpg" alt="" style="width:1333px;left:-172px;top:-90px"></div></div><figcaption class="legenda"><b>Tela do Admin, rodando com dados de exemplo.</b> Em Ajustes, as regras de cobrança ficam marcadas "PROVISÓRIOS" até vocês responderem.</figcaption></figure>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span></span><span>28 / 35</span></footer>
+  </section>
+<section class="pg" id="permissoes">
+    <header class="pg__topo"><p class="olho">Parte 11 · Permissões</p><h1>Quem vê o quê</h1><p class="lide">Cada pessoa vê só o que precisa para o trabalho dela. A regra fica dentro do banco de dados: mesmo que alguém tente abrir pelo caminho errado, o banco não entrega.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 80mm;height:auto">
+      <table class="tabela-16"><thead><tr><th style="width:38%"></th><th>Aluno</th><th>Professor</th><th>Recepção</th><th>Dono (Admin)</th></tr></thead>
+        <tbody><tr><td><b>Horários, turmas, avisos</b></td><td><span class="selo selo--ok">vê</span></td><td><span class="selo selo--ok">vê</span></td><td><span class="selo selo--ok">vê</span></td><td><span class="selo selo--ok">vê</span></td></tr><tr><td><b>Presença e graduação</b></td><td><span class="selo">só o dele</span></td><td><span class="selo selo--ok">vê</span></td><td><span class="selo selo--ok">vê</span></td><td><span class="selo selo--ok">vê</span></td></tr><tr><td><b>Cadastro e telefone do aluno</b></td><td><span class="selo">só o dele</span></td><td><span class="selo">só da turma dele</span></td><td><span class="selo selo--ok">vê</span></td><td><span class="selo selo--ok">vê</span></td></tr><tr><td><b>Registrar quem quer a aula experimental</b></td><td><span class="ter">—</span></td><td><span class="selo selo--ok">vê</span></td><td><span class="selo selo--ok">vê</span></td><td><span class="selo selo--ok">vê</span></td></tr><tr><td><b>Mensalidade de um aluno e se está paga</b></td><td><span class="selo">só o dele</span> <span class="selo selo--atencao">se você decidir</span></td><td><span class="ter">—</span></td><td><span class="selo selo--atencao">se você decidir</span></td><td><span class="selo selo--ok">vê</span></td></tr><tr><td><b>Quem está devendo</b></td><td><span class="ter">—</span></td><td><span class="ter">—</span></td><td><span class="selo selo--atencao">se você decidir</span></td><td><span class="selo selo--ok">vê</span></td></tr><tr><td><b>Entradas, saídas e resultado do mês</b></td><td><span class="ter">—</span></td><td><span class="ter">—</span></td><td><span class="ter">—</span></td><td><span class="selo selo--ok">vê</span></td></tr><tr><td><b>Salário e comissão da equipe</b></td><td><span class="ter">—</span></td><td><span class="ter">—</span></td><td><span class="ter">—</span></td><td><span class="selo selo--ok">vê</span></td></tr><tr><td><b>Notas, lembretes e relatórios do dono</b></td><td><span class="ter">—</span></td><td><span class="ter">—</span></td><td><span class="ter">—</span></td><td><span class="selo selo--ok">vê</span></td></tr><tr><td><b>Histórico de quem mexeu</b></td><td><span class="ter">—</span></td><td><span class="ter">—</span></td><td><span class="ter">—</span></td><td><span class="selo selo--ok">vê</span></td></tr></tbody></table>
+      <div class="pilha">
+        <div class="caixa caixa--preta"><b class="rot" style="color:#FF8A8C">A regra principal</b>O professor nunca vê valor: nem mensalidade, nem atraso, nem salário de ninguém. O aluno em atraso treina normalmente; se a academia quiser bloquear, a decisão é sua.</div>
+        <div class="caixa caixa--vermelha"><b class="rot">A decidir: a recepção lança pagamento?</b>Pergunta A1. Se sim, a recepção marca a mensalidade como paga e cadastra aluno, mas <b>não vê</b> o resultado do mês, salários, despesas, relatórios nem as suas notas. Nossa recomendação: só o dono na primeira entrega.</div>
+        <div class="caixa"><b class="rot">Sócio</b>Se houver mais de um dono, os dois entram com a mesma visão, e o histórico separa o que cada um fez (pergunta A22).</div>
+        <div class="caixa"><b class="rot">O aluno vê a própria mensalidade?</b>Recomendamos que sim: só as dele (ou dos filhos), sem multa e sem histórico de cobrança. Diminui o "quanto eu devo?" no balcão (pergunta A2).</div>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span></span><span>29 / 35</span></footer>
+  </section>
+<section class="pg" id="seguranca">
+    <header class="pg__topo"><p class="olho">Segurança e LGPD</p><h1>O dado da academia, bem guardado</h1><p class="lide">Dinheiro e dado de criança pedem cuidado de banco. Em linguagem simples: onde fica, quem vê, o que acontece se der problema e o que a lei pede da academia.</p></header>
+    <div class="pg__corpo"><div class="quatro lista--16" style="grid-template-columns:repeat(3,1fr);gap:14px 18px">
+      <div class="bloco "><h3>Onde fica</h3><ul class="lista "><li>No Brasil: banco de dados em São Paulo, e a cópia extra também</li><li>Trancado: guardado criptografado e viajando criptografado entre o celular e o servidor. Quem roubasse o disco não leria nada</li></ul></div>
+      <div class="bloco "><h3>Quem vê</h3><ul class="lista "><li>Cada um só o que é dele (página anterior), com a regra dentro do banco</li><li>Para entrar no Admin, duas chaves: a senha e um código de 6 números que muda a cada 30 segundos, no seu celular</li></ul></div>
+      <div class="bloco "><h3>Se der problema</h3><ul class="lista "><li>Cópia de segurança automática todo dia</li><li>No plano recomendado, mais uma cópia nossa, guardada 30 dias: um erro descoberto duas semanas depois ainda tem volta</li><li>O histórico mostra o que foi mudado e por quem</li></ul></div>
+      <div class="bloco "><h3>Dinheiro não fica pela metade</h3><ul class="lista "><li>Sem internet, o Admin não grava pagamento: avisa "Sem conexão: nada foi gravado" e guarda o que você digitou na tela</li><li>Assim dois aparelhos não marcam o mesmo pagamento duas vezes</li></ul></div>
+      <div class="bloco "><h3>Nada vaza pelo aviso</h3><ul class="lista "><li>Aviso no celular nunca leva nome nem valor: "Você tem 3 lembretes hoje", "2 pessoas com mensalidade atrasada"</li><li>O sistema não grava valor em nenhum registro técnico</li></ul></div>
+      <div class="bloco "><h3>O que a LGPD pede da academia</h3><ul class="lista "><li>A academia é a dona dos dados; o fornecedor só guarda</li><li>Ter uma pessoa de contato para privacidade (o "encarregado")</li><li>Criança só com o responsável, e foto de menor só com autorização escrita</li><li>Pedir só o necessário: o CPF fica de fora até uma cobrança exigir</li></ul></div>
+    </div>
+    <div class="caixa caixa--vermelha" style="margin-top:14px"><b class="rot">Um cuidado antes de pôr os dados reais</b>O contrato de dados do fornecedor (Supabase) foi escrito para a lei europeia e não cita a LGPD. O dado fica em São Paulo, mas a empresa é de fora. Vale um advogado olhar antes.</div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span></span><span>30 / 35</span></footer>
+  </section>
+<section class="pg" id="custo">
+    <header class="pg__topo"><p class="olho">Hospedagem e custo</p><h1>Quanto custa manter no ar</h1><p class="lide">O que a academia paga aos fornecedores para os três apps funcionarem: o banco de dados, as lojas do iPhone e do Android e o endereço próprio. Preços de 15/10/2026, com o dólar a R$ 5,23 (já com o IOF do cartão).</p></header>
+    <div class="pg__corpo"><div class="degraus">
+      <div class="degrau ">
+        <div class="degrau__nome">Começar</div>
+        <div class="degrau__para">1 academia, ~150 alunos</div>
+        <div class="degrau__preco">R$ 131<small> por mês</small></div>
+        <div class="lin"><span>Por ano, com Apple e domínio</span><b>R$ 2.126</b></div>
+        <div class="lin"><span>No primeiro ano (+ Google, uma vez)</span><b>R$ 2.257</b></div>
+        <div class="lin"><span>Média por mês no ano</span><b>R$ 177</b></div>
+        <div class="lin"><span>Cópia de segurança</span><span style="text-align:right">1 por dia, guardada 7 dias</span></div>
+        <div class="lin"><span>Se der problema, perde</span><span style="text-align:right">até 1 dia de lançamentos</span></div>
+        <div class="lin"><span>Folga de máquina</span><span>básica (1 GB)</span></div>
+      </div><div class="degrau degrau--rec">
+        <div class="degrau__nome">Recomendado<span class="selo selo--vermelho" style="font-family:var(--texto);text-transform:none">o que recomendamos</span></div>
+        <div class="degrau__para">1 academia, ~150 a 300 alunos (a Raça Fight hoje)</div>
+        <div class="degrau__preco">R$ 162<small> por mês</small></div>
+        <div class="lin"><span>Por ano, com Apple e domínio</span><b>R$ 2.503</b></div>
+        <div class="lin"><span>No primeiro ano (+ Google, uma vez)</span><b>R$ 2.633</b></div>
+        <div class="lin"><span>Média por mês no ano</span><b>R$ 209</b></div>
+        <div class="lin"><span>Cópia de segurança</span><span style="text-align:right">1 por dia (7 dias) + cópia nossa de 30 dias</span></div>
+        <div class="lin"><span>Se der problema, perde</span><span style="text-align:right">até 1 dia de lançamentos</span></div>
+        <div class="lin"><span>Folga de máquina</span><span>o dobro (2 GB)</span></div>
+      </div><div class="degrau ">
+        <div class="degrau__nome">Crescer</div>
+        <div class="degrau__para">~500 alunos ou 2 unidades</div>
+        <div class="degrau__preco">R$ 685<small> por mês</small></div>
+        <div class="lin"><span>Por ano, com Apple e domínio</span><b>R$ 8.777</b></div>
+        <div class="lin"><span>No primeiro ano (+ Google, uma vez)</span><b>R$ 8.908</b></div>
+        <div class="lin"><span>Média por mês no ano</span><b>R$ 731</b></div>
+        <div class="lin"><span>Cópia de segurança</span><span style="text-align:right">volta a qualquer minuto dos últimos 7 dias + cópia de 30 dias</span></div>
+        <div class="lin"><span>Se der problema, perde</span><span style="text-align:right">uns 2 minutos</span></div>
+        <div class="lin"><span>Folga de máquina</span><span>o dobro (2 GB)</span></div>
+      </div>
+    </div>
+    <div class="duas" style="margin-top:12px;gap:18px">
+      <div class="caixa"><b class="rot">Por que o do meio</b>Custa R$ 31 a mais por mês que o Começar e resolve o ponto fraco dele: se alguém apaga um lançamento e você só percebe 15 dias depois, a cópia de 30 dias traz de volta. O Crescer custa cinco vezes mais pela "volta no tempo", que só compensa com duas unidades, e pode ser ligado depois.</div>
+      <div class="caixa"><b class="rot">Por que não o plano grátis</b>O plano gratuito do banco <b>pausa depois de uma semana sem uso</b> e <b>não faz cópia de segurança nenhuma</b>. Serve para teste, não para o financeiro de uma academia. Um servidor próprio barato (R$ 30 a R$ 60) parece economia, mas alguém tem de cuidar dele toda semana.</div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span></span><span>31 / 35</span></footer>
+  </section>
+<section class="pg" id="custo-itens">
+    <header class="pg__topo"><p class="olho">Hospedagem e custo</p><h1>O que se paga, e para quem</h1><p class="lide">O plano recomendado, item por item. Quase tudo é cobrado em dólar no cartão; se o dólar muda, a conta muda junto.</p></header>
+    <div class="pg__corpo"><div class="lado lado--largo" style="grid-template-columns:minmax(0,1fr) 84mm;height:auto">
+      <table class="tabela-16"><thead><tr><th>O quê</th><th class="n">Em dólar</th><th class="n">Em reais</th><th>Quando</th></tr></thead><tbody>
+        <tr><td>Banco de dados, login e fotos (Supabase Pro, em São Paulo)</td><td class="n">US$ 25</td><td class="n"><b>R$ 130,72</b></td><td>todo mês</td></tr><tr><td>Máquina um tamanho acima (folga e base para a "volta no tempo")</td><td class="n">US$ 5</td><td class="n"><b>R$ 26,14</b></td><td>todo mês</td></tr><tr><td>Cópia de segurança extra, guardada 30 dias, em São Paulo</td><td class="n">US$ 1</td><td class="n"><b>R$ 5,23</b></td><td>todo mês</td></tr><tr><td>Conta Apple, para o app estar na loja do iPhone</td><td class="n">US$ 99</td><td class="n"><b>R$ 517,66</b></td><td>todo ano</td></tr><tr><td>Conta Google Play, para a loja do Android</td><td class="n">US$ 25</td><td class="n"><b>R$ 130,72</b></td><td>uma vez só</td></tr><tr><td>Endereço próprio .com.br (Registro.br)</td><td class="n">—</td><td class="n"><b>R$ 40,00</b></td><td>todo ano</td></tr><tr><td>Montar o app para as lojas</td><td class="n">US$ 0</td><td class="n"><b>grátis</b></td><td>—</td></tr><tr><td>Avisos no celular</td><td class="n">US$ 0</td><td class="n"><b>grátis</b></td><td>—</td></tr><tr><td>E-mail de cadastro e de troca de senha</td><td class="n">US$ 0</td><td class="n"><b>grátis</b></td><td>—</td></tr><tr><td>Banco de testes, sem dado real</td><td class="n">US$ 0</td><td class="n"><b>grátis</b></td><td>—</td></tr>
+      </tbody><tfoot><tr><td>Total por mês</td><td class="n">US$ 31</td><td class="n">R$ 162,09</td><td></td></tr>
+        <tr><td style="font-weight:400">Por ano (12 meses + Apple + domínio)</td><td></td><td class="n">R$ 2.502,74</td><td></td></tr></tfoot></table>
+      <div class="pilha">
+        <div class="caixa caixa--preta"><b class="rot" style="color:#FF8A8C">Duas contas diferentes</b><b>Infraestrutura</b> é o que está nesta página: o que a academia paga todo mês e todo ano aos fornecedores.<br><br><b>Desenvolvimento e manutenção</b> (construir, corrigir, atualizar, acompanhar o sistema) <b>é outra conta, a combinar com o Alex</b>. Ela não está em nenhum número deste documento.</div>
+        <div class="caixa"><b class="rot">Os grátis têm limite</b>E-mail: até 3.000 por mês. Avisos no celular: sem custo. Montar o app: 15 vezes por mês para cada loja. Folgado para uma academia.</div>
+        <p class="pequeno ter">Preços pesquisados nos sites dos fornecedores em 15/10/2026. O valor da Apple em reais só aparece na hora da inscrição.</p>
+      </div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span></span><span>32 / 35</span></footer>
+  </section>
+<section class="pg" id="decidir">
+    <header class="pg__topo"><p class="olho">O que a academia precisa decidir</p><h1>Sete respostas que trocam o exemplo pelo real</h1><p class="lide">Sem elas, o Admin anda com valores de exemplo. Cada uma tem a nossa sugestão; a decisão é de vocês.</p></header>
+    <div class="pg__corpo"><div class="perguntas">
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">A13</span>Podem mandar a planilha que vocês usam hoje?</div><div class="pergunta__r">Pode ser de um mês só, em Excel, ou até uma foto se for de papel. <b>É a mais útil de todas:</b> com ela, a importação é testada com o arquivo de verdade.</div></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">A18</span>Quais planos vocês vendem, e por quanto?</div><div class="pergunta__r">Por modalidade, vezes na semana, combo, Kids, trimestral, e se existe taxa de matrícula. <b>Os preços deste documento são inventados.</b></div></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">A19</span>Como a equipe é paga hoje?</div><div class="pergunta__r">Fixo, comissão sobre a modalidade, por aula, ou uma mistura? Quem é CLT, MEI ou autônomo? <b>O Admin calcula; não faz folha de pagamento.</b></div></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">A7</span>Quem entra no dia 21 paga o mês cheio?</div><div class="pergunta__r">Ou só a parte do mês, ou começa a pagar no mês seguinte? <b>Sugestão:</b> mês cheio, e o vencimento passa a ser o dia da matrícula. É o mais fácil de explicar no balcão.</div></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">A3</span>Vocês cobram multa e juros de quem atrasa?</div><div class="pergunta__r">Se sim, quanto e com quantos dias de tolerância? <b>Sugestão:</b> 2 % de multa e 1 % ao mês, o limite da lei, com 5 dias de tolerância, confirmado com o contador.</div></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">A1</span>A recepção pode marcar mensalidade como paga?</div><div class="pergunta__r">Se sim, ela não vê resultado, salários nem despesas. <b>Sugestão:</b> só o dono na primeira entrega; a porta fica pronta para depois.</div></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">A23</span>O Admin pode ser um app que abre no navegador?</div><div class="pergunta__r">Abre no computador e no celular, com ícone na tela inicial, <b>sem passar pela loja</b>. É o melhor jeito de ter uma planilha de verdade dentro dele. <b>Sugestão:</b> sim.</div></div>
+      <div class="pergunta" style="background:var(--fundo)"><div class="pergunta__q">E outras, sem pressa</div><div class="pergunta__r">Desconto de família e do "Traga um amiguinho", reajuste de preço, pagamento parcial, Pix e boleto automáticos (sugestão: depois), guardar CPF (sugestão: não). São 24 ao todo, todas com sugestão.</div></div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span></span><span>33 / 35</span></footer>
+  </section>
+<section class="pg" id="decidir-2">
+    <header class="pg__topo"><p class="olho">O que a academia precisa decidir</p><h1>Contas, contrato e privacidade</h1><p class="lide">Antes de pôr os dados reais no ar: em nome de quem ficam as contas, quem olha o contrato e quem responde pela privacidade.</p></header>
+    <div class="pg__corpo"><div class="perguntas">
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">1</span>Em nome de quem ficam as contas?</div><div class="pergunta__r">Banco de dados, Apple, Google e o endereço .com.br: da academia, com CNPJ, ou do Alex? A Apple pede um número de cadastro da empresa (D-U-N-S) para conta de empresa.</div></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">2</span>Um advogado pode olhar o contrato de dados?</div><div class="pergunta__r">O contrato do fornecedor do banco foi escrito para a lei europeia e não cita a LGPD. O dado fica em São Paulo, mas a empresa é de fora do país.</div></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">3</span>Quem será o encarregado de privacidade?</div><div class="pergunta__r">Pode ser o dono ou alguém da recepção, com um e-mail público para os alunos. Empresa pequena às vezes é dispensada, mas dado de criança costuma tirar a dispensa.</div></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">4</span>Quando ligar a "volta no tempo"?</div><div class="pergunta__r">Só faz sentido com duas unidades ou muita gente lançando ao mesmo tempo. Liga pelo painel, sem mudar o app.</div></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">A24</span>Professores e atletas aceitam aparecer com o nome real?</div><div class="pergunta__r">Até cada um autorizar, os exemplos usam nomes inventados. Foto de criança só com autorização escrita do responsável.</div></div>
+      <div class="pergunta"><div class="pergunta__q"><span class="cod">Marca</span>Podem mandar o logo em alta resolução?</div><div class="pergunta__r">O logo deste documento foi redesenhado a partir das fotos do Instagram e é provisório. O arquivo original da academia entra no lugar.</div></div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span></span><span>34 / 35</span></footer>
+  </section>
+<section class="pg" id="passos">
+    <header class="pg__topo"><p class="olho">Próximos passos</p><h1>Do sim até o Admin no ar</h1><p class="lide">O Admin é a primeira entrega. O prazo de cada etapa se combina com o Alex quando as respostas das páginas anteriores chegarem: elas é que destravam o resto.</p></header>
+    <div class="pg__corpo"><div class="passos">
+      <div class="passo passo--agora"><div class="passo__n">1</div><h4>Vocês respondem</h4><p>As sete perguntas, a planilha atual e os preços reais.</p><p class="quem">Academia</p></div><div class="passo "><div class="passo__n">2</div><h4>Admin construído</h4><p>Feito: as telas deste documento, rodando com dados de exemplo. Faltam os ajustes que vocês pedirem.</p><p class="quem">Alex</p></div><div class="passo "><div class="passo__n">3</div><h4>Servidor no ar</h4><p>Criar a conta do banco em São Paulo, ligar o login e importar a sua planilha com os seus planos e preços.</p><p class="quem">Alex</p></div><div class="passo "><div class="passo__n">4</div><h4>Um mês em paralelo</h4><p>Vocês usam o Admin e a planilha juntos por um mês, para conferir que os números batem.</p><p class="quem">Academia e Alex</p></div><div class="passo "><div class="passo__n">5</div><h4>No ar</h4><p>A planilha se aposenta. Depois vêm o app do aluno e o do professor, ligados ao mesmo banco.</p><p class="quem">Todos</p></div>
+    </div>
+    <div class="duas" style="margin-top:22px;grid-template-columns:1fr 92mm;gap:20px;align-items:stretch">
+      <div class="pilha">
+        <div class="bloco "><h3>O que já está pronto</h3><ul class="lista lista--16"><li>O Admin inteiro, no computador e no celular, com a academia de exemplo</li><li>O motor do financeiro, testado: gera mensalidade, calcula comissão, fecha o mês, lê a planilha</li><li>O banco de dados escrito, com as regras de quem vê o quê, e a escolha da hospedagem com o custo de cada degrau</li></ul></div>
+        <div class="caixa caixa--vermelha"><b class="rot">O pedido de hoje</b>Se a proposta faz sentido, o primeiro passo é mandar a planilha atual e a lista de planos e preços. Com isso, a próxima versão deste documento já sai com os números de vocês.</div>
+      </div>
+      <div style="border-radius:12px;background:#000 50% 30% / cover no-repeat url('_capturas/fotos/academia.jpg');min-height:250px"></div>
+    </div></div>
+    <footer class="pg__rodape"><span><b>RAÇA FIGHT</b> · Admin, o painel do dono · versão de 16/10/2026</span><span></span><span>35 / 35</span></footer>
+  </section>
+</body></html>

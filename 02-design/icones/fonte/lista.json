@@ -1,0 +1,370 @@
+{
+ "traco": 2.25,
+ "icones": [
+  {
+   "nome": "treinos",
+   "grupo": "aba",
+   "origem": "Lucide clipboard-list",
+   "alteracao": "Traço 2,25; prancheta mais estreita; no cheio, as linhas viram janelas vazadas.",
+   "cheio": true
+  },
+  {
+   "nome": "perfil",
+   "grupo": "aba",
+   "origem": "Lucide user-round",
+   "alteracao": "Traço 2,25; cabeça r 4 e ombros r 7,5 para abrir respiro entre eles.",
+   "cheio": true
+  },
+  {
+   "nome": "alunos",
+   "grupo": "aba",
+   "origem": "Lucide users-round",
+   "alteracao": "Traço 2,25; a segunda pessoa fica só em contorno também no cheio, para não virar mancha.",
+   "cheio": true
+  },
+  {
+   "nome": "academia",
+   "grupo": "aba",
+   "origem": "Tabler building-store",
+   "alteracao": "Traço 2,25; toldo com três ondas em vez de quatro; parede começa abaixo do toldo.",
+   "cheio": true
+  },
+  {
+   "nome": "marcar",
+   "grupo": "acao",
+   "origem": "Lucide check",
+   "alteracao": "Traço 2,25; perna curta mais longa.",
+   "cheio": false
+  },
+  {
+   "nome": "mais",
+   "grupo": "acao",
+   "origem": "Lucide plus",
+   "alteracao": "Traço 2,25.",
+   "cheio": false
+  },
+  {
+   "nome": "menos",
+   "grupo": "acao",
+   "origem": "Lucide minus",
+   "alteracao": "Traço 2,25.",
+   "cheio": false
+  },
+  {
+   "nome": "cronometro",
+   "grupo": "acao",
+   "origem": "próprio",
+   "alteracao": "Anel de progresso com coroa: assinatura do descanso.",
+   "cheio": false
+  },
+  {
+   "nome": "pausar",
+   "grupo": "acao",
+   "origem": "Lucide pause",
+   "alteracao": "Contorno em duas barras de traço; cheio com retângulos.",
+   "cheio": true
+  },
+  {
+   "nome": "comecar",
+   "grupo": "acao",
+   "origem": "Lucide play",
+   "alteracao": "Traço 2,25; triângulo centrado opticamente.",
+   "cheio": true
+  },
+  {
+   "nome": "pular",
+   "grupo": "acao",
+   "origem": "Lucide skip-forward",
+   "alteracao": "Traço 2,25; triângulo menor para abrir o respiro até a barra.",
+   "cheio": false
+  },
+  {
+   "nome": "buscar",
+   "grupo": "acao",
+   "origem": "Lucide search",
+   "alteracao": "Traço 2,25.",
+   "cheio": false
+  },
+  {
+   "nome": "filtro",
+   "grupo": "acao",
+   "origem": "Lucide list-filter",
+   "alteracao": "Traço 2,25; linhas mais curtas.",
+   "cheio": false
+  },
+  {
+   "nome": "voltar",
+   "grupo": "acao",
+   "origem": "Lucide chevron-left",
+   "alteracao": "Traço 2,25; chevron maior (14 de altura).",
+   "cheio": false
+  },
+  {
+   "nome": "avancar",
+   "grupo": "acao",
+   "origem": "Lucide chevron-right",
+   "alteracao": "Traço 2,25; chevron maior.",
+   "cheio": false
+  },
+  {
+   "nome": "menu",
+   "grupo": "acao",
+   "origem": "Lucide ellipsis",
+   "alteracao": "Pontos cheios com traço: 3,5 de diâmetro.",
+   "cheio": false
+  },
+  {
+   "nome": "fechar",
+   "grupo": "acao",
+   "origem": "Lucide x",
+   "alteracao": "Traço 2,25.",
+   "cheio": false
+  },
+  {
+   "nome": "vibrar",
+   "grupo": "acao",
+   "origem": "Lucide vibrate",
+   "alteracao": "Traço 2,25; celular mais estreito para o zigue-zague respirar.",
+   "cheio": false
+  },
+  {
+   "nome": "sino",
+   "grupo": "acao",
+   "origem": "Lucide bell",
+   "alteracao": "Traço 2,25; badalo reto para não grudar no sino.",
+   "cheio": true
+  },
+  {
+   "nome": "prato",
+   "grupo": "acao",
+   "origem": "Lucide utensils",
+   "alteracao": "Traço 2,25; garfo de dois dentes (o terceiro sumia em 16 px).",
+   "cheio": false
+  },
+  {
+   "nome": "grafico",
+   "grupo": "acao",
+   "origem": "Lucide chart-no-axes-column",
+   "alteracao": "Traço 2,25; barras com mais respiro.",
+   "cheio": false
+  },
+  {
+   "nome": "camera",
+   "grupo": "acao",
+   "origem": "Lucide camera",
+   "alteracao": "Traço 2,25; lente menor para não encostar no corpo.",
+   "cheio": false
+  },
+  {
+   "nome": "cadeado",
+   "grupo": "acao",
+   "origem": "Lucide lock",
+   "alteracao": "Traço 2,25. Só na tela de convite, nunca sobre função \"trancada\".",
+   "cheio": false
+  },
+  {
+   "nome": "email",
+   "grupo": "acao",
+   "origem": "Lucide mail",
+   "alteracao": "Traço 2,25.",
+   "cheio": false
+  },
+  {
+   "nome": "apple",
+   "grupo": "marca",
+   "origem": "próprio (marca registrada da Apple)",
+   "alteracao": "Silhueta simplificada só para o mockup. No app, o botão é o nativo (expo-apple-authentication).",
+   "cheio": false
+  },
+  {
+   "nome": "google",
+   "grupo": "marca",
+   "origem": "próprio (marca registrada do Google)",
+   "alteracao": "\"G\" de traço só para o mockup. No app, o G oficial de quatro cores das diretrizes de marca do Google.",
+   "cheio": false
+  },
+  {
+   "nome": "calendario",
+   "grupo": "acao",
+   "origem": "Lucide calendar",
+   "alteracao": "Traço 2,25.",
+   "cheio": false
+  },
+  {
+   "nome": "baixo",
+   "grupo": "acao",
+   "origem": "Lucide chevron-down",
+   "alteracao": "Traço 2,25; chevron maior, como o voltar.",
+   "cheio": false
+  },
+  {
+   "nome": "subir",
+   "grupo": "acao",
+   "origem": "Lucide chevron-up",
+   "alteracao": "Traço 2,25; chevron maior, como o voltar.",
+   "cheio": false
+  },
+  {
+   "nome": "seta-direita",
+   "grupo": "acao",
+   "origem": "Lucide arrow-right",
+   "alteracao": "Traço 2,25; ponta maior. Para \"seguir\" dentro de botão; o avancar (chevron) fica para linha de lista.",
+   "cheio": false
+  },
+  {
+   "nome": "lista",
+   "grupo": "acao",
+   "origem": "Lucide list",
+   "alteracao": "Traço 2,25; marcadores em ponto cheio de 3,5 (o ponto de traço sumia em 16 px).",
+   "cheio": false
+  },
+  {
+   "nome": "conversa",
+   "grupo": "acao",
+   "origem": "Lucide message-circle",
+   "alteracao": "Traço 2,25; ponta do balão recolhida para dentro da área viva.",
+   "cheio": false
+  },
+  {
+   "nome": "desfazer",
+   "grupo": "acao",
+   "origem": "Lucide undo-2",
+   "alteracao": "Traço 2,25.",
+   "cheio": false
+  },
+  {
+   "nome": "trocar",
+   "grupo": "acao",
+   "origem": "Lucide arrow-up-down",
+   "alteracao": "Traço 2,25.",
+   "cheio": false
+  },
+  {
+   "nome": "alerta",
+   "grupo": "acao",
+   "origem": "Lucide triangle-alert",
+   "alteracao": "Traço 2,25; ponto em círculo cheio.",
+   "cheio": false
+  },
+  {
+   "nome": "alca",
+   "grupo": "acao",
+   "origem": "Lucide grip-vertical",
+   "alteracao": "Pontos cheios de 3,5, como o menu.",
+   "cheio": false
+  },
+  {
+   "nome": "nuvem",
+   "grupo": "acao",
+   "origem": "Lucide cloud",
+   "alteracao": "Traço 2,25.",
+   "cheio": false
+  },
+  {
+   "nome": "olho",
+   "grupo": "acao",
+   "origem": "Lucide eye",
+   "alteracao": "Traço 2,25; contorno simplificado.",
+   "cheio": false
+  },
+  {
+   "nome": "escudo",
+   "grupo": "acao",
+   "origem": "Lucide shield",
+   "alteracao": "Traço 2,25. Privacidade (\"Quem pode ver\").",
+   "cheio": false
+  },
+  {
+   "nome": "convite",
+   "grupo": "acao",
+   "origem": "Lucide ticket",
+   "alteracao": "Traço 2,25. Convite ou código de equipe.",
+   "cheio": false
+  },
+  {
+   "nome": "relogio",
+   "grupo": "acao",
+   "origem": "Lucide clock",
+   "alteracao": "Traço 2,25. Duração (\"50 min\"); o descanso usa o cronometro.",
+   "cheio": false
+  },
+  {
+   "nome": "estrela",
+   "grupo": "acao",
+   "origem": "Lucide star",
+   "alteracao": "Traço 2,25; pontas retas. Só no exemplo do selo; a aba Plus usa o plus.",
+   "cheio": false
+  },
+  {
+   "nome": "corrida",
+   "grupo": "tema",
+   "origem": "Tabler run",
+   "alteracao": "Traço 2,25; cabeça cheia.",
+   "cheio": false
+  },
+  {
+   "nome": "alongamento",
+   "grupo": "tema",
+   "origem": "Tabler stretching-2",
+   "alteracao": "Traço 2,25; cabeça cheia.",
+   "cheio": false
+  },
+  {
+   "nome": "balanca",
+   "grupo": "tema",
+   "origem": "Tabler scale-outline",
+   "alteracao": "Traço 2,25. Só no registro de peso que a pessoa pediu; nunca como tema de tela.",
+   "cheio": false
+  },
+  {
+   "nome": "medida",
+   "grupo": "tema",
+   "origem": "Tabler ruler-measure",
+   "alteracao": "Traço 2,25; três marcas em vez de cinco.",
+   "cheio": false
+  },
+  {
+   "nome": "frequencia",
+   "grupo": "tema",
+   "origem": "Lucide heart-pulse",
+   "alteracao": "Traço 2,25; pulso mais simples, dentro do coração.",
+   "cheio": false
+  },
+  {
+   "nome": "sequencia",
+   "grupo": "tema",
+   "origem": "Lucide flame",
+   "alteracao": "Traço 2,25. Sequência de dias treinados, nunca \"queimar\".",
+   "cheio": true
+  },
+  {
+   "nome": "trofeu",
+   "grupo": "tema",
+   "origem": "Lucide trophy",
+   "alteracao": "Traço 2,25; alças simplificadas. Só conquista pessoal; nunca ranking.",
+   "cheio": false
+  },
+  {
+   "nome": "garrafa",
+   "grupo": "tema",
+   "origem": "Tabler bottle",
+   "alteracao": "Traço 2,25; tampa e onda simplificadas.",
+   "cheio": false
+  },
+  {
+   "nome": "personal",
+   "grupo": "tema",
+   "origem": "Lucide whistle",
+   "alteracao": "Traço 2,25. Apito = personal / instrutor.",
+   "cheio": false
+  },
+  {
+   "nome": "grafico-linha",
+   "grupo": "tema",
+   "origem": "próprio",
+   "alteracao": "Linha de evolução de carga com eixo, na gramática do Lucide chart-line (não copiado).",
+   "cheio": false
+  }
+ ],
+ "ilustracoes": []
+}

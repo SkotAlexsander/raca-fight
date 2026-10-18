@@ -1,0 +1,1099 @@
+/* =====================================================================
+   Academia Plus — sistema.css
+   Implementa os tokens de 02-design/sistema-de-design/tokens.json (1.6.0).
+   1.6.0 (agente N, P09): a linguagem das referências do Alex (02-design/referencias/): escuro com foto
+   grande, vidro sobre a foto, números enormes, verde vivo (--cor-viva) e pílulas. O claro tem a mesma
+   linguagem, com vidro claro. Componentes novos: 19 Foto com texto (.foto-texto), 20 Vidro (.vidro),
+   21 Deslizar para começar (.deslizar), anel por exercício (.anel-exercicio), número gigante.
+   Transparência: [data-transparencia="reduzida"] ou prefers-reduced-transparency → vidro sólido.
+   Cores e fontes da MARCA (marca-e-proposta/tokens-marca.json), aplicadas na
+   direção de arte A · Lousa clara com foto (direcao-de-arte/, a recomendada; a
+   escolha ainda é [decidir] do Alex), com os dois empréstimos opcionais: o placar
+   no topo do treino do dia (da C) e o halo no exercício atual só no escuro (da B).
+   Nada abaixo da linha de tokens usa cor literal.
+   Tema: [data-tema="claro"] | [data-tema="escuro"]; sem atributo, segue o sistema.
+   Movimento: [data-movimento="reduzido"] ou prefers-reduced-motion → todo efeito
+   vira esmaecer de 160 ms (tokens.json › movimento.reduzido).
+   ===================================================================== */
+
+/* Fontes da marca (SIL OFL 1.1; licenças em fontes/): Figtree na interface, Archivo só nos números grandes */
+@font-face { font-family: "Figtree"; font-weight: 400; font-style: normal; font-display: swap; src: url("fontes/figtree-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 500; font-style: normal; font-display: swap; src: url("fontes/figtree-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 600; font-style: normal; font-display: swap; src: url("fontes/figtree-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 700; font-style: normal; font-display: swap; src: url("fontes/figtree-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Archivo"; font-weight: 700; font-style: normal; font-display: swap; src: url("fontes/archivo-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Archivo"; font-weight: 800; font-style: normal; font-display: swap; src: url("fontes/archivo-latin-800-normal.woff2") format("woff2"); }
+
+/* ---------- 1. TOKENS ---------- */
+
+:root {
+  /* tipografia da marca (tokens.json › tipografia.familia) */
+  --fonte-interface: Figtree, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fonte-numero: Archivo, Figtree, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* escala tipográfica FECHADA (tokens 1.8.0, regra do Alex de 10/10/2026): base 16, razão 1,25.
+     Só existem 13 · 16 · 20 · 25 · 31 · 39 · 49 · 61. legenda 13 · corpo 16 · subtítulo 20 · título de tela 25
+     (título grande 31) · número de linha de série 20 · valor sendo editado 25 · número herói 49 · 61 só no modo
+     treino e no cronômetro. Em rem (valor ÷ 16): o texto acompanha a fonte do sistema; os números têm teto
+     (tipografia.tetoAmpliacao). UM herói por tela: o resto desce na escala. */
+  --tipo-numero-gigante: min(3.8125rem, 61px);   --linha-numero-gigante: min(3.8125rem, 61px);   /* 61: o número do modo treino */
+  --tipo-numero-gigante-pequeno: min(3.0625rem, 61px); --linha-numero-gigante-pequeno: min(3.0625rem, 61px);
+  --tipo-numero-cronometro-tela: min(3.8125rem, 61px); --linha-numero-cronometro-tela: min(4.25rem, 68px); /* 61: o mostrador do Cronômetro */
+  --tipo-numero-cronometro: min(3.0625rem, 49px); --linha-numero-cronometro: min(3.5rem, 56px);  /* 49: o descanso em destaque */
+  --tipo-numero-destaque: min(3.0625rem, 49px);  --linha-numero-destaque: min(3.25rem, 52px);   /* 49: número herói ("60 kg", "214") */
+  --tipo-numero-carga: min(1.5625rem, 37.5px);   --linha-numero-carga: min(1.875rem, 45px);     /* 25: valor sendo editado */
+  --tipo-numero-medio: 1.5625rem;  --linha-numero-medio: 1.875rem;   /* 25 */
+  --tipo-numero-serie: 1.25rem;    --linha-numero-serie: 1.5rem;     /* 20: número da linha de série */
+  --tipo-titulo-1: 1.9375rem;      --linha-titulo-1: 2.375rem;       /* 31: título grande (iOS) */
+  --tipo-titulo-2: 1.5625rem;      --linha-titulo-2: 1.875rem;       /* 25: título de tela */
+  --tipo-titulo-3: 1.25rem;        --linha-titulo-3: 1.625rem;       /* 20: subtítulo */
+  --tipo-corpo: 1rem;              --linha-corpo: 1.5rem;            /* 16 */
+  --tipo-corpo-pequeno: 0.8125rem; --linha-corpo-pequeno: 1.125rem;  /* 13: apoio de linha */
+  --tipo-legenda: 0.8125rem;       --linha-legenda: 1rem;            /* 13: legenda */
+  /* celular pequeno (< 390; tokens.json › tipografia.escalaCelularPequeno): desce um passo na escala, mesmos tetos */
+  --tipo-numero-cronometro-pequeno: min(2.4375rem, 49px); --linha-numero-cronometro-pequeno: min(2.875rem, 56px);
+  --tipo-numero-carga-pequeno: min(1.25rem, 30px);        --linha-numero-carga-pequeno: min(1.5rem, 36px);
+  --tipo-numero-cronometro-tela-pequeno: min(3.0625rem, 61px); --linha-numero-cronometro-tela-pequeno: min(3.5rem, 68px);
+  /* faixas da fonte do sistema (tokens.json › tipografia.fonteAmpliada), lidas pelo script do mockup */
+  --fonte-ampliada: 1.3; --fonte-maxima: 1.6;
+  --tipo-titulo-1-pequeno: 1.5625rem;                   --linha-titulo-1-pequeno: 1.875rem;
+
+  /* espaço (4 em 4) */
+  --espaco-1: 4px; --espaco-2: 8px; --espaco-3: 12px; --espaco-4: 16px; --espaco-5: 20px;
+  --espaco-6: 24px; --espaco-8: 32px; --espaco-10: 40px; --espaco-12: 48px; --espaco-16: 64px;
+
+  /* raio */
+  --raio-pequeno: 8px; --raio-medio: 12px; --raio-grande: 16px; --raio-folha: 24px; --raio-redondo: 999px;
+  /* direção A: cartão 20 e miniatura 14 (concêntrica ao cartão: 20 − 6) */
+  --raio-cartao: 24px; --raio-miniatura: 16px;
+  /* 1.6.0: raios maiores e pílulas (tokens.json › raio) */
+  --raio-capa: 28px; --raio-vidro: 24px; --raio-botao: 999px; --raio-pilula: 999px;
+
+  /* vidro (tokens.json › vidro): desfoque e saturação; as cores ficam nos blocos de tema */
+  --vidro-desfoque: 24px; --vidro-saturacao: 1.6;
+  /* foto (tokens.json › foto): a foto é uma ilha escura, igual nos dois temas */
+  --foto-filtro: brightness(0.72) saturate(0.9);
+  --foto-gradiente: linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0) 22%, rgba(10, 10, 10, 0) 32%, rgba(10, 10, 10, 0.74) 60%, rgba(10, 10, 10, 0.94) 100%);
+  --foto-gradiente-capa: linear-gradient(180deg, rgba(10, 10, 10, 0) 20%, rgba(10, 10, 10, 0.8) 64%, rgba(10, 10, 10, 0.94) 100%);
+  --foto-luz-lateral: radial-gradient(120% 80% at 100% 0%, rgba(196, 32, 36, 0.24), rgba(196, 32, 36, 0) 60%);
+  --foto-texto: #FFFFFF; --foto-texto-secundario: #D9D9D9; --foto-fundo-sem-foto: #161616;
+  /* deslizar para começar e anel por exercício */
+  --deslizar-altura: 56px; --deslizar-botao: 48px;
+  --anel-exercicio: 44px; --anel-traco: 4;
+
+  /* imagem (tokens.json › imagem): capa do treino pronto e miniaturas */
+  --imagem-capa: 184px; --imagem-capa-pequena: 104px; --imagem-miniatura: 56px; --imagem-miniatura-atual: 64px; --imagem-miniatura-lista: 48px;
+  /* as fotos com texto crescem com a fonte do sistema (o texto não pode subir para a parte clara da foto) */
+  --imagem-heroi: max(340px, 21.25rem); --imagem-heroi-baixo: max(300px, 18.75rem); --imagem-capa-foto: max(240px, 15rem); --imagem-capa-grade: max(208px, 13rem);
+
+  /* alvo de toque */
+  --alvo-minimo: 48px; --alvo-confortavel: 56px; --alvo-grande: 64px; --alvo-espaco: 8px;
+  /* 1.8.0: TAMANHO VISUAL ≠ ÁREA DE TOQUE. O desenho do controle é o de baixo; a área de toque continua com 48
+     (44 pt no iOS) por um ::before invisível (no app, hitSlop). Nada interativo passa de 56 de desenho. */
+  --controle-primario: 48px; --controle-secundario: 40px; --controle-icone: 40px; --controle-marcar: 40px;
+  --controle-passo: 36px; --controle-chip: 32px; --controle-maximo: 56px;
+
+  /* borda */
+  --borda-fina: 1px; --borda-media: 2px; --borda-foco: 3px;
+
+  /* duração e curva */
+  --duracao-rapida: 120ms; --duracao-media: 200ms; --duracao-lenta: 320ms;
+  --curva-padrao: cubic-bezier(0.2, 0, 0, 1); --curva-entrada: cubic-bezier(0, 0, 0.2, 1); --curva-saida: cubic-bezier(0.4, 0, 1, 1);
+  /* movimento (tokens.json › movimento) */
+  --duracao-esmaecer: 160ms; --escala-toque: 0.98;
+  /* mola.toque (amortecimento 1, 200 ms) como curva linear(); o script recalcula com a mesma conta do movimento/demo.html */
+  --mola-toque: linear(0, 0.0315, 0.1057, 0.2002, 0.301, 0.3995, 0.4911, 0.5733, 0.6454, 0.7075, 0.7603, 0.8046, 0.8414, 0.8718, 0.8968, 0.9172, 0.9337, 0.9471, 0.9579, 0.9665, 0.9734, 0.979, 0.9834, 0.9869, 1);
+
+  /* layout */
+  --margem-lateral: 16px; --altura-cabecalho: 56px; --altura-barra-abas: 56px;
+  --altura-linha: 72px; --altura-linha-compacta: 56px; --espaco-cartoes: 12px; --coluna-cartao-minima: 150px; --coluna-numero-minima: 6.5rem;
+
+  /* ícone */
+  --icone-pequeno: 16px; --icone-medio: 24px; --icone-grande: 32px; --icone-traco: 2.25;
+
+  --opacidade-desabilitado: 0.4;
+
+  /* moldura do mockup (tokens.json › moldura): a TELA tem 390 × 844, a borda do aparelho fica por fora.
+     Estes são os valores do aparelho padrão (Android 390); o seletor de aparelho troca pelos de
+     tokens.json › layout.aparelhos (bloco [data-aparelho] no fim da seção 4). */
+  --moldura-tela-largura: 390px; --moldura-tela-altura: 844px; --moldura-borda: 12px; --moldura-borda-v: 12px;
+  --moldura-raio: 48px; --moldura-raio-tela: 36px;
+  --moldura-inset-topo: 54px; --moldura-inset-base: 24px;
+  --area-base-minima: 16px; /* layout.areaSegura.baseMinima: o app nunca encosta a barra de abas na borda */
+  /* recorte do topo (moldura.recortes) e barra de status do sistema */
+  --moldura-ilha-largura: 12px; --moldura-ilha-altura: 12px; --moldura-ilha-topo: 16px; --moldura-ilha-raio: 999px;
+  --status-topo: 6px; --status-altura: 32px;
+  --moldura-gesto-largura: 132px; --moldura-gesto-altura: 4px; --moldura-gesto-base: 8px;
+  --moldura-zoom: 1; --moldura-zoom-minimo: 0.5; /* o script do mockup encolhe a moldura inteira para caber na janela (nunca a tela por dentro) */
+  --coluna-celular: 358px;
+  /* 1.7.0 (agente Q): o que a entrada (--o-), as telas novas (--p-) e as ilustrações (--r-) usavam como local */
+  --raio-campo: 16px; --raio-ilustracao: 12px;
+  --tipo-titulo-entrada: min(2.4375rem, 49px); --linha-titulo-entrada: min(2.75rem, 55.28px);         /* tipografia.escala.tituloEntrada: 39, o herói das boas-vindas */
+  
+  --tipo-legenda-grafico: 0.8125rem; --linha-legenda-grafico: 1rem;           /* legendaGrafico: rótulo de eixo */
+  --abertura-simbolo: 96px; --abertura-simbolo-selo: 32px; --abertura-espera: 700ms;
+  --porta-altura: 88px; --codigo-caixa: 48px;
+  --capa-inicio: 300px; --foto-topo-evolucao: 280px; --foto-topo-dono: 232px;
+  --anel-descanso: 248px; --anel-descanso-traco: 12px; --foto-desfoque-descanso: 18px;
+  --check-comemoracao: 112px; --bolinha-semana: 40px; --dia-mapa: 40px; /* layout.colunaCelularMedio (= 390 − 2 × 16); fixo, não muda com o aparelho escolhido */
+}
+
+/* Tema claro (padrão e [data-tema="claro"]) */
+:root, [data-tema="claro"] {
+  --cor-fundo: #F5F5F5;
+  --cor-superficie: #FFFFFF;
+  --cor-superficie-elevada: #FFFFFF;
+  --cor-texto: #1C1C1C;
+  --cor-texto-secundario: #545454;
+  --cor-borda: #D6D6D6;
+  --cor-marca: #C42024;
+  --cor-marca-texto: #FFFFFF;
+  --cor-marca-suave: #FBE6E6;
+  /* 1.6.0: o verde vivo de preenchimento, igual nos dois temas (texto em cima: viva-texto, 11,67:1) */
+  --cor-viva: #C42024; --cor-viva-texto: #FFFFFF;
+  --cor-progresso: #C42024; /* traço de progresso sobre superfície clara: marca (viva some no branco, 1,45:1) */
+  --cor-sucesso: #0A7E3A;  --cor-sucesso-texto: #FFFFFF;
+  --cor-atencao: #B74D00;  --cor-atencao-texto: #FFFFFF;
+  --cor-erro: #B3261E;     --cor-erro-texto: #FFFFFF;
+  --cor-plus: #EAB444;     --cor-plus-texto: #3A2B0D;
+  --cor-plus-texto-sobre-fundo: #9A6100; --cor-plus-suave: #FCF2E1;
+  --cor-trilho: #E2E2E2;
+  --cor-regua: rgba(28, 28, 28, 0.10);
+  --cor-foco: #C42024;
+  --cor-sobreposicao: rgba(0, 0, 0, 0.48);
+  /* vidro claro (tokens.json › vidro.claro) */
+  --vidro-fundo: rgba(255, 255, 255, 0.80); --vidro-borda: rgba(255, 255, 255, 0.75); --vidro-brilho-topo: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --vidro-sombra: 0 8px 24px -12px rgba(0, 0, 0, 0.35); --vidro-texto: #1C1C1C; --vidro-texto-secundario: #3D3D3D; --vidro-destaque: #A51B1F;
+  --vidro-solido: #FFFFFF; --vidro-camada: linear-gradient(to top, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+  --vidro-barra: rgba(255, 255, 255, 0.88);
+  --sombra-viva: 0 8px 24px -8px rgba(196, 32, 36, 0.35);
+  --sombra-1: 0 0 0 1px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06);
+  /* direção A: sombra em camadas (6 × 5 %), a "md" de beautiful-shadows */
+  --sombra-2: 0 0 0 1px rgba(0,0,0,0.05), 0 1px 1px -0.5px rgba(0,0,0,0.05), 0 3px 3px -1.5px rgba(0,0,0,0.05), 0 6px 6px -3px rgba(0,0,0,0.05), 0 12px 12px -6px rgba(0,0,0,0.05), 0 24px 24px -12px rgba(0,0,0,0.05);
+  --sombra-3: 0 12px 32px rgba(0,0,0,0.16);
+  --sombra-atual: 0 0 0 2px var(--cor-marca), 0 12px 24px -12px rgba(0,0,0,0.18);
+  --camada-toque: 0.08;
+  --brilho-esqueleto: rgba(255,255,255,0.65);
+  /* toast no claro é invertido */
+  --cor-toast-fundo: var(--cor-texto);
+  --cor-toast-texto: var(--cor-fundo);
+  --cor-toast-acao: var(--cor-fundo);
+  /* 1.7.0: entrada (foto de tela cheia), conta social, abertura, ilustração, gráficos, mapa e aviso (tokens.json) */
+  --foto-veu-entrada: linear-gradient(180deg, rgba(245, 245, 245, 0.55) 0%, rgba(245, 245, 245, 0) 16%, rgba(245, 245, 245, 0) 38%, rgba(245, 245, 245, 0.80) 62%, rgba(245, 245, 245, 0.94) 100%);
+  --foto-veu-desfocada: rgba(245, 245, 245, 0.45); --foto-entrada-texto: #1C1C1C; --foto-entrada-texto-secundario: #333333;
+  --vidro-selecionado: color-mix(in srgb, var(--cor-marca) 14%, var(--vidro-fundo));
+  --conta-social-fundo: #000000; --conta-social-texto: #FFFFFF;
+  --abertura-fundo: #1C1C1C; --abertura-simbolo-cor: #FFFFFF;
+  --ilustracao-fundo: #EFEFEF; --ilustracao-traco: #1C1C1C; --ilustracao-destaque: #C42024;
+  --grafico-neutro-1: #9A9A9A; --grafico-neutro-2: #BDBDBD; --grafico-neutro-3: #D6D6D6; --grafico-grade: rgba(28, 28, 28, 0.10); --grafico-area: rgba(196, 32, 36, 0.14);
+  --mapa-vazio: #E8E8E8; --mapa-futuro: transparent; --aviso-fundo: #FFFFFF; --aviso-fio: var(--cor-marca);
+  --cor-moldura: #1C1C1C; /* só do mockup: o corpo do aparelho */
+  color-scheme: light;
+}
+
+[data-tema="escuro"] {
+  --cor-fundo: #141414;
+  --cor-superficie: #1C1C1C;
+  --cor-superficie-elevada: #262626;
+  --cor-texto: #F5F5F5;
+  --cor-texto-secundario: #ADADAD;
+  --cor-borda: #343434;
+  --cor-marca: #FF6B6B;
+  --cor-marca-texto: #1C1C1C;
+  --cor-marca-suave: #3A1517;
+  --cor-viva: #C42024; --cor-viva-texto: #FFFFFF; --cor-progresso: #FF6B6B;
+  --cor-sucesso: #67D283;  --cor-sucesso-texto: #141414;
+  --cor-atencao: #FDA16B;  --cor-atencao-texto: #141414;
+  --cor-erro: #FF8A80;     --cor-erro-texto: #141414;
+  --cor-plus: #F8C153;     --cor-plus-texto: #2F2207;
+  --cor-plus-texto-sobre-fundo: #F8C153; --cor-plus-suave: #332710;
+  --cor-trilho: #2E2E2E;
+  --cor-regua: rgba(245, 245, 245, 0.10);
+  --cor-foco: #FF6B6B;
+  --cor-sobreposicao: rgba(0, 0, 0, 0.64);
+  /* vidro escuro (tokens.json › vidro.escuro) */
+  --vidro-fundo: rgba(14, 14, 14, 0.60); --vidro-borda: rgba(255, 255, 255, 0.14); --vidro-brilho-topo: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  --vidro-sombra: 0 8px 24px -12px rgba(0, 0, 0, 0.6); --vidro-texto: #FFFFFF; --vidro-texto-secundario: #D9D9D9; --vidro-destaque: #FF6B6B;
+  --vidro-solido: #262626; --vidro-camada: linear-gradient(to top, rgba(10, 10, 10, 0.55), rgba(10, 10, 10, 0));
+  --vidro-barra: rgba(28, 28, 28, 0.86);
+  /* o brilho do verde vivo, em uma coisa por tela */
+  --sombra-viva: 0 0 0 1px rgba(196, 32, 36, 0.45), 0 8px 32px -6px rgba(196, 32, 36, 0.5);
+  --sombra-1: 0 0 0 1px rgba(255,255,255,0.06);
+  /* direção A no escuro: contorno de 1 px e um fio de luz em cima, não sombra */
+  --sombra-2: 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.05);
+  --sombra-3: 0 12px 32px rgba(0,0,0,0.64);
+  /* empréstimo da B: o halo da marca no exercício atual, só no escuro (o único halo do app) */
+  --sombra-atual: 0 0 0 1.5px var(--cor-marca), 0 0 40px -4px rgba(196, 32, 36, 0.55);
+  --camada-toque: 0.12;
+  --brilho-esqueleto: rgba(255,255,255,0.07);
+  --cor-toast-fundo: var(--cor-superficie-elevada);
+  --cor-toast-texto: var(--cor-texto);
+  --cor-toast-acao: var(--cor-marca);
+  /* 1.7.0: entrada (foto de tela cheia), conta social, abertura, ilustração, gráficos, mapa e aviso (tokens.json) */
+  --foto-veu-entrada: linear-gradient(180deg, rgba(20, 20, 20, 0.55) 0%, rgba(20, 20, 20, 0) 16%, rgba(20, 20, 20, 0) 36%, rgba(20, 20, 20, 0.72) 60%, rgba(20, 20, 20, 0.92) 100%);
+  --foto-veu-desfocada: rgba(20, 20, 20, 0.30); --foto-entrada-texto: var(--foto-texto); --foto-entrada-texto-secundario: var(--foto-texto-secundario);
+  --vidro-selecionado: color-mix(in srgb, var(--cor-marca) 22%, var(--vidro-fundo));
+  --conta-social-fundo: #FFFFFF; --conta-social-texto: #000000;
+  --abertura-fundo: #1C1C1C; --abertura-simbolo-cor: #FFFFFF;
+  --ilustracao-fundo: #262626; --ilustracao-traco: #F5F5F5; --ilustracao-destaque: #FF6B6B;
+  --grafico-neutro-1: #8A8A8A; --grafico-neutro-2: #5C5C5C; --grafico-neutro-3: #3D3D3D; --grafico-grade: rgba(245, 245, 245, 0.10); --grafico-area: rgba(255, 107, 107, 0.16);
+  --mapa-vazio: #262626; --mapa-futuro: transparent; --aviso-fundo: #1C1C1C; --aviso-fio: var(--cor-marca);
+  --cor-moldura: #262626; /* no escuro o aparelho fica escuro, com um fio de luz em volta */
+  color-scheme: dark;
+}
+
+/* Sem atributo: segue o sistema */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema]) {
+    --cor-fundo: #141414;
+    --cor-superficie: #1C1C1C;
+    --cor-superficie-elevada: #262626;
+    --cor-texto: #F5F5F5;
+    --cor-texto-secundario: #ADADAD;
+    --cor-borda: #343434;
+    --cor-marca: #FF6B6B;
+    --cor-marca-texto: #1C1C1C;
+    --cor-marca-suave: #3A1517;
+    --cor-viva: #C42024; --cor-viva-texto: #FFFFFF; --cor-progresso: #FF6B6B;
+    --cor-sucesso: #67D283;  --cor-sucesso-texto: #141414;
+    --cor-atencao: #FDA16B;  --cor-atencao-texto: #141414;
+    --cor-erro: #FF8A80;     --cor-erro-texto: #141414;
+    --cor-plus: #F8C153;     --cor-plus-texto: #2F2207;
+    --cor-plus-texto-sobre-fundo: #F8C153; --cor-plus-suave: #332710;
+    --cor-trilho: #2E2E2E;
+    --cor-regua: rgba(245, 245, 245, 0.10);
+    --cor-foco: #FF6B6B;
+    --cor-sobreposicao: rgba(0, 0, 0, 0.64);
+    /* vidro escuro (tokens.json › vidro.escuro) */
+    --vidro-fundo: rgba(14, 14, 14, 0.60); --vidro-borda: rgba(255, 255, 255, 0.14); --vidro-brilho-topo: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    --vidro-sombra: 0 8px 24px -12px rgba(0, 0, 0, 0.6); --vidro-texto: #FFFFFF; --vidro-texto-secundario: #D9D9D9; --vidro-destaque: #FF6B6B;
+    --vidro-solido: #262626; --vidro-camada: linear-gradient(to top, rgba(10, 10, 10, 0.55), rgba(10, 10, 10, 0));
+    --vidro-barra: rgba(28, 28, 28, 0.86);
+    /* o brilho do verde vivo, em uma coisa por tela */
+    --sombra-viva: 0 0 0 1px rgba(196, 32, 36, 0.45), 0 8px 32px -6px rgba(196, 32, 36, 0.5);
+    --sombra-1: 0 0 0 1px rgba(255,255,255,0.06);
+    /* direção A no escuro: contorno de 1 px e um fio de luz em cima, não sombra */
+    --sombra-2: 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.05);
+    --sombra-3: 0 12px 32px rgba(0,0,0,0.64);
+    /* empréstimo da B: o halo da marca no exercício atual, só no escuro (o único halo do app) */
+    --sombra-atual: 0 0 0 1.5px var(--cor-marca), 0 0 40px -4px rgba(196, 32, 36, 0.55);
+    --camada-toque: 0.12;
+    --brilho-esqueleto: rgba(255,255,255,0.07);
+    --cor-toast-fundo: var(--cor-superficie-elevada);
+    --cor-toast-texto: var(--cor-texto);
+    --cor-toast-acao: var(--cor-marca);
+    /* 1.7.0: entrada (foto de tela cheia), conta social, abertura, ilustração, gráficos, mapa e aviso (tokens.json) */
+    --foto-veu-entrada: linear-gradient(180deg, rgba(20, 20, 20, 0.55) 0%, rgba(20, 20, 20, 0) 16%, rgba(20, 20, 20, 0) 36%, rgba(20, 20, 20, 0.72) 60%, rgba(20, 20, 20, 0.92) 100%);
+    --foto-veu-desfocada: rgba(20, 20, 20, 0.30); --foto-entrada-texto: var(--foto-texto); --foto-entrada-texto-secundario: var(--foto-texto-secundario);
+    --vidro-selecionado: color-mix(in srgb, var(--cor-marca) 22%, var(--vidro-fundo));
+    --conta-social-fundo: #FFFFFF; --conta-social-texto: #000000;
+    --abertura-fundo: #1C1C1C; --abertura-simbolo-cor: #FFFFFF;
+    --ilustracao-fundo: #262626; --ilustracao-traco: #F5F5F5; --ilustracao-destaque: #FF6B6B;
+    --grafico-neutro-1: #8A8A8A; --grafico-neutro-2: #5C5C5C; --grafico-neutro-3: #3D3D3D; --grafico-grade: rgba(245, 245, 245, 0.10); --grafico-area: rgba(255, 107, 107, 0.16);
+    --mapa-vazio: #262626; --mapa-futuro: transparent; --aviso-fundo: #1C1C1C; --aviso-fio: var(--cor-marca);
+    --cor-moldura: #262626;
+    color-scheme: dark;
+  }
+}
+
+/* Movimento reduzido (05-ACESSIBILIDADE.md, seção 5; tokens.json › movimento.reduzido): nada desliza, cresce,
+   quica nem reflete; todo efeito vira um esmaecer de 160 ms na curva de entrada. O script do mockup põe
+   data-movimento="reduzido" quando a preferência do sistema está ligada ou quando a chave do topo é usada;
+   o @media cobre a página aberta sem script. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-movimento="normal"]) { --duracao-rapida: 160ms; --duracao-media: 160ms; --duracao-lenta: 160ms; --escala-toque: 1; }
+}
+[data-movimento="reduzido"] { --duracao-rapida: 160ms; --duracao-media: 160ms; --duracao-lenta: 160ms; --escala-toque: 1; }
+
+/* Transparência reduzida (05-ACESSIBILIDADE.md, seção 11; tokens.json › vidro): o vidro vira a cor sólida, sem desfoque.
+   No iPhone é "Reduzir transparência"; no navegador, prefers-reduced-transparency; o mockup tem a chave no topo. */
+@media (prefers-reduced-transparency: reduce) {
+  html:root:not([data-transparencia="normal"]), html:not([data-transparencia="normal"]) [data-tema] { --vidro-fundo: var(--vidro-solido); --vidro-barra: var(--vidro-solido); --vidro-desfoque: 0px; }
+}
+html:root[data-transparencia="reduzida"], [data-transparencia="reduzida"] [data-tema] { --vidro-fundo: var(--vidro-solido); --vidro-barra: var(--vidro-solido); --vidro-desfoque: 0px; }
+
+/* ---------- 2. BASE ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--fonte-interface);
+  font-size: var(--tipo-corpo); line-height: var(--linha-corpo);
+  color: var(--cor-texto); background: var(--cor-fundo);
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; }
+button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
+  outline: var(--borda-foco) solid var(--cor-foco); outline-offset: 3px;
+}
+ul { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6, p, figure { margin: 0; }
+/* code: o navegador encolhe a fonte monoespaçada para 13/16; aqui fica no tamanho do texto em volta */
+code { font-family: ui-monospace, Consolas, "Cascadia Mono", Menlo, monospace; font-size: inherit; line-height: inherit; }
+svg { display: block; }
+
+/* ícones em linha (traço 2) */
+.icone { width: var(--icone-medio); height: var(--icone-medio); stroke: currentColor; fill: none; stroke-width: var(--icone-traco); stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.icone--pequeno { width: var(--icone-pequeno); height: var(--icone-pequeno); }
+.icone--grande { width: var(--icone-grande); height: var(--icone-grande); }
+.icone--cheio { fill: currentColor; stroke: none; }
+
+/* estilos de texto */
+.numero-gigante { font-family: var(--fonte-numero); font-size: var(--tipo-numero-gigante); line-height: var(--linha-numero-gigante); font-weight: 800; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.numero-cronometro { font-family: var(--fonte-numero); font-size: var(--tipo-numero-cronometro); line-height: var(--linha-numero-cronometro); font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.numero-cronometro-tela { font-family: var(--fonte-numero); font-size: var(--tipo-numero-cronometro-tela); line-height: var(--linha-numero-cronometro-tela); font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.numero-carga { font-family: var(--fonte-numero); font-size: var(--tipo-numero-carga); line-height: var(--linha-numero-carga); font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.numero-medio { font-family: var(--fonte-numero); font-size: var(--tipo-numero-medio); line-height: var(--linha-numero-medio); font-weight: 700; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.titulo-1 { font-size: var(--tipo-titulo-1); line-height: var(--linha-titulo-1); font-weight: 700; letter-spacing: -0.01em; }
+.titulo-2 { font-size: var(--tipo-titulo-2); line-height: var(--linha-titulo-2); font-weight: 600; letter-spacing: -0.005em; }
+.titulo-3 { font-size: var(--tipo-titulo-3); line-height: var(--linha-titulo-3); font-weight: 600; }
+.corpo { font-size: var(--tipo-corpo); line-height: var(--linha-corpo); font-weight: 400; }
+.corpo-forte { font-size: var(--tipo-corpo); line-height: var(--linha-corpo); font-weight: 600; }
+.corpo-pequeno { font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); }
+.legenda { font-size: var(--tipo-legenda); line-height: var(--linha-legenda); font-weight: 500; letter-spacing: 0.01em; }
+.texto-secundario { color: var(--cor-texto-secundario); }
+.visualmente-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- 3. COMPONENTES ---------- */
+
+/* 1. Botão */
+.botao {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--espaco-2);
+  min-height: var(--controle-primario); padding: 0 var(--espaco-5);
+  border-radius: var(--raio-botao); font-weight: 600; font-size: var(--tipo-corpo); line-height: var(--linha-corpo);
+  width: 100%; position: relative; isolation: isolate;
+  transition: transform var(--duracao-rapida) var(--curva-padrao), box-shadow var(--duracao-rapida);
+  -webkit-tap-highlight-color: transparent;
+}
+.botao::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--cor-texto); opacity: 0; transition: opacity var(--duracao-rapida); }
+.botao:active { transform: scale(var(--escala-toque)); }
+.botao:active::after { opacity: 0.08; }
+[data-tema="escuro"] .botao:active::after { opacity: 0.12; }
+.botao--primario { background: var(--cor-viva); color: var(--cor-viva-texto); }
+.botao--primario::after { background: var(--cor-viva-texto); }
+/* o brilho do verde vivo: uma coisa por tela (tokens.json › sombra.viva) */
+.botao--brilho { box-shadow: var(--sombra-viva); }
+.botao--secundario { min-height: var(--controle-secundario); background: transparent; color: var(--cor-texto); box-shadow: inset 0 0 0 var(--borda-media) var(--cor-texto-secundario); }
+.botao--perigo { background: var(--cor-erro); color: var(--cor-erro-texto); }
+.botao--perigo-discreto { background: transparent; color: var(--cor-erro); box-shadow: inset 0 0 0 var(--borda-media) var(--cor-erro); }
+.botao--texto { background: transparent; color: var(--cor-marca); padding: 0 var(--espaco-3); min-height: var(--controle-secundario); }
+.botao--grande { min-height: var(--controle-primario); padding: 0 var(--espaco-6); }
+.botao--pequeno { min-height: var(--controle-secundario); padding: 0 var(--espaco-4); }
+.botao--intrinseco { width: auto; min-width: 96px; }
+.botao--icone { width: var(--controle-icone); min-width: var(--controle-icone); height: var(--controle-icone); min-height: var(--controle-icone); padding: 0; border-radius: var(--raio-redondo); color: var(--cor-texto); }
+.botao--circular { border-radius: var(--raio-redondo); padding: 0; width: var(--controle-maximo); min-height: var(--controle-maximo); }
+.botao[disabled], .botao[aria-disabled="true"] { opacity: var(--opacidade-desabilitado); pointer-events: none; }
+.botao--carregando { color: transparent !important; pointer-events: none; }
+.botao--carregando .indicador { position: absolute; inset: 0; margin: auto; }
+.botao--primario.botao--carregando .indicador { --cor-indicador: var(--cor-viva-texto); }
+/* lado a lado enquanto os dois rótulos cabem; com a fonte grande (Figtree é mais larga que a do sistema), um embaixo do outro */
+.linha-botoes { display: flex; flex-wrap: wrap; gap: var(--espaco-3); }
+.linha-botoes .botao { flex: 1 1 0; min-width: fit-content; }
+.coluna-botoes { display: flex; flex-direction: column; gap: var(--espaco-3); }
+
+/* indicador circular (carregando) */
+/* Sem loop infinito (05-ACESSIBILIDADE.md, seção 5; movimento/00-CATALOGO.md, regra 3): gira no ritmo e no teto do
+   esqueleto (uma volta por passada de 1400 ms, no máximo 3) e para como um arco de 3/4 parado, que continua dizendo
+   "carregando" sem se mexer. Com movimento reduzido já nasce parado. O "atualizando" de puxar a lista é o nativo. */
+.indicador { width: var(--icone-medio); height: var(--icone-medio); border-radius: var(--raio-redondo); border: 3px solid var(--cor-borda); border-top-color: var(--cor-indicador, var(--cor-marca)); border-right-color: var(--cor-indicador, var(--cor-marca)); border-bottom-color: var(--cor-indicador, var(--cor-marca)); animation: girar 1400ms linear 3; }
+@keyframes girar { to { transform: rotate(360deg); } }
+[data-movimento="reduzido"] .indicador { animation: none; }
+@media (prefers-reduced-motion: reduce) { :root:not([data-movimento="normal"]) .indicador { animation: none; } }
+
+/* 2. Campo de texto */
+.campo { display: flex; flex-direction: column; gap: var(--espaco-1); }
+.campo__rotulo { color: var(--cor-texto-secundario); }
+.campo__caixa {
+  display: flex; align-items: center; gap: var(--espaco-3); min-height: var(--alvo-minimo); padding: 0 var(--espaco-4);
+  background: var(--cor-superficie); border-radius: var(--raio-medio);
+  box-shadow: inset 0 0 0 var(--borda-fina) var(--cor-texto-secundario);
+  font-size: var(--tipo-corpo); line-height: var(--linha-corpo); color: var(--cor-texto);
+}
+.campo__caixa input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; color: inherit; outline: none; padding: 0; }
+.campo__caixa input::placeholder { color: var(--cor-texto-secundario); }
+.campo__caixa .icone { color: var(--cor-texto-secundario); }
+.campo--foco .campo__caixa, .campo__caixa:focus-within { box-shadow: inset 0 0 0 var(--borda-media) var(--cor-marca); }
+.campo--erro .campo__caixa { box-shadow: inset 0 0 0 var(--borda-media) var(--cor-erro); }
+.campo__apoio { display: flex; align-items: center; gap: var(--espaco-1); color: var(--cor-texto-secundario); }
+.campo--erro .campo__apoio { color: var(--cor-erro); }
+.campo--desabilitado { opacity: var(--opacidade-desabilitado); pointer-events: none; }
+.campo--leitura .campo__caixa { box-shadow: none; padding: 0; background: transparent; }
+.campo__seta { margin-left: auto; color: var(--cor-texto-secundario); }
+
+/* 3. Campo numérico +/− */
+.passo { display: flex; align-items: center; gap: var(--espaco-3); }
+.passo__botao {
+  width: var(--controle-passo); height: var(--controle-passo); border-radius: var(--raio-redondo); flex: none;
+  display: grid; place-items: center; background: var(--cor-superficie); color: var(--cor-texto);
+  box-shadow: inset 0 0 0 var(--borda-media) var(--cor-texto-secundario);
+  transition: transform var(--duracao-rapida) var(--curva-padrao);
+}
+.passo__botao:active { transform: scale(0.94); }
+[data-movimento="reduzido"] .passo__botao:active, [data-movimento="reduzido"] .serie__marcar:active, [data-movimento="reduzido"] .aba:active .aba__icone { transform: none; }
+.passo__botao[disabled] { opacity: var(--opacidade-desabilitado); pointer-events: none; }
+.passo__centro { flex: 1; min-width: 0; min-height: var(--alvo-minimo); justify-content: center; display: flex; flex-direction: column; align-items: center; text-align: center; border-radius: var(--raio-pequeno); padding: 0 var(--espaco-1); }
+.passo__rotulo { color: var(--cor-texto-secundario); }
+.passo__valor { display: flex; align-items: baseline; justify-content: center; gap: var(--espaco-1); }
+.passo__unidade { color: var(--cor-texto-secundario); }
+.passo--edicao .passo__botao { width: var(--controle-passo); height: var(--controle-passo); }
+.passo--foco .passo__centro { box-shadow: inset 0 0 0 var(--borda-media) var(--cor-marca); }
+.passo--erro .passo__centro { box-shadow: inset 0 0 0 var(--borda-media) var(--cor-erro); }
+.passo--desabilitado { opacity: var(--opacidade-desabilitado); pointer-events: none; }
+/* barra acima do teclado numérico do iOS (InputAccessoryView): "Próximo" vai ao campo seguinte, "OK" fecha o teclado */
+.barra-teclado { display: flex; align-items: center; justify-content: space-between; min-height: var(--alvo-minimo); padding: 0 var(--espaco-1); background: var(--cor-superficie-elevada); border-top: var(--borda-fina) solid var(--cor-borda); border-radius: var(--raio-pequeno); }
+.barra-teclado__ok { font-weight: 700; }
+
+/* 4. Chips */
+.chips { display: flex; flex-wrap: wrap; gap: var(--espaco-4) var(--espaco-2); } /* 16 entre linhas: a área de 48 de um chip de 32 não invade a linha de baixo */
+.chip {
+  display: inline-flex; align-items: center; gap: var(--espaco-1); min-height: var(--controle-chip); padding: 0 var(--espaco-3);
+  border-radius: var(--raio-redondo); background: var(--cor-superficie); color: var(--cor-texto);
+  box-shadow: inset 0 0 0 var(--borda-fina) var(--cor-texto-secundario); font-size: var(--tipo-corpo-pequeno); font-weight: 500; line-height: var(--linha-corpo-pequeno); white-space: nowrap;
+}
+.chip--selecionado { background: var(--cor-viva); color: var(--cor-viva-texto); box-shadow: none; }
+.chip--info { min-height: 24px; padding: 0 var(--espaco-2); font-size: var(--tipo-legenda); line-height: var(--linha-legenda); background: var(--cor-fundo); box-shadow: none; color: var(--cor-texto-secundario); pointer-events: none; }
+.chip--marca { background: var(--cor-viva); color: var(--cor-viva-texto); }
+.chip[disabled] { opacity: var(--opacidade-desabilitado); }
+
+/* 10. Selo Plus */
+.selo-plus {
+  display: inline-flex; align-items: center; gap: var(--espaco-1); min-height: calc(var(--linha-legenda) + 8px); padding: 0 var(--espaco-3); border-radius: var(--raio-redondo);
+  font-size: var(--tipo-legenda); line-height: var(--linha-legenda); font-weight: 700; letter-spacing: 0.04em;
+  background: var(--cor-plus); color: var(--cor-plus-texto); flex: none;
+}
+/* contorno: no claro o dourado de preenchimento (1,89:1) não serve de texto; a palavra usa plusTextoSobreFundo (5,14:1) */
+.selo-plus--contorno { background: transparent; color: var(--cor-plus-texto-sobre-fundo); box-shadow: inset 0 0 0 1.5px var(--cor-plus-texto-sobre-fundo); }
+.selo-plus--pequeno { min-height: 20px; padding: 0 var(--espaco-2); }
+.selo-plus--atencao { color: var(--cor-atencao); box-shadow: inset 0 0 0 1.5px var(--cor-atencao); background: transparent; }
+.ponto-plus { position: absolute; top: 0; right: -2px; width: 8px; height: 8px; border-radius: var(--raio-redondo); background: var(--cor-plus); }
+.ponto-aviso { position: absolute; top: 0; right: -2px; width: 8px; height: 8px; border-radius: var(--raio-redondo); background: var(--cor-erro); }
+
+/* Avatar */
+.avatar { width: 40px; height: 40px; border-radius: var(--raio-redondo); background: var(--cor-marca-suave); color: var(--cor-texto); display: grid; place-items: center; font-size: var(--tipo-legenda); line-height: var(--linha-legenda); font-weight: 700; flex: none; }
+.avatar--32 { width: 32px; height: 32px; }
+.avatar--64 { width: 64px; height: 64px; font-size: var(--tipo-titulo-3); line-height: var(--linha-titulo-3); }
+
+/* Cartão base */
+/* direção A: cartão de raio 20 com a sombra em camadas no claro e contorno de 1 px no escuro */
+.cartao { background: var(--cor-superficie); border-radius: var(--raio-cartao); padding: var(--espaco-4); box-shadow: var(--sombra-2); position: relative; }
+/* exercício atual: contorno de 2 px na marca (no escuro, o halo emprestado da B); é o único cartão que salta */
+.cartao--atual { box-shadow: var(--sombra-atual); }
+/* cartão tocável (treino pronto, exercício dobrado, aluno) AFUNDA no toque (movimento/00-CATALOGO.md › 4.5;
+   02-COMPONENTES.md, componente 8): vai a 0,98 e desce 1 px em 120 ms, a sombra de repouso some e uma camada de
+   texto a 8 % (12 % no escuro) cobre o cartão; ao soltar, volta na mola.toque (200 ms, sem quique).
+   Com movimento reduzido: sem escala e sem descida, só a camada, que esmaece em 160 ms. */
+.cartao--tocavel, button.cartao { transition: transform var(--duracao-media) var(--mola-toque), box-shadow var(--duracao-media) var(--mola-toque); -webkit-tap-highlight-color: transparent; }
+.cartao--tocavel::after, button.cartao::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--cor-texto); opacity: 0; pointer-events: none; transition: opacity var(--duracao-media) var(--curva-padrao); z-index: 3; }
+.cartao--tocavel:active, button.cartao:active { transform: scale(var(--escala-toque)) translateY(1px); box-shadow: none; transition-duration: var(--duracao-rapida); transition-timing-function: var(--curva-padrao); }
+.cartao--tocavel:active::after, button.cartao:active::after { opacity: var(--camada-toque); transition-duration: var(--duracao-rapida); }
+[data-movimento="reduzido"] .cartao--tocavel:active, [data-movimento="reduzido"] button.cartao:active { transform: none; box-shadow: var(--sombra-2); }
+.serie--atual::before { content: ""; position: absolute; left: 0; top: var(--espaco-3); bottom: var(--espaco-3); width: 4px; border-radius: 2px; background: var(--cor-marca); }
+.cartao--plus { border-left: 4px solid var(--cor-plus); }
+.cartao--erro-topo { overflow: hidden; }
+.faixa-erro { display: flex; align-items: center; gap: var(--espaco-2); background: var(--cor-erro); color: var(--cor-erro-texto); margin: calc(-1 * var(--espaco-4)) calc(-1 * var(--espaco-4)) var(--espaco-3); padding: var(--espaco-2) var(--espaco-4); font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); }
+.lista-cartoes { display: flex; flex-direction: column; gap: var(--espaco-cartoes); }
+/* 2 colunas iguais; se cada uma ficar abaixo de --coluna-cartao-minima (150), vira 1 coluna */
+.grade-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(max(var(--coluna-cartao-minima), calc((100% - var(--espaco-cartoes)) / 2)), 1fr)); gap: var(--espaco-cartoes); }
+/* 3 cartões de número por linha; com a fonte ampliada cada um precisa de --coluna-numero-minima (em rem, cresce com o texto) e a grade quebra */
+.grade-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(max(var(--coluna-numero-minima), calc((100% - 2 * var(--espaco-cartoes)) / 3)), 1fr)); gap: var(--espaco-cartoes); }
+
+/* 5. Cartão de exercício */
+.exercicio__cabecalho { display: flex; align-items: center; gap: var(--espaco-3); min-height: 56px; }
+/* miniatura do exercício (imagens/exercicios, agente J): 56 (64 no exercício atual), raio 14 concêntrico ao cartão */
+.exercicio__imagem { width: var(--imagem-miniatura); height: var(--imagem-miniatura); border-radius: var(--raio-miniatura); background: var(--cor-marca-suave); display: grid; place-items: center; color: var(--cor-texto-secundario); flex: none; overflow: hidden; }
+.cartao--atual .exercicio__imagem { width: var(--imagem-miniatura-atual); height: var(--imagem-miniatura-atual); }
+.exercicio__imagem img, .mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* miniatura solta (lista da academia, cartão em lista): 48 */
+.mini { width: var(--imagem-miniatura-lista); height: var(--imagem-miniatura-lista); border-radius: var(--raio-medio); overflow: hidden; flex: none; background: var(--cor-marca-suave); }
+.exercicio__titulo { flex: 1; min-width: 0; }
+.exercicio__titulo .titulo-3 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.exercicio__series { display: flex; flex-direction: column; gap: var(--espaco-2); margin-top: var(--espaco-3); }
+.exercicio__rodape { display: flex; align-items: center; justify-content: space-between; margin-top: var(--espaco-3); gap: var(--espaco-2); }
+.exercicio--dobrado .exercicio__cabecalho { min-height: 72px; }
+.exercicio--dobrado .progresso { position: absolute; left: var(--espaco-4); right: var(--espaco-4); bottom: 0; }
+.exercicio--concluido .exercicio__check { color: var(--cor-sucesso); }
+
+/* 6. Linha de série */
+.serie {
+  display: flex; align-items: center; gap: var(--espaco-2); min-height: var(--altura-linha); padding: 0 var(--espaco-3);
+  background: var(--cor-superficie); border-radius: var(--raio-medio); box-shadow: inset 0 0 0 var(--borda-fina) var(--cor-borda); position: relative;
+}
+.serie__numero { width: 32px; height: 32px; border-radius: var(--raio-redondo); display: grid; place-items: center; box-shadow: inset 0 0 0 var(--borda-fina) var(--cor-borda); font-size: var(--tipo-legenda); line-height: var(--linha-legenda); font-weight: 700; flex: none; }
+.serie__campo { flex: 1; min-width: 0; display: flex; align-items: center; gap: var(--espaco-2); justify-content: center; }
+.serie__vezes { color: var(--cor-texto-secundario); font-size: var(--tipo-legenda); line-height: var(--linha-legenda); }
+.serie__valor { display: flex; flex-direction: column; align-items: center; min-width: 56px; }
+/* direção A: "marcar série" em marca cheia, a ação mais repetida do app */
+.serie__marcar { width: var(--controle-marcar); height: var(--controle-marcar); border-radius: var(--raio-redondo); display: grid; place-items: center; flex: none; background: var(--cor-viva); color: var(--cor-viva-texto); transition: background-color var(--duracao-rapida), transform var(--duracao-rapida); position: relative; overflow: hidden; }
+.serie__marcar .icone { position: relative; }
+.serie { transition: background-color var(--duracao-media) var(--curva-padrao); }
+.serie__marcar:active { background: var(--cor-sucesso); color: var(--cor-sucesso-texto); box-shadow: none; transform: scale(0.96); }
+.serie--feita { background: color-mix(in srgb, var(--cor-sucesso) 12%, var(--cor-superficie)); }
+.serie--feita .serie__numero { background: var(--cor-sucesso); color: var(--cor-sucesso-texto); box-shadow: none; }
+.serie--feita .numero-carga, .serie--feita .serie__valor { color: var(--cor-texto-secundario); }
+.serie--feita .serie__marcar { background: transparent; box-shadow: inset 0 0 0 var(--borda-fina) var(--cor-borda); color: var(--cor-texto-secundario); }
+.serie--leitura .serie__marcar, .serie--leitura .passo__botao { display: none; }
+.serie--pequena .passo__botao { display: none; }
+.serie:not(.serie--atual) .numero-carga { font-size: var(--tipo-numero-serie); line-height: var(--linha-numero-serie); } /* 1.8.0: 20 na linha de série; 25 só no valor sendo editado */
+.serie--pequena .serie__valor .numero-carga { font-size: var(--tipo-numero-carga-pequeno); line-height: var(--linha-numero-carga-pequeno); }
+
+/* 7. Cronômetro */
+.cronometro { display: flex; flex-direction: column; align-items: center; gap: var(--espaco-4); padding: var(--espaco-4) 0; }
+.cronometro__anel { width: 160px; height: 160px; position: relative; display: grid; place-items: center; }
+.cronometro__anel svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.cronometro__trilho { fill: none; stroke: var(--cor-trilho); stroke-width: 8; }
+.cronometro__progresso { fill: none; stroke: var(--cor-progresso); stroke-width: 8; stroke-linecap: round; stroke-dasharray: 452; transition: stroke-dashoffset 1s linear; }
+.cronometro--acabando .cronometro__progresso { stroke: var(--cor-atencao); }
+.cronometro--terminado .cronometro__progresso { stroke: var(--cor-sucesso); stroke-dashoffset: 0 !important; }
+.cronometro--pausado .numero-cronometro { color: var(--cor-texto-secundario); }
+.cronometro__controles { display: flex; align-items: center; gap: var(--espaco-3); }
+.faixa-cronometro {
+  display: flex; align-items: center; gap: var(--espaco-3); height: 56px; padding: 0 var(--espaco-2) 0 var(--espaco-4);
+  background: var(--cor-superficie-elevada); box-shadow: var(--sombra-2); position: relative; overflow: hidden;
+}
+.faixa-cronometro .progresso { position: absolute; top: 0; left: 0; right: 0; border-radius: 0; }
+.faixa-cronometro__texto { flex: 1; font-variant-numeric: tabular-nums; }
+
+/* 18. Cronômetro (a ferramenta: livre, regressivo, intervalado). Mesmo motor do 7.
+   A fase pinta o mostrador inteiro (tokens.json › cronometro.fase); o nome da fase sempre aparece escrito. */
+/* troca de fase (movimento/00-CATALOGO.md › 4.3b): a cor cobre por esmaecimento em 200 ms; com movimento reduzido troca na hora */
+.mostrador { display: flex; flex-direction: column; align-items: center; gap: var(--espaco-2); padding: var(--espaco-6) var(--espaco-4) var(--espaco-5); border-radius: var(--raio-cartao); background: var(--cor-superficie); color: var(--cor-texto); box-shadow: var(--sombra-2); text-align: center; transition: background-color var(--duracao-media) var(--curva-padrao), color var(--duracao-media) var(--curva-padrao); }
+[data-movimento="reduzido"] .mostrador, [data-movimento="reduzido"] .rodadas > i { transition: none; }
+.rodadas > i { transition: background-color var(--duracao-media) var(--curva-padrao); }
+.mostrador--trabalho { background: var(--cor-viva); color: var(--cor-viva-texto); }
+.mostrador--descanso, .mostrador--terminado { background: var(--cor-sucesso); color: var(--cor-sucesso-texto); }
+.mostrador--pausado .numero-cronometro-tela, .mostrador--pausado .numero-cronometro { color: var(--cor-texto-secundario); }
+.mostrador--compacto { padding: var(--espaco-4); gap: var(--espaco-1); }
+/* barra da fase (8) e fileira de rodadas (8, vão 4): desenhadas na cor do texto do mostrador, o trilho a 24 % dela */
+.mostrador .progresso { align-self: stretch; height: 8px; margin-top: var(--espaco-1); background: color-mix(in srgb, currentColor 24%, transparent); }
+.mostrador .progresso__valor { background: currentColor; }
+.rodadas { display: flex; gap: var(--espaco-1); align-self: stretch; }
+.rodadas > i { flex: 1; height: 8px; border-radius: var(--raio-redondo); background: color-mix(in srgb, currentColor 24%, transparent); }
+.rodadas > .feita { background: currentColor; }
+.rodadas > .atual { background: color-mix(in srgb, currentColor 60%, transparent); }
+.linha-info { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--espaco-1) var(--espaco-4); color: var(--cor-texto-secundario); }
+.linha-info strong { color: var(--cor-texto); font-weight: 600; }
+.celular__conteudo--topo { padding-top: var(--espaco-4); }
+.cronometro__controles--centro { justify-content: center; }
+
+/* Progresso */
+.progresso { height: 4px; background: var(--cor-trilho); border-radius: var(--raio-redondo); overflow: hidden; }
+.progresso__valor { height: 100%; background: var(--cor-progresso); border-radius: inherit; }
+.progresso--sucesso .progresso__valor { background: var(--cor-sucesso); }
+
+/* 8. Cartão de treino pronto */
+.treino-pronto { display: flex; flex-direction: column; gap: var(--espaco-2); padding: var(--espaco-3); min-height: 160px; text-align: left; width: 100%; }
+/* capa por objetivo (imagens/capas, agente J): no topo do cartão, de borda a borda; nunca texto por cima da foto */
+.treino-pronto__capa { margin: calc(-1 * var(--espaco-3)) calc(-1 * var(--espaco-3)) var(--espaco-1); height: var(--imagem-capa-pequena); overflow: hidden; border-radius: var(--raio-cartao) var(--raio-cartao) 0 0; background: var(--cor-marca-suave); flex: none; }
+.treino-pronto__capa img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.treino-pronto--destaque { padding: var(--espaco-4); }
+.treino-pronto--destaque .treino-pronto__capa { margin: calc(-1 * var(--espaco-4)) calc(-1 * var(--espaco-4)) var(--espaco-1); height: var(--imagem-capa); }
+.treino-pronto__topo { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--espaco-2); }
+.treino-pronto__descricao { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: var(--cor-texto-secundario); }
+.treino-pronto__rodape { margin-top: auto; display: flex; align-items: center; justify-content: space-between; color: var(--cor-texto-secundario); }
+/* escolhido: contorno de 2 px na marca por cima da capa (outline é pintado sobre o conteúdo) */
+.treino-pronto--escolhido { outline: var(--borda-media) solid var(--cor-marca); outline-offset: calc(-1 * var(--borda-media)); }
+.treino-pronto--arquivado { opacity: var(--opacidade-desabilitado); }
+.treino-pronto--lista { flex-direction: row; align-items: center; min-height: 72px; gap: var(--espaco-3); }
+.treino-pronto--lista .treino-pronto__topo { flex: 1; flex-direction: column; gap: var(--espaco-1); }
+
+/* 9. Cartão de aluno / linhas de lista */
+.lista { background: var(--cor-superficie); border-radius: var(--raio-grande); overflow: hidden; }
+.linha { display: flex; align-items: center; gap: var(--espaco-3); min-height: var(--altura-linha); padding: var(--espaco-2) var(--espaco-4); width: 100%; text-align: left; position: relative; }
+.linha--compacta { min-height: var(--altura-linha-compacta); }
+.linha + .linha::before { content: ""; position: absolute; top: 0; left: calc(var(--espaco-4) + 32px + var(--espaco-3)); right: 0; height: var(--borda-fina); background: var(--cor-borda); }
+.linha__texto { flex: 1; min-width: 0; }
+/* texto da linha nunca é cortado: quebra e a linha cresce (56/72 são mínimos) */
+.linha__texto > * { overflow-wrap: break-word; }
+.linha__fim { display: flex; align-items: center; gap: var(--espaco-2); color: var(--cor-texto-secundario); flex: none; }
+.linha--inativo .linha__apoio { color: var(--cor-atencao); }
+.linha:active { background: color-mix(in srgb, var(--cor-texto) 8%, var(--cor-superficie)); }
+
+/* Cartão de número */
+.numero-cartao { background: var(--cor-superficie); border-radius: var(--raio-medio); padding: var(--espaco-3); min-height: 80px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--sombra-1); }
+.numero-cartao__valor { display: flex; align-items: baseline; gap: var(--espaco-1); }
+.numero-cartao--vazio .numero-medio { color: var(--cor-texto-secundario); }
+
+/* 11. Lista de refeição */
+.refeicao { padding: var(--espaco-3) var(--espaco-4); }
+.refeicao__cabecalho { display: flex; align-items: center; gap: var(--espaco-3); min-height: 56px; }
+.refeicao__hora { font-variant-numeric: tabular-nums; color: var(--cor-texto-secundario); min-width: 40px; }
+.refeicao__nome { flex: 1; min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+.refeicao__itens { display: flex; flex-direction: column; gap: var(--espaco-2); }
+.item-refeicao { display: flex; align-items: center; gap: var(--espaco-3); min-height: 56px; width: 100%; text-align: left; }
+.item-refeicao__check { width: var(--controle-icone); height: var(--controle-icone); display: grid; place-items: center; flex: none; }
+.item-refeicao__check span { width: 24px; height: 24px; border-radius: var(--raio-pequeno); display: grid; place-items: center; box-shadow: inset 0 0 0 var(--borda-media) var(--cor-texto-secundario); color: transparent; }
+.item-refeicao--feito .item-refeicao__check span { background: var(--cor-sucesso); color: var(--cor-sucesso-texto); box-shadow: none; }
+.item-refeicao--feito .item-refeicao__texto { color: var(--cor-texto-secundario); } /* 1.6.0: comido fica esmaecido e com check, sem risco (o risco lia como "cortado do plano") */
+.item-refeicao__texto { flex: 1; min-width: 0; }
+.item-refeicao__qtd { color: var(--cor-texto-secundario); flex: none; }
+.refeicao__obs { display: flex; gap: var(--espaco-2); margin-top: var(--espaco-2); padding: var(--espaco-2) var(--espaco-3); border-radius: var(--raio-medio); background: var(--cor-plus-suave); color: var(--cor-texto); }
+.refeicao__obs .icone { color: var(--cor-plus-texto-sobre-fundo); }
+.refeicao__obs b { color: var(--cor-plus-texto-sobre-fundo); font-weight: 700; }
+.refeicao--completa .refeicao__check-tudo { background: var(--cor-sucesso); color: var(--cor-sucesso-texto); box-shadow: none; }
+.refeicao__check-tudo { width: var(--controle-icone); height: var(--controle-icone); border-radius: var(--raio-redondo); display: grid; place-items: center; box-shadow: inset 0 0 0 var(--borda-media) var(--cor-texto-secundario); flex: none; }
+
+/* 12. Barra de abas */
+.barra-abas { display: flex; height: var(--altura-barra-abas); background: var(--cor-superficie); border-top: var(--borda-fina) solid var(--cor-borda); flex: none; }
+[data-tema="escuro"] .barra-abas { background: var(--cor-superficie-elevada); border-top-color: transparent; }
+.aba { flex: 1; min-width: 64px; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--espaco-1); color: var(--cor-texto-secundario); position: relative; }
+/* direção A: pílula marcaSuave de 56 × 32 atrás do ícone da aba ativa (troca de aba: a pílula esmaece e cresce em 200 ms) */
+.aba__icone { position: relative; display: grid; place-items: center; width: 56px; height: 32px; border-radius: var(--raio-redondo); transition: transform var(--duracao-rapida) var(--curva-padrao); }
+.aba__icone .ponto-aviso { top: var(--espaco-1); right: var(--espaco-3); }
+/* rótulo da aba cresce até 1,3× (tokens.json › tetoAmpliacao.rotuloAba): na barra de 5 abas de 72 px "Academia" precisa caber; acima disso o rótulo vai para o toque longo */
+.aba__rotulo { font-size: min(0.8125rem, 16.9px); line-height: min(1rem, 20.8px); font-weight: 600; letter-spacing: 0.01em; }
+.aba--ativa { color: var(--cor-marca); }
+.aba--ativa .aba__icone { background: var(--cor-marca-suave); }
+.aba--ativa .icone { fill: currentColor; }
+.aba:active .aba__icone { transform: scale(0.92); }
+
+/* 13. Cabeçalho */
+.cabecalho { display: flex; align-items: center; gap: var(--espaco-2); min-height: var(--altura-cabecalho); padding: 0 var(--espaco-2); flex: none; }
+.cabecalho--raiz { padding: 0 var(--margem-lateral); }
+.cabecalho__titulo { flex: 1; min-width: 0; }
+.cabecalho__titulo .titulo-2 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cabecalho--grande { min-height: var(--altura-cabecalho-grande, 96px); align-items: flex-end; padding-bottom: var(--espaco-3); position: relative; }
+/* título grande que encolhe (movimento/00-CATALOGO.md › 4.9): preso à rolagem nos primeiros 40 px.
+   iPhone: o título grande some e o pequeno aparece no centro da barra de 56. Android: o título vai de 28 a 22 por escala. */
+.cabecalho__pequeno { position: absolute; left: 0; right: 0; top: 0; height: var(--altura-cabecalho); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity var(--duracao-rapida) var(--curva-padrao); }
+.cabecalho--grande .cabecalho__titulo { transform-origin: left bottom; }
+.cabecalho--encolhido .cabecalho__pequeno { opacity: 1; }
+.cabecalho--encolhido { box-shadow: var(--sombra-1); }
+[data-plataforma="ios"] .cabecalho--encolhido .cabecalho__titulo { opacity: 0; transition: opacity var(--duracao-rapida) var(--curva-padrao); }
+[data-plataforma="android"] .cabecalho__pequeno { display: none; }
+.cabecalho--superficie { background: var(--cor-superficie); box-shadow: var(--sombra-1); }
+/* o chip tem 32 de desenho, mas o alvo de toque é 48: o contorno fica num ::before de 32 e o botão ocupa 48 */
+.chip-visao { display: inline-flex; align-items: center; gap: var(--espaco-1); min-height: var(--alvo-minimo); padding: 0 var(--espaco-3); position: relative; font-size: var(--tipo-legenda); line-height: var(--linha-legenda); font-weight: 600; flex: none; }
+.chip-visao::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; min-height: 32px; height: calc(100% - 2 * var(--espaco-2)); transform: translateY(-50%); border-radius: var(--raio-redondo); box-shadow: inset 0 0 0 var(--borda-fina) var(--cor-texto-secundario); }
+
+/* 14. Folha inferior */
+.folha-moldura { position: absolute; inset: 0; background: var(--cor-sobreposicao); display: flex; align-items: flex-end; z-index: 20; }
+.folha { width: 100%; background: var(--cor-superficie-elevada); border-radius: var(--raio-folha) var(--raio-folha) 0 0; box-shadow: var(--sombra-3); padding: var(--espaco-2) var(--espaco-4) calc(var(--espaco-4) + var(--inset-base, 0px)); display: flex; flex-direction: column; gap: var(--espaco-4); max-height: 90%; }
+.folha__alca { width: 32px; height: 4px; border-radius: var(--raio-redondo); background: var(--cor-borda); margin: 0 auto; }
+.folha__titulo { padding-top: var(--espaco-2); }
+.folha__opcoes .linha { padding: 0; min-height: 56px; }
+.folha__opcoes .linha + .linha::before { left: 0; }
+
+/* 15. Estado vazio */
+.estado-vazio { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--espaco-4); padding: var(--espaco-8) var(--espaco-4); max-width: 280px; margin: 0 auto; }
+.estado-vazio .icone--grande { color: var(--cor-texto-secundario); }
+/* ilustração do estado vazio (imagens/estados-vazios, agente J): 120 × 120, pintada na marca de cada tema */
+.ilustracao { width: 120px; height: 120px; flex: none; }
+.so-escuro { display: none; }
+[data-tema="escuro"] .so-claro { display: none; }
+[data-tema="escuro"] .so-escuro { display: block; }
+@media (prefers-color-scheme: dark) { :root:not([data-tema]) .so-claro { display: none; } :root:not([data-tema]) .so-escuro { display: block; } }
+.estado-vazio--erro .icone--grande { color: var(--cor-erro); }
+.estado-vazio--compacto { flex-direction: row; text-align: left; padding: var(--espaco-3); gap: var(--espaco-2); max-width: none; }
+
+/* 16. Toast */
+.toast { display: flex; align-items: center; gap: var(--espaco-3); min-height: 48px; padding: var(--espaco-2) var(--espaco-2) var(--espaco-2) var(--espaco-4); border-radius: var(--raio-grande); background: var(--cor-toast-fundo); color: var(--cor-toast-texto); box-shadow: var(--sombra-2); font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); }
+.toast__texto { flex: 1; }
+.toast .botao--texto { color: var(--cor-toast-acao); }
+.toast--sucesso .icone { color: var(--cor-sucesso); }
+.toast--erro .icone { color: var(--cor-erro); }
+/* no claro o toast é invertido (fundo escuro): sucesso e erro em cor cheia ficam abaixo de 3:1 ali; o ícone usa a cor do texto e a forma (check, alerta) carrega o sentido */
+[data-tema="claro"] .toast--sucesso .icone, [data-tema="claro"] .toast--erro .icone,
+:root:not([data-tema="escuro"]) .toast--sucesso .icone, :root:not([data-tema="escuro"]) .toast--erro .icone { color: var(--cor-toast-texto); }
+[data-tema="escuro"] .toast--sucesso .icone { color: var(--cor-sucesso); }
+[data-tema="escuro"] .toast--erro .icone { color: var(--cor-erro); }
+
+/* Esqueleto */
+/* esqueleto com brilho (movimento/00-CATALOGO.md › 4.6): a faixa atravessa em 1400 ms, no máximo 3 vezes, e para.
+   Só aparece depois de 300 ms. Com movimento reduzido, blocos parados. */
+.esqueleto { background: color-mix(in srgb, var(--cor-borda) 60%, transparent); border-radius: var(--raio-pequeno); min-height: 16px; position: relative; overflow: hidden; }
+.esqueleto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, var(--brilho-esqueleto), transparent); transform: translateX(-100%); animation: passada-esqueleto 1400ms linear 300ms 3 both; }
+@keyframes passada-esqueleto { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+[data-movimento="reduzido"] .esqueleto::after { animation: none; opacity: 0; }
+.esqueleto--linha { height: 16px; }
+.esqueleto--titulo { height: 22px; width: 60%; }
+.esqueleto--bloco { height: 72px; border-radius: var(--raio-medio); }
+
+/* Divisor */
+.divisor { height: var(--borda-fina); background: var(--cor-borda); border: 0; margin: 0; }
+
+/* ---------- 3b. DIREÇÃO A: PEÇAS NOVAS E EFEITOS ---------- */
+
+/* Placar no topo do treino do dia (empréstimo da direção C): séries, minutos e exercícios em numeroCarga (40),
+   o número como protagonista. 3 por linha; com a fonte ampliada cada coluna precisa de 6,5 rem e a grade quebra. */
+.placar { display: grid; grid-template-columns: repeat(auto-fit, minmax(max(var(--coluna-numero-minima), calc((100% - 2 * var(--espaco-cartoes)) / 3)), 1fr)); gap: var(--espaco-2) var(--espaco-cartoes); }
+.placar__item { display: flex; flex-direction: column; }
+.placar__total { color: var(--cor-texto-secundario); }
+
+/* Botão do Plus: o único botão dourado, só no convite (dourado só no que é do Plus; texto plusTexto) */
+.botao--plus { background: var(--cor-plus); color: var(--cor-plus-texto); overflow: hidden; }
+.botao--plus::after { background: var(--cor-plus-texto); }
+
+/* Convite ao Plus (movimento/00-CATALOGO.md › 4.7): o halo dourado entra uma vez e FICA; o reflexo passa uma vez
+   pelo selo e pelo botão a cada visita à tela. Com movimento reduzido: sem reflexo, o halo só esmaece (160 ms). */
+.convite { padding: 0; display: flex; flex-direction: column; }
+.convite::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: 0 0 0 1px color-mix(in srgb, var(--cor-plus) 70%, transparent), 0 12px 32px color-mix(in srgb, var(--cor-plus) 22%, transparent); opacity: 1; }
+.convite__capa { height: var(--imagem-capa); overflow: hidden; border-radius: var(--raio-cartao) var(--raio-cartao) 0 0; background: var(--cor-plus-suave); }
+.convite__capa img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.convite__corpo { display: flex; flex-direction: column; gap: var(--espaco-3); padding: var(--espaco-4); }
+.convite__lista { display: flex; flex-direction: column; gap: var(--espaco-2); }
+.convite__lista li { display: flex; gap: var(--espaco-2); }
+.convite__lista .icone { color: var(--cor-plus-texto-sobre-fundo); }
+.reflexo { position: relative; overflow: hidden; isolation: isolate; }
+.reflexo::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%); transform: translateX(-130%); }
+.convite--visita .reflexo::before { animation: reflexo-plus 1200ms var(--curva-padrao) 400ms 1 backwards; } /* ao terminar volta para fora, à esquerda (à direita ele alargaria a rolagem do botão) */
+.convite--visita .botao.reflexo::before { animation-delay: 550ms; }
+.convite--visita::before { animation: halo-plus var(--duracao-lenta) var(--curva-entrada) var(--duracao-media) 1 both; }
+@keyframes reflexo-plus { from { transform: translateX(-130%); } to { transform: translateX(130%); } }
+@keyframes halo-plus { from { opacity: 0; } to { opacity: 1; } }
+[data-movimento="reduzido"] .convite--visita .reflexo::before { animation: none; }
+[data-movimento="reduzido"] .convite--visita::before { animation: halo-plus var(--duracao-esmaecer) var(--curva-entrada) 0ms 1 both; }
+
+/* Toast que entra de baixo (16 px → 0, 200 ms) e sai descendo 8 px (120 ms): feito por WAAPI no script */
+.toast[hidden] { display: none; }
+
+/* Treino fechado (movimento/00-CATALOGO.md › 4.2): círculo, traço do check e o resumo em sequência */
+.fechado { display: flex; flex-direction: column; align-items: center; gap: var(--espaco-3); text-align: center; padding: var(--espaco-4) 0; }
+.fechado__circulo { width: 64px; height: 64px; flex: none; }
+.fechado__circulo circle { fill: var(--cor-sucesso); }
+.fechado__circulo path { fill: none; stroke: var(--cor-sucesso-texto); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.fechado .grade-3 { align-self: stretch; text-align: left; }
+.fechado__destaque { align-self: stretch; display: flex; align-items: center; gap: var(--espaco-2); padding: var(--espaco-3); border-radius: var(--raio-medio); background: var(--cor-marca-suave); color: var(--cor-texto); text-align: left; }
+
+/* Painel de efeitos: onde cada efeito aparece e o botão de repetir */
+.efeitos { display: flex; flex-direction: column; gap: var(--espaco-2); }
+.efeitos li { display: flex; align-items: center; justify-content: space-between; gap: var(--espaco-3); }
+.efeitos li > span { flex: 1; min-width: 0; }
+
+/* lista com miniatura de 48 (visão da academia): a divisória começa depois da imagem */
+.lista--imagem .linha + .linha::before { left: calc(var(--espaco-4) + var(--imagem-miniatura-lista) + var(--espaco-3)); }
+
+/* ---------- 3c. LINGUAGEM DAS REFERÊNCIAS (1.6.0, agente N, P09) ---------- */
+
+/* 19. Foto com texto: a foto é uma ilha escura igual nos dois temas (tokens.json › foto). A imagem leva o filtro
+   (escurecer 0,72 + saturação 0,9) e o ::after leva o gradiente; o texto fica por cima, em branco, só onde o
+   gradiente já escureceu (pé da foto) ou no topo (voltar, menu). Dentro dela, --cor-texto vira o branco da foto,
+   então qualquer componente posto ali acompanha. Medido contra o pior pixel (auditar.mjs, "sobre foto"). */
+.foto-texto {
+  flex-shrink: 0; /* dentro da coluna que rola, a foto não encolhe (o overflow: hidden deixaria encolher até 0) */
+  position: relative; isolation: isolate; overflow: hidden; border-radius: var(--raio-capa);
+  background: var(--foto-fundo-sem-foto); color: var(--foto-texto);
+  --cor-texto: var(--foto-texto); --cor-texto-secundario: var(--foto-texto-secundario);
+  --cor-progresso: var(--cor-viva); --cor-trilho: rgba(255, 255, 255, 0.22); --cor-marca: var(--cor-viva);
+}
+.foto-texto__imagem { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: var(--foto-filtro); z-index: -2; }
+.foto-texto::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--foto-gradiente); }
+.foto-texto--capa::after { background: var(--foto-luz-lateral), var(--foto-gradiente-capa); }
+.foto-texto__conteudo { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: var(--espaco-2); height: 100%; padding: var(--espaco-4) var(--espaco-5) var(--espaco-5); }
+.foto-texto__topo { display: flex; align-items: center; justify-content: space-between; gap: var(--espaco-2); }
+.foto-texto .texto-secundario { color: var(--foto-texto-secundario); }
+.foto-texto .avatar { background: rgba(255, 255, 255, 0.16); color: var(--foto-texto); }
+/* herói de borda a borda: a foto sobe por trás da barra de status (o app não põe texto no inset) */
+.foto-texto--heroi { border-radius: 0 0 var(--raio-capa) var(--raio-capa); min-height: var(--imagem-heroi); }
+
+/* 20. Vidro: painel translúcido com desfoque (tokens.json › vidro). Redefine as cores de texto do que está dentro,
+   para os componentes de sempre servirem em cima dele. Com transparência reduzida vira vidro.solido. */
+.vidro {
+  background: var(--vidro-fundo); color: var(--vidro-texto); border-radius: var(--raio-vidro);
+  -webkit-backdrop-filter: blur(var(--vidro-desfoque)) saturate(var(--vidro-saturacao)); backdrop-filter: blur(var(--vidro-desfoque)) saturate(var(--vidro-saturacao));
+  box-shadow: inset 0 0 0 var(--borda-fina) var(--vidro-borda), var(--vidro-brilho-topo), var(--vidro-sombra);
+  --cor-texto: var(--vidro-texto); --cor-texto-secundario: var(--vidro-texto-secundario); --cor-marca: var(--vidro-destaque);
+}
+.vidro .texto-secundario { color: var(--vidro-texto-secundario); }
+/* a camada de contraste vai na foto, atrás do painel (um degradê na faixa onde o painel fica) */
+.vidro-camada { position: absolute; left: 0; right: 0; bottom: 0; height: 60%; background: var(--vidro-camada); z-index: -1; pointer-events: none; }
+html[data-transparencia="reduzida"] .vidro { --vidro-saturacao: 1; }
+/* botão redondo de vidro sobre a foto (voltar, pausar, menu): alvo 48 */
+.botao--vidro { background: var(--vidro-fundo); color: var(--vidro-texto); -webkit-backdrop-filter: blur(var(--vidro-desfoque)); backdrop-filter: blur(var(--vidro-desfoque)); box-shadow: inset 0 0 0 var(--borda-fina) var(--vidro-borda); }
+.botao--vidro::after { background: var(--vidro-texto); }
+/* pílula informativa de vidro (24 de altura, como o chip de informação) */
+.pilula-vidro { display: inline-flex; align-items: center; gap: var(--espaco-1); min-height: 32px; padding: 0 var(--espaco-3); border-radius: var(--raio-pilula); background: var(--vidro-fundo); color: var(--vidro-texto); -webkit-backdrop-filter: blur(var(--vidro-desfoque)); backdrop-filter: blur(var(--vidro-desfoque)); box-shadow: inset 0 0 0 var(--borda-fina) var(--vidro-borda); font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); font-weight: 600; white-space: nowrap; }
+
+/* Número gigante no celular pequeno: 96 */
+@container (max-width: 357.98px) { .numero-gigante { font-size: var(--tipo-numero-gigante-pequeno); line-height: var(--linha-numero-gigante-pequeno); } }
+
+/* 21. Deslizar para começar (refs 01 e 02): trilho em pílula de 64, botão de 56 em verde vivo.
+   Tocar no botão também começa (nenhum gesto é o único caminho, WCAG 2.5.1); teclado: Enter ou espaço. */
+.deslizar {
+  position: relative; display: flex; align-items: center; justify-content: center; min-height: var(--deslizar-altura); width: 100%;
+  border-radius: var(--raio-pilula); background: var(--cor-superficie); color: var(--cor-texto);
+  box-shadow: inset 0 0 0 var(--borda-media) var(--cor-progresso); touch-action: pan-y; -webkit-tap-highlight-color: transparent; user-select: none; cursor: grab;
+}
+.vidro .deslizar, .foto-texto .deslizar { background: transparent; }
+.deslizar__botao {
+  position: absolute; left: var(--espaco-1); top: 50%; width: var(--deslizar-botao); height: var(--deslizar-botao); margin-top: calc(var(--deslizar-botao) / -2);
+  border-radius: var(--raio-redondo); display: grid; place-items: center; background: var(--cor-viva); color: var(--cor-viva-texto); box-shadow: var(--sombra-viva);
+  transition: transform var(--duracao-media) var(--mola-toque); z-index: 1;
+}
+.deslizar__rotulo { padding: 0 var(--espaco-16); font-weight: 600; }
+.deslizar__setas { position: absolute; right: var(--espaco-5); display: flex; color: var(--cor-progresso); }
+.deslizar__setas .icone { margin-left: -12px; }
+.deslizar__setas .icone:nth-child(1) { opacity: 0.4; } .deslizar__setas .icone:nth-child(2) { opacity: 0.7; }
+.deslizar--arrastando .deslizar__botao { transition: none; }
+.deslizar--feito .deslizar__botao { background: var(--cor-sucesso); color: var(--cor-sucesso-texto); }
+
+/* Anel de progresso por exercício (ref 01): séries feitas / séries; o número de feitas no centro */
+.anel-exercicio { position: relative; width: var(--anel-exercicio); height: var(--anel-exercicio); display: grid; place-items: center; flex: none; color: var(--cor-texto); }
+.anel-exercicio svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.anel-exercicio__trilho { fill: none; stroke: var(--cor-trilho); stroke-width: var(--anel-traco); }
+.anel-exercicio__valor { fill: none; stroke: var(--cor-progresso); stroke-width: var(--anel-traco); stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--feito, 0)); transition: stroke-dashoffset var(--duracao-lenta) var(--curva-padrao); }
+.anel-exercicio__numero { font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); font-weight: 700; font-variant-numeric: tabular-nums; }
+.anel-exercicio--feito .anel-exercicio__valor { stroke: var(--cor-sucesso); }
+.anel-exercicio--grande { width: 72px; height: 72px; --anel-traco: 6; }
+
+/* Painel de séries sobre a foto do exercício atual (tela 1): número gigante + vidro com série, carga e marcar */
+.atual__numero { display: flex; align-items: baseline; gap: var(--espaco-2); }
+.atual__numero .corpo-forte { color: var(--foto-texto-secundario); font-size: var(--tipo-titulo-2); line-height: var(--linha-titulo-2); } /* 61 : 25 (≤ 2,5 : 1), na linha de base */
+.painel-serie { display: flex; flex-direction: column; gap: var(--espaco-3); padding: var(--espaco-3); }
+.painel-serie .serie { background: transparent; box-shadow: none; padding: 0; min-height: var(--alvo-minimo); }
+.painel-serie .serie--feita { background: transparent; }
+.painel-serie__linha { display: flex; align-items: center; justify-content: space-between; gap: var(--espaco-3); }
+
+/* Lista de exercícios com anel (ref 01): uma linha por exercício, o atual em destaque */
+.exercicio-linha { display: flex; align-items: center; gap: var(--espaco-3); min-height: var(--altura-linha); padding: var(--espaco-3) var(--espaco-4); width: 100%; text-align: left; border-radius: var(--raio-cartao); background: var(--cor-superficie); box-shadow: var(--sombra-2); position: relative; }
+.exercicio-linha__texto { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.exercicio-linha--feito .titulo-3 { color: var(--cor-texto-secundario); }
+
+/* Barra de abas com o + central (?abas=mais, refs 05 e 06; [decidir]) */
+.aba-mais { display: none; flex: none; width: 64px; align-items: center; justify-content: center; }
+.aba-mais__botao { width: var(--controle-primario); height: var(--controle-primario); border-radius: var(--raio-redondo); display: grid; place-items: center; background: var(--cor-viva); color: var(--cor-viva-texto); box-shadow: var(--sombra-viva); transition: transform var(--duracao-rapida) var(--curva-padrao); }
+.aba-mais__botao:active { transform: scale(0.94); }
+.aba-mais__botao .icone { width: 24px; height: 24px; }
+[data-abas="mais"] .aba-mais { display: flex; }
+.folha-mais[hidden] { display: none; }
+.folha-mais .linha .icone { color: var(--cor-marca); }
+
+/* Faixa do descanso com o "Desfazer" da série (tela 1): o aviso não cobre mais a série seguinte */
+.faixa-cronometro .botao--texto { min-width: 0; }
+.faixa-cronometro { background: var(--vidro-barra); -webkit-backdrop-filter: blur(var(--vidro-desfoque)); backdrop-filter: blur(var(--vidro-desfoque)); }
+
+/* Tela imersiva (treino em andamento, cronômetro, convite): a foto sobe por trás da barra de status e do cabeçalho */
+.celular__tela--imersiva .celular__inset-topo { position: absolute; left: 0; right: 0; top: 0; z-index: 5; }
+.celular__tela--imersiva .celular__status { color: #FFFFFF; }
+.celular__tela--imersiva .cabecalho--flutuante { position: absolute; left: 0; right: 0; top: var(--inset-topo); z-index: 5; padding: 0 var(--margem-lateral); justify-content: space-between; }
+.celular__tela--imersiva .celular__conteudo { padding-top: 0; }
+.celular__tela--imersiva .foto-texto--heroi { margin: 0 calc(-1 * var(--margem-lateral)); flex: none; }
+.foto-texto--heroi .foto-texto__conteudo { min-height: var(--imagem-heroi); }
+/* o texto do herói nunca sobe para baixo da barra de status nem dos botões de vidro: um espaçador do tamanho do
+   inset (número do sistema, fora da escala de 4) + cabeçalho + 16 */
+.foto-texto--heroi .foto-texto__conteudo::before { content: ""; flex: none; height: calc(var(--inset-topo) + var(--altura-cabecalho) + var(--espaco-4) - var(--espaco-4) - var(--espaco-2)); margin-bottom: auto; }
+.foto-texto h2, .foto-texto .titulo-1 { overflow-wrap: anywhere; }
+
+/* Capa de treino pronto com texto sobre a foto */
+.capa-treino { display: block; width: 100%; text-align: left; min-height: var(--imagem-capa-foto); }
+.capa-treino .foto-texto__conteudo { min-height: var(--imagem-capa-foto); }
+.capa-treino--grade { min-height: var(--imagem-capa-grade); border-radius: var(--raio-cartao); }
+.capa-treino--grade .foto-texto__conteudo { min-height: var(--imagem-capa-grade); padding: var(--espaco-3); }
+.capa-treino.treino-pronto--escolhido { outline-color: var(--cor-viva); }
+
+/* o aviso da série fica NA base, acima da faixa do descanso, e não por cima da série seguinte (P09, item 3) */
+.aviso-base .toast { margin: var(--espaco-2) var(--margem-lateral); }
+/* foto baixa (300) no cronômetro */
+.foto-texto--baixo, .foto-texto--baixo .foto-texto__conteudo { min-height: var(--imagem-heroi-baixo); }
+/* capa tocável afunda como o cartão (sem a camada, que no ::after é o degradê) */
+.capa-treino { transition: transform var(--duracao-media) var(--mola-toque); -webkit-tap-highlight-color: transparent; }
+.capa-treino:active { transform: scale(var(--escala-toque)) translateY(1px); transition-duration: var(--duracao-rapida); }
+[data-movimento="reduzido"] .capa-treino:active { transform: none; }
+
+/* amostra da página: o número gigante pede a foto alta (regra 2 do componente 19: só sobe até o meio) */
+.foto-texto--amostra, .foto-texto--amostra .foto-texto__conteudo { min-height: var(--imagem-heroi); }
+
+/* Placar grande em cima da foto ou do cartão: o número protagonista */
+.placar-grande { display: flex; align-items: flex-end; gap: var(--espaco-4); }
+.placar-grande__item { display: flex; flex-direction: column; }
+
+/* ---------- 4. MOLDURA DE CELULAR (só do mockup) ---------- */
+
+/* A TELA tem exatamente 390 × 844 (o celular médio de referência); a borda do aparelho fica por fora.
+   Em janela estreita ou baixa, a moldura INTEIRA encolhe por zoom (--moldura-zoom, calculado pelo script
+   do mockup): o conteúdo continua diagramado em 390 px, como num aparelho de verdade. */
+.celular {
+  box-sizing: content-box; width: var(--moldura-tela-largura); height: var(--moldura-tela-altura);
+  border-radius: var(--moldura-raio); padding: var(--moldura-borda-v) var(--moldura-borda); flex: none; zoom: var(--moldura-zoom);
+  background: var(--cor-moldura); box-shadow: var(--sombra-3), inset 0 0 0 1px rgba(255,255,255,0.08); text-align: left; /* não herda o centro da legenda */
+  position: relative;
+  /* inset que o sistema informa (layout.aparelhos › areaSegura) e o que o app usa na base: nunca menos de 16 */
+  --inset-topo: var(--moldura-inset-topo); --inset-base: var(--moldura-inset-base);
+  --inset-base-app: max(var(--inset-base), var(--area-base-minima));
+}
+.celular__tela { width: 100%; height: 100%; border-radius: var(--moldura-raio-tela); background: var(--cor-fundo); color: var(--cor-texto); overflow: hidden; display: flex; flex-direction: column; position: relative; }
+/* topo: a área do sistema (barra de status + recorte). O app não põe nada aqui; o fundo do cabeçalho sobe até a borda. */
+.celular__inset-topo { height: var(--inset-topo); flex: none; position: relative; }
+.celular__inset-topo:has(+ .cabecalho--superficie) { background: var(--cor-superficie); }
+.celular__ilha { position: absolute; left: 50%; top: var(--moldura-ilha-topo); width: var(--moldura-ilha-largura); height: var(--moldura-ilha-altura); margin-left: calc(var(--moldura-ilha-largura) / -2); border-radius: var(--moldura-ilha-raio); background: #000; z-index: 2; }
+/* barra de status do sistema: desenhada pelo aparelho, não pelo app; não acompanha a fonte do sistema */
+.celular__status { position: absolute; left: 0; right: 0; top: var(--status-topo); height: var(--status-altura); display: grid; grid-template-columns: 1fr var(--moldura-ilha-largura) 1fr; align-items: center; justify-items: center; color: var(--cor-texto); font: 600 16px/20px var(--fonte-interface); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; z-index: 1; }
+.celular__hora { grid-column: 1; }
+.celular__icones { grid-column: 3; display: flex; align-items: center; gap: 4px; }
+.status-icone { height: 12px; fill: currentColor; flex: none; }
+.status-icone--sinal { width: 18px; } .status-icone--wifi { width: 16px; } .status-icone--bateria { width: 26px; }
+.celular__conteudo { flex: 1; overflow-y: auto; padding: 0 var(--margem-lateral) var(--espaco-8); display: flex; flex-direction: column; gap: var(--espaco-6); scrollbar-width: none; container-type: inline-size; }
+.celular__conteudo::-webkit-scrollbar { display: none; }
+/* base: a barra de abas termina acima do inset; o fundo vai até a borda e o indicador de início fica dentro do inset */
+.celular__base { flex: none; background: var(--cor-superficie); }
+/* o inset da base é número do sistema (34 no iPhone), fora da escala de 4 de propósito: fica num espaçador, não no preenchimento do app */
+.celular__base::after { content: ""; display: block; height: var(--inset-base-app); }
+[data-tema="escuro"] .celular__base { background: var(--cor-superficie-elevada); }
+.celular__gesto { position: absolute; left: 50%; bottom: var(--moldura-gesto-base); width: var(--moldura-gesto-largura); height: var(--moldura-gesto-altura); margin-left: calc(var(--moldura-gesto-largura) / -2); border-radius: var(--raio-redondo); background: var(--cor-texto); opacity: 0.6; z-index: 31; }
+.celular__flutuante { position: absolute; left: var(--margem-lateral); right: var(--margem-lateral); bottom: calc(var(--altura-barra-abas) + var(--inset-base-app) + var(--espaco-4)); z-index: 30; }
+.celular__flutuante--com-faixa { bottom: calc(var(--altura-barra-abas) + var(--inset-base-app) + 56px + var(--espaco-4)); }
+
+/* ---- Aparelhos (tokens.json › layout.aparelhos e moldura.recortes). O padrão, sem atributo, é o Android 390. ---- */
+[data-plataforma="android"] .celular__status { grid-template-columns: 1fr auto 1fr; justify-items: start; padding: 0 var(--espaco-5); font-size: 13px; font-weight: 500; }
+[data-plataforma="android"] .celular__icones { justify-self: end; }
+[data-aparelho="iphone-se"] {
+  --moldura-tela-largura: 375px; --moldura-tela-altura: 667px; --moldura-inset-topo: 20px; --moldura-inset-base: 0px;
+  --moldura-borda-v: 72px; --moldura-raio: 56px; --moldura-raio-tela: 0px; --status-topo: 0px; --status-altura: 20px;
+}
+[data-aparelho="iphone-13-mini"] {
+  --moldura-tela-largura: 375px; --moldura-tela-altura: 812px; --moldura-inset-topo: 50px; --moldura-inset-base: 34px;
+  --moldura-raio: 56px; --moldura-raio-tela: 44px;
+  --moldura-ilha-largura: 160px; --moldura-ilha-altura: 32px; --moldura-ilha-topo: 0px; --moldura-ilha-raio: 0 0 20px 20px;
+  --status-topo: 0px; --status-altura: 32px;
+}
+[data-aparelho="iphone-16"] {
+  --moldura-tela-largura: 393px; --moldura-tela-altura: 852px; --moldura-inset-topo: 59px; --moldura-inset-base: 34px;
+  --moldura-raio: 68px; --moldura-raio-tela: 56px;
+  --moldura-ilha-largura: 124px; --moldura-ilha-altura: 36px; --moldura-ilha-topo: 12px;
+  --status-topo: 12px; --status-altura: 36px;
+}
+[data-aparelho="iphone-16-pro-max"] {
+  --moldura-tela-largura: 440px; --moldura-tela-altura: 956px; --moldura-inset-topo: 62px; --moldura-inset-base: 34px;
+  --moldura-raio: 68px; --moldura-raio-tela: 56px;
+  --moldura-ilha-largura: 124px; --moldura-ilha-altura: 36px; --moldura-ilha-topo: 14px;
+  --status-topo: 14px; --status-altura: 36px;
+}
+/* celular grande (≥ 430): margem lateral 20 (layout.margemLateralGrande), só dentro da moldura */
+[data-aparelho="iphone-16-pro-max"] .celular { --margem-lateral: 20px; }
+/* iPhone SE: sem recorte e sem indicador; hora no centro da barra de status; botão Início e alto-falante na moldura */
+[data-aparelho="iphone-se"] .celular__ilha, [data-aparelho="iphone-se"] .celular__gesto { display: none; }
+[data-aparelho="iphone-se"] .celular__status { grid-template-columns: 1fr auto 1fr; padding: 0 var(--espaco-2); font-size: 13px; line-height: 16px; }
+[data-aparelho="iphone-se"] .celular__hora { grid-column: 2; }
+[data-aparelho="iphone-se"] .celular__icones { justify-self: end; }
+[data-aparelho="iphone-se"] .celular::before, [data-aparelho="iphone-se"] .celular::after { content: ""; position: absolute; left: 50%; border-radius: var(--raio-redondo); }
+[data-aparelho="iphone-se"] .celular::before { top: calc(var(--moldura-borda-v) / 2 - 2px); width: 48px; height: 4px; margin-left: -24px; background: color-mix(in srgb, var(--cor-fundo) 30%, transparent); }
+[data-aparelho="iphone-se"] .celular::after { bottom: calc((var(--moldura-borda-v) - 48px) / 2); width: 48px; height: 48px; margin-left: -24px; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--cor-fundo) 35%, transparent); }
+.secao { display: flex; flex-direction: column; gap: var(--espaco-3); }
+.secao__titulo { display: flex; align-items: center; justify-content: space-between; }
+
+/* ---------- 5. PÁGINA DO MOCKUP (galeria) ---------- */
+
+.pagina { max-width: 2400px; margin: 0 auto; padding: var(--espaco-6) var(--margem-lateral) var(--espaco-16); display: flex; flex-direction: column; gap: var(--espaco-12); }
+.pagina__topo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--espaco-4); position: sticky; top: 0; background: var(--cor-fundo); padding: var(--espaco-3) 0; z-index: 40; border-bottom: var(--borda-fina) solid var(--cor-borda); }
+.pagina__nota { color: var(--cor-texto-secundario); max-width: 70ch; }
+.galeria { display: flex; flex-direction: column; gap: var(--espaco-6); }
+.galeria__titulo { display: flex; flex-direction: column; gap: var(--espaco-1); }
+/* coluna de amostra: no mínimo a coluna de conteúdo do celular médio (358) + preenchimento e borda da caixa,
+   para o componente aparecer na largura em que foi desenhado (abaixo disso, vale a variante < 390) */
+.amostras { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, calc(var(--coluna-celular) + 2 * var(--espaco-4) + 2 * var(--borda-fina))), 1fr)); gap: var(--espaco-6); }
+.amostra { display: flex; flex-direction: column; gap: var(--espaco-3); }
+.amostra__rotulo { color: var(--cor-texto-secundario); display: flex; justify-content: space-between; gap: var(--espaco-2); }
+.amostra__caixa { background: var(--cor-fundo); border: var(--borda-fina) dashed var(--cor-borda); border-radius: var(--raio-grande); padding: var(--espaco-4); display: flex; flex-direction: column; gap: var(--espaco-3); position: relative; container-type: inline-size; }
+/* folha inferior dentro da amostra: a sobreposição acompanha a altura da folha (antes era absoluta e cortava a folha em tela estreita ou fonte grande) */
+.folha-moldura--amostra { position: relative; inset: auto; padding-top: var(--espaco-16); border-radius: inherit; }
+.folha-moldura--amostra .folha { max-height: none; }
+.amostra__caixa--superficie { background: var(--cor-superficie); }
+.amostra__caixa--alta { min-height: 240px; }
+/* as telas numa grade de N colunas que o script escolhe: no ultrawide (2040 × 790) todas numa linha só; quando não
+   cabem sem encolher demais, linhas equilibradas (6 telas = 3 + 3, nunca 5 + 1) */
+.telas { display: grid; grid-template-columns: repeat(var(--colunas-telas, 3), auto); gap: var(--espaco-8) var(--espaco-6); justify-content: center; align-items: start; }
+.tela-legenda { width: calc((var(--moldura-tela-largura) + 2 * var(--moldura-borda)) * var(--moldura-zoom)); max-width: 100%; text-align: center; display: flex; flex-direction: column; gap: var(--espaco-1); }
+.tela-legenda .celular { margin: 0 auto var(--espaco-3); }
+/* duas colunas só quando cada uma comporta a linha de série (15rem); senão empilha */
+.lado-a-lado { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: var(--espaco-4); }
+.lado-a-lado > div { padding: var(--espaco-4); border-radius: var(--raio-grande); background: var(--cor-fundo); color: var(--cor-texto); display: flex; flex-direction: column; gap: var(--espaco-3); border: var(--borda-fina) solid var(--cor-borda); }
+.seletores { display: flex; flex-wrap: wrap; gap: var(--espaco-4); }
+.seletor-tema { display: flex; flex-wrap: wrap; gap: var(--espaco-2); }
+/* janela deitada e baixa (o ultrawide de 2040 × 790): a nota sai do topo fixo para sobrar altura para a moldura */
+@media (orientation: landscape) and (max-height: 820px) { .pagina__nota { display: none; } }
+.escala-tipo { display: flex; flex-direction: column; gap: var(--espaco-3); }
+/* rótulo (10rem) e exemplo lado a lado; se não couber, o exemplo desce para baixo do rótulo */
+.escala-tipo > div { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: var(--espaco-4); row-gap: var(--espaco-1); }
+.escala-tipo > div > :first-child { flex: 0 0 10rem; max-width: 100%; overflow-wrap: anywhere; }
+.escala-tipo > div > :last-child { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.paleta { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); gap: var(--espaco-3); }
+.cor-amostra { border-radius: var(--raio-medio); padding: var(--espaco-3); min-height: 72px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: inset 0 0 0 var(--borda-fina) var(--cor-borda); }
+.cor-amostra code { font-size: var(--tipo-legenda); line-height: var(--linha-legenda); }
+.cor-amostra > * { overflow-wrap: anywhere; }
+.espacos { display: flex; align-items: flex-end; gap: var(--espaco-3); flex-wrap: wrap; }
+.espacos > div { display: flex; flex-direction: column; align-items: center; gap: var(--espaco-1); color: var(--cor-texto-secundario); font-size: var(--tipo-legenda); line-height: var(--linha-legenda); }
+.espacos i { display: block; background: var(--cor-marca); border-radius: 2px; }
+
+@media (max-width: 430px) {
+  .lado-a-lado { grid-template-columns: 1fr; }
+}
+
+/* ---------- 6. RESPOSTA À LARGURA E À FONTE ---------- */
+
+/* Celular pequeno (< 390): a coluna de conteúdo fica abaixo de 358 px (= 390 − 2 × 16, --coluna-celular).
+   Container query não aceita var(); o 357.98px abaixo É esse token. Vale dentro do celular e das amostras. */
+@container (max-width: 357.98px) {
+  .numero-carga { font-size: var(--tipo-numero-carga-pequeno); line-height: var(--linha-numero-carga-pequeno); }
+  .numero-cronometro { font-size: var(--tipo-numero-cronometro-pequeno); line-height: var(--linha-numero-cronometro-pequeno); }
+  .numero-cronometro-tela { font-size: var(--tipo-numero-cronometro-tela-pequeno); line-height: var(--linha-numero-cronometro-tela-pequeno); }
+  .titulo-1 { font-size: var(--tipo-titulo-1-pequeno); line-height: var(--linha-titulo-1-pequeno); }
+  /* componente 6: no pequeno a linha de série mostra os números sem os +/− (abrem ao tocar no número) */
+  .serie .passo__botao { display: none; }
+  .treino-pronto__descricao { display: none; }
+  .cronometro__anel { width: 144px; height: 144px; }
+}
+
+/* Fonte do sistema ampliada (o script põe data-fonte conforme o tamanho real da fonte da página).
+   130 % a 160 %: cartão de treino pronto em 1 coluna, título do cabeçalho em até 2 linhas, linhas crescem. */
+[data-fonte="ampliada"] .grade-2, [data-fonte="maxima"] .grade-2 { grid-template-columns: 1fr; }
+[data-fonte="ampliada"] .cabecalho__titulo .titulo-2, [data-fonte="maxima"] .cabecalho__titulo .titulo-2 { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+[data-fonte="ampliada"] .lado-a-lado, [data-fonte="maxima"] .lado-a-lado { grid-template-columns: 1fr; }
+/* acima de 160 %: rótulo da aba some (fica no leitor de tela e no toque longo) */
+[data-fonte="maxima"] .aba__rotulo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+
+/* ---------- 6. JUNÇÃO DO P09 (agente Q, tokens 1.7.0) ---------- */
+
+/* Componente 20, variante "vidro escuro" (tokens.json › vidro.escuroFixo; era .p-vidro--escuro do agente P):
+   o vidro escuro nos DOIS temas, para painel e botão sobre foto que é escura em qualquer tema (modo treino, capas). */
+.vidro--escuro {
+  --vidro-fundo: rgba(14, 14, 14, 0.60); --vidro-borda: rgba(255, 255, 255, 0.14); --vidro-brilho-topo: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  --vidro-sombra: 0 8px 24px -12px rgba(0, 0, 0, 0.6); --vidro-texto: #FFFFFF; --vidro-texto-secundario: #D9D9D9; --vidro-destaque: #FF6B6B;
+  --vidro-solido: #262626; --vidro-camada: linear-gradient(to top, rgba(10, 10, 10, 0.55), rgba(10, 10, 10, 0));
+}
+html[data-transparencia="reduzida"] .vidro--escuro { --vidro-fundo: var(--vidro-solido); --vidro-desfoque: 0px; }
+@media (prefers-reduced-transparency: reduce) { html:not([data-transparencia="normal"]) .vidro--escuro { --vidro-fundo: var(--vidro-solido); --vidro-desfoque: 0px; } }
+
+/* Ilustração de exercício (02-design/icones, agente R): ladrilho com a figura em traço e o músculo na cor de destaque.
+   Substitui a foto pequena de 48–64 px. O nome do exercício vai sempre em texto ao lado. */
+.mini--ilustracao, .exercicio__imagem--ilustracao { background: var(--ilustracao-fundo); color: var(--ilustracao-traco); border-radius: var(--raio-ilustracao); }
+.ilustracao-exercicio { width: 100%; height: 100%; display: block; }
+
+/* Navegação entre as três páginas do mockup (só da vitrine, não do app) */
+.paginas-nav { display: flex; flex-wrap: wrap; align-items: center; gap: var(--espaco-1); }
+.paginas-nav__marca { font-weight: 700; font-size: var(--tipo-corpo); line-height: var(--linha-corpo); margin-right: var(--espaco-2); white-space: nowrap; }
+.paginas-nav a { position: relative; display: inline-flex; align-items: center; min-height: var(--controle-secundario); padding: 0 var(--espaco-4); border-radius: var(--raio-pilula); font-weight: 600; font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); color: var(--cor-texto); text-decoration: none; white-space: nowrap; }
+.paginas-nav a:hover { background: var(--cor-marca-suave); }
+.paginas-nav a[aria-current="page"] { background: var(--cor-texto); color: var(--cor-fundo); }
+.paginas-nav a:focus-visible { outline: var(--borda-foco) solid var(--cor-foco); outline-offset: 2px; }
+.so-leitor { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Janela deitada e baixa (o ultrawide do Alex, 2040 × 790): o topo fixo vira UMA linha (navegação + chaves) e a
+   página perde o respiro de cima, para a moldura caber inteira na primeira tela (o script desconta o que fica acima dela). */
+@media (orientation: landscape) and (max-height: 900px) and (min-width: 1600px) {
+  .pagina { padding-top: 0; gap: var(--espaco-6); }
+  .pagina__topo { flex-wrap: nowrap; padding: var(--espaco-2) 0; }
+  .pagina__topo .seletores { flex-wrap: nowrap; gap: var(--espaco-3); }
+  .pagina__topo .seletor-tema { flex-wrap: nowrap; gap: var(--espaco-1); }
+  .pagina__topo .botao--pequeno { padding: 0 var(--espaco-3); font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); }
+  .galeria { gap: var(--espaco-4); }
+  .pagina__nota, .p-nota-topo { display: none; }
+}
+
+/* ---------- 7. ÁREA DE TOQUE INVISÍVEL (tokens 1.8.0) ----------
+   O controle tem o desenho pequeno (40, 36, 32) e a área de toque de 48 por um ::before transparente, centrado,
+   que só cresce para fora quando o desenho é menor que 48. No app é o hitSlop do Pressable. */
+:is(.botao--secundario, .botao--texto, .botao--pequeno, .botao--icone, .chip, .passo__botao, .serie__marcar, .refeicao__check-tudo, .item-refeicao__check, .paginas-nav a,
+    .p-botao-vidro, .p-botao--vidro, .p-chip, .p-passo button, .p-sino, .p-aviso__fechar, .p-seletor-exercicio, .p-tabela summary, .p-feita-linha button, .p-botao--texto-escuro, .p-personais li.sem a,
+    .o-redondo, .o-pular, .o-pilula--texto, .o-link, .o-campo__acao, .o-dias__botao, .o-grupo button) { position: relative; }
+:is(.botao--secundario, .botao--texto, .botao--pequeno, .botao--icone, .chip, .passo__botao, .serie__marcar, .refeicao__check-tudo, .item-refeicao__check, .paginas-nav a,
+    .p-botao-vidro, .p-botao--vidro, .p-chip, .p-passo button, .p-sino, .p-aviso__fechar, .p-seletor-exercicio, .p-tabela summary, .p-feita-linha button, .p-botao--texto-escuro, .p-personais li.sem a,
+    .o-redondo, .o-pular, .o-pilula--texto, .o-link, .o-campo__acao, .o-dias__botao, .o-grupo button)::before {
+  content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, var(--alvo-minimo)); height: max(100%, var(--alvo-minimo)); transform: translate(-50%, -50%); border-radius: inherit; }
+
+/* títulos longos quebram a palavra com hífen em vez de vazar ("acompanhamento" a 160 %) */
+.titulo-1, .titulo-2, .titulo-3 { overflow-wrap: break-word; hyphens: auto; }
+
+/* véu da entrada com a fonte ampliada ou na tela baixa do iPhone SE (claro): o título sobe para o meio da foto, então o véu fecha mais cedo */
+:root[data-fonte="ampliada"]:not([data-tema="escuro"]), :root[data-fonte="maxima"]:not([data-tema="escuro"]), :root[data-aparelho="iphone-se"]:not([data-tema="escuro"]) { --foto-veu-entrada: linear-gradient(180deg, rgba(245, 245, 245, 0.55) 0%, rgba(245, 245, 245, 0) 10%, rgba(245, 245, 245, 0.88) 30%, rgba(245, 245, 245, 0.94) 100%); }
+@media (prefers-color-scheme: dark) { :root[data-fonte="ampliada"]:not([data-tema]), :root[data-fonte="maxima"]:not([data-tema]), :root[data-aparelho="iphone-se"]:not([data-tema]) { --foto-veu-entrada: linear-gradient(180deg, rgba(20, 20, 20, 0.55) 0%, rgba(20, 20, 20, 0) 16%, rgba(20, 20, 20, 0) 36%, rgba(20, 20, 20, 0.72) 60%, rgba(20, 20, 20, 0.92) 100%); } }

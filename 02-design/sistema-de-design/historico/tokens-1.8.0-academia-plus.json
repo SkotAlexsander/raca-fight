@@ -1,0 +1,898 @@
+{
+  "$descricao": "Tokens do Academia Plus. Desde a 1.6.0 (agente N, P09) seguem a direção das referências do Alex (02-design/referencias/): escuro com foto grande, painéis de vidro sobre a imagem, um número em destaque por tela, o verde da marca MAIS VIVO (no escuro, verde-água luminoso; não é verde-limão) e o dourado só no Plus. O claro tem a mesma linguagem: vidro claro sobre a mesma foto escurecida e o mesmo verde vivo nos preenchimentos. Nomes antigos continuam valendo; os grupos novos são vidro, foto, deslizar, anel e abas.mais. Desde a 1.8.0 a PROPORÇÃO é planejada (regra do Alex de 10/10/2026): escala tipográfica fechada de razão 1,25, um herói por tela, tamanho visual separado da área de toque.",
+  "$versao": "1.8.0",
+  "$historico": "1.8.0 (10/10/2026, agente Q, regra do Alex): o Alex reprovou a proporção (\"números e botões grandes demais\"). Escala tipográfica FECHADA, base 16 e razão 1,25: só 13 · 16 · 20 · 25 · 31 · 39 · 49 · 61 (tipografia.$escala). numeroGigante 112 → 61 (só modo treino), numeroCronometroTela 96 → 61, numeroCronometro 64 → 49, numeroDestaque → 49, numeroCarga 40 → 25 (valor sendo editado), numeroSerie 20 (novo: linha de série), titulo1 28 → 31, titulo2 22 → 25, titulo3 18 → 20, corpoPequeno 14 → 13, legenda 12 → 13, tituloEntrada 36 → 39. Um herói por tela (no máximo um texto ≥ 49 visível). Tamanho visual ≠ área de toque: grupo controle (primário 48, secundário 40, ícone 40, marcar 40, passo 36, chip 32, máximo 56) e alvo.minimo 48 por área invisível (hitSlop); a auditoria reprova alvo efetivo abaixo de 44. Barra de abas 64 → 56; deslizar 64 → 56 (botão 48); herói de foto 440 → 340 (45 % da altura útil). 1.7.0 (10/10/2026, agente Q, junção do P09): entram no sistema as variáveis locais da entrada (--o-, agente O), das telas novas (--p-, agente P) e das ilustrações (--r-, agente R): raio.campo; tipografia.escala tituloEntrada (36/42), numeroDestaque (72/76) e legendaGrafico (13/16); grupos abertura, porta, codigo, contaSocial, ilustracao, grafico, mapa, aviso, comemoracao, descanso e telas; foto.entrada (o véu da foto de tela cheia, claro e escuro) e foto.desfoqueDescanso; vidro.*.selecionado e vidro.escuroFixo (a variante \"vidro escuro\" do componente 20); icone.traco 2 → 2,25 (o traço do logo, como os ícones do R); abas: a barra encostada (componente 12) vale nas três páginas, a flutuante do P saiu. 1.6.0 (10/10/2026, agente N, P09): verde vivo (cor.*.viva e vivaTexto, iguais nos dois temas; marca do claro #006B5F → #007761, do escuro #6BD3C2 → #39F0CD), fundo do escuro quase preto (#070C0C), textoSecundario do claro mais firme; grupos vidro e foto; raio maior (cartao 24, miniatura 16, folha 28) com capa, vidro, botao e pilula; sombra.viva (o brilho do escuro); escala numeroGigante (112); deslizar, anel, abas.mais. 1.5.0 (10/10/2026, agente L): cores e fontes da marca; marcaSuave, plusSuave, plusTextoSobreFundo, trilho e regua; raio.cartao e raio.miniatura; sombra.2 em camadas no claro e contorno no escuro; sombra.atual; grupo imagem; abas.pilulaAtiva; duracao.$regra alinhada ao movimento.reduzido. 1.4.0: bloco movimento (agente K).",
+  "$data": "2026-10-10",
+  "$unidade": "px, salvo indicação; duração em ms",
+  "cor": {
+    "$contrato": "Os 10 papéis obrigatórios que a marca preenche: fundo, superficie, texto, textoSecundario, marca, marcaTexto, sucesso, atencao, erro, plus. Os demais são derivados. plusTextoSobreFundo, plusSuave e marcaSuave vêm de tokens-marca.json; trilho (fundo da barra de progresso e do anel) e regua (divisória dentro do cartão, decorativa como borda) vêm da direção A. Regra: no claro, plus é PREENCHIMENTO (1,89:1 sobre branco); a palavra Plus solta, o selo de contorno e o ícone dourado usam plusTextoSobreFundo. 1.6.0: viva é o verde vivo de PREENCHIMENTO (botão primário, deslizar para começar, anel e barra sobre foto ou vidro, comemoração), igual nos dois temas, sempre com vivaTexto por cima (11,67:1). No claro, viva não é texto nem traço sobre branco (1,45:1): texto, link, aba ativa e anel sobre superfície clara usam marca (5,51:1). No escuro marca = viva. progresso é a cor do traço de progresso sobre superfície (claro: marca; escuro: viva).",
+    "claro": {
+      "fundo": "#F4F8F7",
+      "superficie": "#FFFFFF",
+      "texto": "#131D1C",
+      "textoSecundario": "#4A5958",
+      "marca": "#007761",
+      "marcaTexto": "#FFFFFF",
+      "sucesso": "#0A7E3A",
+      "atencao": "#B74D00",
+      "erro": "#C21725",
+      "plus": "#EAB444",
+      "superficieElevada": "#FFFFFF",
+      "borda": "#D0DAD9",
+      "sucessoTexto": "#FFFFFF",
+      "atencaoTexto": "#FFFFFF",
+      "erroTexto": "#FFFFFF",
+      "plusTexto": "#3A2B0D",
+      "foco": "#007761",
+      "sobreposicao": "rgba(0, 0, 0, 0.48)",
+      "desabilitadoOpacidade": 0.4,
+      "plusTextoSobreFundo": "#9A6100",
+      "plusSuave": "#FCF2E1",
+      "marcaSuave": "#D6F5EE",
+      "trilho": "#DCE5E3",
+      "regua": "rgba(19, 29, 28, 0.10)",
+      "viva": "#39F0CD",
+      "vivaTexto": "#00221A",
+      "progresso": "#007761"
+    },
+    "escuro": {
+      "fundo": "#070C0C",
+      "superficie": "#121A19",
+      "texto": "#E9F2F1",
+      "textoSecundario": "#A3B1B0",
+      "marca": "#39F0CD",
+      "marcaTexto": "#00221A",
+      "sucesso": "#67D283",
+      "atencao": "#FDA16B",
+      "erro": "#FF7E76",
+      "plus": "#F8C153",
+      "superficieElevada": "#1B2423",
+      "borda": "#2A3433",
+      "sucessoTexto": "#0B1313",
+      "atencaoTexto": "#0B1313",
+      "erroTexto": "#0B1313",
+      "plusTexto": "#2F2207",
+      "foco": "#39F0CD",
+      "sobreposicao": "rgba(0, 0, 0, 0.64)",
+      "desabilitadoOpacidade": 0.4,
+      "plusTextoSobreFundo": "#F8C153",
+      "plusSuave": "#332710",
+      "marcaSuave": "#0A332C",
+      "trilho": "#26302F",
+      "regua": "rgba(233, 242, 241, 0.10)",
+      "viva": "#39F0CD",
+      "vivaTexto": "#00221A",
+      "progresso": "#39F0CD"
+    },
+    "$contraste": {
+      "$nota": "WCAG 2.x, luminância relativa, medido em 10/10/2026 (agente N). Mínimo: 4,5 texto; 3 texto grande e ícone.",
+      "claro": {
+        "texto/fundo": 16.08,
+        "texto/superficie": 17.21,
+        "textoSecundario/fundo": 6.86,
+        "textoSecundario/superficie": 7.34,
+        "marca/fundo": 5.15,
+        "marca/superficie": 5.51,
+        "marcaTexto/marca": 5.51,
+        "marca/marcaSuave": 4.76,
+        "vivaTexto/viva": 11.67,
+        "viva/superficie (não é texto nem traço)": 1.45
+      },
+      "escuro": {
+        "texto/fundo": 17.28,
+        "texto/superficie": 15.52,
+        "textoSecundario/fundo": 8.88,
+        "textoSecundario/superficie": 7.98,
+        "marca/fundo": 13.61,
+        "marca/superficie": 12.23,
+        "marcaTexto/marca": 11.67,
+        "marca/marcaSuave": 9.53,
+        "vivaTexto/viva": 11.67,
+        "sucesso/superficie": 9.37,
+        "plus/superficie": 10.73
+      }
+    }
+  },
+  "espaco": {
+    "0": 0,
+    "1": 4,
+    "2": 8,
+    "3": 12,
+    "4": 16,
+    "5": 20,
+    "6": 24,
+    "8": 32,
+    "10": 40,
+    "12": 48,
+    "16": 64,
+    "$regra": "escala de 4 em 4; nunca usar valor fora da escala"
+  },
+  "raio": {
+    "pequeno": 8,
+    "medio": 12,
+    "grande": 16,
+    "folha": 28,
+    "redondo": 999,
+    "cartao": 24,
+    "miniatura": 16,
+    "$nota": "1.6.0 (P09): raios maiores e pílulas. cartao 24 e miniatura 16 (concêntrica: 24 − 8 de recuo); capa 28 (foto grande com texto); vidro 24 (painel de vidro); botao 999 (todo botão de texto vira pílula, como nas referências); pilula 999 (chip, selo, deslizar). folha 28. pequeno, medio e grande seguem para campo, linha de série e lista. 1.7.0: campo 16 (campo de vidro da entrada).",
+    "capa": 28,
+    "vidro": 24,
+    "botao": 999,
+    "pilula": 999,
+    "campo": 16
+  },
+  "imagem": {
+    "$nota": "1.6.0 (P09): foto grande com texto por cima (componente 19, Foto com texto), sempre com o tratamento de foto.* e medida contra o pior pixel. As fotos grandes do mockup ficam em mockups/imagens/ (recortes maiores das mesmas fotos Unsplash do banco; créditos em mockups/imagens/CREDITOS.md). Direção A (1.5.0). Arquivos, tamanhos e licenças em 02-design/imagens/ (manifesto.json, CREDITOS.md). Nunca texto por cima da foto: o texto fica no corpo do cartão. 1.8.0: a foto herói ocupa no máximo 45 % da altura útil da tela (844 − 54 − 34 = 756 → 340).",
+    "capa": 184,
+    "capaPequena": 104,
+    "miniatura": 56,
+    "miniaturaAtual": 64,
+    "miniaturaLista": 48,
+    "estadoVazio": 120,
+    "heroi": 340,
+    "capaFoto": 240,
+    "capaGrade": 208,
+    "$cresce": "heroi, heroiBaixo, capaFoto e capaGrade crescem com a fonte do sistema: max(valor, valor ÷ 16 rem). Com 160 %, o herói vai a 704.",
+    "heroiBaixo": 300
+  },
+  "vidro": {
+    "$nota": "Componente 20 (Vidro). Painel translúcido com desfoque que deixa ver a foto de trás. Regra: texto sobre vidro é medido contra o PIOR pixel do fundo (05-ACESSIBILIDADE.md, seção 1); a camadaContraste vai na foto, atrás do painel. Com 'Reduzir transparência' (iOS), a preferência do Android ou prefers-reduced-transparency, o vidro vira a cor solido, sem desfoque. CSS: backdrop-filter: blur(desfoque) saturate(saturacao) e a cor fundo; no app: expo-blur (BlurView) com a cor fundo por cima.",
+    "desfoque": 24,
+    "saturacao": 1.6,
+    "borda": 1,
+    "claro": {
+      "fundo": "rgba(255, 255, 255, 0.80)",
+      "borda": "rgba(255, 255, 255, 0.75)",
+      "brilhoTopo": "inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+      "sombra": "0 8px 24px -12px rgba(0, 0, 0, 0.35)",
+      "texto": "#131D1C",
+      "textoSecundario": "#3B4847",
+      "destaque": "#00604E",
+      "solido": "#FFFFFF",
+      "camadaContraste": "linear-gradient(to top, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0))",
+      "selecionado": "color-mix(in srgb, marca 14%, vidro.claro.fundo)"
+    },
+    "escuro": {
+      "fundo": "rgba(8, 14, 13, 0.60)",
+      "borda": "rgba(255, 255, 255, 0.14)",
+      "brilhoTopo": "inset 0 1px 0 rgba(255, 255, 255, 0.10)",
+      "sombra": "0 8px 24px -12px rgba(0, 0, 0, 0.6)",
+      "texto": "#FFFFFF",
+      "textoSecundario": "#D5DEDD",
+      "destaque": "#39F0CD",
+      "solido": "#1B2423",
+      "camadaContraste": "linear-gradient(to top, rgba(4, 8, 8, 0.55), rgba(4, 8, 8, 0))",
+      "selecionado": "color-mix(in srgb, marca 22%, vidro.escuro.fundo)"
+    },
+    "barra": {
+      "$nota": "barra de abas e faixa do descanso: vidro mais opaco, porque o que passa por trás é conteúdo, não foto",
+      "claro": "rgba(255, 255, 255, 0.88)",
+      "escuro": "rgba(18, 26, 25, 0.86)"
+    },
+    "$contraste": "pior caso calculado (foto escurecida a 0,72; pixel de 184 a 210 atrás do painel escuro, pixel preto atrás do claro): escuro, texto 7,18:1, textoSecundario 5,24:1, destaque 4,97:1; claro, texto 10,18:1, textoSecundario 5,64:1, destaque 4,46:1 (no claro, destaque só em texto grande ou ícone). O auditar.mjs mede o pixel real atrás de cada texto sobre foto ou vidro.",
+    "escuroFixo": {
+      "$nota": "1.7.0 (agente P → componente 20, variante \"vidro escuro\"): o vidro escuro nos DOIS temas, para painel e botão sobre foto que é escura em qualquer tema (modo treino em tela cheia, capas). Os valores são os de vidro.escuro; com transparência reduzida vira solido. CSS: classe .vidro--escuro.",
+      "fundo": "rgba(8, 14, 13, 0.60)",
+      "borda": "rgba(255, 255, 255, 0.14)",
+      "brilhoTopo": "inset 0 1px 0 rgba(255, 255, 255, 0.10)",
+      "sombra": "0 8px 24px -12px rgba(0, 0, 0, 0.6)",
+      "texto": "#FFFFFF",
+      "textoSecundario": "#D5DEDD",
+      "destaque": "#39F0CD",
+      "solido": "#1B2423"
+    }
+  },
+  "foto": {
+    "$nota": "Componente 19 (Foto com texto). A foto é uma 'ilha escura' igual nos dois temas: o claro não clareia a foto, só troca o vidro por vidro claro. O tratamento é feito na tela (não no arquivo), para a mesma foto servir em capa pequena sem texto: escurecer + gradiente, e nas capas grandes a luz lateral. Texto direto sobre a foto só na faixa de baixo do gradiente (ou no topo, para voltar e menu), em branco, e medido contra o pior pixel. 1.7.0: desfoqueDescanso 18 (a foto do exercício, desfocada atrás do anel do descanso no modo treino).",
+    "escurecer": 0.72,
+    "saturacao": 0.9,
+    "gradiente": "linear-gradient(180deg, rgba(4, 8, 8, 0.55) 0%, rgba(4, 8, 8, 0) 22%, rgba(4, 8, 8, 0) 32%, rgba(4, 8, 8, 0.74) 60%, rgba(4, 8, 8, 0.94) 100%)",
+    "gradienteCapa": "linear-gradient(180deg, rgba(4, 8, 8, 0) 20%, rgba(4, 8, 8, 0.8) 64%, rgba(4, 8, 8, 0.94) 100%)",
+    "luzLateral": "radial-gradient(120% 80% at 100% 0%, rgba(57, 240, 205, 0.18), rgba(57, 240, 205, 0) 60%)",
+    "texto": "#FFFFFF",
+    "textoSecundario": "#D5DEDD",
+    "fundoSemFoto": "#0B1312",
+    "$contraste": "medido pelo auditar.mjs contra o pior pixel em todas as rodadas (texto 4,5:1, grande e ícone 3:1). O degradê começa a escurecer em 32 % da altura (capa: 20 %) e passa de 0,74 em 60 %. Texto pequeno só na faixa de baixo; o número gigante e o título podem subir até o meio. A altura da foto cresce com a fonte do sistema (imagem.$cresce), para o texto ampliado não subir para a parte clara.",
+    "entrada": {
+      "$nota": "1.7.0 (agente O): na entrada a foto É a tela (fundo de tela cheia), então ela tem tratamento por tema: no claro clareia e o texto é escuro; no escuro, o grupo foto de sempre. veu é a camada de contraste da foto nítida (boas-vindas); veuDesfocada, a da foto desfocada (os passos). Medido contra o pior pixel (O-ENTRADA.md, seção 5): 0 abaixo do mínimo nas 6 combinações. As capas e o herói continuam com a foto escura nos dois temas (foto.$nota).",
+      "claro": {
+        "veu": "linear-gradient(180deg, rgba(244, 248, 247, 0.55) 0%, rgba(244, 248, 247, 0) 16%, rgba(244, 248, 247, 0) 38%, rgba(244, 248, 247, 0.80) 62%, rgba(244, 248, 247, 0.94) 100%)",
+        "veuDesfocada": "rgba(244, 248, 247, 0.45)",
+        "texto": "#131D1C",
+        "textoSecundario": "#2E3B3A"
+      },
+      "escuro": {
+        "veu": "linear-gradient(180deg, rgba(7, 12, 12, 0.55) 0%, rgba(7, 12, 12, 0) 16%, rgba(7, 12, 12, 0) 36%, rgba(7, 12, 12, 0.72) 60%, rgba(7, 12, 12, 0.92) 100%)",
+        "veuDesfocada": "rgba(7, 12, 12, 0.30)",
+        "texto": "#FFFFFF",
+        "textoSecundario": "#D5DEDD"
+      }
+    },
+    "desfoqueDescanso": 18
+  },
+  "deslizar": {
+    "$nota": "Componente 21 (Deslizar para começar), refs 01 e 02. Tocar no botão também começa (WCAG 2.5.1: nenhum gesto como único caminho); teclado: Enter ou espaço. Com movimento reduzido, o botão não desliza: esmaece e a ação acontece.",
+    "altura": 56,
+    "botao": 48,
+    "limiar": 0.85,
+    "raio": "pilula"
+  },
+  "anel": {
+    "$nota": "Anel de progresso por exercício (ref 01): séries feitas / séries do exercício, com o número de feitas no centro. Sobre superfície usa cor.progresso; sobre foto ou vidro, viva.",
+    "exercicio": 44,
+    "traco": 4,
+    "treino": 72
+  },
+  "abertura": {
+    "$nota": "1.7.0 (agente O; 04-APLICACAO.md): a abertura (expo-splash-screen) e a passagem animada para as boas-vindas. No claro, a marca cheia (#007761, a mesma do ícone e do logo desde a 1.7.0) com o símbolo branco (5,51:1); no escuro, marcaSuave escuro com o símbolo em viva (não ofusca à noite). simbolo 96 é o tamanho no centro (imageWidth 154 no plugin dá 96 pt); simboloSelo 32 é para onde ele encolhe. esperaDemo só na demo; no app é o tempo de carregar.",
+    "simbolo": 96,
+    "simboloSelo": 32,
+    "esperaDemo": 700,
+    "claro": {
+      "fundo": "marca",
+      "simbolo": "#FFFFFF"
+    },
+    "escuro": {
+      "fundo": "marcaSuave",
+      "simbolo": "viva"
+    }
+  },
+  "porta": {
+    "$nota": "1.7.0 (agente O): cartão de vidro \"Sou aluno\" / \"Sou da academia\" nas boas-vindas.",
+    "altura": 88
+  },
+  "codigo": {
+    "$nota": "1.7.0 (agente O): caixa de cada caractere do código (academia, equipe, \"esqueci a senha\"); a altura é caixa + 12.",
+    "caixa": 48,
+    "altura": 60
+  },
+  "contaSocial": {
+    "$nota": "1.7.0 (agente O): botões \"Continuar com a Apple\" e \"Continuar com o Google\" com o MESMO destaque (diretriz 4.8 da App Store): preto no claro, branco no escuro. No app vão os botões oficiais (expo-apple-authentication e o G de quatro cores).",
+    "claro": {
+      "fundo": "#000000",
+      "texto": "#FFFFFF"
+    },
+    "escuro": {
+      "fundo": "#FFFFFF",
+      "texto": "#000000"
+    }
+  },
+  "ilustracao": {
+    "$nota": "1.7.0 (agente R; 02-design/icones/00-LEIA-ME.md): o ladrilho das ilustrações de exercício (48/56/64, raio 12). traco é a figura (= texto); destaque é o músculo trabalhado, na cor da marca: no claro marca (4,77:1 sobre o ladrilho), no escuro viva (9,81:1). O R tinha #00897B / #4FE3C8 (3,74 / 8,89); o Q alinhou ao verde do sistema, um verde só no app. O nome do exercício vai sempre em texto ao lado (a cor nunca é a única informação).",
+    "raio": 12,
+    "claro": {
+      "fundo": "#E6F1EF",
+      "traco": "#131D1C",
+      "destaque": "#007761"
+    },
+    "escuro": {
+      "fundo": "#222D2C",
+      "traco": "#E9F2F1",
+      "destaque": "#39F0CD"
+    }
+  },
+  "grafico": {
+    "$nota": "1.7.0 (agente P): os gráficos usam UMA cor (progresso) para o destaque e três neutros para o resto (a rosca de volume pinta um grupo e deixa os outros em cinza: nenhuma paleta de 4 cores passou no daltonismo). Valor e rótulo vão na cor do texto. grade é a linha de grade; area, a área sob a linha da carga.",
+    "claro": {
+      "neutro1": "#93A3A1",
+      "neutro2": "#B7C4C2",
+      "neutro3": "#D2DCDA",
+      "grade": "rgba(19, 29, 28, 0.10)",
+      "area": "rgba(0, 119, 97, 0.14)"
+    },
+    "escuro": {
+      "neutro1": "#7C8C8A",
+      "neutro2": "#566564",
+      "neutro3": "#3B4847",
+      "grade": "rgba(233, 242, 241, 0.10)",
+      "area": "rgba(57, 240, 205, 0.16)"
+    }
+  },
+  "mapa": {
+    "$nota": "1.7.0 (agente P): mapa de dias da Evolução e bolinhas da semana no Início. vazio é o dia sem treino; futuro é o dia que ainda não chegou (só contorno, regua). O dia treinado usa progresso com marcaTexto. O alvo de toque é a coluna inteira (48).",
+    "dia": 40,
+    "bolinhaSemana": 40,
+    "claro": {
+      "vazio": "#E4ECEA",
+      "futuro": "transparent"
+    },
+    "escuro": {
+      "vazio": "#1B2423",
+      "futuro": "transparent"
+    }
+  },
+  "aviso": {
+    "$nota": "1.7.0 (agente P): cartão \"Aviso da academia\" no Início (dispensável), com um fio na cor da marca à esquerda.",
+    "claro": {
+      "fundo": "#FFFFFF",
+      "fio": "marca"
+    },
+    "escuro": {
+      "fundo": "#121A19",
+      "fio": "viva"
+    }
+  },
+  "comemoracao": {
+    "$nota": "1.7.0 (agente Q): o check da tela de comemoração (tela cheia em viva, \"Treino fechado.\"). Fica 112: em tela cheia o 64 do catálogo antigo sumia no verde. O catálogo (movimento/00-CATALOGO.md, efeito 2) foi alinhado.",
+    "check": 112
+  },
+  "descanso": {
+    "$nota": "1.7.0 (agente P): o anel do descanso no modo treino em tela cheia; fica atencao nos últimos 10 s. O anel do Cronômetro (componente 18) segue com o seu tamanho.",
+    "anel": 248,
+    "traco": 12
+  },
+  "telas": {
+    "$nota": "1.7.0 (agente P): alturas de foto das telas novas.",
+    "capaInicio": 300,
+    "fotoTopoEvolucao": 280,
+    "fotoTopoDono": 232
+  },
+  "abas": {
+    "pilulaAtiva": {
+      "largura": 56,
+      "altura": 32,
+      "raio": 999,
+      "cor": "marcaSuave",
+      "$nota": "atrás do ícone da aba ativa (direção A); substitui o traço de 3 × 24 do topo"
+    },
+    "mais": {
+      "tamanho": 56,
+      "cor": "viva",
+      "texto": "vivaTexto",
+      "$nota": "botão + central da barra (refs 05 e 06), atrás de ?abas=mais no mockup; abre a folha Começar treino · Cronômetro · Registrar. [decidir] do Alex se entra."
+    },
+    "$nota": "1.6.0: a barra vira vidro (vidro.barra) com a pílula atrás do ícone ativo; a aba Plus usa o + da marca (o símbolo A em traço), não a estrela. 1.7.0 (agente Q): a barra ENCOSTADA (componente 12, fundo de superfície com a pílula atrás do ícone ativo) vale nas três páginas do mockup. A barra flutuante de vidro que o agente P propôs em novas.html saiu: cobria o fim da lista, pedia 12 px de folga de cada lado e um segundo desenho de aba ativa (viva cheia) para o mesmo componente. O + central segue [decidir] (?abas=mais)."
+  },
+  "alvo": {
+    "$regra": "1.8.0: ÁREA DE TOQUE, não desenho. Qualquer área tocável tem no mínimo 48 × 48 (44 pt no iOS, que é o piso da auditoria), conseguida com área invisível (hitSlop no app; ::before no mockup) quando o desenho é menor. O tamanho do desenho está no grupo controle.",
+    "minimo": 48,
+    "minimoIos": 44,
+    "espacoEntreAlvos": 8,
+    "$antes": "até a 1.7.0 havia confortavel 56 e grande 64 como DESENHO (marcar série, +/−, botão grande); saíram: o desenho agora é controle.*"
+  },
+  "tipografia": {
+    "familia": {
+      "$nota": "Fontes da marca (SIL OFL 1.1): Figtree na interface, Archivo só nos números de 24 px ou mais. numero com algarismos tabulares (tnum) para o cronômetro não pular. No mockup: mockups/fontes/*.woff2; no app: app/recursos/fontes/*.ttf.",
+      "interface": "Figtree, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+      "numero": "Archivo, Figtree, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+    },
+    "familiaPorPeso": {
+      "$nota": "No iOS cada peso de uma fonte carregada (expo-font) é uma família própria, chamada pelo nome do arquivo: fontWeight '600' sobre 'Figtree' NÃO vira o SemiBold no iPhone. Quem implementa traduz cada estilo da escala (peso do estilo) para o nome abaixo e não passa fontWeight. Com a pilha do sistema (os valores neutros daqui) o fontWeight funciona e o mapa fica nulo. A marca preenche com os arquivos dela; os nomes de exemplo vêm de marca-e-proposta/tokens-marca.json (Figtree na interface, Archivo nos números). Ver 06-IPHONE.md e 03-arquitetura/04-IPHONE.md.",
+      "interface": {
+        "400": "Figtree-Regular",
+        "500": "Figtree-Medium",
+        "600": "Figtree-SemiBold",
+        "700": "Figtree-Bold"
+      },
+      "numero": {
+        "700": "Archivo-Bold"
+      },
+      "exemploComAMarca": {
+        "interface": {
+          "400": "Figtree-Regular",
+          "500": "Figtree-Medium",
+          "600": "Figtree-SemiBold",
+          "700": "Figtree-Bold"
+        },
+        "numero": {
+          "700": "Archivo-Bold"
+        }
+      }
+    },
+    "peso": {
+      "regular": 400,
+      "medio": 500,
+      "semibold": 600,
+      "bold": 700
+    },
+    "escala": {
+      "numeroGigante": {
+        "tamanho": 61,
+        "linha": 61,
+        "peso": 800,
+        "espacamento": -0.04,
+        "tabular": true,
+        "$nota": "1.8.0: o número do modo treino (repetições sobre a foto). Era 112. Só no modo treino; é o herói da tela."
+      },
+      "$formato": "tamanho / altura de linha / peso / espaçamento entre letras (em)",
+      "numeroCronometro": {
+        "tamanho": 49,
+        "linha": 56,
+        "peso": 700,
+        "espacamento": -0.02,
+        "tabular": true
+      },
+      "numeroCronometroTela": {
+        "tamanho": 61,
+        "linha": 68,
+        "peso": 700,
+        "espacamento": -0.02,
+        "tabular": true,
+        "$nota": "1.8.0: o mostrador da tela Cronômetro e o anel do descanso no modo treino. Era 96. 61 é o teto do app."
+      },
+      "numeroCarga": {
+        "tamanho": 25,
+        "linha": 30,
+        "peso": 700,
+        "espacamento": -0.02,
+        "tabular": true,
+        "$nota": "1.8.0: o valor sendo editado (carga e repetições no campo +/−). Era 40."
+      },
+      "numeroMedio": {
+        "tamanho": 25,
+        "linha": 30,
+        "peso": 700,
+        "espacamento": -0.01,
+        "tabular": true
+      },
+      "titulo1": {
+        "tamanho": 31,
+        "linha": 38,
+        "peso": 700,
+        "espacamento": -0.01,
+        "$nota": "1.8.0: o título grande (o \"large title\" do iOS) e o herói de texto do Início."
+      },
+      "titulo2": {
+        "tamanho": 25,
+        "linha": 30,
+        "peso": 600,
+        "espacamento": -0.005,
+        "$nota": "1.8.0: título de tela."
+      },
+      "titulo3": {
+        "tamanho": 20,
+        "linha": 26,
+        "peso": 600,
+        "espacamento": 0,
+        "$nota": "1.8.0: subtítulo."
+      },
+      "corpo": {
+        "tamanho": 16,
+        "linha": 24,
+        "peso": 400,
+        "espacamento": 0
+      },
+      "corpoForte": {
+        "tamanho": 16,
+        "linha": 24,
+        "peso": 600,
+        "espacamento": 0
+      },
+      "corpoPequeno": {
+        "tamanho": 13,
+        "linha": 18,
+        "peso": 400,
+        "espacamento": 0,
+        "$nota": "1.8.0: apoio de linha. Era 14; a escala fechada não tem 14."
+      },
+      "legenda": {
+        "tamanho": 13,
+        "linha": 16,
+        "peso": 500,
+        "espacamento": 0.01,
+        "$nota": "1.8.0: era 12."
+      },
+      "rotuloAba": {
+        "tamanho": 13,
+        "linha": 16,
+        "peso": 600,
+        "espacamento": 0.01
+      },
+      "tituloEntrada": {
+        "tamanho": 39,
+        "linha": 44,
+        "peso": 700,
+        "espacamento": -0.02,
+        "$nota": "1.7.0 (entrada, agente O): o maior título de texto, só nas boas-vindas (\"Seu treino e sua academia no mesmo lugar.\")."
+      },
+      "numeroDestaque": {
+        "tamanho": 49,
+        "linha": 52,
+        "peso": 800,
+        "espacamento": -0.04,
+        "tabular": true,
+        "$nota": "1.8.0: o número herói (\"60 kg\" da Evolução, \"214\" do painel do dono, os dias por semana da entrada). Um por tela. A unidade vai em 20 (2,45 : 1)."
+      },
+      "legendaGrafico": {
+        "tamanho": 13,
+        "linha": 16,
+        "peso": 400,
+        "espacamento": 0,
+        "tabular": true,
+        "$nota": "1.7.0 (agente P): rótulo de eixo dos gráficos da Evolução e do painel do dono. Só dentro de gráfico; o texto comum segue a escala de 12/14."
+      },
+      "numeroSerie": {
+        "tamanho": 20,
+        "linha": 24,
+        "peso": 700,
+        "espacamento": -0.01,
+        "tabular": true,
+        "$nota": "1.8.0: o número da linha de série (feita ou por fazer)."
+      }
+    },
+    "escalaCelularPequeno": {
+      "$nota": "Tokens de resposta: os únicos tamanhos que mudam abaixo de 390 px de largura (03-NAVEGACAO-E-LAYOUT.md). No mockup valem quando a coluna de conteúdo fica abaixo de layout.colunaCelularMedio (358). 1.8.0: um passo abaixo na mesma escala fechada.",
+      "numeroCronometro": {
+        "tamanho": 39,
+        "linha": 46
+      },
+      "numeroCronometroTela": {
+        "tamanho": 49,
+        "linha": 56
+      },
+      "numeroCarga": {
+        "tamanho": 20,
+        "linha": 24
+      },
+      "titulo1": {
+        "tamanho": 25,
+        "linha": 30
+      },
+      "numeroGigante": {
+        "tamanho": 49,
+        "linha": 49
+      }
+    },
+    "tetoAmpliacao": {
+      "$nota": "Até onde os números grandes crescem com a fonte do sistema ampliada. A altura de linha cresce na mesma proporção do tamanho. Vale também para a variante do celular pequeno.",
+      "numeroCronometro": {
+        "tamanhoMaximo": 49
+      },
+      "numeroCronometroTela": {
+        "tamanhoMaximo": 61
+      },
+      "numeroCarga": {
+        "fatorMaximo": 1.5
+      },
+      "rotuloAba": {
+        "fatorMaximo": 1.3
+      },
+      "numeroGigante": {
+        "tamanhoMaximo": 61
+      },
+      "numeroDestaque": {
+        "tamanhoMaximo": 49
+      },
+      "tituloEntrada": {
+        "tamanhoMaximo": 49
+      }
+    },
+    "fonteAmpliada": {
+      "$nota": "Faixas da fonte do sistema (03-NAVEGACAO-E-LAYOUT.md): a partir de 'ampliada' o cartão de treino pronto vai a 1 coluna e o título do cabeçalho pode ir a 2 linhas; acima de 'maxima' o rótulo da aba some.",
+      "ampliada": 1.3,
+      "maxima": 1.6
+    },
+    "tamanhoMinimoTexto": 13,
+    "tamanhoMinimoCampo": 16,
+    "$escala": [
+      13,
+      16,
+      20,
+      25,
+      31,
+      39,
+      49,
+      61
+    ],
+    "$regra": "Escala fechada (1.8.0): base 16, razão 1,25 (13 · 16 · 20 · 25 · 31 · 39 · 49 · 61). Nenhum font-size fora dela. legenda 13 · corpo 16 · subtítulo 20 · título de tela 25 (título grande 31) · número da linha de série 20 · valor sendo editado 25 · número herói 49 · 61 só no modo treino e no cronômetro. UM herói por tela; número e unidade em no máximo 2,5 : 1, com a unidade na linha de base."
+  },
+  "sombra": {
+    "1": {
+      "claro": "0 0 0 1px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)",
+      "escuro": "0 0 0 1px rgba(255,255,255,0.06)"
+    },
+    "2": {
+      "claro": "0 0 0 1px rgba(0,0,0,0.05), 0 1px 1px -0.5px rgba(0,0,0,0.05), 0 3px 3px -1.5px rgba(0,0,0,0.05), 0 6px 6px -3px rgba(0,0,0,0.05), 0 12px 12px -6px rgba(0,0,0,0.05), 0 24px 24px -12px rgba(0,0,0,0.05)",
+      "escuro": "0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.05)",
+      "$nota": "cartão em repouso (direção A): 6 camadas a 5 % no claro; no escuro, contorno de 1 px e um fio de luz em cima, não sombra"
+    },
+    "3": {
+      "claro": "0 12px 32px rgba(0,0,0,0.16)",
+      "escuro": "0 12px 32px rgba(0,0,0,0.64)"
+    },
+    "$nota": "cor da sombra é sempre preta; o tema escuro reduz a opacidade e confia mais em superficieElevada do que em sombra",
+    "atual": {
+      "claro": "0 0 0 2px marca, 0 12px 24px -12px rgba(0,0,0,0.18)",
+      "escuro": "0 0 0 1.5px marca, 0 0 40px -4px rgba(57, 240, 205, 0.45)",
+      "$nota": "o exercício atual, o único cartão que salta. O halo do escuro é o empréstimo opcional da direção B ([decidir] do Alex)"
+    },
+    "viva": {
+      "claro": "0 8px 24px -8px rgba(0, 119, 97, 0.35)",
+      "escuro": "0 0 0 1px rgba(57, 240, 205, 0.35), 0 8px 32px -6px rgba(57, 240, 205, 0.45)",
+      "$nota": "o brilho do verde vivo (o \"neon\" das referências), em UMA coisa por tela: o botão principal sobre foto, o deslizar para começar ou o anel do exercício atual. No claro vira uma sombra verde curta, sem halo."
+    }
+  },
+  "borda": {
+    "fina": 1,
+    "media": 2,
+    "foco": 3
+  },
+  "duracao": {
+    "$regra": "com prefers-reduced-motion, todo efeito vira um esmaecer de movimento.reduzido.duracao (160 ms), curva entrada, sem deslocamento, escala ou quique (não vai a 0). Exceções: o progresso do cronômetro salta por segundo sem interpolar e a cor da fase troca na hora",
+    "instantanea": 0,
+    "rapida": 120,
+    "media": 200,
+    "lenta": 320,
+    "toast": 5000
+  },
+  "vibracao": {
+    "$nota": "Retorno tátil (06-IPHONE.md). Nome do sistema: iOS UIImpactFeedbackGenerator / expo-haptics ImpactFeedbackStyle e NotificationFeedbackType; no Android o expo-haptics traduz para o equivalente. Desligável em Perfil, junto com a vibração do descanso.",
+    "marcarSerie": "impactoLeve",
+    "desfazerSerie": "selecao",
+    "concluirTreino": "impactoMedio",
+    "fimDescanso": "notificacaoSucesso",
+    "ultimosSegundosDescanso": "impactoLeve",
+    "trocaDeFase": "impactoMedio",
+    "erroAoSalvar": "notificacaoErro"
+  },
+  "cronometro": {
+    "$nota": "Componente 18 (tela Cronômetro) e o descanso do componente 7 usam o mesmo motor (app/dominio/cronometro.ts). A fase pinta o mostrador inteiro; o nome da fase sempre aparece escrito (a cor nunca é o único sinal).",
+    "fase": {
+      "preparacao": {
+        "fundo": "superficie",
+        "texto": "texto"
+      },
+      "trabalho": {
+        "fundo": "marca",
+        "texto": "marcaTexto"
+      },
+      "descanso": {
+        "fundo": "sucesso",
+        "texto": "sucessoTexto"
+      },
+      "terminado": {
+        "fundo": "sucesso",
+        "texto": "sucessoTexto"
+      },
+      "pausado": {
+        "fundo": "superficie",
+        "texto": "textoSecundario"
+      }
+    },
+    "barraDaFase": 8,
+    "rodada": {
+      "altura": 8,
+      "espaco": 4
+    },
+    "acabandoSegundos": 10,
+    "ultimosSegundosVibracao": 3
+  },
+  "folha": {
+    "$nota": "Alturas da folha inferior (detentes). media = metade da tela; grande = a tela inteira menos a área segura do topo e 8 de respiro (no iOS, o padrão .large). Folha curta (confirmação) usa a altura do conteúdo.",
+    "media": 0.5,
+    "grande": 1,
+    "folgaTopoGrande": 8,
+    "alca": {
+      "largura": 32,
+      "altura": 4,
+      "distanciaTopo": 8,
+      "$nota": "a alça desenhada pelo app (Android); no iOS a folha nativa desenha a do sistema (36 × 5)"
+    }
+  },
+  "curva": {
+    "padrao": "cubic-bezier(0.2, 0, 0, 1)",
+    "entrada": "cubic-bezier(0, 0, 0.2, 1)",
+    "saida": "cubic-bezier(0.4, 0, 1, 1)"
+  },
+  "movimento": {
+    "$nota": "Acrescentado na 1.4.0 (agente K, P08). Só acrescenta: duracao, curva e vibracao continuam valendo como estão. Catálogo de cada efeito, código de referência (Reanimated 4 + expo-haptics, SDK 54) e demonstração em movimento/00-CATALOGO.md e movimento/demo.html. Regra que vale para todos: o dado é gravado ANTES da animação começar, e nada espera a animação acabar.",
+    "mola": {
+      "$formato": "amortecimento = dampingRatio (1 = sem quique; abaixo de 1 passa do alvo e volta) · duracao = ms até assentar visualmente. No Reanimated 4: withSpring(valor, { dampingRatio: amortecimento, duration: duracao }). Na demo em CSS a mola vira uma curva linear() calculada com os mesmos dois números.",
+      "padrao": {
+        "amortecimento": 1,
+        "duracao": 320,
+        "$uso": "tudo que se move sem gesto de força: círculo da comemoração, pilha de telas na demo, lista que volta depois de puxar"
+      },
+      "check": {
+        "amortecimento": 0.6,
+        "duracao": 400,
+        "$uso": "só o check da série marcada: passa ~10 % do tamanho e assenta. O único quique do app"
+      },
+      "toque": {
+        "amortecimento": 1,
+        "duracao": 200,
+        "$uso": "cartão que volta depois de afundar"
+      }
+    },
+    "duracao": {
+      "$nota": "ms; somam-se às de duracao (rapida 120, media 200, lenta 320)",
+      "esmaecerReduzido": 160,
+      "comemoracao": 480,
+      "passadaEsqueleto": 1400,
+      "brilhoPlus": 1200
+    },
+    "atraso": {
+      "esqueleto": 300,
+      "brilhoPlus": 400,
+      "escalonamento": 60,
+      "$nota": "esqueleto: só aparece se o dado demorar mais que isso. escalonamento: entre os itens do resumo do treino fechado"
+    },
+    "curvaConstante": "linear",
+    "deslocamentoEntrada": 8,
+    "escalaToque": 0.98,
+    "escalaInicialCheck": 0.25,
+    "escalaInicialComemoracao": 0.8,
+    "recuoTelaDeTras": 0.3,
+    "escurecerTelaDeTras": 0.08,
+    "passadasEsqueleto": 3,
+    "limitePuxar": 64,
+    "rolagemTituloGrande": 40,
+    "reduzido": {
+      "$regra": "Com 'reduzir movimento' do sistema, todo efeito vira esmaecer de opacidade: duracao esmaecerReduzido, curva 'entrada', sem deslocamento, escala, quique ou reflexo. A vibração continua. Exceções que já estavam no sistema e ficam: o progresso do cronômetro salta por segundo sem interpolar, e a cor da fase do mostrador troca na hora (componente 18, regra 5).",
+      "efeito": "esmaecer",
+      "duracao": 160,
+      "curva": "entrada"
+    }
+  },
+  "layout": {
+    "margemLateral": 16,
+    "margemLateralGrande": 20,
+    "espacoEntreCartoes": 12,
+    "larguraMinimaColunaCartao": 150,
+    "colunaCelularMedio": 358,
+    "larguraMinimaCartaoNumero": {
+      "valor": 104,
+      "$nota": "cresce com a fonte do sistema (6,5 rem); abaixo disso a grade de 3 cartões de número quebra"
+    },
+    "larguraMaximaConteudo": 600,
+    "alturaCabecalho": 56,
+    "alturaBarraAbas": 56,
+    "alturaLinhaPadrao": 72,
+    "alturaLinhaCompacta": 56,
+    "pontosDeCorte": {
+      "celularPequeno": 360,
+      "celularMedio": 390,
+      "celularGrande": 430,
+      "tablet": 768
+    },
+    "areaSegura": {
+      "$nota": "valores padrão quando o sistema não informa; no app usar os insets reais do aparelho",
+      "topoMinimo": 20,
+      "baseMinima": 16
+    },
+    "aparelhos": {
+      "$nota": "Aparelhos de referência, em pontos (iOS) ou dp (Android), retrato. areaSegura é o inset que o SISTEMA informa (react-native-safe-area-context devolve esses números); o app soma o cabeçalho abaixo do topo e a barra de abas acima da base, e usa no mínimo layout.areaSegura.baseMinima na base. recorte: o que ocupa o topo da tela. O mockup troca entre eles pelo seletor de aparelho (?aparelho=<id>). Medidas de tela e insets do iPhone 16 e 16 Pro Max conferidas em useyourloaf.com/blog/iphone-16-screen-sizes (10/10/2026).",
+      "iphoneSE3": {
+        "id": "iphone-se",
+        "nome": "iPhone SE (3ª geração)",
+        "plataforma": "ios",
+        "largura": 375,
+        "altura": 667,
+        "areaSegura": {
+          "topo": 20,
+          "base": 0
+        },
+        "recorte": "nenhum",
+        "botaoInicio": true
+      },
+      "iphone13mini": {
+        "id": "iphone-13-mini",
+        "nome": "iPhone 13 mini",
+        "plataforma": "ios",
+        "largura": 375,
+        "altura": 812,
+        "areaSegura": {
+          "topo": 50,
+          "base": 34
+        },
+        "recorte": "notch",
+        "botaoInicio": false
+      },
+      "iphone16": {
+        "id": "iphone-16",
+        "nome": "iPhone 16",
+        "plataforma": "ios",
+        "largura": 393,
+        "altura": 852,
+        "areaSegura": {
+          "topo": 59,
+          "base": 34
+        },
+        "recorte": "ilhaDinamica",
+        "botaoInicio": false
+      },
+      "iphone16ProMax": {
+        "id": "iphone-16-pro-max",
+        "nome": "iPhone 16 Pro Max",
+        "plataforma": "ios",
+        "largura": 440,
+        "altura": 956,
+        "areaSegura": {
+          "topo": 62,
+          "base": 34
+        },
+        "recorte": "ilhaDinamica",
+        "botaoInicio": false,
+        "$nota": "o topo é 62, não 59: a ilha dos modelos Pro de 2024 desceu (16 Pro e 16 Pro Max). 59 é do iPhone 16 e do 16 Plus"
+      },
+      "android390": {
+        "id": "android",
+        "nome": "Android 390",
+        "plataforma": "android",
+        "largura": 390,
+        "altura": 844,
+        "areaSegura": {
+          "topo": 54,
+          "base": 24
+        },
+        "recorte": "furo",
+        "botaoInicio": false,
+        "$nota": "o celular médio de referência (moldura padrão do mockup); 24 é a barra de gestos"
+      }
+    }
+  },
+  "moldura": {
+    "$nota": "Só do mockup (moldura de celular em volta das telas-chave). Estes são os valores da moldura padrão (Android 390); com outro aparelho escolhido, a tela e os insets vêm de layout.aparelhos e o desenho do topo de 'recortes'. A borda do aparelho fica por fora. Em janela estreita ou baixa a moldura inteira encolhe por zoom, até zoomMinimo; o conteúdo continua diagramado na largura do aparelho.",
+    "larguraTela": 390,
+    "alturaTela": 844,
+    "borda": 12,
+    "raio": 48,
+    "raioTela": 36,
+    "insetTopo": 54,
+    "insetBase": 24,
+    "ilha": {
+      "largura": 120,
+      "altura": 32
+    },
+    "gesto": {
+      "largura": 132,
+      "altura": 4,
+      "distanciaBase": 8
+    },
+    "zoomMinimo": 0.5,
+    "recortes": {
+      "$nota": "desenho aproximado do topo de cada aparelho, só para o mockup",
+      "ilhaDinamica": {
+        "largura": 124,
+        "altura": 36,
+        "topo": 12
+      },
+      "notch": {
+        "largura": 160,
+        "altura": 32,
+        "topo": 0
+      },
+      "furo": {
+        "largura": 12,
+        "altura": 12,
+        "topo": 16
+      },
+      "bordaBotaoInicio": 72,
+      "raioTela": {
+        "iphoneSE3": 0,
+        "iphone13mini": 44,
+        "iphone16": 56,
+        "iphone16ProMax": 56,
+        "android390": 36
+      }
+    }
+  },
+  "icone": {
+    "pequeno": 16,
+    "medio": 24,
+    "grande": 32,
+    "traco": 2.25,
+    "$nota": "1.7.0: traço 2,25, o do logo (o braço do símbolo tem 120/1024 da arte; ver 02-design/icones/00-LEIA-ME.md). Os ícones são os de 02-design/icones/ (sprite.svg), embutidos nas páginas do mockup por icones/fonte/embutir.mjs."
+  },
+  "camada": {
+    "$nota": "z-index",
+    "base": 0,
+    "fixo": 10,
+    "folha": 20,
+    "toast": 30
+  },
+  "controle": {
+    "$nota": "1.8.0 (regra do Alex): o tamanho VISUAL de cada controle. A altura do botão fica entre 2,5× e 3× o texto dele; o ícone dentro do botão entre 0,5× e 0,6× a altura. Nada interativo passa de 56 de desenho (as linhas de lista e os cartões tocáveis são superfície, não botão).",
+    "primario": 48,
+    "secundario": 40,
+    "icone": 40,
+    "marcarSerie": 40,
+    "passo": 36,
+    "chip": 32,
+    "maximo": 56,
+    "barraAbas": 56,
+    "deslizar": 56,
+    "$textoDoBotao": 16
+  }
+}

@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direção de arte · Academia Plus</title>
+<meta name="description" content="Três direções de arte do Academia Plus lado a lado, com a paleta da marca aplicada, em claro e escuro, na moldura do iPhone 16, com contraste medido.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   PÁGINA (a moldura do documento, não o app)
+   ===================================================================== */
+:root{
+  --p-fundo:#EEF2F1; --p-sup:#FFFFFF; --p-tx:#131D1C; --p-tx2:#556463; --p-borda:#D0DAD9; --p-marca:#006B5F; --p-marca-suave:#DAF6F0;
+  --p-anota:#6D28D9; --p-anota-tx:#FFFFFF;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --p-fundo:#070C0C; --p-sup:#141C1B; --p-tx:#E7F1F0; --p-tx2:#A1AEAD; --p-borda:#2A3332; --p-marca:#6BD3C2; --p-marca-suave:#0D352F; --p-anota:#C4B5FD; --p-anota-tx:#1E1036; color-scheme: dark; }
+}
+:root[data-theme="dark"]{ --p-fundo:#070C0C; --p-sup:#141C1B; --p-tx:#E7F1F0; --p-tx2:#A1AEAD; --p-borda:#2A3332; --p-marca:#6BD3C2; --p-marca-suave:#0D352F; --p-anota:#C4B5FD; --p-anota-tx:#1E1036; color-scheme: dark; }
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--p-fundo);color:var(--p-tx);font:400 16px/24px Figtree,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.tela a,.painel a{text-decoration:none;color:inherit}
+.pg{max-width:2400px;margin:0 auto;padding:24px 16px 64px}
+@media (min-width:900px){.pg{padding:32px 32px 80px}}
+.pg-cab{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:24px}
+.pg-cab h1{font:700 28px/34px Figtree;letter-spacing:-.01em;text-wrap:balance}
+.pg-cab p{color:var(--p-tx2);max-width:68ch}
+.ctrl{display:flex;flex-wrap:wrap;gap:12px}
+.seg{display:flex;background:var(--p-sup);border:1px solid var(--p-borda);border-radius:999px;padding:4px;gap:2px}
+.seg button{min-height:40px;padding:0 14px;border-radius:999px;font-weight:600;font-size:14px;color:var(--p-tx2)}
+.seg button[aria-pressed="true"]{background:var(--p-tx);color:var(--p-fundo)}
+.seg-rot{font-size:12px;font-weight:600;color:var(--p-tx2);align-self:center;padding-left:4px}
+
+.dirs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;margin-bottom:40px}
+.dir-card{background:var(--p-sup);border:1px solid var(--p-borda);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.dir-card h2{font:700 20px/26px Figtree;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.dir-card .letra{font:800 15px/1 Archivo;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--p-tx);color:var(--p-fundo)}
+.dir-card .rec{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--p-marca-suave);color:var(--p-tx)}
+.dir-card p,.dir-card li{font-size:14px;line-height:20px;color:var(--p-tx2)}
+.dir-card ul{padding-left:18px;display:grid;gap:4px}
+.dir-card b{color:var(--p-tx);font-weight:600}
+.medida{font-size:13px;line-height:18px;border-top:1px solid var(--p-borda);padding-top:10px;color:var(--p-tx2)}
+.medida strong{color:var(--p-tx)}
+.medida .falha{color:#C21725}
+
+.secao{margin:48px 0 16px}
+.secao h2{font:700 22px/28px Figtree;letter-spacing:-.005em}
+.secao p{color:var(--p-tx2);font-size:14px;max-width:90ch}
+.linha{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.item{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.item__rot{font-size:13px;font-weight:600;color:var(--p-tx2);padding-left:4px}
+.item__rot b{color:var(--p-tx)}
+.cx{zoom:var(--z,1)}
+
+.paleta{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.paleta__tema{border-radius:20px;padding:16px;border:1px solid var(--p-borda)}
+.amostras{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px;margin-top:10px}
+.amostra{border-radius:12px;padding:10px;min-height:76px;display:flex;flex-direction:column;justify-content:space-between;font-size:12px;line-height:16px;font-weight:600}
+.amostra span{font-weight:500;opacity:1}
+
+.fx-leg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:8px 24px;margin-top:12px}
+.fx-leg li{list-style:none;display:flex;gap:10px;font-size:14px;line-height:20px;color:var(--p-tx2)}
+.fx-leg li b{color:var(--p-tx);font-weight:600}
+.fx-num{flex:none;width:22px;height:22px;border-radius:50%;background:var(--p-anota);color:var(--p-anota-tx);font:700 12px/22px Figtree;text-align:center}
+.nota{font-size:13px;color:var(--p-tx2);margin-top:8px}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.9em}
+
+/* marcadores de efeito (anotação, não design) */
+.fx{position:absolute;z-index:40;width:22px;height:22px;border-radius:50%;background:#6D28D9;color:#fff;font:700 12px/22px Figtree;text-align:center;box-shadow:0 0 0 2px #fff;pointer-events:none;display:none}
+body.com-fx .fx{display:block}
+
+/* =====================================================================
+   O CELULAR — iPhone 16, 393 × 852, área segura 59 / 34
+   ===================================================================== */
+.fone{width:417px;padding:12px;border-radius:68px;background:#1A1C1D;box-shadow:0 0 0 1px #3a3d3f inset,0 30px 60px -20px rgba(0,0,0,.35)}
+.tela{position:relative;width:393px;height:852px;border-radius:56px;overflow:hidden;background:var(--fundo);color:var(--tx);font-family:Figtree,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:24px}
+.status{position:absolute;inset:0 0 auto 0;height:59px;z-index:20;color:var(--status,var(--tx));background:var(--status-bg,transparent);display:flex;align-items:flex-start;justify-content:space-between;padding:18px 30px 0 52px;font:600 17px/22px Figtree;pointer-events:none}
+.status__ic{display:flex;gap:6px;align-items:center;padding-top:3px}
+.status__ic i{display:block;background:currentColor;border-radius:2px}
+.ilha{position:absolute;top:11px;left:50%;width:124px;height:36px;margin-left:-62px;background:#000;border-radius:20px;z-index:21}
+.gesto{position:absolute;bottom:8px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:var(--tx);z-index:22}
+.rolagem{position:absolute;inset:0;overflow:hidden;padding:59px 16px 0}
+.base{position:absolute;left:0;right:0;bottom:0;z-index:15;background:var(--abas-bg);box-shadow:var(--abas-sombra);border-top:var(--abas-borda)}
+.abas{display:flex;height:64px;margin-bottom:34px;padding:0 4px}
+.aba{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--tx2);font:600 12px/16px Figtree;letter-spacing:.01em;min-width:48px;position:relative}
+.aba__ic{display:grid;place-items:center;width:56px;height:30px;border-radius:999px}
+.aba--on{color:var(--aba-on,var(--marca))}
+.aba--on .aba__ic{background:var(--aba-pill,transparent)}
+
+/* ícones */
+.ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;display:block}
+.ic--p{width:16px;height:16px}
+.ic--g{width:28px;height:28px;stroke-width:2.5}
+
+/* texto */
+.t1{font:700 var(--t1,28px)/var(--t1l,34px) Figtree;letter-spacing:var(--t1e,-.01em)}
+.t2{font:600 22px/28px Figtree;letter-spacing:-.005em}
+.t3{font:600 18px/24px Figtree}
+.cf{font:600 16px/24px Figtree}
+.cp{font:400 14px/20px Figtree}
+.lg{font:500 12px/16px Figtree;letter-spacing:.01em}
+.t2c{color:var(--tx2)}
+.num{font-family:Archivo,Figtree,system-ui,sans-serif;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.n40{font-size:40px;line-height:48px}
+.n28{font-size:28px;line-height:32px;letter-spacing:-.01em}
+.n64{font-size:64px;line-height:72px}
+.tab{font-variant-numeric:tabular-nums}
+
+/* topo da tela (no B claro vira a faixa verde que sobe atrás da barra de status) */
+.topo{margin:-59px -16px 0;padding:67px 16px 16px;background:var(--topo-bg,transparent);color:var(--topo-tx,var(--tx));position:relative;isolation:isolate}
+.topo .sobre{color:var(--topo-tx2,var(--tx2))}
+.topo[data-brilho]::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--topo-brilho,none);pointer-events:none}
+.topo__linha{display:flex;align-items:flex-start;gap:4px}
+.topo__linha > div{flex:1;min-width:0;padding-top:4px}
+.sobre{font:600 13px/18px Figtree;letter-spacing:.02em}
+.ib{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;color:inherit;flex:none}
+.voltar{display:flex;align-items:center;gap:2px;height:48px;color:var(--marca-link,var(--marca));font:600 17px/22px Figtree;margin-left:-8px}
+
+/* barra de progresso */
+.barra{height:8px;border-radius:999px;background:var(--trilho);overflow:hidden}
+.barra i{display:block;height:100%;border-radius:inherit;background:var(--barra-cor,var(--marca))}
+.topo .barra{background:var(--topo-trilho,var(--trilho))}
+.topo .barra i{background:var(--topo-barra,var(--marca))}
+.resumo{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.resumo__txt{display:flex;justify-content:space-between;color:var(--topo-tx2,var(--tx2))}
+.resumo__txt b{color:var(--topo-tx,var(--tx));font-weight:700}
+
+/* cartão */
+.cartao{background:var(--sup-c,var(--sup));border-radius:var(--raio-c);box-shadow:var(--sombra-c);border:var(--borda-c,0);position:relative}
+.pilha{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+
+/* exercício */
+.ex{display:flex;align-items:center;gap:12px;padding:12px;min-height:72px}
+.ex__tit{flex:1;min-width:0}
+.ex__tit .t3{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ok{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--suc);color:var(--sucTx);flex:none}
+.ex--feito{opacity:1}
+.ex-atual{padding:12px 16px 16px;box-shadow:var(--atual-sombra);border:var(--atual-borda,0)}
+.ex-atual__cab{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.serie{display:flex;align-items:center;gap:8px;min-height:64px;border-top:1px solid var(--regua)}
+.serie:first-of-type{border-top:0}
+.serie__n{width:28px;text-align:center;font:600 16px/24px Figtree;color:var(--tx2);flex:none}
+.serie__val{flex:1;display:flex;align-items:baseline;gap:6px}
+.serie--feita .serie__val .num{color:var(--tx2)}
+.passo{flex:1;display:flex;align-items:center;height:64px;border-radius:16px;background:var(--campo)}
+.passo button{width:56px;height:64px;display:grid;place-items:center;color:var(--tx);flex:none}
+.passo__c{flex:1;display:flex;align-items:baseline;justify-content:center;gap:4px;min-width:0}
+.marcar{width:56px;height:64px;border-radius:16px;background:var(--marca);color:var(--marcaTx);display:grid;place-items:center;flex:none;position:relative}
+.desfazer{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;color:var(--tx2)}
+.serie-rot{display:flex;justify-content:space-between;padding:8px 0 4px 36px}
+
+/* miniatura (imagem do J) */
+.mini{width:56px;height:56px;border-radius:var(--raio-mini,12px);flex:none;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--img-a),var(--img-b))}
+.mini--g{width:64px;height:64px}
+.mini::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 7px,var(--img-linha) 7px 8px)}
+
+/* imagem grande (capa) */
+.img{position:relative;overflow:hidden;background:linear-gradient(var(--img-ang,150deg),var(--img-a),var(--img-b))}
+.img svg.forma{position:absolute;inset:0;width:100%;height:100%;stroke:var(--img-linha);fill:none;stroke-width:3}
+.img__rot{position:absolute;left:12px;bottom:12px;z-index:2;max-width:calc(100% - 24px);background:var(--rot-bg,var(--sup));color:var(--rot-tx,var(--tx));font:600 12px/16px Figtree;padding:4px 10px;border-radius:999px;display:flex;gap:6px;align-items:center}
+.img__rot::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--marca);flex:none}
+
+/* chips */
+.chips{display:flex;gap:8px;overflow:hidden;margin:4px -16px 0;padding:0 16px}
+.chip{height:48px;padding:0 16px;border-radius:999px;white-space:nowrap;font:600 14px/20px Figtree;color:var(--tx);background:var(--chip-bg,var(--sup));box-shadow:var(--chip-sombra,none);border:var(--chip-borda,0);flex:none;display:flex;align-items:center}
+.chip--on{background:var(--chip-on-bg,var(--tx));color:var(--chip-on-tx,var(--fundo));box-shadow:none;border-color:transparent}
+.info{display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:999px;font:500 12px/16px Figtree;background:var(--info-bg,var(--fundo));color:var(--tx);white-space:nowrap}
+.secao-app{display:flex;justify-content:space-between;align-items:center;margin:20px 0 10px}
+.secao-app .cf{font-weight:700}
+
+/* cartão de treino pronto */
+.pronto{overflow:hidden;display:flex;flex-direction:column}
+.pronto .img{height:var(--capa-alt,168px)}
+.pronto__corpo{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;position:relative;background:var(--sup-c,var(--sup))}
+.pronto__infos{display:flex;flex-wrap:wrap;gap:6px}
+.pronto__pe{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px}
+.btn{height:56px;padding:0 20px;border-radius:var(--raio-btn,16px);background:var(--marca);color:var(--marcaTx);font:600 16px/24px Figtree;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn--p{height:48px;padding:0 16px;font-size:15px}
+.btn--sec{background:var(--btn2-bg,var(--marcaSuave));color:var(--btn2-tx,var(--tx))}
+.btn--larga{width:100%}
+.emuso{outline:2px solid var(--marca);outline-offset:-2px}
+.grade{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pq{overflow:hidden}
+.pq .img{height:104px}
+.pq__c{padding:10px 12px 12px}
+
+/* perfil */
+.avatar{width:72px;height:72px;border-radius:50%;background:var(--marcaSuave);color:var(--tx);display:grid;place-items:center;font:700 24px/1 Figtree;flex:none}
+.numeros{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.numero{padding:12px;display:flex;flex-direction:column;gap:2px}
+.numero .lg{color:var(--tx2)}
+.aviso{display:flex;gap:12px;padding:14px 16px;align-items:flex-start}
+.aviso .ic{color:var(--at)}
+.lista-linha{display:flex;align-items:center;gap:12px;min-height:72px;padding:0 12px 0 16px}
+.lista-linha + .lista-linha{border-top:1px solid var(--regua)}
+.selo{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:var(--plus);color:var(--plusTx);font:700 13px/1 Figtree;letter-spacing:.02em;flex:none}
+
+/* dieta */
+.ref{display:flex;align-items:center;gap:8px;min-height:72px;padding:0 12px 0 4px}
+.ref + .ref{border-top:1px solid var(--regua)}
+.ref__ck{width:48px;height:48px;display:grid;place-items:center;flex:none}
+.ref__ck span{width:30px;height:30px;border-radius:50%;border:2px solid var(--tx2);display:grid;place-items:center;color:var(--sucTx)}
+.ref--feita .ref__ck span{background:var(--suc);border-color:var(--suc)}
+.ref__t{flex:1;min-width:0}
+.msg{background:var(--plusSuave);border-radius:var(--raio-c);padding:14px 16px;display:flex;flex-direction:column;gap:10px;position:relative}
+.msg__quem{color:var(--plusTxF);font:700 13px/18px Figtree}
+
+/* faixa do cronômetro */
+.faixa{display:flex;align-items:center;gap:10px;height:64px;padding:0 8px 0 16px;background:var(--faixa-bg);color:var(--faixa-tx);border-bottom:1px solid var(--regua);position:relative}
+.faixa__t{flex:1;display:flex;align-items:baseline;gap:8px}
+.faixa__t .lg,.faixa__t .cf{color:var(--faixa-tx2)}
+.anel{width:36px;height:36px;flex:none;transform:rotate(-90deg)}
+.anel circle{fill:none;stroke-width:4}
+.anel .tr{stroke:var(--faixa-trilho)}
+.anel .vl{stroke:var(--faixa-anel);stroke-linecap:round}
+
+/* ---------- PALETA DA MARCA (tokens-marca.json) ---------- */
+.fone[data-tema="claro"],.painel[data-tema="claro"]{
+  --fundo:#F4F8F7;--sup:#FFFFFF;--supE:#FFFFFF;--tx:#131D1C;--tx2:#556463;--marca:#006B5F;--marcaTx:#FFFFFF;--marcaSuave:#DAF6F0;
+  --suc:#0A7E3A;--sucTx:#FFFFFF;--at:#B74D00;--plus:#EAB444;--plusTx:#3A2B0D;--plusTxF:#9A6100;--plusSuave:#FCF2E1;--borda:#D0DAD9;
+  --regua:rgba(19,29,28,.10);--trilho:#DCE5E3;--campo:#F4F8F7;
+}
+.fone[data-tema="escuro"],.painel[data-tema="escuro"]{
+  --fundo:#0B1313;--sup:#1B2423;--supE:#27302F;--tx:#E7F1F0;--tx2:#A1AEAD;--marca:#6BD3C2;--marcaTx:#0B1313;--marcaSuave:#0D352F;
+  --suc:#67D283;--sucTx:#0B1313;--at:#FDA16B;--plus:#F8C153;--plusTx:#2F2207;--plusTxF:#F8C153;--plusSuave:#332710;--borda:#313A39;
+  --regua:rgba(231,241,240,.10);--trilho:#2A3534;--campo:#27302F;
+}
+
+/* ---------- DIREÇÃO A — Lousa clara com foto ---------- */
+[data-d="a"]{--raio-c:20px;--raio-mini:14px;--capa-alt:184px;--img-ang:150deg}
+[data-d="a"][data-tema="claro"]{
+  --sombra-c:0 0 0 1px rgba(0,0,0,.05),0 1px 1px -.5px rgba(0,0,0,.05),0 3px 3px -1.5px rgba(0,0,0,.05),0 6px 6px -3px rgba(0,0,0,.05),0 12px 12px -6px rgba(0,0,0,.05),0 24px 24px -12px rgba(0,0,0,.05);
+  --atual-sombra:0 0 0 2px #006B5F,0 12px 24px -12px rgba(0,0,0,.18);
+  --abas-bg:#FFFFFF;--abas-sombra:0 -1px 0 rgba(19,29,28,.06);--aba-pill:#DAF6F0;
+  --faixa-bg:#FFFFFF;--faixa-tx:#131D1C;--faixa-tx2:#556463;--faixa-trilho:#DCE5E3;--faixa-anel:#006B5F;
+  --img-a:#D5F1EB;--img-b:#8CCFC2;--img-linha:rgba(0,107,95,.30);
+  --chip-sombra:0 0 0 1px rgba(25,28,33,.08),0 2px 3px -1px rgba(0,0,0,.08);
+}
+[data-d="a"][data-tema="escuro"]{
+  --sombra-c:0 0 0 1px rgba(255,255,255,.06),inset 0 1px 0 rgba(255,255,255,.05);
+  --atual-sombra:0 0 0 2px #6BD3C2;
+  --abas-bg:#1B2423;--abas-sombra:0 -1px 0 rgba(255,255,255,.06);--aba-pill:#0D352F;
+  --faixa-bg:#1B2423;--faixa-tx:#E7F1F0;--faixa-tx2:#A1AEAD;--faixa-trilho:#313A39;--faixa-anel:#6BD3C2;
+  --img-a:#0D352F;--img-b:#1C6A5E;--img-linha:rgba(107,211,194,.30);
+  --chip-borda:1px solid #313A39;--info-bg:#27302F;
+}
+
+/* ---------- DIREÇÃO B — Sala à noite (escuro esportivo, brilho na marca) ---------- */
+[data-d="b"]{--raio-c:18px;--raio-mini:12px;--raio-btn:999px;--capa-alt:208px;--img-ang:165deg}
+[data-d="b"] .num{font-weight:800}
+[data-d="b"][data-tema="claro"]{
+  --topo-bg:#006B5F;--topo-tx:#FFFFFF;--topo-tx2:rgba(255,255,255,.84);--status:#FFFFFF;--status-bg:#006B5F;--topo-link:#FFFFFF;--topo-trilho:rgba(255,255,255,.24);--topo-barra:#FFFFFF;
+  --sombra-c:0 2px 3px -1px rgba(0,0,0,.1),0 1px 0 rgba(25,28,33,.02),0 0 0 1px rgba(25,28,33,.08);
+  --atual-sombra:0 0 0 2px #006B5F,0 16px 32px -14px rgba(0,107,95,.55);
+  --abas-bg:#FFFFFF;--abas-sombra:0 -1px 0 rgba(19,29,28,.08);--aba-pill:transparent;
+  --faixa-bg:#006B5F;--faixa-tx:#FFFFFF;--faixa-tx2:rgba(255,255,255,.84);--faixa-trilho:rgba(255,255,255,.24);--faixa-anel:#FFFFFF;
+  --img-a:#12483F;--img-b:#04201C;--img-linha:rgba(107,211,194,.40);
+  --chip-borda:1px solid #D0DAD9;--chip-on-bg:#006B5F;--chip-on-tx:#FFFFFF;
+  --topo-brilho:none;
+}
+[data-d="b"][data-tema="escuro"]{
+  --topo-bg:#0D352F;--topo-tx2:#A1D9CF;--topo-link:#E7F1F0;--topo-trilho:rgba(107,211,194,.22);
+  --topo-brilho:radial-gradient(120% 100% at 50% 0%,rgba(107,211,194,.22),rgba(107,211,194,0) 70%);
+  --sup-c:#132220;
+  --sombra-c:0 0 0 1px rgba(107,211,194,.12);
+  --atual-sombra:0 0 0 1.5px #6BD3C2,0 0 40px -4px rgba(107,211,194,.45);
+  --abas-bg:#0B1313;--abas-sombra:0 -1px 0 rgba(107,211,194,.12);--aba-pill:transparent;
+  --faixa-bg:#0D352F;--faixa-tx:#E7F1F0;--faixa-tx2:#A1D9CF;--faixa-trilho:rgba(107,211,194,.2);--faixa-anel:#6BD3C2;
+  --img-a:#16564C;--img-b:#061513;--img-linha:rgba(107,211,194,.45);
+  --chip-borda:1px solid #313A39;--chip-on-bg:#6BD3C2;--chip-on-tx:#0B1313;--info-bg:#27302F;
+}
+[data-d="b"] .aba--on::before{content:"";position:absolute;top:0;left:50%;width:32px;height:3px;margin-left:-16px;border-radius:0 0 3px 3px;background:var(--marca)}
+[data-d="b"][data-tema="escuro"] .pronto .img::after{content:"";position:absolute;inset:auto 0 0 0;height:50%;background:linear-gradient(to bottom,transparent,var(--sup))}
+
+/* ---------- DIREÇÃO C — Placar (editorial, tipografia forte) ---------- */
+[data-d="c"]{--raio-c:12px;--raio-mini:8px;--raio-btn:12px;--capa-alt:150px;--t1:40px;--t1l:44px;--t1e:-.025em;--img-ang:90deg}
+[data-d="c"] .t2{font-weight:700;letter-spacing:-.015em}
+[data-d="c"] .t3{font-weight:700}
+[data-d="c"][data-tema="claro"]{
+  --fundo:#FFFFFF;--campo:#F4F8F7;--sup-c:#FFFFFF;
+  --sombra-c:none;--borda-c:0;--atual-sombra:none;
+  --abas-bg:#FFFFFF;--abas-borda:1px solid rgba(19,29,28,.14);--aba-on:#131D1C;
+  --faixa-bg:#131D1C;--faixa-tx:#FFFFFF;--faixa-tx2:#C9D3D2;--faixa-trilho:#3A4544;--faixa-anel:#FFFFFF;
+  --img-a:#006B5F;--img-b:#006B5F;--img-linha:rgba(218,246,240,.45);
+  --chip-borda:1px solid #131D1C;--info-bg:#F4F8F7;--regua:rgba(19,29,28,.14);
+}
+[data-d="c"][data-tema="escuro"]{
+  --sup-c:#0B1313;--sombra-c:none;--borda-c:0;--atual-sombra:none;
+  --abas-bg:#0B1313;--abas-borda:1px solid rgba(231,241,240,.14);--aba-on:#E7F1F0;
+  --faixa-bg:#6BD3C2;--faixa-tx:#0B1313;--faixa-tx2:#0D352F;--faixa-trilho:rgba(11,19,19,.2);--faixa-anel:#0B1313;
+  --img-a:#0D352F;--img-b:#0D352F;--img-linha:rgba(107,211,194,.45);
+  --chip-borda:1px solid #E7F1F0;--info-bg:#1B2423;--regua:rgba(231,241,240,.14);
+}
+[data-d="c"] .pilha{gap:0}
+[data-d="c"] .pilha > .cartao{border-top:1px solid var(--regua);border-radius:0}
+[data-d="c"] .ex-atual{background:var(--campo);border-radius:var(--raio-c)!important;border-top:0!important;margin:8px 0}
+[data-d="c"] .aba--on .aba__rot{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+[data-d="c"] .chip--on{--chip-on-bg:var(--tx);--chip-on-tx:var(--fundo)}
+[data-d="c"] .numero{padding:12px 0 0;border-top:2px solid var(--tx)}
+[data-d="c"] .numeros{gap:12px}
+[data-d="c"] .grande{display:flex;gap:20px;margin-top:12px}
+[data-d="c"] .grande > div{display:flex;flex-direction:column}
+[data-d="c"] .img__rot{--rot-bg:var(--fundo)}
+
+/* painel do cartão avulso */
+.painel{background:var(--fundo);border-radius:28px;padding:20px 16px;width:393px;color:var(--tx);font-family:Figtree,system-ui,sans-serif;border:1px solid var(--p-borda)}
+.painel .pilha{margin-top:0}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-mais" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+    <symbol id="i-menos" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-dir" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-esq" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></symbol>
+    <symbol id="i-timer" viewBox="0 0 24 24"><path d="M10 2h4M12 14l3-3"/><circle cx="12" cy="14" r="8"/></symbol>
+    <symbol id="i-halter" viewBox="0 0 24 24"><path d="M14.4 14.4 9.6 9.6M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829zM21.5 21.5l-1.4-1.4M3.9 3.9 2.5 2.5M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></symbol>
+    <symbol id="i-lista" viewBox="0 0 24 24"><path d="M3 12h.01M3 18h.01M3 6h.01M8 12h13M8 18h13M8 6h13"/></symbol>
+    <symbol id="i-pessoa" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-pessoas" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-selo" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/></symbol>
+    <symbol id="i-predio" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18ZM6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2M10 6h4M10 10h4M10 14h4M10 18h4"/></symbol>
+    <symbol id="i-pausa" viewBox="0 0 24 24"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></symbol>
+    <symbol id="i-pular" viewBox="0 0 24 24"><path d="M5 4l10 8-10 8zM19 5v14"/></symbol>
+    <symbol id="i-desfazer" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
+    <symbol id="i-alerta" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+    <symbol id="i-busca" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <!-- formas abstratas dentro dos blocos de imagem: barra, anilha, prato -->
+    <symbol id="f-barra" viewBox="0 0 360 180" preserveAspectRatio="xMidYMid slice"><path d="M40 96h280"/><rect x="70" y="52" width="22" height="88" rx="8"/><rect x="96" y="66" width="14" height="60" rx="6"/><rect x="268" y="52" width="22" height="88" rx="8"/><rect x="250" y="66" width="14" height="60" rx="6"/><circle cx="300" cy="34" r="60" opacity=".5"/></symbol>
+    <symbol id="f-anilha" viewBox="0 0 360 180" preserveAspectRatio="xMidYMid slice"><circle cx="250" cy="96" r="70"/><circle cx="250" cy="96" r="44"/><circle cx="250" cy="96" r="12"/><circle cx="90" cy="60" r="34" opacity=".5"/></symbol>
+    <symbol id="f-banco" viewBox="0 0 360 180" preserveAspectRatio="xMidYMid slice"><path d="M60 118h200M90 118v36M230 118v36M150 118l40-64h60"/><circle cx="296" cy="54" r="26"/><circle cx="296" cy="54" r="10"/></symbol>
+    <symbol id="f-prato" viewBox="0 0 360 180" preserveAspectRatio="xMidYMid slice"><circle cx="180" cy="92" r="64"/><circle cx="180" cy="92" r="42"/><path d="M84 40v40a10 10 0 0 0 20 0V40M94 80v84M276 40c-12 6-16 20-16 36v18h16v70"/></symbol>
+    <symbol id="f-corda" viewBox="0 0 360 180" preserveAspectRatio="xMidYMid slice"><path d="M30 120c40-70 80 50 120-20s80 50 120-20 50 30 60 10"/><path d="M30 80c40-70 80 50 120-20s80 50 120-20" opacity=".5"/></symbol>
+  </defs>
+</svg>
+
+<main class="pg">
+  <header class="pg-cab">
+    <div>
+      <h1>Academia Plus — três direções de arte</h1>
+      <p>A paleta da marca (<code>tokens-marca.json</code>) aplicada nas 4 telas-chave e no cartão de treino pronto, na moldura do iPhone 16 (393 × 852). Blocos com forma e rótulo marcam onde entra a imagem do agente J. Os números roxos (ligue “Efeitos”) marcam onde entra cada efeito do agente K. O contraste de cada texto e ícone é medido ao abrir a página.</p>
+    </div>
+    <div class="ctrl" role="toolbar" aria-label="Controles do comparativo">
+      <div class="seg" role="group" aria-label="Tema do app"><span class="seg-rot">Tema</span>
+        <button data-tema-sel="claro">Claro</button><button data-tema-sel="escuro">Escuro</button><button data-tema-sel="ambos">Os dois</button></div>
+      <div class="seg" role="group" aria-label="Direções"><span class="seg-rot">Direção</span>
+        <button data-dir-sel="abc">Todas</button><button data-dir-sel="a">A</button><button data-dir-sel="b">B</button><button data-dir-sel="c">C</button></div>
+      <div class="seg" role="group" aria-label="Efeitos"><button id="bt-fx" aria-pressed="false">Efeitos</button></div>
+    </div>
+  </header>
+
+  <section class="dirs" id="dirs" aria-label="As três direções"></section>
+
+  <div id="telas"></div>
+
+  <section class="secao" aria-labelledby="h-fx">
+    <h2 id="h-fx">Onde entra cada efeito (catálogo do agente K)</h2>
+    <p>Aqui só o lugar. Duração, curva e o comportamento com “reduzir movimento” vêm do catálogo em <code>02-design/sistema-de-design/movimento/</code>.</p>
+    <ul class="fx-leg">
+      <li><span class="fx-num">1</span><span><b>Série marcada</b>: o check com mola e vibração leve, no botão de marcar.</span></li>
+      <li><span class="fx-num">2</span><span><b>Cartão de treino</b>: afunda de leve no toque (escala ~0,98, sombra recolhe).</span></li>
+      <li><span class="fx-num">3</span><span><b>Anel do cronômetro</b>: o anel da faixa de descanso esvazia; no B, ganha o brilho da marca.</span></li>
+      <li><span class="fx-num">4</span><span><b>Transição entre abas</b>: a pílula (A) ou o traço (B) desliza para a aba nova; no C, o sublinhado.</span></li>
+      <li><span class="fx-num">5</span><span><b>Carregando</b>: esqueleto com brilho no lugar da imagem e do texto até a foto chegar.</span></li>
+      <li><span class="fx-num">6</span><span><b>Puxar para atualizar</b> e <b>título grande que encolhe</b> (iOS), nas telas raiz das abas.</span></li>
+      <li><span class="fx-num">7</span><span><b>Fechar treino</b>: comemoração curta e o resumo em sequência; dispara do menu do treino.</span></li>
+      <li><span class="fx-num">8</span><span><b>Refeição marcada</b>: o mesmo check com mola da série, sem vibração.</span></li>
+    </ul>
+    <p class="nota">O brilho dourado do convite ao Plus não aparece nestas 4 telas: o convite é para quem não assina, e a tela 4 é de quem já assina. O selo Plus nunca brilha (regra de <code>02-IDENTIDADE-VISUAL.md</code>).</p>
+  </section>
+
+  <section class="secao" aria-labelledby="h-pal">
+    <h2 id="h-pal">A paleta aplicada, com o contraste medido aqui</h2>
+    <p>Os 10 papéis e os derivados de <code>tokens-marca.json</code>. A razão ao lado de cada cor é medida contra o fundo e a superfície do tema, na hora, pela fórmula de luminância do WCAG 2.</p>
+    <div class="paleta" id="paleta"></div>
+  </section>
+</main>
+
+<script>
+(() => {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const ic = (id, cls = '') => `<svg class="ic ${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
+const fx = (n, pos = 'top:-8px;right:-8px') => `<span class="fx" data-nao-medir style="${pos}" aria-hidden="true">${n}</span>`;
+const img = (forma, rotulo, extra = '') => `<div class="img" ${extra}><svg class="forma" aria-hidden="true"><use href="#${forma}"/></svg><span class="img__rot">${rotulo}</span></div>`;
+
+const DIRS = {
+  a: { nome: 'Lousa clara com foto', curta: 'Clean claro: fundo quase branco, cartão branco com sombra em camadas, foto grande no topo de cada cartão, verde só onde age.',
+       muda: ['Raio do cartão 16 → 20 e sombra em camadas (sombra “md”) no claro; no escuro, contorno de 1 px em vez de sombra.',
+              'Capa de foto de 184 px no cartão de treino pronto e miniatura de 56–64 px em cada exercício.',
+              'Aba ativa com pílula <b>marcaSuave</b> atrás do ícone; botão principal e “marcar série” em <b>marca</b> cheia.',
+              'Exercício atual com contorno de 2 px na marca: o único cartão que salta.'],
+       risco: 'É o mais próximo do que já existe: atrai pela foto, não pela cor. Se as fotos do J forem fracas, a tela fica bonita mas genérica.' },
+  b: { nome: 'Sala à noite', curta: 'Escuro esportivo: verde-água acende o que importa (brilho no exercício atual, no anel e na aba); no claro, o topo vira uma faixa verde da casa.',
+       muda: ['No claro, o topo de cada tela raiz é uma faixa <b>marca</b> cheia que sobe atrás da barra de status (texto branco, 6,43:1).',
+              'No escuro, o topo é uma faixa <b>marcaSuave</b> com brilho radial da marca (22 %), e o exercício atual ganha um halo — o único lugar com halo.',
+              'Faixa do cronômetro em marca (claro) ou marcaSuave (escuro); número em Archivo 800.',
+              'Capas mais altas (208 px) e escuras, que se dissolvem na superfície do cartão; aba ativa com traço no topo.'],
+       risco: 'O mais “de academia” e o mais vistoso, mas o brilho e a faixa verde pedem disciplina: se espalhar, vira o neon que a marca proíbe. A foto escura precisa de tratamento próprio do J.' },
+  c: { nome: 'Placar', curta: 'Editorial com tipografia forte: título de 40 px, número grande em Archivo como manchete, réguas no lugar de cartões, imagem em bloco de cor da marca.',
+       muda: ['Novo tamanho <b>tituloDestaque</b> 40/44 nas telas raiz (hoje o maior título é 28).',
+              'Sem sombra e quase sem cartão: listas separadas por régua de 1 px; os números do perfil sobem para 28–40 px com traço de 2 px em cima.',
+              'Imagem vira bloco chapado da marca com a foto em duotone verde (o J entrega a foto; o app tinge).',
+              'Faixa do cronômetro invertida (preto no claro, verde no escuro).'],
+       risco: 'O mais clean e o mais diferente de qualquer app de treino, mas é o que menos usa foto e o que mais pede espaço vertical; em celular pequeno o título de 40 vai a 32.' },
+};
+const ORDEM = ['a', 'b', 'c'];
+
+/* --------- barra de abas e base --------- */
+const abasAluno = (on) => `<nav class="abas" aria-label="Abas do aluno">${[['Início','i-halter'],['Treinos','i-lista'],['Plus','i-selo'],['Perfil','i-pessoa']].map(([r,i]) =>
+  `<a class="aba ${r===on?'aba--on':''}" href="#"><span class="aba__ic">${ic(i)}</span><span class="aba__rot">${r}</span></a>`).join('')}</nav>`;
+const abasAcad = (on) => `<nav class="abas" aria-label="Abas da academia">${[['Alunos','i-pessoas'],['Treinos','i-lista'],['Plus','i-selo'],['Academia','i-predio'],['Perfil','i-pessoa']].map(([r,i]) =>
+  `<a class="aba ${r===on?'aba--on':''}" href="#"><span class="aba__ic">${ic(i)}</span><span class="aba__rot">${r}</span></a>`).join('')}</nav>`;
+const status = `<div class="status" aria-hidden="true"><span class="tab">9:41</span><span class="status__ic"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:6px 6px 2px 2px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><div class="ilha"></div>`;
+
+/* --------- tela 1: treino do dia --------- */
+function tela1(d){
+  const grande = d === 'c' ? `<div class="grande"><div><span class="num n40">5<span class="t2c">/18</span></span><span class="lg sobre">séries</span></div><div><span class="num n40">14</span><span class="lg sobre">minutos</span></div><div><span class="num n40">2<span class="t2c">/6</span></span><span class="lg sobre">exercícios</span></div></div>` : '';
+  return `
+  <div class="rolagem">
+    <header class="topo" ${d==='b'?'data-brilho="0.22"':''}>
+      <div class="topo__linha"><div><p class="sobre">Quarta · Treino A</p><h2 class="t1">Peito e tríceps</h2></div>
+        <button class="ib" aria-label="Abrir o cronômetro">${ic('i-timer')}</button>
+        <button class="ib" aria-label="Mais opções do treino" style="position:relative">${ic('i-menu')}${fx(7)}</button></div>
+      ${grande}
+      <div class="resumo"><div class="barra" role="img" aria-label="5 de 18 séries"><i style="width:28%"></i></div>
+        ${d==='c'?'':'<p class="resumo__txt cp"><span><b>5</b> de 18 séries</span><span>14 min</span></p>'}</div>
+    </header>
+    <div class="pilha">
+      <article class="cartao ex ex--feito"><div class="mini" role="img" aria-label="Miniatura do exercício (imagem do J)"></div>
+        <div class="ex__tit"><h3 class="t3">Supino reto</h3><p class="cp t2c">3 × 12 · 40 kg · feito</p></div>
+        <span class="ok" aria-label="Feito">${ic('i-check','ic--p')}</span></article>
+      <article class="cartao ex-atual">
+        <div class="ex-atual__cab"><div class="mini mini--g" role="img" aria-label="Miniatura do exercício (imagem do J)"></div>
+          <div class="ex__tit"><h3 class="t3">Supino inclinado</h3><p class="cp t2c">Halteres · descanso 90 s</p></div>
+          <button class="ib" aria-label="Opções do exercício">${ic('i-menu')}</button></div>
+        <div class="serie serie--feita"><span class="serie__n">1</span>
+          <div class="serie__val"><span class="num n28">12</span><span class="lg t2c">reps</span><span class="num n28">22,5</span><span class="lg t2c">kg</span></div>
+          <button class="desfazer" aria-label="Desfazer série 1">${ic('i-desfazer')}</button></div>
+        <p class="serie-rot lg t2c"><span>Série 2 · 12 reps</span><span>Última vez: 20 kg</span></p>
+        <div class="serie" style="border-top:0;min-height:0"><span class="serie__n" style="color:var(--tx)">2</span>
+          <div class="passo"><button aria-label="Diminuir carga">${ic('i-menos')}</button>
+            <div class="passo__c"><span class="num n40">22,5</span><span class="lg t2c">kg</span></div>
+            <button aria-label="Aumentar carga">${ic('i-mais')}</button></div>
+          <button class="marcar" aria-label="Marcar série 2 como feita">${ic('i-check','ic--g')}${fx(1)}</button></div>
+        <div class="serie"><span class="serie__n">3</span>
+          <div class="serie__val"><span class="num n28">10</span><span class="lg t2c">reps</span><span class="num n28">22,5</span><span class="lg t2c">kg</span></div>
+          <span style="width:56px"></span></div>
+      </article>
+      <article class="cartao ex"><div class="mini" role="img" aria-label="Miniatura do exercício (imagem do J)"></div>
+        <div class="ex__tit"><h3 class="t3">Crucifixo na máquina</h3><p class="cp t2c">3 × 15 · 35 kg</p></div>${ic('i-dir')}</article>
+      <article class="cartao ex"><div class="mini" role="img" aria-label="Miniatura do exercício (imagem do J)"></div>
+        <div class="ex__tit"><h3 class="t3">Tríceps corda</h3><p class="cp t2c">4 × 12 · 20 kg</p></div>${ic('i-dir')}</article>
+    </div>
+  </div>
+  <div class="base">
+    <div class="faixa" role="timer" aria-label="Descanso, 45 segundos">
+      <svg class="anel" viewBox="0 0 36 36" aria-hidden="true"><circle class="tr" cx="18" cy="18" r="15"/><circle class="vl" cx="18" cy="18" r="15" stroke-dasharray="94.2" stroke-dashoffset="47"/></svg>
+      ${fx(3,'top:4px;left:36px')}
+      <div class="faixa__t"><span class="cf">Descanso</span><span class="num n28">0:45</span></div>
+      <button class="ib" aria-label="Pausar descanso">${ic('i-pausa')}</button>
+      <button class="ib" aria-label="Pular descanso">${ic('i-pular')}</button>
+    </div>
+    ${abasAluno('Início')}
+  </div>`;
+}
+
+/* --------- cartão de treino pronto --------- */
+function cartaoPronto(d, o = {}){
+  const t = o.titulo || 'Primeiros passos';
+  const obj = o.obj || 'Começar a treinar';
+  const forma = o.forma || 'f-banco';
+  const numeros = d === 'c'
+    ? `<div class="grande" style="margin-top:4px"><div><span class="num n28">3</span><span class="lg t2c">dias/semana</span></div><div><span class="num n28">40</span><span class="lg t2c">minutos</span></div><div><span class="num n28">6</span><span class="lg t2c">exercícios</span></div></div>`
+    : `<p class="lg t2c">3 dias por semana · 6 exercícios</p>`;
+  return `<article class="cartao pronto ${o.emUso?'emuso':''}" style="position:relative">
+    ${img(forma, `Imagem J · capa “${obj}”`)}
+    ${o.fx ? fx(2,'top:10px;right:10px') + fx(5,'top:10px;right:38px') : ''}
+    <div class="pronto__corpo">
+      <div class="pronto__infos"><span class="info">${obj}</span>${d==='c'?'':'<span class="info">40 min</span>'}<span class="info">Iniciante</span>${o.emUso?'<span class="info" style="background:var(--marca);color:var(--marcaTx)">Em uso</span>':''}</div>
+      <h3 class="${d==='c'?'t2':'t3'}">${t}</h3>
+      <p class="cp t2c">Aparelhos guiados e peso do corpo, para pegar o jeito da sala.</p>
+      ${numeros}
+      ${o.botao ? `<div class="pronto__pe"><span class="lg t2c">Da Academia do Marcos</span><button class="btn btn--p">${o.emUso?'Abrir':'Escolher'}</button></div>` : ''}
+    </div>
+  </article>`;
+}
+
+/* --------- tela 2: treinos prontos --------- */
+function tela2(d){
+  const pq = (t, m, forma, obj) => `<article class="cartao pq"><div class="img" style="height:104px"><svg class="forma" aria-hidden="true"><use href="#${forma}"/></svg></div>
+    <div class="pq__c"><p class="cf">${t}</p><p class="lg t2c">${m}</p></div></article>`;
+  return `<div class="rolagem">
+    <header class="topo" ${d==='b'?'data-brilho="0.22"':''}>
+      <div class="topo__linha"><div><p class="sobre">Academia do Marcos</p><h2 class="t1" style="position:relative;display:inline-block">Treinos prontos${fx(6,'top:-4px;right:-26px')}</h2></div>
+      <button class="ib" aria-label="Buscar treino">${ic('i-busca')}</button></div>
+    </header>
+    <div class="chips" style="margin-top:12px"><button class="chip chip--on">Todos</button><button class="chip">Começar a treinar</button><button class="chip">Ganhar massa</button><button class="chip">Perder peso</button></div>
+    <div class="secao-app"><p class="cf">Para você</p></div>
+    ${cartaoPronto(d, { fx: true })}
+    <div class="secao-app"><p class="cf">Ganhar massa</p><span class="cp t2c">Ver todos</span></div>
+    <div class="grade">${pq('ABC Hipertrofia','4 dias · 60 min','f-barra')}${pq('Full body 3×','3 dias · 50 min','f-anilha')}</div>
+  </div>
+  <div class="base">${abasAluno('Treinos')}</div>`;
+}
+
+/* --------- tela 3: perfil do aluno (academia) --------- */
+function tela3(d){
+  const big = d === 'c';
+  return `<div class="rolagem">
+    <header class="topo" ${d==='b'?'data-brilho="0.22"':''} style="padding-top:59px">
+      <div class="topo__linha" style="align-items:center"><a class="voltar" href="#" style="color:var(--topo-link,var(--marca))">${ic('i-esq')}Alunos</a><div></div>
+        <button class="ib" aria-label="Mais opções">${ic('i-menu')}</button></div>
+      <div style="display:flex;gap:14px;align-items:center;margin-top:4px">
+        <div class="avatar" aria-hidden="true">AS</div>
+        <div style="min-width:0"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><h2 class="t1" style="${big?'':'font-size:26px'}">Ana Souza</h2><span class="selo">Plus</span></div>
+        <p class="cp sobre" style="font-weight:500">Aluna desde março · 3× por semana</p></div>
+      </div>
+    </header>
+    <div class="chips" style="margin-top:12px"><span class="chip" style="height:32px;font-size:13px">Objetivo: Ganhar massa</span><span class="chip" style="height:32px;font-size:13px">Intermediária</span></div>
+    <div class="numeros" style="margin-top:16px">
+      <div class="cartao numero"><span class="lg">Peso</span><span><span class="num ${big?'n40':'n28'}">68,4</span> <span class="lg t2c">kg</span></span></div>
+      <div class="cartao numero"><span class="lg">Altura</span><span><span class="num ${big?'n40':'n28'}">1,65</span> <span class="lg t2c">m</span></span></div>
+      <div class="cartao numero"><span class="lg">No mês</span><span><span class="num ${big?'n40':'n28'}">12</span> <span class="lg t2c">treinos</span></span></div>
+    </div>
+    <div class="cartao aviso" style="margin-top:12px">${ic('i-alerta')}<div><p class="cf">Restrição</p><p class="cp t2c">Dor no ombro direito. Evitar desenvolvimento acima da cabeça.</p></div></div>
+    <div class="secao-app"><p class="cf">Treinos da Ana</p><span class="cp t2c">3</span></div>
+    <div class="cartao" style="overflow:hidden">
+      <div class="lista-linha"><div class="mini" style="width:48px;height:48px" role="img" aria-label="Miniatura do treino"></div><div class="ex__tit"><p class="cf">Treino A — Peito e tríceps</p><p class="lg t2c">Montado por Dani · ontem</p></div>${ic('i-dir')}</div>
+      <div class="lista-linha"><div class="mini" style="width:48px;height:48px" role="img" aria-label="Miniatura do treino"></div><div class="ex__tit"><p class="cf">Treino B — Costas e bíceps</p><p class="lg t2c">Feito terça · 46 min</p></div>${ic('i-dir')}</div>
+    </div>
+    <button class="btn btn--larga" style="margin-top:16px">${ic('i-mais')}Montar treino para Ana</button>
+  </div>
+  <div class="base">${abasAcad('Alunos')}</div>`;
+}
+
+/* --------- tela 4: dieta de hoje (Plus) --------- */
+function tela4(d){
+  const ref = (n, h, desc, feita) => `<div class="ref ${feita?'ref--feita':''}"><button class="ref__ck" aria-label="${n}: ${feita?'feita':'marcar como feita'}"><span>${feita?ic('i-check','ic--p'):''}</span></button>
+    <div class="ref__t"><p class="cf">${n}</p><p class="cp t2c">${h} · ${desc}</p></div></div>`;
+  return `<div class="rolagem">
+    <header class="topo" ${d==='b'?'data-brilho="0.22"':''}>
+      <div class="topo__linha"><div><p class="sobre">Quarta · plano alimentar</p><div style="display:flex;align-items:center;gap:10px"><h2 class="t1">Dieta de hoje</h2><span class="selo">Plus</span></div></div></div>
+      <div class="resumo" style="margin-top:12px"><div class="barra" role="img" aria-label="2 de 5 refeições"><i style="width:40%"></i></div><p class="resumo__txt cp"><span><b>2</b> de 5 refeições</span><span>atualizado ontem</span></p></div>
+    </header>
+    <div class="cartao" style="overflow:hidden;margin-top:12px">
+      ${img('f-prato','Imagem J · ilustração do plano alimentar','style="height:'+(d==='b'?132:112)+'px"')}
+      ${ref('Café da manhã','7:00','aveia, banana e iogurte',true)}
+      <div style="position:relative">${ref('Lanche','10:00','fruta e castanhas',true)}${fx(8,'top:6px;left:36px')}</div>
+      ${ref('Almoço','12:30','arroz, feijão, frango e salada',false)}
+      ${ref('Lanche da tarde','16:00','sanduíche natural',false)}
+    </div>
+    <div class="msg" style="margin-top:12px">
+      <p class="msg__quem">Carla · sua personal</p>
+      <p class="cp">Hoje dá para trocar o arroz por batata no almoço. Me conta como foi o treino.</p>
+      <button class="btn btn--p btn--sec" style="align-self:flex-start;--btn2-bg:var(--sup);--btn2-tx:var(--tx)">${ic('i-msg')}Responder</button>
+    </div>
+  </div>
+  <div class="base">${abasAluno('Plus')}</div>`;
+}
+
+const TELAS = [
+  { id:'t1', titulo:'1 · Treino do dia (aluno)', desc:'O exercício atual expandido, com a carga em +/− de 64 px e o “marcar série” de 56 × 64. Miniatura de exercício (J) em cada cartão. Faixa do descanso acima das abas.', fn: tela1 },
+  { id:'t2', titulo:'2 · Escolher treino pronto (aluno)', desc:'O cartão de treino pronto com capa (J), filtros por objetivo e a grade de 2 colunas.', fn: tela2 },
+  { id:'t3', titulo:'3 · Perfil do aluno (visão da academia)', desc:'O que a instrutora lê em três segundos: objetivo, números, restrição. Sem foto do corpo; avatar com iniciais.', fn: tela3 },
+  { id:'t4', titulo:'4 · Dieta de hoje (Plus)', desc:'Ilustração neutra do plano (J), refeições marcáveis e a mensagem da personal no fundo dourado-suave.', fn: tela4 },
+];
+
+/* --------- estado --------- */
+let tema = window.innerWidth >= 1600 ? 'ambos' : 'claro', dirSel = 'abc';
+try { const s = JSON.parse(localStorage.getItem('ap-da') || '{}'); if (s.tema) tema = s.tema; if (s.dir) dirSel = s.dir; } catch {}
+const q = new URLSearchParams(location.search);
+if (q.get('tema')) tema = q.get('tema');
+if (q.get('dir')) dirSel = q.get('dir');
+if (q.get('fx') === '1') document.body.classList.add('com-fx');
+
+function fone(d, t, conteudo){
+  return `<div class="item"><div class="cx"><div class="fone" data-d="${d}" data-tema="${t}"><div class="tela">${status}${conteudo}<div class="gesto"></div></div></div></div>
+    <span class="item__rot"><b>${d.toUpperCase()}</b> · ${DIRS[d].nome} · ${t}</span></div>`;
+}
+
+function montar(){
+  const dirs = ORDEM.filter((d) => dirSel.includes(d));
+  const temas = tema === 'ambos' ? ['claro', 'escuro'] : [tema];
+  let html = '';
+  for (const T of TELAS) {
+    html += `<section class="secao" aria-labelledby="h-${T.id}"><h2 id="h-${T.id}">${T.titulo}</h2><p>${T.desc}</p></section><div class="linha">`;
+    for (const t of temas) for (const d of dirs) html += fone(d, t, T.fn(d));
+    html += '</div>';
+  }
+  html += `<section class="secao" aria-labelledby="h-cp"><h2 id="h-cp">5 · Cartão de treino pronto, com espaço para a imagem</h2>
+    <p>Fora do celular, na largura real da coluna (361). Em cima o estado normal; embaixo o “Em uso” (contorno de 2 px na marca + etiqueta). A capa é onde entra a foto do J, por objetivo.</p></section><div class="linha">`;
+  for (const t of temas) for (const d of dirs) html += `<div class="item"><div class="cx"><div class="painel fone-like" data-d="${d}" data-tema="${t}"><div class="tela-painel pilha">
+      ${cartaoPronto(d,{botao:true,fx:true})}
+      ${cartaoPronto(d,{botao:true,emUso:true,titulo:'ABC Hipertrofia',obj:'Ganhar massa',forma:'f-barra'})}
+    </div></div></div><span class="item__rot"><b>${d.toUpperCase()}</b> · ${DIRS[d].nome} · ${t}</span></div>`;
+  html += '</div>';
+  $('#telas').innerHTML = html;
+  ajustar();
+  medirTudo();
+}
+
+/* --------- cartões das direções --------- */
+function montarDirs(res){
+  $('#dirs').innerHTML = ORDEM.map((d) => {
+    const D = DIRS[d];
+    const m = res && res[d];
+    const med = m ? ['claro','escuro'].map((t) => m[t] ? `<div>${t}: <strong>${m[t].n}</strong> pares medidos · menor <strong>${m[t].min.toFixed(2).replace('.',',')}:1</strong> · ${m[t].falhas.length ? `<span class="falha">${m[t].falhas.length} abaixo do mínimo</span>` : '<strong>0 abaixo do mínimo</strong>'}</div>` : `<div>${t}: escolha “Os dois” ou “${t}” para medir</div>`).join('') : 'medindo…';
+    return `<article class="dir-card"><h2><span class="letra">${d.toUpperCase()}</span>${D.nome}${d==='a'?'<span class="rec">recomendada</span>':''}</h2>
+      <p><b>${D.curta}</b></p><ul>${D.muda.map((x) => `<li>${x}</li>`).join('')}</ul><p>${D.risco}</p><div class="medida">${med}</div></article>`;
+  }).join('');
+}
+
+/* --------- zoom das molduras --------- */
+function ajustar(){
+  const vw = document.documentElement.clientWidth, vh = window.innerHeight;
+  for (const linha of $$('.linha')) {
+    const itens = $$('.item', linha); if (!itens.length) continue;
+    const painel = !!$('.painel', linha);
+    const W = painel ? 393 : 417, H = painel ? 0 : 876, gap = 24;
+    const disp = linha.clientWidth;
+    let cols = itens.length;
+    while (cols > 1 && (disp - (cols - 1) * gap) / (cols * W) < 0.6) cols--;
+    let z = Math.min(1, (disp - (cols - 1) * gap) / (cols * W));
+    if (!painel && vw > 1000) z = Math.min(z, Math.max(0.5, (vh - 48) / H));
+    z = Math.floor(z * 1000) / 1000 - 0.003;
+    for (const it of itens) it.querySelector('.cx').style.setProperty('--z', z.toFixed(3));
+  }
+}
+
+/* --------- contraste (WCAG 2) --------- */
+function cor(s){
+  s = s.trim();
+  let m = s.match(/^rgba?\(([^)]+)\)$/);
+  if (m) { const p = m[1].split(/[\s,\/]+/).filter(Boolean).map(Number); return { r:p[0], g:p[1], b:p[2], a: p.length > 3 ? p[3] : 1 }; }
+  m = s.match(/^color\(srgb ([^)]+)\)$/);
+  if (m) { const p = m[1].split(/[\s\/]+/).filter(Boolean).map(Number); return { r:p[0]*255, g:p[1]*255, b:p[2]*255, a: p.length > 3 ? p[3] : 1 }; }
+  return { r:0, g:0, b:0, a:0 };
+}
+const sobre = (c, f) => ({ r: c.r*c.a + f.r*(1-c.a), g: c.g*c.a + f.g*(1-c.a), b: c.b*c.a + f.b*(1-c.a), a: 1 });
+const lin = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+const lum = (c) => 0.2126*lin(c.r) + 0.7152*lin(c.g) + 0.0722*lin(c.b);
+const razao = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x,y) + 0.05) / (Math.min(x,y) + 0.05); };
+
+function fundoEfetivo(el, raiz){
+  const camadas = []; let e = el, sobreImagem = false;
+  while (e) {
+    const cs = getComputedStyle(e);
+    const c = cor(cs.backgroundColor);
+    if (cs.backgroundImage !== 'none' && c.a < 1) sobreImagem = true;
+    if (c.a > 0) camadas.push(c);
+    if (c.a >= 1 || e === raiz) break;
+    e = e.parentElement;
+  }
+  let f = { r:255, g:255, b:255, a:1 };
+  for (let i = camadas.length - 1; i >= 0; i--) f = sobre(camadas[i], f);
+  return { f, sobreImagem };
+}
+
+function medirRaiz(raiz){
+  const out = [];
+  const visto = new Set();
+  const w = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT);
+  while (w.nextNode()) {
+    const n = w.currentNode; if (!n.textContent.trim()) continue;
+    const el = n.parentElement; if (visto.has(el) || el.closest('[data-nao-medir]')) continue; visto.add(el);
+    if (!el.getClientRects().length) continue;
+    const cs = getComputedStyle(el); if (cs.visibility === 'hidden' || cs.display === 'none') continue;
+    const { f, sobreImagem } = fundoEfetivo(el, raiz);
+    const tc = sobre(cor(cs.color), f);
+    const fs = parseFloat(cs.fontSize), fw = parseInt(cs.fontWeight, 10);
+    const grande = fs >= 24 || (fs >= 18.66 && fw >= 700);
+    let r = razao(tc, f);
+    const br = el.closest('[data-brilho]');
+    // brilho radial do B (pseudo-elemento): mede também contra o pico do brilho, o pior caso
+    if (br && getComputedStyle(br, '::before').backgroundImage !== 'none') {
+      const mc = hex(getComputedStyle(raiz).getPropertyValue('--marca').trim());
+      if (mc) r = Math.min(r, razao(tc, sobre({ ...mc, a: parseFloat(br.dataset.brilho) }, f)));
+    }
+    out.push({ tipo:'texto', txt: n.textContent.trim().slice(0, 40), r, min: grande ? 3 : 4.5, sobreImagem });
+  }
+  for (const s of $$('svg.ic', raiz)) {
+    if (s.closest('[data-nao-medir]') || !s.getClientRects().length) continue;
+    const { f } = fundoEfetivo(s.parentElement, raiz);
+    const tc = sobre(cor(getComputedStyle(s).color), f);
+    out.push({ tipo:'ícone', txt: (s.querySelector('use')?.getAttribute('href') || '') + ' em ' + (s.parentElement.getAttribute('aria-label') || s.parentElement.className || ''), r: razao(tc, f), min: 3, sobreImagem:false });
+  }
+  return out;
+}
+function hex(h){ const m = /^#([0-9a-f]{6})$/i.exec(h); if (!m) return null; const v = parseInt(m[1], 16); return { r: v >> 16, g: (v >> 8) & 255, b: v & 255 }; }
+
+function medirTudo(){
+  const res = {};
+  for (const raiz of $$('.fone[data-d] .tela, .painel[data-d]')) {
+    const host = raiz.closest('[data-d]'); const d = host.dataset.d, t = host.dataset.tema;
+    res[d] ??= {}; res[d][t] ??= { n:0, min:99, falhas:[] };
+    for (const m of medirRaiz(raiz)) {
+      const R = res[d][t]; R.n++; R.min = Math.min(R.min, m.r);
+      if (m.r < m.min || m.sobreImagem) R.falhas.push({ ...m, r: +m.r.toFixed(2) });
+      (R.todos ??= []).push({ txt: m.txt, r: +m.r.toFixed(2), min: m.min });
+    }
+  }
+  for (const d in res) for (const t in res[d]) { res[d][t].baixos = res[d][t].todos.sort((x, y) => x.r - y.r).slice(0, 4); delete res[d][t].todos; }
+  window.__contraste = res;
+  montarDirs(res);
+}
+
+/* --------- paleta --------- */
+function montarPaleta(){
+  const temas = ['claro','escuro'];
+  const papeis = [['fundo','fundo'],['superficie','sup'],['texto','tx'],['textoSecundario','tx2'],['marca','marca'],['marcaTexto','marcaTx'],['marcaSuave','marcaSuave'],['sucesso','suc'],['atencao','at'],['plus','plus'],['plusTexto','plusTx'],['plusTextoSobreFundo','plusTxF'],['plusSuave','plusSuave'],['borda','borda']];
+  $('#paleta').innerHTML = temas.map((t) => `<div class="paleta__tema painel-paleta" data-tema="${t}" style="background:var(--fundo);color:var(--tx)"><p class="cf" style="font-weight:700">Tema ${t}</p><div class="amostras">${papeis.map(([n,v]) =>
+    `<div class="amostra" data-v="${v}" style="background:var(--${v});color:${['tx','marca','suc','at','plusTxF','tx2','plusTx'].includes(v)?'var(--fundo)':'var(--tx)'};box-shadow:0 0 0 1px var(--borda) inset"><b>${n}</b><span class="rz"></span></div>`).join('')}</div></div>`).join('');
+  for (const p of $$('.painel-paleta')) {
+    p.classList.add('painel'); p.style.width = 'auto'; p.style.padding = '16px';
+    const cs = getComputedStyle(p);
+    const F = hex(cs.getPropertyValue('--fundo').trim()), S = hex(cs.getPropertyValue('--sup').trim());
+    for (const a of $$('.amostra', p)) {
+      const c = hex(cs.getPropertyValue('--' + a.dataset.v).trim()); if (!c) continue;
+      const v = a.dataset.v; let txt;
+      if (v === 'marcaTx') txt = 'sobre marca ' + razao(c, hex(cs.getPropertyValue('--marca').trim())).toFixed(2);
+      else if (v === 'plusTx') txt = 'sobre plus ' + razao(c, hex(cs.getPropertyValue('--plus').trim())).toFixed(2);
+      else if (['fundo','sup','marcaSuave','plusSuave'].includes(v)) txt = 'texto ' + razao(hex(cs.getPropertyValue('--tx').trim()), c).toFixed(2);
+      else txt = 'fundo ' + razao(c, F).toFixed(2) + ' · sup ' + razao(c, S).toFixed(2);
+      a.querySelector('.rz').textContent = (txt + ':1').replace(/\./g, ',').replace(/(\d),(\d{2}):1/g,'$1,$2:1');
+    }
+  }
+}
+
+/* --------- controles --------- */
+function sincronizar(){
+  for (const b of $$('[data-tema-sel]')) b.setAttribute('aria-pressed', String(b.dataset.temaSel === tema));
+  for (const b of $$('[data-dir-sel]')) b.setAttribute('aria-pressed', String(b.dataset.dirSel === dirSel));
+  $('#bt-fx').setAttribute('aria-pressed', String(document.body.classList.contains('com-fx')));
+  try { localStorage.setItem('ap-da', JSON.stringify({ tema, dir: dirSel })); } catch {}
+}
+document.addEventListener('click', (e) => {
+  const t = e.target.closest('[data-tema-sel]'), d = e.target.closest('[data-dir-sel]');
+  if (t) { tema = t.dataset.temaSel; sincronizar(); montar(); }
+  else if (d) { dirSel = d.dataset.dirSel; sincronizar(); montar(); }
+  else if (e.target.closest('#bt-fx')) { document.body.classList.toggle('com-fx'); sincronizar(); }
+  else if (e.target.closest('.tela a, .tela button, .painel button')) e.preventDefault();
+});
+let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(ajustar, 80); });
+
+montarDirs(null); montarPaleta(); sincronizar(); montar();
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { ajustar(); medirTudo(); });
+})();
+</script>
+</body>
+</html>

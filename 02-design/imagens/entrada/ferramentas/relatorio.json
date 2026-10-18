@@ -1,0 +1,130 @@
+{
+ "entrada-fundo-escuro@1x.webp": {
+  "foto": "9D_rUDe7xvA",
+  "tamanho": [
+   440,
+   956
+  ],
+  "bytes": 7100
+ },
+ "entrada-fundo-escuro-desfocado@1x.webp": {
+  "foto": "9D_rUDe7xvA",
+  "tamanho": [
+   440,
+   956
+  ],
+  "bytes": 1914
+ },
+ "entrada-fundo-escuro@2x.webp": {
+  "foto": "9D_rUDe7xvA",
+  "tamanho": [
+   880,
+   1912
+  ],
+  "bytes": 17388
+ },
+ "entrada-fundo-escuro-desfocado@2x.webp": {
+  "foto": "9D_rUDe7xvA",
+  "tamanho": [
+   880,
+   1912
+  ],
+  "bytes": 5350
+ },
+ "entrada-fundo-claro@1x.webp": {
+  "foto": "9D_rUDe7xvA",
+  "tamanho": [
+   440,
+   956
+  ],
+  "bytes": 12040
+ },
+ "entrada-fundo-claro-desfocado@1x.webp": {
+  "foto": "9D_rUDe7xvA",
+  "tamanho": [
+   440,
+   956
+  ],
+  "bytes": 2126
+ },
+ "entrada-fundo-claro@2x.webp": {
+  "foto": "9D_rUDe7xvA",
+  "tamanho": [
+   880,
+   1912
+  ],
+  "bytes": 28356
+ },
+ "entrada-fundo-claro-desfocado@2x.webp": {
+  "foto": "9D_rUDe7xvA",
+  "tamanho": [
+   880,
+   1912
+  ],
+  "bytes": 5758
+ },
+ "entrada-fundo-alternativa-escuro@1x.webp": {
+  "foto": "5Rm-EapWm7M",
+  "tamanho": [
+   440,
+   956
+  ],
+  "bytes": 10946
+ },
+ "entrada-fundo-alternativa-escuro-desfocado@1x.webp": {
+  "foto": "5Rm-EapWm7M",
+  "tamanho": [
+   440,
+   956
+  ],
+  "bytes": 2442
+ },
+ "entrada-fundo-alternativa-escuro@2x.webp": {
+  "foto": "5Rm-EapWm7M",
+  "tamanho": [
+   880,
+   1912
+  ],
+  "bytes": 25506
+ },
+ "entrada-fundo-alternativa-escuro-desfocado@2x.webp": {
+  "foto": "5Rm-EapWm7M",
+  "tamanho": [
+   880,
+   1912
+  ],
+  "bytes": 6296
+ },
+ "entrada-fundo-alternativa-claro@1x.webp": {
+  "foto": "5Rm-EapWm7M",
+  "tamanho": [
+   440,
+   956
+  ],
+  "bytes": 19770
+ },
+ "entrada-fundo-alternativa-claro-desfocado@1x.webp": {
+  "foto": "5Rm-EapWm7M",
+  "tamanho": [
+   440,
+   956
+  ],
+  "bytes": 2834
+ },
+ "entrada-fundo-alternativa-claro@2x.webp": {
+  "foto": "5Rm-EapWm7M",
+  "tamanho": [
+   880,
+   1912
+  ],
+  "bytes": 46598
+ },
+ "entrada-fundo-alternativa-claro-desfocado@2x.webp": {
+  "foto": "5Rm-EapWm7M",
+  "tamanho": [
+   880,
+   1912
+  ],
+  "bytes": 7422
+ }
+}

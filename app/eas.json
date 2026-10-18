@@ -1,0 +1,61 @@
+{
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "desenvolvimento": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "desenvolvimento",
+      "environment": "development",
+      "ios": {
+        "simulator": false
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "desenvolvimento-simulador": {
+      "extends": "desenvolvimento",
+      "ios": {
+        "simulator": true
+      }
+    },
+    "previa": {
+      "distribution": "store",
+      "channel": "previa",
+      "environment": "preview",
+      "autoIncrement": true,
+      "android": {
+        "buildType": "app-bundle"
+      }
+    },
+    "producao": {
+      "distribution": "store",
+      "channel": "producao",
+      "environment": "production",
+      "autoIncrement": true,
+      "android": {
+        "buildType": "app-bundle"
+      }
+    }
+  },
+  "submit": {
+    "previa": {
+      "ios": {},
+      "android": {
+        "track": "internal",
+        "serviceAccountKeyPath": "./segredos/chave-google-play.json"
+      }
+    },
+    "producao": {
+      "ios": {},
+      "android": {
+        "track": "production",
+        "releaseStatus": "draft",
+        "serviceAccountKeyPath": "./segredos/chave-google-play.json"
+      }
+    }
+  }
+}

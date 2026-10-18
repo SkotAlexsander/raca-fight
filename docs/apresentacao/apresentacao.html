@@ -1,0 +1,1774 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>Academia Plus · A ideia, a estrutura e o design</title>
+<style>/* Academia Plus — apresentação da ideia, estrutura e design. Documento A4 para PDF.
+   Mesmo método do Valores (partes HTML + capturas reais + Playwright imprimindo), com a marca do Academia Plus:
+   cores de 02-design/marca-e-proposta/tokens-marca.json (tema claro) e as fontes da marca, Figtree e Archivo,
+   embutidas de fontes/ (woff2 do Fontsource, licença SIL OFL). Se não carregarem, o montar.mjs avisa. */
+
+@font-face { font-family: 'Figtree'; font-weight: 400; src: url('fontes/figtree-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 500; src: url('fontes/figtree-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 600; src: url('fontes/figtree-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 700; src: url('fontes/figtree-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Archivo'; font-weight: 700; src: url('fontes/archivo-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Archivo'; font-weight: 800; src: url('fontes/archivo-latin-800-normal.woff2') format('woff2'); }
+
+:root {
+  /* marca, tema claro (tokens-marca.json) */
+  --tinta: #131D1C; --suave: #556463; --terciario: #66736F;
+  --linha: #D0DAD9; --fundo-suave: #F4F8F7; --papel: #FFFFFF;
+  --acento: #007761; --acento-fundo: #D6F5EE;
+  --olho: #9A6100; --olho-fundo: #FCF2E1;
+  --plus: #EAB444; --plus-texto: #3A2B0D;
+  --ok: #0A7E3A; --ok-fundo: #E5F4EA;
+  --atencao: #B74D00; --atencao-fundo: #FDEEE3;
+  --risco: #C21725; --risco-fundo: #FCE9EA;
+  --titulo: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+  --texto: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+  --numero: 'Archivo', 'Figtree', 'Segoe UI', sans-serif;
+  --mono: Consolas, 'Cascadia Mono', monospace;
+}
+
+@page { size: A4; margin: 17mm 17mm 19mm; }
+
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font: 400 12px/1.58 var(--texto); color: var(--tinta); background: var(--papel); -webkit-font-smoothing: antialiased; }
+
+/* ── estrutura ───────────────────────────────────────── */
+.parte { break-before: page; }
+.parte__olho { margin: 0 0 4px; font: 600 10px/1.2 var(--texto); letter-spacing: .16em; text-transform: uppercase; color: var(--olho); }
+.parte__titulo { margin: 0 0 6px; font: 600 28px/1.1 var(--titulo); letter-spacing: -.02em; }
+.parte__lide { margin: 0 0 18px; padding-bottom: 14px; border-bottom: 2px solid var(--tinta); font-size: 13.4px; line-height: 1.55; color: var(--suave); }
+h2 { margin: 22px 0 7px; font: 600 16.5px/1.3 var(--titulo); letter-spacing: -.01em; break-after: avoid; }
+h3 { margin: 15px 0 5px; font: 600 12.6px/1.35 var(--texto); break-after: avoid; }
+h2 + p, h3 + p { break-before: avoid; }
+p { margin: 0 0 8px; }
+strong, b { font-weight: 600; }
+ul, ol { margin: 0 0 10px; padding-left: 18px; }
+li { margin: 3px 0; }
+li::marker { color: var(--acento); }
+.discreto { color: var(--suave); }
+.pequeno { font-size: 10.8px; }
+.duas { columns: 2; column-gap: 22px; }
+.duas > * { break-inside: avoid; }
+.quebra { break-before: page; }
+.nao-quebra { break-inside: avoid; }
+
+code { font-family: var(--mono); font-size: .92em; padding: 0 3px; border-radius: 3px; background: var(--fundo-suave); overflow-wrap: anywhere; }
+pre { margin: 8px 0 12px; padding: 9px 12px; border-radius: 6px; background: #12161C; color: #E4E8EE; font: 10.4px/1.5 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; break-inside: avoid; }
+pre code { padding: 0; background: none; color: inherit; font-size: inherit; }
+.arvore { background: var(--fundo-suave); color: var(--tinta); border: 1px solid var(--linha); white-space: pre; overflow-wrap: normal; }
+.arvore i { font-style: normal; color: var(--terciario); }
+.arvore b { font-weight: 700; color: var(--acento); }
+
+/* ── tabelas ─────────────────────────────────────────── */
+table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 11px; line-height: 1.45; }
+thead { display: table-header-group; }
+th { padding: 5px 10px 6px 0; text-align: left; vertical-align: bottom; font: 600 9.2px/1.25 var(--texto); letter-spacing: .09em; text-transform: uppercase; color: var(--acento); border-bottom: 1.5px solid var(--acento); }
+td { padding: 6px 10px 6px 0; border-bottom: 1px solid var(--linha); vertical-align: top; }
+td:last-child, th:last-child { padding-right: 0; }
+tr { break-inside: avoid; }
+td.chave { font-weight: 600; white-space: nowrap; }
+td.mono, .mono { font-family: var(--mono); font-size: 10.6px; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.tabela-compacta { font-size: 10.3px; }
+.tabela-compacta td { padding: 4px 8px 4px 0; }
+tfoot td { border-top: 1.5px solid var(--tinta); border-bottom: 0; font-weight: 600; }
+
+/* ── caixas ──────────────────────────────────────────── */
+.caixa { margin: 12px 0; padding: 9px 13px 10px; border-radius: 6px; border-left: 3px solid; break-inside: avoid; }
+.caixa p:last-child, .caixa ul:last-child, .caixa ol:last-child { margin-bottom: 0; }
+.caixa__rotulo { display: block; margin-bottom: 3px; font: 700 9px/1.2 var(--texto); letter-spacing: .13em; text-transform: uppercase; }
+.caixa--regra { background: var(--acento-fundo); border-color: var(--acento); } .caixa--regra .caixa__rotulo { color: var(--acento); }
+.caixa--atencao { background: var(--atencao-fundo); border-color: var(--atencao); } .caixa--atencao .caixa__rotulo { color: var(--atencao); }
+.caixa--risco { background: var(--risco-fundo); border-color: var(--risco); } .caixa--risco .caixa__rotulo { color: var(--risco); }
+.caixa--decisao { background: var(--olho-fundo); border-color: var(--olho); } .caixa--decisao .caixa__rotulo { color: var(--olho); }
+.caixa--ok { background: var(--ok-fundo); border-color: var(--ok); } .caixa--ok .caixa__rotulo { color: var(--ok); }
+
+/* ── capa ────────────────────────────────────────────── */
+.capa { display: flex; flex-direction: column; min-height: 250mm; }
+.capa__olho { font: 600 10.5px/1.2 var(--texto); letter-spacing: .18em; text-transform: uppercase; color: var(--olho); }
+.capa__titulo { margin: 26mm 0 6mm; font: 700 64px/1 var(--titulo); letter-spacing: -.035em; }
+.capa__sub { max-width: 128mm; font: 400 17px/1.4 var(--texto); color: var(--suave); }
+.capa__tese { margin-top: 16mm; max-width: 140mm; padding: 14px 18px; border-left: 3px solid var(--tinta); font: 500 13.5px/1.5 var(--texto); }
+.capa__ficha { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding-top: 14px; border-top: 1.5px solid var(--tinta); font-size: 11px; }
+.capa__ficha b { display: block; font: 600 9.2px/1.4 var(--texto); letter-spacing: .1em; text-transform: uppercase; color: var(--terciario); margin-bottom: 2px; }
+.capa__moldura { margin-top: 14mm; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.capa__moldura img { width: 100%; display: block; border-radius: 6px; border: 1px solid var(--linha); }
+
+/* ── sumário ─────────────────────────────────────────── */
+.sumario { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 24px; }
+.sumario li { display: flex; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--linha); break-inside: avoid; font-size: 11.6px; }
+.sumario b { font: 600 10px/1.7 var(--mono); color: var(--olho); min-width: 22px; }
+.sumario small { display: block; color: var(--terciario); font-size: 10.4px; }
+
+/* ── números e grades ────────────────────────────────── */
+.numeros { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0 14px; break-inside: avoid; }
+.numeros div { padding: 10px 12px; border: 1px solid var(--linha); border-radius: 6px; }
+.numeros b { display: block; font: 600 22px/1.1 var(--titulo); letter-spacing: -.02em; }
+.numeros span { display: block; font-size: 10.5px; color: var(--suave); margin-top: 3px; }
+.grade { display: grid; gap: 10px; margin: 10px 0 14px; }
+.grade--2 { grid-template-columns: 1fr 1fr; } .grade--3 { grid-template-columns: repeat(3, 1fr); } .grade--4 { grid-template-columns: repeat(4, 1fr); }
+.cartela { padding: 10px 12px; border: 1px solid var(--linha); border-radius: 6px; break-inside: avoid; }
+.cartela h4 { margin: 0 0 4px; font: 600 12px/1.3 var(--texto); }
+.cartela p { margin: 0; font-size: 11px; color: var(--suave); }
+.cartela .n { display: inline-grid; place-items: center; width: 20px; height: 20px; margin-bottom: 6px; border-radius: 10px; background: var(--tinta); color: #fff; font: 600 10px/1 var(--mono); }
+.pilares .cartela { border-top: 3px solid var(--acento); }
+
+/* ── fluxos e diagramas em HTML ──────────────────────── */
+.fluxo { display: flex; align-items: stretch; gap: 0; margin: 10px 0 14px; break-inside: avoid; }
+.fluxo__passo { flex: 1; padding: 9px 10px; border: 1px solid var(--linha); border-radius: 6px; font-size: 10.6px; background: var(--papel); }
+.fluxo__passo b { display: block; font-size: 11.4px; margin-bottom: 2px; }
+.fluxo__seta { align-self: center; width: 18px; text-align: center; color: var(--terciario); font-size: 14px; }
+.estados { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 12px; }
+.estado { padding: 4px 10px; border-radius: 12px; font: 600 10.5px/1.4 var(--texto); border: 1px solid var(--linha); }
+.camadas { margin: 10px 0 14px; break-inside: avoid; }
+.camada { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 8px 12px; border: 1px solid var(--linha); border-top: 0; font-size: 11px; }
+.camada:first-child { border-top: 1px solid var(--linha); border-radius: 6px 6px 0 0; } .camada:last-child { border-radius: 0 0 6px 6px; }
+.camada b { font-weight: 600; } .camada span { color: var(--suave); }
+.camada--ui { background: var(--acento-fundo); } .camada--nucleo { background: #FBFCFC; } .camada--ponte { background: var(--fundo-suave); } .camada--banco { background: #EEF3F2; }
+.entidades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0 14px; }
+.entidade { padding: 8px 10px; border: 1px solid var(--linha); border-radius: 6px; font-size: 10.4px; break-inside: avoid; }
+.entidade b { display: block; font: 600 11px/1.3 var(--mono); color: var(--acento); margin-bottom: 3px; }
+.entidade span { color: var(--suave); }
+
+/* ── capturas ────────────────────────────────────────── */
+figure { margin: 10px 0 14px; break-inside: avoid; }
+figure img { width: 100%; display: block; border-radius: 6px; border: 1px solid var(--linha); }
+figure.escura img { border-color: #2A2F3A; }
+figcaption { margin-top: 5px; font-size: 10.4px; color: var(--suave); line-height: 1.4; }
+figcaption b { color: var(--tinta); font-weight: 600; }
+.fig-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fig-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: start; }
+.recorte { overflow: hidden; border-radius: 6px; border: 1px solid var(--linha); aspect-ratio: var(--ar, 16/9); position: relative; }
+.recorte img { position: absolute; width: var(--z, 200%); max-width: none; left: var(--x, 0); top: var(--y, 0); border: 0; border-radius: 0; }
+.tokens { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin: 8px 0 12px; }
+.token { padding: 6px 8px; border-radius: 6px; border: 1px solid var(--linha); font-size: 9.6px; line-height: 1.3; }
+.token i { display: block; height: 22px; border-radius: 4px; margin-bottom: 4px; border: 1px solid rgba(0, 0, 0, .08); }
+.token b { display: block; font-weight: 600; } .token span { color: var(--terciario); font-family: var(--mono); font-size: 9px; }
+
+/* ── roadmap ─────────────────────────────────────────── */
+.fase { display: grid; grid-template-columns: 34px 1fr; gap: 12px; margin: 10px 0; break-inside: avoid; }
+.fase__n { width: 34px; height: 34px; border-radius: 17px; display: grid; place-items: center; background: var(--tinta); color: #fff; font: 600 13px/1 var(--titulo); }
+.fase h3 { margin: 6px 0 4px; }
+.fase p, .fase ul { font-size: 11.4px; }
+.fase__meta { font-size: 10.6px; color: var(--terciario); margin-bottom: 4px; }
+
+/* ── decisões ────────────────────────────────────────── */
+.decisao { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--linha); break-inside: avoid; }
+.decisao__n { font: 600 14px/1.3 var(--titulo); color: var(--olho); }
+.decisao h3 { margin: 0 0 3px; }
+.decisao p { margin: 0 0 4px; font-size: 11.4px; }
+.decisao .rec { color: var(--acento); font-weight: 600; }
+
+/* ── ajustes da marca ───────────────────────────────── */
+body { font-size: 12.2px; }
+.parte__titulo { font-weight: 700; letter-spacing: -.025em; }
+.parte__lide { border-bottom-color: var(--acento); }
+h2 { font-weight: 700; }
+.numeros b { font: 800 24px/1.1 var(--numero); letter-spacing: -.01em; color: var(--acento); }
+.cartela .n { background: var(--acento); }
+.fase__n { background: var(--acento); font-family: var(--numero); }
+.decisao__n { font-family: var(--numero); font-weight: 800; }
+.sumario b { font-family: var(--numero); font-weight: 800; }
+
+.selo-plus { display: inline-block; padding: 1px 9px; border-radius: 999px; background: var(--plus); color: var(--plus-texto); font: 700 10px/1.6 var(--texto); vertical-align: 1px; letter-spacing: .02em; }
+.decidir { display: inline-block; padding: 0 6px; border-radius: 4px; background: var(--olho-fundo); color: var(--olho); font: 700 9px/1.7 var(--texto); letter-spacing: .06em; text-transform: uppercase; vertical-align: 1px; }
+
+/* capa */
+.capa { min-height: 255mm; }
+.capa__marca { display: flex; align-items: center; gap: 14px; margin-top: 16mm; }
+.capa__marca svg { width: 66px; height: 66px; flex: none; }
+.capa__marca span { font: 700 52px/1 var(--titulo); letter-spacing: -.03em; }
+.capa__marca span i { font-style: normal; color: var(--acento); }
+.capa__titulo { margin: 8mm 0 4mm; font: 700 30px/1.15 var(--titulo); letter-spacing: -.02em; }
+.capa__telas { margin-top: 9mm; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items: end; }
+.capa__telas img { width: 100%; display: block; }
+
+/* telas em moldura (as capturas já trazem a moldura do celular) */
+.celulares { display: grid; gap: 14px; margin: 10px 0 12px; align-items: start; }
+.celulares--2 { grid-template-columns: repeat(2, 1fr); padding: 0 50px; }
+.celulares--4 { grid-template-columns: repeat(4, 1fr); }
+.celulares figure { margin: 0; }
+.celulares img, .lado figure img, .capa__telas img { border: 0; border-radius: 0; }
+.lado { display: grid; grid-template-columns: 1fr 250px; gap: 22px; align-items: start; }
+.lado figure { margin: 0; }
+
+/* paleta */
+.paleta { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 8px 0 12px; break-inside: avoid; }
+.paleta div { border: 1px solid var(--linha); border-radius: 6px; overflow: hidden; font-size: 9.6px; line-height: 1.3; }
+.paleta i { display: block; height: 30px; }
+.paleta b { display: block; padding: 4px 7px 0; font-weight: 600; }
+.paleta span { display: block; padding: 0 7px 5px; color: var(--terciario); font-family: var(--mono); font-size: 9px; }
+
+/* diagramas */
+.diagrama { margin: 10px 0 14px; break-inside: avoid; }
+.diagrama svg { width: 100%; height: auto; display: block; }
+.trilha { margin: 6px 0 13px; break-inside: avoid; }
+.trilha__titulo { display: flex; align-items: baseline; gap: 8px; margin: 0 0 5px; font: 700 12.4px/1.3 var(--titulo); }
+.trilha__titulo small { font: 400 10.4px/1.3 var(--texto); color: var(--terciario); }
+.trilha__passos { display: flex; align-items: stretch; }
+.trilha__passo { flex: 1; min-width: 0; padding: 7px 8px; border: 1px solid var(--linha); border-radius: 6px; font-size: 10.1px; line-height: 1.35; background: var(--papel); }
+.trilha__passo b { display: block; font-size: 10.6px; margin-bottom: 1px; color: var(--acento); }
+.trilha__passo--fim { background: var(--acento-fundo); border-color: transparent; }
+.trilha__passo--plus { background: var(--olho-fundo); border-color: transparent; }
+.trilha__passo--plus b { color: var(--olho); }
+.trilha__seta { align-self: center; width: 14px; text-align: center; color: var(--terciario); font-size: 13px; flex: none; }
+
+.mapa { display: grid; gap: 9px; margin: 10px 0 14px; align-items: start; }
+.mapa--4 { grid-template-columns: repeat(4, 1fr); } .mapa--5 { grid-template-columns: repeat(5, 1fr); }
+.aba { border: 1px solid var(--linha); border-radius: 8px; overflow: hidden; break-inside: avoid; }
+.aba > b { display: block; padding: 6px 9px; background: var(--acento); color: #fff; font: 700 11.4px/1.3 var(--titulo); }
+.aba > b small { display: block; font: 500 9.2px/1.3 var(--texto); opacity: .9; }
+.aba--plus > b { background: var(--plus); color: var(--plus-texto); }
+.aba--neutra > b { background: var(--fundo-suave); color: var(--tinta); border-bottom: 1px solid var(--linha); }
+.aba ul { list-style: none; margin: 0; padding: 3px 0; }
+.aba li { margin: 0; padding: 3px 9px; font-size: 10px; line-height: 1.3; border-bottom: 1px solid var(--fundo-suave); }
+.aba li:last-child { border-bottom: 0; }
+.aba li.sub { padding-left: 17px; color: var(--suave); }
+
+.visoes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0 14px; }
+.visao { border-radius: 8px; padding: 12px 14px; border: 1px solid var(--linha); break-inside: avoid; }
+.visao h3 { margin: 0 0 4px; font: 700 15px/1.25 var(--titulo); color: var(--acento); }
+.visao p, .visao ul { font-size: 11.2px; }
+.visao ul { margin-bottom: 0; }
+
+.pessoa { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--linha); break-inside: avoid; }
+.pessoa__inicial { width: 34px; height: 34px; border-radius: 17px; display: grid; place-items: center; background: var(--acento-fundo); color: var(--acento); font: 800 14px/1 var(--numero); }
+.pessoa h4 { margin: 0 0 2px; font: 700 12px/1.3 var(--texto); }
+.pessoa p { margin: 0; font-size: 11px; color: var(--suave); }
+
+.logo-fig img { width: auto; max-width: 100%; max-height: 47mm; margin: 0 auto; }
+.logo-fig { margin: 6px 0 8px; }
+.componentes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items: start; margin: 8px 0 12px; }
+.componentes figure { margin: 0; }
+
+.par { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--linha); border-radius: 6px; overflow: hidden; margin: 8px 0 12px; break-inside: avoid; font-size: 10.6px; }
+.par div { padding: 5px 10px; border-bottom: 1px solid var(--linha); }
+.par .nao { background: var(--risco-fundo); color: #7A1A21; }
+.par .sim { background: var(--ok-fundo); color: #0B4F27; }
+.par .cab { font: 700 9px/1.2 var(--texto); letter-spacing: .1em; text-transform: uppercase; }
+
+.estado--neutro { background: var(--fundo-suave); } .estado--ok { background: var(--ok-fundo); color: var(--ok); border-color: transparent; }
+.estado--plus { background: var(--plus); color: var(--plus-texto); border-color: transparent; } .estado--aviso { background: var(--atencao-fundo); color: var(--atencao); border-color: transparent; }
+/* ---------- P08: seis telas, direção de arte, imagens e efeitos ---------- */
+.celulares--3 { grid-template-columns: repeat(3, 1fr); padding: 0 34px; }
+.celulares--baixos { padding: 0 70px; row-gap: 8px; }
+.celulares figcaption { font-size: 10.2px; line-height: 1.35; color: var(--suave); margin-top: 4px; }
+.celulares figcaption b { color: var(--tinta); }
+.fotos { display: grid; gap: 8px; margin: 6px 0 12px; break-inside: avoid; }
+.fotos figure { margin: 0; }
+.fotos img { width: 100%; display: block; border-radius: 6px; }
+.fotos figcaption { font-size: 9.6px; color: var(--suave); margin-top: 3px; }
+.fotos--capas { grid-template-columns: repeat(3, 1fr); }
+.fotos--capas img { aspect-ratio: 344 / 192; object-fit: cover; }
+.fotos--mini { grid-template-columns: repeat(7, 1fr); }
+.fotos--vazios { grid-template-columns: repeat(10, 1fr); }
+.fotos--vazios img { border: 1px solid var(--linha); }
+.quadros { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 6px 0 12px; }
+.quadros figure { margin: 0; break-inside: avoid; }
+.quadros img { width: 100%; display: block; border-radius: 8px; border: 1px solid var(--linha); }
+.quadros figcaption { font-size: 9.8px; line-height: 1.35; color: var(--suave); margin-top: 4px; }
+.quadros figcaption b { color: var(--tinta); }
+.celulares--seis { padding: 0 92px; row-gap: 6px; }
+
+/* antes × depois da proporção (P09, agente Q): antes em cima, depois embaixo */
+.celulares--antes-depois { grid-template-columns: repeat(3, 1fr); padding: 0 64px; row-gap: 6px; }
+.celulares--4 figcaption { font-size: 9.6px; }
+
+/* O app construído (agente AF, 11/10): captura real em 393 × 852 numa moldura simples de celular */
+.app-cel img { border: 4px solid #1B2322 !important; border-radius: 20px !important; background: #1B2322; }
+.celulares--3.app-cel { padding: 0 60px; }
+</style></head>
+<body>
+<section class="capa" id="capa">
+  <div class="capa__olho">Apresentação do projeto · 11 de outubro de 2026</div>
+  <div class="capa__marca">
+    <svg viewBox="0 0 1024 1024" aria-hidden="true"><g fill="#007761"><rect x="96" y="448" width="832" height="128" rx="64"/><rect x="200" y="320" width="120" height="384" rx="44"/><rect x="704" y="320" width="120" height="384" rx="44"/><rect x="432" y="96" width="160" height="832" rx="80"/></g></svg>
+    <span>Academia <i>Plus</i></span>
+  </div>
+  <h1 class="capa__titulo">A ideia, a estrutura e o design</h1>
+  <p class="capa__sub">Um aplicativo de celular que liga a academia aos alunos. O aluno abre e sabe o que treinar hoje. A academia enxerga quem treina e monta o treino de cada um. E quem quiser paga o <strong>Plus</strong> para ter um personal acompanhando treino e alimentação pelo app.</p>
+  <div class="capa__tese">Em uma frase: <strong>a sua academia no bolso: o treino de hoje, montado para você, e alguém de verdade olhando.</strong></div>
+  <div class="capa__telas">
+    <img src="_capturas/app-inicio-ana-claro.jpg" alt="Início da Ana, no app construído">
+    <img src="_capturas/app-modo-treino-claro.jpg" alt="Modo treino, no app construído">
+    <img src="_capturas/app-painel-marcos-escuro.jpg" alt="Painel do dono, tema escuro, no app construído">
+    <img src="_capturas/app-meus-alunos-plus-julia-claro.jpg" alt="Meus alunos Plus da personal, no app construído">
+  </div>
+  <div class="capa__ficha">
+    <div><b>O que é</b>App para Android e iPhone, um só, com duas visões: a do aluno e a da academia</div>
+    <div><b>Para quem é este documento</b>Um sócio, uma academia interessada, um investidor</div>
+    <div><b>Estado</b>App construído em 11/10, rodando com dados de exemplo; falta o servidor</div>
+    <div><b>Sobre as telas</b>Capa e Parte 12: o app real. Parte 9: o protótipo</div>
+  </div>
+</section>
+
+<section class="parte" id="sumario">
+  <p class="parte__olho">Sumário</p>
+  <h1 class="parte__titulo">O que tem aqui</h1>
+  <p class="parte__lide">O documento vai do porquê ao como. Primeiro o problema e a ideia. Depois o que cada pessoa faz no app, o plano pago e os caminhos principais. Depois a marca e o desenho das telas. A parte técnica vem no fim, em linguagem de gente. O app construído está na Parte 12, e as decisões que ainda faltam, juntas na Parte 13.</p>
+  <ol class="sumario">
+    <li><b>01</b><div>O problema e a ideia<small>em uma página</small></div></li>
+    <li><b>02</b><div>As duas visões<small>um app, cinco papéis, quem vê o quê</small></div></li>
+    <li><b>03</b><div>O que o aluno faz<small>treino livre, treino pronto, o dia de treino, sem sinal</small></div></li>
+    <li><b>04</b><div>O que a academia faz<small>alunos, montar treino, biblioteca, números do dono</small></div></li>
+    <li><b>05</b><div>O Plus<small>o que inclui, por que alguém paga, o que acontece ao cancelar</small></div></li>
+    <li><b>06</b><div>Os caminhos principais<small>oito fluxos em diagrama</small></div></li>
+    <li><b>07</b><div>Mapa de telas<small>todas as telas, aba por aba</small></div></li>
+    <li><b>08</b><div>Marca<small>proposta, tom de voz, cores, letras, o logo final</small></div></li>
+    <li><b>09</b><div>Sistema de design<small>referências, proporção, componentes, as seis telas, entrada, telas novas, ícones, catálogo de treinos, imagens, efeitos, iPhone, mapa muscular</small></div></li>
+    <li><b>10</b><div>Como é construído<small>tecnologia, dados, sem sinal, privacidade</small></div></li>
+    <li><b>11</b><div>O que fica para depois<small>e quando faria sentido entrar</small></div></li>
+    <li><b>12</b><div>O que já está pronto e o app construído<small>em números; capturas reais do app, o que ele faz, como abrir, qualidade</small></div></li>
+    <li><b>13</b><div>Decisões pendentes<small>as escolhas provisórias de 11/10 e as perguntas novas</small></div></li>
+    <li><b>14</b><div>Próximos passos<small>o que acontece depois das respostas</small></div></li>
+  </ol>
+  <div class="caixa caixa--regra"><span class="caixa__rotulo">Como ler</span><p>Com cinco minutos: Partes 1, 2, 5 e as telas da Parte 12. Para decidir: Parte 13. A Parte 9 mostra o protótipo que deu origem ao app.</p></div>
+  <div class="caixa caixa--decisao"><span class="caixa__rotulo">O selo <span class="decidir">decidir</span></span><p>Onde aparece este selo, a resposta ainda não foi dada pelo Alex. O documento mostra as opções e a recomendação, mas não trata nenhuma delas como decidida.</p></div>
+</section>
+
+<section class="parte" id="ideia">
+  <p class="parte__olho">Parte 1</p>
+  <h1 class="parte__titulo">O problema e a ideia</h1>
+  <p class="parte__lide">A academia vende a matrícula e depois perde o aluno de vista. O aluno entra na sala sem saber o que fazer, anota a carga no bloco de notas e some depois de dois meses. Ninguém percebe até o cancelamento.</p>
+
+  <h2>O que o aluno usa hoje, e o que falta</h2>
+  <table class="tabela-compacta">
+    <thead><tr><th>Hoje</th><th>O que falta nele</th><th>O que o Academia Plus faz diferente</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">App de treino genérico</td><td>Não conhece a academia. Ninguém de carne e osso olha o que a pessoa fez.</td><td>É <strong>da academia</strong>: os treinos prontos são da casa e o instrutor vê o perfil.</td></tr>
+      <tr><td class="chave">Ficha no papel ou no WhatsApp</td><td>Se perde na conversa. Não marca o que foi feito. Não guarda a carga.</td><td>O treino vira tela, série por série. Marca o que fez e guarda a carga.</td></tr>
+      <tr><td class="chave">Sistema de gestão da academia</td><td>Fala com o dono. O aluno não tem motivo para abrir.</td><td>O aluno <strong>quer</strong> abrir: é ali que está o treino de hoje.</td></tr>
+      <tr><td class="chave">Personal presencial</td><td>Caro para a maioria. Quem não paga fica sem ninguém.</td><td>O Plus é o degrau do meio: acompanhamento real, pelo app, por menos.</td></tr>
+    </tbody>
+  </table>
+  <p>O Academia Plus não compete com o app de treino nem com o sistema de gestão. <strong>Ocupa o espaço vazio entre os dois: a relação da academia com o aluno.</strong></p>
+
+  <h2>A ideia em três frases</h2>
+  <div class="grade grade--3 pilares">
+    <div class="cartela"><span class="n">1</span><h4>O aluno sabe o que fazer</h4><p>Abre o app e vê o treino de hoje. Monta o seu do zero ou escolhe um pronto pelo objetivo. Marca cada série e guarda a carga.</p></div>
+    <div class="cartela"><span class="n">2</span><h4>A academia enxerga o aluno</h4><p>O instrutor abre o perfil de quem está na frente dele, vê objetivo e restrição, e monta o treino direto no celular do aluno.</p></div>
+    <div class="cartela"><span class="n">3</span><h4>Quem quiser, paga o Plus</h4><p>Um personal da academia passa a acompanhar pelo app: ajusta o treino, acompanha a alimentação e conversa.</p></div>
+  </div>
+
+  <h2>O nome tem dois sentidos</h2>
+  <p><strong>Academia Plus</strong> é o app, o "a mais" que a academia dá de graça a todo aluno. <strong>Plus</strong> sozinho, com o selo dourado <span class="selo-plus">Plus</span>, é o plano pago. A regra que segura os dois: <em>a marca é o nome inteiro; o plano é o selo</em>.</p>
+
+  <h2>O que o app promete, e o que não promete</h2>
+  <p>Promete <strong>acompanhamento</strong>: o aluno nunca entra na sala sem saber o que fazer, e alguém da academia consegue olhar por ele. Não promete corpo, não promete "resultado em semanas", não mostra antes e depois. O app registra o que a pessoa <strong>fez</strong>; nunca avalia o que a pessoa <strong>é</strong>.</p>
+
+  <div class="numeros">
+    <div><b>1 app</b><span>Android e iPhone, um código só</span></div>
+    <div><b>2 visões</b><span>aluno e academia, pelo papel de quem entra</span></div>
+    <div><b>0 campos</b><span>obrigatórios sobre o corpo: peso e altura são opcionais</span></div>
+    <div><b>1 plano</b><span>pago, o Plus, com personal, treino e alimentação</span></div>
+  </div>
+</section>
+
+<section class="parte" id="visoes">
+  <p class="parte__olho">Parte 2</p>
+  <h1 class="parte__titulo">As duas visões</h1>
+  <p class="parte__lide">É um aplicativo só. O que muda é o que a pessoa vê quando entra, e isso depende do papel dela na academia. Quem é aluno e também trabalha na academia troca de visão com um toque, sem trocar de conta.</p>
+
+  <div class="visoes">
+    <div class="visao">
+      <h3>Visão do aluno</h3>
+      <p>Para quem treina. Responde "o que eu faço hoje?".</p>
+      <ul>
+        <li>Monta o próprio treino ou escolhe um pronto pelo objetivo</li>
+        <li>Registra o treino, série por série, e vê o histórico</li>
+        <li>Informa peso e altura <em>se quiser</em></li>
+        <li>Decide se a academia pode ver esses dados</li>
+        <li>Pode assinar o Plus</li>
+      </ul>
+      <p class="pequeno discreto" style="margin-top:8px">Abas: Início · Treinos · Plus · Perfil</p>
+    </div>
+    <div class="visao">
+      <h3>Visão da academia</h3>
+      <p>Para quem trabalha lá. Responde "quem precisa de mim?".</p>
+      <ul>
+        <li>Lista de alunos, com quem sumiu há mais de 14 dias</li>
+        <li>Perfil do aluno e "Montar treino para ele"</li>
+        <li>Biblioteca de treinos prontos da academia</li>
+        <li>O personal acompanha os alunos Plus dele</li>
+        <li>O dono vê a academia em números e cuida da equipe</li>
+      </ul>
+      <p class="pequeno discreto" style="margin-top:8px">Abas: Alunos · Treinos · Plus (personal) · Academia (dono) · Perfil</p>
+    </div>
+  </div>
+
+  <h2>Cinco papéis</h2>
+  <p>Uma <strong>conta</strong> é uma pessoa. Um <strong>vínculo</strong> liga a conta a uma academia com um <strong>papel</strong>. O papel decide a visão.</p>
+  <table class="tabela-compacta">
+    <thead><tr><th>Papel</th><th>Quem é</th><th>Visão</th><th>O que ganha a mais</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Aluno</td><td>Quem treina</td><td>aluno</td><td>Treino livre, treinos prontos, registro, histórico</td></tr>
+      <tr><td class="chave">Aluno Plus</td><td>Não é outro papel: é o aluno com o Plus ativo</td><td>aluno</td><td>Personal, acompanhamento da alimentação, conversa</td></tr>
+      <tr><td class="chave">Funcionário</td><td>Recepção e instrutor de sala (o mesmo papel na primeira versão)</td><td>academia</td><td>Vê alunos, monta treino, cuida da biblioteca</td></tr>
+      <tr><td class="chave">Personal</td><td>Funcionário que acompanha alunos Plus</td><td>academia</td><td>Só os alunos Plus <em>dele</em>: dados, treino, alimentação, conversa</td></tr>
+      <tr><td class="chave">Dono</td><td>Responsável pela academia</td><td>academia</td><td>Equipe, números, quem é personal de quem</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Quem vê o quê</h2>
+  <p>Peso, altura, idade, restrições e alimentação são <strong>dados de saúde</strong>. A lei de proteção de dados (LGPD) trata esse tipo de dado com cuidado especial, e o app também.</p>
+  <table class="tabela-compacta">
+    <thead><tr><th>Quem</th><th>Vê os dados do corpo do aluno?</th><th>Vê a alimentação e a conversa?</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">O próprio aluno</td><td>Sim, tudo</td><td>Sim</td></tr>
+      <tr><td class="chave">Funcionário e dono</td><td>Só se o aluno deixou (a chave vem ligada e ele desliga quando quiser)</td><td>Não, nunca</td></tr>
+      <tr><td class="chave">Personal</td><td>Só dos alunos Plus designados a ele, enquanto o Plus estiver ativo</td><td>Sim, dos dele</td></tr>
+      <tr><td class="chave">Outro personal</td><td>Não</td><td>Não</td></tr>
+    </tbody>
+  </table>
+  <div class="caixa caixa--regra"><span class="caixa__rotulo">Regra que não muda</span><p>O dono não tem acesso maior que o funcionário aos dados de saúde. O que ele ganha é gestão: pessoas e números, sempre somados, sem nome.</p></div>
+</section>
+
+<section class="parte" id="aluno">
+  <p class="parte__olho">Parte 3</p>
+  <h1 class="parte__titulo">O que o aluno faz</h1>
+  <p class="parte__lide">A organização do treino é a espinha da experiência. O aluno tem um treino ativo, o app sugere o dia de hoje, e ele registra o que fez. O resto do app existe para que isso aconteça sem esforço.</p>
+
+  <div class="lado">
+    <div>
+      <h2 style="margin-top:0">Duas pessoas que o app precisa atender</h2>
+      <div class="pessoa"><div class="pessoa__inicial">J</div><div><h4>Juliana, 29, começou mês passado</h4><p>Tem medo de parecer perdida na sala. Nunca usou app de treino. Precisa abrir e saber o que fazer, sem configurar nada e sem perguntas sobre peso na entrada. Para ela, o treino pronto "Iniciante" é o produto inteiro.</p></div></div>
+      <div class="pessoa"><div class="pessoa__inicial">R</div><div><h4>Rafael, 36, treina há seis anos</h4><p>Tem o treino de cabeça, anota a carga no celular e perde. Largou dois apps porque "tinha coisa demais". Precisa de treino livre rápido, botões de +/− grandes, a carga da última vez e um cronômetro que não exige olhar.</p></div></div>
+
+      <h2>Dois jeitos de ter um treino</h2>
+      <h3>Treino livre: ele monta</h3>
+      <p>Dá um nome, escolhe quantos dias (A, B, C…), busca os exercícios por nome ou grupo muscular e define séries, repetições, carga e descanso. Tudo salva sozinho, a cada toque. Não existe botão "Salvar" para esquecer. Se o exercício não está na lista, ele cria só com o nome.</p>
+      <h3>Treino pronto: a academia montou</h3>
+      <p>A lista já vem filtrada pelo objetivo dele (ganhar massa, perder peso, condicionamento, começar a treinar, manter). Quem não informou objetivo vê todos. Ao escolher, ele recebe uma <strong>cópia</strong>: pode ajustar carga e séries à vontade, e a academia pode atualizar o original sem mexer na cópia dele.</p>
+      <p class="pequeno discreto">Ele pode guardar vários treinos, mas só um fica ativo por vez. É o que permite ao app responder "o que faço hoje?" sem perguntar.</p>
+    </div>
+    <figure><img src="_capturas/tela-2-treinos-prontos-claro.jpg" alt="Treinos prontos"><figcaption><b>Treinos prontos.</b> O filtro já começa no objetivo do aluno; cada cartão diz nível, dias e quem montou.</figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="aluno-dia">
+  <p class="parte__olho">Parte 3 · continuação</p>
+  <h1 class="parte__titulo">O dia de treino</h1>
+  <p class="parte__lide">É a tela mais usada e a mais exigente. O aluno está em pé, entre duas séries, com a mão suada e o celular numa mão só. Tudo nela se lê a um braço de distância, um toque faz uma coisa, e nada se perde por toque errado.</p>
+
+  <div class="lado">
+    <div>
+      <ol>
+        <li><strong>Abre o app.</strong> O Início mostra "Hoje: Treino A — Peito e tríceps". O app sugere o dia seguinte ao último feito; ele pode trocar.</li>
+        <li><strong>Começa.</strong> Cada série vem preenchida com o planejado. Ao lado, em cinza: "Última vez: 12 × 20 kg".</li>
+        <li><strong>Marca a série com um toque.</strong> O cronômetro de descanso começa sozinho e vibra quando acaba. Errou? "Desfazer" aparece por 5 segundos.</li>
+        <li><strong>Aparelho ocupado?</strong> "Trocar por outro" só para hoje, ou "Pular". O treino planejado não muda.</li>
+        <li><strong>Fecha o treino.</strong> O resumo mostra tempo, séries feitas e o volume (repetições × carga somadas). Sem confete: "Treino fechado. 7 exercícios, 42 minutos."</li>
+      </ol>
+
+      <h2>Sem sinal na academia</h2>
+      <p>Muita academia tem sinal ruim no salão. O aluno registra o treino do mesmo jeito: o celular guarda e envia quando a internet volta. Aparece só um aviso discreto: "Sem conexão. O treino está salvo no celular." <strong>Perder um registro é o jeito mais rápido de o aluno largar o app</strong>, então essa é uma regra da primeira versão.</p>
+
+      <h2>Cadastro do corpo: opcional, de verdade</h2>
+      <p>Na primeira entrada o app pergunta objetivo, dias por semana, peso, altura e restrições, com "Pular" visível no topo. Nenhuma tela trava por falta desses dados. Quem informa ajuda o instrutor a montar o treino. Logo depois, uma tela explica em duas frases que isso é dado de saúde e mostra a chave "A academia pode ver meus dados".</p>
+      <p>Mais tarde, no Perfil: registrar o peso de vez em quando, ver o histórico, mudar o objetivo, ver quem tem acesso, exportar ou apagar tudo.</p>
+    </div>
+    <figure><img src="_capturas/tela-1-treino-do-dia-claro.jpg" alt="Treino do dia"><figcaption><b>Treino em andamento.</b> Um número em destaque (as repetições), a série com +/− de 36 e área de toque de 48, "Desfazer" no aviso e o descanso fixo acima das abas.</figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="academia">
+  <p class="parte__olho">Parte 4</p>
+  <h1 class="parte__titulo">O que a academia faz</h1>
+  <p class="parte__lide">A visão da academia usa os mesmos botões e cartões do aluno, só que mais densa e sem cerimônia. Quem passa de uma visão para a outra não reaprende nada.</p>
+
+  <div class="lado" style="grid-template-columns:1fr 205px">
+    <div>
+      <h2 style="margin-top:0">Duas pessoas do outro lado do balcão</h2>
+      <div class="pessoa"><div class="pessoa__inicial">D</div><div><h4>Dani, 31, instrutora de sala</h4><p>Cuida de 40 pessoas por turno. Hoje monta ficha no papel. Precisa abrir o perfil de quem está na frente dela, ver objetivo e restrição em três segundos, montar o treino e ele já estar no celular do aluno.</p></div></div>
+      <div class="pessoa"><div class="pessoa__inicial">M</div><div><h4>Marcos, 48, dono</h4><p>Academia de bairro, 350 alunos, 3 funcionários. Já paga um sistema de gestão e não quer outro. Compra um motivo para o aluno ficar (menos cancelamento) e uma receita nova (o Plus) sem contratar ninguém.</p></div></div>
+
+      <h2>O instrutor</h2>
+      <ul>
+        <li><strong>Lista de alunos</strong> com busca e filtros: "sem treinar há 14+ dias", "sem treino ativo", "Plus", "vínculo pendente".</li>
+        <li><strong>Perfil do aluno</strong>: há quanto tempo é aluno, dados do corpo (se ele deixou), treino atual, frequência das últimas 4 semanas.</li>
+        <li><strong>Montar treino para ele</strong>: do zero, a partir de um treino pronto ou do treino atual. Uma faixa no topo lembra "Montando para Ana". Envia com um recado: "Começa leve na primeira semana."</li>
+        <li><strong>Treinos prontos</strong>: cria, publica e arquiva a biblioteca da academia, por objetivo e nível.</li>
+        <li><strong>Vincular aluno</strong>: confirma quem digitou o código da academia, ou convida pelo e-mail ou telefone.</li>
+      </ul>
+      <div class="caixa caixa--regra"><span class="caixa__rotulo">Regra</span><p>O instrutor nunca edita o treino que o aluno montou sozinho. Ele cria um novo, que pode partir de uma cópia. O treino do aluno é dele.</p></div>
+    </div>
+    <figure><img src="_capturas/tela-3-perfil-do-aluno-claro.jpg" alt="Perfil do aluno, visão da academia"><figcaption><b>Perfil do aluno, visto pela academia.</b> Dados do corpo só aparecem se o aluno autorizou; "Montar treino" é a ação principal.</figcaption></figure>
+  </div>
+
+  <h2>O dono</h2>
+  <p>Tudo o que o instrutor faz, mais uma aba <strong>Academia</strong> com a casa em números, sempre somados e sem dado de saúde de ninguém:</p>
+  <div class="numeros">
+    <div><b>Ativos</b><span>alunos que registraram treino nos últimos 30 dias</span></div>
+    <div><b>No Plus</b><span>"29 de 350 alunos no Plus", não "taxa de conversão 8,3 %"</span></div>
+    <div><b>Treinos</b><span>registrados nesta semana e na anterior</span></div>
+    <div><b>Sumidos</b><span>alunos sem treinar há 14 dias ou mais, para a recepção chamar</span></div>
+  </div>
+  <p>Ele também cadastra e remove a equipe (quem sai perde o acesso na hora), decide quem é personal, designa o personal de cada aluno Plus e troca o código que o aluno digita para entrar na academia.</p>
+  <p class="pequeno discreto">Mensalidade, catraca e caixa ficam fora da primeira versão <span class="decidir">decidir</span>: a ideia original fala de treino e acompanhamento, não de cobrança.</p>
+</section>
+
+<section class="parte" id="plus">
+  <p class="parte__olho">Parte 5</p>
+  <h1 class="parte__titulo">O Plus <span class="selo-plus" style="font-size:14px;vertical-align:6px">Plus</span></h1>
+  <p class="parte__lide">O Plus é o plano pago. Não é outro app nem outro papel: é um estado da conta do aluno. Ao assinar, um personal da academia passa a acompanhá-lo pelo app. Quem não assina continua com o treino organizado e o instrutor de sala.</p>
+
+  <div class="lado">
+    <div>
+      <h2 style="margin-top:0">O que inclui</h2>
+      <div class="grade grade--2">
+        <div class="cartela"><h4>Um personal com nome e foto</h4><p>Gente da academia, que o aluno encontra no corredor. Designado pelo dono.</p></div>
+        <div class="cartela"><h4>Treino ajustado</h4><p>O personal monta e muda o treino conforme o aluno evolui. O aluno segue e ajusta a carga na hora.</p></div>
+        <div class="cartela"><h4>Acompanhamento da alimentação</h4><p>As refeições do dia, em ordem de horário. O aluno marca "feita" ou "não segui", com o motivo se quiser.</p></div>
+        <div class="cartela"><h4>Conversa</h4><p>Dúvida de série, de carga, de comida: pergunta ali. Chat no app ou WhatsApp <span class="decidir">decidir</span>.</p></div>
+      </div>
+
+      <h2>Por que alguém paga</h2>
+      <ul>
+        <li><strong>Para o aluno</strong>, é o degrau entre "ninguém olhando" e o personal presencial, que é caro. Rafael não precisa de mais um app; precisa de alguém que veja as séries dele e organize a alimentação que ele nunca organizou.</li>
+        <li><strong>Para a academia</strong>, é receita nova sem contratar ninguém: o personal que já está lá atende mais gente, sem hora marcada.</li>
+        <li><strong>Para o personal</strong>, o acompanhamento escala: ele vê a adesão dos últimos 7 e 30 dias e recebe um aviso quando o aluno passa 3 dias sem registrar nada.</li>
+      </ul>
+    </div>
+    <figure><img src="_capturas/tela-4-dieta-de-hoje-claro.jpg" alt="Dieta de hoje, Plus"><figcaption><b>Dieta de hoje.</b> Refeições com o selo do plano, marcar o que fez, observação do personal e um contador sem julgamento.</figcaption></figure>
+  </div>
+
+  <div class="caixa caixa--risco"><span class="caixa__rotulo">Risco aberto · quem prescreve a dieta</span><p>Pela Lei 8.234/1991 e pela posição do Conselho Federal de Nutricionistas, prescrever dieta é atividade de nutricionista. Por isso este documento fala em <strong>acompanhamento da alimentação</strong>, não em "o personal monta sua dieta". Quem escreve o plano (um nutricionista parceiro da academia, ou o personal só acompanha um plano feito por nutricionista) é uma decisão pendente, e precisa de advogado ou nutricionista antes de desenhar as telas (Parte 13).</p></div>
+</section>
+
+<section class="parte" id="plus-regras">
+  <p class="parte__olho">Parte 5 · continuação</p>
+  <h1 class="parte__titulo">Como o Plus liga e desliga</h1>
+  <p class="parte__lide">O convite ao Plus aparece uma vez, no lugar certo, e aceita o "agora não". Nada de cadeado dourado espalhado pelo app nem de contador "oferta por tempo limitado".</p>
+
+  <h2>Os estados da assinatura</h2>
+  <div class="estados">
+    <span class="estado estado--neutro">sem Plus</span>
+    <span class="estado estado--plus">ativo</span>
+    <span class="estado estado--plus">cancelado, valendo até a data paga</span>
+    <span class="estado estado--aviso">suspenso: pagamento falhou, 7 dias de prazo</span>
+    <span class="estado estado--neutro">inativo</span>
+  </div>
+  <p>Só "ativo" e "cancelado, valendo" liberam as funções do Plus. Toda mudança fica registrada com data, hora e motivo. O estado só muda pelo servidor, nunca pelo celular.</p>
+
+  <h2>Quando o Plus acaba</h2>
+  <table class="tabela-compacta">
+    <thead><tr><th>O quê</th><th>O que acontece</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Acesso do personal</td><td>Some na hora: dados do corpo, histórico, alimentação e conversa.</td></tr>
+      <tr><td class="chave">Treino feito pelo personal</td><td>Fica com o aluno, assinado "Personal: até [data]", e passa a ser editável por ele.</td></tr>
+      <tr><td class="chave">Plano de alimentação</td><td>Fica só para leitura. As marcações antigas continuam no histórico.</td></tr>
+      <tr><td class="chave">Conversa</td><td>Só leitura para o aluno (se for chat no app).</td></tr>
+      <tr><td class="chave">Se voltar a assinar</td><td>Nada foi apagado. O mesmo personal recupera tudo.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Quem cobra <span class="decidir">decidir</span></h2>
+  <p>Há dois jeitos de ligar o Plus, e o desenho já prevê os dois:</p>
+  <div class="grade grade--2">
+    <div class="cartela"><h4>O aluno assina no app</h4><p>Pela loja (Google Play e App Store, que ficam com 15 a 30 %) ou por Pix e cartão fora da loja (1 a 4 %). A Apple tem regras rígidas sobre isso (abaixo).</p></div>
+    <div class="cartela"><h4>A academia liga o Plus</h4><p>A recepção liga no perfil do aluno e cobra junto da mensalidade. Nenhum pagamento passa pelo app. No app, o botão vira "Falar com a recepção".</p></div>
+  </div>
+  <div class="caixa caixa--atencao"><span class="caixa__rotulo">Risco aberto · regras da loja da Apple</span><p>As regras 3.1.1 e 3.1.3 da App Store exigem compra dentro do app para assinatura que libera recursos digitais, e liberam pagamento fora só para serviço em tempo real ou consumido fora do app. O acompanhamento do Plus é pelo app e não é em tempo real. <strong>Nem o caminho "via academia" é risco zero.</strong> Ele passa melhor com o Plus desenhado como serviço da academia, contratado na recepção, com uma parte presencial de verdade (por exemplo, um encontro por mês com o personal), sem botão de compra no app. Precisa ser confirmado com a Apple antes do primeiro envio. No Google Play, assinatura de acompanhamento de treino também exige o faturamento da loja; mensalidade de academia é exceção.</p></div>
+  <p class="pequeno discreto">Regra fixa em qualquer caminho: nenhum dado de cartão passa pelo app nem pelo banco de dados.</p>
+</section>
+
+<section class="parte" id="caminhos">
+  <p class="parte__olho">Parte 6</p>
+  <h1 class="parte__titulo">Os caminhos principais</h1>
+  <p class="parte__lide">Oito caminhos cobrem quase tudo o que se faz no app. Cada caixa é uma tela; a última, em verde, é onde a pessoa chega. Os nomes das telas são os do mapa da Parte 7.</p>
+
+  <div class="trilha">
+    <p class="trilha__titulo">F1 · Primeiro acesso do aluno <small>nada trava do começo ao fim</small></p>
+    <div class="trilha__passos">
+      <div class="trilha__passo"><b>Boas-vindas</b>"Criar conta" ou "Já tenho conta"</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Criar conta</b>Nome, e-mail ou telefone, senha; ou Google e Apple</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Sua academia</b>Digita o código, ou "vou treinar sozinho por enquanto"</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Sobre você</b>Objetivo, peso, altura… com "Pular" no topo</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Quem pode ver</b>A chave "a academia pode ver meus dados"</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--fim"><b>Início</b>"Monte seu primeiro treino": livre ou pronto</div>
+    </div>
+  </div>
+
+  <div class="trilha">
+    <p class="trilha__titulo">F2 · Montar treino livre <small>salva a cada toque</small></p>
+    <div class="trilha__passos">
+      <div class="trilha__passo"><b>Treinos</b>"+ Novo treino"</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Novo treino</b>Nome, objetivo, quantos dias</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Editar treino</b>Dias como abas A, B, C; "+ Exercício"</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Escolher exercício</b>Busca e grupo muscular; ou cria só com o nome</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Séries</b>Repetições, carga, descanso; "copiar para as outras"</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--fim"><b>Usar este treino</b>Vira o ativo; o anterior fica guardado</div>
+    </div>
+  </div>
+
+  <div class="trilha">
+    <p class="trilha__titulo">F3 · Escolher treino pronto <small>o aluno recebe uma cópia</small></p>
+    <div class="trilha__passos">
+      <div class="trilha__passo"><b>Prontos da academia</b>Já filtrados pelo objetivo dele</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Ver treino pronto</b>Dias e exercícios, só leitura</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Confirmar</b>"Você vai receber uma cópia. Pode ajustar à vontade."</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--fim"><b>Editar treino</b>A cópia, já ativa, com o selo "Baseado em…"</div>
+    </div>
+  </div>
+
+  <div class="trilha">
+    <p class="trilha__titulo">F4 · O dia de treino <small>funciona sem sinal</small></p>
+    <div class="trilha__passos">
+      <div class="trilha__passo"><b>Início</b>"Hoje: Treino A" e "Começar"</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Treino em andamento</b>Marca a série com um toque; vê a carga da última vez</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Descanso</b>Cronômetro começa sozinho e vibra no fim</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Resumo</b>Tempo, séries, volume; "Como foi?"</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--fim"><b>Início</b>"Treino de hoje feito" e a semana marcada</div>
+    </div>
+  </div>
+</section>
+
+<section class="parte" id="caminhos-2">
+  <p class="parte__olho">Parte 6 · continuação</p>
+  <h1 class="parte__titulo">Os caminhos da academia e do Plus</h1>
+  <p class="parte__lide">Os quatro caminhos que ligam um lado ao outro. Caixas douradas são do Plus.</p>
+
+  <div class="trilha">
+    <p class="trilha__titulo">F5 · O instrutor monta o treino de um aluno</p>
+    <div class="trilha__passos">
+      <div class="trilha__passo"><b>Alunos</b>Busca pelo nome ou filtro "sem treinar há 14+ dias"</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Perfil do aluno</b>Dados (se autorizou), treino atual, frequência</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Começar de onde?</b>Do zero, de um pronto, do treino atual</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo"><b>Editar treino</b>Faixa "Montando para Ana"; objetivo e restrições ao lado</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--fim"><b>Enviar</b>Com recado. O aluno recebe "A academia montou um treino para você"</div>
+    </div>
+  </div>
+
+  <div class="trilha">
+    <p class="trilha__titulo">F6 · Assinar o Plus <small>duas versões, conforme quem cobra <span class="decidir">decidir</span></small></p>
+    <div class="trilha__passos">
+      <div class="trilha__passo trilha__passo--plus"><b>Plus · apresentação</b>O que inclui, quem é o personal, "cancele quando quiser"</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--plus"><b>Assinar ou pedir</b>Assina no app, ou fala com a recepção, que liga o Plus no perfil</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--plus"><b>Plus ativo</b>"Sua academia vai designar um personal em até 2 dias úteis"</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--fim"><b>Dono designa</b>O personal vê o aluno novo com o selo "sem treino e sem plano"</div>
+    </div>
+  </div>
+
+  <div class="trilha">
+    <p class="trilha__titulo">F7 · O plano de alimentação chega ao aluno <small>quem escreve o plano: <span class="decidir">decidir</span></small></p>
+    <div class="trilha__passos">
+      <div class="trilha__passo trilha__passo--plus"><b>Meus alunos Plus</b>Só os alunos do personal</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--plus"><b>Aluno Plus</b>Resumo, Treino, Alimentação, Conversa</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--plus"><b>Plano</b>Refeições, horários e itens; "copiar e ajustar" da semana anterior</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--fim"><b>Enviar ao aluno</b>"A partir de [data]". O aluno recebe o aviso, sem o conteúdo</div>
+    </div>
+  </div>
+
+  <div class="trilha">
+    <p class="trilha__titulo">F8 · O aluno segue a alimentação no dia <small>funciona sem sinal</small></p>
+    <div class="trilha__passos">
+      <div class="trilha__passo trilha__passo--plus"><b>Início</b>"Dieta de hoje: 3 de 5" e a próxima refeição</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--plus"><b>Dieta do dia</b>Refeições por horário</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--plus"><b>Marca</b>"Feita", ou "Não segui" com o motivo ("almocei fora")</div><div class="trilha__seta">›</div>
+      <div class="trilha__passo trilha__passo--fim"><b>Personal vê</b>Adesão de 7 e 30 dias e os motivos; aviso após 3 dias sem marcar</div>
+    </div>
+  </div>
+
+  <h2>Caminhos curtos</h2>
+  <table class="tabela-compacta">
+    <tbody>
+      <tr><td class="chave">Trocar de visão</td><td>Perfil → "Entrar como instrutor" / "Entrar como aluno". Imediato; o app lembra a última.</td></tr>
+      <tr><td class="chave">Desligar a autorização</td><td>Perfil → Meus dados → desliga a chave. Os funcionários param de ver na hora.</td></tr>
+      <tr><td class="chave">Cancelar o Plus</td><td>Plus → Gerenciar assinatura → Cancelar. Mostra até quando vale antes de confirmar.</td></tr>
+      <tr><td class="chave">Registrar treino esquecido</td><td>Histórico → "Registrar treino passado". Data passada sim; data futura não.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="parte" id="mapa">
+  <p class="parte__olho">Parte 7</p>
+  <h1 class="parte__titulo">Mapa de telas</h1>
+  <p class="parte__lide">São 55 telas: 9 de entrada, 26 do aluno e 20 da academia. Cada visão tem uma barra de abas embaixo, ao alcance do polegar. Nenhuma tela fica a mais de três passos de uma aba.</p>
+
+  <h2>Entrada <small class="discreto" style="font-weight:400;font-size:11px">comum às duas visões · 9 telas</small></h2>
+  <div class="mapa mapa--5">
+    <div class="aba aba--neutra"><b>Conta</b><ul><li>Boas-vindas</li><li>Criar conta</li><li>Confirmar contato</li></ul></div>
+    <div class="aba aba--neutra"><b>Voltar a entrar</b><ul><li>Entrar</li><li>Recuperar senha</li></ul></div>
+    <div class="aba aba--neutra"><b>Academia</b><ul><li>Sua academia (código)</li></ul></div>
+    <div class="aba aba--neutra"><b>Dados</b><ul><li>Sobre você (opcional)</li><li>Quem pode ver</li></ul></div>
+    <div class="aba aba--neutra"><b>Dois papéis</b><ul><li>Escolher visão / academia</li></ul></div>
+  </div>
+
+  <h2>Visão do aluno <small class="discreto" style="font-weight:400;font-size:11px">4 abas · 26 telas</small></h2>
+  <div class="mapa mapa--4">
+    <div class="aba"><b>Início<small>"o que faço hoje?"</small></b><ul>
+      <li>Início</li><li class="sub">Treino em andamento</li><li class="sub">Resumo do treino</li><li>Aviso: treino da academia</li></ul></div>
+    <div class="aba"><b>Treinos<small>meus, prontos, histórico</small></b><ul>
+      <li>Treinos (meus · prontos)</li><li class="sub">Novo treino</li><li class="sub">Editar treino</li><li class="sub">Escolher exercício</li><li class="sub">Séries do exercício</li><li>Treinos prontos</li><li class="sub">Ver treino pronto</li><li>Histórico</li><li class="sub">Treino realizado</li></ul></div>
+    <div class="aba aba--plus"><b>Plus<small>a casa do plano pago</small></b><ul>
+      <li>Apresentação (sem Plus)</li><li class="sub">Pagamento <span class="decidir">decidir</span></li><li>Plus ativo</li><li class="sub">Dieta do dia</li><li class="sub">Plano (ver)</li><li class="sub">Conversa <span class="decidir">decidir</span></li><li class="sub">Gerenciar assinatura</li></ul></div>
+    <div class="aba"><b>Perfil<small>conta e dados</small></b><ul>
+      <li>Perfil</li><li class="sub">Meus dados</li><li class="sub">Quem pode ver meus dados</li><li class="sub">Avisos</li><li class="sub">Conta</li><li class="sub">Sua academia</li></ul></div>
+  </div>
+  <p class="pequeno discreto">Por que a alimentação mora dentro do Plus e não numa aba própria: ela só existe com o Plus. Uma aba "Dieta" para quem não assina seria uma aba de anúncio. O acesso do dia a dia é o cartão "Dieta de hoje" no Início. (Decidido em 10/10/2026; antes eram 5 abas.)</p>
+
+  <h2>Visão da academia <small class="discreto" style="font-weight:400;font-size:11px">até 5 abas, conforme o papel · 20 telas</small></h2>
+  <div class="mapa mapa--5">
+    <div class="aba"><b>Alunos<small>todos</small></b><ul>
+      <li>Alunos</li><li class="sub">Perfil do aluno</li><li class="sub">Montar treino para aluno</li><li class="sub">Editar treino (academia)</li><li>Vincular aluno</li></ul></div>
+    <div class="aba"><b>Treinos<small>todos</small></b><ul>
+      <li>Treinos prontos</li><li class="sub">Editar treino pronto</li><li>Exercícios da academia</li><li class="sub">Editar exercício</li></ul></div>
+    <div class="aba aba--plus"><b>Plus<small>só personal</small></b><ul>
+      <li>Meus alunos Plus</li><li class="sub">Aluno Plus</li><li class="sub">Editar plano</li><li class="sub">Item da refeição <span class="decidir">decidir</span></li><li class="sub">Conversa <span class="decidir">decidir</span></li></ul></div>
+    <div class="aba"><b>Academia<small>só dono</small></b><ul>
+      <li>Números</li><li>Equipe</li><li>Alunos Plus (gestão)</li><li>Configurações</li><li class="sub">Gestão ampliada <span class="decidir">decidir</span></li></ul></div>
+    <div class="aba"><b>Perfil<small>todos</small></b><ul><li>Perfil (academia)</li></ul></div>
+  </div>
+  <p class="pequeno discreto">Funcionário vê 3 abas; personal, 4; dono, 4 (ou 5, se também é personal). Quatro telas são as mesmas nas duas visões e serão desenhadas uma vez só: Editar treino, Escolher exercício, Séries do exercício e Conversa.</p>
+</section>
+
+<section class="parte" id="marca">
+  <p class="parte__olho">Parte 8</p>
+  <h1 class="parte__titulo">Marca: a lousa da sala</h1>
+  <p class="parte__lide">Toda academia tem um quadro branco onde o instrutor escreve o treino, e um caderno de carga que o aluno carrega. O Academia Plus é a versão de bolso dessas duas coisas: fundo limpo, texto firme, número grande que se lê de longe e uma cor só para o que é da casa.</p>
+
+  <h2>A frase, para cada lado</h2>
+  <div class="grade grade--2">
+    <div class="cartela"><h4>Para o aluno</h4><p>"A sua academia no bolso: o treino de hoje, montado para você, e alguém de verdade olhando."</p></div>
+    <div class="cartela"><h4>Para a academia</h4><p>"O que a sua academia oferece a mais, sem contratar ninguém a mais: cada aluno com treino na mão e, no Plus, um personal acompanhando pelo app."</p></div>
+  </div>
+
+  <h2>O que a marca não é</h2>
+  <ul>
+    <li><strong>Não é marca de desempenho</strong>: nada de "sem limites", "supere-se", raio, fogo.</li>
+    <li><strong>Não é marca de emagrecimento</strong>: nunca promete perder peso, nunca mostra antes e depois.</li>
+    <li><strong>Não é marca de tecnologia</strong>: ninguém abre o app por causa do app; abre por causa da academia.</li>
+    <li><strong>Não é marca de luxo</strong>: o Plus é "a mais", não "exclusivo".</li>
+  </ul>
+
+  <h2>Tom de voz: um bom instrutor de sala</h2>
+  <p>Sabe o que você veio fazer, fala pouco, não julga e aparece quando precisa. Diz o que fazer, não o que sentir. Celebra o feito, não o corpo. Erro é do sistema, não da pessoa.</p>
+  <div class="par">
+    <div class="cab nao">Assim não</div><div class="cab sim">Assim sim</div>
+    <div class="nao">"Bora treinar! 💪"</div><div class="sim">"Começar treino"</div>
+    <div class="nao">"INCRÍVEL! Mais um passo rumo ao corpo dos sonhos!"</div><div class="sim">"Treino fechado. 7 exercícios, 42 minutos. Agachamento subiu para 60 kg."</div>
+    <div class="nao">"Erro 503: falha na comunicação com o servidor."</div><div class="sim">"Sem conexão. O treino está salvo no celular e sobe quando a internet voltar."</div>
+    <div class="nao">"Desbloqueie TODO o potencial! Assine o Plus AGORA!"</div><div class="sim">"Quer alguém montando e ajustando seu treino? No Plus, um personal da academia acompanha você pelo app." · Saber mais · Agora não</div>
+    <div class="nao">"Você não treinou hoje! Não deixe a preguiça vencer!"</div><div class="sim">"Treino B está pronto quando você quiser. A academia fecha às 22h."</div>
+    <div class="nao">"Usuários inativos: 14"</div><div class="sim">"14 alunos sem treino há mais de 10 dias"</div>
+  </div>
+  <p class="pequeno discreto">Vocabulário fixo: treino (não "workout"), série (não "set"), carga para o aparelho e peso só para o corpo, personal (não "coach"), aluno (não "usuário"). Na tela, a proposta é dizer "plano alimentar" e deixar "dieta" para quando o aluno usar a palavra <span class="decidir">decidir</span>.</p>
+</section>
+
+<section class="parte" id="marca-cor">
+  <p class="parte__olho">Parte 8 · continuação</p>
+  <h1 class="parte__titulo">Cores e letras</h1>
+  <p class="parte__lide">Duas cores com papel fixo. O verde é a marca: botão, aba ativa, link, logo; desde 10/10 ele ficou <strong>mais vivo</strong>, a pedido do Alex (no escuro, verde-água luminoso, nunca verde-limão). Dourado é o plano pago, e só ele. Se o dourado aparecer num botão comum, a regra foi quebrada.</p>
+
+  <h2>Tema claro</h2>
+  <div class="paleta">
+    <div><i style="background:#007761"></i><b>marca</b><span>#007761 · 5,5:1</span></div>
+    <div><i style="background:#39F0CD"></i><b>verde vivo</b><span>#39F0CD · preenchimento</span></div>
+    <div><i style="background:#EAB444"></i><b>plus</b><span>#EAB444 · preenchimento</span></div>
+    <div><i style="background:#9A6100"></i><b>"Plus" em texto</b><span>#9A6100 · 5,1:1</span></div>
+    <div><i style="background:#131D1C"></i><b>texto</b><span>#131D1C · 17,2:1</span></div>
+    <div><i style="background:#4A5958"></i><b>texto secundário</b><span>#4A5958 · 7,3:1</span></div>
+    <div><i style="background:#F4F8F7"></i><b>fundo</b><span>#F4F8F7</span></div>
+    <div><i style="background:#D6F5EE"></i><b>marca suave</b><span>#D6F5EE</span></div>
+    <div><i style="background:#0A7E3A"></i><b>sucesso</b><span>#0A7E3A · 5,2:1</span></div>
+    <div><i style="background:#B74D00"></i><b>atenção</b><span>#B74D00 · 5,2:1</span></div>
+    <div><i style="background:#C21725"></i><b>erro</b><span>#C21725 · 6,1:1</span></div>
+  </div>
+  <h2>Tema escuro</h2>
+  <div class="paleta">
+    <div><i style="background:#39F0CD"></i><b>marca = verde vivo</b><span>#39F0CD · 12,2:1</span></div>
+    <div><i style="background:#F8C153"></i><b>plus</b><span>#F8C153 · 10,7:1</span></div>
+    <div><i style="background:#E9F2F1"></i><b>texto</b><span>#E9F2F1 · 15,5:1</span></div>
+    <div><i style="background:#121A19"></i><b>superfície</b><span>#121A19</span></div>
+    <div><i style="background:#070C0C"></i><b>fundo</b><span>#070C0C</span></div>
+  </div>
+  <p class="pequeno discreto">O número ao lado é o contraste medido contra o fundo do cartão (branco no claro, #121A19 no escuro). O verde vivo é preenchimento: com #00221A por cima dá 11,7:1; no claro ele nunca é texto (1,45:1 sobre branco). O mínimo é 4,5:1 para texto e 3:1 para ícone e texto grande. Todos os pares de texto passam nos dois temas.</p>
+
+  <h2>Por que verde e dourado</h2>
+  <ul>
+    <li><strong>Não é a cor de ninguém no segmento.</strong> Amarelo com preto, azul-royal, vermelho e verde-neon já são de redes de academia e de apps de treino.</li>
+    <li><strong>Calma e séria sem ser fria.</strong> Combina com "acompanhamento". Azul diria "tecnologia"; laranja, "promoção"; roxo, "premium".</li>
+    <li><strong>O dourado é de medalha de participação, não de ouro.</strong> O Plus é "a mais", não "o melhor".</li>
+  </ul>
+
+  <h2>Letras</h2>
+  <div class="grade grade--2">
+    <div class="cartela"><h4 style="font-size:20px;font-weight:700">Figtree</h4><p>Para toda a interface. Letras abertas que leem bem em tela com reflexo, acentos do português bem desenhados, números que não "dançam" na coluna. Gratuita (licença aberta).</p></div>
+    <div class="cartela"><h4 style="font:800 30px/1 var(--numero);margin-bottom:6px">42,5 kg · 01:30</h4><p><strong>Archivo</strong>, só para o número lido a um metro: carga, repetição, cronômetro. Desenho de placar de ginásio. Nunca em frase, nunca abaixo de 20 px (a linha de série).</p></div>
+  </div>
+  <p>O <strong>selo do plano</strong> é uma pílula dourada com a palavra <span class="selo-plus">Plus</span>, sem ícone, sem o sinal "+", sem brilho. Marca o que é do plano, uma vez por tela. O "+" do logo é sempre verde; os dois nunca se encostam.</p>
+</section>
+
+<section class="parte" id="marca-logo">
+  <p class="parte__olho">Parte 8 · continuação</p>
+  <h1 class="parte__titulo">O logo: "Barra e mais, robusta"</h1>
+  <p class="parte__lide">Em 11/10 o Alex pediu um logo "condizente de academia". Saíram três variações do caminho A; ficou a primeira. É um "+" de quatro braços com pontas redondas: o braço horizontal é a barra, com uma anilha de cada lado e a ponta passando; o vertical é o traço mais grosso (160 contra 128) e passa muito das anilhas (832 contra 384). O nome é "Academia Plus" em Archivo ExtraBold, em contorno.</p>
+
+  <figure class="logo-fig"><img style="max-height:40mm" src="_capturas/logo-selo-claro.png" alt="A versão final do logo, no claro, no escuro, em uma cor e como ícone do app"><figcaption><b>A versão final.</b> <code>#007761</code> no claro e <code>#39F0CD</code> no escuro; o dourado fica só no selo Plus, e os dois nunca se encostam. O ícone do iPhone, o adaptativo do Android, o ícone de notificação e a abertura saíram do mesmo desenho, em <code>app/recursos/</code>.</figcaption></figure>
+  <figure class="logo-fig"><img style="max-height:36mm" src="_capturas/logo-a-claro.png" alt="Variação 1, barra e mais, a escolhida"><figcaption><b>1 · Barra e mais, robusta (escolhida).</b> Em 16 e 24 px lê como "+"; a partir de 48 px aparecem a barra e as anilhas, e o desenho diz "academia". Sem o braço vertical sobraria uma barra, nunca o haltere em degrau dos ícones genéricos das referências 03 e 04.</figcaption></figure>
+
+  <h2>As duas que ficaram de fora, e por quê</h2>
+  <div class="grade grade--2">
+    <figure class="logo-fig" style="margin:0"><img src="_capturas/logo-b-claro.png" alt="Variação 2, anilha com o mais vazado"><figcaption><b>2 · Anilha com o "+" vazado.</b> Boa de avatar redondo, mas em 16 px vira um "+" branco num círculo: cruz de farmácia ou o botão "adicionar".</figcaption></figure>
+    <figure class="logo-fig" style="margin:0"><img src="_capturas/logo-c-claro.png" alt="Variação 3, monograma A mais"><figcaption><b>3 · Monograma A+.</b> Em 24 px o "+" some e sobra um "A" borrado; e "A+" lembra nota escolar, o que roça na regra de não avaliar a pessoa.</figcaption></figure>
+  </div>
+  <table class="tabela-compacta">
+    <thead><tr><th></th><th>1 · Barra e mais</th><th>2 · Anilha</th><th>3 · A+</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Em 16 e 24 px</td><td>um "+" com dois blocos</td><td>cruz num círculo</td><td>um "A" borrado</td></tr>
+      <tr><td class="chave">Diz "academia"</td><td>sim, a partir de 48 px</td><td>sim</td><td>não</td></tr>
+      <tr><td class="chave">Risco de confusão</td><td>baixo (não é o haltere genérico)</td><td>farmácia, "adicionar"</td><td>nota escolar</td></tr>
+      <tr><td class="chave">Resultado</td><td><strong>escolhida</strong></td><td>fora</td><td>fora</td></tr>
+    </tbody>
+  </table>
+  <p class="pequeno discreto">Comparativo em <code>logo/comparativo.html</code>; os caminhos do P04 em <code>logo/historico-p04/</code>. Em aberto, sem pressa: o ícone escuro do iOS 18 <span class="decidir">decidir</span>.</p>
+</section>
+
+<section class="parte" id="referencias">
+  <p class="parte__olho">Parte 9 · o pedido do Alex</p>
+  <h1 class="parte__titulo">As referências e o que veio delas</h1>
+  <p class="parte__lide">O Alex mandou seis telas de apps de academia como exemplo de linguagem, não de conteúdo: nada se copiou (layout exato, ícone, foto ou texto). O que ele disse que gostou: o jeito de apresentar e os efeitos, principalmente no escuro; os painéis de vidro sobre a foto; a abertura com a cor da marca; e as duas portas na entrada.</p>
+  <div class="grade grade--3">
+    <figure><img src="_capturas/ref-01-escuro-calendario-cronometro-lista.jpg" alt=""><figcaption>01 · escuro, cronômetro, anel por exercício, "deslizar para começar"</figcaption></figure>
+    <figure><img src="_capturas/ref-02-entrada-vidro-sobre-foto.jpg" alt=""><figcaption>02 · entrada em vidro sobre a mesma foto desfocada</figcaption></figure>
+    <figure><img src="_capturas/ref-05-explorar-comemoracao-exercicio.jpg" alt=""><figcaption>05 · o "15" sobre a foto, a comemoração em cor cheia, o + central</figcaption></figure>
+  </div>
+  <div class="grade grade--2">
+    <div class="caixa caixa--regra"><span class="caixa__rotulo">O que veio para o app</span><p>Foto grande e escura com o texto por cima; vidro com camada de contraste; <strong>um</strong> número grande por tela; verde da marca mais vivo (no escuro, verde-água luminoso, não verde-limão); pílulas; anel por exercício; abertura com a cor da marca; duas portas ("Sou aluno" e "Sou da academia"); comemoração em cor cheia. O claro tem a mesma linguagem, com vidro claro sobre a mesma foto.</p></div>
+    <div class="caixa caixa--atencao"><span class="caixa__rotulo">O que ficou de fora, de propósito</span><p><strong>Corpo ideal</strong> (homem sem camisa definido, pose de revista): as pessoas são as reais e diversas do banco de imagens, e o clima escuro vem do tratamento da foto. <strong>Calorias como placar</strong> ("278 kcal queimadas"): kcal só aparece na dieta do Plus. <strong>Desafio com amigos e ranking</strong>: fora da v1. <strong>Vidro sem cuidado</strong>: texto sobre vidro é medido contra o pior pixel da foto.</p></div>
+  </div>
+  <h2>As regras que não mudaram</h2>
+  <table class="tabela-compacta">
+    <tbody>
+      <tr><td class="chave">Toque</td><td>Toda área tocável tem pelo menos 48 × 48 (44 pt é o piso). O desenho pode ser menor; a área de toque, não.</td></tr>
+      <tr><td class="chave">Contraste</td><td>4,5:1 em texto e 3:1 em texto grande e ícone, <strong>medido</strong>. Sobre foto ou vidro, contra o pior pixel de fundo, com uma camada de contraste por baixo.</td></tr>
+      <tr><td class="chave">Transparência e movimento</td><td>Com "Reduzir transparência", o vidro vira superfície sólida. Com "Reduzir movimento", todo efeito vira um esmaecer de 0,16 s.</td></tr>
+      <tr><td class="chave">Tom</td><td>Nada de "corpo ideal", kcal como placar ou ranking. Dado de saúde só para o aluno e quem ele autoriza.</td></tr>
+      <tr><td class="chave">Aparelhos</td><td>As mesmas telas no iPhone SE, 16 e 16 Pro Max e no Android de 390, com a área segura de cada um.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="parte" id="design">
+  <p class="parte__olho">Parte 9</p>
+  <h1 class="parte__titulo">Sistema de design: proporção planejada</h1>
+  <p class="parte__lide">O cenário continua o mesmo: o aluno em pé, entre duas séries, com a mão suada e o celular numa mão só. O que mudou em 10/10 foi a proporção. A primeira versão das referências aplicou "número grande, alvo grande" em tudo, e o Alex reprovou: a tela ficava com cara de zoom e sem hierarquia. A regra nova é <strong>legível a um braço de distância sem gritar</strong>.</p>
+
+  <h2>Sete regras que decidem qualquer dúvida de tela</h2>
+  <div class="grade grade--2">
+    <div class="cartela"><span class="n">1</span><h4>Dedo, não cursor; desenho não é área de toque</h4><p>Toda área tocável tem 48 × 48. O desenho do botão é menor quando precisa (40, 36, 32), e a área invisível em volta completa os 48.</p></div>
+    <div class="cartela"><span class="n">2</span><h4>Proporção planejada</h4><p>Escala fechada de razão 1,25 (13 · 16 · 20 · 25 · 31 · 39 · 49 · 61) e <strong>um herói por tela</strong>. Número e unidade em no máximo 2,5 : 1.</p></div>
+    <div class="cartela"><span class="n">3</span><h4>Um gesto, uma ação</h4><p>Marcar série é um toque. Nada de segurar ou abrir menu para o que se faz 20 vezes por treino.</p></div>
+    <div class="cartela"><span class="n">4</span><h4>Contraste para tela com reflexo</h4><p>Texto em 4,5:1 nos dois temas, medido contra o pior pixel sobre foto ou vidro. Nenhuma informação só pela cor.</p></div>
+    <div class="cartela"><span class="n">5</span><h4>Uma mão alcança</h4><p>O que se usa sempre fica na metade de baixo: abas, botão principal, folha que sobe.</p></div>
+    <div class="cartela"><span class="n">6</span><h4>Erro é raro e reversível</h4><p>Apagar pede confirmação; marcar série oferece "Desfazer" por 5 segundos.</p></div>
+    <div class="cartela" style="grid-column:1 / -1"><span class="n">7</span><h4>Um app, duas visões</h4><p>Aluno e academia usam as mesmas peças. Muda o conteúdo, as abas e a densidade. Quem troca de visão não reaprende nada.</p></div>
+  </div>
+
+  <h2>As medidas (tokens 1.8.0)</h2>
+  <table class="tabela-compacta">
+    <tbody>
+      <tr><td class="chave">Letra</td><td>Figtree no texto, Archivo nos números, só na escala <strong>13 · 16 · 20 · 25 · 31 · 39 · 49 · 61</strong>: legenda 13 · corpo 16 · subtítulo 20 · título de tela 25 (o grande do iOS, 31) · número da linha de série 20 · valor sendo editado 25 · número herói 49 · <strong>61 só no modo treino e no Cronômetro</strong> (era 112 e 96).</td></tr>
+      <tr><td class="chave">Controles (desenho)</td><td>botão primário 48 (texto 16) · secundário 40 · botão-ícone 40 · marcar série 40 · +/− 36 · chip 32 · barra de abas 56 + área segura · deslizar 56 · <strong>nada interativo passa de 56</strong>.</td></tr>
+      <tr><td class="chave">Proporção</td><td>botão com 2,5× a 3× o texto · ícone no botão com 0,5× a 0,6× da altura · foto herói em no máximo 45 % da altura útil (340 no iPhone 16) · cartões na grade de 8.</td></tr>
+      <tr><td class="chave">Cor</td><td>verde vivo <code>#39F0CD</code> só como preenchimento, com <code>#00221A</code> por cima (11,7:1); no claro, texto e traço em <code>#007761</code> (5,5:1) · dourado só no Plus · escuro quase preto <code>#070C0C</code>.</td></tr>
+      <tr><td class="chave">Vidro e foto</td><td>desfoque 24, borda clara de 1 px, camada de contraste, cor sólida para "Reduzir transparência"; a variante "vidro escuro" vale nos dois temas sobre foto escura · foto escurecida a 0,72 com degradê e luz lateral, igual nos dois temas.</td></tr>
+      <tr><td class="chave">Espaço e cantos</td><td>de 4 em 4 · cartão 24 · capa 28 · vidro 24 · campo 16 · botão e chip em pílula.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="parte" id="proporcao">
+  <p class="parte__olho">Parte 9 · proporção</p>
+  <h1 class="parte__titulo">Antes e depois da regra de proporção</h1>
+  <p class="parte__lide">As três telas que mais mudaram, no iPhone 16 e no mesmo tema, antes (tokens 1.6.0) e depois (1.8.0). O herói de cada uma ficou um só: o "12" de repetições no treino, o treino de hoje no Início. O resto desceu na escala.</p>
+  <div class="celulares celulares--antes-depois">
+    <figure><img src="_capturas/antes-treino-escuro.png" alt=""><figcaption><b>Antes</b> · "12" de 112, séries de 40, botões de 56</figcaption></figure>
+    <figure><img src="_capturas/antes-modo-treino.png" alt=""><figcaption><b>Antes</b> · modo treino com "12" de 112 e título de 28</figcaption></figure>
+    <figure><img src="_capturas/antes-inicio-claro.png" alt=""><figcaption><b>Antes</b> · Início com o "2" da semana disputando com o treino</figcaption></figure>
+    <figure><img src="_capturas/depois-treino-escuro.png" alt=""><figcaption><b>Depois</b> · "12" de 61 com a unidade de 25, série de 20, marcar 40</figcaption></figure>
+    <figure><img src="_capturas/depois-modo-treino.png" alt=""><figcaption><b>Depois</b> · 61 e 25; o painel cabe sem empurrar o "Próximo"</figcaption></figure>
+    <figure><img src="_capturas/depois-inicio-claro.png" alt=""><figcaption><b>Depois</b> · o treino de hoje é o herói; a semana desce para 31</figcaption></figure>
+  </div>
+  <p class="pequeno discreto">A auditoria automática (<code>auditar.mjs</code>) passou a reprovar texto fora da escala, mais de um texto de 49 ou mais na mesma tela, controle com mais de 56 de desenho e área de toque efetiva abaixo de 44.</p>
+</section>
+
+<section class="parte" id="componentes">
+  <p class="parte__olho">Parte 9 · continuação</p>
+  <h1 class="parte__titulo">Componentes</h1>
+  <p class="parte__lide">Vinte e uma peças, cada uma com seus estados (normal, pressionado, desabilitado, erro, carregando). As mesmas peças servem às duas visões. Abaixo, capturas reais de algumas delas no protótipo, já com a proporção 1.8.0.</p>
+  <div class="caixa caixa--ok"><span class="caixa__rotulo">Sobre as capturas</span><p>O protótipo está na linguagem das referências do Alex (Parte 9, início), com a marca, os ícones próprios, as ilustrações de exercício e a proporção revista. As medidas de cada peça estão em <code>02-COMPONENTES.md</code>.</p></div>
+  <div class="componentes">
+    <figure><img src="_capturas/comp-03-campo-numerico-claro.png" alt=""><figcaption><b>Campo +/−</b> da carga e da repetição.</figcaption></figure>
+    <figure><img src="_capturas/comp-06-linha-serie-claro.png" alt=""><figcaption><b>Linha de série</b>: a fazer, feita, atual.</figcaption></figure>
+    <figure><img src="_capturas/comp-07-cronometro-claro.png" alt=""><figcaption><b>Cronômetro de descanso.</b></figcaption></figure>
+    <figure><img src="_capturas/comp-09-cartao-treino-pronto-claro.png" alt=""><figcaption><b>Cartão de treino pronto.</b></figcaption></figure>
+    <figure><img src="_capturas/comp-10-cartao-aluno-claro.png" alt=""><figcaption><b>Cartão de aluno</b> (academia, compacto).</figcaption></figure>
+    <figure><img src="_capturas/comp-12-lista-refeicao-claro.png" alt=""><figcaption><b>Lista de refeição</b> (Plus).</figcaption></figure>
+    <figure><img src="_capturas/comp-11-selo-plus-claro.png" alt=""><figcaption><b>Selo Plus.</b></figcaption><img src="_capturas/comp-13-barra-abas-claro.png" alt="" style="margin-top:10px"><figcaption><b>Barra de abas</b>, 4 ou 5.</figcaption></figure>
+    <figure><img src="_capturas/comp-17-toast-claro.png" alt=""><figcaption><b>Aviso rápido</b> com "Desfazer".</figcaption></figure>
+    <figure><img src="_capturas/comp-04-selecao-claro.png" alt=""><figcaption><b>Seleção e chips.</b></figcaption><img src="_capturas/comp-14-cabecalho-claro.png" alt="" style="margin-top:10px"><figcaption><b>Cabeçalho.</b></figcaption></figure>
+    <figure><img src="_capturas/comp-02-campo-texto-claro.png" alt=""><figcaption><b>Campo de texto</b>, com erro.</figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="telas">
+  <p class="parte__olho">Parte 9 · continuação</p>
+  <h1 class="parte__titulo">As seis telas, tema claro</h1>
+  <p class="parte__lide">As seis telas do sistema, na moldura do iPhone 16 (393 × 852, com Dynamic Island; o mesmo desenho roda no Android): foto grande e escura com o texto por cima, vidro sobre a foto, <strong>um</strong> número em destaque por tela e o verde vivo só onde há ação.</p>
+  <div class="celulares celulares--3 celulares--seis">
+    <figure><img src="_capturas/tela-1-treino-do-dia-claro.jpg" alt=""><figcaption><b>Treino em andamento</b> · aluno. O supino inclinado de verdade, o "12" de 61 como herói, um anel por exercício e as ilustrações na lista.</figcaption></figure>
+    <figure><img src="_capturas/tela-2-treinos-prontos-claro.jpg" alt=""><figcaption><b>Treinos prontos</b> · aluno. A capa mostra o foco do treino (supino no ABC) e "deslize para começar".</figcaption></figure>
+    <figure><img src="_capturas/tela-5-cronometro-claro.jpg" alt=""><figcaption><b>Cronômetro</b> · intervalado. O mostrador de 61 é o herói; o nome da fase está sempre escrito.</figcaption></figure>
+    <figure><img src="_capturas/tela-3-perfil-do-aluno-claro.jpg" alt=""><figcaption><b>Perfil do aluno</b> · academia. Ilha escura sem foto do corpo, só as iniciais.</figcaption></figure>
+    <figure><img src="_capturas/tela-4-dieta-de-hoje-claro.jpg" alt=""><figcaption><b>Dieta de hoje</b> · aluno Plus. Item comido esmaecido e com check; sem kcal como placar.</figcaption></figure>
+    <figure><img src="_capturas/tela-6-convite-plus-claro.jpg" alt=""><figcaption><b>Convite ao Plus</b> · aluno sem Plus. O único botão dourado do app; a aba Plus usa o "+" da marca.</figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="telas-escuro">
+  <p class="parte__olho">Parte 9 · continuação</p>
+  <h1 class="parte__titulo">Tema escuro</h1>
+  <p class="parte__lide">O app segue o tema do celular, e a pessoa pode fixar um no Perfil. A foto é a mesma nos dois temas; o que muda é o vidro (claro ou escuro) e o verde, que no escuro vira o verde-água luminoso das referências.</p>
+  <div class="celulares celulares--3 celulares--seis">
+    <figure><img src="_capturas/tela-1-treino-do-dia-escuro.jpg" alt=""><figcaption><b>Treino em andamento</b></figcaption></figure>
+    <figure><img src="_capturas/tela-2-treinos-prontos-escuro.jpg" alt=""><figcaption><b>Treinos prontos</b></figcaption></figure>
+    <figure><img src="_capturas/tela-5-cronometro-escuro.jpg" alt=""><figcaption><b>Cronômetro</b></figcaption></figure>
+    <figure><img src="_capturas/tela-3-perfil-do-aluno-escuro.jpg" alt=""><figcaption><b>Perfil do aluno</b></figcaption></figure>
+    <figure><img src="_capturas/tela-4-dieta-de-hoje-escuro.jpg" alt=""><figcaption><b>Dieta de hoje</b></figcaption></figure>
+    <figure><img src="_capturas/tela-6-convite-plus-escuro.jpg" alt=""><figcaption><b>Convite ao Plus</b></figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="visao-acessibilidade">
+  <p class="parte__olho">Parte 9 · continuação</p>
+  <h1 class="parte__titulo">Visão e acessibilidade</h1>
+  <h2>As cores da marca, aplicadas</h2>
+  <p>Os papéis de cor do sistema (tokens 1.8.0): verde vivo como preenchimento, verde da marca no texto do claro, dourado só no Plus, escuro quase preto. Em cima o claro, embaixo o escuro.</p>
+  <figure><img src="_capturas/tokens-paleta-claro.png" alt="" style="width:100%"></figure>
+  <figure><img src="_capturas/tokens-paleta-escuro.png" alt="" style="width:100%;margin-top:6px"></figure>
+  <h2>Como o app diz em que visão a pessoa está</h2>
+  <p>Sem parecer dois apps. Na visão da academia, o cabeçalho traz o nome da academia e um botão de troca ("Academia"), e a barra de abas muda (Alunos, Treinos, Plus, Academia, Perfil). Cores, botões, letras e gestos continuam iguais.</p>
+  <h2>Acessibilidade</h2>
+  <ul>
+    <li><strong>Leitor de tela</strong> (TalkBack e VoiceOver): o + da carga diz "Aumentar carga" e, depois do toque, o novo valor ("30 quilos"); o cronômetro não fala a cada segundo, só avisa aos 30 e aos 10 segundos restantes.</li>
+    <li><strong>Reduzir transparência</strong>: o vidro vira superfície sólida, sem mudar de lugar nem de tamanho.</li>
+    <li><strong>Movimento reduzido</strong>: se o celular pede, nada desliza, cresce ou brilha; todo efeito vira um esmaecer curto (0,16 s). O cronômetro passa a pular de segundo em segundo. Nada pisca nem pulsa em nenhum caso.</li>
+    <li><strong>Cor nunca sozinha</strong>: série feita tem cor e ícone; Plus tem cor e a palavra; a fase do cronômetro tem cor e o nome.</li>
+    <li><strong>Contraste medido</strong> nas cores reais da marca, nos dois temas: texto 4,5:1 ou mais, ícone 3:1 ou mais. Com foto ou vidro atrás, a medida é contra o <strong>pior pixel</strong> do fundo. A medição automática passa pelas três páginas do protótipo em todas as combinações de tela, tema, letra, aparelho e transparência e termina com <strong>0 problemas</strong>.</li>
+  </ul>
+</section>
+
+
+<section class="parte" id="entrada">
+  <p class="parte__olho">Parte 9 · abertura e entrada</p>
+  <h1 class="parte__titulo">A abertura e as duas portas</h1>
+  <p class="parte__lide">Ao abrir, a cor da marca com o símbolo; depois, a entrada com duas portas: <strong>"Sou aluno"</strong> e <strong>"Sou da academia"</strong>. A porta escolhe só o caminho do cadastro; a visão continua vindo do vínculo, e quem dá o papel na academia é sempre o dono. Tudo em vidro sobre a mesma foto, nítida nas boas-vindas e desfocada nos passos (ref. 02).</p>
+  <div class="celulares celulares--4">
+    <figure><img src="_capturas/entrada-01-abertura-claro.jpg" alt=""><figcaption><b>Abertura</b> · o que o <code>expo-splash-screen</code> mostra: <code>#007761</code>, a mesma cor do ícone, com o símbolo branco (5,5:1).</figcaption></figure>
+    <figure><img src="_capturas/entrada-02-boas-vindas-claro.jpg" alt=""><figcaption><b>Boas-vindas</b> · o título de 39 é o herói; as portas em vidro.</figcaption></figure>
+    <figure><img src="_capturas/entrada-03-como-entrar-claro.jpg" alt=""><figcaption><b>Como entrar</b> · Apple e Google com o mesmo destaque (diretriz 4.8) e e-mail.</figcaption></figure>
+    <figure><img src="_capturas/entrada-07-sua-academia-claro.jpg" alt=""><figcaption><b>Sua academia</b> · o código é opcional; o treino livre funciona sem ele.</figcaption></figure>
+    <figure><img src="_capturas/entrada-09-dias-claro.jpg" alt=""><figcaption><b>Dias por semana</b> · opcional, com "Pular".</figcaption></figure>
+    <figure><img src="_capturas/entrada-10-quem-pode-ver-claro.jpg" alt=""><figcaption><b>Quem pode ver</b> · o aluno decide se a academia vê os dados de saúde.</figcaption></figure>
+    <figure><img src="_capturas/entrada-11-equipe-entrar-claro.jpg" alt=""><figcaption><b>Sou da academia</b> · convite ou código da equipe, ou abrir a academia.</figcaption></figure>
+    <figure><img src="_capturas/entrada-13-pendente-claro.jpg" alt=""><figcaption><b>Pedido pendente</b> · até o dono confirmar e escolher o papel.</figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="entrada-escuro">
+  <p class="parte__olho">Parte 9 · abertura e entrada</p>
+  <h1 class="parte__titulo">A entrada no escuro</h1>
+  <p class="parte__lide">No escuro a abertura não usa a marca cheia, que ofusca no quarto escuro às 6 da manhã: é o verde profundo com o símbolo em verde vivo, o efeito "neon" das referências. Na entrada, a foto é a própria tela: no claro ela clareia e o texto fica escuro; no escuro, o tratamento é o das capas.</p>
+  <div class="celulares celulares--4">
+    <figure><img src="_capturas/entrada-01-abertura-escuro.jpg" alt=""><figcaption><b>Abertura</b> · <code>#0A332C</code> com o símbolo <code>#39F0CD</code>.</figcaption></figure>
+    <figure><img src="_capturas/entrada-02-boas-vindas-escuro.jpg" alt=""><figcaption><b>Boas-vindas</b></figcaption></figure>
+    <figure><img src="_capturas/entrada-03-como-entrar-escuro.jpg" alt=""><figcaption><b>Como entrar</b></figcaption></figure>
+    <figure><img src="_capturas/entrada-09-dias-escuro.jpg" alt=""><figcaption><b>Dias por semana</b></figcaption></figure>
+  </div>
+  <div class="caixa caixa--decisao"><span class="caixa__rotulo">Em aberto · <span class="decidir">decidir</span></span><p>Uma academia ou várias (a tela "Vou abrir minha academia" só existe se forem várias); os nomes dos objetivos; perguntas da entrada uma por tela ou a tela única "Sobre você" do F1. O fluxo inteiro está em <code>01-especificacao/02-FLUXOS.md</code>, F13.</p></div>
+</section>
+
+<section class="parte" id="novas">
+  <p class="parte__olho">Parte 9 · telas novas</p>
+  <h1 class="parte__titulo">Início, Evolução, modo treino e o painel do dono</h1>
+  <p class="parte__lide">Cinco telas novas em sete quadros, na linguagem das referências e já com a proporção 1.8.0. A aluna de exemplo é a Ana, Plus na Academia do Marcos, numa quarta-feira; os números batem entre si de uma tela para outra.</p>
+  <div class="celulares celulares--4">
+    <figure><img src="_capturas/novas-1-inicio-claro.jpg" alt=""><figcaption><b>Início</b> · saudação, aviso da academia, a semana em bolinhas e o treino de hoje (o herói) com "Começar".</figcaption></figure>
+    <figure><img src="_capturas/novas-2-evolucao-claro.jpg" alt=""><figcaption><b>Evolução</b> · "60 kg" é o herói; carga em linha, mapa de dias, barras por semana, rosca por grupo.</figcaption></figure>
+    <figure><img src="_capturas/novas-3-evolucao-vazia-claro.jpg" alt=""><figcaption><b>Quem começou agora</b> · frase, botão e contorno tracejado; nenhum gráfico vazio.</figcaption></figure>
+    <figure><img src="_capturas/novas-7-painel-dono-claro.jpg" alt=""><figcaption><b>Painel do dono</b> · alunos ativos, frequência, Plus e sumidos; nenhum dado de saúde.</figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="modo-treino">
+  <p class="parte__olho">Parte 9 · telas novas</p>
+  <h1 class="parte__titulo">O modo treino e a comemoração</h1>
+  <p class="parte__lide">Ao tocar em "Começar", o app vai para o escuro em tela cheia, sem abas. O registro da série não espera nenhuma animação: o dado é gravado primeiro, depois vibra, depois o check aparece.</p>
+  <div class="celulares celulares--3">
+    <figure><img src="_capturas/novas-4-modo-treino-escuro.jpg" alt=""><figcaption><b>Modo treino</b> · ao "Começar" o app vai para o escuro em tela cheia; "12" de 61 sobre a foto, série e carga em vidro.</figcaption></figure>
+    <figure><img src="_capturas/novas-5-descanso-escuro.jpg" alt=""><figcaption><b>Descanso</b> · a mesma foto desfocada e o anel; fica laranja nos últimos 10 s.</figcaption></figure>
+    <figure><img src="_capturas/novas-6-comemoracao-claro.jpg" alt=""><figcaption><b>Comemoração</b> · cor cheia, check de 112, "Treino fechado." sem exclamação.</figcaption></figure>
+  </div>
+  <p class="pequeno discreto">Os gráficos usam uma cor só (a de progresso) e o resto em cinza, porque nenhuma paleta de quatro cores passou no teste de daltonismo; cada gráfico tem "Ver em tabela". Nada de kcal como placar, peso do corpo ou comparação com outro aluno. A barra de abas é a encostada do sistema nas três páginas.</p>
+</section>
+
+<section class="parte" id="novas-escuro">
+  <p class="parte__olho">Parte 9 · telas novas</p>
+  <h1 class="parte__titulo">As telas novas no escuro</h1>
+  <div class="celulares celulares--4">
+    <figure><img src="_capturas/novas-1-inicio-escuro.jpg" alt=""><figcaption><b>Início</b></figcaption></figure>
+    <figure><img src="_capturas/novas-2-evolucao-escuro.jpg" alt=""><figcaption><b>Evolução</b></figcaption></figure>
+    <figure><img src="_capturas/novas-6-comemoracao-escuro.jpg" alt=""><figcaption><b>Comemoração</b></figcaption></figure>
+    <figure><img src="_capturas/novas-7-painel-dono-escuro.jpg" alt=""><figcaption><b>Painel do dono</b></figcaption></figure>
+  </div>
+  <div class="caixa caixa--decisao"><span class="caixa__rotulo">Em aberto · <span class="decidir">decidir</span></span><p>"Dieta" ou "plano alimentar"; onde mora a Evolução (proposta: aba Treinos, com atalho no Início, somando ao Histórico); o botão "+" central na barra de abas (no protótipo, <code>?abas=mais</code>).</p></div>
+</section>
+
+<section class="parte" id="icones">
+  <p class="parte__olho">Parte 9 · ícones e ilustrações</p>
+  <h1 class="parte__titulo">Ícones no traço do logo</h1>
+  <p class="parte__lide">Uma biblioteca de base (Lucide, licença ISC) e os temáticos de uma biblioteca da mesma gramática (Tabler, MIT), os dois redesenhados no traço do logo (2,25, pontas redondas), mais desenho próprio nos ícones-assinatura: o "+" da marca na aba Plus, o haltere da aba Início, o anel do descanso e a anilha. Contorno é o normal; cheio só na aba ativa.</p>
+  <figure><img src="_capturas/icones-16px-claro.png" alt=""><figcaption>Todos os ícones em 16 px, o menor tamanho de uso, nos dois temas: nenhum vira borrão e não há dois iguais.</figcaption></figure>
+  <figure><img src="_capturas/icones-abas-claro.png" alt=""><figcaption>A barra de abas do aluno e da academia, com a aba ativa cheia. O haltere da aba Início foi para a <strong>horizontal</strong>, com duas anilhas em degrau: o de 45° lia como elo de corrente em 16 px.</figcaption></figure>
+</section>
+
+<section class="parte" id="ilustracoes">
+  <p class="parte__olho">Parte 9 · ícones e ilustrações</p>
+  <h1 class="parte__titulo">Ilustrações de exercício</h1>
+  <p class="parte__lide">No lugar das fotos de 48 a 64 px, que ficavam escuras e confusas: uma figura de traço sem rosto e sem músculo desenhado (nada de corpo ideal), o aparelho esmaecido e o músculo trabalhado num traço mais grosso, no verde do sistema. O nome do exercício vai sempre escrito ao lado: a cor nunca é a única informação. <strong>Miniatura de exercício é sempre a ilustração</strong>; foto de exercício só em tamanho grande e só se mostrar aquele exercício.</p>
+  <figure><img src="_capturas/icones-ilustracoes-claro.png" alt=""><figcaption>As 16 ilustrações em 48, 56 e 64 px, nos dois temas.</figcaption></figure>
+  <figure><img src="_capturas/icones-lista-claro.png" alt=""><figcaption>Na lista do treino, em 56 px.</figcaption></figure>
+  <div class="caixa caixa--atencao"><span class="caixa__rotulo">Ainda sem desenho (ícone genérico até lá)</span><p>12 exercícios do catálogo: supino sentado na máquina, flexão de braço, remada baixa, elevação lateral, agachamento sem carga, afundo, stiff com halteres, cadeira extensora, mesa flexora, corda naval, polichinelo e escalador. Os mais urgentes são a cadeira extensora, a mesa flexora e a remada baixa (4, 6 e 8 programas). O gerador acrescenta uma figura em cerca de dez linhas.</p></div>
+</section>
+
+<section class="parte" id="catalogo">
+  <p class="parte__olho">Parte 9 · treinos prontos</p>
+  <h1 class="parte__titulo">O catálogo de treinos prontos (modelo)</h1>
+  <div class="caixa caixa--risco"><span class="caixa__rotulo">Precisa de revisão por profissional com CREF</span><p>Este catálogo é um <strong>modelo</strong>, montado a partir de diretrizes públicas (ACSM 2026 e 2009, OMS 2020 e o Guia de Atividade Física para a População Brasileira, 2021). Antes de chegar a qualquer aluno, ele precisa ser <strong>revisado e assinado por um profissional de Educação Física com registro no CREF</strong> (Lei 9.696/1998). Quem revisa é <span class="decidir">decidir</span>. A academia pode editar, trocar ou apagar qualquer programa, e a carga fica em branco de propósito: quem define é o instrutor com o aluno.</p></div>
+  <p class="parte__lide">Onze programas, um por combinação de objetivo e nível, testados com as mesmas funções de treino do app (séries inteiras, descanso, duração de cada dia a ±20 % da estimativa, aquecimento primeiro). A capa de cada um mostra o foco do treino, não uma foto qualquer do objetivo.</p>
+  <div class="fotos fotos--capas">
+    <figure><img src="_capturas/img-treino-abc-hipertrofia.webp" alt=""><figcaption>ABC Hipertrofia</figcaption></figure>
+    <figure><img src="_capturas/img-treino-full-body-3x.webp" alt=""><figcaption>Full body 3×</figcaption></figure>
+    <figure><img src="_capturas/img-treino-circuito-30.webp" alt=""><figcaption>Circuito 30</figcaption></figure>
+    <figure><img src="_capturas/img-treino-folego-3x.webp" alt=""><figcaption>Fôlego 3×</figcaption></figure>
+    <figure><img src="_capturas/img-treino-forca-e-caminhada.webp" alt=""><figcaption>Força e caminhada</figcaption></figure>
+    <figure><img src="_capturas/img-treino-corpo-em-dia.webp" alt=""><figcaption>Corpo em dia</figcaption></figure>
+  </div>
+  <table class="tabela-compacta">
+    <thead><tr><th>Programa</th><th>Objetivo</th><th>Nível</th><th>Dias</th><th>Min</th><th>Divisão</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Primeiros passos</td><td>Começar a treinar · Manter</td><td>Iniciante</td><td>2</td><td>25</td><td>Corpo todo A/B</td></tr>
+      <tr><td class="chave">Full body 3×</td><td>Começar a treinar · Ganhar massa</td><td>Iniciante</td><td>3</td><td>35</td><td>Corpo todo A/B</td></tr>
+      <tr><td class="chave">ABC Hipertrofia</td><td>Ganhar massa</td><td>Intermediário</td><td>3</td><td>40</td><td>Peito e tríceps · Costas e bíceps · Pernas e ombros</td></tr>
+      <tr><td class="chave">Superior e inferior 4×</td><td>Ganhar massa</td><td>Intermediário</td><td>4</td><td>40</td><td>Superior 1/2 · Inferior 1/2</td></tr>
+      <tr><td class="chave">Empurrar, puxar e pernas</td><td>Ganhar massa</td><td>Avançado</td><td>6</td><td>45</td><td>Empurrar · Puxar · Pernas</td></tr>
+      <tr><td class="chave">Circuito 30</td><td>Perder peso · Condicionamento</td><td>Iniciante</td><td>3</td><td>30</td><td>Circuito, 3 voltas</td></tr>
+      <tr><td class="chave">Força e caminhada</td><td>Perder peso · Manter</td><td>Iniciante</td><td>3</td><td>35</td><td>A/B + 20 min de esteira ou bicicleta</td></tr>
+      <tr><td class="chave">Fôlego 3×</td><td>Condicionamento</td><td>Intermediário</td><td>3</td><td>35</td><td>HIIT 30/30 na bicicleta · Tabata na corda</td></tr>
+      <tr><td class="chave">Intervalado 25</td><td>Condicionamento · Perder peso</td><td>Intermediário</td><td>2</td><td>25</td><td>HIIT 40/20 × 8 na bicicleta</td></tr>
+      <tr><td class="chave">Corpo em dia</td><td>Manter</td><td>Intermediário</td><td>2</td><td>45</td><td>A/B + 15 min de cardio</td></tr>
+      <tr><td class="chave">Treino em casa</td><td>Começar a treinar · Condicionamento · Manter</td><td>Iniciante</td><td>3</td><td>30</td><td>Peso do corpo</td></tr>
+    </tbody>
+  </table>
+  <p class="pequeno discreto">Os nomes, durações e números dos mockups seguem este catálogo (o ABC tem 40 min e 20 exercícios; o treino em andamento é o dia A, com 7 exercícios). Detalhe e fontes: <code>01-especificacao/treinos-prontos/</code> e <code>app/dominio/catalogo/</code>. Em aberto <span class="decidir">decidir</span>: quem revisa; rótulos dos objetivos; aviso para quem informou restrição; circuito como regra do domínio.</p>
+</section>
+
+<section class="parte" id="direcao">
+  <p class="parte__olho">Parte 9 · direção de arte · histórico</p>
+  <h1 class="parte__titulo">Histórico: três jeitos de vestir o mesmo app</h1>
+  <div class="caixa caixa--atencao"><span class="caixa__rotulo">Registro, não proposta</span><p>Estas três direções vieram antes das referências do Alex e foram <strong>substituídas</strong> pela linguagem das referências (início desta parte). Elas também usavam números de 40 e botões de 56 a 64; a <strong>proporção foi revista</strong> depois (tokens 1.8.0: escala fechada, um herói por tela, desenho do controle separado da área de toque). Ficam aqui como histórico da escolha.</p></div>
+  <p class="parte__lide">O pedido foi um app "bem mais atraente e clean ao mesmo tempo, com efeitos e imagens". As três direções usam as mesmas cores, letras, telas e alvos de toque. O que muda é onde a cor e a foto aparecem, e quanto. Abaixo, o treino do dia em cada uma.</p>
+  <div class="celulares celulares--3">
+    <figure><img src="_capturas/direcao-a-treino-claro.jpg" alt=""><figcaption><b>A · Lousa clara com foto.</b> Fundo quase branco, cartão branco com sombra leve, foto em cada cartão, verde só onde há ação.</figcaption></figure>
+    <figure><img src="_capturas/direcao-b-treino-claro.jpg" alt=""><figcaption><b>B · Sala à noite.</b> Escuro esportivo; no claro, o topo vira uma faixa verde. O verde acende o que importa.</figcaption></figure>
+    <figure><img src="_capturas/direcao-c-treino-claro.jpg" alt=""><figcaption><b>C · Placar.</b> Editorial: título grande, número como manchete, régua fina no lugar do cartão.</figcaption></figure>
+  </div>
+  <table class="tabela-compacta">
+    <thead><tr><th></th><th>Ganha</th><th>Perde</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">A</td><td>A mais legível com a tela refletindo a luz da sala; a que mais usa foto; muda só valores</td><td>A mais parecida com o que já existe; se as fotos forem fracas, fica genérica</td></tr>
+      <tr><td class="chave">B</td><td>A mais "de academia" e a que mais brilha numa vitrine de loja</td><td>O brilho pede disciplina, senão vira neon; as fotos precisam de luz baixa</td></tr>
+      <tr><td class="chave">C</td><td>A mais limpa e a mais diferente dos outros apps de treino</td><td>A que menos mostra foto e a que mais ocupa altura</td></tr>
+    </tbody>
+  </table>
+  <div class="caixa caixa--ok"><span class="caixa__rotulo">Como terminou</span><p>A recomendação era a <strong>A</strong> com o placar da C e o halo da B. O Alex escolheu outra coisa: a linguagem das referências, que aproveita o escuro esportivo da B, a foto da A e o número como manchete da C, com a proporção revista.</p></div>
+</section>
+
+<section class="parte" id="direcao-2">
+  <p class="parte__olho">Parte 9 · direção de arte · histórico</p>
+  <h1 class="parte__titulo">A lista de treinos e o escuro, nas três</h1>
+  <p class="parte__lide">Em cima, a escolha de treino pronto no claro, onde a foto pesa mais. Embaixo, o treino do dia no escuro, onde a B mostra o que tem de melhor.</p>
+  <div class="celulares celulares--3 celulares--baixos">
+    <figure><img src="_capturas/direcao-a-prontos-claro.jpg" alt=""><figcaption><b>A</b> · capa de 184 px</figcaption></figure>
+    <figure><img src="_capturas/direcao-b-prontos-claro.jpg" alt=""><figcaption><b>B</b> · capa mais alta e escura</figcaption></figure>
+    <figure><img src="_capturas/direcao-c-prontos-claro.jpg" alt=""><figcaption><b>C</b> · foto tingida de verde</figcaption></figure>
+    <figure><img src="_capturas/direcao-a-treino-escuro.jpg" alt=""><figcaption><b>A</b> no escuro</figcaption></figure>
+    <figure><img src="_capturas/direcao-b-treino-escuro.jpg" alt=""><figcaption><b>B</b> no escuro</figcaption></figure>
+    <figure><img src="_capturas/direcao-c-treino-escuro.jpg" alt=""><figcaption><b>C</b> no escuro</figcaption></figure>
+  </div>
+  <p class="pequeno discreto">Os blocos com forma (barra, anilha, banco) marcam o lugar da foto no comparativo; no protótipo eles já foram trocados pelas fotos da página seguinte. Contraste medido nas três: nenhum texto abaixo de 4,5:1.</p>
+</section>
+
+<section class="parte" id="imagens">
+  <p class="parte__olho">Parte 9 · imagens</p>
+  <h1 class="parte__titulo">As fotos e os desenhos do app</h1>
+  <p class="parte__lide">Gente comum treinando, de várias idades e corpos, com roupa de academia de bairro. Nada de "corpo ideal", antes e depois, balança ou fita métrica. A regra nova (agente S, 10/10): <strong>a imagem tem de condizer com o assunto</strong>. A capa de treino mostra o foco do treino; foto de exercício só em tamanho grande e só se mostrar aquele exercício; a miniatura de 48–64 é sempre a ilustração.</p>
+  <h2>Foto grande: o exercício certo, com tratamento escuro</h2>
+  <div class="fotos fotos--capas">
+    <figure><img src="_capturas/img-heroi-supino-inclinado.webp" alt=""><figcaption>Supino inclinado com halteres (o herói do treino em andamento; o anterior mostrava banco reto)</figcaption></figure>
+    <figure><img src="_capturas/img-treino-superior-inferior-4x.webp" alt=""><figcaption>Superior e inferior 4× · puxada</figcaption></figure>
+    <figure><img src="_capturas/img-treino-empurrar-puxar-pernas.webp" alt=""><figcaption>Empurrar, puxar e pernas · desenvolvimento</figcaption></figure>
+    <figure><img src="_capturas/img-treino-intervalado-25.webp" alt=""><figcaption>Intervalado 25 · air bike</figcaption></figure>
+    <figure><img src="_capturas/img-treino-primeiros-passos.webp" alt=""><figcaption>Primeiros passos · instrutor ajustando o aparelho</figcaption></figure>
+    <figure><img src="_capturas/img-convite-plus.webp" alt=""><figcaption>Convite ao Plus · personal acompanhando</figcaption></figure>
+  </div>
+  <h2>Estados vazios (desenho próprio, na cor da marca)</h2>
+  <div class="fotos fotos--vazios">
+    <figure><img src="_capturas/img-vazio-primeiro-treino.webp" alt=""><figcaption>Primeiro treino</figcaption></figure>
+    <figure><img src="_capturas/img-vazio-historico-vazio.webp" alt=""><figcaption>Histórico</figcaption></figure>
+    <figure><img src="_capturas/img-vazio-sem-plus-alimentacao.webp" alt=""><figcaption>Sem Plus</figcaption></figure>
+    <figure><img src="_capturas/img-vazio-sem-plano.webp" alt=""><figcaption>Sem plano</figcaption></figure>
+    <figure><img src="_capturas/img-vazio-aguardando-personal.webp" alt=""><figcaption>Sem personal</figcaption></figure>
+    <figure><img src="_capturas/img-vazio-busca-sem-resultado.webp" alt=""><figcaption>Busca</figcaption></figure>
+    <figure><img src="_capturas/img-vazio-erro-carregar.webp" alt=""><figcaption>Erro</figcaption></figure>
+    <figure><img src="_capturas/img-vazio-sem-conexao.webp" alt=""><figcaption>Sem internet</figcaption></figure>
+    <figure><img src="_capturas/img-vazio-nenhum-aluno.webp" alt=""><figcaption>Nenhum aluno</figcaption></figure>
+    <figure><img src="_capturas/img-vazio-biblioteca-vazia.webp" alt=""><figcaption>Biblioteca</figcaption></figure>
+  </div>
+  <div class="caixa caixa--regra"><span class="caixa__rotulo">Licença: nada sem licença clara</span><p>As fotos vêm do <strong>Unsplash</strong>, sob a Licença Unsplash: uso comercial liberado, com edição, sem atribuição obrigatória. Cada foto foi conferida pela API antes de baixar (nenhuma é do Unsplash+), passou por quarentena e foi olhada inteira. O autor, o link e o recorte de cada uma estão em <code>02-design/imagens/CREDITOS*.md</code>. Nenhuma marca de aparelho ou de roupa aparece: onde sobrou uma pequena, ela foi borrada. O escuro e o drama vêm da edição (escurecer, gradiente, luz lateral). Os desenhos são do projeto. Nada foi gerado por IA.</p></div>
+  <p class="pequeno discreto">Quando houver uma academia de verdade <span class="decidir">decidir</span>, o ideal é trocar as capas por fotos da própria sala, com autorização de quem aparecer.</p>
+</section>
+
+<section class="parte" id="efeitos">
+  <p class="parte__olho">Parte 9 · efeitos</p>
+  <h1 class="parte__titulo">O que se mexe, e por quê</h1>
+  <p class="parte__lide">Efeito curto que confirma o que a pessoa fez, nunca enfeite que a faz esperar. Duas regras valem para todos: <strong>o dado é gravado antes da animação começar</strong> (marcar série nunca espera nada) e, com "reduzir movimento" ligado no celular, <strong>todo efeito vira um esmaecer de 0,16 s</strong>.</p>
+  <div class="quadros">
+    <figure><img src="_capturas/efeito-serie.png" alt=""><figcaption><b>Série marcada</b> · o check cresce com uma mola (o único quique do app) e o celular vibra de leve.</figcaption></figure>
+    <figure><img src="_capturas/efeito-fechar.png" alt=""><figcaption><b>Fechar treino</b> · um check se desenha e o resumo entra em sequência. Sem confete.</figcaption></figure>
+    <figure><img src="_capturas/efeito-anel.png" alt=""><figcaption><b>Anel do descanso</b> · esvazia em ritmo constante; nos últimos 10 s fica laranja.</figcaption></figure>
+    <figure><img src="_capturas/efeito-fase.png" alt=""><figcaption><b>Troca de fase</b> · a cor cobre o mostrador em 0,2 s; o nome está sempre escrito.</figcaption></figure>
+    <figure><img src="_capturas/efeito-cartao.png" alt=""><figcaption><b>Cartão que afunda</b> · no toque vai a 98 % e perde a sombra; volta ao soltar.</figcaption></figure>
+    <figure><img src="_capturas/efeito-esqueleto.png" alt=""><figcaption><b>Carregando</b> · só depois de 0,3 s; o brilho passa no máximo 3 vezes e para.</figcaption></figure>
+    <figure><img src="_capturas/efeito-plus.png" alt=""><figcaption><b>Convite ao Plus</b> · um halo dourado que fica e um reflexo que passa uma vez.</figcaption></figure>
+    <figure><img src="_capturas/efeito-titulo.png" alt=""><figcaption><b>Título grande</b> · ao rolar, vira o título pequeno da barra (iPhone) ou encolhe (Android).</figcaption></figure>
+  </div>
+  <div class="grade grade--2">
+    <div class="cartela"><h4>Nada em loop</h4><p>Só o cronômetro e o "atualizando" do sistema se movem sem parar. Nada pisca, nada pulsa.</p></div>
+    <div class="cartela"><h4>Vibração com sentido</h4><p>Leve ao marcar série, média ao fechar o treino e na troca de fase, longa no fim do descanso. Desliga no Perfil. Convite e cartão não vibram.</p></div>
+  </div>
+  <p class="pequeno discreto">Quadros gravados antes da proporção 1.8.0 (os tamanhos mudaram; o movimento, não). Quadros da demonstração do catálogo (<code>02-design/sistema-de-design/movimento/</code>), que mostra cada efeito ao vivo, com câmera lenta e com o movimento reduzido. No app: Reanimated 4 e expo-haptics; no protótipo: CSS e WAAPI, com as mesmas durações e curvas.</p>
+</section>
+
+<section class="parte" id="iphone">
+  <p class="parte__olho">Parte 9 · iPhone e Android</p>
+  <h1 class="parte__titulo">Um desenho, quatro iPhones e o Android</h1>
+  <p class="parte__lide">A identidade é do Academia Plus; o comportamento é do sistema. A mesma tela de treino em quatro aparelhos de referência: cada um com a sua área segura (Dynamic Island, notch, botão Início, barra de gestos), e nada do app embaixo deles.</p>
+  <div class="celulares celulares--4">
+    <figure><img src="_capturas/aparelho-iphone-se-claro.jpg" alt=""><figcaption><b>iPhone SE</b> · 375 × 667, botão Início</figcaption></figure>
+    <figure><img src="_capturas/tela-1-treino-do-dia-claro.jpg" alt=""><figcaption><b>iPhone 16</b> · 393 × 852, Dynamic Island</figcaption></figure>
+    <figure><img src="_capturas/aparelho-iphone-16-pro-max-claro.jpg" alt=""><figcaption><b>iPhone 16 Pro Max</b> · 440 × 956</figcaption></figure>
+    <figure><img src="_capturas/aparelho-android-claro.jpg" alt=""><figcaption><b>Android</b> · 390 × 844, furo da câmera</figcaption></figure>
+  </div>
+  <table class="tabela-compacta">
+    <thead><tr><th>Igual nas duas plataformas</th><th>Segue o sistema</th></tr></thead>
+    <tbody>
+      <tr><td>Marca, cores, letras, temas claro e escuro</td><td>Barra de status, Dynamic Island, notch e indicador de início</td></tr>
+      <tr><td>Área de toque de 48 (desenho de 32 a 56) e abas embaixo</td><td>Voltar: deslizar da borda no iPhone; gesto ou botão no Android</td></tr>
+      <tr><td>Componentes, raios, sombras e efeitos</td><td>Título grande da aba, folha que sobe e menu de ações do iOS</td></tr>
+      <tr><td>Quando vibra (marcar série, fechar treino, fim do descanso)</td><td>Como vibra: o motor de cada aparelho</td></tr>
+      <tr><td>Toast com "Desfazer"</td><td>Barra "Próximo / OK" acima do teclado numérico do iPhone</td></tr>
+    </tbody>
+  </table>
+  <div class="caixa caixa--regra"><span class="caixa__rotulo">iPhone sem ter um Mac</span><p>O app é gerado na nuvem (EAS Build), enviado ao TestFlight para teste e depois à App Store (EAS Submit). O Alex precisa de uma conta Apple Developer (US$ 99 por ano; como pessoa jurídica é a recomendada, porque o app guarda dado de saúde <span class="decidir">decidir</span>), um iPhone para testar e o nome do pacote aprovado, que não muda depois do primeiro envio <span class="decidir">decidir</span>.</p></div>
+</section>
+
+<section class="parte" id="cronometro">
+  <p class="parte__olho">Parte 9 · cronômetro e avisos</p>
+  <h1 class="parte__titulo">Cronômetro e avisos</h1>
+  <h2>Uma ferramenta, três modos</h2>
+  <div class="lado" style="grid-template-columns:1fr 170px">
+    <div>
+      <p>O descanso entre séries e a série por tempo usam o mesmo motor do cronômetro. Ele guarda o <strong>instante de início e as pausas</strong>, nunca um contador: com a tela bloqueada ou o app fechado, o tempo continua certo.</p>
+      <table class="tabela-compacta">
+        <thead><tr><th>Modo</th><th>O que faz</th></tr></thead>
+        <tbody>
+          <tr><td class="chave">Livre</td><td>conta para cima, com voltas</td></tr>
+          <tr><td class="chave">Regressivo</td><td>conta para baixo e avisa no fim; atalhos de 1 a 10 min, ±30 s</td></tr>
+          <tr><td class="chave">Intervalado</td><td>preparação, trabalho, descanso e rodadas: Tabata 20/10 × 8, EMOM 10 min, HIIT 30/30 e 40/20, ou personalizado</td></tr>
+        </tbody>
+      </table>
+      <ul>
+        <li><strong>Um cronômetro por vez.</strong> Marcar série com o intervalado rodando não para o intervalado; um aviso oferece "Descansar".</li>
+        <li><strong>O tempo vira série</strong>: 5 minutos de esteira no regressivo entram no treino com um toque.</li>
+        <li><strong>Lido a um metro</strong>: número de 61 px (o maior do app, e só aqui e no modo treino), e a tela não apaga enquanto ele roda.</li>
+        <li><strong>Avisa com o app fechado</strong>, por notificação marcada para o instante exato de cada troca de fase.</li>
+      </ul>
+    </div>
+    <figure><img src="_capturas/tela-5-cronometro-claro.jpg" alt=""><figcaption><b>Intervalado rodando</b>, fase de trabalho</figcaption></figure>
+  </div>
+
+  <h2>Avisos que ajudam, sem incomodar</h2>
+  <p>Vinte avisos ao todo, e cada um desliga no Perfil (o cronômetro é o único que fura o silêncio, porque foi a própria pessoa que o ligou). Alguns exemplos:</p>
+  <table class="tabela-compacta">
+    <thead><tr><th>Aviso</th><th>Para quem</th><th>Quem dispara</th></tr></thead>
+    <tbody>
+      <tr><td>"Descanso terminado · Próxima série."</td><td>aluno</td><td>o próprio celular</td></tr>
+      <tr><td>"Treino B pronto · Está no app quando você quiser." (nasce desligado)</td><td>aluno</td><td>o próprio celular</td></tr>
+      <tr><td>"Dani mudou seu plano alimentar"</td><td>aluno Plus</td><td>servidor</td></tr>
+      <tr><td>Aviso da academia (só texto, até 160 caracteres)</td><td>todos os alunos</td><td>servidor</td></tr>
+      <tr><td>Alunos sem treinar há 14 dias (resumo às 9h)</td><td>recepção e dono</td><td>servidor</td></tr>
+      <tr><td>Aluno Plus sem registro há 3 dias</td><td>personal</td><td>servidor</td></tr>
+    </tbody>
+  </table>
+  <h3>As regras contra o incômodo</h3>
+  <div class="grade" style="grid-template-columns:repeat(4,1fr)">
+    <div class="cartela"><h4>Silêncio das 22h às 7h</h4><p>Lembrete marcado nesse horário é descartado; aviso do servidor espera até as 7h no fuso de quem recebe.</p></div>
+    <div class="cartela"><h4>No máximo 3 por dia</h4><p>3 lembretes e 3 avisos do servidor por pessoa. Do 4º em diante, fica só dentro do app.</p></div>
+    <div class="cartela"><h4>Agrupar e não repetir</h4><p>Refeições próximas viram uma; mensagens de 15 em 15 minutos; "sumiu" e "sem registro" avisam uma vez por episódio.</p></div>
+    <div class="cartela"><h4>Nunca dado de saúde</h4><p>A notificação passa por servidores da Apple e do Google: nada de peso, caloria, nome de refeição ou prévia de mensagem.</p></div>
+  </div>
+  <p class="pequeno discreto">Prévia da mensagem e o aviso de vencimento do Plus dependem de respostas pendentes <span class="decidir">decidir</span>.</p>
+</section>
+
+<section class="parte" id="anatomia">
+  <p class="parte__olho">Parte 9 · mapa muscular</p>
+  <h1 class="parte__titulo">O corpo cinza e o músculo vermelho <span class="decidir" style="font-size:11px;vertical-align:8px">aguarda o Alex</span></h1>
+  <p class="parte__lide">O Alex pediu que todo ícone de músculo vire "uma demonstração do corpo em cinza e o músculo em vermelho". Foram testados dois caminhos: um mapa em vetor (A) e imagem gerada por IA (B). A recomendação é <strong>A em todos os tamanhos</strong>. Nada disso entrou no app ainda: as telas continuam com as ilustrações de exercício até o Alex aprovar.</p>
+
+  <div class="grade grade--2">
+    <figure style="margin:0"><img src="_capturas/anatomia-caso-claro.png" alt="Peitoral no supino reto, mapa em vetor, tema claro"><figcaption><b>Peitoral · supino reto, claro.</b> Miniaturas de 48, 56 e 64, a linha da lista e o detalhe de frente e de costas. Vermelho forte é o músculo principal; vermelho claro, os que ajudam.</figcaption></figure>
+    <figure style="margin:0"><img src="_capturas/anatomia-caso-escuro.png" alt="O mesmo caso no tema escuro"><figcaption><b>O mesmo, no escuro.</b> Só a cor muda: corpo <code>#3A4446</code> e músculo <code>#FF6369</code> (3,46:1). No claro, <code>#CDD3D6</code> e <code>#CE2C31</code> (3,45:1).</figcaption></figure>
+  </div>
+  <figure><img src="_capturas/anatomia-contexto-claro.png" alt="A lista do treino com as ilustrações de hoje e com o mapa muscular"><figcaption><b>Na lista do treino:</b> hoje (as ilustrações do agente R) e com o mapa. Embaixo, o palco do modo treino.</figcaption></figure>
+  <figure><img src="_capturas/anatomia-filtros-claro.png" alt="Filtro com mini corpo e a Evolução com o corpo pintado por volume"><figcaption><b>Filtros e Evolução:</b> o chip ganha um mini corpo de 24 px (Cardio fica só com o texto); na Evolução, o corpo pintado pelo volume de cada grupo, com a lista em quilos.</figcaption></figure>
+
+  <div class="caixa caixa--decisao"><span class="caixa__rotulo">Aguarda a aprovação do Alex · <span class="decidir">decidir</span></span><p><strong>A, vetor</strong> (recomendado): o mesmo corpo nas 28 miniaturas, os músculos de cada exercício conferidos no ExRx, cerca de 124 KB para o app inteiro e exercício novo é uma linha no JSON. <strong>B, IA</strong>: não rodou, porque o token da Cloudflare não tem permissão de Workers AI; mesmo que acerte, serve só para imagem grande. Também falta decidir, na Evolução, se o corpo pintado <strong>substitui a rosca</strong> ou entra <strong>junto</strong> dela. O comparativo inteiro está em <code>02-design/anatomia/comparativo.html</code>.</p></div>
+</section>
+
+<section class="parte" id="arquitetura">
+  <p class="parte__olho">Parte 10</p>
+  <h1 class="parte__titulo">Como é construído</h1>
+  <p class="parte__lide">A parte técnica em linguagem de gente. Cada escolha tem um motivo, uma alternativa que perdeu e o que faria mudar de ideia. Tudo está registrado em <code>docs/decisoes.md</code>.</p>
+
+  <h2>Com o que é feito</h2>
+  <div class="camadas">
+    <div class="camada camada--ui"><b>O app no celular</b><span><strong>Expo / React Native</strong> com TypeScript: um código só vira o app de Android e o de iPhone. Permite gerar a versão de iPhone sem ter um Mac e corrigir texto e tela sem esperar a revisão da loja.</span></div>
+    <div class="camada camada--nucleo"><b>As regras</b><span>Treino, unidades, alimentação, Plus: escritas em TypeScript puro, sem depender de tela nem de internet. São a parte mais importante e a mais fácil de testar. Hoje já existem as regras de treino e de unidades, com testes automáticos passando.</span></div>
+    <div class="camada camada--ponte"><b>A ponte</b><span>Uma única pasta conversa com o servidor e guarda a cópia local no celular. Se o servidor mudar um dia, muda uma pasta.</span></div>
+    <div class="camada camada--banco"><b>O servidor</b><span><strong>Supabase</strong>: banco de dados Postgres, login (e-mail, Google, Apple), mensagens em tempo real e arquivos. É um serviço pronto: ninguém precisa operar servidor na primeira versão.</span></div>
+  </div>
+  <table class="tabela-compacta">
+    <thead><tr><th>Alternativa</th><th>Por que perdeu</th><th>O que faria voltar a ela</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Flutter</td><td>Língua nova (Dart) e precisa de Mac para o iPhone</td><td>App com animação pesada o tempo todo</td></tr>
+      <tr><td class="chave">Dois apps nativos</td><td>Dois códigos para uma equipe de um</td><td>Nada à vista</td></tr>
+      <tr><td class="chave">Firebase</td><td>Guarda documentos soltos; treino → dia → exercício → série é uma estrutura encadeada, e a regra "quem vê o quê" fica difícil</td><td>Se o offline precisar de edição completa</td></tr>
+      <tr><td class="chave">Servidor próprio</td><td>Ninguém para operar na primeira versão</td><td>Custo do serviço disparar com muitas academias</td></tr>
+    </tbody>
+  </table>
+
+
+  <h2>Como o app decide a visão ao entrar</h2>
+  <div class="fluxo">
+    <div class="fluxo__passo"><b>Sem login</b>Tela de entrada: entrar, criar conta, código da academia.</div>
+    <div class="fluxo__seta">›</div>
+    <div class="fluxo__passo"><b>Logado</b>O app carrega os vínculos da pessoa (e guarda uma cópia para abrir sem sinal).</div>
+    <div class="fluxo__seta">›</div>
+    <div class="fluxo__passo"><b>Nenhum vínculo</b>"Entre com o código da sua academia". A conta existe, só não tem academia.</div>
+    <div class="fluxo__seta">›</div>
+    <div class="fluxo__passo"><b>Um vínculo</b>Vai direto: aluno para a visão do aluno, qualquer outro papel para a da academia.</div>
+    <div class="fluxo__seta">›</div>
+    <div class="fluxo__passo"><b>Dois ou mais</b>Usa a última escolha, ou pergunta "Entrar como…". O Perfil sempre tem "Trocar de visão".</div>
+  </div>
+  <p>A visão nunca é escolhida à mão numa tela "sou academia / sou aluno": quem escolhe errado vê uma tela vazia. As duas portas da entrada ("Sou aluno" e "Sou da academia", Parte 9) escolhem só o caminho do cadastro, nunca a visão: depois de entrar, a visão continua vindo do vínculo, e o papel na academia é sempre o dono quem dá. E a tela esconder um botão não basta: o banco de dados também recusa o que o papel não pode fazer.</p>
+</section>
+
+<section class="parte" id="dados">
+  <p class="parte__olho">Parte 10 · continuação</p>
+  <h1 class="parte__titulo">Os dados, em um desenho</h1>
+  <p class="parte__lide">O que o app guarda e como as coisas se ligam. As caixas com borda vermelha tracejada são dado de saúde: só o aluno e quem ele autorizou enxergam.</p>
+  <p>Dezoito tipos de registro, em cinco grupos. Peso e carga são guardados em gramas, altura em milímetros, tempo em segundos e dinheiro em centavos: números inteiros, sem arredondamento escondido. A vírgula e o "kg" só aparecem na tela.</p>
+  <div class="diagrama">
+<svg viewBox="0 0 772 384" xmlns="http://www.w3.org/2000/svg" font-family="Figtree, Segoe UI, sans-serif">
+<defs><marker id="s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8A9796"/></marker></defs>
+<text x="8" y="18" font-size="12" font-weight="700" fill="#007761">Conta e academia</text>
+<rect x="8" y="34" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="17" y="51" font-size="11.5" font-weight="700" fill="#131D1C">Academia</text>
+<text x="17" y="65" font-size="9.5" fill="#556463">código de vínculo</text>
+<rect x="8" y="88" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="17" y="105" font-size="11.5" font-weight="700" fill="#131D1C">Vínculo</text>
+<text x="17" y="119" font-size="9.5" fill="#556463">papel + estado</text>
+<rect x="8" y="142" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="17" y="159" font-size="11.5" font-weight="700" fill="#131D1C">Usuário</text>
+<text x="17" y="173" font-size="9.5" fill="#556463">nome, e-mail, foto</text>
+<text x="160" y="18" font-size="12" font-weight="700" fill="#007761">Corpo do aluno</text>
+<rect x="160" y="34" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="169" y="51" font-size="11.5" font-weight="700" fill="#131D1C">Perfil do aluno</text>
+<text x="169" y="65" font-size="9.5" fill="#556463">objetivo, restrições</text>
+<rect x="160" y="88" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="169" y="105" font-size="11.5" font-weight="700" fill="#131D1C">Medição</text>
+<text x="169" y="119" font-size="9.5" fill="#556463">peso em gramas…</text>
+<rect x="160" y="142" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="169" y="159" font-size="11.5" font-weight="700" fill="#131D1C">Histórico de objetivo</text>
+<text x="169" y="173" font-size="9.5" fill="#556463">quando mudou</text>
+<text x="312" y="18" font-size="12" font-weight="700" fill="#007761">Treino</text>
+<rect x="312" y="34" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="321" y="51" font-size="11.5" font-weight="700" fill="#131D1C">Treino</text>
+<text x="321" y="65" font-size="9.5" fill="#556463">origem, ativo</text>
+<rect x="312" y="88" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="321" y="105" font-size="11.5" font-weight="700" fill="#131D1C">Dia de treino</text>
+<text x="321" y="119" font-size="9.5" fill="#556463">A, B, C…</text>
+<line x1="382.0" y1="74" x2="382.0" y2="87" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="312" y="142" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="321" y="159" font-size="11.5" font-weight="700" fill="#131D1C">Exercício do dia</text>
+<text x="321" y="173" font-size="9.5" fill="#556463">ordem, observação</text>
+<line x1="382.0" y1="128" x2="382.0" y2="141" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="312" y="196" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="321" y="213" font-size="11.5" font-weight="700" fill="#131D1C">Série</text>
+<text x="321" y="227" font-size="9.5" fill="#556463">reps, carga, descanso</text>
+<line x1="382.0" y1="182" x2="382.0" y2="195" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="312" y="260" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="321" y="277" font-size="11.5" font-weight="700" fill="#131D1C">Exercício</text>
+<text x="321" y="291" font-size="9.5" fill="#556463">biblioteca</text>
+<text x="464" y="18" font-size="12" font-weight="700" fill="#007761">O que foi feito</text>
+<rect x="464" y="34" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="473" y="51" font-size="11.5" font-weight="700" fill="#131D1C">Treino realizado</text>
+<text x="473" y="65" font-size="9.5" fill="#556463">data, duração</text>
+<rect x="464" y="88" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="473" y="105" font-size="11.5" font-weight="700" fill="#131D1C">Série realizada</text>
+<text x="473" y="119" font-size="9.5" fill="#556463">reps e carga reais</text>
+<line x1="534.0" y1="74" x2="534.0" y2="87" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<text x="616" y="18" font-size="12" font-weight="700" fill="#9A6100">Plus</text>
+<rect x="616" y="34" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#B9C6C4" stroke-width="1.3"/>
+<text x="625" y="51" font-size="11.5" font-weight="700" fill="#131D1C">Assinatura Plus</text>
+<text x="625" y="65" font-size="9.5" fill="#556463">estado, personal</text>
+<rect x="616" y="88" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="625" y="105" font-size="11.5" font-weight="700" fill="#131D1C">Plano alimentar</text>
+<text x="625" y="119" font-size="9.5" fill="#556463">vigência</text>
+<line x1="686.0" y1="74" x2="686.0" y2="87" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="616" y="142" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="625" y="159" font-size="11.5" font-weight="700" fill="#131D1C">Refeição</text>
+<text x="625" y="173" font-size="9.5" fill="#556463">horário, opcional</text>
+<line x1="686.0" y1="128" x2="686.0" y2="141" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="616" y="196" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="625" y="213" font-size="11.5" font-weight="700" fill="#131D1C">Item</text>
+<text x="625" y="227" font-size="9.5" fill="#556463">texto livre (v1)</text>
+<line x1="686.0" y1="182" x2="686.0" y2="195" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="616" y="250" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="625" y="267" font-size="11.5" font-weight="700" fill="#131D1C">Refeição marcada</text>
+<text x="625" y="281" font-size="9.5" fill="#556463">feita / não segui</text>
+<path d="M756 164 H764 V270 H757" fill="none" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<rect x="616" y="304" width="140" height="40" rx="6" fill="#FCF2E1" stroke="#C21725" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="625" y="321" font-size="11.5" font-weight="700" fill="#131D1C">Conversa → Mensagem</text>
+<text x="625" y="335" font-size="9.5" fill="#556463">se for chat no app</text>
+<line x1="78.0" y1="74" x2="78.0" y2="87" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<line x1="78.0" y1="142" x2="78.0" y2="129" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<path d="M148 162 H154 V54 H159" fill="none" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<path d="M154 108 H159" fill="none" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<path d="M148 162 H159" fill="none" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/>
+<path d="M452 162 H458 V280 H453" fill="none" stroke="#8A9796" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#s)"/>
+<path d="M452 54 H463" fill="none" stroke="#8A9796" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#s)"/>
+<path d="M756 54 H769 V324 H757" fill="none" stroke="#8A9796" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#s)"/>
+<rect x="8" y="362" width="22" height="12" rx="3" fill="#fff" stroke="#C21725" stroke-dasharray="4 3"/><text x="36" y="372" font-size="10" fill="#556463">dado de saúde: só o aluno e quem ele autorizou</text>
+<line x1="300" y1="368" x2="330" y2="368" stroke="#8A9796" stroke-width="1.2" marker-end="url(#s)"/><text x="336" y="372" font-size="10" fill="#556463">um para muitos</text>
+<line x1="440" y1="368" x2="470" y2="368" stroke="#8A9796" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#s)"/><text x="476" y="372" font-size="10" fill="#556463">aponta para</text>
+</svg>
+  </div>
+  <p class="pequeno discreto">Toda informação de academia carrega a identificação da academia. Assim, a dúvida "uma academia ou várias" <span class="decidir">decidir</span> não trava o código: as duas respostas cabem no mesmo banco. Nada se apaga de verdade: treino, exercício e assinatura são arquivados, porque o histórico faz parte do produto.</p>
+  <h2>Como se garante que funciona</h2>
+  <p>Toda regra nova nasce com teste automático antes da tela. As regras rodam com o próprio Node, sem instalar nada. As permissões do banco serão testadas entrando como cada papel e tentando ler o que não deveria. Antes de publicar, um robô percorre os caminhos principais no emulador.</p>
+</section>
+
+<section class="parte" id="arquitetura-2">
+  <p class="parte__olho">Parte 10 · continuação</p>
+  <h1 class="parte__titulo">Sem sinal, e com privacidade</h1>
+  <p class="parte__lide">Duas promessas pesam mais que o resto na parte técnica: o treino nunca se perde por falta de internet, e dado de saúde nunca vaza por descuido.</p>
+
+  <h2>Quando não há sinal</h2>
+  <div class="grade grade--2">
+    <div class="cartela" style="border-top:3px solid var(--ok)"><h4>Funciona</h4><p>Abrir o app já logado · ver os treinos e o treino do dia · ver a biblioteca de exercícios · <strong>registrar o treino feito</strong> · ver a alimentação do dia e marcar refeição · cronômetro.</p></div>
+    <div class="cartela" style="border-top:3px solid var(--atencao)"><h4>Avisa e espera o sinal</h4><p>Montar ou editar treino · escolher treino pronto novo · conversa · assinar o Plus · toda a visão da academia (a recepção tem Wi-Fi).</p></div>
+  </div>
+  <p>O celular guarda uma cópia do que o aluno precisa ver e uma <strong>fila</strong> do que ele fez. Quando a internet volta, a fila sobe sozinha, em ordem. Como o treino feito nasce só no celular do aluno, não há briga entre duas versões: vale a do celular. Montar treino sem sinal ficou de fora porque aí, sim, o aluno e o instrutor poderiam editar a mesma coisa ao mesmo tempo.</p>
+
+  <h2>Dado de saúde (LGPD)</h2>
+  <ul>
+    <li><strong>A regra mora no banco, não na tela.</strong> O próprio banco de dados recusa mostrar peso, medidas, alimentação e conversa a quem não tem permissão. Esconder o botão é só cortesia; quem garante é o servidor.</li>
+    <li><strong>Nunca em registro de erro nem em estatística.</strong> Antes de qualquer registro técnico, os campos de saúde viram "[redigido]", e um teste automático vigia essa lista.</li>
+    <li><strong>Nunca na notificação.</strong> "Seu personal enviou o seu plano", nunca o conteúdo. A notificação passa por servidores da Apple e do Google.</li>
+    <li><strong>Fora do backup automático do celular</strong>, e a sessão guardada no cofre do sistema.</li>
+    <li><strong>Direitos do aluno desde o primeiro dia:</strong> exportar todos os dados num arquivo legível e apagar a conta. Ao apagar, os treinos viram contagem sem nome para os números da academia.</li>
+    <li><strong>Menor de idade</strong> só guarda dado de saúde com o consentimento de um responsável.</li>
+  </ul>
+  <div class="caixa caixa--regra"><span class="caixa__rotulo">O que não se fez, de propósito</span><p>Não se bloqueia captura de tela: o aluno tem direito ao próprio dado. Não se cifra campo por campo no celular: perderia busca e tempo real. Isso mudaria se o Alex quiser que nem quem opera o banco consiga ler.</p></div>
+
+</section>
+
+<section class="parte" id="depois">
+  <p class="parte__olho">Parte 11</p>
+  <h1 class="parte__titulo">O que fica para depois</h1>
+  <p class="parte__lide">A primeira versão é: as duas visões, treino livre, treinos prontos por objetivo, o dia de treino e o histórico, o perfil do aluno para a academia, e o Plus. O resto foi adiado de propósito, para ninguém construir sem querer.</p>
+  <table class="tabela-compacta">
+    <thead><tr><th>O quê</th><th>Por que fica para depois</th><th>Quando faria sentido</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Catraca e controle de acesso</td><td>Exige aparelho e fornecedor <span class="decidir">decidir</span></td><td>Quando a primeira academia pedir</td></tr>
+      <tr><td class="chave">Mensalidade e financeiro</td><td>É um produto inteiro (boleto, Pix, inadimplência) <span class="decidir">decidir</span></td><td>Se o app virar também o sistema da academia</td></tr>
+      <tr><td class="chave">Banco de alimentos com calorias</td><td>Precisa de base confiável e cálculo; texto livre serve na primeira versão <span class="decidir">decidir</span></td><td>Depois de ver como os planos são escritos na prática</td></tr>
+      <tr><td class="chave">Aulas coletivas</td><td>Outro fluxo (horário, vaga, presença)</td><td>Quando uma academia-cliente pedir</td></tr>
+      <tr><td class="chave">Pontos, medalhas, ranking</td><td>Fácil de virar ruído; antes medir se a semana marcada já motiva</td><td>Depois de 3 meses de uso real</td></tr>
+      <tr><td class="chave">Vídeo dos exercícios</td><td>Produzir custa; texto curto e imagem resolvem</td><td>Com a biblioteca estável</td></tr>
+      <tr><td class="chave">Pesagem pela academia</td><td>Levanta a questão de quem é o dado</td><td>Com balança integrável e autorização do aluno</td></tr>
+      <tr><td class="chave">Medidas além de peso e altura</td><td>Mais dado sensível para pouco uso</td><td>Quando o personal pedir</td></tr>
+      <tr><td class="chave">Recepção e instrutor separados</td><td>Mais telas de permissão</td><td>Se uma academia precisar</td></tr>
+      <tr><td class="chave">Personal de fora da academia</td><td>Muda quem cobra e quem responde</td><td>Depois de uma academia real</td></tr>
+      <tr><td class="chave">Várias academias por aluno</td><td>Depende de "uma ou várias" <span class="decidir">decidir</span></td><td>Se o app virar serviço para muitas academias</td></tr>
+      <tr><td class="chave">Logo e cor de cada academia</td><td>Afeta o sistema de design inteiro <span class="decidir">decidir</span></td><td>Depois da decisão de marca</td></tr>
+      <tr><td class="chave">Treinos prontos sem academia</td><td>Exige montar e cuidar de conteúdo</td><td>Se houver muitos alunos sem academia</td></tr>
+      <tr><td class="chave">Rede social, treino compartilhado</td><td>Fora do propósito</td><td>Provavelmente nunca</td></tr>
+      <tr><td class="chave">Relógio e sensores</td><td>Complexo, valor incerto para musculação</td><td>Se virar pedido recorrente</td></tr>
+      <tr><td class="chave">Relatórios em PDF</td><td>A tela já mostra</td><td>Na versão 1.1, se pedirem</td></tr>
+      <tr><td class="chave">Painel do dono em tela grande</td><td>A visão do dono cabe no celular</td><td>Se a gestão crescer</td></tr>
+      <tr><td class="chave">Agenda presencial com o personal</td><td>O Plus da v1 é pelo app</td><td>Se os personais pedirem (ver o risco da Apple, Parte 5)</td></tr>
+      <tr><td class="chave">Avaliação física formal</td><td>Exige protocolo e responsável técnico</td><td>Com orientação de um profissional</td></tr>
+      <tr><td class="chave">Outros idiomas</td><td>Tudo em português por decisão</td><td>Se sair do Brasil</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="parte" id="pronto">
+  <p class="parte__olho">Parte 12</p>
+  <h1 class="parte__titulo">O que já está pronto</h1>
+  <p class="parte__lide">O projeto começou em 10/10/2026 pela organização: o que o app faz, como ele se parece e como vai ser construído. Em 11/10, com as escolhas provisórias da Parte 13, o app foi construído; as telas reais vêm logo depois desta página.</p>
+  <div class="numeros">
+    <div><b>5</b><span>papéis com a tabela de quem vê o quê</span></div>
+    <div><b>68</b><span>histórias de uso ("como aluno, quero…")</span></div>
+    <div><b>13</b><span>caminhos descritos tela a tela (com a entrada de duas portas)</span></div>
+    <div><b>55</b><span>telas no mapa da v1, mais a entrada e as telas novas</span></div>
+    <div><b>21</b><span>componentes com estados, em 3 páginas de protótipo</span></div>
+    <div><b>11</b><span>treinos prontos de modelo (precisam de revisão com CREF)</span></div>
+    <div><b>18</b><span>tipos de registro no modelo de dados</span></div>
+    <div><b>413 + 115</b><span>testes de regras e dados, e de tela, passando</span></div>
+  </div>
+  <table class="tabela-compacta">
+    <thead><tr><th>Parte</th><th>Onde está</th><th>Situação</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Especificação</td><td><code>01-especificacao/</code></td><td>Papéis, histórias, caminhos, regras numeradas, mapa de telas, o que fica fora, 25 perguntas novas</td></tr>
+      <tr><td class="chave">Marca</td><td><code>02-design/marca-e-proposta/</code></td><td>Proposta, tom, cores com contraste medido, letras e o logo final "Barra e mais, robusta"</td></tr>
+      <tr><td class="chave">Sistema de design</td><td><code>02-design/sistema-de-design/</code></td><td>Regras, medidas, componentes, acessibilidade e o protótipo que abre direto no navegador</td></tr>
+      <tr><td class="chave">Arquitetura</td><td><code>03-arquitetura/</code></td><td>Tecnologia, modelo de dados, estrutura do código, decisões técnicas</td></tr>
+      <tr><td class="chave">Código</td><td><code>app/</code></td><td>O app construído (Expo SDK 54): as duas visões, a entrada, o treino sem sinal, com dados de exemplo no aparelho</td></tr>
+      <tr><td class="chave">Revisão</td><td><code>docs/revisao/</code></td><td>As rodadas de 10/10 e 11/10: bugs, melhorias, segurança, ponta a ponta</td></tr>
+    </tbody>
+  </table>
+  <h2>Dois riscos que a revisão trouxe</h2>
+  <div class="grade grade--2">
+    <div class="caixa caixa--risco" style="margin:0"><span class="caixa__rotulo">Alimentação no Plus</span><p>Prescrever dieta é atividade de nutricionista (Lei 8.234/1991). O desenho precisa dizer quem escreve o plano antes das telas de alimentação. Partes 5 e 13.</p></div>
+    <div class="caixa caixa--atencao" style="margin:0"><span class="caixa__rotulo">Pagamento e lojas</span><p>As regras da Apple e do Google podem exigir a compra dentro do app, até no caminho "via academia". Confirmar antes do primeiro envio. Partes 5 e 13.</p></div>
+  </div>
+  <p class="pequeno discreto">O relatório completo de melhorias, com o que falta para vender o Plus e para a academia adotar o app, está em <code>docs/revisao/B-MELHORIAS.md</code>.</p>
+</section>
+
+<section class="parte" id="app">
+  <p class="parte__olho">Parte 12 · o app construído</p>
+  <h1 class="parte__titulo">O app de verdade, já rodando</h1>
+  <p class="parte__lide">Em 11/10 o Alex disse "pode prosseguir", e o app foi construído com as escolhas provisórias da Parte 13. As telas desta parte <strong>não são do protótipo</strong>: são capturas do app exportado para o navegador, em 393 × 852 (o tamanho de um iPhone 16), entrando com as contas de exemplo, nos dois temas. Os dados ainda são de exemplo e ficam no aparelho; o servidor entra depois.</p>
+  <div class="celulares celulares--4 app-cel">
+    <figure><img src="_capturas/app-abertura-claro.jpg" alt=""><figcaption><b>Abertura</b> · a cor da marca e o símbolo novo, que depois encolhe e vira o selo.</figcaption></figure>
+    <figure><img src="_capturas/app-boas-vindas-claro.jpg" alt=""><figcaption><b>Boas-vindas</b> · as duas portas, "Sou aluno" e "Sou da academia".</figcaption></figure>
+    <figure><img src="_capturas/app-abertura-escuro.jpg" alt=""><figcaption><b>Abertura, escuro</b> · o símbolo em verde vivo.</figcaption></figure>
+    <figure><img src="_capturas/app-boas-vindas-escuro.jpg" alt=""><figcaption><b>Boas-vindas, escuro.</b></figcaption></figure>
+  </div>
+  <div class="celulares celulares--4 app-cel">
+    <figure><img src="_capturas/app-inicio-ana-claro.jpg" alt=""><figcaption><b>Início da Ana</b> · aviso da academia, a semana, o treino de hoje (o herói) e a dieta do Plus.</figcaption></figure>
+    <figure><img src="_capturas/app-inicio-ana-escuro.jpg" alt=""><figcaption><b>Início, escuro.</b></figcaption></figure>
+    <figure><img src="_capturas/app-evolucao-claro.jpg" alt=""><figcaption><b>Evolução</b> · "60 kg" é o herói; depois a carga em linha e o mês.</figcaption></figure>
+    <figure><img src="_capturas/app-evolucao-escuro.jpg" alt=""><figcaption><b>Evolução, escuro.</b></figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="app-treino">
+  <p class="parte__olho">Parte 12 · o app construído</p>
+  <h1 class="parte__titulo">O treino da Ana e a equipe</h1>
+  <p class="parte__lide">"Começar", o supino, uma série marcada, o descanso e "Fechar o treino". O app grava a série antes de vibrar e antes de qualquer animação. O modo treino é escuro e a comemoração é verde nos dois temas, por isso aparecem uma vez só.</p>
+  <div class="celulares celulares--3 app-cel">
+    <figure><img src="_capturas/app-modo-treino-claro.jpg" alt=""><figcaption><b>Modo treino</b> · "8 repetições" é o herói; carga e repetições com +/−, "Última vez" e "Plano".</figcaption></figure>
+    <figure><img src="_capturas/app-descanso-claro.jpg" alt=""><figcaption><b>Descanso</b> · o anel, −30 s · Pular · +30 s e "Série 1 feita · Desfazer".</figcaption></figure>
+    <figure><img src="_capturas/app-comemoracao-claro.jpg" alt=""><figcaption><b>Comemoração</b> · fechado pela metade, diz quantas séries ficaram para a próxima.</figcaption></figure>
+  </div>
+  <div class="celulares celulares--4 app-cel">
+    <figure><img src="_capturas/app-equipe-claro.jpg" alt=""><figcaption><b>Equipe</b> · quem trabalha na academia, por especialidade.</figcaption></figure>
+    <figure><img src="_capturas/app-professor-claro.jpg" alt=""><figcaption><b>Perfil da professora</b> · especialidades, "sobre mim" e os turnos; sem telefone, e-mail nem preço.</figcaption></figure>
+    <figure><img src="_capturas/app-equipe-escuro.jpg" alt=""><figcaption><b>Equipe, escuro.</b></figcaption></figure>
+    <figure><img src="_capturas/app-professor-escuro.jpg" alt=""><figcaption><b>Perfil, escuro.</b></figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="app-academia">
+  <p class="parte__olho">Parte 12 · o app construído</p>
+  <h1 class="parte__titulo">A visão da academia</h1>
+  <p class="parte__lide">Cada papel abre onde precisa: o dono (Marcos) nos números, a recepção e o instrutor em Alunos, e a personal (Júlia) em "Meus alunos Plus", com quem precisa dela primeiro.</p>
+  <div class="celulares celulares--4 app-cel">
+    <figure><img src="_capturas/app-painel-marcos-claro.jpg" alt=""><figcaption><b>Painel do Marcos</b> · alunos ativos é o herói; cada quadro abre a lista já filtrada.</figcaption></figure>
+    <figure><img src="_capturas/app-painel-marcos-escuro.jpg" alt=""><figcaption><b>Painel, escuro.</b></figcaption></figure>
+    <figure><img src="_capturas/app-alunos-claro.jpg" alt=""><figcaption><b>Alunos</b> · busca, filtros, "Pediu treino", e Confirmar ou Recusar quem pediu para entrar.</figcaption></figure>
+    <figure><img src="_capturas/app-alunos-escuro.jpg" alt=""><figcaption><b>Alunos, escuro.</b></figcaption></figure>
+  </div>
+  <div class="celulares celulares--4 app-cel">
+    <figure><img src="_capturas/app-meus-alunos-plus-julia-claro.jpg" alt=""><figcaption><b>Meus alunos Plus da Júlia</b> · a Ana, com o motivo: "Treina outro treino".</figcaption></figure>
+    <figure><img src="_capturas/app-meus-alunos-plus-julia-escuro.jpg" alt=""><figcaption><b>Meus alunos Plus, escuro.</b></figcaption></figure>
+  </div>
+  <p class="pequeno discreto">A nota "O plano de dieta é da nutricionista parceira" vem da escolha provisória de 11/10 (Parte 13). A conversa com a personal ainda não existe no app: depende de chat ou WhatsApp <span class="decidir">decidir</span>.</p>
+</section>
+
+<section class="parte" id="app-faz">
+  <p class="parte__olho">Parte 12 · o app construído</p>
+  <h1 class="parte__titulo">O que o app já faz, e como abrir</h1>
+  <h2>Para o aluno</h2>
+  <ul>
+    <li><strong>Entrada completa</strong>: abertura, duas portas, Apple, Google e e-mail simulados, código da academia, perguntas opcionais com "Pular" e "Quem pode ver". A conta nova é criada e gravada.</li>
+    <li><strong>Treino</strong>: montar do zero, usar um pronto pelo objetivo (o primeiro nasce em uso), deslizar para começar, marcar série, descanso, pular exercício, "Fechar o treino" que pergunta antes ("Faltam 19 séries de 7 exercícios"), comemoração e histórico com o detalhe de cada treino.</li>
+    <li><strong>Sem sinal</strong>: a série e a refeição gravam no aparelho na hora e sobem quando a rede volta. Recarregar no meio do treino volta ao mesmo exercício.</li>
+    <li><strong>Evolução, cronômetro</strong> (livre, regressivo, intervalado), <strong>Plus</strong> com a dieta do dia e o "Não segui" com motivo, <strong>pedido de treino</strong> à academia, a <strong>Equipe</strong> e o perfil de cada professor.</li>
+  </ul>
+  <h2>Para a academia</h2>
+  <ul>
+    <li><strong>Alunos</strong>: filtros com ordem própria (sumidos, pediu treino, pendentes, novos), confirmar ou recusar entrada, encerrar vínculo com motivo.</li>
+    <li><strong>Mandar treino</strong>: um pronto em dois toques ou montado na hora, com "trocar em" e recado; o aluno vê "montado por Carlos" e o pedido fecha sozinho.</li>
+    <li><strong>Biblioteca</strong> de prontos e exercícios, <strong>avisos</strong> da academia (dono e recepção), <strong>painel do dono</strong>, Equipe com "esconder dos alunos", perfil profissional com a chave "Mostrar aos alunos".</li>
+    <li><strong>Personal no Plus</strong>: a lista por ordem de atenção e a tela do aluno Plus com Resumo, Treino e Dieta ("1 de 35 refeições marcadas em 7 dias").</li>
+    <li>Quem tem dois papéis (o Diego, personal e aluno) <strong>troca de visão</strong> sem trocar de conta. Aba escondida não abre pelo endereço.</li>
+  </ul>
+
+  <h2>Como abrir</h2>
+  <div class="grade grade--2">
+    <div class="cartela"><h4>No PC, no navegador</h4><p>Na pasta <code>app</code>: <code>npm run web</code>. Abre no navegador; escolha "Contas de exemplo" e entre como Ana, Juliana, Lucas, Diego, Júlia, Carlos ou Marcos.</p></div>
+    <div class="cartela"><h4>No celular, com o Expo Go</h4><p>Instale o Expo Go, deixe o celular e o PC na mesma rede Wi-Fi e rode <code>npm run iniciar:expo-go</code>. Leia o QR (Android: pelo Expo Go; iPhone: pela Câmera). Em Wi-Fi de visitante: <code>npx expo start --go --tunnel</code>.</p></div>
+  </div>
+  <div class="caixa caixa--atencao"><span class="caixa__rotulo">Aviso do SDK 54</span><p>O projeto usa o <strong>Expo SDK 54</strong>, e o Expo Go da loja só roda o SDK mais novo. Se ele disser que o projeto é antigo: no Android, instale o Expo Go do SDK 54 pelo próprio <code>expo start</code> (tecla <code>a</code> com o celular no cabo) ou por expo.dev/go; no iPhone, o caminho é o build de desenvolvimento (<code>npm run build:ios:desenvolvimento</code>, conta Apple paga) ou subir o projeto de SDK. Ainda não foi testado num aparelho de verdade: vibração, teclado, desfoque no Android e o SQLite migrando só se veem no celular.</p></div>
+</section>
+
+<section class="parte" id="app-qualidade">
+  <p class="parte__olho">Parte 12 · o app construído</p>
+  <h1 class="parte__titulo">Qualidade, em números</h1>
+  <p class="parte__lide">Tudo abaixo foi rodado de novo em 11/10/2026 para este documento, no código como está. Cada bug corrigido nas rodadas tem um teste que falhava antes da correção.</p>
+  <div class="numeros">
+    <div><b>0</b><span>erros de tipo (<code>npm run tipos</code>, TypeScript estrito)</span></div>
+    <div><b>413</b><span>testes de domínio e dados, todos passando (também no fuso de Tóquio)</span></div>
+    <div><b>115</b><span>testes de tela em 15 suítes, todos passando (<code>npm run testar:telas</code>)</span></div>
+    <div><b>32 / 32</b><span>fluxos de ponta a ponta: 8 fluxos × celular e ultrawide × claro e escuro</span></div>
+    <div><b>18 / 18</b><span>checagens do <code>expo-doctor</code></span></div>
+    <div><b>0</b><span>erros de página ou de console nos fluxos; nenhuma rolagem de lado</span></div>
+    <div><b>227</b><span>visitas de rota, 10 contas, sem erro nem aviso do React (rodada AB)</span></div>
+    <div><b>2,5 MB</b><span>de JavaScript na exportação web, sem o catálogo de componentes</span></div>
+  </div>
+  <h2>Os testes, rodada por rodada</h2>
+  <table class="tabela-compacta">
+    <thead><tr><th>Rodada</th><th>O que fez</th><th>Testes de domínio e dados</th><th>Testes de tela</th><th>Bugs corrigidos</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Revisão de 10/10</td><td>regras de treino, unidades, avisos, cronômetro</td><td>180</td><td>—</td><td>29 no domínio</td></tr>
+      <tr><td class="chave">T · código</td><td>perfil profissional, pedido de treino, fila com dono</td><td>318</td><td>—</td><td>10 bugs, 8 reforços, 3 de segurança</td></tr>
+      <tr><td class="chave">U · protótipo</td><td>interação e acessibilidade, sem mudar 1 pixel</td><td>—</td><td>—</td><td>30 bugs (46 falhas → 0)</td></tr>
+      <tr><td class="chave">X, Y, Z · a base e as telas</td><td>SDK 54, tema gerado, telas do aluno, da entrada e da academia</td><td>349</td><td>—</td><td>4 de tela na base</td></tr>
+      <tr><td class="chave">AA · junção</td><td>gravação de verdade, 8 fluxos de ponta a ponta</td><td>367</td><td>67</td><td>7 (5 nos fluxos, 2 no campo numérico)</td></tr>
+      <tr><td class="chave">AB · caça a bugs</td><td>concorrência, fuso, corrupção, duplo toque, acessibilidade</td><td>382</td><td>97</td><td>19 (2 altos, 10 médios, 7 baixos)</td></tr>
+      <tr><td class="chave">AE · melhorias</td><td>top 10 da segunda busca, 17 itens e 18 textos</td><td><strong>413</strong></td><td><strong>115</strong></td><td>— (melhorias, cada uma com teste)</td></tr>
+    </tbody>
+  </table>
+  <h2>Os bugs que mais importavam</h2>
+  <ul>
+    <li><strong>A série marcada enquanto o treino subia se perdia</strong>, e um treino fechado podia reabrir (AB, alto). Agora só sai da fila o que é igual ao que subiu.</li>
+    <li><strong>A aba escondida abria pelo endereço</strong>: o instrutor via os números do dono e publicava aviso (AB, alto).</li>
+    <li><strong>Sem rede, o treino fechado não aparecia no Histórico</strong> (AA), e recarregar no meio do treino voltava ao exercício errado (AA).</li>
+    <li><strong>Duplo toque gravava duas vezes</strong>: duas cópias do treino enviado, dois avisos, duas contas (AB).</li>
+    <li><strong>A agenda de lembretes mudava com o fuso</strong> da máquina que fazia a conta (T).</li>
+  </ul>
+  <p class="pequeno discreto">Os relatórios completos estão em <code>docs/revisao/</code>: T, U, X, Y, Z, AA, AB, AC e AE. O que falta medir só no aparelho: vibração, teclado, leitor de tela de verdade (VoiceOver e TalkBack) e o desfoque no Android.</p>
+</section>
+
+<section class="parte" id="pendentes">
+  <p class="parte__olho">Parte 13</p>
+  <h1 class="parte__titulo">Decisões pendentes</h1>
+  <p class="parte__lide">Só o Alex responde estas perguntas. Em 11/10/2026 ele disse "pode prosseguir": para o app ser construído, as que travavam o código ficaram com a opção recomendada, <strong>de forma provisória</strong>. Cada uma pode mudar depois sem refazer o modelo de dados, que já cabe nas duas respostas. As marcadas como provisórias continuam com o selo <span class="decidir">decidir</span>: o app só não esperou por elas.</p>
+
+  <h2>As escolhas provisórias de 11/10</h2>
+  <table class="tabela-compacta">
+    <thead><tr><th>Pendência</th><th>Provisório no app</th><th>Por que dá para trocar depois</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Uma academia ou várias</td><td>Telas para <strong>uma</strong>; a academia em todo registro</td><td>O modelo já é para várias</td></tr>
+      <tr><td class="chave">Quem paga o Plus</td><td><strong>Via academia</strong>: o dono liga e desliga, sem pagamento no app</td><td>Nenhum pagamento entrou no código</td></tr>
+      <tr><td class="chave">Dieta no Plus</td><td>Plano escrito por <strong>nutricionista parceira</strong>; o personal acompanha</td><td>A tela é a mesma; muda quem assina</td></tr>
+      <tr><td class="chave">Chat ou WhatsApp</td><td><strong>Chat no app, só texto</strong> (a tela ainda não existe)</td><td>Conversa e mensagem ficam isoladas</td></tr>
+      <tr><td class="chave">"+" central na barra</td><td><strong>Não</strong>: 4 abas</td><td>O protótipo com "+" continua pronto</td></tr>
+      <tr><td class="chave">CREF no perfil</td><td><strong>Só mostrar</strong>, "informado pelo profissional"</td><td>O campo "conferido" já existe</td></tr>
+      <tr><td class="chave">Avaliação de profissional</td><td><strong>Não</strong></td><td>—</td></tr>
+      <tr><td class="chave">Servidor</td><td><strong>Dados de exemplo no aparelho</strong> até existir a conta do Supabase</td><td>Uma pasta só (<code>app/dados/</code>) fala com os dados</td></tr>
+    </tbody>
+  </table>
+
+  <div class="decisao"><div class="decisao__n">1</div><div>
+    <h3>Uma academia só, ou várias (um serviço que qualquer academia assina)?</h3>
+    <p>Uma é mais simples. Várias transforma o app num produto para vender, e torna o logo de cada academia um argumento de venda.</p>
+    <p><span class="rec">Recomendação:</span> começar com uma academia real e o banco já pronto para várias. Isso já está feito: todo registro carrega a academia, então a resposta não trava o código.</p>
+      <p><span class="rec">No app, provisório desde 11/10:</span> telas para uma academia, com o banco pronto para várias.</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">2</div><div>
+    <h3>Quem paga o Plus: o aluno direto, ou a academia cobra junto da mensalidade?</h3>
+    <p>No app, pela loja: a loja fica com 15 a 30 %. No app, por Pix ou cartão: 1 a 4 %, mas a Apple pode exigir a compra pela loja. Pela academia: nenhuma integração de pagamento.</p>
+    <p><span class="rec">Recomendação:</span> via academia, com o Plus desenhado como serviço da academia (com uma parte presencial de verdade), contratado na recepção e sem botão de compra no app. <strong>Não é risco zero</strong>: as regras 3.1.3(b) e (d) da Apple podem pegar até esse caminho. Confirmar com as regras da Apple (e, se possível, com uma consulta prévia à revisão da loja) antes do primeiro envio.</p>
+      <p><span class="rec">No app, provisório desde 11/10:</span> via academia, o dono liga e desliga o Plus no app, sem botão de compra.</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">3</div><div>
+    <h3>Alimentação: texto livre, ou banco de alimentos com calorias?</h3>
+    <p>Texto livre: "2 ovos mexidos + 1 fatia de pão integral". Banco: busca o alimento, informa gramas, o app soma calorias e macronutrientes.</p>
+    <p><span class="rec">Recomendação:</span> texto livre na primeira versão. O banco precisa de uma base confiável e só vale depois de ver como os planos são escritos na prática. O modelo de dados já reserva os campos. Esta pergunta depende da 7.</p>
+      <p><span class="rec">No app, hoje:</span> texto livre (o plano do dia, refeição por refeição, com a marca de feito ou "não segui").</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">4</div><div>
+    <h3>Conversa com o personal: chat dentro do app, ou botão para o WhatsApp?</h3>
+    <p>WhatsApp não custa nada para construir e todo mundo já usa. Chat no app custa mais, mas a conversa fica junto do plano.</p>
+    <p><span class="rec">Recomendação deste documento:</span> chat no app, só texto, na primeira versão. Com ele, o personal perde o acesso quando o Plus acaba (regra da Parte 5), o número pessoal dele não fica exposto e a conversa, que pode ter dado de saúde, fica protegida pelas mesmas regras. Se a pressa for lançar, o WhatsApp serve como começo. (Proposta deste PDF, ainda não registrada nos documentos do projeto.)</p>
+      <p><span class="rec">No app, provisório desde 11/10:</span> chat no app, só texto. A tela ainda não foi feita; hoje o Plus diz "Fale com Júlia na academia".</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">5</div><div>
+    <h3>Marca: a cara do Academia Plus, ou a cara de cada academia?</h3>
+    <p>Três degraus: o nome da academia no app (já desenhado, custo zero); o logo dela dentro do app (2 a 3 dias); a cor dela nos botões (1 a 2 semanas e cuidado a cada academia nova, porque a cor precisa passar no teste de contraste).</p>
+    <p><span class="rec">Recomendação:</span> se for uma academia, o nome dela no app agora. Se forem várias, o logo dela desde o início. A cor da academia em nenhum caso na primeira versão. O dourado do Plus nunca muda.</p>
+      <p><span class="rec">No app, hoje:</span> a marca do Academia Plus, com o nome da academia nas telas.</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">6</div><div>
+    <h3>Qual é a primeira academia? Existe um cliente real?</h3>
+    <p>Um dono de verdade responde metade das outras perguntas: se cobra o Plus junto da mensalidade, se tem personal, se quer o logo dele no app, se tem balança, se a recepção tem tablet.</p>
+    <p><span class="rec">Recomendação:</span> achar essa academia antes de construir as telas. Os documentos foram escritos com um "Marcos" imaginário: 350 alunos, 3 funcionários.</p>
+      <p><span class="rec">No app, hoje:</span> a "Academia do Marcos" de exemplo, com 7 alunos e 5 profissionais.</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">7</div><div>
+    <h3>Alimentação no Plus: quem prescreve?</h3>
+    <p>A Lei 8.234/1991 e o Conselho Federal de Nutricionistas tratam a prescrição de dieta como atividade de nutricionista. Do jeito que a especificação está escrita hoje, o personal monta o plano, e isso pode ser exercício ilegal da profissão.</p>
+    <p><span class="rec">Opções:</span> um nutricionista parceiro da academia escreve o plano (um papel novo no app, ao lado do personal); ou o personal só acompanha um plano feito por nutricionista e dá orientações gerais.</p>
+    <p><span class="rec">Recomendação:</span> ouvir um advogado ou um nutricionista (ou o conselho regional) <strong>antes de desenhar as telas de alimentação</strong>. A ideia de que o Plus inclui treino e alimentação não muda; muda quem escreve o plano.</p>
+      <p><span class="rec">No app, provisório desde 11/10:</span> plano escrito por nutricionista parceira e acompanhado pelo personal; a tela do personal não tem "Novo plano". Falta ouvir advogado ou nutricionista.</p>
+  </div></div>
+
+  <h2>As novas, que surgiram ao construir</h2>
+  <div class="decisao"><div class="decisao__n">8</div><div>
+    <h3>Mapa muscular: vetor ou IA, e onde entra na Evolução</h3>
+    <p>O corpo cinza com o músculo vermelho no lugar das ilustrações (Parte 9). <span class="rec">Recomendação:</span> o vetor (A) em todos os tamanhos; na Evolução, decidir se o corpo pintado substitui a rosca ou entra junto dela. <strong>Aguarda a aprovação do Alex</strong>; o app ainda usa as ilustrações.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">9</div><div>
+    <h3>Treino descartado: sobe ao servidor ou sai da fila?</h3>
+    <p>Hoje as séries do treino descartado continuam gravadas (a folha promete isso) e ele não volta ao reabrir o app, mas ainda sobe, aberto. <span class="rec">Opções:</span> sair da fila · subir marcado como descartado.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">10</div><div>
+    <h3>Aluno pendente: a academia já pode abrir o perfil e mandar treino antes de confirmar?</h3>
+    <p><span class="rec">Opções:</span> esconder até confirmar · permitir. Hoje o aluno pendente já vê os treinos prontos da academia.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">11</div><div>
+    <h3>Aviso da academia: o instrutor também escreve?</h3>
+    <p>Hoje só o dono e a recepção, e a tela de aviso não abre para os outros papéis nem pelo endereço. <span class="rec">Opções:</span> como está · instrutor também.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">12</div><div>
+    <h3>Recepção na entrada da equipe</h3>
+    <p>Quem escolhe "recepção ou instrutor" ao pedir para entrar vira instrutor no pedido, e o dono ajusta ao confirmar. <span class="rec">Opções:</span> opção própria para a recepção · como está.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">13</div><div>
+    <h3>CREF no perfil do professor</h3>
+    <p>Não há consulta pública nacional fácil de usar pelo app. <span class="rec">Provisório:</span> só mostrar, com "informado pelo profissional". Outras opções: o dono confere à mão · integrar se surgir uma API.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">14</div><div>
+    <h3>Avaliação de profissional pelo aluno</h3>
+    <p>Nota ou estrela expõe o profissional. <span class="rec">Provisório:</span> não ter (recomendado). Outras opções: só elogio, sem nota · nota.</p>
+  </div></div>
+
+  <h2>A tabela inteira, como está no P00</h2>
+  <table class="tabela-compacta">
+    <thead><tr><th>#</th><th>Pergunta</th><th>Opções</th><th>Hoje no app</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">1</td><td>Uma academia ou várias</td><td>Uma · várias</td><td>Uma (provisório)</td></tr>
+      <tr><td class="chave">2</td><td>Quem paga o Plus</td><td>Aluno no app · academia cobra</td><td>Via academia (provisório)</td></tr>
+      <tr><td class="chave">3</td><td>Dieta: texto livre ou banco de alimentos</td><td>Texto livre · banco</td><td>Texto livre</td></tr>
+      <tr><td class="chave">4</td><td>Chat ou WhatsApp</td><td>Chat próprio · WhatsApp</td><td>Chat, só texto (provisório; tela por fazer)</td></tr>
+      <tr><td class="chave">5</td><td>Marca própria ou da academia</td><td>Própria · white-label</td><td>Própria</td></tr>
+      <tr><td class="chave">6</td><td>Primeira academia cliente</td><td>—</td><td>Academia de exemplo</td></tr>
+      <tr><td class="chave">7</td><td>Quem prescreve a dieta no Plus</td><td>Nutricionista parceiro · personal só orienta · sem dieta na v1</td><td>Nutricionista parceira (provisório)</td></tr>
+      <tr><td class="chave">8</td><td>Revisão dos treinos prontos (CREF)</td><td>Profissional da academia parceira · contratado</td><td>Aviso "ainda não passaram por um profissional com CREF"</td></tr>
+      <tr><td class="chave">9</td><td>CREF no perfil</td><td>Só mostrar · dono confere · API</td><td>Só mostrar (provisório)</td></tr>
+      <tr><td class="chave">10</td><td>Avaliação de profissional</td><td>Não · só elogio · nota</td><td>Não (provisório)</td></tr>
+      <tr><td class="chave">11</td><td>Mapa muscular</td><td>Vetor · IA · no lugar da rosca · os dois</td><td>Aguarda o Alex</td></tr>
+      <tr><td class="chave">12</td><td>Treino descartado</td><td>Sai da fila · sobe marcado</td><td>Sobe, aberto</td></tr>
+      <tr><td class="chave">13</td><td>Aluno pendente</td><td>Esconder até confirmar · permitir</td><td>Em aberto</td></tr>
+      <tr><td class="chave">14</td><td>Aviso pelo instrutor</td><td>Só dono e recepção · instrutor também</td><td>Só dono e recepção</td></tr>
+      <tr><td class="chave">15</td><td>Recepção na entrada da equipe</td><td>Opção própria · como está</td><td>Vira instrutor; o dono ajusta</td></tr>
+      <tr><td class="chave">16</td><td>Circuito conduzido pelo app</td><td>Só texto na v1 · regra nova</td><td>Só texto</td></tr>
+      <tr><td class="chave">17</td><td>Nomes dos objetivos</td><td>Perder peso · Ganhar massa · Condicionamento · Começar a treinar · Manter</td><td>A proposta da marca</td></tr>
+      <tr><td class="chave">18</td><td>Nome do pacote do app</td><td><code>com.pixelmartins.academiaplus</code> · outro</td><td>O proposto (não muda depois do 1º envio)</td></tr>
+      <tr><td class="chave">19</td><td>Conta Apple Developer</td><td>Empresa (recomendado) · pessoa física</td><td>—</td></tr>
+      <tr><td class="chave">20</td><td>Plus nas lojas</td><td>Serviço da academia com parte presencial · assinatura pela loja · só na web</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Outras escolhas que esperam o Alex</h2>
+  <ul>
+    <li><strong>O logo está resolvido</strong> (Parte 8). Fica, sem pressa, o ícone escuro próprio do iOS 18.</li>
+    <li><strong>Palavras</strong>: "dieta" ou "plano alimentar" na tela.</li>
+    <li><strong>A conversa</strong> com a personal e as telas de plano alimentar do personal, que dependem das perguntas 4 e 7.</li>
+    <li><strong>Mensalidade, catraca e caixa</strong> dentro do app ou não.</li>
+    <li><strong>As perguntas menores</strong>, cada uma com recomendação, em <code>01-especificacao/90-PERGUNTAS-PARA-O-ALEX.md</code>.</li>
+  </ul>
+</section>
+
+<section class="parte" id="proximos">
+  <p class="parte__olho">Parte 14</p>
+  <h1 class="parte__titulo">Próximos passos</h1>
+  <p class="parte__lide">O caminho daqui até o aluno abrir o app na academia. Cada fase termina num ponto que dá para mostrar e conferir.</p>
+
+  <div class="fase"><div class="fase__n">1</div><div>
+    <h3>Respostas</h3>
+    <p class="fase__meta">Depende do Alex · desde 11/10 o código segue com as escolhas provisórias, que ele pode trocar</p>
+    <p>Confirmar ou trocar as escolhas provisórias da Parte 13, aprovar o mapa muscular, quem revisa o catálogo de treinos (CREF) e, de preferência, a primeira academia. Advogado ou nutricionista para a alimentação no Plus; leitura das regras da Apple para o pagamento. Cada resposta entra em <code>docs/decisoes.md</code> com data e motivo.</p>
+  </div></div>
+
+  <div class="fase"><div class="fase__n">2</div><div>
+    <h3>Marca no protótipo</h3>
+    <p class="fase__meta">Feito em 10/10/2026: a linguagem das referências do Alex, com a proporção revista, em três páginas (sistema e seis telas, abertura e entrada, telas novas), nos dois temas, com a medição automática em 0 problemas</p>
+    <p>Logo final escolhido em 11/10. Falta: testar o vidro, os ícones e o ícone do app num celular de verdade (iPhone e um Android de entrada).</p>
+  </div></div>
+
+  <div class="fase"><div class="fase__n">3</div><div>
+    <h3>O núcleo do aluno</h3>
+    <p class="fase__meta">Pronto quando: um aluno cria conta, monta um treino e registra um treino sem sinal, e o registro chega ao servidor · em 11/10 já roda no app com dados de exemplo; falta o servidor (Supabase)</p>
+    <p>Entrada, treino livre, o dia de treino, histórico, cadastro opcional. Banco com as regras de acesso testadas. É a parte que precisa funcionar antes de qualquer outra.</p>
+  </div></div>
+
+  <div class="fase"><div class="fase__n">4</div><div>
+    <h3>A academia</h3>
+    <p class="fase__meta">Pronto quando: a instrutora acha um aluno, monta o treino e ele aparece no celular do aluno · em 11/10 já roda no mesmo aparelho; falta o servidor</p>
+    <p>Lista de alunos, perfil, montar treino, treinos prontos, vínculo por código, números do dono. A revisão propõe importar a lista de alunos por planilha, para não cadastrar 350 pessoas uma a uma.</p>
+  </div></div>
+
+  <div class="fase"><div class="fase__n">5</div><div>
+    <h3>O Plus</h3>
+    <p class="fase__meta">Pronto quando: um aluno Plus recebe treino e plano do jeito decidido na fase 1, marca o dia, e o acesso do personal some quando o Plus acaba</p>
+    <p>Designação do personal, acompanhamento da alimentação, conversa, estados da assinatura. O desenho final das telas de alimentação espera a resposta sobre quem prescreve.</p>
+  </div></div>
+
+  <div class="fase"><div class="fase__n">6</div><div>
+    <h3>Piloto numa academia</h3>
+    <p class="fase__meta">Pronto quando: a primeira academia usa por um mês e os números do dono mostram treino registrado toda semana</p>
+    <p>Política de privacidade publicada, declaração de dados de saúde nas lojas, testes no celular pequeno com letra a 200 %, robô percorrendo os caminhos principais. Depois disso, a lista da Parte 11 volta à mesa com dados reais.</p>
+  </div></div>
+
+  <div class="caixa caixa--decisao"><span class="caixa__rotulo">Para conversar</span><p>Este documento é a base para a conversa com um sócio, uma academia ou um investidor. A pergunta mais útil para fazer a uma academia interessada: <em>"Você cobraria o Plus junto da mensalidade, e quem faria a parte de alimentação: um nutricionista da casa ou um parceiro?"</em> A resposta destrava as perguntas 2, 6 e 7.</p></div>
+</section>
+
+</body></html>

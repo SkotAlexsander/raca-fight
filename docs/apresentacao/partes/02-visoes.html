@@ -1,0 +1,58 @@
+<section class="parte" id="visoes">
+  <p class="parte__olho">Parte 2</p>
+  <h1 class="parte__titulo">As duas visões</h1>
+  <p class="parte__lide">É um aplicativo só. O que muda é o que a pessoa vê quando entra, e isso depende do papel dela na academia. Quem é aluno e também trabalha na academia troca de visão com um toque, sem trocar de conta.</p>
+
+  <div class="visoes">
+    <div class="visao">
+      <h3>Visão do aluno</h3>
+      <p>Para quem treina. Responde "o que eu faço hoje?".</p>
+      <ul>
+        <li>Monta o próprio treino ou escolhe um pronto pelo objetivo</li>
+        <li>Registra o treino, série por série, e vê o histórico</li>
+        <li>Informa peso e altura <em>se quiser</em></li>
+        <li>Decide se a academia pode ver esses dados</li>
+        <li>Pode assinar o Plus</li>
+      </ul>
+      <p class="pequeno discreto" style="margin-top:8px">Abas: Início · Treinos · Plus · Perfil</p>
+    </div>
+    <div class="visao">
+      <h3>Visão da academia</h3>
+      <p>Para quem trabalha lá. Responde "quem precisa de mim?".</p>
+      <ul>
+        <li>Lista de alunos, com quem sumiu há mais de 14 dias</li>
+        <li>Perfil do aluno e "Montar treino para ele"</li>
+        <li>Biblioteca de treinos prontos da academia</li>
+        <li>O personal acompanha os alunos Plus dele</li>
+        <li>O dono vê a academia em números e cuida da equipe</li>
+      </ul>
+      <p class="pequeno discreto" style="margin-top:8px">Abas: Alunos · Treinos · Plus (personal) · Academia (dono) · Perfil</p>
+    </div>
+  </div>
+
+  <h2>Cinco papéis</h2>
+  <p>Uma <strong>conta</strong> é uma pessoa. Um <strong>vínculo</strong> liga a conta a uma academia com um <strong>papel</strong>. O papel decide a visão.</p>
+  <table class="tabela-compacta">
+    <thead><tr><th>Papel</th><th>Quem é</th><th>Visão</th><th>O que ganha a mais</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Aluno</td><td>Quem treina</td><td>aluno</td><td>Treino livre, treinos prontos, registro, histórico</td></tr>
+      <tr><td class="chave">Aluno Plus</td><td>Não é outro papel: é o aluno com o Plus ativo</td><td>aluno</td><td>Personal, acompanhamento da alimentação, conversa</td></tr>
+      <tr><td class="chave">Funcionário</td><td>Recepção e instrutor de sala (o mesmo papel na primeira versão)</td><td>academia</td><td>Vê alunos, monta treino, cuida da biblioteca</td></tr>
+      <tr><td class="chave">Personal</td><td>Funcionário que acompanha alunos Plus</td><td>academia</td><td>Só os alunos Plus <em>dele</em>: dados, treino, alimentação, conversa</td></tr>
+      <tr><td class="chave">Dono</td><td>Responsável pela academia</td><td>academia</td><td>Equipe, números, quem é personal de quem</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Quem vê o quê</h2>
+  <p>Peso, altura, idade, restrições e alimentação são <strong>dados de saúde</strong>. A lei de proteção de dados (LGPD) trata esse tipo de dado com cuidado especial, e o app também.</p>
+  <table class="tabela-compacta">
+    <thead><tr><th>Quem</th><th>Vê os dados do corpo do aluno?</th><th>Vê a alimentação e a conversa?</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">O próprio aluno</td><td>Sim, tudo</td><td>Sim</td></tr>
+      <tr><td class="chave">Funcionário e dono</td><td>Só se o aluno deixou (a chave vem ligada e ele desliga quando quiser)</td><td>Não, nunca</td></tr>
+      <tr><td class="chave">Personal</td><td>Só dos alunos Plus designados a ele, enquanto o Plus estiver ativo</td><td>Sim, dos dele</td></tr>
+      <tr><td class="chave">Outro personal</td><td>Não</td><td>Não</td></tr>
+    </tbody>
+  </table>
+  <div class="caixa caixa--regra"><span class="caixa__rotulo">Regra que não muda</span><p>O dono não tem acesso maior que o funcionário aos dados de saúde. O que ele ganha é gestão: pessoas e números, sempre somados, sem nome.</p></div>
+</section>

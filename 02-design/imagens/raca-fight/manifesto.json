@@ -1,0 +1,539 @@
+{
+ "data": "2026-10-15",
+ "fonte": "02-design/referencias/raca-fight/fotos",
+ "itens": [
+  {
+   "nome": "entrada-fundo-tela",
+   "foto": "raca-54",
+   "uso": "tela",
+   "tamanho": [
+    390,
+    844
+   ],
+   "recorte_px": [
+    525,
+    1136
+   ],
+   "arquivos": [
+    "entrada-fundo-tela@1x.webp",
+    "entrada-fundo-tela@1x.jpg",
+    "entrada-fundo-tela-desfocado@1x.webp",
+    "entrada-fundo-tela-desfocado@1x.jpg",
+    "entrada-fundo-tela-escuro@1x.webp",
+    "entrada-fundo-tela-escuro@1x.jpg",
+    "entrada-fundo-tela-escuro-desfocado@1x.webp",
+    "entrada-fundo-tela-escuro-desfocado@1x.jpg",
+    "entrada-fundo-tela-claro@1x.webp",
+    "entrada-fundo-tela-claro@1x.jpg",
+    "entrada-fundo-tela-claro-desfocado@1x.webp",
+    "entrada-fundo-tela-claro-desfocado@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "inicio-capa-capa",
+   "foto": "raca-14",
+   "uso": "capa",
+   "tamanho": [
+    358,
+    300
+   ],
+   "recorte_px": [
+    540,
+    453
+   ],
+   "arquivos": [
+    "inicio-capa-capa@1x.webp",
+    "inicio-capa-capa@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "inicio-capa-cartao",
+   "foto": "raca-14",
+   "uso": "cartao",
+   "tamanho": [
+    358,
+    200
+   ],
+   "recorte_px": [
+    540,
+    302
+   ],
+   "arquivos": [
+    "inicio-capa-cartao@1x.webp",
+    "inicio-capa-cartao@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "aula-capa-capa",
+   "foto": "raca-09",
+   "uso": "capa",
+   "tamanho": [
+    358,
+    300
+   ],
+   "recorte_px": [
+    388,
+    325
+   ],
+   "arquivos": [
+    "aula-capa-capa@1x.webp",
+    "aula-capa-capa@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "aula-capa-cartao",
+   "foto": "raca-09",
+   "uso": "cartao",
+   "tamanho": [
+    358,
+    200
+   ],
+   "recorte_px": [
+    480,
+    268
+   ],
+   "arquivos": [
+    "aula-capa-cartao@1x.webp",
+    "aula-capa-cartao@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "modalidade-muay-thai-cartao",
+   "foto": "raca-40",
+   "uso": "cartao",
+   "tamanho": [
+    358,
+    200
+   ],
+   "recorte_px": [
+    632,
+    353
+   ],
+   "arquivos": [
+    "modalidade-muay-thai-cartao@1x.webp",
+    "modalidade-muay-thai-cartao@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "modalidade-muay-thai-mini",
+   "foto": "raca-40",
+   "uso": "mini",
+   "tamanho": [
+    96,
+    96
+   ],
+   "recorte_px": [
+    511,
+    511
+   ],
+   "arquivos": [
+    "modalidade-muay-thai-mini@1x.webp",
+    "modalidade-muay-thai-mini@1x.jpg",
+    "modalidade-muay-thai-mini@2x.webp",
+    "modalidade-muay-thai-mini@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "modalidade-boxe-cartao",
+   "foto": "raca-20",
+   "uso": "cartao",
+   "tamanho": [
+    358,
+    200
+   ],
+   "recorte_px": [
+    828,
+    463
+   ],
+   "arquivos": [
+    "modalidade-boxe-cartao@1x.webp",
+    "modalidade-boxe-cartao@1x.jpg",
+    "modalidade-boxe-cartao@2x.webp",
+    "modalidade-boxe-cartao@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "modalidade-boxe-mini",
+   "foto": "raca-20",
+   "uso": "mini",
+   "tamanho": [
+    96,
+    96
+   ],
+   "recorte_px": [
+    828,
+    828
+   ],
+   "arquivos": [
+    "modalidade-boxe-mini@1x.webp",
+    "modalidade-boxe-mini@1x.jpg",
+    "modalidade-boxe-mini@2x.webp",
+    "modalidade-boxe-mini@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "modalidade-jiu-jitsu-cartao",
+   "foto": "raca-54",
+   "uso": "cartao",
+   "tamanho": [
+    358,
+    200
+   ],
+   "recorte_px": [
+    640,
+    358
+   ],
+   "arquivos": [
+    "modalidade-jiu-jitsu-cartao@1x.webp",
+    "modalidade-jiu-jitsu-cartao@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "modalidade-jiu-jitsu-mini",
+   "foto": "raca-54",
+   "uso": "mini",
+   "tamanho": [
+    96,
+    96
+   ],
+   "recorte_px": [
+    640,
+    640
+   ],
+   "arquivos": [
+    "modalidade-jiu-jitsu-mini@1x.webp",
+    "modalidade-jiu-jitsu-mini@1x.jpg",
+    "modalidade-jiu-jitsu-mini@2x.webp",
+    "modalidade-jiu-jitsu-mini@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "modalidade-mma-cartao",
+   "foto": "raca-02",
+   "uso": "cartao",
+   "tamanho": [
+    358,
+    200
+   ],
+   "recorte_px": [
+    540,
+    302
+   ],
+   "arquivos": [
+    "modalidade-mma-cartao@1x.webp",
+    "modalidade-mma-cartao@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "modalidade-mma-mini",
+   "foto": "raca-02",
+   "uso": "mini",
+   "tamanho": [
+    96,
+    96
+   ],
+   "recorte_px": [
+    378,
+    378
+   ],
+   "arquivos": [
+    "modalidade-mma-mini@1x.webp",
+    "modalidade-mma-mini@1x.jpg",
+    "modalidade-mma-mini@2x.webp",
+    "modalidade-mma-mini@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "modalidade-kids-cartao",
+   "foto": "raca-11",
+   "uso": "cartao",
+   "tamanho": [
+    358,
+    200
+   ],
+   "recorte_px": [
+    612,
+    342
+   ],
+   "arquivos": [
+    "modalidade-kids-cartao@1x.webp",
+    "modalidade-kids-cartao@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "modalidade-kids-mini",
+   "foto": "raca-11",
+   "uso": "mini",
+   "tamanho": [
+    96,
+    96
+   ],
+   "recorte_px": [
+    612,
+    612
+   ],
+   "arquivos": [
+    "modalidade-kids-mini@1x.webp",
+    "modalidade-kids-mini@1x.jpg",
+    "modalidade-kids-mini@2x.webp",
+    "modalidade-kids-mini@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "graduacao-cordao-capa",
+   "foto": "raca-11",
+   "uso": "capa",
+   "tamanho": [
+    358,
+    300
+   ],
+   "recorte_px": [
+    720,
+    603
+   ],
+   "arquivos": [
+    "graduacao-cordao-capa@1x.webp",
+    "graduacao-cordao-capa@1x.jpg",
+    "graduacao-cordao-capa@2x.webp",
+    "graduacao-cordao-capa@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "graduacao-cordao-cartao",
+   "foto": "raca-11",
+   "uso": "cartao",
+   "tamanho": [
+    358,
+    200
+   ],
+   "recorte_px": [
+    720,
+    402
+   ],
+   "arquivos": [
+    "graduacao-cordao-cartao@1x.webp",
+    "graduacao-cordao-cartao@1x.jpg",
+    "graduacao-cordao-cartao@2x.webp",
+    "graduacao-cordao-cartao@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "cronometro-fundo-tela",
+   "foto": "raca-40",
+   "uso": "tela",
+   "tamanho": [
+    390,
+    844
+   ],
+   "recorte_px": [
+    373,
+    807
+   ],
+   "arquivos": [
+    "cronometro-fundo-tela@1x.webp",
+    "cronometro-fundo-tela@1x.jpg",
+    "cronometro-fundo-tela-desfocado@1x.webp",
+    "cronometro-fundo-tela-desfocado@1x.jpg",
+    "cronometro-fundo-tela-escuro@1x.webp",
+    "cronometro-fundo-tela-escuro@1x.jpg",
+    "cronometro-fundo-tela-escuro-desfocado@1x.webp",
+    "cronometro-fundo-tela-escuro-desfocado@1x.jpg",
+    "cronometro-fundo-tela-claro@1x.webp",
+    "cronometro-fundo-tela-claro@1x.jpg",
+    "cronometro-fundo-tela-claro-desfocado@1x.webp",
+    "cronometro-fundo-tela-claro-desfocado@1x.jpg"
+   ],
+   "sem2x": true,
+   "aumentado1x": true
+  },
+  {
+   "nome": "professor-a-retrato",
+   "foto": "raca-45",
+   "uso": "retrato",
+   "tamanho": [
+    240,
+    320
+   ],
+   "recorte_px": [
+    648,
+    864
+   ],
+   "arquivos": [
+    "professor-a-retrato@1x.webp",
+    "professor-a-retrato@1x.jpg",
+    "professor-a-retrato@2x.webp",
+    "professor-a-retrato@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "professor-a-avatar",
+   "foto": "raca-45",
+   "uso": "avatar",
+   "tamanho": [
+    96,
+    96
+   ],
+   "recorte_px": [
+    432,
+    432
+   ],
+   "arquivos": [
+    "professor-a-avatar@1x.webp",
+    "professor-a-avatar@1x.jpg",
+    "professor-a-avatar@2x.webp",
+    "professor-a-avatar@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "professor-b-retrato",
+   "foto": "raca-12",
+   "uso": "retrato",
+   "tamanho": [
+    240,
+    320
+   ],
+   "recorte_px": [
+    340,
+    454
+   ],
+   "arquivos": [
+    "professor-b-retrato@1x.webp",
+    "professor-b-retrato@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "professor-b-avatar",
+   "foto": "raca-12",
+   "uso": "avatar",
+   "tamanho": [
+    96,
+    96
+   ],
+   "recorte_px": [
+    454,
+    454
+   ],
+   "arquivos": [
+    "professor-b-avatar@1x.webp",
+    "professor-b-avatar@1x.jpg",
+    "professor-b-avatar@2x.webp",
+    "professor-b-avatar@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "evento-noite-de-luta-cartao",
+   "foto": "raca-47",
+   "uso": "cartao",
+   "tamanho": [
+    358,
+    200
+   ],
+   "recorte_px": [
+    1080,
+    603
+   ],
+   "arquivos": [
+    "evento-noite-de-luta-cartao@1x.webp",
+    "evento-noite-de-luta-cartao@1x.jpg",
+    "evento-noite-de-luta-cartao@2x.webp",
+    "evento-noite-de-luta-cartao@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "evento-entrada-do-atleta-cartao",
+   "foto": "raca-52",
+   "uso": "cartao",
+   "tamanho": [
+    358,
+    200
+   ],
+   "recorte_px": [
+    640,
+    358
+   ],
+   "arquivos": [
+    "evento-entrada-do-atleta-cartao@1x.webp",
+    "evento-entrada-do-atleta-cartao@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "evento-entrada-do-atleta-capa",
+   "foto": "raca-52",
+   "uso": "capa",
+   "tamanho": [
+    358,
+    300
+   ],
+   "recorte_px": [
+    640,
+    536
+   ],
+   "arquivos": [
+    "evento-entrada-do-atleta-capa@1x.webp",
+    "evento-entrada-do-atleta-capa@1x.jpg"
+   ],
+   "sem2x": true
+  },
+  {
+   "nome": "admin-fundo-faixa-admin",
+   "foto": "raca-01",
+   "uso": "faixa-admin",
+   "tamanho": [
+    2040,
+    320
+   ],
+   "recorte_px": [
+    540,
+    85
+   ],
+   "arquivos": [
+    "admin-fundo-faixa-admin@1x.webp",
+    "admin-fundo-faixa-admin@1x.jpg",
+    "admin-fundo-faixa-admin@2x.webp",
+    "admin-fundo-faixa-admin@2x.jpg"
+   ],
+   "sem2x": false
+  },
+  {
+   "nome": "admin-fundo-cartao",
+   "foto": "raca-01",
+   "uso": "cartao",
+   "tamanho": [
+    358,
+    200
+   ],
+   "recorte_px": [
+    540,
+    302
+   ],
+   "arquivos": [
+    "admin-fundo-cartao@1x.webp",
+    "admin-fundo-cartao@1x.jpg"
+   ],
+   "sem2x": true
+  }
+ ]
+}

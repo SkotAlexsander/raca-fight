@@ -1,0 +1,17 @@
+# P04 — Marca e proposta (→ `02-design/marca-e-proposta/`)
+
+Leia `00-prompts/P00-CONTEXTO.md` e `CLAUDE.md`. Português do Brasil. Este agente cuida da **identidade** do Academia Plus: o que a marca promete, como fala, como se parece. A estrutura visual (tokens de espaço, componentes, responsividade) é trabalho de outro agente (`02-design/sistema-de-design/`), que deixou os papéis de cor e tipografia como variáveis neutras — a sua entrega **preenche essas variáveis**.
+
+Atenção à pendência **[decidir]** sobre marca própria vs. marca da academia (white-label): entregue a identidade do Academia Plus como marca própria e, num capítulo à parte, diga o que mudaria (e o que fica igual) se cada academia pusesse sua cor e logo.
+
+Entregue em `02-design/marca-e-proposta/`:
+
+1. `00-PROPOSTA.md` — a proposta de valor em uma frase para o aluno e uma para a academia; os dois sentidos de "Plus" (o "a mais" que a academia dá + o plano pago) e como a marca segura os dois sem confundir; o posicionamento frente ao que já existe (apps de treino genéricos, planilha no WhatsApp, sistema de gestão da academia que não fala com o aluno); 3 ou 4 personas curtas (aluno iniciante, aluno que já treina, instrutor de sala, dono).
+2. `01-TOM-DE-VOZ.md` — como o app fala: princípios, 10 pares "assim sim / assim não" de microcopy (botão, estado vazio, erro, parabéns ao fechar treino, convite ao Plus sem ser agressivo, lembrete de treino), regras de tratamento (você, sem "fitness-speak" vazio), como fala de corpo e peso **sem julgar** (nada de "gordura", "queimar", "corpo ideal" — isso é regra de marca e de saúde).
+3. `02-IDENTIDADE-VISUAL.md` — direção visual com referências descritas em texto (não copiar marca existente): paleta (cor de marca, cor do Plus, neutros, cores de estado) com valores **em hex e OKLCH** nos temas claro e escuro e contraste conferido (4,5:1 texto, 3:1 grande); tipografia (1 família para interface e, se fizer sentido, 1 para número grande de carga/cronômetro — fontes livres, com link), uso de ícone (traço, peso), fotografia/ilustração (o que entra e o que não entra), o que o selo Plus parece.
+4. `03-LOGO.md` + `logo/` — direção do logotipo com 2 ou 3 caminhos em SVG simples (wordmark "Academia Plus", símbolo para ícone do app em 1024 × 1024, versão monocromática). Diga qual você recomenda e por quê. Não precisa ser final: é para o Alex escolher o caminho.
+5. `04-APLICACAO.md` — como a marca aparece no app: tela de abertura, ícone, cabeçalho, estado vazio, selo e tela de convite ao Plus, notificação; e fora do app: cartaz na recepção da academia, story do Instagram, página na loja (texto curto e capturas que a página precisa).
+6. `05-WHITE-LABEL.md` — o capítulo da pendência: o que fica fixo (estrutura, tom, componentes) e o que cada academia poderia trocar (cor de marca, logo no cabeçalho, nome na abertura), e o custo disso em design e código.
+7. `tokens-marca.json` — os valores finais para os papéis de cor e tipografia nos dois temas, no mesmo formato de nomes do `02-design/sistema-de-design/tokens.json` (se esse arquivo ainda não existir quando você for gravar, use os nomes: `fundo`, `superficie`, `texto`, `textoSecundario`, `marca`, `marcaTexto`, `sucesso`, `atencao`, `erro`, `plus`).
+
+Pode usar as skills `frontend-design`, `better-colors`, `color-palette`, `better-writing` e `copywriting`. Critério de pronto: o Alex lê o `00-PROPOSTA.md` e o `02-IDENTIDADE-VISUAL.md` e consegue dizer "é isso" ou "não é isso" em 5 minutos; quem implementa consegue aplicar o `tokens-marca.json` sem perguntar.

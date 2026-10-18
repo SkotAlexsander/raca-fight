@@ -1,0 +1,1651 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academia Plus — Sistema de design</title>
+<meta name="description" content="Mockup do sistema de design do Academia Plus (tokens 1.6.0) na linguagem das referências do Alex: foto grande, vidro, números enormes e verde vivo. 6 telas em moldura de iPhone e Android, claro e escuro, efeitos de movimento, tokens e componentes com estados.">
+<link rel="stylesheet" href="sistema.css">
+<script>
+  // Aplica o tema salvo antes de pintar, para não piscar. Sem atributo = segue o sistema.
+  try { var t = localStorage.getItem('academia-plus-tema'); if (t === 'claro' || t === 'escuro') document.documentElement.setAttribute('data-tema', t); } catch (e) {}
+  // Aparelho da moldura: ?aparelho=<id> na URL manda; senão o último escolhido; senão o Android 390.
+  // Ids e medidas: tokens.json › layout.aparelhos. O iPhone 13 mini só entra pela URL (?aparelho=iphone-13-mini).
+  try {
+    var ids = ['iphone-se', 'iphone-13-mini', 'iphone-16', 'iphone-16-pro-max', 'android'];
+    var a = new URLSearchParams(location.search).get('aparelho');
+    if (ids.indexOf(a) < 0) { try { a = localStorage.getItem('academia-plus-aparelho'); } catch (e) {} }
+    if (ids.indexOf(a) < 0) a = 'android';
+    document.documentElement.setAttribute('data-aparelho', a);
+    document.documentElement.setAttribute('data-plataforma', a === 'android' ? 'android' : 'ios');
+  } catch (e) {}
+  // Movimento: "reduzido" quando a opção do sistema está ligada (ou a escolha guardada na chave do topo).
+  try {
+    var m = null; try { m = localStorage.getItem('academia-plus-movimento'); } catch (e) {}
+    if (m !== 'normal' && m !== 'reduzido') m = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'reduzido' : 'normal';
+    document.documentElement.setAttribute('data-movimento', m);
+  } catch (e) {}
+  // Barra de abas com o + central: só com ?abas=mais na URL ([decidir] do Alex)
+  try { if (new URLSearchParams(location.search).get('abas') === 'mais') document.documentElement.setAttribute('data-abas', 'mais'); } catch (e) {}
+  // Transparência: "reduzida" vira o vidro em superfície sólida (a chave do topo simula o "Reduzir transparência")
+  try { var tr = localStorage.getItem('academia-plus-transparencia'); if (tr === 'normal' || tr === 'reduzida') document.documentElement.setAttribute('data-transparencia', tr); } catch (e) {}
+  // Fonte do sistema simulada (100 % ou 160 %): o texto do sistema é em rem e acompanha.
+  try { if (localStorage.getItem('academia-plus-fonte') === '160') document.documentElement.style.fontSize = '160%'; } catch (e) {}
+</script>
+</head>
+<body>
+
+<!-- Ícones (traço 2, 24 px, pontas redondas). A marca pede Lucide (ISC); estes seguem o mesmo desenho. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!-- ICONES:INICIO — cópia de 02-design/icones/sprite.svg (gerar.py → embutir.mjs); não editar aqui -->
+<symbol id="i-inicio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5h0a1.75 1.75 0 0 1 1.75 1.75v11.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-11.5a1.75 1.75 0 0 1 1.75 -1.75z"/><path d="M4 8h0a1.75 1.75 0 0 1 1.75 1.75v4.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-4.5a1.75 1.75 0 0 1 1.75 -1.75z"/><path d="M16.5 4.5h0a1.75 1.75 0 0 1 1.75 1.75v11.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-11.5a1.75 1.75 0 0 1 1.75 -1.75z"/><path d="M20 8h0a1.75 1.75 0 0 1 1.75 1.75v4.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-4.5a1.75 1.75 0 0 1 1.75 -1.75z"/><path d="M9.25 12h5.5"/></symbol>
+<symbol id="i-inicio-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5h0a1.75 1.75 0 0 1 1.75 1.75v11.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-11.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor"/><path d="M4 8h0a1.75 1.75 0 0 1 1.75 1.75v4.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-4.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor"/><path d="M16.5 4.5h0a1.75 1.75 0 0 1 1.75 1.75v11.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-11.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor"/><path d="M20 8h0a1.75 1.75 0 0 1 1.75 1.75v4.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-4.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor"/><path d="M9.25 12h5.5"/></symbol>
+<symbol id="i-treinos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a2.5 2.5 0 0 1 2.5 2.5v12.5a2.5 2.5 0 0 1 -2.5 2.5h-10a2.5 2.5 0 0 1 -2.5 -2.5v-12.5a2.5 2.5 0 0 1 2.5 -2.5z"/><path d="M10 2.25h4a1.5 1.5 0 0 1 1.5 1.5v0.75a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-0.75a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M8.5 11h.01"/><path d="M12 11h3.5"/><path d="M8.5 16h.01"/><path d="M12 16h3.5"/></symbol>
+<symbol id="i-treinos-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2.88h10a3.62 3.62 0 0 1 3.62 3.62v12.5a3.62 3.62 0 0 1 -3.62 3.62h-10a3.62 3.62 0 0 1 -3.62 -3.62v-12.5a3.62 3.62 0 0 1 3.62 -3.62zM9.4 9.6h5.2a1.4 1.4 0 0 1 1.4 1.4v0a1.4 1.4 0 0 1 -1.4 1.4h-5.2a1.4 1.4 0 0 1 -1.4 -1.4v-0a1.4 1.4 0 0 1 1.4 -1.4zM9.4 15h5.2a1.4 1.4 0 0 1 1.4 1.4v0a1.4 1.4 0 0 1 -1.4 1.4h-5.2a1.4 1.4 0 0 1 -1.4 -1.4v-0a1.4 1.4 0 0 1 1.4 -1.4z" fill="currentColor" stroke="none" fill-rule="evenodd"/><path d="M10 2.25h4a1.5 1.5 0 0 1 1.5 1.5v0.75a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-0.75a1.5 1.5 0 0 1 1.5 -1.5z" fill="currentColor"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h0a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1 -1.5 1.5h-0a1.5 1.5 0 0 1 -1.5 -1.5v-4a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M17.5 8.5h0a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1 -1.5 1.5h-0a1.5 1.5 0 0 1 -1.5 -1.5v-4a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M3.25 12H5"/><path d="M8 12h8"/><path d="M19 12h1.75"/><path d="M12 3.25v17.5"/></symbol>
+<symbol id="i-plus-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5h17a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-17a1.5 1.5 0 0 1 -1.5 -1.5v-0a1.5 1.5 0 0 1 1.5 -1.5zM5.75 7.5h0.5a1.25 1.25 0 0 1 1.25 1.25v6.5a1.25 1.25 0 0 1 -1.25 1.25h-0.5a1.25 1.25 0 0 1 -1.25 -1.25v-6.5a1.25 1.25 0 0 1 1.25 -1.25zM17.75 7.5h0.5a1.25 1.25 0 0 1 1.25 1.25v6.5a1.25 1.25 0 0 1 -1.25 1.25h-0.5a1.25 1.25 0 0 1 -1.25 -1.25v-6.5a1.25 1.25 0 0 1 1.25 -1.25zM12 2h0a2 2 0 0 1 2 2v16a2 2 0 0 1 -2 2h-0a2 2 0 0 1 -2 -2v-16a2 2 0 0 1 2 -2z" fill="currentColor" stroke="none" fill-rule="nonzero"/></symbol>
+<symbol id="i-perfil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></symbol>
+<symbol id="i-perfil-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z" fill="currentColor"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z" fill="currentColor"/></symbol>
+<symbol id="i-alunos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8" r="3.75"/><path d="M2.75 21a6.75 6.75 0 0 1 13.5 0"/><path d="M15.5 4.5a3.75 3.75 0 0 1 0 7"/><path d="M18.5 15a6.75 6.75 0 0 1 2.75 6"/></symbol>
+<symbol id="i-alunos-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.75 8a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0z" fill="currentColor"/><path d="M2.75 21a6.75 6.75 0 0 1 13.5 0z" fill="currentColor"/><path d="M15.5 4.5a3.75 3.75 0 0 1 0 7"/><path d="M18.5 15a6.75 6.75 0 0 1 2.75 6"/></symbol>
+<symbol id="i-academia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 5 3.5h14l2 5"/><path d="M3 8.5a3 3 0 0 0 6 0a3 3 0 0 0 6 0a3 3 0 0 0 6 0"/><path d="M5 12.5V21h14v-8.5"/><path d="M10 21v-4h4v4"/></symbol>
+<symbol id="i-academia-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 5 3.5h14l2 5a3 3 0 0 1 -6 0a3 3 0 0 1 -6 0a3 3 0 0 1 -6 0z" fill="currentColor"/><path d="M5 13.5V21h4.5v-3.5a1.5 1.5 0 0 1 1.5 -1.5h2a1.5 1.5 0 0 1 1.5 1.5V21H19v-7.5z" fill="currentColor"/></symbol>
+<symbol id="i-marcar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></symbol>
+<symbol id="i-mais" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+<symbol id="i-menos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></symbol>
+<symbol id="i-cronometro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15.75 7A7.5 7.5 0 1 1 8.25 7"/><path d="M10 3h4"/><path d="M12 3v3"/><path d="M12 13.5l3-3"/></symbol>
+<symbol id="i-pausar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 5v14"/><path d="M15.5 5v14"/></symbol>
+<symbol id="i-pausar-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.75 3.5h1.5a1.75 1.75 0 0 1 1.75 1.75v13.5a1.75 1.75 0 0 1 -1.75 1.75h-1.5a1.75 1.75 0 0 1 -1.75 -1.75v-13.5a1.75 1.75 0 0 1 1.75 -1.75zM15.75 3.5h1.5a1.75 1.75 0 0 1 1.75 1.75v13.5a1.75 1.75 0 0 1 -1.75 1.75h-1.5a1.75 1.75 0 0 1 -1.75 -1.75v-13.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-comecar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 7 5.2z"/></symbol>
+<symbol id="i-comecar-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 7 5.2z" fill="currentColor"/></symbol>
+<symbol id="i-pular" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.2v11.6a1 1 0 0 0 1.53.85l9.2-5.8a1 1 0 0 0 0-1.7l-9.2-5.8A1 1 0 0 0 4.5 6.2z"/><path d="M19.5 5v14"/></symbol>
+<symbol id="i-buscar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.75"/><path d="M15.5 15.5 20.5 20.5"/></symbol>
+<symbol id="i-filtro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6h17"/><path d="M6.5 12h11"/><path d="M9.5 18h5"/></symbol>
+<symbol id="i-voltar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+<symbol id="i-avancar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.25" fill="currentColor"/><circle cx="12" cy="12" r="1.25" fill="currentColor"/><circle cx="19" cy="12" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></symbol>
+<symbol id="i-vibrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4.5h4a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-12a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M2.5 8.5l2 1.75-2 1.75 2 1.75-2 1.75"/><path d="M21.5 8.5l-2 1.75 2 1.75-2 1.75 2 1.75"/></symbol>
+<symbol id="i-sino" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5V10a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 21h4"/></symbol>
+<symbol id="i-sino-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5V10a6 6 0 0 1 12 0v5.5l1.5 2h-15z" fill="currentColor"/><path d="M10 21h4"/></symbol>
+<symbol id="i-prato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3v5.5a3 3 0 0 0 6 0V3"/><path d="M7.5 11.5V21"/><path d="M19.5 14.5V3a4.5 4.5 0 0 0-4.5 4.5v5.5a1.5 1.5 0 0 0 1.5 1.5h3zm0 0V21"/></symbol>
+<symbol id="i-grafico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 20V14"/><path d="M12 20V4.5"/><path d="M18.5 20V9.5"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9a2 2 0 0 1 2-2h2.5l1.6-2.5h5.8L16.5 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13.25" r="3"/></symbol>
+<symbol id="i-cadeado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11h11a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></symbol>
+<symbol id="i-email" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z"/><path d="M3.5 7.5 12 13l8.5-5.5"/></symbol>
+<symbol id="i-apple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M16.37 12.6c-.02-2.2 1.8-3.27 1.88-3.32-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.17-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.3-3.5zM14.2 6.13c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.64-1.05 1.67-.92 2.66.97.08 1.96-.49 2.56-1.21z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-google" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M18.2 6.6A8.25 8.25 0 1 0 20.25 12H12.5"/></symbol>
+<symbol id="i-calendario" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 5h13a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-13a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z"/><path d="M3.5 10h17"/><path d="M8 2.75v4"/><path d="M16 2.75v4"/></symbol>
+<symbol id="i-baixo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></symbol>
+<symbol id="i-subir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></symbol>
+<symbol id="i-seta-direita" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="M13 5.5l6.5 6.5-6.5 6.5"/></symbol>
+<symbol id="i-lista" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11.5"/><path d="M9 12h11.5"/><path d="M9 18h11.5"/><circle cx="4.25" cy="6" r="1.25" fill="currentColor"/><circle cx="4.25" cy="12" r="1.25" fill="currentColor"/><circle cx="4.25" cy="18" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-conversa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2.5 21.5z"/></symbol>
+<symbol id="i-desfazer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+<symbol id="i-trocar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20V4"/><path d="M3 8l4-4 4 4"/><path d="M17 4v16"/><path d="M13 16l4 4 4-4"/></symbol>
+<symbol id="i-alerta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10.27 4.5a2 2 0 0 1 3.46 0l7.6 13.25A2 2 0 0 1 19.6 20.75H4.4a2 2 0 0 1-1.73-3z"/><path d="M12 9.5v4"/><circle cx="12" cy="17" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-alca" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1.25" fill="currentColor"/><circle cx="15" cy="6" r="1.25" fill="currentColor"/><circle cx="9" cy="12" r="1.25" fill="currentColor"/><circle cx="15" cy="12" r="1.25" fill="currentColor"/><circle cx="9" cy="18" r="1.25" fill="currentColor"/><circle cx="15" cy="18" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-nuvem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></symbol>
+<symbol id="i-olho" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-escudo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></symbol>
+<symbol id="i-convite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h15a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2h-15a2 2 0 0 0-2 2z"/><path d="M13 5v2"/><path d="M13 11v2"/><path d="M13 17v2"/></symbol>
+<symbol id="i-relogio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.25 2"/></symbol>
+<symbol id="i-estrela" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.75l2.78 5.64 6.22.9-4.5 4.39 1.06 6.2L12 16.95l-5.56 2.93 1.06-6.2L3 9.29l6.22-.9z"/></symbol>
+<symbol id="i-anilha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.75"/></symbol>
+<symbol id="i-anilha-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M1.88 12a10.12 10.12 0 1 0 20.25 0a10.12 10.12 0 1 0 -20.25 0zM10.38 12a1.62 1.62 0 1 0 3.25 0a1.62 1.62 0 1 0 -3.25 0z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-barra" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6.5h0a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1 -1.5 1.5h-0a1.5 1.5 0 0 1 -1.5 -1.5v-8a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M18 6.5h0a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1 -1.5 1.5h-0a1.5 1.5 0 0 1 -1.5 -1.5v-8a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M7.5 12h9"/><path d="M2 12h2.5"/><path d="M19.5 12H22"/></symbol>
+<symbol id="i-esteira" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="3.75" r="1.75" fill="currentColor"/><path d="M3.5 14l4 1 .5-.5"/><path d="M12 18v-3l-3-2.9.75-5.1"/><path d="M6 10V8l4-1 2.5 2.5 2.5.5"/><path d="M3 21.5h17"/><path d="M18 21.5l1-11 2-1"/></symbol>
+<symbol id="i-bicicleta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1.5" fill="currentColor"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></symbol>
+<symbol id="i-corrida" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="4.5" r="2" fill="currentColor"/><path d="M4 17l5 1 .75-1.5"/><path d="M15 21v-4l-4-3 1-6"/><path d="M7 12V9l5-1 3 3 3 1"/></symbol>
+<symbol id="i-alongamento" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="5.5" r="2" fill="currentColor"/><path d="M6.5 21l3.5-5"/><path d="M5 11l7-2"/><path d="M16 21l-4-7V9l7-4"/></symbol>
+<symbol id="i-balanca" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3.5h9a4 4 0 0 1 4 4v9a4 4 0 0 1 -4 4h-9a4 4 0 0 1 -4 -4v-9a4 4 0 0 1 4 -4z"/><path d="M12 8a6 6 0 0 1 4.3 1.8l-2.6 2.6a2.4 2.4 0 0 0-3.4 0L7.7 9.8A6 6 0 0 1 12 8z"/></symbol>
+<symbol id="i-medida" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1z"/><path d="M7.5 12v3"/><path d="M12 12v3"/><path d="M16.5 12v3"/><path d="M3 3.5v4"/><path d="M3 5.5h18"/><path d="M21 3.5v4"/></symbol>
+<symbol id="i-frequencia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5a5.25 5.25 0 0 1 9.1-3.6.55.55 0 0 0 .8 0A5.25 5.25 0 0 1 21.5 9.5c0 2.2-1.45 3.85-2.9 5.3l-5.2 5.1a2 2 0 0 1-2.8 0l-5.2-5.1C3.95 13.35 2.5 11.7 2.5 9.5"/><path d="M6 12.5h3l1.5-2.5 3 5 1.5-2.5h3"/></symbol>
+<symbol id="i-sequencia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a7 7 0 0 1-14 0 5 5 0 0 1 1-3 2.5 2.5 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4z"/></symbol>
+<symbol id="i-sequencia-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a7 7 0 0 1-14 0 5 5 0 0 1 1-3 2.5 2.5 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4z" fill="currentColor"/></symbol>
+<symbol id="i-trofeu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6.5H4.5v1.5a3 3 0 0 0 3 3"/><path d="M17 6.5h2.5v1.5a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/><path d="M9.5 18h5"/></symbol>
+<symbol id="i-musculo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12.4 13A5 5 0 0 1 22 15c0 3.87-4 7-9 7-4.08 0-8.15-.82-10.37-2.46-.43-.32-.63-.83-.62-1.36C2.12 12.72 2.63 2 10 2a3 3 0 0 1 3 3 2 2 0 0 1-2 2c-1.1 0-1.64-.44-2-1"/><path d="M15 14a5 5 0 0 0-7.6 2"/></symbol>
+<symbol id="i-garrafa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.75h4"/><path d="M10.25 2.75v2.5c0 1.2-.6 2-1.5 3.2A6 6 0 0 0 7.5 12v7.5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2V12a6 6 0 0 0-1.25-3.55c-.9-1.2-1.5-2-1.5-3.2v-2.5"/><path d="M7.5 14.5c1.5-1 3-1 4.5 0s3 1 4.5 0"/></symbol>
+<symbol id="i-personal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6.5v3.5"/><path d="M21 6.5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5.7A6.75 6.75 0 1 1 9 6.5z"/></symbol>
+<symbol id="i-grafico-linha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 3.5V19a1.5 1.5 0 0 0 1.5 1.5h15.5"/><path d="M7.5 15l4-4.5 3 3 5-6"/></symbol>
+<symbol id="ex-supino-reto" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M7 31.5h28"/><path d="M11 31.5v9"/><path d="M31 31.5v9"/><path d="M10.5 10.5a4.5 4.5 0 1 0 9 0a4.5 4.5 0 1 0 -9 0"/></g><g class="corpo" stroke-width="3"><path d="M14.5 27.5L29 27.5"/><path d="M29 27.5L36 25.5L38.5 40"/><path d="M14.5 27.5L15 20L15 12"/></g><circle class="cabeca" cx="9.6" cy="27.5" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M15.22 25.8L21.75 25.8"/></g></symbol>
+<symbol id="ex-supino-inclinado-com-halteres" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M14 26 23.5 36.5h12"/><path d="M27 36.5v5"/><path d="M15.5 7.5h7 M15.5 6v3 M22.5 6v3"/></g><g class="corpo" stroke-width="3"><path d="M16.5 21.5L26 32"/><path d="M26 32L34.5 29.5L37 41"/><path d="M16.5 21.5L17.5 15L19 8.5"/></g><circle class="cabeca" cx="13.21" cy="17.87" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M18.24 20.88L22.51 25.61"/></g></symbol>
+<symbol id="ex-crucifixo-na-maquina" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M7 6v16"/><path d="M41 6v16"/><path d="M17 41h14"/></g><g class="corpo" stroke-width="3"><path d="M24 15L24 30"/><path d="M17.5 17L30.5 17"/><path d="M17.5 17L9.5 18L9.5 9"/><path d="M30.5 17L38.5 18L38.5 9"/><path d="M20.5 30L27.5 30"/><path d="M20.5 30L19.5 41"/><path d="M27.5 30L28.5 41"/></g><circle class="cabeca" cx="24" cy="9.5" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M19.5 20.5h9"/></g></symbol>
+<symbol id="ex-triceps-corda" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M33.5 5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"/><path d="M35.3 7.4 31 28.5"/></g><g class="corpo" stroke-width="3"><path d="M21.5 14L20 28.5"/><path d="M20 28.5L22 35.5L21 42"/><path d="M20 28.5L17.5 35.5L16 42"/><path d="M21.5 14L26 22.5L30.5 29"/></g><circle class="cabeca" cx="22" cy="9.13" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M20.54 15.82L24.27 22.87"/></g></symbol>
+<symbol id="ex-agachamento-livre" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M13.5 18.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0"/><path d="M10 18.5h16"/></g><g class="corpo" stroke-width="3"><path d="M22.5 17L17.5 30.5"/><path d="M17.5 30.5L30 32.5L27 42"/><path d="M22.5 17L28 22L25.5 18.5"/></g><circle class="cabeca" cx="24.44" cy="11.75" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M19.02 29.02L29.02 30.62"/></g></symbol>
+<symbol id="ex-remada-curvada" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M23.5 33a4.5 4.5 0 1 0 9 0a4.5 4.5 0 1 0 -9 0"/></g><g class="corpo" stroke-width="3"><path d="M30.5 17L16.5 25"/><path d="M16.5 25L20.5 33L18 42"/><path d="M30.5 17L25 23.5L28 29"/></g><circle class="cabeca" cx="34.75" cy="14.57" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M28.54 16.16L19.86 21.12"/></g></symbol>
+<symbol id="ex-esteira" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M6 41.5h30.5"/><path d="M36.5 41.5 40 21.5"/><path d="M40 21.5h-6"/></g><g class="corpo" stroke-width="3"><path d="M23.5 13L21 26.5"/><path d="M21 26.5L27.5 31.5L26 39.5"/><path d="M21 26.5L17.5 33L11.5 37"/><path d="M23.5 13L27.5 19.5L31 16"/><path d="M23.5 13L19.5 20.5L16 23.5"/></g><circle class="cabeca" cx="24.39" cy="8.18" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M22.69 25.65L27.89 29.65"/></g></symbol>
+<symbol id="ex-leg-press" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M6 22 18 37.5h8"/><path d="M33 15.5 39 29"/><path d="M36 22.5 44 41"/></g><g class="corpo" stroke-width="3"><path d="M11 25.5L19 34.5"/><path d="M19 34.5L25 23.5L35 22.5"/><path d="M11 25.5L16 30.5L21.5 34"/></g><circle class="cabeca" cx="7.74" cy="21.84" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M21.09 34.21L25.89 25.41"/></g></symbol>
+<symbol id="ex-puxada" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M6 5.5h36"/><path d="M24 5.5V2"/></g><g class="corpo" stroke-width="3"><path d="M24 20L24 33"/><path d="M18 21.5L30 21.5"/><path d="M18 21.5L12.5 15L11.5 5.5"/><path d="M30 21.5L35.5 15L36.5 5.5"/><path d="M20.5 33L27.5 33"/><path d="M20.5 33L19.5 42"/><path d="M27.5 33L28.5 42"/></g><circle class="cabeca" cx="24" cy="14.9" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M19.5 24.5 21 31"/><path d="M28.5 24.5 27 31"/></g></symbol>
+<symbol id="ex-desenvolvimento" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M8 8.5h7 M8 7v3 M15 7v3"/><path d="M33 8.5h7 M33 7v3 M40 7v3"/></g><g class="corpo" stroke-width="3"><path d="M24 19L24 31"/><path d="M17.5 20.5L30.5 20.5"/><path d="M17.5 20.5L11 21L11.5 10.5"/><path d="M30.5 20.5L37 21L36.5 10.5"/><path d="M20.5 31L27.5 31"/><path d="M20.5 31L19.5 42"/><path d="M27.5 31L28.5 42"/></g><circle class="cabeca" cx="24" cy="13.7" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M18 18.2 14.5 18.5"/><path d="M30 18.2 33.5 18.5"/></g></symbol>
+<symbol id="ex-rosca" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M29.5 14.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"/></g><g class="corpo" stroke-width="3"><path d="M22 13.5L21.5 28"/><path d="M21.5 28L23 35L22 42"/><path d="M21.5 28L19 35L17.5 42"/><path d="M22 13.5L25.5 22.5L31.5 15.5"/></g><circle class="cabeca" cx="22.17" cy="8.6" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M23.93 13.78L26.73 20.98"/></g></symbol>
+<symbol id="ex-prancha" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M3 43h42"/></g><g class="corpo" stroke-width="3"><path d="M33 32.5L19.5 35"/><path d="M19.5 35L12.5 37.5L5.5 40.5"/><path d="M33 32.5L33 40.5L40.5 40.5"/></g><circle class="cabeca" cx="37.82" cy="31.61" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M31.28 34.55L20.48 36.55"/></g></symbol>
+<symbol id="ex-abdominal" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M3 43h42"/></g><g class="corpo" stroke-width="3"><path d="M15 33L26.5 38.5"/><path d="M26.5 38.5L32.5 29L38 39"/><path d="M15 33L20 29.5L25.5 30"/></g><circle class="cabeca" cx="10.58" cy="30.89" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M16.88 32.02L26.66 36.69"/></g></symbol>
+<symbol id="ex-elevacao-pelvica" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M3 43h42"/></g><g class="corpo" stroke-width="3"><path d="M12.5 38.5L25 30"/><path d="M25 30L33 27.5L35 40"/><path d="M12.5 38.5L17.5 40.5L22.5 40.5"/></g><circle class="cabeca" cx="8.45" cy="41.26" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M20.5 34.5Q25.5 33.5 29.5 31.5"/></g></symbol>
+<symbol id="ex-panturrilha" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M27 43.5h14"/><path d="M27 43.5v4"/><path d="M35 43.5V20"/></g><g class="corpo" stroke-width="3"><path d="M23.5 11.5L23.5 26"/><path d="M23.5 26L24.5 33.5L25 39.5L29 42"/><path d="M23.5 11.5L28.5 18.5L34 21"/></g><circle class="cabeca" cx="23.5" cy="6.6" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M22.81 33.64L23.31 39.64"/></g></symbol>
+<symbol id="ex-bicicleta" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M26 36a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"/><path d="M18.5 27.5 22.5 41.5"/><path d="M12 42.5h26"/><path d="M33 30.5 36 17"/><path d="M14.5 26h7"/></g><g class="corpo" stroke-width="3"><path d="M26 13.5L18.5 25"/><path d="M18.5 25L28.5 26.5L25.5 35.5"/><path d="M26 13.5L31 17.5L36 17"/></g><circle class="cabeca" cx="28.68" cy="9.4" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M19.75 23.47L27.75 24.67"/></g></symbol>
+<!-- ICONES:FIM -->
+  <!-- 1.6.0: o + da marca para a aba Plus (desde 11/10/2026 o i-plus do sprite, com o logo final do agente W); seta de avançar do deslizar -->
+  <!-- barra de status do sistema (desenho do aparelho, não do app) -->
+  <symbol id="s-sinal" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></symbol>
+  <symbol id="s-wifi" viewBox="0 0 16 12"><path d="M8 11.6l2.3-2.6a3.3 3.3 0 0 0-4.6 0z"/><path d="M3.3 6.4l1.5 1.7a4.8 4.8 0 0 1 6.4 0l1.5-1.7a7.1 7.1 0 0 0-9.4 0z"/><path d="M.6 3.5l1.5 1.7a9 9 0 0 1 11.8 0l1.5-1.7a11.3 11.3 0 0 0-14.8 0z"/></symbol>
+  <symbol id="s-bateria" viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="22" height="11" rx="3" fill="none" stroke="currentColor" opacity="0.45"/><rect x="2" y="2" width="16" height="8" rx="1.5"/><path d="M24 4v4a2 2 0 0 0 0-4z" opacity="0.45"/></symbol>
+</svg>
+
+<main class="pagina">
+
+  <header class="pagina__topo">
+    <div>
+      <nav class="paginas-nav" aria-label="Páginas do mockup"><span class="paginas-nav__marca" aria-hidden="true">Raça Fight</span><a href="luta.html">Telas de luta</a><a href="entrada.html">Abertura e entrada</a><a href="index.html" aria-current="page">Sistema (histórico)</a><a href="novas.html">Musculação (histórico)</a></nav>
+      <h1 class="so-leitor">Academia Plus — sistema de design e 6 telas</h1>
+      <p class="corpo-pequeno"><b>Histórico (15/10/2026):</b> telas da fase de musculação (Academia Plus), mantidas como referência dos componentes. As cores já são as da Raça Fight (tokens 2.0.0); as telas de luta estão em <code>luta.html</code> (menu acima).</p>
+      
+      <p class="pagina__nota corpo-pequeno">Tokens 1.6.0 na linguagem das referências do Alex (<code>02-design/referencias/</code>): foto grande e escura com texto por cima, painéis de vidro, números enormes e o verde da marca mais vivo; o claro tem a mesma linguagem. Abre por <code>file://</code>, sem build. <code>?abas=mais</code> mostra o + central da barra ([decidir]).</p>
+    </div>
+    <div class="seletores">
+      <div class="seletor-tema" role="group" aria-label="Tema">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-tema-botao="claro">Claro</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-tema-botao="escuro">Escuro</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-tema-botao="sistema">Sistema</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Aparelho da moldura">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="iphone-se">iPhone SE</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="iphone-16">iPhone 16</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="iphone-16-pro-max">iPhone 16 Pro Max</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="android">Android 390</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Movimento">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-movimento-botao="normal">Movimento</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-movimento-botao="reduzido">Reduzido</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Transparência">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-transparencia-botao="normal">Vidro</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-transparencia-botao="reduzida">Sem transparência</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Tamanho da fonte do sistema">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-fonte-botao="100">Fonte 100 %</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-fonte-botao="160">160 %</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ TELAS-CHAVE ============ -->
+  <section class="galeria" id="telas">
+    <div class="galeria__titulo">
+      <h2 class="titulo-2">6 telas · <span id="rotulo-aparelho">Android 390 · 390 × 844</span></h2>
+      <p class="texto-secundario corpo-pequeno">A linguagem das referências do Alex: foto grande e escura com o texto por cima, vidro sobre a foto, números enormes, anéis por exercício, pílulas e o verde vivo. O claro é o mesmo app: a foto continua escura e o vidro fica claro. Treino em andamento · Escolher treino pronto · Perfil do aluno (academia) · Dieta (Plus) · Cronômetro · Convite ao Plus. As telas respondem: marque a série 2, deslize para começar, segure um cartão, toque em "Pular fase", troque de aba e use a chave "Sem transparência".</p>
+    </div>
+
+    <div class="telas">
+
+      <!-- TELA 1: Treino em andamento (aluno) — foto grande do exercício atual, número gigante, vidro, anéis -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: treino em andamento, visão do aluno">
+          <div class="celular__tela celular__tela--imersiva">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <header class="cabecalho cabecalho--flutuante">
+              <button class="botao botao--icone botao--vidro" aria-label="Voltar ao Início"><svg class="icone"><use href="#i-voltar"/></svg></button>
+              <button class="botao botao--icone botao--vidro" aria-label="Mais opções do treino: cronômetro, editar, encerrar"><svg class="icone"><use href="#i-menu"/></svg></button>
+            </header>
+            <div class="celular__conteudo">
+              <section class="foto-texto foto-texto--heroi" aria-label="Exercício atual">
+                <img class="foto-texto__imagem" src="../../imagens/treinos/supino-inclinado-com-halteres-heroi@1x.webp" srcset="../../imagens/treinos/supino-inclinado-com-halteres-heroi@1x.webp 1x, ../../imagens/treinos/supino-inclinado-com-halteres-heroi@2x.webp 2x" width="393" height="440" alt="Homem no banco inclinado empurra dois halteres">
+                <div class="foto-texto__conteudo">
+                  <div class="chips"><span class="pilula-vidro">Série 2 de 3</span><span class="pilula-vidro">22,5 kg</span></div>
+                  <div class="atual__numero"><span class="numero-gigante">12</span><span class="corpo-forte">repetições</span></div>
+                  <h2 class="titulo-2">Supino inclinado com halteres</h2>
+                  <p class="corpo-pequeno texto-secundario">Treino A · Peito e tríceps · exercício 3 de 7</p>
+                </div>
+              </section>
+
+              <article class="cartao cartao--atual exercicio" aria-label="Séries do supino inclinado com halteres">
+                <div class="secao__titulo"><h3 class="titulo-3">Séries</h3><span class="corpo-pequeno texto-secundario">descanso 90 s</span></div>
+                <div class="exercicio__series">
+                  <div class="serie serie--feita" data-serie="1" role="group" aria-label="Série 1, 12 repetições, 22,5 quilos, feita">
+                    <span class="serie__numero"><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span>
+                    <div class="serie__campo">
+                      <div class="serie__valor"><span class="numero-carga">12</span><span class="corpo-pequeno texto-secundario">reps</span></div>
+                      <span class="serie__vezes">×</span>
+                      <div class="serie__valor"><span class="numero-carga">22,5</span><span class="corpo-pequeno texto-secundario">kg</span></div>
+                    </div>
+                    <button class="serie__marcar" aria-label="Desfazer série 1"><svg class="icone"><use href="#i-desfazer"/></svg></button>
+                  </div>
+                  <div class="serie serie--atual" data-serie="2" role="group" aria-label="Série 2, 12 repetições, 22,5 quilos, não feita">
+                    <span class="serie__numero">2</span>
+                    <div class="serie__campo">
+                      <div class="passo" style="flex:1">
+                        <button class="passo__botao" aria-label="Diminuir repetições"><svg class="icone"><use href="#i-menos"/></svg></button>
+                        <div class="passo__centro"><span class="numero-carga">12</span><span class="corpo-pequeno texto-secundario">reps</span></div>
+                        <button class="passo__botao" aria-label="Aumentar repetições"><svg class="icone"><use href="#i-mais"/></svg></button>
+                      </div>
+                    </div>
+                    <button class="serie__marcar" aria-label="Marcar série 2 como feita"><svg class="icone"><use href="#i-marcar"/></svg></button>
+                  </div>
+                  <div class="serie serie--pequena" data-serie="3" role="group" aria-label="Série 3, 10 repetições, 22,5 quilos, não feita">
+                    <span class="serie__numero">3</span>
+                    <div class="serie__campo">
+                      <div class="serie__valor"><span class="numero-carga">10</span><span class="corpo-pequeno texto-secundario">reps</span></div>
+                      <span class="serie__vezes">×</span>
+                      <div class="serie__valor"><span class="numero-carga">22,5</span><span class="corpo-pequeno texto-secundario">kg</span></div>
+                    </div>
+                    <button class="serie__marcar" aria-label="Marcar série 3 como feita"><svg class="icone"><use href="#i-marcar"/></svg></button>
+                  </div>
+                </div>
+                <div class="exercicio__rodape">
+                  <button class="botao botao--secundario botao--pequeno botao--intrinseco"><svg class="icone"><use href="#i-mais"/></svg>Adicionar série</button>
+                  <button class="chip" aria-label="Descanso: 90 segundos. Toque para ajustar"><svg class="icone icone--pequeno"><use href="#i-relogio"/></svg>90 s</button>
+                </div>
+              </article>
+
+              <div class="secao">
+                <div class="placar" role="group" aria-label="Resumo do treino: 6 de 20 séries, 14 minutos, 2 de 7 exercícios">
+                  <div class="placar__item"><span class="numero-carga" data-placar="series">6<span class="placar__total">/20</span></span><span class="corpo-pequeno texto-secundario">séries</span></div>
+                  <div class="placar__item"><span class="numero-carga">14</span><span class="corpo-pequeno texto-secundario">minutos</span></div>
+                  <div class="placar__item"><span class="numero-carga">2<span class="placar__total">/7</span></span><span class="corpo-pequeno texto-secundario">exercícios</span></div>
+                </div>
+                <div class="progresso" role="progressbar" aria-label="Progresso do treino" aria-valuemin="0" aria-valuemax="20" aria-valuenow="6" aria-valuetext="6 de 20 séries"><div class="progresso__valor" data-placar="barra" style="width:30%"></div></div>
+              </div>
+
+              <div class="secao">
+                <div class="secao__titulo"><h3 class="titulo-3">Exercícios</h3><span class="corpo-pequeno texto-secundario">2 de 7</span></div>
+                <div class="lista-cartoes">
+                  <button class="exercicio-linha exercicio-linha--feito cartao--tocavel">
+                    <span class="mini mini--ilustracao"><svg class="ilustracao-exercicio" viewBox="0 0 48 48" aria-hidden="true"><use href="#ex-supino-reto"/></svg></span>
+                    <span class="exercicio-linha__texto"><span class="titulo-3">Supino reto</span><span class="corpo-pequeno texto-secundario">3 × 12 · 40 kg</span></span>
+                    <span class="anel-exercicio anel-exercicio--feito" style="--feito:1" role="img" aria-label="3 de 3 séries feitas"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="anel-exercicio__trilho" cx="22" cy="22" r="20"/><circle class="anel-exercicio__valor" cx="22" cy="22" r="20" pathLength="1"/></svg><span class="anel-exercicio__numero">3</span></span>
+                  </button>
+                  <button class="exercicio-linha cartao--tocavel" style="box-shadow:var(--sombra-atual)">
+                    <span class="mini mini--ilustracao"><svg class="ilustracao-exercicio" viewBox="0 0 48 48" aria-hidden="true"><use href="#ex-supino-inclinado-com-halteres"/></svg></span>
+                    <span class="exercicio-linha__texto"><span class="titulo-3">Supino inclinado</span><span class="corpo-pequeno texto-secundario">agora · 3 × 12 · 22,5 kg</span></span>
+                    <span class="anel-exercicio" style="--feito:.34" role="img" aria-label="1 de 3 séries feitas" data-anel-atual><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="anel-exercicio__trilho" cx="22" cy="22" r="20"/><circle class="anel-exercicio__valor" cx="22" cy="22" r="20" pathLength="1"/></svg><span class="anel-exercicio__numero">1</span></span>
+                  </button>
+                  <button class="exercicio-linha cartao--tocavel">
+                    <span class="mini mini--ilustracao"><svg class="ilustracao-exercicio" viewBox="0 0 48 48" aria-hidden="true"><use href="#ex-crucifixo-na-maquina"/></svg></span>
+                    <span class="exercicio-linha__texto"><span class="titulo-3">Crucifixo na máquina</span><span class="corpo-pequeno texto-secundario">3 × 15 · 35 kg</span></span>
+                    <span class="anel-exercicio" style="--feito:0" role="img" aria-label="0 de 3 séries feitas"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="anel-exercicio__trilho" cx="22" cy="22" r="20"/><circle class="anel-exercicio__valor" cx="22" cy="22" r="20" pathLength="1"/></svg><span class="anel-exercicio__numero">0</span></span>
+                  </button>
+                  <button class="exercicio-linha cartao--tocavel">
+                    <span class="mini mini--ilustracao"><svg class="ilustracao-exercicio" viewBox="0 0 48 48" aria-hidden="true"><use href="#ex-triceps-corda"/></svg></span>
+                    <span class="exercicio-linha__texto"><span class="titulo-3">Tríceps corda</span><span class="corpo-pequeno texto-secundario">4 × 12 · 20 kg</span></span>
+                    <span class="anel-exercicio" style="--feito:0" role="img" aria-label="0 de 4 séries feitas"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="anel-exercicio__trilho" cx="22" cy="22" r="20"/><circle class="anel-exercicio__valor" cx="22" cy="22" r="20" pathLength="1"/></svg><span class="anel-exercicio__numero">0</span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="celular__base">
+              <div class="aviso-base">
+                <div class="toast toast--sucesso" role="status">
+                  <svg class="icone"><use href="#i-marcar"/></svg>
+                  <span class="toast__texto">Série 1 feita</span>
+                  <button class="botao botao--texto botao--intrinseco" data-desfazer>Desfazer</button>
+                </div>
+              </div>
+              <div class="faixa-cronometro" role="timer" aria-label="Descanso, 45 segundos restantes">
+                <div class="progresso"><div class="progresso__valor" data-faixa="barra" style="width:50%"></div></div>
+                <svg class="icone"><use href="#i-relogio"/></svg>
+                <span class="faixa-cronometro__texto corpo-forte" data-faixa="texto">Descanso · 0:45</span>
+                <button class="botao botao--icone" aria-label="Pausar descanso" data-faixa-pausar><svg class="icone"><use href="#i-pausar"/></svg></button>
+                <button class="botao botao--icone" aria-label="Pular descanso" data-faixa-pular><svg class="icone"><use href="#i-pular"/></svg></button>
+              </div>
+              <nav class="barra-abas" aria-label="Navegação do aluno"><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio-cheio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos"/></svg></span><span class="aba__rotulo">Treinos</span></a><div class="aba-mais"><button class="aba-mais__botao" aria-label="Começar treino, cronômetro ou registrar" data-abrir-mais><svg class="icone"><use href="#i-mais"/></svg></button></div><a class="aba" href="#" aria-label="Plus: personal, treino e dieta"><span class="aba__icone"><svg class="icone"><use href="#i-plus"/></svg></span><span class="aba__rotulo">Plus</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav>
+              <div class="celular__gesto"></div>
+            </div>
+          </div>
+        </div>
+        <p class="corpo-forte">1 · Treino em andamento (aluno)</p>
+        <p class="corpo-pequeno texto-secundario">Foto grande do exercício atual com o número de repetições enorme e as pílulas de vidro (série e carga). Voltar e menu em vidro; o cronômetro foi para o menu ⋯ e o título não corta mais. Abaixo, as séries ("marcar" em verde vivo, check com mola) e a lista com um anel por exercício. O aviso "Série feita" fica acima da faixa do descanso, sem cobrir a série seguinte.</p>
+      </div>
+
+      <!-- TELA 2: Escolher treino pronto -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: escolher treino pronto, visão do aluno">
+          <div class="celular__tela">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <header class="cabecalho cabecalho--raiz cabecalho--grande">
+              <p class="titulo-2 cabecalho__pequeno" aria-hidden="true">Treinos prontos</p>
+              <div class="cabecalho__titulo"><h2 class="titulo-1">Treinos prontos</h2></div>
+              <button class="botao botao--icone" aria-label="Buscar treino"><svg class="icone"><use href="#i-buscar"/></svg></button>
+            </header>
+            <div class="celular__conteudo">
+              <div class="secao">
+                <p class="corpo-pequeno texto-secundario">Qual é o seu objetivo?</p>
+                <div class="chips" role="group" aria-label="Filtrar por objetivo">
+                  <button class="chip chip--selecionado" aria-pressed="true"><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg>Ganhar massa</button>
+                  <button class="chip" aria-pressed="false">Perder peso</button>
+                  <button class="chip" aria-pressed="false">Condicionamento</button>
+                  <button class="chip" aria-pressed="false">Começar a treinar</button>
+                  <button class="chip" aria-pressed="false">Manter</button>
+                </div>
+              </div>
+              <div class="secao">
+                <div class="secao__titulo"><h3 class="titulo-3">Para você</h3><span class="corpo-pequeno texto-secundario">Ganhar massa</span></div>
+                <button class="foto-texto foto-texto--capa capa-treino treino-pronto--escolhido">
+                  <img class="foto-texto__imagem" src="../../imagens/treinos/abc-hipertrofia-capa@1x.webp" srcset="../../imagens/treinos/abc-hipertrofia-capa@1x.webp 1x, ../../imagens/treinos/abc-hipertrofia-capa@2x.webp 2x" width="358" height="240" alt="Homem no supino reto com barra">
+                  <span class="foto-texto__conteudo">
+                    <span class="foto-texto__topo"><span class="pilula-vidro">Em uso</span><span class="pilula-vidro">40 min</span></span>
+                    <span class="titulo-1" style="margin-top:auto">ABC Hipertrofia</span>
+                    <span class="corpo-pequeno texto-secundario">Ganhar massa · Intermediário · 3 dias · 20 exercícios</span>
+                  </span>
+                </button>
+                <div class="deslizar" role="button" tabindex="0" aria-label="Começar o Treino A. Deslize o botão ou toque">
+                  <span class="deslizar__botao" aria-hidden="true"><svg class="icone"><use href="#i-seta-direita"/></svg></span>
+                  <span class="deslizar__rotulo">Deslize para começar</span>
+                  <span class="deslizar__setas" aria-hidden="true"><svg class="icone"><use href="#i-avancar"/></svg><svg class="icone"><use href="#i-avancar"/></svg><svg class="icone"><use href="#i-avancar"/></svg></span>
+                </div>
+              </div>
+              <div class="secao">
+                <div class="secao__titulo"><h3 class="titulo-3">Outros objetivos</h3><span class="corpo-pequeno texto-secundario">4 treinos</span></div>
+                <div class="grade-2">
+                  <button class="foto-texto foto-texto--capa capa-treino capa-treino--grade">
+                    <img class="foto-texto__imagem" src="../../imagens/treinos/circuito-30-larga@1x.webp" srcset="../../imagens/treinos/circuito-30-larga@1x.webp 1x, ../../imagens/treinos/circuito-30-larga@2x.webp 2x" width="344" height="192" alt="Homem e mulher treinam em estações com kettlebell">
+                    <span class="foto-texto__conteudo"><span class="titulo-3">Circuito 30</span><span class="corpo-pequeno texto-secundario">Perder peso · 30 min</span></span>
+                  </button>
+                  <button class="foto-texto foto-texto--capa capa-treino capa-treino--grade">
+                    <img class="foto-texto__imagem" src="../../imagens/treinos/folego-3x-larga@1x.webp" srcset="../../imagens/treinos/folego-3x-larga@1x.webp 1x, ../../imagens/treinos/folego-3x-larga@2x.webp 2x" width="344" height="192" alt="Homem e mulher treinam com corda naval">
+                    <span class="foto-texto__conteudo"><span class="titulo-3">Fôlego 3×</span><span class="corpo-pequeno texto-secundario">Condicionamento · 35 min</span></span>
+                  </button>
+                </div>
+                <div class="lista-cartoes">
+                  <button class="cartao treino-pronto treino-pronto--lista">
+                    <span class="mini"><img src="../../imagens/treinos/primeiros-passos-mini@1x.webp" srcset="../../imagens/treinos/primeiros-passos-mini@1x.webp 1x, ../../imagens/treinos/primeiros-passos-mini@2x.webp 2x" width="48" height="48" alt=""></span>
+                    <span class="treino-pronto__topo"><span class="titulo-3">Primeiros passos</span><span class="corpo-pequeno texto-secundario">Começar a treinar · 25 min</span></span>
+                    <svg class="icone texto-secundario"><use href="#i-avancar"/></svg>
+                  </button>
+                  <button class="cartao treino-pronto treino-pronto--lista">
+                    <span class="mini"><img src="../../imagens/treinos/corpo-em-dia-mini@1x.webp" srcset="../../imagens/treinos/corpo-em-dia-mini@1x.webp 1x, ../../imagens/treinos/corpo-em-dia-mini@2x.webp 2x" width="48" height="48" alt=""></span>
+                    <span class="treino-pronto__topo"><span class="titulo-3">Corpo em dia</span><span class="corpo-pequeno texto-secundario">Manter · 45 min</span></span>
+                    <svg class="icone texto-secundario"><use href="#i-avancar"/></svg>
+                  </button>
+                  <button class="cartao treino-pronto treino-pronto--lista treino-pronto--arquivado" aria-disabled="true">
+                    <span class="mini"><img src="../../imagens/treinos/intervalado-25-mini@1x.webp" srcset="../../imagens/treinos/intervalado-25-mini@1x.webp 1x, ../../imagens/treinos/intervalado-25-mini@2x.webp 2x" width="48" height="48" alt=""></span>
+                    <span class="treino-pronto__topo"><span class="titulo-3">Intervalado 25</span><span class="corpo-pequeno texto-secundario">Condicionamento · Arquivado</span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="celular__base">
+              <nav class="barra-abas" aria-label="Navegação do aluno"><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos-cheio"/></svg></span><span class="aba__rotulo">Treinos</span></a><div class="aba-mais"><button class="aba-mais__botao" aria-label="Começar treino, cronômetro ou registrar" data-abrir-mais><svg class="icone"><use href="#i-mais"/></svg></button></div><a class="aba" href="#" aria-label="Plus: personal, treino e dieta"><span class="aba__icone"><svg class="icone"><use href="#i-plus"/></svg></span><span class="aba__rotulo">Plus</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav>
+              <div class="celular__gesto"></div>
+            </div>
+          </div>
+        </div>
+        <p class="corpo-forte">2 · Escolher treino pronto (aluno)</p>
+        <p class="corpo-pequeno texto-secundario">Capas com foto grande e o texto por cima, no pé do degradê (medido contra o pior pixel). "Em uso" e a duração em pílulas de vidro. "Deslize para começar" logo abaixo do treino escolhido; tocar no botão também começa. O título grande encolhe ao rolar.</p>
+      </div>
+
+      <!-- TELA 3: Perfil do aluno (funcionário) -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: perfil do aluno, visão da academia">
+          <div class="celular__tela">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <header class="cabecalho">
+              <button class="botao botao--icone" aria-label="Voltar para Alunos"><svg class="icone"><use href="#i-voltar"/></svg></button>
+              <div class="cabecalho__titulo">
+                <p class="corpo-pequeno texto-secundario">Academia Corpo & Vida</p>
+                <p class="titulo-2">Perfil do aluno</p>
+              </div>
+              <button class="chip-visao" aria-label="Você está na visão da academia. Trocar para visão do aluno"><svg class="icone icone--pequeno"><use href="#i-trocar"/></svg>Academia</button>
+            </header>
+            <div class="celular__conteudo" style="padding-top:var(--espaco-2)">
+              <section class="foto-texto foto-texto--capa perfil-ilha" aria-label="Ana Souza">
+                <div class="foto-texto__conteudo">
+                  <div style="display:flex;align-items:center;gap:var(--espaco-3)">
+                    <div class="avatar avatar--64">AS</div>
+                    <div style="flex:1;min-width:0">
+                      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:var(--espaco-2)"><h2 class="titulo-1">Ana Souza</h2><span class="selo-plus">Plus</span></div>
+                      <p class="corpo-pequeno texto-secundario">Treinou há 2 dias · 12 treinos no mês</p>
+                    </div>
+                  </div>
+                  <div class="placar">
+                    <div class="placar__item"><span class="corpo-pequeno texto-secundario">Peso</span><span class="numero-carga">68,4<span class="placar__total corpo-pequeno"> kg</span></span></div>
+                    <div class="placar__item"><span class="corpo-pequeno texto-secundario">Altura</span><span class="numero-carga">1,65<span class="placar__total corpo-pequeno"> m</span></span></div>
+                    <div class="placar__item"><span class="corpo-pequeno texto-secundario">Idade</span><span class="numero-carga">—</span><span class="corpo-pequeno texto-secundario">Não informado</span></div>
+                  </div>
+                </div>
+              </section>
+              <div class="secao">
+                <p class="corpo-pequeno texto-secundario">Objetivo e restrições</p>
+                <div class="chips"><span class="chip chip--info">Ganhar massa</span><span class="chip chip--info">3× por semana</span><span class="chip chip--info">Joelho direito</span></div>
+              </div>
+              <div class="linha-botoes">
+                <button class="botao botao--secundario">Ver histórico</button>
+                <button class="botao botao--primario">Montar treino</button>
+              </div>
+              <div class="secao">
+                <div class="secao__titulo"><h3 class="titulo-3">Treinos da Ana</h3><span class="corpo-pequeno texto-secundario">3</span></div>
+                <div class="lista lista--imagem">
+                  <button class="linha linha--compacta">
+                    <span class="mini mini--ilustracao"><svg class="ilustracao-exercicio" viewBox="0 0 48 48" aria-hidden="true"><use href="#ex-supino-reto"/></svg></span>
+                    <div class="linha__texto"><p class="corpo">Treino A — Peito e tríceps</p><p class="corpo-pequeno texto-secundario linha__apoio">Montado por Carlos · 7 exercícios</p></div>
+                    <div class="linha__fim"><svg class="icone"><use href="#i-avancar"/></svg></div>
+                  </button>
+                  <button class="linha linha--compacta">
+                    <span class="mini mini--ilustracao"><svg class="ilustracao-exercicio" viewBox="0 0 48 48" aria-hidden="true"><use href="#ex-remada-curvada"/></svg></span>
+                    <div class="linha__texto"><p class="corpo">Treino B — Costas e bíceps</p><p class="corpo-pequeno texto-secundario linha__apoio">Montado por Carlos · 6 exercícios</p></div>
+                    <div class="linha__fim"><svg class="icone"><use href="#i-avancar"/></svg></div>
+                  </button>
+                  <button class="linha linha--compacta">
+                    <span class="mini mini--ilustracao"><svg class="ilustracao-exercicio" viewBox="0 0 48 48" aria-hidden="true"><use href="#ex-agachamento-livre"/></svg></span>
+                    <div class="linha__texto"><p class="corpo">Empurrar, puxar e pernas</p><p class="corpo-pequeno texto-secundario linha__apoio">Personal Júlia · plano Plus</p></div>
+                    <div class="linha__fim"><span class="selo-plus selo-plus--pequeno">Plus</span><svg class="icone"><use href="#i-avancar"/></svg></div>
+                  </button>
+                </div>
+              </div>
+              <div class="secao">
+                <div class="secao__titulo"><h3 class="titulo-3">Outros alunos</h3></div>
+                <div class="lista">
+                  <button class="linha linha--compacta linha--inativo">
+                    <div class="avatar avatar--32">RM</div>
+                    <div class="linha__texto"><p class="corpo">Rafael Martins</p><p class="corpo-pequeno linha__apoio">Sem treinar há 34 dias</p></div>
+                    <div class="linha__fim"><svg class="icone"><use href="#i-avancar"/></svg></div>
+                  </button>
+                  <button class="linha linha--compacta">
+                    <div class="avatar avatar--32">BL</div>
+                    <div class="linha__texto"><p class="corpo">Beatriz Lima</p><p class="corpo-pequeno texto-secundario linha__apoio">Sem cadastro corporal · treinou hoje</p></div>
+                    <div class="linha__fim"><svg class="icone"><use href="#i-avancar"/></svg></div>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="celular__base">
+              <nav class="barra-abas" aria-label="Navegação da academia">
+                <a class="aba aba--ativa" href="#" aria-current="page"><span class="aba__icone"><svg class="icone"><use href="#i-alunos-cheio"/></svg></span><span class="aba__rotulo">Alunos</span></a>
+                <a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos"/></svg></span><span class="aba__rotulo">Treinos</span></a>
+                <a class="aba" href="#" aria-label="Plus: mensagem nova"><span class="aba__icone"><svg class="icone"><use href="#i-plus"/></svg><span class="ponto-aviso"></span></span><span class="aba__rotulo">Plus</span></a>
+                <a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-academia"/></svg></span><span class="aba__rotulo">Academia</span></a>
+                <a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a>
+              </nav>
+              <div class="celular__gesto"></div>
+            </div>
+          </div>
+        </div>
+        <p class="corpo-forte">3 · Perfil do aluno (visão da academia)</p>
+        <p class="corpo-pequeno texto-secundario">Mesma linguagem, mais densa: a "ilha escura" com a luz lateral no topo (sem foto: o aluno tem iniciais, nunca foto do corpo), números grandes de peso e altura, "Não informado" no que falta. 5 abas (dono que também é personal); o Plus usa o + da marca.</p>
+      </div>
+
+      <!-- TELA 4: Plano de dieta (Plus) -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: plano de dieta, Plus, visão do aluno">
+          <div class="celular__tela">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <header class="cabecalho cabecalho--raiz cabecalho--grande">
+              <p class="titulo-2 cabecalho__pequeno" aria-hidden="true">Dieta de hoje</p>
+              <div class="cabecalho__titulo">
+                <div style="display:flex;align-items:center;gap:var(--espaco-2)"><h2 class="titulo-1">Dieta de hoje</h2><span class="selo-plus">Plus</span></div>
+              </div>
+              <button class="botao botao--icone" aria-label="Falar com a personal"><svg class="icone"><use href="#i-conversa"/></svg></button>
+            </header>
+            <div class="celular__conteudo">
+              <section class="foto-texto foto-texto--capa resumo-dia" aria-label="Resumo do dia: 4 de 11 itens">
+                <div class="foto-texto__conteudo">
+                  <div style="display:flex;align-items:center;gap:var(--espaco-4)">
+                    <span class="anel-exercicio anel-exercicio--grande" style="--feito:.36" aria-hidden="true"><svg viewBox="0 0 44 44"><circle class="anel-exercicio__trilho" cx="22" cy="22" r="19"/><circle class="anel-exercicio__valor" cx="22" cy="22" r="19" pathLength="1"/></svg><span class="anel-exercicio__numero">4</span></span>
+                    <div style="flex:1;min-width:0">
+                      <p><span class="numero-carga">4</span><span class="titulo-3 texto-secundario"> de 11 itens</span></p>
+                      <p class="corpo-pequeno texto-secundario">Próxima: almoço, 12:30 · plano da personal Júlia</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <article class="cartao cartao--plus refeicao refeicao--completa">
+                <div class="refeicao__cabecalho">
+                  <span class="refeicao__hora corpo-pequeno">07:00</span>
+                  <h3 class="titulo-3 refeicao__nome">Café da manhã</h3>
+                  <span class="corpo-pequeno texto-secundario">3/3</span>
+                  <button class="refeicao__check-tudo" aria-label="Café da manhã feito. Toque para desmarcar tudo"><svg class="icone"><use href="#i-marcar"/></svg></button>
+                </div>
+                <div class="refeicao__itens">
+                  <button class="item-refeicao item-refeicao--feito" aria-pressed="true"><span class="item-refeicao__check"><span><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span></span><span class="item-refeicao__texto corpo">2 ovos mexidos</span><span class="item-refeicao__qtd corpo-pequeno">120 g</span></button>
+                  <button class="item-refeicao item-refeicao--feito" aria-pressed="true"><span class="item-refeicao__check"><span><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span></span><span class="item-refeicao__texto corpo">Pão integral</span><span class="item-refeicao__qtd corpo-pequeno">2 fatias</span></button>
+                  <button class="item-refeicao item-refeicao--feito" aria-pressed="true"><span class="item-refeicao__check"><span><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span></span><span class="item-refeicao__texto corpo">Café sem açúcar</span><span class="item-refeicao__qtd corpo-pequeno">200 ml</span></button>
+                </div>
+              </article>
+
+              <article class="cartao cartao--plus refeicao">
+                <div class="refeicao__cabecalho">
+                  <span class="refeicao__hora corpo-pequeno">10:00</span>
+                  <h3 class="titulo-3 refeicao__nome">Lanche da manhã</h3>
+                  <span class="corpo-pequeno texto-secundario">1/2</span>
+                  <button class="refeicao__check-tudo" aria-label="Marcar lanche da manhã inteiro como feito"><svg class="icone" style="opacity:0"><use href="#i-marcar"/></svg></button>
+                </div>
+                <div class="refeicao__itens">
+                  <button class="item-refeicao item-refeicao--feito" aria-pressed="true"><span class="item-refeicao__check"><span><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span></span><span class="item-refeicao__texto corpo">Iogurte natural</span><span class="item-refeicao__qtd corpo-pequeno">170 g</span></button>
+                  <button class="item-refeicao" aria-pressed="false"><span class="item-refeicao__check"><span><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span></span><span class="item-refeicao__texto corpo">Banana</span><span class="item-refeicao__qtd corpo-pequeno">1 unidade</span></button>
+                </div>
+                <div class="refeicao__obs corpo-pequeno"><svg class="icone icone--pequeno"><use href="#i-conversa"/></svg><span><b>Júlia:</b> se treinar de manhã, troque a banana por aveia.</span></div>
+              </article>
+
+              <article class="cartao cartao--plus refeicao">
+                <div class="refeicao__cabecalho">
+                  <span class="refeicao__hora corpo-pequeno">12:30</span>
+                  <h3 class="titulo-3 refeicao__nome">Almoço</h3>
+                  <span class="corpo-pequeno texto-secundario">0/4</span>
+                  <button class="refeicao__check-tudo" aria-label="Marcar almoço inteiro como feito"><svg class="icone" style="opacity:0"><use href="#i-marcar"/></svg></button>
+                </div>
+                <div class="refeicao__itens">
+                  <button class="item-refeicao" aria-pressed="false"><span class="item-refeicao__check"><span><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span></span><span class="item-refeicao__texto corpo">Arroz integral</span><span class="item-refeicao__qtd corpo-pequeno">150 g</span></button>
+                  <button class="item-refeicao" aria-pressed="false"><span class="item-refeicao__check"><span><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span></span><span class="item-refeicao__texto corpo">Feijão</span><span class="item-refeicao__qtd corpo-pequeno">100 g</span></button>
+                  <button class="item-refeicao" aria-pressed="false"><span class="item-refeicao__check"><span><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span></span><span class="item-refeicao__texto corpo">Frango grelhado</span><span class="item-refeicao__qtd corpo-pequeno">150 g</span></button>
+                  <button class="item-refeicao" aria-pressed="false"><span class="item-refeicao__check"><span><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span></span><span class="item-refeicao__texto corpo">Salada à vontade</span><span class="item-refeicao__qtd corpo-pequeno"></span></button>
+                </div>
+              </article>
+            </div>
+            <div class="celular__base">
+              <nav class="barra-abas" aria-label="Navegação do aluno"><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos"/></svg></span><span class="aba__rotulo">Treinos</span></a><div class="aba-mais"><button class="aba-mais__botao" aria-label="Começar treino, cronômetro ou registrar" data-abrir-mais><svg class="icone"><use href="#i-mais"/></svg></button></div><a class="aba aba--ativa" aria-current="page" href="#" aria-label="Plus: personal, treino e dieta, mensagem nova"><span class="aba__icone"><svg class="icone"><use href="#i-plus-cheio"/></svg><span class="ponto-aviso"></span></span><span class="aba__rotulo">Plus</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav>
+              <div class="celular__gesto"></div>
+            </div>
+          </div>
+        </div>
+        <p class="corpo-forte">4 · Plano de dieta (Plus)</p>
+        <p class="corpo-pequeno texto-secundario">Resumo do dia na ilha escura com um anel grande e o número em destaque (sem kcal). O item comido fica esmaecido e com check, sem risco. Borda <code>plus</code> em cada refeição; a observação da personal no fundo <code>plusSuave</code>; contador "1/2" sem julgamento.</p>
+      </div>
+
+      <!-- TELA 5: Cronômetro, intervalado rodando (aluno) — componente 18 -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: cronômetro intervalado rodando, visão do aluno">
+          <div class="celular__tela celular__tela--imersiva">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <header class="cabecalho cabecalho--flutuante">
+              <button class="botao botao--icone botao--vidro" aria-label="Voltar ao treino"><svg class="icone"><use href="#i-voltar"/></svg></button>
+              <button class="botao botao--icone botao--vidro" aria-label="Mais opções do cronômetro"><svg class="icone"><use href="#i-menu"/></svg></button>
+            </header>
+            <div class="celular__conteudo">
+              <section class="foto-texto foto-texto--heroi foto-texto--baixo" aria-label="Cronômetro">
+                <img class="foto-texto__imagem" src="imagens/heroi-cordas@1x.webp" srcset="imagens/heroi-cordas@1x.webp 1x, imagens/heroi-cordas@2x.webp 2x" width="393" height="300" alt="">
+                <div class="foto-texto__conteudo">
+                  <h2 class="titulo-1">Cronômetro</h2>
+                  <p class="corpo-pequeno texto-secundario">Intervalado · Tabata 20/10 × 8 · total 4:00</p>
+                </div>
+              </section>
+              <div class="mostrador mostrador--trabalho" data-fase="trabalho">
+                <span class="titulo-3" data-fase-nome>Trabalho</span>
+                <span class="numero-cronometro-tela" role="timer" aria-label="Trabalho, rodada 3 de 8, faltam 14 segundos" data-fase-numero>0:14</span>
+                <div class="progresso" aria-hidden="true"><div class="progresso__valor" style="width:30%"></div></div>
+                <span class="corpo-forte" data-fase-rodada>Rodada 3 de 8</span>
+                <div class="rodadas" aria-hidden="true"><i class="feita"></i><i class="feita"></i><i class="atual"></i><i></i><i></i><i></i><i></i><i></i></div>
+              </div>
+              <div class="linha-info corpo-pequeno"><span data-fase-depois>Depois: <strong>descanso 10 s</strong></span><span>Feito 1:16 de 4:00</span></div>
+              <div class="cronometro__controles cronometro__controles--centro">
+                <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-pular-fase>Pular fase</button>
+                <button class="botao botao--primario botao--circular botao--brilho" aria-label="Pausar o cronômetro"><svg class="icone"><use href="#i-pausar"/></svg></button>
+                <button class="botao botao--secundario botao--pequeno botao--intrinseco">Parar</button>
+              </div>
+              <p class="corpo-pequeno texto-secundario">A tela fica acesa enquanto o cronômetro roda. Com o celular bloqueado, cada troca de fase chega como aviso.</p>
+            </div>
+            <div class="celular__base">
+              <nav class="barra-abas" aria-label="Navegação do aluno"><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio-cheio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos"/></svg></span><span class="aba__rotulo">Treinos</span></a><div class="aba-mais"><button class="aba-mais__botao" aria-label="Começar treino, cronômetro ou registrar" data-abrir-mais><svg class="icone"><use href="#i-mais"/></svg></button></div><a class="aba" href="#" aria-label="Plus: personal, treino e dieta"><span class="aba__icone"><svg class="icone"><use href="#i-plus"/></svg></span><span class="aba__rotulo">Plus</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav>
+              <div class="celular__gesto"></div>
+            </div>
+          </div>
+        </div>
+        <p class="corpo-forte">5 · Cronômetro, intervalado rodando (aluno)</p>
+        <p class="corpo-pequeno texto-secundario">Componente 18 sob a foto: a fase pinta o mostrador (trabalho em verde vivo, descanso em <code>sucesso</code>) e está sempre escrita; o número de 96 se lê a 1 m. "Pular fase" mostra a troca: a cor cobre em 200 ms e o nome novo esmaece (com movimento reduzido, troca na hora).</p>
+      </div>
+
+      <!-- TELA 6: Convite ao Plus (aluno sem Plus) -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: convite ao Plus, visão do aluno sem Plus">
+          <div class="celular__tela celular__tela--imersiva">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="celular__conteudo">
+              <section class="foto-texto foto-texto--heroi" aria-label="Plus">
+                <img class="foto-texto__imagem" src="imagens/heroi-plus-personal@1x.webp" srcset="imagens/heroi-plus-personal@1x.webp 1x, imagens/heroi-plus-personal@2x.webp 2x" width="393" height="354" alt="Personal acompanha uma aluna no agachamento">
+                <div class="foto-texto__conteudo">
+                  <span class="selo-plus" style="align-self:flex-start">Plus</span>
+                  <h2 class="titulo-1">Treino e alimentação com acompanhamento</h2>
+                </div>
+              </section>
+              <article class="cartao convite convite--visita" aria-label="O que o Plus traz">
+                <div class="convite__corpo">
+                  <ul class="convite__lista corpo">
+                    <li><svg class="icone"><use href="#i-marcar"/></svg>Um personal ajusta o seu treino</li>
+                    <li><svg class="icone"><use href="#i-marcar"/></svg>Plano de refeições do dia</li>
+                    <li><svg class="icone"><use href="#i-marcar"/></svg>Conversa com quem acompanha você</li>
+                  </ul>
+                  <button class="botao botao--plus botao--grande reflexo">Conhecer o Plus</button>
+                  <button class="botao botao--texto">Agora não</button>
+                </div>
+              </article>
+              <p class="corpo-pequeno texto-secundario">O texto do botão depende de [decidir] quem paga o Plus.</p>
+            </div>
+            <div class="celular__base">
+              <nav class="barra-abas" aria-label="Navegação do aluno"><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos"/></svg></span><span class="aba__rotulo">Treinos</span></a><div class="aba-mais"><button class="aba-mais__botao" aria-label="Começar treino, cronômetro ou registrar" data-abrir-mais><svg class="icone"><use href="#i-mais"/></svg></button></div><a class="aba aba--ativa" aria-current="page" href="#" aria-label="Plus: personal, treino e dieta"><span class="aba__icone"><svg class="icone"><use href="#i-plus-cheio"/></svg></span><span class="aba__rotulo">Plus</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav>
+              <div class="celular__gesto"></div>
+            </div>
+          </div>
+        </div>
+        <p class="corpo-forte">6 · Convite ao Plus (aluno sem Plus)</p>
+        <p class="corpo-pequeno texto-secundario">A foto de borda a borda com o título por cima; o selo dourado é a única cor do Plus. O halo dourado entra uma vez e fica; o reflexo passa uma vez pelo botão a cada visita. A ilustração que ficava cortada no rodapé saiu: o convite já diz o que a aba vai mostrar.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ EFEITOS ============ -->
+  <section class="galeria" id="efeitos">
+    <div class="galeria__titulo">
+      <h2 class="titulo-2">Efeitos</h2>
+      <p class="texto-secundario corpo-pequeno">Os efeitos de <code>movimento/00-CATALOGO.md</code>, em CSS e WAAPI, com duração e curva dos tokens. O dado é gravado antes de a animação começar e nada espera ela acabar. Com "Movimento: reduzido" (ou a opção do sistema), todo efeito vira um esmaecer de 160 ms; o cronômetro salta por segundo e a cor da fase troca na hora.</p>
+    </div>
+    <div class="amostras">
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>Onde cada efeito aparece</span><span>repetir</span></p>
+        <div class="amostra__caixa amostra__caixa--superficie">
+          <ul class="efeitos corpo-pequeno">
+            <li><span><strong>Série marcada</strong> · tela 1: o check com mola (o único quique do app), o toast sobe e o descanso recomeça.</span><button class="botao botao--secundario botao--pequeno botao--intrinseco" data-repetir="serie">Repetir</button></li>
+            <li><span><strong>Troca de fase</strong> · tela 5: a cor cobre o mostrador em 200 ms; o nome novo esmaece em 120.</span><button class="botao botao--secundario botao--pequeno botao--intrinseco" data-repetir="fase">Repetir</button></li>
+            <li><span><strong>Brilho do Plus</strong> · tela 6: o halo entra e fica; o reflexo passa uma vez.</span><button class="botao botao--secundario botao--pequeno botao--intrinseco" data-repetir="plus">Repetir</button></li>
+            <li><span><strong>Cartão que afunda</strong> · telas 1 e 2: segure um cartão ou uma capa (0,98, sem sombra, camada de 8 %).</span></li>
+            <li><span><strong>Deslizar para começar</strong> · tela 2: arraste o botão até o fim (ou toque nele); com movimento reduzido ele só esmaece.</span></li>
+            <li><span><strong>+ central</strong> · com <code>?abas=mais</code>: a folha Começar treino · Cronômetro · Registrar sobe em 320 ms.</span></li>
+            <li><span><strong>Título grande</strong> · telas 2, 4 e 6: role a lista; preso à rolagem nos primeiros 40 px.</span></li>
+            <li><span><strong>Troca de aba</strong> · qualquer tela: a pílula da aba nova esmaece e cresce em 200 ms.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>Fechar treino</span><span>círculo 320 · traço 480 · resumo a cada 60</span></p>
+        <div class="amostra__caixa amostra__caixa--superficie" id="ef-fechar">
+          <div class="fechado">
+            <svg class="fechado__circulo" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32"/><path d="M19 33.5l9 9 17-19" pathLength="1" stroke-dasharray="1"/></svg>
+            <h3 class="titulo-1" data-passo>Treino fechado.</h3>
+            <p class="corpo-pequeno texto-secundario" data-passo>Treino A · peito e tríceps</p>
+            <div class="grade-3">
+              <div class="numero-cartao" data-passo><span class="legenda texto-secundario">Exercícios</span><div class="numero-cartao__valor"><span class="numero-medio">7</span></div></div>
+              <div class="numero-cartao" data-passo><span class="legenda texto-secundario">Tempo</span><div class="numero-cartao__valor"><span class="numero-medio">42</span><span class="legenda texto-secundario">min</span></div></div>
+              <div class="numero-cartao" data-passo><span class="legenda texto-secundario">Séries</span><div class="numero-cartao__valor"><span class="numero-medio">21</span></div></div>
+            </div>
+            <p class="fechado__destaque corpo-pequeno" data-passo><svg class="icone icone--pequeno"><use href="#i-mais"/></svg>Agachamento: 55 → 60 kg</p>
+            <button class="botao botao--primario" data-passo>Pronto</button>
+          </div>
+          <button class="botao botao--secundario botao--pequeno" data-repetir="fechar">Repetir</button>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>Anel do descanso · carregando</span><span>linear · esqueleto 300 / 1400 × 3</span></p>
+        <div class="amostra__caixa amostra__caixa--superficie">
+          <div class="cronometro" id="ef-anel" role="timer" aria-label="Descanso de 15 segundos">
+            <div class="cronometro__anel">
+              <svg viewBox="0 0 160 160"><circle class="cronometro__trilho" cx="80" cy="80" r="72"/><circle class="cronometro__progresso" cx="80" cy="80" r="72" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:0;transition:none"/></svg>
+              <span class="numero-cronometro" data-anel-numero>0:15</span>
+            </div>
+            <p class="corpo-pequeno texto-secundario" data-anel-legenda>Descanso</p>
+          </div>
+          <button class="botao botao--secundario botao--pequeno" data-repetir="anel">Iniciar descanso de 15 s</button>
+          <hr class="divisor">
+          <div id="ef-esqueleto" aria-live="polite">
+            <p class="legenda texto-secundario" data-esq-rotulo>Carregando treinos</p>
+            <div class="lista" data-esq-bloco style="margin-top:var(--espaco-2)">
+              <div class="linha linha--compacta" aria-hidden="true"><div class="esqueleto" style="width:48px;height:48px;border-radius:var(--raio-medio)"></div><div class="linha__texto" style="display:flex;flex-direction:column;gap:var(--espaco-2)"><div class="esqueleto esqueleto--linha" style="width:60%"></div><div class="esqueleto esqueleto--linha" style="width:40%;height:12px"></div></div></div>
+            </div>
+          </div>
+          <button class="botao botao--secundario botao--pequeno" data-repetir="esqueleto">Repetir carregando</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ TOKENS ============ -->
+  <section class="galeria" id="tokens">
+    <div class="galeria__titulo">
+      <h2 class="titulo-2">Tokens</h2>
+      <p class="texto-secundario corpo-pequeno">Tokens 1.6.0: os 10 papéis de cor, os derivados e o verde vivo (<code>viva</code>, igual nos dois temas, para preencher; no claro o texto e o traço usam <code>marca</code>). Abaixo, o vidro e a foto com texto. Troque o tema no topo para ver o escuro e use "Sem transparência" para ver o vidro sólido.</p>
+    </div>
+    <div class="paleta">
+      <div class="cor-amostra" style="background:var(--cor-fundo)"><span class="legenda">fundo</span><code>--cor-fundo</code></div>
+      <div class="cor-amostra" style="background:var(--cor-superficie)"><span class="legenda">superficie</span><code>--cor-superficie</code></div>
+      <div class="cor-amostra" style="background:var(--cor-texto);color:var(--cor-fundo)"><span class="legenda">texto</span><code>--cor-texto</code></div>
+      <div class="cor-amostra" style="background:var(--cor-texto-secundario);color:var(--cor-fundo)"><span class="legenda">textoSecundario</span><code>--cor-texto-secundario</code></div>
+      <div class="cor-amostra" style="background:var(--cor-marca);color:var(--cor-marca-texto)"><span class="legenda">marca + marcaTexto</span><code>--cor-marca</code></div>
+      <div class="cor-amostra" style="background:var(--cor-viva);color:var(--cor-viva-texto)"><span class="legenda">viva + vivaTexto</span><code>--cor-viva</code></div>
+      <div class="cor-amostra" style="background:var(--cor-progresso);color:var(--cor-fundo)"><span class="legenda">progresso</span><code>--cor-progresso</code></div>
+      <div class="cor-amostra" style="background:var(--cor-sucesso);color:var(--cor-sucesso-texto)"><span class="legenda">sucesso</span><code>--cor-sucesso</code></div>
+      <div class="cor-amostra" style="background:var(--cor-atencao);color:var(--cor-atencao-texto)"><span class="legenda">atencao</span><code>--cor-atencao</code></div>
+      <div class="cor-amostra" style="background:var(--cor-erro);color:var(--cor-erro-texto)"><span class="legenda">erro</span><code>--cor-erro</code></div>
+      <div class="cor-amostra" style="background:var(--cor-plus);color:var(--cor-plus-texto)"><span class="legenda">plus + plusTexto</span><code>--cor-plus</code></div>
+      <div class="cor-amostra" style="background:var(--cor-superficie-elevada)"><span class="legenda">superficieElevada</span><code>--cor-superficie-elevada</code></div>
+      <div class="cor-amostra" style="background:var(--cor-borda)"><span class="legenda">borda</span><code>--cor-borda</code></div>
+      <div class="cor-amostra" style="background:var(--cor-marca-suave)"><span class="legenda">marcaSuave</span><code>--cor-marca-suave</code></div>
+      <div class="cor-amostra" style="background:var(--cor-plus-suave)"><span class="legenda" style="color:var(--cor-plus-texto-sobre-fundo)">plusSuave + plusTextoSobreFundo</span><code>--cor-plus-suave</code></div>
+      <div class="cor-amostra" style="background:var(--cor-trilho)"><span class="legenda">trilho</span><code>--cor-trilho</code></div>
+    </div>
+
+    <div class="amostras">
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>Tipografia</span><span>tamanho / linha / peso</span></p>
+        <div class="amostra__caixa amostra__caixa--superficie escala-tipo">
+          <div><span class="legenda texto-secundario">Figtree · Archivo (números)</span><span class="corpo">Interface em Figtree; número grande em Archivo.</span></div>
+          <div><span class="legenda texto-secundario">numeroCronometro 64/72/700</span><span class="numero-cronometro">1:30</span></div>
+          <div><span class="legenda texto-secundario">numeroCarga 40/48/700</span><span class="numero-carga">22,5</span></div>
+          <div><span class="legenda texto-secundario">numeroMedio 28/32/700</span><span class="numero-medio">68,4</span></div>
+          <div><span class="legenda texto-secundario">titulo1 28/34/700</span><span class="titulo-1">Treinos prontos</span></div>
+          <div><span class="legenda texto-secundario">titulo2 22/28/600</span><span class="titulo-2">Treino A — Peito</span></div>
+          <div><span class="legenda texto-secundario">titulo3 18/24/600</span><span class="titulo-3">Supino inclinado</span></div>
+          <div><span class="legenda texto-secundario">corpo 16/24/400</span><span class="corpo">Monte o treino exercício por exercício.</span></div>
+          <div><span class="legenda texto-secundario">corpoForte 16/24/600</span><span class="corpo-forte">Marcar feita</span></div>
+          <div><span class="legenda texto-secundario">corpoPequeno 14/20/400</span><span class="corpo-pequeno">3 × 12 · 40 kg · 3/3 feitas</span></div>
+          <div><span class="legenda texto-secundario">legenda 12/16/500</span><span class="legenda">Descanso 90 s</span></div>
+        </div>
+      </div>
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>Espaço (4 em 4), raio, alvo</span></p>
+        <div class="amostra__caixa amostra__caixa--superficie">
+          <div class="espacos">
+            <div><i style="width:4px;height:4px"></i>4</div><div><i style="width:8px;height:8px"></i>8</div><div><i style="width:12px;height:12px"></i>12</div><div><i style="width:16px;height:16px"></i>16</div><div><i style="width:20px;height:20px"></i>20</div><div><i style="width:24px;height:24px"></i>24</div><div><i style="width:32px;height:32px"></i>32</div><div><i style="width:40px;height:40px"></i>40</div><div><i style="width:48px;height:48px"></i>48</div><div><i style="width:64px;height:64px"></i>64</div>
+          </div>
+          <hr class="divisor">
+          <div class="espacos">
+            <div><i style="width:48px;height:48px;border-radius:var(--raio-pequeno)"></i>raio 8</div>
+            <div><i style="width:48px;height:48px;border-radius:var(--raio-medio)"></i>raio 12</div>
+            <div><i style="width:48px;height:48px;border-radius:var(--raio-grande)"></i>raio 16</div>
+            <div><i style="width:48px;height:48px;border-radius:var(--raio-miniatura)"></i>miniatura 14</div>
+            <div><i style="width:48px;height:48px;border-radius:var(--raio-cartao)"></i>cartão 20</div>
+            <div><i style="width:48px;height:48px;border-radius:var(--raio-redondo)"></i>redondo</div>
+          </div>
+          <hr class="divisor">
+          <div class="espacos">
+            <div><i style="width:48px;height:48px;background:transparent;box-shadow:inset 0 0 0 2px var(--cor-texto-secundario)"></i>alvo 48</div>
+            <div><i style="width:56px;height:56px;background:transparent;box-shadow:inset 0 0 0 2px var(--cor-texto-secundario)"></i>alvo 56</div>
+            <div><i style="width:64px;height:64px;background:transparent;box-shadow:inset 0 0 0 2px var(--cor-texto-secundario)"></i>alvo 64</div>
+          </div>
+        </div>
+      </div>
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>19 · Foto com texto · 20 · Vidro · 21 · Deslizar</span><span>capa 28 · vidro 24 · 64</span></p>
+        <div class="amostra__caixa">
+          <div class="foto-texto foto-texto--amostra">
+            <img class="foto-texto__imagem" src="../../imagens/treinos/abc-hipertrofia-capa@1x.webp" srcset="../../imagens/treinos/abc-hipertrofia-capa@1x.webp 1x, ../../imagens/treinos/abc-hipertrofia-capa@2x.webp 2x" width="358" height="240" alt="">
+            <div class="foto-texto__conteudo">
+              <div class="foto-texto__topo"><span class="pilula-vidro">Vidro</span><button class="botao botao--icone botao--vidro" aria-label="Menu"><svg class="icone"><use href="#i-menu"/></svg></button></div>
+              <span class="numero-gigante" style="margin-top:auto">15</span>
+              <span class="titulo-2">Texto no pé do degradê</span>
+              <span class="corpo-pequeno texto-secundario">Medido contra o pior pixel da foto</span>
+            </div>
+          </div>
+          <div class="deslizar" role="button" tabindex="0" aria-label="Exemplo: deslize o botão ou toque">
+            <span class="deslizar__botao" aria-hidden="true"><svg class="icone"><use href="#i-seta-direita"/></svg></span>
+            <span class="deslizar__rotulo">Deslize para começar</span>
+            <span class="deslizar__setas" aria-hidden="true"><svg class="icone"><use href="#i-avancar"/></svg><svg class="icone"><use href="#i-avancar"/></svg><svg class="icone"><use href="#i-avancar"/></svg></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--espaco-3)">
+            <span class="anel-exercicio" style="--feito:.34" role="img" aria-label="1 de 3 séries feitas"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="anel-exercicio__trilho" cx="22" cy="22" r="20"/><circle class="anel-exercicio__valor" cx="22" cy="22" r="20" pathLength="1"/></svg><span class="anel-exercicio__numero">1</span></span>
+            <span class="anel-exercicio anel-exercicio--feito" style="--feito:1" role="img" aria-label="3 de 3 séries feitas"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="anel-exercicio__trilho" cx="22" cy="22" r="20"/><circle class="anel-exercicio__valor" cx="22" cy="22" r="20" pathLength="1"/></svg><span class="anel-exercicio__numero">3</span></span>
+            <span class="corpo-pequeno texto-secundario">Anel por exercício: séries feitas no centro</span>
+          </div>
+        </div>
+      </div>
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>Sombra e elevação</span></p>
+        <div class="amostra__caixa">
+          <div class="cartao" style="box-shadow:var(--sombra-1)"><span class="legenda">sombra 1 · cabeçalho, cartão de número</span></div>
+          <div class="cartao" style="box-shadow:var(--sombra-2)"><span class="legenda">sombra 2 · cartão em repouso (6 camadas a 5 %; no escuro, contorno de 1 px), toast</span></div>
+          <div class="cartao" style="box-shadow:var(--sombra-atual)"><span class="legenda">atual · contorno de 2 px na marca (no escuro, o halo)</span></div>
+          <div class="cartao" style="box-shadow:var(--sombra-viva)"><span class="legenda">viva · o brilho do verde (uma coisa por tela)</span></div>
+          <div class="cartao" style="box-shadow:var(--sombra-3);background:var(--cor-superficie-elevada)"><span class="legenda">sombra 3 · folha inferior (superficieElevada)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPONENTES ============ -->
+  <section class="galeria" id="componentes">
+    <div class="galeria__titulo">
+      <h2 class="titulo-2">Componentes e estados</h2>
+      <p class="texto-secundario corpo-pequeno">Numeração igual à do <code>02-COMPONENTES.md</code>. Pressione os botões para ver o estado pressionado; use Tab para o anel de foco.</p>
+    </div>
+
+    <div class="amostras">
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>1 · Botão</span><span>64 / 56 / 48</span></p>
+        <div class="amostra__caixa">
+          <button class="botao botao--primario botao--grande">Iniciar treino</button>
+          <button class="botao botao--primario">Salvar treino</button>
+          <button class="botao botao--secundario">Ver histórico</button>
+          <button class="botao botao--perigo">Encerrar treino</button>
+          <button class="botao botao--perigo-discreto botao--pequeno">Remover exercício</button>
+          <div class="linha-botoes"><button class="botao botao--secundario">Cancelar</button><button class="botao botao--primario">Confirmar</button></div>
+          <button class="botao botao--primario" disabled>Desabilitado</button>
+          <button class="botao botao--primario botao--carregando" aria-busy="true" aria-label="Salvando">Salvar<span class="indicador"></span></button>
+          <div style="display:flex;gap:var(--espaco-2)"><button class="botao botao--icone" aria-label="Menu"><svg class="icone"><use href="#i-menu"/></svg></button><button class="botao botao--icone" aria-label="Buscar"><svg class="icone"><use href="#i-buscar"/></svg></button><button class="botao botao--texto botao--intrinseco">Desfazer</button></div>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>2 · Campo de texto</span><span>48</span></p>
+        <div class="amostra__caixa">
+          <label class="campo"><span class="campo__rotulo legenda">Nome do treino</span><span class="campo__caixa"><input type="text" placeholder="Ex.: Treino A — peito"></span></label>
+          <label class="campo campo--foco"><span class="campo__rotulo legenda">Em foco</span><span class="campo__caixa"><input type="text" value="Treino A — peito e tríceps"></span></label>
+          <label class="campo campo--erro"><span class="campo__rotulo legenda">Peso (opcional)</span><span class="campo__caixa"><input type="text" value="950" inputmode="decimal"></span><span class="campo__apoio corpo-pequeno"><svg class="icone icone--pequeno"><use href="#i-alerta"/></svg>Informe um peso entre 20 e 300 kg</span></label>
+          <label class="campo"><span class="campo__rotulo legenda">Buscar aluno</span><span class="campo__caixa"><svg class="icone"><use href="#i-buscar"/></svg><input type="search" placeholder="Nome ou matrícula"><button class="botao botao--icone" aria-label="Limpar busca" style="margin-right:-12px"><svg class="icone"><use href="#i-fechar"/></svg></button></span></label>
+          <label class="campo campo--desabilitado"><span class="campo__rotulo legenda">Desabilitado</span><span class="campo__caixa"><input type="text" value="Somente leitura" disabled></span></label>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>3 · Campo numérico +/−</span><span>execução 56 · edição 48</span></p>
+        <div class="amostra__caixa">
+          <div class="passo" role="group" aria-label="Carga">
+            <button class="passo__botao" aria-label="Diminuir carga"><svg class="icone"><use href="#i-menos"/></svg></button>
+            <div class="passo__centro" role="spinbutton" aria-label="Carga" aria-valuenow="22.5" aria-valuetext="22,5 quilos" tabindex="0"><span class="passo__rotulo legenda">Carga</span><span class="passo__valor"><span class="numero-carga">22,5</span><span class="passo__unidade legenda">kg</span></span></div>
+            <button class="passo__botao" aria-label="Aumentar carga"><svg class="icone"><use href="#i-mais"/></svg></button>
+          </div>
+          <div class="passo passo--foco" role="group" aria-label="Repetições, digitando">
+            <button class="passo__botao" aria-label="Diminuir repetições"><svg class="icone"><use href="#i-menos"/></svg></button>
+            <div class="passo__centro"><span class="passo__rotulo legenda">Repetições</span><span class="passo__valor"><span class="numero-carga">12</span></span></div>
+            <button class="passo__botao" aria-label="Aumentar repetições"><svg class="icone"><use href="#i-mais"/></svg></button>
+          </div>
+          <div class="passo passo--edicao" role="group" aria-label="Séries, no limite mínimo">
+            <button class="passo__botao" aria-label="Diminuir séries" disabled><svg class="icone"><use href="#i-menos"/></svg></button>
+            <div class="passo__centro"><span class="passo__rotulo legenda">Séries</span><span class="passo__valor"><span class="numero-medio">1</span></span></div>
+            <button class="passo__botao" aria-label="Aumentar séries"><svg class="icone"><use href="#i-mais"/></svg></button>
+          </div>
+          <div class="passo passo--edicao passo--erro" role="group" aria-label="Descanso, com erro">
+            <button class="passo__botao" aria-label="Diminuir descanso"><svg class="icone"><use href="#i-menos"/></svg></button>
+            <div class="passo__centro"><span class="passo__rotulo legenda">Descanso</span><span class="passo__valor"><span class="numero-medio">12:00</span></span></div>
+            <button class="passo__botao" aria-label="Aumentar descanso"><svg class="icone"><use href="#i-mais"/></svg></button>
+          </div>
+          <p class="corpo-pequeno" style="color:var(--cor-erro)">Entre 0 e 10:00</p>
+          <div class="barra-teclado" role="toolbar" aria-label="Barra acima do teclado numérico">
+            <button class="botao botao--texto botao--intrinseco">Próximo</button>
+            <button class="botao botao--texto botao--intrinseco barra-teclado__ok">OK</button>
+          </div>
+          <p class="legenda texto-secundario">iPhone: o teclado numérico não tem "Próximo" nem "OK"; a barra de 48 fica colada em cima dele enquanto o número está sendo digitado. No Android o teclado já tem a tecla e a barra não aparece.</p>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>4 · Seleção e chips</span><span>48 tocável · 24 informativo</span></p>
+        <div class="amostra__caixa">
+          <label class="campo"><span class="campo__rotulo legenda">Objetivo</span><span class="campo__caixa"><input type="text" value="Ganhar massa" readonly><svg class="icone campo__seta"><use href="#i-baixo"/></svg></span></label>
+          <div class="chips" role="group" aria-label="Nível">
+            <button class="chip chip--selecionado" aria-pressed="true"><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg>Iniciante</button>
+            <button class="chip" aria-pressed="false">Intermediário</button>
+            <button class="chip" aria-pressed="false">Avançado</button>
+            <button class="chip" disabled>Indisponível</button>
+          </div>
+          <div class="chips"><span class="chip chip--info">Ganhar massa</span><span class="chip chip--info">45 min</span><span class="chip chip--info">Iniciante</span><span class="chip chip--info chip--marca">Em uso</span></div>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>5 · Cartão de exercício</span><span>edição · erro · carregando</span></p>
+        <div class="amostra__caixa">
+          <article class="cartao exercicio">
+            <div class="exercicio__cabecalho">
+              <button class="botao botao--icone" aria-label="Arrastar para reordenar"><svg class="icone"><use href="#i-alca"/></svg></button>
+              <div class="exercicio__titulo"><h3 class="titulo-3">Agachamento livre</h3><p class="legenda texto-secundario">Pernas</p></div>
+              <button class="botao botao--icone" aria-label="Opções"><svg class="icone"><use href="#i-menu"/></svg></button>
+            </div>
+            <div class="exercicio__series">
+              <div class="passo passo--edicao"><button class="passo__botao" aria-label="Diminuir séries"><svg class="icone"><use href="#i-menos"/></svg></button><div class="passo__centro"><span class="passo__rotulo legenda">Séries</span><span class="numero-medio">4</span></div><button class="passo__botao" aria-label="Aumentar séries"><svg class="icone"><use href="#i-mais"/></svg></button></div>
+              <div class="passo passo--edicao"><button class="passo__botao" aria-label="Diminuir carga sugerida"><svg class="icone"><use href="#i-menos"/></svg></button><div class="passo__centro"><span class="passo__rotulo legenda">Carga sugerida</span><span class="passo__valor"><span class="numero-medio">60</span><span class="legenda texto-secundario">kg</span></span></div><button class="passo__botao" aria-label="Aumentar carga sugerida"><svg class="icone"><use href="#i-mais"/></svg></button></div>
+            </div>
+            <div class="exercicio__rodape"><button class="botao botao--perigo-discreto botao--pequeno botao--intrinseco">Remover</button></div>
+          </article>
+          <article class="cartao exercicio cartao--erro-topo">
+            <div class="faixa-erro"><svg class="icone icone--pequeno"><use href="#i-alerta"/></svg>Não salvou. <strong>Tentar de novo</strong></div>
+            <div class="exercicio__cabecalho"><div class="exercicio__imagem exercicio__imagem--ilustracao"><svg class="ilustracao-exercicio" viewBox="0 0 48 48" aria-hidden="true"><use href="#ex-remada-curvada"/></svg></div><div class="exercicio__titulo"><h3 class="titulo-3">Remada curvada</h3><p class="corpo-pequeno texto-secundario">3 × 10 · 50 kg · 1/3 feitas</p></div></div>
+          </article>
+          <article class="cartao exercicio" aria-busy="true" aria-label="Carregando exercício">
+            <div class="exercicio__cabecalho"><div class="esqueleto" style="width:56px;height:56px;border-radius:var(--raio-miniatura)"></div><div class="exercicio__titulo" style="display:flex;flex-direction:column;gap:8px"><div class="esqueleto esqueleto--titulo"></div><div class="esqueleto esqueleto--linha" style="width:40%"></div></div></div>
+            <div class="exercicio__series"><div class="esqueleto esqueleto--bloco"></div><div class="esqueleto esqueleto--bloco"></div></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>6 · Linha de série</span><span>72</span></p>
+        <div class="amostra__caixa">
+          <div class="serie serie--atual"><span class="serie__numero">1</span><div class="serie__campo"><div class="passo" style="flex:1"><button class="passo__botao" aria-label="Diminuir carga"><svg class="icone"><use href="#i-menos"/></svg></button><div class="passo__centro"><span class="numero-carga">40</span><span class="legenda texto-secundario">kg</span></div><button class="passo__botao" aria-label="Aumentar carga"><svg class="icone"><use href="#i-mais"/></svg></button></div></div><button class="serie__marcar" aria-label="Marcar série 1 como feita"><svg class="icone"><use href="#i-marcar"/></svg></button></div>
+          <div class="serie serie--feita"><span class="serie__numero"><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span><div class="serie__campo"><div class="serie__valor"><span class="numero-carga">12</span><span class="legenda texto-secundario">reps</span></div><span class="serie__vezes">×</span><div class="serie__valor"><span class="numero-carga">40</span><span class="legenda texto-secundario">kg</span></div></div><button class="serie__marcar" aria-label="Desfazer série"><svg class="icone"><use href="#i-desfazer"/></svg></button></div>
+          <div class="serie serie--pequena"><span class="serie__numero">3</span><div class="serie__campo"><div class="serie__valor"><span class="numero-carga">12</span><span class="legenda texto-secundario">reps</span></div><span class="serie__vezes">×</span><div class="serie__valor"><span class="numero-carga">40</span><span class="legenda texto-secundario">kg</span></div></div><button class="serie__marcar" aria-label="Marcar série 3 como feita"><svg class="icone"><use href="#i-marcar"/></svg></button></div>
+          <p class="legenda texto-secundario">Celular pequeno (360): números lado a lado, +/− aparecem ao tocar no número.</p>
+          <div class="serie serie--leitura serie--feita"><span class="serie__numero"><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span><div class="serie__campo"><div class="serie__valor"><span class="numero-carga">12</span><span class="legenda texto-secundario">reps</span></div><span class="serie__vezes">×</span><div class="serie__valor"><span class="numero-carga">40</span><span class="legenda texto-secundario">kg</span></div></div></div>
+          <p class="legenda texto-secundario">Somente leitura (treino concluído).</p>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>7 · Cronômetro de descanso</span><span>anel 160 · botão 64</span></p>
+        <div class="amostra__caixa amostra__caixa--superficie">
+          <div class="cronometro" role="timer" aria-label="Tempo restante, 1 minuto e 12 segundos">
+            <div class="cronometro__anel">
+              <svg viewBox="0 0 160 160"><circle class="cronometro__trilho" cx="80" cy="80" r="72"/><circle class="cronometro__progresso" cx="80" cy="80" r="72" style="stroke-dashoffset:90"/></svg>
+              <span class="numero-cronometro">1:12</span>
+            </div>
+            <div class="cronometro__controles">
+              <button class="botao botao--secundario botao--pequeno botao--intrinseco">−30 s</button>
+              <button class="botao botao--primario botao--circular" aria-label="Pausar descanso"><svg class="icone"><use href="#i-pausar"/></svg></button>
+              <button class="botao botao--secundario botao--pequeno botao--intrinseco">+30 s</button>
+            </div>
+            <button class="botao botao--texto botao--intrinseco">Pular descanso</button>
+          </div>
+          <div class="lado-a-lado">
+            <div class="cronometro cronometro--acabando" style="padding:0"><div class="cronometro__anel" style="width:96px;height:96px"><svg viewBox="0 0 160 160"><circle class="cronometro__trilho" cx="80" cy="80" r="72"/><circle class="cronometro__progresso" cx="80" cy="80" r="72" style="stroke-dashoffset:410"/></svg><span class="numero-medio">0:08</span></div><span class="legenda texto-secundario">Acabando (atenção)</span></div>
+            <div class="cronometro cronometro--terminado" style="padding:0"><div class="cronometro__anel" style="width:96px;height:96px"><svg viewBox="0 0 160 160"><circle class="cronometro__trilho" cx="80" cy="80" r="72"/><circle class="cronometro__progresso" cx="80" cy="80" r="72"/></svg><span class="numero-medio">0:00</span></div><span class="legenda texto-secundario">Terminado (sucesso)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>18 · Cronômetro</span><span>livre · regressivo · intervalado</span></p>
+        <div class="amostra__caixa">
+          <p class="legenda texto-secundario">Parado: escolher o modo e a configuração</p>
+          <div class="chips" role="group" aria-label="Modo do cronômetro">
+            <button class="chip" aria-pressed="false">Livre</button>
+            <button class="chip" aria-pressed="false">Regressivo</button>
+            <button class="chip chip--selecionado" aria-pressed="true"><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg>Intervalado</button>
+          </div>
+          <div class="chips" role="group" aria-label="Predefinição do intervalado">
+            <button class="chip chip--selecionado" aria-pressed="true">Tabata 20/10 × 8</button>
+            <button class="chip" aria-pressed="false">EMOM 10 min</button>
+            <button class="chip" aria-pressed="false">HIIT 30/30 × 10</button>
+            <button class="chip" aria-pressed="false">HIIT 40/20 × 8</button>
+            <button class="chip" aria-pressed="false">Personalizado</button>
+          </div>
+          <div class="passo passo--edicao" role="group" aria-label="Trabalho"><button class="passo__botao" aria-label="Diminuir trabalho"><svg class="icone"><use href="#i-menos"/></svg></button><div class="passo__centro"><span class="passo__rotulo legenda">Trabalho</span><span class="numero-medio">0:20</span></div><button class="passo__botao" aria-label="Aumentar trabalho"><svg class="icone"><use href="#i-mais"/></svg></button></div>
+          <div class="passo passo--edicao" role="group" aria-label="Descanso"><button class="passo__botao" aria-label="Diminuir descanso"><svg class="icone"><use href="#i-menos"/></svg></button><div class="passo__centro"><span class="passo__rotulo legenda">Descanso</span><span class="numero-medio">0:10</span></div><button class="passo__botao" aria-label="Aumentar descanso"><svg class="icone"><use href="#i-mais"/></svg></button></div>
+          <div class="passo passo--edicao" role="group" aria-label="Rodadas"><button class="passo__botao" aria-label="Diminuir rodadas"><svg class="icone"><use href="#i-menos"/></svg></button><div class="passo__centro"><span class="passo__rotulo legenda">Rodadas</span><span class="numero-medio">8</span></div><button class="passo__botao" aria-label="Aumentar rodadas"><svg class="icone"><use href="#i-mais"/></svg></button></div>
+          <div class="linha-info corpo-pequeno"><span>Preparação 10 s · sem descanso depois da última</span><strong>Total 4:00</strong></div>
+          <button class="botao botao--primario botao--grande">Iniciar</button>
+          <hr class="divisor">
+          <p class="legenda texto-secundario">Livre rodando, com voltas</p>
+          <div class="mostrador mostrador--compacto">
+            <span class="corpo-forte">Livre</span>
+            <span class="numero-cronometro" role="timer" aria-label="Livre, 12 minutos e 47 segundos">12:47</span>
+            <span class="corpo-pequeno texto-secundario">Volta 3 · 0:10</span>
+          </div>
+          <div class="cronometro__controles cronometro__controles--centro">
+            <button class="botao botao--secundario botao--pequeno botao--intrinseco">Volta</button>
+            <button class="botao botao--primario botao--circular" aria-label="Pausar o cronômetro"><svg class="icone"><use href="#i-pausar"/></svg></button>
+            <button class="botao botao--secundario botao--pequeno botao--intrinseco">Parar</button>
+          </div>
+          <div class="lista">
+            <div class="linha linha--compacta"><div class="linha__texto"><p class="corpo">Volta 2</p></div><span class="corpo-forte">6:10</span></div>
+            <div class="linha linha--compacta"><div class="linha__texto"><p class="corpo">Volta 1</p></div><span class="corpo-forte">6:27</span></div>
+          </div>
+          <hr class="divisor">
+          <p class="legenda texto-secundario">Regressivo terminado: o tempo vira série</p>
+          <div class="mostrador mostrador--terminado mostrador--compacto">
+            <span class="corpo-forte">Terminou</span>
+            <span class="numero-cronometro">0:00</span>
+            <span class="corpo-pequeno">5 min de esteira</span>
+          </div>
+          <div class="linha-botoes"><button class="botao botao--secundario">De novo</button><button class="botao botao--primario">Registrar como série</button></div>
+          <p class="legenda texto-secundario">O mesmo motor conta o descanso (componente 7) e a série por tempo. Pausado: o número fica em <code>textoSecundario</code> e o botão do meio vira Retomar.</p>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>8 · Cartão de treino pronto</span><span>grade · lista</span></p>
+        <div class="amostra__caixa">
+          <div class="grade-2">
+            <button class="cartao treino-pronto"><span class="treino-pronto__capa"><img src="../../imagens/treinos/full-body-3x-larga@1x.webp" srcset="../../imagens/treinos/full-body-3x-larga@1x.webp 1x, ../../imagens/treinos/full-body-3x-larga@2x.webp 2x" width="344" height="192" alt="Mulher no leg press"></span><div class="treino-pronto__topo"><h4 class="titulo-3">Full body 3×</h4></div><div class="chips"><span class="chip chip--info">Iniciante</span><span class="chip chip--info">35 min</span></div><p class="corpo-pequeno treino-pronto__descricao">Corpo todo, 3× por semana.</p><div class="treino-pronto__rodape legenda"><span>3 dias</span><svg class="icone icone--pequeno"><use href="#i-avancar"/></svg></div></button>
+            <button class="cartao treino-pronto treino-pronto--escolhido"><span class="treino-pronto__capa"><img src="../../imagens/treinos/abc-hipertrofia-larga@1x.webp" srcset="../../imagens/treinos/abc-hipertrofia-larga@1x.webp 1x, ../../imagens/treinos/abc-hipertrofia-larga@2x.webp 2x" width="344" height="192" alt="Homem no supino reto com barra"></span><div class="treino-pronto__topo"><h4 class="titulo-3">ABC Hipertrofia</h4><span class="chip chip--info chip--marca">Em uso</span></div><div class="chips"><span class="chip chip--info">Ganhar massa</span><span class="chip chip--info">40 min</span></div><p class="corpo-pequeno treino-pronto__descricao">Divisão em 3 dias.</p><div class="treino-pronto__rodape legenda"><span>3 dias</span><svg class="icone icone--pequeno"><use href="#i-avancar"/></svg></div></button>
+          </div>
+          <button class="cartao treino-pronto treino-pronto--lista"><span class="mini"><img src="../../imagens/treinos/circuito-30-mini@1x.webp" srcset="../../imagens/treinos/circuito-30-mini@1x.webp 1x, ../../imagens/treinos/circuito-30-mini@2x.webp 2x" width="48" height="48" alt=""></span><div class="treino-pronto__topo"><h4 class="titulo-3">Circuito 30</h4><div class="chips"><span class="chip chip--info">Perder peso</span><span class="chip chip--info">30 min</span></div></div><svg class="icone texto-secundario"><use href="#i-avancar"/></svg></button>
+          <div class="cartao treino-pronto" aria-busy="true" style="min-height:0"><div class="esqueleto esqueleto--titulo"></div><div class="esqueleto esqueleto--linha" style="width:80%"></div><div class="esqueleto esqueleto--linha" style="width:50%"></div></div>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>9 · Cartão de aluno</span><span>compacta 56</span></p>
+        <div class="amostra__caixa">
+          <div class="lista">
+            <button class="linha linha--compacta"><div class="avatar avatar--32">AS</div><div class="linha__texto"><p class="corpo">Ana Souza</p><p class="legenda texto-secundario">Ganhar massa · treinou há 2 dias</p></div><div class="linha__fim"><span class="selo-plus selo-plus--pequeno">Plus</span><svg class="icone"><use href="#i-avancar"/></svg></div></button>
+            <button class="linha linha--compacta"><div class="avatar avatar--32">BL</div><div class="linha__texto"><p class="corpo">Beatriz Lima</p><p class="legenda texto-secundario">Sem cadastro corporal · treinou hoje</p></div><div class="linha__fim"><svg class="icone"><use href="#i-avancar"/></svg></div></button>
+            <button class="linha linha--compacta linha--inativo"><div class="avatar avatar--32">RM</div><div class="linha__texto"><p class="corpo">Rafael Martins</p><p class="legenda linha__apoio">Sem treinar há 34 dias</p></div><div class="linha__fim"><svg class="icone"><use href="#i-avancar"/></svg></div></button>
+            <div class="linha linha--compacta" aria-busy="true"><div class="esqueleto" style="width:32px;height:32px;border-radius:999px"></div><div class="linha__texto" style="display:flex;flex-direction:column;gap:var(--espaco-2)"><div class="esqueleto esqueleto--linha" style="width:50%"></div><div class="esqueleto esqueleto--linha" style="width:70%;height:12px"></div></div></div>
+          </div>
+          <div class="grade-3">
+            <div class="numero-cartao"><span class="legenda texto-secundario">Peso</span><div class="numero-cartao__valor"><span class="numero-medio">68,4</span><span class="legenda texto-secundario">kg</span></div></div>
+            <div class="numero-cartao"><span class="legenda texto-secundario">Altura</span><div class="numero-cartao__valor"><span class="numero-medio">1,65</span><span class="legenda texto-secundario">m</span></div></div>
+            <div class="numero-cartao numero-cartao--vazio"><span class="legenda texto-secundario">Idade</span><span class="numero-medio">—</span><span class="legenda texto-secundario">Não informado</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>10 · Selo Plus</span><span>24 · 20 · ponto 8</span></p>
+        <div class="amostra__caixa amostra__caixa--superficie">
+          <div style="display:flex;flex-wrap:wrap;gap:var(--espaco-3);align-items:center">
+            <span class="selo-plus"><svg class="icone icone--pequeno"><use href="#i-estrela"/></svg>Plus</span>
+            <span class="selo-plus">Plus</span>
+            <span class="selo-plus selo-plus--contorno">Plus</span>
+            <span class="selo-plus selo-plus--pequeno">Plus</span>
+            <span class="selo-plus"><svg class="icone icone--pequeno"><use href="#i-relogio"/></svg>Plus · 3 dias</span>
+            <span class="selo-plus selo-plus--atencao">Plus vencido</span>
+            <span style="position:relative;display:inline-block"><svg class="icone"><use href="#i-prato"/></svg><span class="ponto-plus"></span></span>
+          </div>
+          <p class="legenda texto-secundario">Cheio = ativo · Contorno = disponível (convite) · Ponto = sobre ícone de aba, com rótulo acessível.</p>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>11 · Lista de refeição</span><span>cabeçalho 56 · item 56</span></p>
+        <div class="amostra__caixa">
+          <article class="cartao cartao--plus refeicao">
+            <div class="refeicao__cabecalho"><span class="refeicao__hora legenda">16:00</span><h3 class="titulo-3 refeicao__nome">Lanche da tarde</h3><span class="legenda texto-secundario">1/2</span><button class="refeicao__check-tudo" aria-label="Marcar lanche inteiro"><svg class="icone" style="opacity:0"><use href="#i-marcar"/></svg></button></div>
+            <div class="refeicao__itens">
+              <button class="item-refeicao item-refeicao--feito" aria-pressed="true"><span class="item-refeicao__check"><span><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span></span><span class="item-refeicao__texto corpo">Whey com água</span><span class="item-refeicao__qtd legenda">30 g</span></button>
+              <button class="item-refeicao" aria-pressed="false"><span class="item-refeicao__check"><span><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span></span><span class="item-refeicao__texto corpo">Castanhas</span><span class="item-refeicao__qtd legenda">20 g</span></button>
+            </div>
+            <div class="refeicao__obs corpo-pequeno"><svg class="icone icone--pequeno"><use href="#i-conversa"/></svg><span>Júlia: pode trocar por pasta de amendoim.</span></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>12 · Barra de abas</span><span>64 · 5 ou 4 abas</span></p>
+        <div class="amostra__caixa" style="padding:0;overflow:hidden">
+          <nav class="barra-abas" aria-label="Aluno">
+            <a class="aba aba--ativa" href="#" aria-current="page"><span class="aba__icone"><svg class="icone"><use href="#i-inicio-cheio"/></svg></span><span class="aba__rotulo">Início</span></a>
+            <a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos"/></svg></span><span class="aba__rotulo">Treinos</span></a>
+            <a class="aba" href="#" aria-label="Plus: personal, treino e dieta"><span class="aba__icone"><svg class="icone"><use href="#i-plus"/></svg></span><span class="aba__rotulo">Plus</span></a>
+            <a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a>
+          </nav>
+          <nav class="barra-abas" aria-label="Academia" style="border-top:0">
+            <a class="aba aba--ativa" href="#" aria-current="page"><span class="aba__icone"><svg class="icone"><use href="#i-alunos-cheio"/></svg></span><span class="aba__rotulo">Alunos</span></a>
+            <a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos"/></svg></span><span class="aba__rotulo">Treinos</span></a>
+            <a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-plus"/></svg><span class="ponto-aviso"></span></span><span class="aba__rotulo">Plus</span></a>
+            <a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-academia"/></svg></span><span class="aba__rotulo">Academia</span></a>
+            <a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>13 · Cabeçalho</span><span>56 · grande 96</span></p>
+        <div class="amostra__caixa" style="padding:0;overflow:hidden;gap:0">
+          <header class="cabecalho cabecalho--superficie"><button class="botao botao--icone" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button><div class="cabecalho__titulo"><h3 class="titulo-2">Treino A — Peito e tríceps</h3></div><button class="botao botao--icone" aria-label="Editar"><svg class="icone"><use href="#i-menu"/></svg></button></header>
+          <header class="cabecalho cabecalho--raiz cabecalho--grande"><div class="cabecalho__titulo"><h3 class="titulo-1">Alunos</h3><p class="legenda texto-secundario">Academia Corpo & Vida · Carlos · Instrutor</p></div><button class="chip-visao"><svg class="icone icone--pequeno"><use href="#i-trocar"/></svg>Academia</button></header>
+          <header class="cabecalho cabecalho--superficie" aria-busy="true"><button class="botao botao--icone" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button><div class="cabecalho__titulo"><div class="esqueleto" style="width:120px;height:22px"></div></div></header>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>14 · Folha inferior</span><span>confirmação · convite ao Plus</span></p>
+        <div class="amostra__caixa" style="padding:0;overflow:hidden">
+          <div class="folha-moldura folha-moldura--amostra">
+            <div class="folha" role="dialog" aria-labelledby="folha-t1">
+              <div class="folha__alca"></div>
+              <h3 class="titulo-2 folha__titulo" id="folha-t1">Concluir o treino com 2 séries por fazer?</h3>
+              <p class="corpo texto-secundario">As séries não feitas ficam registradas como puladas.</p>
+              <div class="coluna-botoes"><button class="botao botao--secundario">Cancelar</button><button class="botao botao--primario">Concluir treino</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="amostra__caixa" style="padding:0;overflow:hidden">
+          <div class="folha-moldura folha-moldura--amostra">
+            <div class="folha" role="dialog" aria-labelledby="folha-t2">
+              <div class="folha__alca"></div>
+              <span class="selo-plus selo-plus--contorno" style="align-self:flex-start">Plus</span>
+              <h3 class="titulo-2" id="folha-t2">Dieta com acompanhamento é do Plus</h3>
+              <ul style="display:flex;flex-direction:column;gap:var(--espaco-2)" class="corpo">
+                <li style="display:flex;gap:var(--espaco-2)"><svg class="icone" style="color:var(--cor-plus-texto-sobre-fundo)"><use href="#i-marcar"/></svg>Personal monta e ajusta seu treino</li>
+                <li style="display:flex;gap:var(--espaco-2)"><svg class="icone" style="color:var(--cor-plus-texto-sobre-fundo)"><use href="#i-marcar"/></svg>Plano de alimentação dia a dia</li>
+                <li style="display:flex;gap:var(--espaco-2)"><svg class="icone" style="color:var(--cor-plus-texto-sobre-fundo)"><use href="#i-marcar"/></svg>Conversa direta com quem acompanha você</li>
+              </ul>
+              <div class="coluna-botoes"><button class="botao botao--secundario">Agora não</button><button class="botao botao--plus botao--grande">Assinar o Plus</button></div>
+              <p class="legenda texto-secundario">Texto final: marca. Rótulo do botão depende de [decidir] quem paga.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>15 · Estado vazio</span><span>ilustração 120 · sem Plus · erro · sem conexão</span></p>
+        <div class="amostra__caixa amostra__caixa--superficie">
+          <div class="estado-vazio"><img class="ilustracao so-claro" src="../../imagens/estados-vazios/primeiro-treino-claro@1x.webp" srcset="../../imagens/estados-vazios/primeiro-treino-claro@1x.webp 1x, ../../imagens/estados-vazios/primeiro-treino-claro@2x.webp 2x" width="120" height="120" alt=""><img class="ilustracao so-escuro" src="../../imagens/estados-vazios/primeiro-treino-escuro@1x.webp" srcset="../../imagens/estados-vazios/primeiro-treino-escuro@1x.webp 1x, ../../imagens/estados-vazios/primeiro-treino-escuro@2x.webp 2x" width="120" height="120" alt=""><h3 class="titulo-3">Nenhum treino ainda</h3><p class="corpo-pequeno texto-secundario">Monte o seu do zero ou escolha um pronto para o seu objetivo.</p><div class="coluna-botoes" style="width:100%"><button class="botao botao--primario">Montar treino livre</button><button class="botao botao--secundario">Ver treinos prontos</button></div></div>
+          <hr class="divisor">
+          <div class="estado-vazio"><img class="ilustracao so-claro" src="../../imagens/estados-vazios/sem-plus-alimentacao-claro@1x.webp" srcset="../../imagens/estados-vazios/sem-plus-alimentacao-claro@1x.webp 1x, ../../imagens/estados-vazios/sem-plus-alimentacao-claro@2x.webp 2x" width="120" height="120" alt=""><img class="ilustracao so-escuro" src="../../imagens/estados-vazios/sem-plus-alimentacao-escuro@1x.webp" srcset="../../imagens/estados-vazios/sem-plus-alimentacao-escuro@1x.webp 1x, ../../imagens/estados-vazios/sem-plus-alimentacao-escuro@2x.webp 2x" width="120" height="120" alt=""><span class="selo-plus selo-plus--contorno">Plus</span><h3 class="titulo-3">Dieta com acompanhamento é do Plus</h3><p class="corpo-pequeno texto-secundario">Um personal monta seu plano de alimentação e acompanha você.</p><button class="botao botao--plus botao--intrinseco">Conhecer o Plus</button></div>
+          <hr class="divisor">
+          <div class="estado-vazio estado-vazio--erro"><img class="ilustracao so-claro" src="../../imagens/estados-vazios/erro-carregar-claro@1x.webp" srcset="../../imagens/estados-vazios/erro-carregar-claro@1x.webp 1x, ../../imagens/estados-vazios/erro-carregar-claro@2x.webp 2x" width="120" height="120" alt=""><img class="ilustracao so-escuro" src="../../imagens/estados-vazios/erro-carregar-escuro@1x.webp" srcset="../../imagens/estados-vazios/erro-carregar-escuro@1x.webp 1x, ../../imagens/estados-vazios/erro-carregar-escuro@2x.webp 2x" width="120" height="120" alt=""><h3 class="titulo-3">Não deu para carregar</h3><button class="botao botao--secundario botao--intrinseco">Tentar de novo</button></div>
+          <hr class="divisor">
+          <div class="estado-vazio estado-vazio--compacto"><svg class="icone"><use href="#i-nuvem"/></svg><p class="corpo-pequeno">Sem internet. O que você marcar fica salvo e sobe depois.</p></div>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>16 · Toast</span><span>48 · 5 s · um por vez</span></p>
+        <div class="amostra__caixa">
+          <div class="toast" role="status"><span class="toast__texto">Treino salvo</span></div>
+          <div class="toast toast--sucesso" role="status"><svg class="icone"><use href="#i-marcar"/></svg><span class="toast__texto">Série 2 feita</span><button class="botao botao--texto botao--intrinseco">Desfazer</button></div>
+          <div class="toast" role="status"><span class="toast__texto">Exercício removido</span><button class="botao botao--texto botao--intrinseco">Desfazer</button></div>
+          <div class="toast toast--erro" role="alert"><svg class="icone"><use href="#i-alerta"/></svg><span class="toast__texto">Não deu para salvar. Suas marcações ficam guardadas no celular.</span><button class="botao botao--texto botao--intrinseco">Tentar</button></div>
+        </div>
+      </div>
+
+      <div class="amostra">
+        <p class="amostra__rotulo legenda"><span>Claro e escuro lado a lado</span><span>data-tema por bloco</span></p>
+        <div class="lado-a-lado">
+          <div data-tema="claro">
+            <span class="legenda texto-secundario">data-tema="claro"</span>
+            <button class="botao botao--primario">Iniciar treino</button>
+            <div style="display:flex;gap:var(--espaco-2)"><span class="selo-plus">Plus</span><span class="selo-plus selo-plus--contorno">Plus</span></div>
+            <div class="serie serie--feita"><span class="serie__numero"><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span><div class="serie__campo"><span class="numero-carga">12</span><span class="serie__vezes">×</span><span class="numero-carga">40</span></div></div>
+          </div>
+          <div data-tema="escuro">
+            <span class="legenda texto-secundario">data-tema="escuro"</span>
+            <button class="botao botao--primario">Iniciar treino</button>
+            <div style="display:flex;gap:var(--espaco-2)"><span class="selo-plus">Plus</span><span class="selo-plus selo-plus--contorno">Plus</span></div>
+            <div class="serie serie--feita"><span class="serie__numero"><svg class="icone icone--pequeno"><use href="#i-marcar"/></svg></span><div class="serie__campo"><span class="numero-carga">12</span><span class="serie__vezes">×</span><span class="numero-carga">40</span></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- modelo da folha do + central (?abas=mais): o script põe uma cópia dentro da tela tocada -->
+  <template id="modelo-folha-mais">
+    <div class="folha-moldura folha-mais" data-fechar-mais>
+      <div class="folha" role="dialog" aria-modal="true" aria-label="Começar">
+        <div class="folha__alca"></div>
+        <h3 class="titulo-2 folha__titulo">O que você quer fazer?</h3>
+        <div class="folha__opcoes">
+          <button class="linha linha--compacta" data-fechar-mais><svg class="icone"><use href="#i-inicio"/></svg><div class="linha__texto"><p class="corpo-forte">Começar treino</p><p class="corpo-pequeno texto-secundario">Treino A — Peito e tríceps</p></div></button>
+          <button class="linha linha--compacta" data-fechar-mais><svg class="icone"><use href="#i-relogio"/></svg><div class="linha__texto"><p class="corpo-forte">Cronômetro</p><p class="corpo-pequeno texto-secundario">Livre, regressivo ou intervalado</p></div></button>
+          <button class="linha linha--compacta" data-fechar-mais><svg class="icone"><use href="#i-lista"/></svg><div class="linha__texto"><p class="corpo-forte">Registrar</p><p class="corpo-pequeno texto-secundario">Um treino feito fora do app</p></div></button>
+        </div>
+        <button class="botao botao--secundario" data-fechar-mais>Cancelar</button>
+      </div>
+    </div>
+  </template>
+
+</main>
+
+<script>
+  (function () {
+    var raiz = document.documentElement;
+    var botoes = document.querySelectorAll('[data-tema-botao]');
+    function marcarGrupo(lista, atributo, atual) {
+      lista.forEach(function (b) {
+        var ativo = b.getAttribute(atributo) === atual;
+        b.classList.toggle('botao--primario', ativo); b.classList.toggle('botao--secundario', !ativo);
+        b.setAttribute('aria-pressed', ativo ? 'true' : 'false');
+      });
+    }
+    function marcar() { marcarGrupo(botoes, 'data-tema-botao', raiz.getAttribute('data-tema') || 'sistema'); }
+    // Fonte: 100 % ou 160 % (simula a fonte do sistema; o texto é em rem)
+    var botoesFonte = document.querySelectorAll('[data-fonte-botao]');
+    function marcarFonte() { marcarGrupo(botoesFonte, 'data-fonte-botao', parseFloat(getComputedStyle(raiz).fontSize) / 16 >= 1.6 - 0.001 ? '160' : '100'); }
+    botoesFonte.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-fonte-botao');
+        raiz.style.fontSize = f === '160' ? '160%' : '';
+        try { if (f === '160') localStorage.setItem('academia-plus-fonte', '160'); else localStorage.removeItem('academia-plus-fonte'); } catch (e) {}
+        marcarFonte(); ajustar();
+      });
+    });
+    // Movimento: normal ou reduzido (o padrão segue a opção do sistema; a chave do topo simula a opção)
+    var botoesMov = document.querySelectorAll('[data-movimento-botao]');
+    function marcarMovimento() { marcarGrupo(botoesMov, 'data-movimento-botao', raiz.getAttribute('data-movimento')); }
+    botoesMov.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var m = b.getAttribute('data-movimento-botao');
+        raiz.setAttribute('data-movimento', m);
+        try { localStorage.setItem('academia-plus-movimento', m); } catch (e) {}
+        marcarMovimento();
+      });
+    });
+
+    // Moldura e fonte: data-fonte conforme a fonte real da página (130 %+ = ampliada, acima de 160 % = maxima)
+    // e --moldura-zoom para a moldura inteira caber na largura e, em janela deitada, na altura útil sob o
+    // topo fixo. ?moldura=real desliga o zoom (moldura em tamanho real).
+    // Colunas das telas (--colunas-telas): a maior quantidade de telas por linha que não encolhe a moldura mais que
+    // 15 % além do que a altura já pede, em linhas equilibradas (6 telas: 6, 3 + 3 ou 2 + 2 + 2; nunca 5 + 1).
+    // No ultrawide do Alex (2040 × 790) as 6 ficam numa linha só.
+    // Aparelho: troca a moldura e as áreas seguras das telas (CSS por [data-aparelho]); guarda a escolha e
+    // põe na URL (?aparelho=), sem perder ?moldura=real.
+    var APARELHOS = {
+      'iphone-se': 'iPhone SE · 375 × 667', 'iphone-13-mini': 'iPhone 13 mini · 375 × 812', 'iphone-16': 'iPhone 16 · 393 × 852',
+      'iphone-16-pro-max': 'iPhone 16 Pro Max · 440 × 956', 'android': 'Android 390 · 390 × 844'
+    };
+    var botoesAparelho = document.querySelectorAll('[data-aparelho-botao]');
+    function marcarAparelho() {
+      var atual = raiz.getAttribute('data-aparelho') || 'android';
+      marcarGrupo(botoesAparelho, 'data-aparelho-botao', atual);
+      var rot = document.getElementById('rotulo-aparelho'); if (rot && APARELHOS[atual]) rot.textContent = APARELHOS[atual];
+    }
+    botoesAparelho.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var a = b.getAttribute('data-aparelho-botao');
+        raiz.setAttribute('data-aparelho', a);
+        raiz.setAttribute('data-plataforma', a === 'android' ? 'android' : 'ios');
+        try { localStorage.setItem('academia-plus-aparelho', a); } catch (e) {}
+        try { var u = new URL(location.href); u.searchParams.set('aparelho', a); history.replaceState(null, '', u.href); } catch (e) {}
+        marcarAparelho(); ajustar();
+      });
+    });
+
+    function ajustar() {
+      var cs = getComputedStyle(raiz);
+      var escala = parseFloat(cs.fontSize) / 16;
+      var faixa = function (n, padrao) { return parseFloat(cs.getPropertyValue(n)) || padrao; };
+      raiz.setAttribute('data-fonte', escala > faixa('--fonte-maxima', 1.6) + 0.001 ? 'maxima' : escala >= faixa('--fonte-ampliada', 1.3) - 0.001 ? 'ampliada' : 'padrao');
+      var v = function (n) { return parseFloat(cs.getPropertyValue(n)) || 0; };
+      var telas = document.querySelector('.telas');
+      var n = telas.querySelectorAll('.tela-legenda').length;
+      var gs = getComputedStyle(telas), vao = parseFloat(gs.columnGap) || 0;
+      var borda = v('--moldura-borda'), bordaV = v('--moldura-borda-v') || borda;
+      var largura = v('--moldura-tela-largura') + 2 * borda, altura = v('--moldura-tela-altura') + 2 * bordaV;
+      var W = telas.clientWidth, minimo = v('--moldura-zoom-minimo') || 0.5;
+      var real = /[?&]moldura=real\b/.test(location.search);
+      var zAltura = 1;
+      if (!real && innerWidth > innerHeight) {
+        // tudo o que fica acima da 1ª fileira (topo fixo + título da galeria): a moldura inteira cabe na 1ª tela (o ultrawide do Alex, 2040 × 790)
+        var acima = telas.getBoundingClientRect().top + scrollY;
+        zAltura = Math.max(minimo, Math.min(1, (innerHeight - acima - v('--espaco-4')) / altura));
+      }
+      var zDe = function (c) { return Math.min(zAltura, (W - (c - 1) * vao) / (c * largura)); };
+      // colunas que cabem com o zoom pedido pela altura (pelo menos 1)
+      var cabe = 1; for (var c = n; c >= 1; c--) { if (zDe(c) >= zAltura - 0.0001 || c === 1) { cabe = c; break; } }
+      var col = cabe;
+      // aceitar mais telas por linha se a moldura encolher no máximo 15 % além do que a altura pede
+      for (var c2 = n; c2 > cabe; c2--) { if (zDe(c2) >= Math.max(minimo, 0.85 * zAltura)) { col = c2; break; } }
+      // linhas equilibradas
+      var linhas = Math.ceil(n / col); col = Math.ceil(n / linhas);
+      var z = real ? 1 : Math.max(Math.min(1, zDe(col)), minimo);
+      if (real) { col = Math.max(1, Math.min(n, Math.floor((W + vao) / (largura + vao)))); linhas = Math.ceil(n / col); col = Math.ceil(n / linhas); }
+      raiz.style.setProperty('--moldura-zoom', z.toFixed(4));
+      telas.style.setProperty('--colunas-telas', col);
+      if (typeof marcarFonte === 'function') marcarFonte();
+    }
+    window.addEventListener('resize', ajustar);
+    ajustar(); marcarFonte(); marcarAparelho(); marcarMovimento();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustar);
+
+    botoes.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = b.getAttribute('data-tema-botao');
+        if (t === 'sistema') { raiz.removeAttribute('data-tema'); }
+        else { raiz.setAttribute('data-tema', t); }
+        try { if (t === 'sistema') localStorage.removeItem('academia-plus-tema'); else localStorage.setItem('academia-plus-tema', t); } catch (e) {}
+        marcar();
+      });
+    });
+    marcar();
+  })();
+
+  /* =====================================================================
+     EFEITOS (movimento/00-CATALOGO.md; tokens.json › duracao, curva, movimento)
+     Regra 1: o dado é gravado antes da animação começar; nada espera a animação acabar.
+     Regra 2: com movimento reduzido, todo efeito vira esmaecer de 160 ms (curva de entrada).
+     ===================================================================== */
+  (function () {
+    var raiz = document.documentElement;
+    var D = { rapida: 120, media: 200, lenta: 320, esmaecer: 160, comemoracao: 480, passadaEsqueleto: 1400, brilhoPlus: 1200,
+              atrasoEsqueleto: 300, atrasoBrilhoPlus: 400, escalonamento: 60, toast: 5000 };
+    var C = { padrao: 'cubic-bezier(0.2, 0, 0, 1)', entrada: 'cubic-bezier(0, 0, 0.2, 1)', saida: 'cubic-bezier(0.4, 0, 1, 1)', constante: 'linear' };
+    var MOLA = { padrao: { amortecimento: 1, duracao: 320 }, check: { amortecimento: 0.6, duracao: 400 }, toque: { amortecimento: 1, duracao: 200 } };
+    // a mola vira uma curva CSS linear() com os mesmos dois números (assenta a 1 % em "duracao"), como em movimento/demo.html
+    function curvaMola(m) {
+      var z = m.amortecimento, T = m.duracao / 1000, w = z < 1 ? 4.6 / (z * T) : 6.6 / T, n = 32, pts = [];
+      for (var i = 0; i <= n; i++) {
+        var t = (i / n) * T, x;
+        if (z < 1) { var wd = w * Math.sqrt(1 - z * z); x = 1 - Math.exp(-z * w * t) * (Math.cos(wd * t) + (z * w / wd) * Math.sin(wd * t)); }
+        else x = 1 - (1 + w * t) * Math.exp(-w * t);
+        pts.push(i === n ? 1 : +x.toFixed(4));
+      }
+      return 'linear(' + pts.join(', ') + ')';
+    }
+    var CURVA = { padrao: curvaMola(MOLA.padrao), check: curvaMola(MOLA.check), toque: curvaMola(MOLA.toque) };
+    try { if (CSS.supports('transition-timing-function', CURVA.toque)) raiz.style.setProperty('--mola-toque', CURVA.toque); else { CURVA.padrao = C.padrao; CURVA.check = C.padrao; } } catch (e) {}
+    var $ = function (s, r) { return (r || document).querySelector(s); };
+    var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+    var reduzir = function () { return raiz.getAttribute('data-movimento') === 'reduzido'; };
+    // a única porta para animação: com movimento reduzido, a coreografia vira esmaecer de 160 ms
+    function mover(el, quadros, o) {
+      o = o || {};
+      var dur = o.dur != null ? o.dur : D.media, easing = o.easing || C.padrao, delay = o.delay || 0;
+      if (reduzir()) {
+        var r = o.reduzido || 'entrar';
+        if (r === 'nenhum') return null;
+        quadros = r === 'entrar' ? [{ opacity: 0 }, { opacity: 1 }] : r === 'sair' ? [{ opacity: 1 }, { opacity: 0 }] : r;
+        dur = D.esmaecer; easing = C.entrada; delay = 0;
+      }
+      return el.animate(quadros, { duration: dur, easing: easing, delay: delay, fill: o.fill || 'both' });
+    }
+    function cancelar(el) { el.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); }); }
+    var registro = []; // o "banco" do mockup: cada marcação entra aqui ANTES da animação
+
+    /* ---------- 1. Série marcada (tela 1 e qualquer .serie com botão de marcar) ---------- */
+    var ICONE = { check: '<svg class="icone icone--pequeno"><use href="#i-marcar"/></svg>', marcar: '<svg class="icone"><use href="#i-marcar"/></svg>', desfazer: '<svg class="icone"><use href="#i-desfazer"/></svg>' };
+    function alternarSerie(linha) {
+      var n = linha.getAttribute('data-serie') || '', feita = !linha.classList.contains('serie--feita');
+      // 1) o dado, síncrono, antes de tudo
+      registro.push({ serie: n, feita: feita, em: new Date().toISOString() });
+      // 2) a vibração sairia aqui, no mesmo quadro (expo-haptics no app; o mockup não vibra)
+      // 3) a animação segue o dado
+      var num = $('.serie__numero', linha), botao = $('.serie__marcar', linha);
+      if (!linha.dataset.numeroOriginal) linha.dataset.numeroOriginal = feita ? num.textContent.trim() : n;
+      linha.classList.toggle('serie--feita', feita);
+      cancelar(linha);
+      if (feita) {
+        num.innerHTML = ICONE.check; botao.innerHTML = ICONE.desfazer;
+        botao.setAttribute('aria-label', 'Desfazer série ' + n);
+        mover(num, [{ transform: 'scale(.6)' }, { transform: 'scale(1)' }], { dur: MOLA.check.duracao, easing: CURVA.check });
+        mover($('svg', num), [{ opacity: 0, transform: 'scale(.25)', filter: 'blur(4px)' }, { opacity: 1, transform: 'scale(1)', filter: 'blur(0)' }], { dur: MOLA.check.duracao, easing: CURVA.check });
+        mover(botao, [{ backgroundColor: getComputedStyle(raiz).getPropertyValue('--cor-sucesso').trim() }, { backgroundColor: 'transparent' }], { dur: D.media, delay: D.rapida, reduzido: 'nenhum', fill: 'none' });
+        mover($('svg', botao), [{ opacity: 0, transform: 'scale(.25)', filter: 'blur(4px)' }, { opacity: 1, transform: 'scale(1)', filter: 'blur(0)' }], { dur: D.lenta, easing: CURVA.padrao, delay: D.rapida });
+        mostrarToast(linha, 'Série ' + n + ' feita');
+        recomecarDescanso(linha);
+      } else {
+        num.textContent = linha.dataset.numeroOriginal || n; botao.innerHTML = ICONE.marcar;
+        botao.setAttribute('aria-label', 'Marcar série ' + n + ' como feita');
+        mover(num, [{ opacity: 0 }, { opacity: 1 }], { dur: D.media });
+        mover($('svg', botao), [{ opacity: 0, transform: 'scale(.25)' }, { opacity: 1, transform: 'scale(1)' }], { dur: D.lenta, easing: CURVA.padrao });
+        esconderToast(linha);
+      }
+      // régua de "atual" vai para a próxima série não feita; o placar acompanha o dado
+      var irmas = $$('.serie[data-serie]', linha.parentElement);
+      irmas.forEach(function (x) { x.classList.remove('serie--atual'); });
+      var prox = irmas.filter(function (x) { return !x.classList.contains('serie--feita'); })[0];
+      if (prox) prox.classList.add('serie--atual');
+      var cel = linha.closest('.celular__tela'), pl = cel && $('[data-placar="series"]', cel);
+      if (pl) {
+        var feitas = 5 + irmas.filter(function (x) { return x.classList.contains('serie--feita'); }).length; // as 5 feitas antes deste exercício (aquecimento + supino reto 4) + as daqui
+        pl.firstChild.nodeValue = String(feitas);
+        var barra = $('[data-placar="barra"]', cel); if (barra) barra.style.width = Math.round(feitas / 20 * 100) + '%';
+        // (agente U) os rótulos do leitor de tela acompanham o placar
+        var grupoPlacar = pl.closest('[role="group"]'); if (grupoPlacar) grupoPlacar.setAttribute('aria-label', (grupoPlacar.getAttribute('aria-label') || '').replace(/\d+ de 20 séries/, feitas + ' de 20 séries'));
+        var pb = barra && barra.closest('[role="progressbar"]'); if (pb) { pb.setAttribute('aria-valuenow', String(feitas)); pb.setAttribute('aria-valuetext', feitas + ' de 20 séries'); }
+      }
+      // (agente U) o anel do exercício atual segue o dado aqui, para valer também no "Desfazer" do toast e no "Repetir"
+      var anelAtual = cel && $('[data-anel-atual]', cel);
+      if (anelAtual && linha.closest('.exercicio__series')) {
+        var nf = irmas.filter(function (x) { return x.classList.contains('serie--feita'); }).length;
+        anelAtual.style.setProperty('--feito', (nf / irmas.length).toFixed(3)); $('.anel-exercicio__numero', anelAtual).textContent = nf;
+        anelAtual.setAttribute('aria-label', nf + ' de ' + irmas.length + ' séries feitas'); anelAtual.classList.toggle('anel-exercicio--feito', nf === irmas.length);
+      }
+      linha.setAttribute('aria-label', (linha.getAttribute('aria-label') || '').replace(/, (não )?feita$/, feita ? ', feita' : ', não feita'));
+    }
+    var timersToast = new WeakMap();
+    function mostrarToast(linha, texto) {
+      var cel = linha.closest('.celular__tela'); if (!cel) return;
+      var t = $('.toast', cel); if (!t) return;
+      clearTimeout(timersToast.get(t)); cancelar(t);
+      t.hidden = false; $('.toast__texto', t).textContent = texto; t._linha = linha;
+      mover(t, [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'translateY(0)' }], { dur: D.media, easing: C.entrada });
+      timersToast.set(t, setTimeout(function () { esconderToast(linha); }, D.toast));
+    }
+    function esconderToast(linha) {
+      var cel = linha.closest('.celular__tela'); if (!cel) return;
+      var t = $('.toast', cel); if (!t || t.hidden) return;
+      clearTimeout(timersToast.get(t)); cancelar(t);
+      var a = mover(t, [{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(8px)' }], { dur: D.rapida, easing: C.saida, reduzido: 'sair' });
+      a.onfinish = function () {
+        // (agente U) o toast vai sumir: se o foco estava nele, passa para o botão da série, em vez de cair no body
+        if (t.contains(document.activeElement)) { var alvo = $('.serie__marcar', linha); if (alvo) alvo.focus(); }
+        t.hidden = true; a.cancel();
+      };
+    }
+    $$('.celular .serie .serie__marcar').forEach(function (b) {
+      b.addEventListener('click', function () { alternarSerie(b.closest('.serie')); });
+    });
+    $$('.celular [data-desfazer]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = b.closest('.toast'); if (!t) return;
+        // (agente U) o toast da página já abre dizendo "Série 1 feita": sem _linha, a série é a do texto do toast
+        var linha = t._linha;
+        if (!linha) { var n = ($('.toast__texto', t).textContent.match(/\d+/) || [])[0], cel = t.closest('.celular__tela'); linha = n && cel && $('.serie[data-serie="' + n + '"]', cel); }
+        if (!linha || !linha.classList.contains('serie--feita')) return;
+        alternarSerie(linha);
+        // (agente U) o "Desfazer" some com o toast: o foco vai para o botão da série desfeita
+        var alvo = $('.serie__marcar', linha); if (alvo) alvo.focus();
+      });
+    });
+
+    /* ---------- Descanso da faixa (componente 7): o anel/barra esvazia em ritmo constante; reduzido salta por segundo ---------- */
+    // (agente U) a faixa virou um motor com estado: rodando, pausada ou terminada. Antes "Pausar" e "Pular" não faziam nada
+    // enquanto o descanso corria, e o rótulo do leitor de tela ficava parado em "45 segundos".
+    // O motor guarda o instante de fim (nunca um contador); a página abre com a faixa congelada em 0:45 de 1:30.
+    var descanso = { raf: 0, total: 90000, resta: 45000, fim: 0, rodando: false, ultimo: null };
+    function partesFaixa(cel) {
+      var f = cel && $('.faixa-cronometro', cel);
+      return f && { faixa: f, barra: $('[data-faixa="barra"]', f), texto: $('[data-faixa="texto"]', f), pausar: $('[data-faixa-pausar]', f) };
+    }
+    function pintarFaixa(p, resta) {
+      var seg = Math.ceil(resta / 1000);
+      p.barra.style.width = '100%'; p.barra.style.transformOrigin = 'left center';
+      p.barra.style.transform = 'scaleX(' + (reduzir() ? seg * 1000 / descanso.total : resta / descanso.total) + ')';
+      if (seg === descanso.ultimo) return;
+      descanso.ultimo = seg;
+      if (resta > 0) {
+        p.texto.textContent = 'Descanso · ' + Math.floor(seg / 60) + ':' + String(seg % 60).padStart(2, '0');
+        p.faixa.setAttribute('aria-label', 'Descanso, ' + seg + ' segundos restantes' + (descanso.rodando ? '' : ', pausado'));
+      } else { p.texto.textContent = 'Descanso terminado · Próxima série'; p.faixa.setAttribute('aria-label', 'Descanso terminado'); }
+    }
+    function iconePausa(p, pausada) {
+      if (!p.pausar) return;
+      p.pausar.setAttribute('aria-label', pausada ? 'Retomar descanso' : 'Pausar descanso');
+      var u = $('use', p.pausar); if (u) u.setAttribute('href', pausada ? '#i-comecar' : '#i-pausar');
+    }
+    function rodarFaixa(p) {
+      cancelAnimationFrame(descanso.raf);
+      descanso.fim = performance.now() + descanso.resta; descanso.rodando = true; descanso.ultimo = null; iconePausa(p, false);
+      (function quadro() {
+        descanso.resta = Math.max(0, descanso.fim - performance.now());
+        pintarFaixa(p, descanso.resta);
+        if (descanso.resta > 0) descanso.raf = requestAnimationFrame(quadro); else descanso.rodando = false;
+      })();
+    }
+    function recomecarDescanso(linha) {
+      var p = partesFaixa(linha.closest('.celular__tela')); if (!p || !p.barra || !p.texto) return;
+      descanso.total = 90000; descanso.resta = 90000; rodarFaixa(p);
+    }
+    $$('.celular .faixa-cronometro').forEach(function (f) {
+      var p = partesFaixa(f.closest('.celular__tela')); if (!p || !p.barra || !p.texto) return;
+      var pular = $('[data-faixa-pular]', f);
+      if (p.pausar) p.pausar.addEventListener('click', function () {
+        if (descanso.rodando) { cancelAnimationFrame(descanso.raf); descanso.resta = Math.max(0, descanso.fim - performance.now()); descanso.rodando = false; descanso.ultimo = null; pintarFaixa(p, descanso.resta); iconePausa(p, true); }
+        else if (p.pausar.getAttribute('aria-label') === 'Retomar descanso' && descanso.resta > 0) rodarFaixa(p);
+        else if (descanso.resta > 0) { descanso.ultimo = null; pintarFaixa(p, descanso.resta); iconePausa(p, true); } // a faixa congelada da página: pausa onde está
+      });
+      if (pular) pular.addEventListener('click', function () {
+        cancelAnimationFrame(descanso.raf); descanso.rodando = false; descanso.resta = 0; descanso.ultimo = null; pintarFaixa(p, 0); iconePausa(p, false);
+      });
+    });
+
+    /* ---------- Troca de aba: a pílula esmaece e cresce (200 ms); a aba muda de verdade (aria-current) ---------- */
+    $$('.celular .barra-abas .aba').forEach(function (a) {
+      a.addEventListener('click', function (ev) {
+        ev.preventDefault();
+        var nav = a.closest('.barra-abas'); if (a.classList.contains('aba--ativa')) return;
+        $$('.aba', nav).forEach(function (x) { x.classList.remove('aba--ativa'); x.removeAttribute('aria-current'); trocarIcone(x, false); });
+        a.classList.add('aba--ativa'); a.setAttribute('aria-current', 'page'); trocarIcone(a, true);
+        mover($('.aba__icone', a), [{ backgroundColor: 'transparent', transform: 'scaleX(.6)' }, { transform: 'scaleX(1)' }], { dur: D.media, easing: C.padrao, fill: 'none' });
+      });
+    });
+
+    // (agente U) a aba ativa usa o ícone "-cheio" (agente Q, P09). Antes, ao trocar de aba, a nova ficava com o
+    // contorno e a antiga com o cheio; agora o ícone acompanha a aba ativa.
+    function trocarIcone(aba, cheio) {
+      var u = $('.aba__icone use', aba); if (!u) return;
+      var h = (u.getAttribute('href') || '').replace(/-cheio$/, ''), novo = cheio ? h + '-cheio' : h;
+      if (document.getElementById(novo.slice(1))) u.setAttribute('href', novo);
+    }
+
+    /* ---------- Título grande que encolhe (preso à rolagem nos primeiros 40 px) ---------- */
+    $$('.celular .cabecalho--grande').forEach(function (cab) {
+      var conteudo = cab.parentElement.querySelector('.celular__conteudo'), titulo = $('.cabecalho__titulo', cab);
+      if (!conteudo) return;
+      conteudo.addEventListener('scroll', function () {
+        var y = Math.max(0, Math.min(40, conteudo.scrollTop)), f = y / 40;
+        cab.style.setProperty('--altura-cabecalho-grande', (96 - 40 * f) + 'px');
+        var android = raiz.getAttribute('data-plataforma') === 'android';
+        titulo.style.transform = android && !reduzir() ? 'scale(' + (1 - (1 - 22 / 28) * f) + ')' : '';
+        cab.classList.toggle('cabecalho--encolhido', y >= 40);
+      }, { passive: true });
+    });
+
+    /* ---------- Troca de fase (tela 5) ---------- */
+    var FASES = [
+      { tipo: 'trabalho', nome: 'Trabalho', numero: '0:20', rodada: 3, depois: 'descanso 10 s' },
+      { tipo: 'descanso', nome: 'Descanso', numero: '0:10', rodada: 3, depois: 'trabalho 20 s' },
+      { tipo: 'trabalho', nome: 'Trabalho', numero: '0:20', rodada: 4, depois: 'descanso 10 s' }
+    ];
+    var faseAtual = 0;
+    function pularFase(m) {
+      faseAtual = (faseAtual + 1) % FASES.length;
+      var f = FASES[faseAtual];
+      m.classList.remove('mostrador--trabalho', 'mostrador--descanso'); m.classList.add('mostrador--' + f.tipo);
+      var nome = $('[data-fase-nome]', m); nome.textContent = f.nome; // o nome velho sai na hora; o novo esmaece
+      if (!reduzir()) nome.animate([{ opacity: 0 }, { opacity: 1 }], { duration: D.rapida, easing: C.entrada });
+      var num = $('[data-fase-numero]', m); num.textContent = f.numero;
+      num.setAttribute('aria-label', f.nome + ', rodada ' + f.rodada + ' de 8, faltam ' + parseInt(f.numero.split(':')[1], 10) + ' segundos');
+      $('[data-fase-rodada]', m).textContent = 'Rodada ' + f.rodada + ' de 8';
+      $$('.rodadas > i', m).forEach(function (r, i) { var k = i + 1; r.className = k < f.rodada || (f.tipo === 'descanso' && k === f.rodada) ? 'feita' : k === f.rodada ? 'atual' : ''; });
+      var dep = m.parentElement.querySelector('[data-fase-depois]'); if (dep) dep.innerHTML = 'Depois: <strong>' + f.depois + '</strong>';
+    }
+    $$('[data-pular-fase]').forEach(function (b) { b.addEventListener('click', function () { pularFase(b.closest('.celular__conteudo').querySelector('.mostrador')); }); });
+
+    /* ---------- Brilho do Plus: uma vez por visita (a classe é recolocada para repetir) ---------- */
+    function visitarPlus() { $$('.convite').forEach(function (c) { c.classList.remove('convite--visita'); void c.offsetWidth; c.classList.add('convite--visita'); }); }
+
+    /* ---------- Fechar treino ---------- */
+    function fecharTreino() {
+      var caixa = $('#ef-fechar'); if (!caixa) return;
+      cancelar(caixa);
+      var circ = $('.fechado__circulo', caixa), traco = $('.fechado__circulo path', caixa);
+      // o treino já está gravado quando esta tela abre; a vibração média sai junto com o círculo
+      mover(circ, [{ opacity: 0, transform: 'scale(.8)' }, { opacity: 1, transform: 'scale(1)' }], { dur: MOLA.padrao.duracao, easing: CURVA.padrao });
+      mover(traco, [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { dur: D.comemoracao, easing: C.padrao, delay: D.rapida, reduzido: [{ strokeDashoffset: 0, opacity: 0 }, { strokeDashoffset: 0, opacity: 1 }] });
+      $$('[data-passo]', caixa).forEach(function (p, i) {
+        mover(p, [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { dur: D.media, easing: C.entrada, delay: D.lenta + i * D.escalonamento });
+      });
+    }
+
+    /* ---------- Anel do descanso (15 s): esvazia linear; últimos 10 s em atenção; fim em sucesso ---------- */
+    var anel = { raf: 0 };
+    function iniciarAnel() {
+      var caixa = $('#ef-anel'); if (!caixa) return;
+      cancelAnimationFrame(anel.raf);
+      var prog = $('.cronometro__progresso', caixa), numero = $('[data-anel-numero]', caixa), leg = $('[data-anel-legenda]', caixa);
+      var total = 15000, inicio = performance.now(), ultimo = null;
+      caixa.classList.remove('cronometro--acabando', 'cronometro--terminado'); leg.textContent = 'Descanso';
+      (function quadro() {
+        var resta = Math.max(0, total - (performance.now() - inicio)), seg = Math.ceil(resta / 1000);
+        prog.style.strokeDashoffset = String(1 - (reduzir() ? seg * 1000 / total : resta / total));
+        if (seg !== ultimo) { ultimo = seg; numero.textContent = '0:' + String(seg).padStart(2, '0'); caixa.classList.toggle('cronometro--acabando', seg <= 10 && seg > 0); }
+        if (resta > 0) anel.raf = requestAnimationFrame(quadro);
+        else { caixa.classList.remove('cronometro--acabando'); caixa.classList.add('cronometro--terminado'); leg.textContent = 'Descanso terminado · Próxima série'; }
+      })();
+    }
+
+    /* ---------- Carregando: nada até 300 ms; esqueleto com brilho (3 passadas); troca por esmaecer ---------- */
+    var esqTimers = [];
+    var esqOriginal = null;
+    function repetirEsqueleto() {
+      var caixa = $('#ef-esqueleto'); if (!caixa) return;
+      esqTimers.forEach(clearTimeout); esqTimers = []; cancelar(caixa);
+      var bloco = $('[data-esq-bloco]', caixa), rotulo = $('[data-esq-rotulo]', caixa);
+      if (!esqOriginal) esqOriginal = bloco.innerHTML;
+      bloco.innerHTML = esqOriginal; bloco.style.opacity = 0; rotulo.textContent = 'Carregando treinos';
+      esqTimers.push(setTimeout(function () { bloco.style.opacity = ''; mover(bloco, [{ opacity: 0 }, { opacity: 1 }], { dur: D.media, easing: C.entrada }); }, D.atrasoEsqueleto));
+      esqTimers.push(setTimeout(function () {
+        var a = mover(bloco, [{ opacity: 1 }, { opacity: 0 }], { dur: D.media, easing: C.saida, reduzido: 'sair' });
+        a.onfinish = function () {
+          a.cancel(); rotulo.textContent = 'Treinos';
+          bloco.innerHTML = '<button class="linha linha--compacta"><span class="mini"><img src="../../imagens/treinos/primeiros-passos-mini@1x.webp" srcset="../../imagens/treinos/primeiros-passos-mini@1x.webp 1x, ../../imagens/treinos/primeiros-passos-mini@2x.webp 2x" width="48" height="48" alt=""></span><div class="linha__texto"><p class="corpo">Primeiros passos</p><p class="legenda texto-secundario">Começar a treinar · 25 min</p></div><div class="linha__fim"><svg class="icone"><use href="#i-avancar"/></svg></div></button>';
+          mover(bloco, [{ opacity: 0 }, { opacity: 1 }], { dur: D.media, easing: C.entrada });
+        };
+      }, 4000));
+    }
+
+    var timerRepetirSerie = 0;
+    var REPETIR = {
+      // (agente U) o "marcar de novo" fica num timer só e confere o estado na hora: dois cliques seguidos terminavam com a série desmarcada
+      serie: function () {
+        var l = $('#telas .serie[data-serie="2"]'); if (!l) return;
+        clearTimeout(timerRepetirSerie);
+        if (l.classList.contains('serie--feita')) alternarSerie(l);
+        timerRepetirSerie = setTimeout(function () { if (!l.classList.contains('serie--feita')) alternarSerie(l); }, 400);
+      },
+      fase: function () { var m = $('#telas .mostrador'); if (m) pularFase(m); },
+      plus: visitarPlus, fechar: fecharTreino, anel: iniciarAnel, esqueleto: repetirEsqueleto
+    };
+    $$('[data-repetir]').forEach(function (b) { b.addEventListener('click', function () { REPETIR[b.getAttribute('data-repetir')](); }); });
+    window.efeitos = REPETIR;
+  })();
+
+  /* =====================================================================
+     1.6.0 (agente N, P09): transparência, deslizar para começar, o + central e o anel do exercício atual
+     ===================================================================== */
+  (function () {
+    var raiz = document.documentElement;
+    var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+    var reduzir = function () { return raiz.getAttribute('data-movimento') === 'reduzido'; };
+    // Transparência: "Vidro" (normal) ou "Sem transparência" (o vidro vira superfície sólida)
+    var botoesTr = $$('[data-transparencia-botao]');
+    function marcarTr() {
+      var atual = raiz.getAttribute('data-transparencia') || (matchMedia('(prefers-reduced-transparency: reduce)').matches ? 'reduzida' : 'normal');
+      botoesTr.forEach(function (b) { var ativo = b.getAttribute('data-transparencia-botao') === atual; b.classList.toggle('botao--primario', ativo); b.classList.toggle('botao--secundario', !ativo); b.setAttribute('aria-pressed', ativo ? 'true' : 'false'); });
+    }
+    botoesTr.forEach(function (b) { b.addEventListener('click', function () { var t = b.getAttribute('data-transparencia-botao'); raiz.setAttribute('data-transparencia', t); try { localStorage.setItem('academia-plus-transparencia', t); } catch (e) {} marcarTr(); }); });
+    marcarTr();
+
+    // Deslizar para começar: arrastar o botão até 85 % do trilho, ou tocar nele, ou Enter/espaço
+    $$('.deslizar').forEach(function (d) {
+      var botao = d.querySelector('.deslizar__botao'), rotulo = d.querySelector('.deslizar__rotulo'), x0 = null, dx = 0, max = 0, moveu = false, volta = 0;
+      function concluir() {
+        if (d.classList.contains('deslizar--feito')) return; // (agente U) Enter repetido não agenda outra volta
+        d.classList.add('deslizar--feito'); rotulo.textContent = 'Treino começou';
+        botao.style.transform = 'translateX(' + (d.clientWidth - botao.offsetWidth - 8) + 'px)';
+        if (reduzir()) { botao.style.transition = 'none'; botao.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, easing: 'cubic-bezier(0, 0, 0.2, 1)' }); }
+        clearTimeout(volta);
+        volta = setTimeout(function () { d.classList.remove('deslizar--feito'); rotulo.textContent = 'Deslize para começar'; botao.style.transition = ''; botao.style.transform = ''; }, 2400);
+      }
+      // (agente U) quando o sistema toma o gesto (rolagem vertical, pointercancel) ou a captura se perde, o botão volta
+      function soltar() { if (x0 === null) return; x0 = null; d.classList.remove('deslizar--arrastando'); if (!d.classList.contains('deslizar--feito')) botao.style.transform = ''; }
+      d.addEventListener('pointerdown', function (e) { if (d.classList.contains('deslizar--feito') || e.button > 0) return; x0 = e.clientX; dx = 0; moveu = false; max = d.clientWidth - botao.offsetWidth - 8; d.classList.add('deslizar--arrastando'); try { d.setPointerCapture(e.pointerId); } catch (er) {} });
+      d.addEventListener('pointermove', function (e) { if (x0 === null) return; var z = parseFloat(getComputedStyle(d.closest('.celular') || d).zoom) || 1; dx = Math.max(0, Math.min(max, (e.clientX - x0) / z)); if (dx > 4) moveu = true; if (!reduzir()) botao.style.transform = 'translateX(' + dx + 'px)'; });
+      d.addEventListener('pointerup', function () { if (x0 === null) return; x0 = null; d.classList.remove('deslizar--arrastando'); if (!moveu || dx >= 0.85 * max) concluir(); else botao.style.transform = ''; });
+      d.addEventListener('pointercancel', soltar);
+      d.addEventListener('lostpointercapture', function () { setTimeout(soltar, 0); });
+      d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (!e.repeat) concluir(); } });
+    });
+
+    // + central (?abas=mais): abre a folha Começar treino · Cronômetro · Registrar dentro da tela
+    var modelo = document.getElementById('modelo-folha-mais');
+    $$('[data-abrir-mais]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var tela = b.closest('.celular__tela'); if (!tela || tela.querySelector('.folha-mais')) return;
+        var f = modelo.content.firstElementChild.cloneNode(true); tela.appendChild(f);
+        f.animate([{ opacity: 0 }, { opacity: 1 }], { duration: reduzir() ? 160 : 200 });
+        if (!reduzir()) f.querySelector('.folha').animate([{ transform: 'translateY(40px)' }, { transform: 'none' }], { duration: 320, easing: 'cubic-bezier(0.2, 0, 0, 1)' });
+        // (agente U) diálogo modal: Esc fecha, o Tab fica dentro da folha e o foco volta ao + ao fechar
+        function fechar() { f.remove(); if (document.contains(b)) b.focus(); }
+        f.addEventListener('click', function (e) { if (e.target === f || e.target.closest('button[data-fechar-mais]')) fechar(); });
+        f.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') { e.preventDefault(); fechar(); return; }
+          if (e.key !== 'Tab') return;
+          var foc = $$('button, [href], [tabindex]:not([tabindex="-1"])', f); if (!foc.length) return;
+          var i = foc.indexOf(document.activeElement);
+          if (e.shiftKey && i <= 0) { e.preventDefault(); foc[foc.length - 1].focus(); }
+          else if (!e.shiftKey && i === foc.length - 1) { e.preventDefault(); foc[0].focus(); }
+        });
+        var primeiro = f.querySelector('button'); if (primeiro) primeiro.focus();
+      });
+    });
+
+    // o anel do exercício atual acompanha a série dentro de alternarSerie() (agente U: antes só o botão da linha o atualizava)
+
+    // (agente U) a mesma tela aparece em várias molduras: cada barra de abas ganha o número da tela no rótulo,
+    // para a lista de regiões do leitor de tela não ter seis "Navegação do aluno" iguais
+    $$('.telas .celular').forEach(function (c, i) {
+      $$('.barra-abas[aria-label]', c).forEach(function (nav) { nav.setAttribute('aria-label', nav.getAttribute('aria-label') + ' (tela ' + (i + 1) + ')'); });
+    });
+  })();
+</script>
+<script>document.querySelectorAll('.paginas-nav a').forEach(function (a) { a.addEventListener('click', function () { if (location.search) a.href = a.getAttribute('href').split('?')[0] + location.search; }); });</script>
+</body>
+</html>

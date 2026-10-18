@@ -1,0 +1,494 @@
+{
+  "supino-reto": {
+    "nome": "Supino reto",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "peitoral"
+    ],
+    "secundarios": [
+      "deltoide-anterior",
+      "triceps"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/PectoralSternal/BBBenchPress"
+  },
+  "supino-inclinado-com-halteres": {
+    "nome": "Supino inclinado com halteres",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "peitoral-superior"
+    ],
+    "secundarios": [
+      "peitoral-esternal",
+      "deltoide-anterior",
+      "triceps"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/PectoralClavicular/DBInclineBenchPress"
+  },
+  "supino-sentado-na-maquina": {
+    "nome": "Supino sentado na máquina",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "peitoral"
+    ],
+    "secundarios": [
+      "deltoide-anterior",
+      "triceps"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/PectoralSternal/LVChestPress"
+  },
+  "crucifixo-na-maquina": {
+    "nome": "Crucifixo na máquina (voador)",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "peitoral"
+    ],
+    "secundarios": [
+      "serratil"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/PectoralSternal/LVPecDeckFly"
+  },
+  "flexao-de-braco": {
+    "nome": "Flexão de braço",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "peitoral"
+    ],
+    "secundarios": [
+      "deltoide-anterior",
+      "triceps"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/PectoralSternal/BWPushup"
+  },
+  "puxada-frontal": {
+    "nome": "Puxada frontal",
+    "vistas": [
+      "costas"
+    ],
+    "zona": "superior",
+    "principal": [
+      "grande-dorsal"
+    ],
+    "secundarios": [
+      "biceps",
+      "antebraco",
+      "deltoide-posterior",
+      "meio-das-costas",
+      "trapezio-inferior"
+    ],
+    "secundariosForaDaMiniatura": [
+      "biceps"
+    ],
+    "fonte": "https://exrx.net/WeightExercises/LatissimusDorsi/CBFrontPulldown"
+  },
+  "remada-curvada": {
+    "nome": "Remada curvada",
+    "vistas": [
+      "costas"
+    ],
+    "zona": "superior",
+    "principal": [
+      "grande-dorsal",
+      "meio-das-costas"
+    ],
+    "secundarios": [
+      "trapezio-inferior",
+      "deltoide-posterior",
+      "biceps",
+      "antebraco"
+    ],
+    "secundariosForaDaMiniatura": [
+      "biceps"
+    ],
+    "fonte": "https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow"
+  },
+  "remada-baixa": {
+    "nome": "Remada baixa",
+    "vistas": [
+      "costas"
+    ],
+    "zona": "superior",
+    "principal": [
+      "grande-dorsal",
+      "meio-das-costas"
+    ],
+    "secundarios": [
+      "trapezio-inferior",
+      "deltoide-posterior",
+      "lombar",
+      "biceps",
+      "antebraco"
+    ],
+    "secundariosForaDaMiniatura": [
+      "biceps"
+    ],
+    "fonte": "https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow"
+  },
+  "desenvolvimento-com-halteres": {
+    "nome": "Desenvolvimento com halteres",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "deltoide-anterior"
+    ],
+    "secundarios": [
+      "deltoide-lateral",
+      "triceps",
+      "trapezio-medio",
+      "trapezio-inferior",
+      "peitoral-superior",
+      "serratil"
+    ],
+    "secundariosForaDaMiniatura": [
+      "trapezio-medio",
+      "trapezio-inferior"
+    ],
+    "fonte": "https://exrx.net/WeightExercises/DeltoidAnterior/DBShoulderPress"
+  },
+  "elevacao-lateral": {
+    "nome": "Elevação lateral",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "deltoide-lateral"
+    ],
+    "secundarios": [
+      "deltoide-anterior",
+      "trapezio-medio",
+      "trapezio-inferior",
+      "serratil"
+    ],
+    "secundariosForaDaMiniatura": [
+      "trapezio-medio",
+      "trapezio-inferior"
+    ],
+    "fonte": "https://exrx.net/WeightExercises/DeltoidLateral/DBLateralRaise"
+  },
+  "rosca-com-halteres": {
+    "nome": "Rosca com halteres",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "biceps"
+    ],
+    "secundarios": [
+      "antebraco"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/Biceps/DBCurl"
+  },
+  "triceps-corda": {
+    "nome": "Tríceps corda",
+    "vistas": [
+      "costas"
+    ],
+    "zona": "superior",
+    "principal": [
+      "triceps"
+    ],
+    "secundarios": [],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/Triceps/CBPushdown"
+  },
+  "agachamento-livre": {
+    "nome": "Agachamento livre",
+    "vistas": [
+      "frente",
+      "costas"
+    ],
+    "zona": "inferior",
+    "principal": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secundarios": [
+      "adutores",
+      "panturrilha"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/GluteusMaximus/BBSquat"
+  },
+  "agachamento-sem-carga": {
+    "nome": "Agachamento sem carga",
+    "vistas": [
+      "frente",
+      "costas"
+    ],
+    "zona": "inferior",
+    "principal": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secundarios": [
+      "adutores",
+      "panturrilha"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/GluteusMaximus/BWSquat"
+  },
+  "leg-press": {
+    "nome": "Leg press 45°",
+    "vistas": [
+      "frente",
+      "costas"
+    ],
+    "zona": "inferior",
+    "principal": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secundarios": [
+      "adutores",
+      "panturrilha"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/GluteusMaximus/LV45LegPress"
+  },
+  "afundo": {
+    "nome": "Afundo",
+    "vistas": [
+      "frente",
+      "costas"
+    ],
+    "zona": "inferior",
+    "principal": [
+      "quadriceps",
+      "gluteos"
+    ],
+    "secundarios": [
+      "adutores",
+      "panturrilha"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/GluteusMaximus/DBLunge"
+  },
+  "stiff": {
+    "nome": "Stiff com halteres",
+    "vistas": [
+      "costas"
+    ],
+    "zona": "inferior",
+    "principal": [
+      "posteriores-da-coxa"
+    ],
+    "secundarios": [
+      "gluteos",
+      "adutores",
+      "lombar"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/Hamstrings/DBStrBackStrLegDeadlift"
+  },
+  "cadeira-extensora": {
+    "nome": "Cadeira extensora",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "inferior",
+    "principal": [
+      "quadriceps"
+    ],
+    "secundarios": [],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/Quadriceps/LVLegExtension"
+  },
+  "mesa-flexora": {
+    "nome": "Mesa flexora",
+    "vistas": [
+      "costas"
+    ],
+    "zona": "inferior",
+    "principal": [
+      "posteriores-da-coxa"
+    ],
+    "secundarios": [
+      "panturrilha"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/Hamstrings/LVLyingLegCurl"
+  },
+  "panturrilha-em-pe": {
+    "nome": "Panturrilha em pé",
+    "vistas": [
+      "costas"
+    ],
+    "zona": "inferior",
+    "principal": [
+      "panturrilha"
+    ],
+    "secundarios": [],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/Gastrocnemius/LVStandingCalfRaise"
+  },
+  "elevacao-pelvica": {
+    "nome": "Elevação pélvica",
+    "vistas": [
+      "costas"
+    ],
+    "zona": "inferior",
+    "principal": [
+      "gluteos"
+    ],
+    "secundarios": [
+      "posteriores-da-coxa",
+      "quadriceps"
+    ],
+    "secundariosForaDaMiniatura": [
+      "quadriceps"
+    ],
+    "fonte": "https://exrx.net/WeightExercises/GluteusMaximus/BBHipThrust"
+  },
+  "prancha": {
+    "nome": "Prancha",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "reto-abdominal"
+    ],
+    "secundarios": [
+      "obliquos"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/RectusAbdominis/BWFrontPlank"
+  },
+  "abdominal": {
+    "nome": "Abdominal no solo",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "reto-abdominal"
+    ],
+    "secundarios": [
+      "obliquos"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch"
+  },
+  "esteira": {
+    "nome": "Esteira",
+    "vistas": [
+      "frente",
+      "costas"
+    ],
+    "zona": "inferior",
+    "principal": [
+      "quadriceps",
+      "posteriores-da-coxa",
+      "gluteos",
+      "panturrilha"
+    ],
+    "secundarios": [],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "convencao"
+  },
+  "bicicleta": {
+    "nome": "Bicicleta ergométrica",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "inferior",
+    "principal": [
+      "quadriceps"
+    ],
+    "secundarios": [
+      "gluteos",
+      "posteriores-da-coxa",
+      "panturrilha"
+    ],
+    "secundariosForaDaMiniatura": [
+      "gluteos",
+      "posteriores-da-coxa"
+    ],
+    "fonte": "convencao"
+  },
+  "corda-naval": {
+    "nome": "Corda naval",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "deltoide-anterior",
+      "deltoide-lateral"
+    ],
+    "secundarios": [
+      "biceps",
+      "triceps",
+      "antebraco",
+      "reto-abdominal",
+      "obliquos",
+      "quadriceps"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "convencao"
+  },
+  "polichinelo": {
+    "nome": "Polichinelo",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "inteiro",
+    "principal": [
+      "deltoide-lateral",
+      "panturrilha"
+    ],
+    "secundarios": [
+      "gluteos",
+      "adutores",
+      "quadriceps"
+    ],
+    "secundariosForaDaMiniatura": [
+      "gluteos"
+    ],
+    "fonte": "convencao"
+  },
+  "escalador": {
+    "nome": "Escalador",
+    "vistas": [
+      "frente"
+    ],
+    "zona": "superior",
+    "principal": [
+      "flexores-do-quadril"
+    ],
+    "secundarios": [
+      "reto-abdominal",
+      "obliquos",
+      "quadriceps",
+      "peitoral",
+      "triceps",
+      "serratil"
+    ],
+    "secundariosForaDaMiniatura": [],
+    "fonte": "https://exrx.net/WeightExercises/HipFlexors/STMountainClimber"
+  }
+}

@@ -1,0 +1,309 @@
+{
+ "data": "2026-10-15",
+ "pares": [
+  {
+   "tema": "claro",
+   "frente": "texto",
+   "fundo": "fundo",
+   "cores": "#1C1C1C / #F5F5F5",
+   "razao": 15.63,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "texto",
+   "fundo": "superficie",
+   "cores": "#1C1C1C / #FFFFFF",
+   "razao": 17.04,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "textoSecundario",
+   "fundo": "fundo",
+   "cores": "#545454 / #F5F5F5",
+   "razao": 6.95,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "textoSecundario",
+   "fundo": "superficie",
+   "cores": "#545454 / #FFFFFF",
+   "razao": 7.57,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "marca",
+   "fundo": "superficie",
+   "cores": "#C42024 / #FFFFFF",
+   "razao": 5.87,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "marca",
+   "fundo": "fundo",
+   "cores": "#C42024 / #F5F5F5",
+   "razao": 5.38,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "marcaTexto",
+   "fundo": "marca",
+   "cores": "#FFFFFF / #C42024",
+   "razao": 5.87,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "vivaTexto",
+   "fundo": "viva",
+   "cores": "#FFFFFF / #C42024",
+   "razao": 5.87,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "marca",
+   "fundo": "marcaSuave",
+   "cores": "#C42024 / #FBE6E6",
+   "razao": 4.91,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "texto",
+   "fundo": "marcaSuave",
+   "cores": "#1C1C1C / #FBE6E6",
+   "razao": 14.25,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "progresso",
+   "fundo": "trilho",
+   "cores": "#C42024 / #E2E2E2",
+   "razao": 4.53,
+   "minimo": 3
+  },
+  {
+   "tema": "claro",
+   "frente": "foco",
+   "fundo": "fundo",
+   "cores": "#C42024 / #F5F5F5",
+   "razao": 5.38,
+   "minimo": 3
+  },
+  {
+   "tema": "claro",
+   "frente": "erro",
+   "fundo": "superficie",
+   "cores": "#B3261E / #FFFFFF",
+   "razao": 6.54,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "erroTexto",
+   "fundo": "erro",
+   "cores": "#FFFFFF / #B3261E",
+   "razao": 6.54,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "sucesso",
+   "fundo": "fundo",
+   "cores": "#0A7E3A / #F5F5F5",
+   "razao": 4.75,
+   "minimo": 4.5
+  },
+  {
+   "tema": "claro",
+   "frente": "atencao",
+   "fundo": "fundo",
+   "cores": "#B74D00 / #F5F5F5",
+   "razao": 4.73,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "texto",
+   "fundo": "fundo",
+   "cores": "#F5F5F5 / #141414",
+   "razao": 16.9,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "texto",
+   "fundo": "superficieElevada",
+   "cores": "#F5F5F5 / #262626",
+   "razao": 13.88,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "textoSecundario",
+   "fundo": "fundo",
+   "cores": "#ADADAD / #141414",
+   "razao": 8.21,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "textoSecundario",
+   "fundo": "superficie",
+   "cores": "#ADADAD / #1C1C1C",
+   "razao": 7.59,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "textoSecundario",
+   "fundo": "superficieElevada",
+   "cores": "#ADADAD / #262626",
+   "razao": 6.74,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "marca",
+   "fundo": "fundo",
+   "cores": "#FF6B6B / #141414",
+   "razao": 6.64,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "marca",
+   "fundo": "superficie",
+   "cores": "#FF6B6B / #1C1C1C",
+   "razao": 6.14,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "marca",
+   "fundo": "superficieElevada",
+   "cores": "#FF6B6B / #262626",
+   "razao": 5.45,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "marcaTexto",
+   "fundo": "marca",
+   "cores": "#1C1C1C / #FF6B6B",
+   "razao": 6.14,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "vivaTexto",
+   "fundo": "viva",
+   "cores": "#FFFFFF / #C42024",
+   "razao": 5.87,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "marca",
+   "fundo": "marcaSuave",
+   "cores": "#FF6B6B / #3A1517",
+   "razao": 5.82,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "texto",
+   "fundo": "marcaSuave",
+   "cores": "#F5F5F5 / #3A1517",
+   "razao": 14.82,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "progresso",
+   "fundo": "trilho",
+   "cores": "#FF6B6B / #2E2E2E",
+   "razao": 4.89,
+   "minimo": 3
+  },
+  {
+   "tema": "escuro",
+   "frente": "foco",
+   "fundo": "fundo",
+   "cores": "#FF6B6B / #141414",
+   "razao": 6.64,
+   "minimo": 3
+  },
+  {
+   "tema": "escuro",
+   "frente": "erro",
+   "fundo": "superficie",
+   "cores": "#FF8A80 / #1C1C1C",
+   "razao": 7.47,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "erroTexto",
+   "fundo": "erro",
+   "cores": "#141414 / #FF8A80",
+   "razao": 8.07,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "sucesso",
+   "fundo": "superficie",
+   "cores": "#67D283 / #1C1C1C",
+   "razao": 9.03,
+   "minimo": 4.5
+  },
+  {
+   "tema": "escuro",
+   "frente": "atencao",
+   "fundo": "superficie",
+   "cores": "#FDA16B / #1C1C1C",
+   "razao": 8.51,
+   "minimo": 4.5
+  }
+ ],
+ "crus": [
+  {
+   "par": "vermelho sobre o preto da marca",
+   "cores": "#C42024 / #1C1C1C",
+   "razao": 2.9
+  },
+  {
+   "par": "vermelho sobre o fundo escuro",
+   "cores": "#C42024 / #141414",
+   "razao": 3.14
+  },
+  {
+   "par": "branco sobre o vermelho",
+   "cores": "#FFFFFF / #C42024",
+   "razao": 5.87
+  },
+  {
+   "par": "branco sobre o preto",
+   "cores": "#FFFFFF / #1C1C1C",
+   "razao": 17.04
+  },
+  {
+   "par": "branco sobre o grafite",
+   "cores": "#FFFFFF / #343434",
+   "razao": 12.45
+  },
+  {
+   "par": "vermelho sobre o grafite",
+   "cores": "#C42024 / #343434",
+   "razao": 2.12
+  }
+ ]
+}

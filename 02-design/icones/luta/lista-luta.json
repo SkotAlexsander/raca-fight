@@ -1,0 +1,90 @@
+{
+ "traco": 2.25,
+ "icones": [
+  {
+   "nome": "inicio",
+   "origem": "Lucide house",
+   "alteracao": "Traço 2,25. Substitui o haltere da aba Início (musculação)."
+  },
+  {
+   "nome": "inicio-cheio",
+   "origem": "Lucide house (cheio próprio)",
+   "alteracao": "A casa cheia com a porta vazada (regra evenodd), para a aba ativa."
+  },
+  {
+   "nome": "horarios",
+   "origem": "Lucide calendar-clock",
+   "alteracao": "Traço 2,25; o relógio um pouco menor (r 5,5) para não encostar na borda."
+  },
+  {
+   "nome": "horarios-cheio",
+   "origem": "Lucide calendar-clock (cheio próprio)",
+   "alteracao": "Calendário em contorno e o relógio cheio, com os ponteiros vazados."
+  },
+  {
+   "nome": "hoje",
+   "origem": "Lucide clock",
+   "alteracao": "Traço 2,25. Aba Hoje do professor (a aula da hora)."
+  },
+  {
+   "nome": "hoje-cheio",
+   "origem": "Lucide clock (cheio próprio)",
+   "alteracao": "Círculo cheio com os ponteiros vazados."
+  },
+  {
+   "nome": "check-in",
+   "origem": "Lucide calendar-check",
+   "alteracao": "Traço 2,25. \"Estou na aula\" e a presença confirmada."
+  },
+  {
+   "nome": "modalidade",
+   "origem": "Tabler karate",
+   "alteracao": "Traço 2,25; a cabeça com r 1,25 para não sumir em 16 px."
+  },
+  {
+   "nome": "luva",
+   "origem": "próprio",
+   "alteracao": "Luva de boxe de lado: a mão fechada, o polegar colado e o punho com a faixa de velcro."
+  },
+  {
+   "nome": "faixa",
+   "origem": "próprio",
+   "alteracao": "Faixa amarrada de frente: a volta na cintura, o nó e as duas pontas. É também a aba Graduação."
+  },
+  {
+   "nome": "faixa-cheio",
+   "origem": "próprio",
+   "alteracao": "A faixa com o nó cheio, para a aba Graduação ativa."
+  },
+  {
+   "nome": "tatame",
+   "origem": "próprio",
+   "alteracao": "Tatame em perspectiva com as placas (2 × 3)."
+  },
+  {
+   "nome": "saco",
+   "origem": "próprio",
+   "alteracao": "Saco de pancada pendurado: corrente em V, o saco em cápsula e as duas costuras."
+  },
+  {
+   "nome": "cronometro-round",
+   "origem": "próprio, a partir do Tabler stopwatch (MIT)",
+   "alteracao": "O cronômetro com o mostrador em 3 rounds (3 arcos com vão) e o ponteiro. Atalho do Cronômetro de rounds."
+  },
+  {
+   "nome": "gongo",
+   "origem": "próprio",
+   "alteracao": "Gongo na moldura: o disco pendurado por dois fios, o miolo e os pés."
+  },
+  {
+   "nome": "kimono",
+   "origem": "próprio",
+   "alteracao": "Kimono (gi) de frente: ombros, mangas, a gola cruzada e a faixa."
+  },
+  {
+   "nome": "caneleira",
+   "origem": "próprio",
+   "alteracao": "Caneleira de Muay Thai: a placa da canela, as duas tiras e o peito do pé."
+  }
+ ]
+}

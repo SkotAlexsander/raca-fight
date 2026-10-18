@@ -1,0 +1,48 @@
+{
+  "name": "raca-fight-admin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "O app do dono da Raça Fight: painel, pessoas, financeiro tipo planilha, relatórios, funil, agenda, notas e histórico. Web instalável (PWA), no mesmo domínio e no mesmo Supabase do app.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "gerar:tema": "node ferramentas/gerar-tokens-css.mjs",
+    "dev": "npm run gerar:tema && vite",
+    "build": "npm run gerar:tema && tsc --noEmit && vite build",
+    "previa": "vite preview --port 4174 --strictPort",
+    "abrir": "node ferramentas/abrir.mjs",
+    "tipos": "tsc --noEmit",
+    "lint": "eslint .",
+    "testar": "vitest run",
+    "testar:observar": "vitest",
+    "testar:e2e": "playwright test",
+    "capturar": "node ferramentas/capturar.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.117.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "read-excel-file": "9.3.10"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.63.0",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.7",
+    "@types/node": "24.19.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "eslint": "10.10.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.12.0",
+    "jsdom": "30.1.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.0",
+    "vite": "8.3.1",
+    "vitest": "5.0.2"
+  }
+}

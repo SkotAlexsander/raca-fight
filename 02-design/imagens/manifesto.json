@@ -1,0 +1,619 @@
+{
+  "versao": "2026-10-10",
+  "tamanhos": {
+    "capa": [
+      344,
+      192
+    ],
+    "mini": [
+      48,
+      48
+    ],
+    "exercicio": [
+      48,
+      48
+    ],
+    "estadoVazio": [
+      120,
+      120
+    ],
+    "plus": [
+      344,
+      192
+    ],
+    "treinoCapa": [
+      358,
+      240
+    ],
+    "treinoLarga": [
+      344,
+      192
+    ],
+    "treinoMini": [
+      48,
+      48
+    ],
+    "exercicioHeroi": [
+      393,
+      440
+    ]
+  },
+  "capas": {
+    "emagrecer": {
+      "rotulo": "Perder peso",
+      "capa": {
+        "1x": "capas/emagrecer-capa@1x.webp",
+        "2x": "capas/emagrecer-capa@2x.webp"
+      },
+      "mini": {
+        "1x": "capas/emagrecer-mini@1x.webp",
+        "2x": "capas/emagrecer-mini@2x.webp"
+      }
+    },
+    "ganhar_massa": {
+      "rotulo": "Ganhar massa",
+      "capa": {
+        "1x": "capas/ganhar-massa-capa@1x.webp",
+        "2x": "capas/ganhar-massa-capa@2x.webp"
+      },
+      "mini": {
+        "1x": "capas/ganhar-massa-mini@1x.webp",
+        "2x": "capas/ganhar-massa-mini@2x.webp"
+      }
+    },
+    "condicionamento": {
+      "rotulo": "Condicionamento",
+      "capa": {
+        "1x": "capas/condicionamento-capa@1x.webp",
+        "2x": "capas/condicionamento-capa@2x.webp"
+      },
+      "mini": {
+        "1x": "capas/condicionamento-mini@1x.webp",
+        "2x": "capas/condicionamento-mini@2x.webp"
+      }
+    },
+    "iniciante": {
+      "rotulo": "Começar a treinar",
+      "capa": {
+        "1x": "capas/iniciante-capa@1x.webp",
+        "2x": "capas/iniciante-capa@2x.webp"
+      },
+      "mini": {
+        "1x": "capas/iniciante-mini@1x.webp",
+        "2x": "capas/iniciante-mini@2x.webp"
+      },
+      "capaAlternativa": {
+        "1x": "capas/iniciante-capa-alternativa@1x.webp",
+        "2x": "capas/iniciante-capa-alternativa@2x.webp"
+      }
+    },
+    "saude_e_manutencao": {
+      "rotulo": "Manter",
+      "capa": {
+        "1x": "capas/saude-e-manutencao-capa@1x.webp",
+        "2x": "capas/saude-e-manutencao-capa@2x.webp"
+      },
+      "mini": {
+        "1x": "capas/saude-e-manutencao-mini@1x.webp",
+        "2x": "capas/saude-e-manutencao-mini@2x.webp"
+      }
+    }
+  },
+  "exercicios": {
+    "supino-reto": {
+      "nome": "Supino reto",
+      "1x": "exercicios/supino-reto@1x.webp",
+      "2x": "exercicios/supino-reto@2x.webp"
+    },
+    "supino-inclinado-com-halteres": {
+      "nome": "Supino inclinado com halteres",
+      "1x": "exercicios/supino-inclinado-com-halteres@1x.webp",
+      "2x": "exercicios/supino-inclinado-com-halteres@2x.webp"
+    },
+    "crucifixo-na-maquina": {
+      "nome": "Crucifixo na máquina",
+      "1x": "exercicios/crucifixo-na-maquina@1x.webp",
+      "2x": "exercicios/crucifixo-na-maquina@2x.webp"
+    },
+    "triceps-corda": {
+      "nome": "Tríceps corda",
+      "1x": "exercicios/triceps-corda@1x.webp",
+      "2x": "exercicios/triceps-corda@2x.webp"
+    },
+    "agachamento-livre": {
+      "nome": "Agachamento livre",
+      "1x": "exercicios/agachamento-livre@1x.webp",
+      "2x": "exercicios/agachamento-livre@2x.webp"
+    },
+    "remada-curvada": {
+      "nome": "Remada curvada",
+      "1x": "exercicios/remada-curvada@1x.webp",
+      "2x": "exercicios/remada-curvada@2x.webp"
+    },
+    "esteira": {
+      "nome": "Esteira",
+      "1x": "exercicios/esteira@1x.webp",
+      "2x": "exercicios/esteira@2x.webp"
+    },
+    "_aviso": "Fotos de 48/96 do agente J: NÃO usar como miniatura de exercício (regra do agente S, 10/10/2026). Use exerciciosIlustracao. supino-inclinado-com-halteres mostra banco reto e crucifixo-na-maquina mostra outra máquina."
+  },
+  "estadosVazios": {
+    "primeiro-treino": {
+      "uso": "Primeiro uso: nenhum treino ainda",
+      "svg": "estados-vazios/primeiro-treino.svg",
+      "claro1x": "estados-vazios/primeiro-treino-claro@1x.webp",
+      "claro2x": "estados-vazios/primeiro-treino-claro@2x.webp",
+      "escuro1x": "estados-vazios/primeiro-treino-escuro@1x.webp",
+      "escuro2x": "estados-vazios/primeiro-treino-escuro@2x.webp"
+    },
+    "historico-vazio": {
+      "uso": "Histórico: nenhum treino fechado",
+      "svg": "estados-vazios/historico-vazio.svg",
+      "claro1x": "estados-vazios/historico-vazio-claro@1x.webp",
+      "claro2x": "estados-vazios/historico-vazio-claro@2x.webp",
+      "escuro1x": "estados-vazios/historico-vazio-escuro@1x.webp",
+      "escuro2x": "estados-vazios/historico-vazio-escuro@2x.webp"
+    },
+    "sem-plus-alimentacao": {
+      "uso": "Sem Plus: alimentação com acompanhamento",
+      "svg": "estados-vazios/sem-plus-alimentacao.svg",
+      "claro1x": "estados-vazios/sem-plus-alimentacao-claro@1x.webp",
+      "claro2x": "estados-vazios/sem-plus-alimentacao-claro@2x.webp",
+      "escuro1x": "estados-vazios/sem-plus-alimentacao-escuro@1x.webp",
+      "escuro2x": "estados-vazios/sem-plus-alimentacao-escuro@2x.webp"
+    },
+    "sem-plano": {
+      "uso": "Sem plano: o personal ainda não montou",
+      "svg": "estados-vazios/sem-plano.svg",
+      "claro1x": "estados-vazios/sem-plano-claro@1x.webp",
+      "claro2x": "estados-vazios/sem-plano-claro@2x.webp",
+      "escuro1x": "estados-vazios/sem-plano-escuro@1x.webp",
+      "escuro2x": "estados-vazios/sem-plano-escuro@2x.webp"
+    },
+    "aguardando-personal": {
+      "uso": "Aguardando seu personal",
+      "svg": "estados-vazios/aguardando-personal.svg",
+      "claro1x": "estados-vazios/aguardando-personal-claro@1x.webp",
+      "claro2x": "estados-vazios/aguardando-personal-claro@2x.webp",
+      "escuro1x": "estados-vazios/aguardando-personal-escuro@1x.webp",
+      "escuro2x": "estados-vazios/aguardando-personal-escuro@2x.webp"
+    },
+    "busca-sem-resultado": {
+      "uso": "Busca sem resultado",
+      "svg": "estados-vazios/busca-sem-resultado.svg",
+      "claro1x": "estados-vazios/busca-sem-resultado-claro@1x.webp",
+      "claro2x": "estados-vazios/busca-sem-resultado-claro@2x.webp",
+      "escuro1x": "estados-vazios/busca-sem-resultado-escuro@1x.webp",
+      "escuro2x": "estados-vazios/busca-sem-resultado-escuro@2x.webp"
+    },
+    "erro-carregar": {
+      "uso": "Erro: não deu para carregar",
+      "svg": "estados-vazios/erro-carregar.svg",
+      "claro1x": "estados-vazios/erro-carregar-claro@1x.webp",
+      "claro2x": "estados-vazios/erro-carregar-claro@2x.webp",
+      "escuro1x": "estados-vazios/erro-carregar-escuro@1x.webp",
+      "escuro2x": "estados-vazios/erro-carregar-escuro@2x.webp"
+    },
+    "sem-conexao": {
+      "uso": "Sem conexão",
+      "svg": "estados-vazios/sem-conexao.svg",
+      "claro1x": "estados-vazios/sem-conexao-claro@1x.webp",
+      "claro2x": "estados-vazios/sem-conexao-claro@2x.webp",
+      "escuro1x": "estados-vazios/sem-conexao-escuro@1x.webp",
+      "escuro2x": "estados-vazios/sem-conexao-escuro@2x.webp"
+    },
+    "nenhum-aluno": {
+      "uso": "Academia: nenhum aluno vinculado",
+      "svg": "estados-vazios/nenhum-aluno.svg",
+      "claro1x": "estados-vazios/nenhum-aluno-claro@1x.webp",
+      "claro2x": "estados-vazios/nenhum-aluno-claro@2x.webp",
+      "escuro1x": "estados-vazios/nenhum-aluno-escuro@1x.webp",
+      "escuro2x": "estados-vazios/nenhum-aluno-escuro@2x.webp"
+    },
+    "biblioteca-vazia": {
+      "uso": "Academia: nenhum treino pronto",
+      "svg": "estados-vazios/biblioteca-vazia.svg",
+      "claro1x": "estados-vazios/biblioteca-vazia-claro@1x.webp",
+      "claro2x": "estados-vazios/biblioteca-vazia-claro@2x.webp",
+      "escuro1x": "estados-vazios/biblioteca-vazia-escuro@1x.webp",
+      "escuro2x": "estados-vazios/biblioteca-vazia-escuro@2x.webp"
+    }
+  },
+  "plus": {
+    "convite": {
+      "capa": {
+        "1x": "plus/convite-plus@1x.webp",
+        "2x": "plus/convite-plus@2x.webp"
+      },
+      "mini": {
+        "1x": "plus/convite-plus-mini@1x.webp",
+        "2x": "plus/convite-plus-mini@2x.webp"
+      }
+    }
+  },
+  "treinos": {
+    "_sobre": "Agente S, 10/10/2026. Capa de cada treino pronto do catálogo (app/dominio/catalogo/treinos-prontos.json), mostrando o foco do treino. capa = destaque 358×240; larga = cartão de grade 344×192; mini = 48×48 da lista. Créditos: CREDITOS-treinos.md.",
+    "primeiros-passos": {
+      "nome": "Primeiros passos",
+      "objetivos": [
+        "iniciante",
+        "saude_e_manutencao"
+      ],
+      "foto": "G6svDyPVRrc",
+      "capa": {
+        "1x": "treinos/primeiros-passos-capa@1x.webp",
+        "2x": "treinos/primeiros-passos-capa@2x.webp"
+      },
+      "larga": {
+        "1x": "treinos/primeiros-passos-larga@1x.webp",
+        "2x": "treinos/primeiros-passos-larga@2x.webp"
+      },
+      "mini": {
+        "1x": "treinos/primeiros-passos-mini@1x.webp",
+        "2x": "treinos/primeiros-passos-mini@2x.webp"
+      }
+    },
+    "full-body-3x": {
+      "nome": "Full body 3×",
+      "objetivos": [
+        "iniciante",
+        "ganhar_massa"
+      ],
+      "foto": "JD6RMKGwSCQ",
+      "capa": {
+        "1x": "treinos/full-body-3x-capa@1x.webp",
+        "2x": "treinos/full-body-3x-capa@2x.webp"
+      },
+      "larga": {
+        "1x": "treinos/full-body-3x-larga@1x.webp",
+        "2x": "treinos/full-body-3x-larga@2x.webp"
+      },
+      "mini": {
+        "1x": "treinos/full-body-3x-mini@1x.webp",
+        "2x": "treinos/full-body-3x-mini@2x.webp"
+      }
+    },
+    "abc-hipertrofia": {
+      "nome": "ABC Hipertrofia",
+      "objetivos": [
+        "ganhar_massa"
+      ],
+      "foto": "Rm51wg8qk7g",
+      "capa": {
+        "1x": "treinos/abc-hipertrofia-capa@1x.webp",
+        "2x": "treinos/abc-hipertrofia-capa@2x.webp"
+      },
+      "larga": {
+        "1x": "treinos/abc-hipertrofia-larga@1x.webp",
+        "2x": "treinos/abc-hipertrofia-larga@2x.webp"
+      },
+      "mini": {
+        "1x": "treinos/abc-hipertrofia-mini@1x.webp",
+        "2x": "treinos/abc-hipertrofia-mini@2x.webp"
+      }
+    },
+    "superior-inferior-4x": {
+      "nome": "Superior e inferior 4×",
+      "objetivos": [
+        "ganhar_massa"
+      ],
+      "foto": "P7ufRr2xLGw",
+      "capa": {
+        "1x": "treinos/superior-inferior-4x-capa@1x.webp",
+        "2x": "treinos/superior-inferior-4x-capa@2x.webp"
+      },
+      "larga": {
+        "1x": "treinos/superior-inferior-4x-larga@1x.webp",
+        "2x": "treinos/superior-inferior-4x-larga@2x.webp"
+      },
+      "mini": {
+        "1x": "treinos/superior-inferior-4x-mini@1x.webp",
+        "2x": "treinos/superior-inferior-4x-mini@2x.webp"
+      }
+    },
+    "empurrar-puxar-pernas": {
+      "nome": "Empurrar, puxar e pernas",
+      "objetivos": [
+        "ganhar_massa"
+      ],
+      "foto": "A37mI2hAkaI",
+      "capa": {
+        "1x": "treinos/empurrar-puxar-pernas-capa@1x.webp",
+        "2x": "treinos/empurrar-puxar-pernas-capa@2x.webp"
+      },
+      "larga": {
+        "1x": "treinos/empurrar-puxar-pernas-larga@1x.webp",
+        "2x": "treinos/empurrar-puxar-pernas-larga@2x.webp"
+      },
+      "mini": {
+        "1x": "treinos/empurrar-puxar-pernas-mini@1x.webp",
+        "2x": "treinos/empurrar-puxar-pernas-mini@2x.webp"
+      }
+    },
+    "circuito-30": {
+      "nome": "Circuito 30",
+      "objetivos": [
+        "emagrecer",
+        "condicionamento"
+      ],
+      "foto": "SMaujCcYGHo",
+      "capa": {
+        "1x": "treinos/circuito-30-capa@1x.webp",
+        "2x": "treinos/circuito-30-capa@2x.webp"
+      },
+      "larga": {
+        "1x": "treinos/circuito-30-larga@1x.webp",
+        "2x": "treinos/circuito-30-larga@2x.webp"
+      },
+      "mini": {
+        "1x": "treinos/circuito-30-mini@1x.webp",
+        "2x": "treinos/circuito-30-mini@2x.webp"
+      }
+    },
+    "forca-e-caminhada": {
+      "nome": "Força e caminhada",
+      "objetivos": [
+        "emagrecer",
+        "saude_e_manutencao"
+      ],
+      "foto": "06EpjZiMz_E",
+      "capa": {
+        "1x": "treinos/forca-e-caminhada-capa@1x.webp",
+        "2x": "treinos/forca-e-caminhada-capa@2x.webp"
+      },
+      "larga": {
+        "1x": "treinos/forca-e-caminhada-larga@1x.webp",
+        "2x": "treinos/forca-e-caminhada-larga@2x.webp"
+      },
+      "mini": {
+        "1x": "treinos/forca-e-caminhada-mini@1x.webp",
+        "2x": "treinos/forca-e-caminhada-mini@2x.webp"
+      }
+    },
+    "folego-3x": {
+      "nome": "Fôlego 3×",
+      "objetivos": [
+        "condicionamento"
+      ],
+      "foto": "Y3LhJWNjv0M",
+      "capa": {
+        "1x": "treinos/folego-3x-capa@1x.webp",
+        "2x": "treinos/folego-3x-capa@2x.webp"
+      },
+      "larga": {
+        "1x": "treinos/folego-3x-larga@1x.webp",
+        "2x": "treinos/folego-3x-larga@2x.webp"
+      },
+      "mini": {
+        "1x": "treinos/folego-3x-mini@1x.webp",
+        "2x": "treinos/folego-3x-mini@2x.webp"
+      }
+    },
+    "intervalado-25": {
+      "nome": "Intervalado 25",
+      "objetivos": [
+        "condicionamento",
+        "emagrecer"
+      ],
+      "foto": "9xRrPIycOIc",
+      "capa": {
+        "1x": "treinos/intervalado-25-capa@1x.webp",
+        "2x": "treinos/intervalado-25-capa@2x.webp"
+      },
+      "larga": {
+        "1x": "treinos/intervalado-25-larga@1x.webp",
+        "2x": "treinos/intervalado-25-larga@2x.webp"
+      },
+      "mini": {
+        "1x": "treinos/intervalado-25-mini@1x.webp",
+        "2x": "treinos/intervalado-25-mini@2x.webp"
+      }
+    },
+    "corpo-em-dia": {
+      "nome": "Corpo em dia",
+      "objetivos": [
+        "saude_e_manutencao"
+      ],
+      "foto": "Iz6i1341TIE",
+      "capa": {
+        "1x": "treinos/corpo-em-dia-capa@1x.webp",
+        "2x": "treinos/corpo-em-dia-capa@2x.webp"
+      },
+      "larga": {
+        "1x": "treinos/corpo-em-dia-larga@1x.webp",
+        "2x": "treinos/corpo-em-dia-larga@2x.webp"
+      },
+      "mini": {
+        "1x": "treinos/corpo-em-dia-mini@1x.webp",
+        "2x": "treinos/corpo-em-dia-mini@2x.webp"
+      }
+    },
+    "treino-em-casa": {
+      "nome": "Treino em casa",
+      "objetivos": [
+        "iniciante",
+        "condicionamento",
+        "saude_e_manutencao"
+      ],
+      "foto": "2rZ4nhCdQNc",
+      "capa": {
+        "1x": "treinos/treino-em-casa-capa@1x.webp",
+        "2x": "treinos/treino-em-casa-capa@2x.webp"
+      },
+      "larga": {
+        "1x": "treinos/treino-em-casa-larga@1x.webp",
+        "2x": "treinos/treino-em-casa-larga@2x.webp"
+      },
+      "mini": {
+        "1x": "treinos/treino-em-casa-mini@1x.webp",
+        "2x": "treinos/treino-em-casa-mini@2x.webp"
+      }
+    }
+  },
+  "exerciciosHeroi": {
+    "_sobre": "Foto grande (herói) de exercício: só quando mostra AQUELE exercício, aparelho e posição. Sem foto certa = usar a ilustração.",
+    "supino-inclinado-com-halteres": {
+      "nome": "Supino inclinado com halteres",
+      "foto": "u6wDM6tRhBs",
+      "1x": "treinos/supino-inclinado-com-halteres-heroi@1x.webp",
+      "2x": "treinos/supino-inclinado-com-halteres-heroi@2x.webp"
+    },
+    "crucifixo-no-cabo": {
+      "nome": "Crucifixo no cabo (crossover)",
+      "foto": "Ivu2SWRyFxQ",
+      "1x": "telas/modo-treino-crucifixo-no-cabo@1x.webp",
+      "2x": "telas/modo-treino-crucifixo-no-cabo@2x.webp",
+      "observacao": "tela cheia do modo treino; posição final do crossover, conferida pelo agente S"
+    },
+    "agachamento-livre": {
+      "nome": "Agachamento livre",
+      "foto": "IYLLF511aOY",
+      "1x": "telas/evolucao-agachamento@1x.webp",
+      "2x": "telas/evolucao-agachamento@2x.webp",
+      "observacao": "topo da Evolução, 390×300"
+    }
+  },
+  "exerciciosIlustracao": {
+    "_sobre": "Miniatura de exercício (48–64) usa SEMPRE a ilustração do agente R (02-design/icones/exercicios/), nunca foto. null = ainda sem desenho; até lá, o ícone genérico.",
+    "supino-reto": {
+      "nome": "Supino reto",
+      "svg": "../icones/exercicios/supino-reto.svg",
+      "sprite": "ex-supino-reto"
+    },
+    "supino-inclinado-com-halteres": {
+      "nome": "Supino inclinado com halteres",
+      "svg": "../icones/exercicios/supino-inclinado-com-halteres.svg",
+      "sprite": "ex-supino-inclinado-com-halteres"
+    },
+    "supino-sentado-na-maquina": {
+      "nome": "Supino sentado na máquina",
+      "svg": null,
+      "sprite": null
+    },
+    "crucifixo-na-maquina": {
+      "nome": "Crucifixo na máquina (voador)",
+      "svg": "../icones/exercicios/crucifixo-na-maquina.svg",
+      "sprite": "ex-crucifixo-na-maquina"
+    },
+    "flexao-de-braco": {
+      "nome": "Flexão de braço",
+      "svg": null,
+      "sprite": null
+    },
+    "puxada-frontal": {
+      "nome": "Puxada frontal",
+      "svg": "../icones/exercicios/puxada.svg",
+      "sprite": "ex-puxada"
+    },
+    "remada-curvada": {
+      "nome": "Remada curvada",
+      "svg": "../icones/exercicios/remada-curvada.svg",
+      "sprite": "ex-remada-curvada"
+    },
+    "remada-baixa": {
+      "nome": "Remada baixa",
+      "svg": null,
+      "sprite": null
+    },
+    "desenvolvimento-com-halteres": {
+      "nome": "Desenvolvimento com halteres",
+      "svg": "../icones/exercicios/desenvolvimento.svg",
+      "sprite": "ex-desenvolvimento"
+    },
+    "elevacao-lateral": {
+      "nome": "Elevação lateral",
+      "svg": null,
+      "sprite": null
+    },
+    "rosca-com-halteres": {
+      "nome": "Rosca com halteres",
+      "svg": "../icones/exercicios/rosca.svg",
+      "sprite": "ex-rosca"
+    },
+    "triceps-corda": {
+      "nome": "Tríceps corda",
+      "svg": "../icones/exercicios/triceps-corda.svg",
+      "sprite": "ex-triceps-corda"
+    },
+    "agachamento-livre": {
+      "nome": "Agachamento livre",
+      "svg": "../icones/exercicios/agachamento-livre.svg",
+      "sprite": "ex-agachamento-livre"
+    },
+    "agachamento-sem-carga": {
+      "nome": "Agachamento sem carga",
+      "svg": null,
+      "sprite": null
+    },
+    "leg-press": {
+      "nome": "Leg press 45°",
+      "svg": "../icones/exercicios/leg-press.svg",
+      "sprite": "ex-leg-press"
+    },
+    "afundo": {
+      "nome": "Afundo",
+      "svg": null,
+      "sprite": null
+    },
+    "stiff": {
+      "nome": "Stiff com halteres",
+      "svg": null,
+      "sprite": null
+    },
+    "cadeira-extensora": {
+      "nome": "Cadeira extensora",
+      "svg": null,
+      "sprite": null
+    },
+    "mesa-flexora": {
+      "nome": "Mesa flexora",
+      "svg": null,
+      "sprite": null
+    },
+    "panturrilha-em-pe": {
+      "nome": "Panturrilha em pé",
+      "svg": "../icones/exercicios/panturrilha.svg",
+      "sprite": "ex-panturrilha"
+    },
+    "elevacao-pelvica": {
+      "nome": "Elevação pélvica",
+      "svg": "../icones/exercicios/elevacao-pelvica.svg",
+      "sprite": "ex-elevacao-pelvica"
+    },
+    "prancha": {
+      "nome": "Prancha",
+      "svg": "../icones/exercicios/prancha.svg",
+      "sprite": "ex-prancha"
+    },
+    "abdominal": {
+      "nome": "Abdominal no solo",
+      "svg": "../icones/exercicios/abdominal.svg",
+      "sprite": "ex-abdominal"
+    },
+    "esteira": {
+      "nome": "Esteira",
+      "svg": "../icones/exercicios/esteira.svg",
+      "sprite": "ex-esteira"
+    },
+    "bicicleta": {
+      "nome": "Bicicleta ergométrica",
+      "svg": "../icones/exercicios/bicicleta.svg",
+      "sprite": "ex-bicicleta"
+    },
+    "corda-naval": {
+      "nome": "Corda naval",
+      "svg": null,
+      "sprite": null
+    },
+    "polichinelo": {
+      "nome": "Polichinelo",
+      "svg": null,
+      "sprite": null
+    },
+    "escalador": {
+      "nome": "Escalador",
+      "svg": null,
+      "sprite": null
+    }
+  }
+}

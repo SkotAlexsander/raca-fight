@@ -1,0 +1,135 @@
+<section class="parte" id="referencias">
+  <p class="parte__olho">Parte 9 · o pedido do Alex</p>
+  <h1 class="parte__titulo">As referências e o que veio delas</h1>
+  <p class="parte__lide">O Alex mandou seis telas de apps de academia como exemplo de linguagem, não de conteúdo: nada se copiou (layout exato, ícone, foto ou texto). O que ele disse que gostou: o jeito de apresentar e os efeitos, principalmente no escuro; os painéis de vidro sobre a foto; a abertura com a cor da marca; e as duas portas na entrada.</p>
+  <div class="grade grade--3">
+    <figure><img src="_capturas/ref-01-escuro-calendario-cronometro-lista.jpg" alt=""><figcaption>01 · escuro, cronômetro, anel por exercício, "deslizar para começar"</figcaption></figure>
+    <figure><img src="_capturas/ref-02-entrada-vidro-sobre-foto.jpg" alt=""><figcaption>02 · entrada em vidro sobre a mesma foto desfocada</figcaption></figure>
+    <figure><img src="_capturas/ref-05-explorar-comemoracao-exercicio.jpg" alt=""><figcaption>05 · o "15" sobre a foto, a comemoração em cor cheia, o + central</figcaption></figure>
+  </div>
+  <div class="grade grade--2">
+    <div class="caixa caixa--regra"><span class="caixa__rotulo">O que veio para o app</span><p>Foto grande e escura com o texto por cima; vidro com camada de contraste; <strong>um</strong> número grande por tela; verde da marca mais vivo (no escuro, verde-água luminoso, não verde-limão); pílulas; anel por exercício; abertura com a cor da marca; duas portas ("Sou aluno" e "Sou da academia"); comemoração em cor cheia. O claro tem a mesma linguagem, com vidro claro sobre a mesma foto.</p></div>
+    <div class="caixa caixa--atencao"><span class="caixa__rotulo">O que ficou de fora, de propósito</span><p><strong>Corpo ideal</strong> (homem sem camisa definido, pose de revista): as pessoas são as reais e diversas do banco de imagens, e o clima escuro vem do tratamento da foto. <strong>Calorias como placar</strong> ("278 kcal queimadas"): kcal só aparece na dieta do Plus. <strong>Desafio com amigos e ranking</strong>: fora da v1. <strong>Vidro sem cuidado</strong>: texto sobre vidro é medido contra o pior pixel da foto.</p></div>
+  </div>
+  <h2>As regras que não mudaram</h2>
+  <table class="tabela-compacta">
+    <tbody>
+      <tr><td class="chave">Toque</td><td>Toda área tocável tem pelo menos 48 × 48 (44 pt é o piso). O desenho pode ser menor; a área de toque, não.</td></tr>
+      <tr><td class="chave">Contraste</td><td>4,5:1 em texto e 3:1 em texto grande e ícone, <strong>medido</strong>. Sobre foto ou vidro, contra o pior pixel de fundo, com uma camada de contraste por baixo.</td></tr>
+      <tr><td class="chave">Transparência e movimento</td><td>Com "Reduzir transparência", o vidro vira superfície sólida. Com "Reduzir movimento", todo efeito vira um esmaecer de 0,16 s.</td></tr>
+      <tr><td class="chave">Tom</td><td>Nada de "corpo ideal", kcal como placar ou ranking. Dado de saúde só para o aluno e quem ele autoriza.</td></tr>
+      <tr><td class="chave">Aparelhos</td><td>As mesmas telas no iPhone SE, 16 e 16 Pro Max e no Android de 390, com a área segura de cada um.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="parte" id="design">
+  <p class="parte__olho">Parte 9</p>
+  <h1 class="parte__titulo">Sistema de design: proporção planejada</h1>
+  <p class="parte__lide">O cenário continua o mesmo: o aluno em pé, entre duas séries, com a mão suada e o celular numa mão só. O que mudou em 10/10 foi a proporção. A primeira versão das referências aplicou "número grande, alvo grande" em tudo, e o Alex reprovou: a tela ficava com cara de zoom e sem hierarquia. A regra nova é <strong>legível a um braço de distância sem gritar</strong>.</p>
+
+  <h2>Sete regras que decidem qualquer dúvida de tela</h2>
+  <div class="grade grade--2">
+    <div class="cartela"><span class="n">1</span><h4>Dedo, não cursor; desenho não é área de toque</h4><p>Toda área tocável tem 48 × 48. O desenho do botão é menor quando precisa (40, 36, 32), e a área invisível em volta completa os 48.</p></div>
+    <div class="cartela"><span class="n">2</span><h4>Proporção planejada</h4><p>Escala fechada de razão 1,25 (13 · 16 · 20 · 25 · 31 · 39 · 49 · 61) e <strong>um herói por tela</strong>. Número e unidade em no máximo 2,5 : 1.</p></div>
+    <div class="cartela"><span class="n">3</span><h4>Um gesto, uma ação</h4><p>Marcar série é um toque. Nada de segurar ou abrir menu para o que se faz 20 vezes por treino.</p></div>
+    <div class="cartela"><span class="n">4</span><h4>Contraste para tela com reflexo</h4><p>Texto em 4,5:1 nos dois temas, medido contra o pior pixel sobre foto ou vidro. Nenhuma informação só pela cor.</p></div>
+    <div class="cartela"><span class="n">5</span><h4>Uma mão alcança</h4><p>O que se usa sempre fica na metade de baixo: abas, botão principal, folha que sobe.</p></div>
+    <div class="cartela"><span class="n">6</span><h4>Erro é raro e reversível</h4><p>Apagar pede confirmação; marcar série oferece "Desfazer" por 5 segundos.</p></div>
+    <div class="cartela" style="grid-column:1 / -1"><span class="n">7</span><h4>Um app, duas visões</h4><p>Aluno e academia usam as mesmas peças. Muda o conteúdo, as abas e a densidade. Quem troca de visão não reaprende nada.</p></div>
+  </div>
+
+  <h2>As medidas (tokens 1.8.0)</h2>
+  <table class="tabela-compacta">
+    <tbody>
+      <tr><td class="chave">Letra</td><td>Figtree no texto, Archivo nos números, só na escala <strong>13 · 16 · 20 · 25 · 31 · 39 · 49 · 61</strong>: legenda 13 · corpo 16 · subtítulo 20 · título de tela 25 (o grande do iOS, 31) · número da linha de série 20 · valor sendo editado 25 · número herói 49 · <strong>61 só no modo treino e no Cronômetro</strong> (era 112 e 96).</td></tr>
+      <tr><td class="chave">Controles (desenho)</td><td>botão primário 48 (texto 16) · secundário 40 · botão-ícone 40 · marcar série 40 · +/− 36 · chip 32 · barra de abas 56 + área segura · deslizar 56 · <strong>nada interativo passa de 56</strong>.</td></tr>
+      <tr><td class="chave">Proporção</td><td>botão com 2,5× a 3× o texto · ícone no botão com 0,5× a 0,6× da altura · foto herói em no máximo 45 % da altura útil (340 no iPhone 16) · cartões na grade de 8.</td></tr>
+      <tr><td class="chave">Cor</td><td>verde vivo <code>#39F0CD</code> só como preenchimento, com <code>#00221A</code> por cima (11,7:1); no claro, texto e traço em <code>#007761</code> (5,5:1) · dourado só no Plus · escuro quase preto <code>#070C0C</code>.</td></tr>
+      <tr><td class="chave">Vidro e foto</td><td>desfoque 24, borda clara de 1 px, camada de contraste, cor sólida para "Reduzir transparência"; a variante "vidro escuro" vale nos dois temas sobre foto escura · foto escurecida a 0,72 com degradê e luz lateral, igual nos dois temas.</td></tr>
+      <tr><td class="chave">Espaço e cantos</td><td>de 4 em 4 · cartão 24 · capa 28 · vidro 24 · campo 16 · botão e chip em pílula.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="parte" id="proporcao">
+  <p class="parte__olho">Parte 9 · proporção</p>
+  <h1 class="parte__titulo">Antes e depois da regra de proporção</h1>
+  <p class="parte__lide">As três telas que mais mudaram, no iPhone 16 e no mesmo tema, antes (tokens 1.6.0) e depois (1.8.0). O herói de cada uma ficou um só: o "12" de repetições no treino, o treino de hoje no Início. O resto desceu na escala.</p>
+  <div class="celulares celulares--antes-depois">
+    <figure><img src="_capturas/antes-treino-escuro.png" alt=""><figcaption><b>Antes</b> · "12" de 112, séries de 40, botões de 56</figcaption></figure>
+    <figure><img src="_capturas/antes-modo-treino.png" alt=""><figcaption><b>Antes</b> · modo treino com "12" de 112 e título de 28</figcaption></figure>
+    <figure><img src="_capturas/antes-inicio-claro.png" alt=""><figcaption><b>Antes</b> · Início com o "2" da semana disputando com o treino</figcaption></figure>
+    <figure><img src="_capturas/depois-treino-escuro.png" alt=""><figcaption><b>Depois</b> · "12" de 61 com a unidade de 25, série de 20, marcar 40</figcaption></figure>
+    <figure><img src="_capturas/depois-modo-treino.png" alt=""><figcaption><b>Depois</b> · 61 e 25; o painel cabe sem empurrar o "Próximo"</figcaption></figure>
+    <figure><img src="_capturas/depois-inicio-claro.png" alt=""><figcaption><b>Depois</b> · o treino de hoje é o herói; a semana desce para 31</figcaption></figure>
+  </div>
+  <p class="pequeno discreto">A auditoria automática (<code>auditar.mjs</code>) passou a reprovar texto fora da escala, mais de um texto de 49 ou mais na mesma tela, controle com mais de 56 de desenho e área de toque efetiva abaixo de 44.</p>
+</section>
+
+<section class="parte" id="componentes">
+  <p class="parte__olho">Parte 9 · continuação</p>
+  <h1 class="parte__titulo">Componentes</h1>
+  <p class="parte__lide">Vinte e uma peças, cada uma com seus estados (normal, pressionado, desabilitado, erro, carregando). As mesmas peças servem às duas visões. Abaixo, capturas reais de algumas delas no protótipo, já com a proporção 1.8.0.</p>
+  <div class="caixa caixa--ok"><span class="caixa__rotulo">Sobre as capturas</span><p>O protótipo está na linguagem das referências do Alex (Parte 9, início), com a marca, os ícones próprios, as ilustrações de exercício e a proporção revista. As medidas de cada peça estão em <code>02-COMPONENTES.md</code>.</p></div>
+  <div class="componentes">
+    <figure><img src="_capturas/comp-03-campo-numerico-claro.png" alt=""><figcaption><b>Campo +/−</b> da carga e da repetição.</figcaption></figure>
+    <figure><img src="_capturas/comp-06-linha-serie-claro.png" alt=""><figcaption><b>Linha de série</b>: a fazer, feita, atual.</figcaption></figure>
+    <figure><img src="_capturas/comp-07-cronometro-claro.png" alt=""><figcaption><b>Cronômetro de descanso.</b></figcaption></figure>
+    <figure><img src="_capturas/comp-09-cartao-treino-pronto-claro.png" alt=""><figcaption><b>Cartão de treino pronto.</b></figcaption></figure>
+    <figure><img src="_capturas/comp-10-cartao-aluno-claro.png" alt=""><figcaption><b>Cartão de aluno</b> (academia, compacto).</figcaption></figure>
+    <figure><img src="_capturas/comp-12-lista-refeicao-claro.png" alt=""><figcaption><b>Lista de refeição</b> (Plus).</figcaption></figure>
+    <figure><img src="_capturas/comp-11-selo-plus-claro.png" alt=""><figcaption><b>Selo Plus.</b></figcaption><img src="_capturas/comp-13-barra-abas-claro.png" alt="" style="margin-top:10px"><figcaption><b>Barra de abas</b>, 4 ou 5.</figcaption></figure>
+    <figure><img src="_capturas/comp-17-toast-claro.png" alt=""><figcaption><b>Aviso rápido</b> com "Desfazer".</figcaption></figure>
+    <figure><img src="_capturas/comp-04-selecao-claro.png" alt=""><figcaption><b>Seleção e chips.</b></figcaption><img src="_capturas/comp-14-cabecalho-claro.png" alt="" style="margin-top:10px"><figcaption><b>Cabeçalho.</b></figcaption></figure>
+    <figure><img src="_capturas/comp-02-campo-texto-claro.png" alt=""><figcaption><b>Campo de texto</b>, com erro.</figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="telas">
+  <p class="parte__olho">Parte 9 · continuação</p>
+  <h1 class="parte__titulo">As seis telas, tema claro</h1>
+  <p class="parte__lide">As seis telas do sistema, na moldura do iPhone 16 (393 × 852, com Dynamic Island; o mesmo desenho roda no Android): foto grande e escura com o texto por cima, vidro sobre a foto, <strong>um</strong> número em destaque por tela e o verde vivo só onde há ação.</p>
+  <div class="celulares celulares--3 celulares--seis">
+    <figure><img src="_capturas/tela-1-treino-do-dia-claro.jpg" alt=""><figcaption><b>Treino em andamento</b> · aluno. O supino inclinado de verdade, o "12" de 61 como herói, um anel por exercício e as ilustrações na lista.</figcaption></figure>
+    <figure><img src="_capturas/tela-2-treinos-prontos-claro.jpg" alt=""><figcaption><b>Treinos prontos</b> · aluno. A capa mostra o foco do treino (supino no ABC) e "deslize para começar".</figcaption></figure>
+    <figure><img src="_capturas/tela-5-cronometro-claro.jpg" alt=""><figcaption><b>Cronômetro</b> · intervalado. O mostrador de 61 é o herói; o nome da fase está sempre escrito.</figcaption></figure>
+    <figure><img src="_capturas/tela-3-perfil-do-aluno-claro.jpg" alt=""><figcaption><b>Perfil do aluno</b> · academia. Ilha escura sem foto do corpo, só as iniciais.</figcaption></figure>
+    <figure><img src="_capturas/tela-4-dieta-de-hoje-claro.jpg" alt=""><figcaption><b>Dieta de hoje</b> · aluno Plus. Item comido esmaecido e com check; sem kcal como placar.</figcaption></figure>
+    <figure><img src="_capturas/tela-6-convite-plus-claro.jpg" alt=""><figcaption><b>Convite ao Plus</b> · aluno sem Plus. O único botão dourado do app; a aba Plus usa o "+" da marca.</figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="telas-escuro">
+  <p class="parte__olho">Parte 9 · continuação</p>
+  <h1 class="parte__titulo">Tema escuro</h1>
+  <p class="parte__lide">O app segue o tema do celular, e a pessoa pode fixar um no Perfil. A foto é a mesma nos dois temas; o que muda é o vidro (claro ou escuro) e o verde, que no escuro vira o verde-água luminoso das referências.</p>
+  <div class="celulares celulares--3 celulares--seis">
+    <figure><img src="_capturas/tela-1-treino-do-dia-escuro.jpg" alt=""><figcaption><b>Treino em andamento</b></figcaption></figure>
+    <figure><img src="_capturas/tela-2-treinos-prontos-escuro.jpg" alt=""><figcaption><b>Treinos prontos</b></figcaption></figure>
+    <figure><img src="_capturas/tela-5-cronometro-escuro.jpg" alt=""><figcaption><b>Cronômetro</b></figcaption></figure>
+    <figure><img src="_capturas/tela-3-perfil-do-aluno-escuro.jpg" alt=""><figcaption><b>Perfil do aluno</b></figcaption></figure>
+    <figure><img src="_capturas/tela-4-dieta-de-hoje-escuro.jpg" alt=""><figcaption><b>Dieta de hoje</b></figcaption></figure>
+    <figure><img src="_capturas/tela-6-convite-plus-escuro.jpg" alt=""><figcaption><b>Convite ao Plus</b></figcaption></figure>
+  </div>
+</section>
+
+<section class="parte" id="visao-acessibilidade">
+  <p class="parte__olho">Parte 9 · continuação</p>
+  <h1 class="parte__titulo">Visão e acessibilidade</h1>
+  <h2>As cores da marca, aplicadas</h2>
+  <p>Os papéis de cor do sistema (tokens 1.8.0): verde vivo como preenchimento, verde da marca no texto do claro, dourado só no Plus, escuro quase preto. Em cima o claro, embaixo o escuro.</p>
+  <figure><img src="_capturas/tokens-paleta-claro.png" alt="" style="width:100%"></figure>
+  <figure><img src="_capturas/tokens-paleta-escuro.png" alt="" style="width:100%;margin-top:6px"></figure>
+  <h2>Como o app diz em que visão a pessoa está</h2>
+  <p>Sem parecer dois apps. Na visão da academia, o cabeçalho traz o nome da academia e um botão de troca ("Academia"), e a barra de abas muda (Alunos, Treinos, Plus, Academia, Perfil). Cores, botões, letras e gestos continuam iguais.</p>
+  <h2>Acessibilidade</h2>
+  <ul>
+    <li><strong>Leitor de tela</strong> (TalkBack e VoiceOver): o + da carga diz "Aumentar carga" e, depois do toque, o novo valor ("30 quilos"); o cronômetro não fala a cada segundo, só avisa aos 30 e aos 10 segundos restantes.</li>
+    <li><strong>Reduzir transparência</strong>: o vidro vira superfície sólida, sem mudar de lugar nem de tamanho.</li>
+    <li><strong>Movimento reduzido</strong>: se o celular pede, nada desliza, cresce ou brilha; todo efeito vira um esmaecer curto (0,16 s). O cronômetro passa a pular de segundo em segundo. Nada pisca nem pulsa em nenhum caso.</li>
+    <li><strong>Cor nunca sozinha</strong>: série feita tem cor e ícone; Plus tem cor e a palavra; a fase do cronômetro tem cor e o nome.</li>
+    <li><strong>Contraste medido</strong> nas cores reais da marca, nos dois temas: texto 4,5:1 ou mais, ícone 3:1 ou mais. Com foto ou vidro atrás, a medida é contra o <strong>pior pixel</strong> do fundo. A medição automática passa pelas três páginas do protótipo em todas as combinações de tela, tema, letra, aparelho e transparência e termina com <strong>0 problemas</strong>.</li>
+  </ul>
+</section>
+

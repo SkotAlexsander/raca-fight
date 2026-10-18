@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="claro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Movimento — Academia Plus</title>
+<meta name="description" content="Catálogo de efeitos do Academia Plus ao vivo: cada efeito com duração e curva dos tokens, botão de repetir e a chave de reduzir movimento.">
+<style>
+/* Cores: tokens-marca.json (claro e escuro). Movimento: tokens.json › duracao, curva e movimento (1.4.0). */
+:root {
+  --fundo: #F4F8F7; --superficie: #FFFFFF; --superficie-elevada: #FFFFFF; --texto: #131D1C; --texto-sec: #556463;
+  --marca: #006B5F; --marca-texto: #FFFFFF; --marca-suave: #DAF6F0; --sucesso: #0A7E3A; --sucesso-texto: #FFFFFF;
+  --atencao: #B74D00; --plus: #EAB444; --plus-texto: #3A2B0D; --plus-sobre-fundo: #9A6100; --plus-suave: #FCF2E1;
+  --borda: #D0DAD9; --sombra-1: 0 1px 2px rgba(0,0,0,.08); --sombra-2: 0 4px 12px rgba(0,0,0,.10); --sombra-3: 0 12px 32px rgba(0,0,0,.16);
+  --camada-toque: .08;
+
+  --lento: 1;
+  --d-rapida: calc(120ms * var(--lento)); --d-media: calc(200ms * var(--lento)); --d-lenta: calc(320ms * var(--lento));
+  --d-esmaecer: calc(160ms * var(--lento));
+  --c-padrao: cubic-bezier(0.2, 0, 0, 1); --c-entrada: cubic-bezier(0, 0, 0.2, 1); --c-saida: cubic-bezier(0.4, 0, 1, 1);
+  --fonte: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+:root[data-tema="escuro"] {
+  --fundo: #0B1313; --superficie: #1B2423; --superficie-elevada: #27302F; --texto: #E7F1F0; --texto-sec: #A1AEAD;
+  --marca: #6BD3C2; --marca-texto: #0B1313; --marca-suave: #0D352F; --sucesso: #67D283; --sucesso-texto: #0B1313;
+  --atencao: #FDA16B; --plus: #F8C153; --plus-texto: #2F2207; --plus-sobre-fundo: #F8C153; --plus-suave: #332710;
+  --borda: #313A39; --sombra-1: 0 1px 2px rgba(0,0,0,.40); --sombra-2: 0 4px 12px rgba(0,0,0,.50); --sombra-3: 0 12px 32px rgba(0,0,0,.64);
+  --camada-toque: .12;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--fundo); color: var(--texto); font: 16px/24px var(--fonte); -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+button:focus-visible { outline: 3px solid var(--marca); outline-offset: 3px; }
+.num { font-variant-numeric: tabular-nums; }
+h1, h2, h3, p { margin: 0; }
+
+/* ---------- topo da página ---------- */
+.topo { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--fundo) 92%, transparent); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borda); padding: 12px 16px; }
+.topo__linha { max-width: 1960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.topo h1 { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -0.005em; margin-right: auto; }
+.topo h1 small { display: block; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--texto-sec); letter-spacing: 0; }
+.chave { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px; border-radius: 999px; background: var(--superficie);
+  box-shadow: inset 0 0 0 1px var(--borda); font-size: 14px; font-weight: 600; cursor: pointer; user-select: none; }
+.chave input { appearance: none; width: 36px; height: 22px; border-radius: 999px; background: var(--borda); position: relative; margin: 0; cursor: pointer;
+  transition: background-color var(--d-media) var(--c-padrao); }
+.chave input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: var(--sombra-1);
+  transition: transform var(--d-media) var(--c-padrao); }
+.chave input:checked { background: var(--marca); }
+.chave input:checked::after { transform: translateX(14px); }
+.chave input:focus-visible { outline: 3px solid var(--marca); outline-offset: 3px; }
+.botao-topo { min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--marca); color: var(--marca-texto); font-size: 14px; font-weight: 600; }
+
+main { max-width: 1960px; margin: 0 auto; padding: 24px 16px 64px; }
+.regra { max-width: 860px; font-size: 15px; line-height: 22px; color: var(--texto-sec); margin-bottom: 24px; text-wrap: pretty; }
+.regra b { color: var(--texto); }
+.grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 372px), 1fr)); gap: 32px 24px; align-items: start; }
+
+/* ---------- cartão de efeito (da página, não do app) ---------- */
+.efeito { display: grid; gap: 12px; }
+.efeito__cab { display: flex; align-items: center; gap: 12px; }
+.efeito__cab h2 { font-size: 17px; line-height: 22px; font-weight: 700; margin-right: auto; text-wrap: balance; }
+.efeito__cab h2 span { color: var(--texto-sec); font-weight: 600; margin-right: 6px; }
+.repetir { min-height: 44px; padding: 0 16px; border-radius: 999px; box-shadow: inset 0 0 0 2px var(--texto-sec); font-size: 14px; font-weight: 600; flex: none; }
+.ficha { font-size: 13px; line-height: 19px; color: var(--texto-sec); display: grid; grid-template-columns: max-content 1fr; gap: 2px 10px; }
+.ficha dt { font-weight: 700; color: var(--texto); }
+.ficha dd { margin: 0; }
+.ficha code { font-size: 12px; background: var(--superficie); padding: 0 4px; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--borda); }
+
+/* ---------- a tela de celular ---------- */
+.tela { position: relative; width: 100%; max-width: 372px; height: 540px; background: var(--fundo); border-radius: 32px; overflow: hidden;
+  box-shadow: 0 0 0 1px var(--borda), var(--sombra-2); isolation: isolate; }
+.tela__corpo { position: absolute; inset: 0; padding: 16px; overflow: hidden; }
+.vib { position: absolute; left: 12px; right: 12px; top: 10px; z-index: 40; pointer-events: none; opacity: 0; min-height: 32px; display: flex; align-items: center; gap: 8px;
+  padding: 6px 12px; border-radius: 12px; background: var(--texto); color: var(--fundo); font-size: 12px; line-height: 16px; font-weight: 600; }
+.vib::before { content: ""; width: 16px; height: 16px; flex: none; border-radius: 4px; border: 2px solid currentColor; box-shadow: -4px 0 0 -2px currentColor, 4px 0 0 -2px currentColor; }
+.tag { position: absolute; right: 12px; bottom: 10px; z-index: 39; font-size: 11px; line-height: 14px; font-weight: 600; color: var(--texto-sec); background: var(--superficie);
+  padding: 3px 8px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--borda); }
+.registro { font-size: 12px; line-height: 17px; color: var(--texto-sec); min-height: 51px; margin: 0; padding-left: 18px; }
+.registro li::marker { font-weight: 700; color: var(--texto); }
+
+/* ---------- 1. série marcada ---------- */
+.cartao-ex { background: var(--superficie); border-radius: 16px; box-shadow: var(--sombra-1); padding: 16px; display: grid; gap: 8px; }
+.cartao-ex__cab { display: grid; margin-bottom: 4px; }
+.cartao-ex__cab b { font-size: 18px; line-height: 24px; }
+.cartao-ex__cab small { font-size: 12px; line-height: 16px; color: var(--texto-sec); font-weight: 500; }
+.serie { position: relative; height: 72px; border-radius: 12px; background: var(--superficie); box-shadow: inset 0 0 0 1px var(--borda); display: flex; align-items: center; gap: 10px; padding: 0 8px 0 12px; overflow: hidden; }
+.serie__tinta { position: absolute; inset: 0; background: var(--sucesso); opacity: 0; transition: opacity var(--d-media) var(--c-padrao); pointer-events: none; }
+.serie.feita .serie__tinta { opacity: .12; }
+.serie__regua { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 2px; background: var(--marca); opacity: 0; transition: opacity var(--d-media) var(--c-padrao); }
+.serie.atual .serie__regua { opacity: 1; }
+.serie__n { position: relative; width: 32px; height: 32px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; box-shadow: inset 0 0 0 1px var(--borda); background: var(--superficie); }
+.serie__n-fundo { position: absolute; inset: 0; border-radius: 50%; background: var(--sucesso); opacity: 0; }
+.serie__n-num { position: relative; }
+.serie__n svg { position: absolute; inset: 6px; width: 20px; height: 20px; opacity: 0; color: var(--sucesso-texto); }
+.serie__val { display: flex; align-items: baseline; gap: 3px; position: relative; }
+.serie__val b { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; transition: color var(--d-media); }
+.serie.feita .serie__val b { color: var(--texto-sec); }
+.serie__val small { font-size: 12px; color: var(--texto-sec); font-weight: 500; }
+.serie__x { font-size: 12px; color: var(--texto-sec); position: relative; }
+.marcar { position: relative; margin-left: auto; width: 56px; height: 56px; flex: none; border-radius: 12px; display: grid; place-items: center; background: var(--fundo);
+  box-shadow: inset 0 0 0 2px var(--texto-sec); overflow: hidden; touch-action: manipulation; }
+.marcar__cheio { position: absolute; inset: 0; background: var(--sucesso); opacity: 0; }
+.marcar__camada { position: absolute; inset: 0; background: var(--texto); opacity: 0; transition: opacity var(--d-rapida); }
+.marcar.pressionado .marcar__camada { opacity: var(--camada-toque); }
+.marcar svg { position: absolute; width: 24px; height: 24px; inset: 0; margin: auto; }
+.marcar .i-desfazer { opacity: 0; }
+.toast { position: absolute; left: 16px; right: 16px; bottom: 40px; min-height: 48px; border-radius: 12px; background: var(--texto); color: var(--fundo); display: flex; align-items: center; gap: 8px;
+  padding: 0 4px 0 14px; font-size: 14px; line-height: 20px; box-shadow: var(--sombra-2); opacity: 0; pointer-events: none; }
+:root[data-tema="escuro"] .toast { background: var(--superficie-elevada); color: var(--texto); }
+.toast svg { width: 22px; height: 22px; color: var(--sucesso); flex: none; }
+:root[data-tema="claro"] .toast svg { color: #67D283; }
+.toast button { margin-left: auto; min-height: 48px; padding: 0 12px; font-weight: 700; color: inherit; }
+.toast.visivel { pointer-events: auto; }
+
+/* ---------- 2. fechar treino ---------- */
+.fechar { position: absolute; inset: 0; padding: 40px 20px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0; }
+.fechar__selo { width: 64px; height: 64px; margin-bottom: 20px; }
+.fechar h3 { font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -0.01em; }
+.fechar__sub { font-size: 14px; line-height: 20px; color: var(--texto-sec); margin-top: 4px; }
+.numeros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; margin-top: 24px; }
+.numero { background: var(--superficie); border-radius: 12px; padding: 12px; height: 80px; text-align: left; display: grid; align-content: start; box-shadow: var(--sombra-1); }
+.numero small { font-size: 12px; line-height: 16px; color: var(--texto-sec); font-weight: 500; }
+.numero b { font-size: 28px; line-height: 32px; font-weight: 700; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.numero b i { font-style: normal; font-size: 12px; font-weight: 500; color: var(--texto-sec); margin-left: 2px; letter-spacing: 0; }
+.destaque { margin-top: 16px; width: 100%; text-align: left; font-size: 15px; line-height: 22px; background: var(--superficie); border-radius: 12px; padding: 12px 14px; box-shadow: var(--sombra-1); }
+.destaque b { display: block; font-size: 12px; line-height: 16px; color: var(--texto-sec); font-weight: 500; }
+.fechar__botao { margin-top: auto; width: 100%; min-height: 64px; border-radius: 12px; background: var(--marca); color: var(--marca-texto); font-weight: 600; }
+
+/* ---------- 3. cronômetro ---------- */
+.anel { position: relative; width: 160px; height: 160px; margin: 24px auto 0; }
+.anel svg { width: 160px; height: 160px; transform: rotate(-90deg); }
+.anel__trilho { fill: none; stroke: var(--borda); stroke-width: 8; }
+.anel__prog { fill: none; stroke: var(--marca); stroke-width: 8; stroke-linecap: round; transition: stroke var(--d-media) var(--c-padrao); }
+.anel.acabando .anel__prog { stroke: var(--atencao); }
+.anel.fim .anel__prog { stroke: var(--sucesso); }
+.anel__num { position: absolute; inset: 0; display: grid; place-items: center; font-size: 64px; line-height: 72px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.anel.acabando .anel__num, .anel.fim .anel__num { font-weight: 800; }
+.anel__legenda { text-align: center; font-size: 16px; line-height: 24px; font-weight: 600; margin-top: 16px; min-height: 24px; }
+.controles { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 16px; }
+.ctl { min-height: 48px; padding: 0 16px; border-radius: 12px; box-shadow: inset 0 0 0 2px var(--texto-sec); font-weight: 600; font-size: 15px; }
+.ctl--central { width: 64px; height: 64px; border-radius: 50%; background: var(--marca); color: var(--marca-texto); box-shadow: none; padding: 0; }
+.mostrador { position: relative; border-radius: 16px; padding: 24px 16px 20px; overflow: hidden; margin-top: 8px; box-shadow: inset 0 0 0 1px var(--borda); }
+.mostrador__fundo { position: absolute; inset: 0; background: var(--superficie); }
+.mostrador__fundo.camada { opacity: 0; }
+.mostrador__conteudo { position: relative; color: var(--cor-fase, var(--texto)); transition: color var(--d-media) var(--c-padrao); }
+.mostrador__fase { font-size: 18px; line-height: 24px; font-weight: 700; height: 24px; position: relative; }
+.mostrador__fase span { position: absolute; left: 0; top: 0; }
+.mostrador__num { font-size: 88px; line-height: 96px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.barra { height: 8px; border-radius: 999px; background: color-mix(in srgb, currentColor 24%, transparent); overflow: hidden; }
+.barra i { display: block; height: 100%; width: 100%; background: currentColor; border-radius: 999px; transform-origin: left; transform: scaleX(0); }
+.rodadas { display: flex; gap: 4px; margin-top: 12px; }
+.rodadas i { flex: 1; height: 8px; border-radius: 999px; background: currentColor; opacity: .24; transition: opacity var(--d-media) var(--c-padrao); }
+.rodadas i.feita { opacity: 1; } .rodadas i.atual { opacity: .6; }
+.mostrador__rodada { font-size: 16px; font-weight: 600; margin-top: 12px; }
+.info { display: flex; justify-content: space-between; font-size: 14px; line-height: 20px; color: var(--texto-sec); }
+.info b { color: var(--texto); }
+
+/* ---------- 4. abas e pilha ---------- */
+.nav { position: absolute; inset: 0; }
+.nav__raiz { position: absolute; top: 0; left: 0; right: 0; bottom: 64px; }
+.nav__cab { position: absolute; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 16px; font-size: 22px; line-height: 28px; font-weight: 600; background: var(--fundo); z-index: 3; }
+.nav__area { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+.painel { position: absolute; inset: 0; padding: 8px 16px; background: var(--fundo); display: grid; align-content: start; gap: 12px; }
+.painel[hidden] { display: none; }
+.linha-lista { min-height: 72px; border-radius: 12px; background: var(--superficie); box-shadow: var(--sombra-1); display: flex; align-items: center; gap: 12px; padding: 0 12px 0 16px; text-align: left; width: 100%; }
+.linha-lista span { display: grid; margin-right: auto; }
+.linha-lista small { font-size: 12px; color: var(--texto-sec); line-height: 16px; }
+.linha-lista svg { width: 24px; height: 24px; color: var(--texto-sec); }
+.empilhada { position: absolute; top: 0; left: 0; right: 0; bottom: 64px; background: var(--fundo); z-index: 5; display: none; box-shadow: -8px 0 24px rgba(0,0,0,.10); }
+.empilhada.aberta { display: block; }
+.empilhada__cab { height: 56px; display: flex; align-items: center; gap: 4px; padding: 0 8px; position: relative; }
+.empilhada__cab button { min-height: 48px; display: flex; align-items: center; gap: 2px; padding: 0 8px 0 4px; color: var(--marca); font-weight: 600; font-size: 16px; }
+.empilhada__cab button svg { width: 24px; height: 24px; }
+.empilhada__cab b { position: absolute; left: 0; right: 0; text-align: center; font-size: 17px; pointer-events: none; }
+.escurecer { position: absolute; top: 0; left: 0; right: 0; bottom: 64px; background: #000; opacity: 0; z-index: 4; pointer-events: none; }
+.abas { position: absolute; left: 0; right: 0; bottom: 0; height: 64px; background: var(--superficie); box-shadow: inset 0 1px 0 var(--borda); display: grid; grid-template-columns: repeat(4, 1fr); z-index: 3; }
+.aba { position: relative; display: grid; place-items: center; align-content: center; gap: 4px; color: var(--texto-sec); font-size: 12px; line-height: 16px; font-weight: 600; }
+.aba svg { width: 24px; height: 24px; }
+.aba.ativa { color: var(--marca); }
+.aba i { display: block; transition: transform var(--d-rapida) var(--c-padrao); }
+.aba:active i { transform: scale(.92); }
+.indicador-aba { position: absolute; top: 0; left: 0; width: 24px; height: 3px; border-radius: 999px; background: var(--marca); z-index: 4; }
+
+/* ---------- 5. cartão que afunda ---------- */
+.grade-cartoes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cartao-treino { position: relative; text-align: left; min-height: 172px; border-radius: 16px; background: var(--superficie); box-shadow: var(--sombra-1); padding: 12px; display: grid; align-content: start; gap: 8px;
+  transition-property: transform, box-shadow; transition-duration: var(--d-rapida); transition-timing-function: var(--c-padrao); touch-action: manipulation; user-select: none; }
+.cartao-treino::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--texto); opacity: 0; transition: opacity var(--d-rapida) var(--c-padrao); pointer-events: none; }
+.cartao-treino.afundado { transform: scale(.98) translateY(1px); box-shadow: 0 0 0 rgba(0,0,0,0); }
+.cartao-treino.afundado::after { opacity: var(--camada-toque); }
+.capa { height: 56px; border-radius: 8px; background: linear-gradient(135deg, var(--marca-suave), color-mix(in srgb, var(--marca) 30%, var(--marca-suave))); }
+.cartao-treino b { font-size: 16px; line-height: 22px; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.chips span { height: 24px; padding: 0 8px; border-radius: 999px; font-size: 12px; line-height: 24px; font-weight: 500; background: var(--fundo); box-shadow: inset 0 0 0 1px var(--borda); }
+.cartao-treino small { font-size: 12px; color: var(--texto-sec); }
+
+/* ---------- 6. esqueleto ---------- */
+.esq { background: var(--superficie); border-radius: 16px; padding: 12px; display: grid; gap: 10px; box-shadow: var(--sombra-1); position: relative; overflow: hidden; }
+.esq i { display: block; height: 14px; border-radius: 6px; background: color-mix(in srgb, var(--borda) 60%, transparent); }
+.esq i.capa-e { height: 56px; border-radius: 8px; }
+.esq i.t { height: 20px; width: 70%; }
+.esq i.c { width: 45%; }
+.brilho { position: absolute; inset: 0; pointer-events: none; transform: translateX(-100%);
+  background: linear-gradient(100deg, transparent 20%, color-mix(in srgb, var(--superficie) 0%, rgba(255,255,255,.65)) 50%, transparent 80%); }
+:root[data-tema="escuro"] .brilho { background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,.07) 50%, transparent 80%); }
+.camadas { position: relative; }
+.camadas > div { position: absolute; inset: 0; }
+
+/* ---------- 7. convite ao Plus ---------- */
+.convite { position: absolute; left: 16px; right: 16px; top: 72px; background: var(--superficie); border-radius: 24px; padding: 24px 20px 20px; display: grid; gap: 16px; align-content: start; }
+.halo { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--plus) 70%, transparent), 0 12px 32px color-mix(in srgb, var(--plus) 22%, transparent); }
+.selo { justify-self: start; display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 0 12px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--plus); color: var(--plus-sobre-fundo);
+  font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: .04em; position: relative; overflow: hidden; }
+.selo svg { width: 14px; height: 14px; }
+.convite h3 { font-size: 22px; line-height: 28px; font-weight: 600; text-wrap: balance; }
+.convite ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 15px; line-height: 22px; }
+.convite li { display: flex; gap: 10px; align-items: flex-start; }
+.convite li svg { width: 22px; height: 22px; color: var(--plus-sobre-fundo); flex: none; }
+.botao-plus { position: relative; overflow: hidden; min-height: 56px; border-radius: 12px; background: var(--plus); color: var(--plus-texto); font-weight: 700; isolation: isolate; }
+.botao-plus .reflexo, .selo .reflexo { position: absolute; inset: -2px; pointer-events: none; transform: translateX(-130%);
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%); }
+.selo .reflexo { background: linear-gradient(105deg, transparent 30%, color-mix(in srgb, var(--plus) 45%, transparent) 50%, transparent 70%); }
+.agora-nao { min-height: 48px; font-weight: 600; color: var(--texto-sec); }
+
+/* ---------- 8. puxar para atualizar ---------- */
+.puxar { position: absolute; inset: 0; overflow: hidden; touch-action: none; user-select: none; }
+.puxar__cab { height: 56px; display: flex; align-items: center; padding: 0 16px; font-size: 22px; font-weight: 600; background: var(--fundo); position: relative; z-index: 2; }
+.puxar__roda { position: absolute; top: 56px; left: 0; right: 0; height: 64px; display: grid; place-items: center; }
+.roda { width: 28px; height: 28px; }
+.roda circle { fill: none; stroke: var(--marca); stroke-width: 3; stroke-linecap: round; }
+.puxar__lista { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; padding: 8px 16px; display: grid; align-content: start; gap: 8px; background: var(--fundo); z-index: 1; }
+.puxar__aviso { text-align: center; font-size: 12px; color: var(--texto-sec); }
+
+/* ---------- 9. título grande ---------- */
+.tg { position: absolute; inset: 0; }
+.tg__barra { position: absolute; top: 0; left: 0; right: 0; height: 56px; z-index: 3; display: flex; align-items: center; justify-content: center; font-size: 22px; line-height: 28px; font-weight: 600;
+  background: var(--fundo); transition: box-shadow var(--d-rapida) var(--c-padrao); }
+.tg__barra.sombra { box-shadow: var(--sombra-1); }
+.tg__pequeno { opacity: 0; transition: opacity var(--d-rapida) var(--c-padrao); }
+.tg__barra.mostra .tg__pequeno { opacity: 1; }
+.tg__rolagem { position: absolute; inset: 0; overflow-y: auto; padding: 56px 16px 16px; scrollbar-width: none; }
+.tg__rolagem::-webkit-scrollbar { display: none; }
+.tg__grande { height: 40px; display: flex; align-items: flex-end; font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 12px; }
+.tg__item { min-height: 72px; border-radius: 12px; background: var(--superficie); box-shadow: var(--sombra-1); margin-bottom: 12px; display: flex; align-items: center; padding: 0 16px; }
+/* variante Android: o cabeçalho de 96 encolhe para 56 e o título vai de 28 para 22 */
+.tg[data-plat="android"] .tg__barra { height: 96px; align-items: flex-end; justify-content: flex-start; padding: 0 16px 12px; transform-origin: top; }
+.tg[data-plat="android"] .tg__pequeno { display: none; }
+.tg__titulo-and { display: none; font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -0.01em; transform-origin: left center; }
+.tg[data-plat="android"] .tg__titulo-and { display: block; }
+.tg[data-plat="android"] .tg__grande { display: none; }
+.tg[data-plat="android"] .tg__rolagem { padding-top: 104px; }
+.plat { position: absolute; z-index: 6; right: 12px; top: 64px; display: flex; gap: 4px; background: var(--superficie); border-radius: 999px; padding: 3px; box-shadow: var(--sombra-2); }
+.plat button { min-height: 36px; padding: 0 12px; border-radius: 999px; font-size: 12px; font-weight: 700; color: var(--texto-sec); }
+.plat button[aria-pressed="true"] { background: var(--marca); color: var(--marca-texto); }
+
+@media (max-width: 420px) { .tela { height: 560px; } .topo h1 small { display: none; } }
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="topo__linha">
+    <h1>Movimento e efeitos<small>Academia Plus · tokens 1.4.0 · catálogo em 00-CATALOGO.md</small></h1>
+    <label class="chave"><input type="checkbox" id="chave-reduzir"> Reduzir movimento</label>
+    <label class="chave"><input type="checkbox" id="chave-lento"> Câmera lenta ×4</label>
+    <label class="chave"><input type="checkbox" id="chave-escuro"> Tema escuro</label>
+    <button class="botao-topo" id="repetir-todos">Repetir todos</button>
+  </div>
+</header>
+
+<main>
+  <p class="regra"><b>Duas regras valem para todos.</b> Com "reduzir movimento" ligado, nada desliza, cresce ou quica: o efeito vira um esmaecer de 160 ms, e a vibração continua. <b>Nenhum efeito atrasa o registro da série:</b> o dado é gravado primeiro, e a animação começa depois, sem que nada espere por ela. A faixa escura no topo de cada tela mostra a vibração que o celular faria. As telas também respondem ao toque.</p>
+
+  <div class="grade">
+
+  <!-- 1. SÉRIE MARCADA -->
+  <section class="efeito" id="ef-serie" aria-labelledby="h-serie">
+    <div class="efeito__cab"><h2 id="h-serie"><span>1</span>Série marcada</h2><button class="repetir" data-repetir="serie">Repetir</button></div>
+    <div class="tela"><div class="vib"></div><div class="tela__corpo">
+      <div class="cartao-ex">
+        <div class="cartao-ex__cab"><b>Supino reto</b><small>Peito · 3 séries · descanso 60 s</small></div>
+        <div class="series"></div>
+      </div>
+      <ol class="registro" id="registro-serie" style="margin-top:12px"></ol>
+      <div class="toast" role="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="toast__texto">Série 2 feita</span><button type="button">Desfazer</button></div>
+    </div><span class="tag">toque no botão à direita</span></div>
+    <dl class="ficha">
+      <dt>Dispara</dt><dd>toque em "marcar feita" (ao soltar o dedo dentro do botão) ou deslizar a linha para a direita</dd>
+      <dt>Move</dt><dd>botão enche de <code>sucesso</code> e assenta; o número vira check com mola; a linha ganha 12 % de <code>sucesso</code>; a régua passa para a próxima; o toast sobe</dd>
+      <dt>Tempo</dt><dd>enchimento <code>rapida</code> 120 · check <code>mola.check</code> 400 (amortecimento 0,6) · linha e toast <code>media</code> 200</dd>
+      <dt>Vibração</dt><dd>impacto leve nas duas; desfazer = seleção</dd>
+      <dt>Reduzido</dt><dd>check e toast só esmaecem em 160; a cor da linha troca na hora</dd>
+    </dl>
+  </section>
+
+  <!-- 2. FECHAR TREINO -->
+  <section class="efeito" id="ef-fechar" aria-labelledby="h-fechar">
+    <div class="efeito__cab"><h2 id="h-fechar"><span>2</span>Fechar treino</h2><button class="repetir" data-repetir="fechar">Repetir</button></div>
+    <div class="tela"><div class="vib"></div>
+      <div class="fechar">
+        <svg class="fechar__selo" viewBox="0 0 64 64" aria-hidden="true"><circle class="f-circ" cx="32" cy="32" r="32" fill="var(--sucesso)"/><path class="f-check" d="M19 33.5l9 9 17-19" fill="none" stroke="var(--sucesso-texto)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+        <h3 class="f-passo">Treino fechado.</h3>
+        <p class="fechar__sub f-passo">Treino A · peito e tríceps</p>
+        <div class="numeros">
+          <div class="numero f-passo"><small>Exercícios</small><b>7</b></div>
+          <div class="numero f-passo"><small>Tempo</small><b>42<i>min</i></b></div>
+          <div class="numero f-passo"><small>Séries</small><b>21</b></div>
+        </div>
+        <p class="destaque f-passo"><b>Subiu desde a última vez</b>Agachamento: 55 → 60 kg</p>
+        <button class="fechar__botao f-passo" type="button">Pronto</button>
+      </div>
+    </div>
+    <dl class="ficha">
+      <dt>Dispara</dt><dd>confirmar "Fechar treino" na folha; o treino já foi gravado quando a tela aparece</dd>
+      <dt>Move</dt><dd>círculo cresce de 0,8 a 1 · o traço do check se desenha · título, linha, os 3 números, o destaque e o botão sobem 8 px em sequência</dd>
+      <dt>Tempo</dt><dd>círculo <code>mola.padrao</code> 320 · traço <code>comemoracao</code> 480 a partir de 120 · resumo <code>media</code> 200 cada, começando em 320, com <code>escalonamento</code> de 60 · fim em ~880</dd>
+      <dt>Vibração</dt><dd>impacto médio nas duas, no quadro em que o círculo aparece</dd>
+      <dt>Reduzido</dt><dd>tudo esmaece junto em 160; check já desenhado</dd>
+    </dl>
+  </section>
+
+  <!-- 3a. ANEL DO DESCANSO -->
+  <section class="efeito" id="ef-anel" aria-labelledby="h-anel">
+    <div class="efeito__cab"><h2 id="h-anel"><span>3a</span>Anel do cronômetro</h2><button class="repetir" data-repetir="anel">Repetir</button></div>
+    <div class="tela"><div class="vib"></div><div class="tela__corpo">
+      <div class="info"><span><b>Descanso</b> · Supino, série 2</span><span>15 s na demo</span></div>
+      <div class="anel" id="anel"><svg viewBox="0 0 160 160" aria-hidden="true"><circle class="anel__trilho" cx="80" cy="80" r="72"/><circle class="anel__prog" cx="80" cy="80" r="72" pathLength="1" stroke-dasharray="1" stroke-dashoffset="0"/></svg><div class="anel__num" id="anel-num">0:15</div></div>
+      <p class="anel__legenda" id="anel-legenda">Descanso</p>
+      <div class="controles"><button class="ctl" type="button">−30 s</button><button class="ctl ctl--central" type="button" aria-label="Pausar descanso"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button><button class="ctl" type="button">+30 s</button></div>
+    </div><span class="tag">tempo real: não segue a câmera lenta</span></div>
+    <dl class="ficha">
+      <dt>Dispara</dt><dd>marcar a série (descanso) ou "Iniciar" na tela Cronômetro</dd>
+      <dt>Move</dt><dd>o arco esvazia em ritmo constante, calculado do instante de início; nos 10 s finais vira <code>atencao</code> e o número fica bold; no fim, enche de <code>sucesso</code></dd>
+      <dt>Tempo</dt><dd>arco <code>curvaConstante</code> (linear), o tempo restante inteiro · troca de cor <code>media</code> 200</dd>
+      <dt>Vibração</dt><dd>impacto leve em 3, 2, 1 · fim: iOS notificação de sucesso, Android pulso de ~400 ms</dd>
+      <dt>Reduzido</dt><dd>o arco salta uma vez por segundo, sem interpolar; a cor troca na hora</dd>
+    </dl>
+  </section>
+
+  <!-- 3b. TROCA DE FASE -->
+  <section class="efeito" id="ef-fase" aria-labelledby="h-fase">
+    <div class="efeito__cab"><h2 id="h-fase"><span>3b</span>Troca de fase do intervalado</h2><button class="repetir" data-repetir="fase">Repetir</button></div>
+    <div class="tela"><div class="vib"></div><div class="tela__corpo">
+      <div class="info"><span><b>Intervalado</b> · 4/2 × 3 (demo)</span><span>Total 0:20</span></div>
+      <div class="mostrador" id="mostrador">
+        <div class="mostrador__fundo"></div><div class="mostrador__fundo camada" id="mostrador-camada"></div>
+        <div class="mostrador__conteudo" id="mostrador-conteudo">
+          <div class="mostrador__fase" id="fase-nome"><span>Prepare-se</span></div>
+          <div class="mostrador__num" id="fase-num">0:02</div>
+          <div class="barra"><i id="fase-barra"></i></div>
+          <div class="mostrador__rodada" id="fase-rodada">Rodada 1 de 3</div>
+          <div class="rodadas" id="fase-rodadas"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="info" style="margin-top:12px"><span id="fase-depois">Depois: <b>trabalho 4 s</b></span></div>
+      <div class="controles"><button class="ctl" type="button">Pular fase</button><button class="ctl ctl--central" type="button" aria-label="Pausar o cronômetro"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button><button class="ctl" type="button">Parar</button></div>
+    </div><span class="tag">tempo real: não segue a câmera lenta</span></div>
+    <dl class="ficha">
+      <dt>Dispara</dt><dd>o motor do cronômetro muda de fase (trabalho ⇄ descanso, rodada nova, fim)</dd>
+      <dt>Move</dt><dd>a cor da fase cobre o mostrador por esmaecimento (sem varrer, sem piscar); o nome da fase troca por esmaecer; a barra da fase enche linear; o traço da rodada acende</dd>
+      <dt>Tempo</dt><dd>cor do mostrador <code>media</code> 200 · nome <code>rapida</code> 120 · barra linear, a fase inteira</dd>
+      <dt>Vibração</dt><dd>impacto médio na troca, nas duas · leve em 3, 2, 1</dd>
+      <dt>Reduzido</dt><dd>cor e nome trocam na hora; barra e rodadas atualizam por segundo (regra 5 do componente 18)</dd>
+    </dl>
+  </section>
+
+  <!-- 4. ABAS E PILHA -->
+  <section class="efeito" id="ef-nav" aria-labelledby="h-nav">
+    <div class="efeito__cab"><h2 id="h-nav"><span>4</span>Abas e telas (empilhar e voltar)</h2><button class="repetir" data-repetir="nav">Repetir</button></div>
+    <div class="tela"><div class="vib"></div>
+      <div class="nav" id="nav">
+        <div class="nav__raiz" id="nav-raiz">
+        <div class="nav__cab" id="nav-titulo">Início</div>
+        <div class="nav__area">
+          <div class="painel" data-painel="0"><div class="linha-lista"><span><b>Treino de hoje</b><small>Treino A · peito e tríceps</small></span></div><div class="linha-lista"><span><b>Esta semana</b><small>3 de 4 treinos</small></span></div></div>
+          <div class="painel" data-painel="1" hidden>
+            <button class="linha-lista" type="button" data-empilhar><span><b>Ganhar massa · 4 dias</b><small>Intermediário · 60 min</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+            <button class="linha-lista" type="button" data-empilhar><span><b>Condicionamento</b><small>Iniciante · 30 min</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+          <div class="painel" data-painel="2" hidden><div class="linha-lista"><span><b>Seu personal</b><small>Disponível no Plus</small></span></div></div>
+          <div class="painel" data-painel="3" hidden><div class="linha-lista"><span><b>Vibração</b><small>Ligada</small></span></div></div>
+        </div>
+        </div>
+          <div class="escurecer" id="escurecer"></div>
+          <div class="empilhada" id="empilhada">
+            <div class="empilhada__cab"><button type="button" id="voltar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>Treinos</button><b>Ganhar massa</b></div>
+            <div class="painel" style="top:56px"><div class="linha-lista"><span><b>Dia 1 · peito e tríceps</b><small>6 exercícios</small></span></div><div class="linha-lista"><span><b>Dia 2 · costas e bíceps</b><small>6 exercícios</small></span></div></div>
+          </div>
+        <div class="abas" role="tablist" id="abas">
+          <span class="indicador-aba" id="indicador-aba"></span>
+          <button class="aba ativa" role="tab" aria-selected="true" type="button"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-5H9v5H5a1 1 0 0 1-1-1z"/></svg></i>Início</button>
+          <button class="aba" role="tab" aria-selected="false" type="button"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9v6M21 9v6M6 6v12M18 6v12M6 12h12"/></svg></i>Treinos</button>
+          <button class="aba" role="tab" aria-selected="false" type="button"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i>Plus</button>
+          <button class="aba" role="tab" aria-selected="false" type="button"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-5 8-5s6.5 1 8 5"/></svg></i>Perfil</button>
+        </div>
+      </div>
+    </div>
+    <dl class="ficha">
+      <dt>Dispara</dt><dd>toque numa aba · abrir uma tela da pilha · voltar (botão ou deslizar da borda, no iPhone)</dd>
+      <dt>Move</dt><dd>aba: o conteúdo esmaece (sem deslizar de lado) e o indicador corre até a aba nova · pilha: a tela nova entra da direita e a de trás recua 30 % e escurece; voltar faz o caminho inverso</dd>
+      <dt>Tempo</dt><dd>aba <code>media</code> 200 <code>padrao</code> · pilha: a nativa de cada sistema no app (no iPhone, ~350); na demo <code>mola.padrao</code> 320</dd>
+      <dt>Vibração</dt><dd>nenhuma</dd>
+      <dt>Reduzido</dt><dd>aba e pilha viram esmaecer de 160; o indicador troca na hora</dd>
+    </dl>
+  </section>
+
+  <!-- 5. CARTÃO QUE AFUNDA -->
+  <section class="efeito" id="ef-cartao" aria-labelledby="h-cartao">
+    <div class="efeito__cab"><h2 id="h-cartao"><span>5</span>Cartão que afunda no toque</h2><button class="repetir" data-repetir="cartao">Repetir</button></div>
+    <div class="tela"><div class="vib"></div><div class="tela__corpo">
+      <div class="nav__cab" style="position:static;padding:0 0 8px">Treinos prontos</div>
+      <div class="grade-cartoes">
+        <button class="cartao-treino" type="button"><div class="capa"></div><b>Ganhar massa</b><div class="chips"><span>4 dias</span><span>60 min</span></div><small>Intermediário</small></button>
+        <button class="cartao-treino" type="button"><div class="capa"></div><b>Começar do zero</b><div class="chips"><span>3 dias</span><span>40 min</span></div><small>Iniciante</small></button>
+        <button class="cartao-treino" type="button"><div class="capa"></div><b>Condicionamento</b><div class="chips"><span>3 dias</span><span>30 min</span></div><small>Iniciante</small></button>
+        <button class="cartao-treino" type="button"><div class="capa"></div><b>Força</b><div class="chips"><span>4 dias</span><span>70 min</span></div><small>Avançado</small></button>
+      </div>
+    </div><span class="tag">segure um cartão</span></div>
+    <dl class="ficha">
+      <dt>Dispara</dt><dd>dedo encosta no cartão (resposta na hora, não ao soltar); arrastar para fora cancela</dd>
+      <dt>Move</dt><dd>escala 0,98 e desce 1 px, a sombra some e uma camada de <code>texto</code> a 8 % (12 % no escuro) cobre; ao soltar, volta com mola sem quique</dd>
+      <dt>Tempo</dt><dd>afundar <code>rapida</code> 120 <code>padrao</code> · voltar <code>mola.toque</code> 200 (amortecimento 1)</dd>
+      <dt>Vibração</dt><dd>nenhuma (o toque já abre a tela)</dd>
+      <dt>Reduzido</dt><dd>sem escala: só a camada de 8 % aparece</dd>
+    </dl>
+  </section>
+
+  <!-- 6. ESQUELETO -->
+  <section class="efeito" id="ef-esq" aria-labelledby="h-esq">
+    <div class="efeito__cab"><h2 id="h-esq"><span>6</span>Esqueleto com brilho</h2><button class="repetir" data-repetir="esq">Repetir</button></div>
+    <div class="tela"><div class="vib"></div><div class="tela__corpo">
+      <div class="nav__cab" style="position:static;padding:0 0 8px">Treinos prontos</div>
+      <div class="camadas" style="height:380px">
+        <div id="esq-esqueleto" style="opacity:0"><div class="grade-cartoes">
+          <div class="esq"><i class="capa-e"></i><i class="t"></i><i class="c"></i><i></i><span class="brilho"></span></div>
+          <div class="esq"><i class="capa-e"></i><i class="t"></i><i class="c"></i><i></i><span class="brilho"></span></div>
+          <div class="esq"><i class="capa-e"></i><i class="t"></i><i class="c"></i><i></i><span class="brilho"></span></div>
+          <div class="esq"><i class="capa-e"></i><i class="t"></i><i class="c"></i><i></i><span class="brilho"></span></div>
+        </div></div>
+        <div id="esq-conteudo" style="opacity:0"><div class="grade-cartoes">
+          <div class="cartao-treino"><div class="capa"></div><b>Ganhar massa</b><div class="chips"><span>4 dias</span></div><small>Intermediário</small></div>
+          <div class="cartao-treino"><div class="capa"></div><b>Começar do zero</b><div class="chips"><span>3 dias</span></div><small>Iniciante</small></div>
+          <div class="cartao-treino"><div class="capa"></div><b>Condicionamento</b><div class="chips"><span>3 dias</span></div><small>Iniciante</small></div>
+          <div class="cartao-treino"><div class="capa"></div><b>Força</b><div class="chips"><span>4 dias</span></div><small>Avançado</small></div>
+        </div></div>
+      </div>
+    </div><span class="tag" id="esq-tag">rede lenta simulada: 4 s</span></div>
+    <dl class="ficha">
+      <dt>Dispara</dt><dd>uma lista do servidor demora mais que <code>atrasoEsqueleto</code> (300); antes disso, nada aparece (sem piscar esqueleto em rede boa)</dd>
+      <dt>Move</dt><dd>uma faixa clara atravessa os blocos da esquerda para a direita, no máximo 3 vezes, e para; o conteúdo entra por esmaecimento cruzado</dd>
+      <dt>Tempo</dt><dd>passada <code>passadaEsqueleto</code> 1400, <code>curvaConstante</code>, até <code>passadasEsqueleto</code> 3 · troca para o conteúdo <code>media</code> 200</dd>
+      <dt>Vibração</dt><dd>nenhuma</dd>
+      <dt>Reduzido</dt><dd>blocos parados, sem faixa; a troca é o mesmo esmaecer</dd>
+    </dl>
+  </section>
+
+  <!-- 7. CONVITE AO PLUS -->
+  <section class="efeito" id="ef-plus" aria-labelledby="h-plus">
+    <div class="efeito__cab"><h2 id="h-plus"><span>7</span>Brilho dourado do convite ao Plus</h2><button class="repetir" data-repetir="plus">Repetir</button></div>
+    <div class="tela"><div class="vib"></div><div class="tela__corpo">
+      <div class="nav__cab" style="position:static;padding:0">Plus</div>
+      <div class="convite" id="convite">
+        <span class="halo" id="halo"></span>
+        <span class="selo" id="selo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg>Plus<span class="reflexo"></span></span>
+        <h3>Dieta e treino com acompanhamento é do Plus</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Um personal ajusta o seu treino</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Plano de refeições do dia</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Conversa com quem acompanha você</li>
+        </ul>
+        <button class="botao-plus" type="button" id="botao-plus">Conhecer o Plus<span class="reflexo"></span></button>
+        <button class="agora-nao" type="button">Agora não</button>
+      </div>
+    </div></div>
+    <dl class="ficha">
+      <dt>Dispara</dt><dd>o convite aparece (estado vazio sem Plus, folha de convite); uma vez por visita à tela, nunca em loop</dd>
+      <dt>Move</dt><dd>o cartão ganha um contorno e uma sombra dourados (<code>plus</code> a 22 %) que ficam; um reflexo atravessa o selo e o botão uma vez</dd>
+      <dt>Tempo</dt><dd>halo <code>lenta</code> 320 · reflexo <code>brilhoPlus</code> 1200 depois de <code>atrasoBrilhoPlus</code> 400, curva <code>padrao</code></dd>
+      <dt>Vibração</dt><dd>nenhuma (convite não é conquista)</dd>
+      <dt>Reduzido</dt><dd>sem reflexo; o halo esmaece em 160 e fica</dd>
+    </dl>
+  </section>
+
+  <!-- 8. PUXAR PARA ATUALIZAR -->
+  <section class="efeito" id="ef-puxar" aria-labelledby="h-puxar">
+    <div class="efeito__cab"><h2 id="h-puxar"><span>8</span>Puxar para atualizar</h2><button class="repetir" data-repetir="puxar">Repetir</button></div>
+    <div class="tela"><div class="vib"></div>
+      <div class="puxar" id="puxar">
+        <div class="puxar__cab">Alunos</div>
+        <div class="puxar__roda"><svg class="roda" id="roda" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="11" pathLength="1" stroke-dasharray="0.75 1" stroke-dashoffset="0"/></svg></div>
+        <div class="puxar__lista" id="puxar-lista">
+          <p class="puxar__aviso" id="puxar-aviso">Arraste a lista para baixo</p>
+          <div class="linha-lista"><span><b>Ana Souza</b><small>Ganhar massa · treinou hoje</small></span></div>
+          <div class="linha-lista"><span><b>Bruno Lima</b><small>Condicionamento · há 2 dias</small></span></div>
+          <div class="linha-lista"><span><b>Carla Dias</b><small>Iniciante · há 5 dias</small></span></div>
+        </div>
+      </div>
+    </div>
+    <dl class="ficha">
+      <dt>Dispara</dt><dd>puxar uma lista do servidor para baixo além de <code>limitePuxar</code> (64) e soltar; nunca no treino em andamento</dd>
+      <dt>Move</dt><dd>a lista segue o dedo 1:1 com resistência elástica; o indicador nativo aparece; ao chegar o dado, o aluno novo esmaece no topo e a lista volta</dd>
+      <dt>Tempo</dt><dd>arrasto: o dedo · volta <code>mola.padrao</code> 320 · item novo <code>media</code> 200</dd>
+      <dt>Vibração</dt><dd>nenhuma pelo app (o indicador é do sistema)</dd>
+      <dt>Reduzido</dt><dd>o arrasto continua (é o dedo que move); a roda não gira; o item novo esmaece em 160</dd>
+    </dl>
+  </section>
+
+  <!-- 9. TÍTULO GRANDE -->
+  <section class="efeito" id="ef-titulo" aria-labelledby="h-titulo">
+    <div class="efeito__cab"><h2 id="h-titulo"><span>9</span>Título grande que encolhe</h2><button class="repetir" data-repetir="titulo">Repetir</button></div>
+    <div class="tela"><div class="vib"></div>
+      <div class="tg" id="tg" data-plat="ios">
+        <div class="tg__barra" id="tg-barra"><span class="tg__pequeno">Treinos</span><span class="tg__titulo-and" id="tg-and">Treinos</span></div>
+        <div class="plat" role="group" aria-label="Plataforma"><button type="button" aria-pressed="true" data-plat="ios">iPhone</button><button type="button" aria-pressed="false" data-plat="android">Android</button></div>
+        <div class="tg__rolagem" id="tg-rolagem">
+          <div class="tg__grande">Treinos</div>
+          <div class="tg__item">Ganhar massa · 4 dias</div><div class="tg__item">Começar do zero · 3 dias</div><div class="tg__item">Condicionamento · 3 dias</div>
+          <div class="tg__item">Força · 4 dias</div><div class="tg__item">Mobilidade · 2 dias</div><div class="tg__item">Corrida e força · 3 dias</div><div class="tg__item">Volta aos treinos · 2 dias</div>
+        </div>
+      </div>
+    </div>
+    <dl class="ficha">
+      <dt>Dispara</dt><dd>rolar a tela raiz de uma aba</dd>
+      <dt>Move</dt><dd>iPhone: o título grande rola com o conteúdo; quando some, o pequeno aparece no centro da barra e a <code>sombra.1</code> surge · Android: o cabeçalho de 96 encolhe para 56 e o título vai de 28 para 22 à esquerda, presos à rolagem</dd>
+      <dt>Tempo</dt><dd>preso ao dedo nos primeiros 40 px · título pequeno e sombra <code>rapida</code> 120</dd>
+      <dt>Vibração</dt><dd>nenhuma</dd>
+      <dt>Reduzido</dt><dd>iPhone: igual (já é esmaecer; o sistema cuida) · Android: sem escala, os dois títulos trocam por esmaecer de 160 ao cruzar os 40 px</dd>
+    </dl>
+  </section>
+
+  </div>
+</main>
+
+<script>
+"use strict";
+/* ===== tokens (tokens.json › duracao, curva, movimento; versão 1.4.0) ===== */
+const D = { rapida: 120, media: 200, lenta: 320, esmaecer: 160, comemoracao: 480, passadaEsqueleto: 1400, brilhoPlus: 1200,
+            atrasoEsqueleto: 300, atrasoBrilhoPlus: 400, escalonamento: 60, toast: 5000 };
+const C = { padrao: "cubic-bezier(0.2, 0, 0, 1)", entrada: "cubic-bezier(0, 0, 0.2, 1)", saida: "cubic-bezier(0.4, 0, 1, 1)", constante: "linear" };
+const MOLA = { padrao: { amortecimento: 1, duracao: 320 }, check: { amortecimento: 0.6, duracao: 400 }, toque: { amortecimento: 1, duracao: 200 } };
+const DESLOC = 8, ESCALA_TOQUE = 0.98, LIMITE_PUXAR = 64, PASSADAS = 3;
+
+const VIB = {
+  impactoLeve: { txt: "Vibração · impacto leve (iOS e Android)", ms: 10 },
+  impactoMedio: { txt: "Vibração · impacto médio (iOS e Android)", ms: 20 },
+  selecao: { txt: "Vibração · seleção, a mais fraca", ms: 5 },
+  fimDescanso: { txt: "Vibração · iOS: notificação de sucesso (2 toques) · Android: pulso de ~400 ms", ms: 400 },
+};
+
+/* Mola: amostra uma mola amortecida e devolve uma curva CSS linear(). Calibração: assenta (1 %) em "duracao". */
+function curvaMola({ amortecimento: z, duracao }) {
+  const T = duracao / 1000, w = z < 1 ? 4.6 / (z * T) : 6.6 / T, n = 48, pts = [];
+  for (let i = 0; i <= n; i++) {
+    const t = (i / n) * T; let x;
+    if (z < 1) { const wd = w * Math.sqrt(1 - z * z); x = 1 - Math.exp(-z * w * t) * (Math.cos(wd * t) + (z * w / wd) * Math.sin(wd * t)); }
+    else { x = 1 - (1 + w * t) * Math.exp(-w * t); }
+    pts.push(i === n ? 1 : +x.toFixed(4));
+  }
+  return "linear(" + pts.join(", ") + ")";
+}
+const CURVA_MOLA = { padrao: curvaMola(MOLA.padrao), check: curvaMola(MOLA.check), toque: curvaMola(MOLA.toque) };
+
+/* ===== estado global ===== */
+const E = { reduzir: matchMedia("(prefers-reduced-motion: reduce)").matches, lento: 1 };
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const ms = v => v * E.lento;
+const esperar = v => new Promise(r => setTimeout(r, ms(v)));
+
+/* mover(): a única porta para animação. Com "reduzir movimento", a coreografia vira esmaecer de 160 ms. */
+function mover(el, quadros, o = {}) {
+  let dur = o.dur ?? D.media, easing = o.easing ?? C.padrao, delay = o.delay ?? 0;
+  if (E.reduzir) {
+    const r = o.reduzido ?? "entrar";
+    if (r === "nenhum") return null;
+    if (r === "fim") return null; // quem chama já põe o estado final no estilo
+    quadros = r === "entrar" ? [{ opacity: 0 }, { opacity: 1 }] : r === "sair" ? [{ opacity: 1 }, { opacity: 0 }] : r;
+    dur = D.esmaecer; easing = C.entrada; delay = o.delayReduzido ?? 0;
+  }
+  return el.animate(quadros, { duration: ms(dur), easing, delay: ms(delay), fill: o.fill ?? "both" });
+}
+function cancelarDentro(raiz) { raiz.getAnimations({ subtree: true }).forEach(a => a.cancel()); }
+
+function vibrar(efeito, tipo) {
+  const v = $(".vib", efeito), def = VIB[tipo];
+  v.textContent = def.txt;
+  v.getAnimations().forEach(a => a.cancel());
+  v.animate([{ opacity: 0 }, { opacity: 1, offset: .08 }, { opacity: 1, offset: .85 }, { opacity: 0 }], { duration: 1600, fill: "both" });
+  try { if (navigator.vibrate && navigator.userActivation && navigator.userActivation.hasBeenActive) navigator.vibrate(def.ms); } catch (_) {}
+}
+
+/* ================= 1. SÉRIE MARCADA ================= */
+const efSerie = $("#ef-serie");
+const ICONE_CHECK = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
+const series = [{ n: 1, reps: 12, kg: 30, feita: false }, { n: 2, reps: 12, kg: 30, feita: false }, { n: 3, reps: 10, kg: 32.5, feita: false }];
+const gravadas = []; // o "banco" da demo
+function montarSeries() {
+  $(".series", efSerie).innerHTML = series.map(s => `
+    <div class="serie" data-n="${s.n}">
+      <span class="serie__tinta"></span><span class="serie__regua"></span>
+      <span class="serie__n"><span class="serie__n-fundo"></span><span class="serie__n-num">${s.n}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${ICONE_CHECK}</svg></span>
+      <span class="serie__val"><b>${s.reps}</b></span><span class="serie__x">×</span>
+      <span class="serie__val"><b>${String(s.kg).replace(".", ",")}</b><small>kg</small></span>
+      <button class="marcar" type="button" aria-label="Marcar série ${s.n} como feita">
+        <span class="marcar__cheio"></span><span class="marcar__camada"></span>
+        <svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">${ICONE_CHECK}</svg>
+        <svg class="i-desfazer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg>
+      </button>
+    </div>`).join("");
+  atualizarAtual();
+  $$(".marcar", efSerie).forEach(b => {
+    b.addEventListener("pointerdown", () => b.classList.add("pressionado"));
+    ["pointerup", "pointerleave", "pointercancel"].forEach(ev => b.addEventListener(ev, () => b.classList.remove("pressionado")));
+    b.addEventListener("click", () => alternarSerie(+b.closest(".serie").dataset.n));
+  });
+}
+function atualizarAtual() {
+  const prox = series.find(s => !s.feita);
+  $$(".serie", efSerie).forEach(l => l.classList.toggle("atual", !!prox && +l.dataset.n === prox.n));
+}
+function registrar(linhas) { $("#registro-serie").innerHTML = linhas.map(l => `<li>${l}</li>`).join(""); }
+
+let timerToast;
+function alternarSerie(n) {
+  const t0 = performance.now();
+  const s = series.find(x => x.n === n), linha = $(`.serie[data-n="${n}"]`, efSerie), botao = $(".marcar", linha);
+  // 1) O DADO PRIMEIRO. Síncrono, antes de qualquer animação; nada abaixo espera por ele nem ele espera por nada.
+  s.feita = !s.feita;
+  gravadas.push({ serie: n, feita: s.feita, reps: s.reps, carga_g: Math.round(s.kg * 1000), em: new Date().toISOString() });
+  const tDado = performance.now() - t0;
+  // 2) a vibração, no mesmo quadro
+  vibrar(efSerie, s.feita ? "impactoLeve" : "selecao");
+  // 3) a animação, por último, sem ninguém esperando o fim dela
+  linha.classList.toggle("feita", s.feita);
+  botao.setAttribute("aria-label", s.feita ? `Desfazer série ${n}` : `Marcar série ${n} como feita`);
+  const nFundo = $(".serie__n-fundo", linha), nNum = $(".serie__n-num", linha), nCk = $(".serie__n svg", linha);
+  const iCk = $(".i-check", botao), iDes = $(".i-desfazer", botao), cheio = $(".marcar__cheio", botao);
+  [nFundo, nNum, nCk, iCk, iDes, cheio].forEach(e => e.getAnimations().forEach(a => a.cancel()));
+  if (s.feita) {
+    mover(cheio, [{ opacity: 0 }, { opacity: 1, offset: .35 }, { opacity: 0 }], { dur: D.rapida * 3, easing: C.padrao, reduzido: "nenhum", fill: "none" });
+    mover(nFundo, [{ opacity: 0, transform: "scale(.6)" }, { opacity: 1, transform: "scale(1)" }], { dur: MOLA.check.duracao, easing: CURVA_MOLA.check });
+    mover(nNum, [{ opacity: 1 }, { opacity: 0 }], { dur: D.rapida, reduzido: "sair" });
+    mover(nCk, [{ opacity: 0, transform: "scale(.25)", filter: "blur(4px)" }, { opacity: 1, transform: "scale(1)", filter: "blur(0)" }], { dur: MOLA.check.duracao, easing: CURVA_MOLA.check });
+    mover(iCk, [{ opacity: 1, transform: "scale(1)", filter: "blur(0)" }, { opacity: 0, transform: "scale(.25)", filter: "blur(4px)" }], { dur: D.media, reduzido: "sair" });
+    mover(iDes, [{ opacity: 0, transform: "scale(.25)", filter: "blur(4px)" }, { opacity: 1, transform: "scale(1)", filter: "blur(0)" }], { dur: D.lenta, easing: CURVA_MOLA.padrao, delay: D.rapida, delayReduzido: 0 });
+    mostrarToast(`Série ${n} feita`);
+  } else {
+    mover(nFundo, [{ opacity: 1 }, { opacity: 0 }], { dur: D.rapida, reduzido: "sair" });
+    mover(nCk, [{ opacity: 1 }, { opacity: 0 }], { dur: D.rapida, reduzido: "sair" });
+    mover(nNum, [{ opacity: 0 }, { opacity: 1 }], { dur: D.media });
+    mover(iDes, [{ opacity: 1 }, { opacity: 0 }], { dur: D.rapida, reduzido: "sair" });
+    mover(iCk, [{ opacity: 0, transform: "scale(.25)", filter: "blur(4px)" }, { opacity: 1, transform: "scale(1)", filter: "blur(0)" }], { dur: D.lenta, easing: CURVA_MOLA.padrao });
+    esconderToast();
+  }
+  atualizarAtual();
+  const tAnim = performance.now() - t0;
+  registrar([
+    `dado gravado em ${tDado.toFixed(1)} ms (série ${n}: ${s.feita ? "feita" : "desfeita"}, ${gravadas.length} registro${gravadas.length > 1 ? "s" : ""})`,
+    `vibração disparada, sem esperar`,
+    `animação começou em ${tAnim.toFixed(1)} ms, depois do dado; nada espera ela acabar`]);
+}
+function mostrarToast(texto) {
+  const t = $(".toast", efSerie); clearTimeout(timerToast);
+  $(".toast__texto", t).textContent = texto; t.classList.add("visivel");
+  t.getAnimations().forEach(a => a.cancel());
+  mover(t, [{ opacity: 0, transform: "translateY(16px)" }, { opacity: 1, transform: "translateY(0)" }], { dur: D.media, easing: C.entrada });
+  timerToast = setTimeout(esconderToast, ms(D.toast));
+}
+function esconderToast() {
+  const t = $(".toast", efSerie); clearTimeout(timerToast);
+  if (!t.classList.contains("visivel")) return;
+  t.classList.remove("visivel"); t.getAnimations().forEach(a => a.cancel());
+  mover(t, [{ opacity: 1, transform: "translateY(0)" }, { opacity: 0, transform: "translateY(8px)" }], { dur: D.rapida, easing: C.saida, reduzido: "sair" });
+}
+$(".toast button", efSerie).addEventListener("click", () => { const ult = [...series].reverse().find(s => s.feita); if (ult) alternarSerie(ult.n); });
+async function repetirSerie() {
+  series.forEach(s => s.feita = false); clearTimeout(timerToast); cancelarDentro(efSerie); $(".toast", efSerie).classList.remove("visivel");
+  montarSeries(); series[0].feita = true; $(`.serie[data-n="1"]`, efSerie).classList.add("feita");
+  $(`.serie[data-n="1"] .serie__n-fundo`, efSerie).style.opacity = 1; $(`.serie[data-n="1"] .serie__n-num`, efSerie).style.opacity = 0;
+  $(`.serie[data-n="1"] .serie__n svg`, efSerie).style.opacity = 1; $(`.serie[data-n="1"] .i-check`, efSerie).style.opacity = 0; $(`.serie[data-n="1"] .i-desfazer`, efSerie).style.opacity = 1;
+  atualizarAtual(); registrar([]);
+  await esperar(500);
+  const b = $(`.serie[data-n="2"] .marcar`, efSerie); b.classList.add("pressionado"); await esperar(D.rapida); b.classList.remove("pressionado");
+  alternarSerie(2);
+}
+
+/* ================= 2. FECHAR TREINO ================= */
+const efFechar = $("#ef-fechar");
+function repetirFechar() {
+  cancelarDentro(efFechar);
+  const circ = $(".f-circ", efFechar), check = $(".f-check", efFechar), passos = $$(".f-passo", efFechar);
+  // o treino já está gravado quando esta tela abre; a vibração sai junto com o círculo
+  vibrar(efFechar, "impactoMedio");
+  mover(circ, [{ opacity: 0, transform: "scale(.8)" }, { opacity: 1, transform: "scale(1)" }], { dur: MOLA.padrao.duracao, easing: CURVA_MOLA.padrao });
+  circ.style.transformOrigin = "32px 32px";
+  mover(check, [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { dur: D.comemoracao, easing: C.padrao, delay: D.rapida, reduzido: [{ strokeDashoffset: 0, opacity: 0 }, { strokeDashoffset: 0, opacity: 1 }] });
+  passos.forEach((p, i) => mover(p, [{ opacity: 0, transform: `translateY(${DESLOC}px)` }, { opacity: 1, transform: "translateY(0)" }],
+    { dur: D.media, easing: C.entrada, delay: D.lenta + i * D.escalonamento }));
+}
+
+/* ================= 3a. ANEL DO DESCANSO ================= */
+const efAnel = $("#ef-anel");
+const anel = { total: 15000, inicio: 0, raf: 0, ultimoSeg: null, vib: new Set() };
+function fmt(s) { return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+function repetirAnel() {
+  cancelAnimationFrame(anel.raf); anel.inicio = performance.now(); anel.ultimoSeg = null; anel.vib.clear();
+  const el = $("#anel"); el.classList.remove("acabando", "fim"); $("#anel-legenda").textContent = "Descanso";
+  const prog = $(".anel__prog", el);
+  const quadro = () => {
+    // o motor guarda o instante de início, nunca um contador
+    const passou = performance.now() - anel.inicio, resta = Math.max(0, anel.total - passou);
+    const seg = Math.ceil(resta / 1000);
+    const fracao = E.reduzir ? seg * 1000 / anel.total : resta / anel.total; // reduzido: salta por segundo
+    prog.style.strokeDashoffset = String(1 - fracao);
+    if (seg !== anel.ultimoSeg) {
+      anel.ultimoSeg = seg; $("#anel-num").textContent = fmt(seg);
+      el.classList.toggle("acabando", seg <= 10 && seg > 0);
+      if (seg <= 3 && seg >= 1 && !anel.vib.has(seg)) { anel.vib.add(seg); vibrar(efAnel, "impactoLeve"); }
+    }
+    if (resta <= 0) { el.classList.remove("acabando"); el.classList.add("fim"); prog.style.strokeDashoffset = "0"; $("#anel-legenda").textContent = "Descanso terminado · Próxima série"; vibrar(efAnel, "fimDescanso"); return; }
+    anel.raf = requestAnimationFrame(quadro);
+  };
+  quadro();
+}
+
+/* ================= 3b. TROCA DE FASE ================= */
+const efFase = $("#ef-fase");
+const FASES = (() => { const f = [{ nome: "Prepare-se", s: 2, tipo: "preparacao", r: 1 }];
+  for (let r = 1; r <= 3; r++) { f.push({ nome: "Trabalho", s: 4, tipo: "trabalho", r }); if (r < 3) f.push({ nome: "Descanso", s: 2, tipo: "descanso", r }); }
+  f.push({ nome: "Terminou", s: 0, tipo: "terminado", r: 3 }); return f; })();
+const COR_FASE = { preparacao: ["--superficie", "--texto"], trabalho: ["--marca", "--marca-texto"], descanso: ["--sucesso", "--sucesso-texto"], terminado: ["--sucesso", "--sucesso-texto"] };
+const fase = { raf: 0, inicio: 0, idx: -1, ultimoSeg: null };
+function pintarFase(f, primeira) {
+  const [fundo, texto] = COR_FASE[f.tipo];
+  const camada = $("#mostrador-camada"), base = $(".mostrador__fundo", efFase), cont = $("#mostrador-conteudo");
+  camada.getAnimations().forEach(a => a.cancel());
+  if (primeira || E.reduzir) { base.style.background = `var(${fundo})`; camada.style.opacity = 0; cont.style.transition = E.reduzir ? "none" : ""; cont.style.setProperty("--cor-fase", `var(${texto})`); }
+  else {
+    // a cor nova cobre por esmaecimento; ao terminar, vira o fundo de baixo
+    camada.style.background = `var(${fundo})`;
+    cont.style.transition = ""; cont.style.setProperty("--cor-fase", `var(${texto})`);
+    const a = camada.animate([{ opacity: 0 }, { opacity: 1 }], { duration: ms(D.media), easing: C.padrao, fill: "both" });
+    a.onfinish = () => { base.style.background = `var(${fundo})`; a.cancel(); camada.style.opacity = 0; };
+  }
+  const nome = $("#fase-nome");
+  const novo = document.createElement("span"); novo.textContent = f.nome;
+  const velho = nome.querySelector("span");
+  nome.appendChild(novo);
+  // o nome velho sai na hora (duas palavras sobrepostas ficariam ilegíveis); o novo esmaece
+  $$("span", nome).forEach(sp => sp !== novo && sp.remove());
+  if (!primeira && !E.reduzir) novo.animate([{ opacity: 0 }, { opacity: 1 }], { duration: ms(D.rapida), easing: C.entrada, fill: "both" });
+  $("#fase-rodada").textContent = f.tipo === "terminado" ? "3 rodadas · 0:20" : `Rodada ${f.r} de 3`;
+  $$("#fase-rodadas i").forEach((t, i) => { const n = i + 1;
+    t.style.transition = E.reduzir ? "none" : "";
+    t.className = (n < f.r || (f.tipo === "descanso" && n === f.r) || f.tipo === "terminado") ? "feita" : (n === f.r && f.tipo === "trabalho") ? "atual" : ""; });
+  const prox = FASES[FASES.indexOf(f) + 1];
+  $("#fase-depois").innerHTML = prox && prox.s ? `Depois: <b>${prox.nome.toLowerCase()} ${prox.s} s</b>` : "Depois: <b>fim</b>";
+}
+function repetirFase() {
+  cancelAnimationFrame(fase.raf); fase.inicio = performance.now(); fase.idx = -1; fase.ultimoSeg = null;
+  const fins = []; let acc = 0; FASES.forEach(f => { acc += f.s * 1000; fins.push(acc); });
+  const quadro = () => {
+    const t = performance.now() - fase.inicio;
+    let i = fins.findIndex(fim => t < fim); if (i === -1) i = FASES.length - 1;
+    const f = FASES[i];
+    if (i !== fase.idx) { const primeira = fase.idx === -1; fase.idx = i; pintarFase(f, primeira); if (!primeira) vibrar(efFase, "impactoMedio"); fase.ultimoSeg = null; }
+    const comeco = i ? fins[i - 1] : 0, resta = f.s ? Math.max(0, fins[i] - t) : 0, seg = Math.ceil(resta / 1000);
+    const prog = f.s ? (E.reduzir ? (f.s - seg) / f.s : 1 - resta / (f.s * 1000)) : 1;
+    $("#fase-barra").style.transform = `scaleX(${prog})`;
+    if (seg !== fase.ultimoSeg) { fase.ultimoSeg = seg; $("#fase-num").textContent = fmt(f.tipo === "terminado" ? 20 : seg);
+      if (seg >= 1 && seg <= 3 && f.s > 3 && t - comeco > 200) vibrar(efFase, "impactoLeve"); }
+    if (f.tipo !== "terminado") fase.raf = requestAnimationFrame(quadro);
+    else vibrar(efFase, "fimDescanso");
+  };
+  quadro();
+}
+
+/* ================= 4. ABAS E PILHA ================= */
+const efNav = $("#ef-nav"), TITULOS = ["Início", "Treinos", "Plus", "Perfil"];
+let abaAtual = 0;
+function posIndicador(i, animar) {
+  const aba = $$(".aba", efNav)[i], ind = $("#indicador-aba");
+  const x = aba.offsetLeft + aba.offsetWidth / 2 - 12;
+  ind.getAnimations().forEach(a => a.cancel());
+  const de = ind.dataset.x ?? x; ind.dataset.x = x;
+  if (animar && !E.reduzir) ind.animate([{ transform: `translateX(${de}px)` }, { transform: `translateX(${x}px)` }], { duration: ms(D.media), easing: C.padrao, fill: "both" });
+  else ind.style.transform = `translateX(${x}px)`;
+  if (animar && !E.reduzir) ind.style.transform = `translateX(${x}px)`;
+}
+function trocarAba(i) {
+  if (i === abaAtual) return;
+  fecharPilha(true);
+  const velho = $(`.painel[data-painel="${abaAtual}"]`, efNav), novo = $(`.painel[data-painel="${i}"]`, efNav);
+  $$(".aba", efNav).forEach((a, k) => { a.classList.toggle("ativa", k === i); a.setAttribute("aria-selected", k === i); });
+  novo.hidden = false; novo.style.zIndex = 2; velho.style.zIndex = 1;
+  [velho, novo].forEach(p => p.getAnimations().forEach(a => a.cancel()));
+  const a = mover(novo, [{ opacity: 0 }, { opacity: 1 }], { dur: D.media, easing: C.padrao });
+  const fim = () => { velho.hidden = true; };
+  a ? (a.onfinish = fim) : fim();
+  $("#nav-titulo").textContent = TITULOS[i]; abaAtual = i; posIndicador(i, true);
+}
+$$(".aba", efNav).forEach((a, i) => a.addEventListener("click", () => trocarAba(i)));
+function abrirPilha() {
+  const pilha = $("#empilhada"), atras = $("#nav-raiz"), esc = $("#escurecer");
+  [pilha, atras, esc].forEach(e => e.getAnimations().forEach(a => a.cancel()));
+  pilha.classList.add("aberta");
+  if (E.reduzir) { mover(pilha, [], { reduzido: "entrar" }); return; }
+  mover(pilha, [{ transform: "translateX(100%)" }, { transform: "translateX(0)" }], { dur: MOLA.padrao.duracao, easing: CURVA_MOLA.padrao });
+  mover(atras, [{ transform: "translateX(0)" }, { transform: "translateX(-30%)" }], { dur: MOLA.padrao.duracao, easing: CURVA_MOLA.padrao });
+  mover(esc, [{ opacity: 0 }, { opacity: .08 }], { dur: MOLA.padrao.duracao, easing: C.padrao });
+}
+function fecharPilha(semAnimar) {
+  const pilha = $("#empilhada"), atras = $("#nav-raiz"), esc = $("#escurecer");
+  if (!pilha.classList.contains("aberta")) return;
+  [pilha, atras, esc].forEach(e => e.getAnimations().forEach(a => a.cancel()));
+  if (semAnimar) { pilha.classList.remove("aberta"); return; }
+  const a = E.reduzir ? mover(pilha, [], { reduzido: "sair" })
+    : mover(pilha, [{ transform: "translateX(0)" }, { transform: "translateX(100%)" }], { dur: MOLA.padrao.duracao, easing: CURVA_MOLA.padrao });
+  if (!E.reduzir) { mover(atras, [{ transform: "translateX(-30%)" }, { transform: "translateX(0)" }], { dur: MOLA.padrao.duracao, easing: CURVA_MOLA.padrao, fill: "none" });
+    mover(esc, [{ opacity: .08 }, { opacity: 0 }], { dur: MOLA.padrao.duracao, easing: C.padrao, fill: "none" }); }
+  a.onfinish = () => { pilha.classList.remove("aberta"); a.cancel(); };
+}
+$$("[data-empilhar]", efNav).forEach(b => b.addEventListener("click", abrirPilha));
+$("#voltar").addEventListener("click", () => fecharPilha(false));
+async function repetirNav() {
+  fecharPilha(true); $$(".painel[data-painel]", efNav).forEach(p => { p.getAnimations().forEach(a => a.cancel()); p.hidden = p.dataset.painel !== "0"; });
+  $$(".aba", efNav).forEach((a, k) => a.classList.toggle("ativa", k === 0)); abaAtual = 0; $("#nav-titulo").textContent = "Início"; posIndicador(0, false);
+  await esperar(400); trocarAba(1); await esperar(700); abrirPilha(); await esperar(1100); fecharPilha(false);
+}
+
+/* ================= 5. CARTÃO QUE AFUNDA ================= */
+const efCartao = $("#ef-cartao");
+function afundar(c) { if (E.reduzir) { c.style.transition = "none"; c.classList.add("afundado"); c.style.transform = "none"; c.style.boxShadow = "var(--sombra-1)"; return; }
+  c.style.transition = ""; c.style.transform = ""; c.style.boxShadow = ""; c.style.transitionDuration = ms(D.rapida) + "ms"; c.style.transitionTimingFunction = C.padrao; c.classList.add("afundado"); }
+function soltar(c) { if (!E.reduzir) { c.style.transitionDuration = ms(MOLA.toque.duracao) + "ms"; c.style.transitionTimingFunction = CURVA_MOLA.toque; } c.classList.remove("afundado"); }
+$$(".cartao-treino", efCartao).forEach(c => {
+  c.addEventListener("pointerdown", () => afundar(c));
+  ["pointerup", "pointerleave", "pointercancel"].forEach(ev => c.addEventListener(ev, () => soltar(c)));
+});
+async function repetirCartao() { const c = $$(".cartao-treino", efCartao)[0]; afundar(c); await esperar(600); soltar(c); }
+
+/* ================= 6. ESQUELETO ================= */
+const efEsq = $("#ef-esq"); let esqTimers = [];
+function repetirEsq() {
+  esqTimers.forEach(clearTimeout); esqTimers = []; cancelarDentro(efEsq);
+  const esq = $("#esq-esqueleto"), cont = $("#esq-conteudo"), tag = $("#esq-tag");
+  esq.style.opacity = 0; cont.style.opacity = 0; tag.textContent = "esperando a rede (0–300 ms: nada aparece)";
+  const chegada = 4000;
+  esqTimers.push(setTimeout(() => {
+    tag.textContent = "passou de 300 ms: esqueleto";
+    mover(esq, [{ opacity: 0 }, { opacity: 1 }], { dur: D.media, easing: C.entrada });
+    if (!E.reduzir) $$(".brilho", esq).forEach(b => b.animate([{ transform: "translateX(-100%)" }, { transform: "translateX(100%)" }],
+      { duration: ms(D.passadaEsqueleto), easing: C.constante, iterations: PASSADAS, fill: "both" }));
+  }, ms(D.atrasoEsqueleto)));
+  esqTimers.push(setTimeout(() => {
+    tag.textContent = "o dado chegou: troca por esmaecer";
+    mover(esq, [{ opacity: 1 }, { opacity: 0 }], { dur: D.media, easing: C.saida, reduzido: "sair" });
+    mover(cont, [{ opacity: 0 }, { opacity: 1 }], { dur: D.media, easing: C.entrada });
+  }, ms(chegada)));
+}
+
+/* ================= 7. CONVITE AO PLUS ================= */
+const efPlus = $("#ef-plus");
+function repetirPlus() {
+  cancelarDentro(efPlus);
+  mover($("#convite"), [{ opacity: 0, transform: `translateY(${DESLOC}px)` }, { opacity: 1, transform: "translateY(0)" }], { dur: D.media, easing: C.entrada });
+  mover($("#halo"), [{ opacity: 0 }, { opacity: 1 }], { dur: D.lenta, easing: C.entrada, delay: D.media });
+  if (E.reduzir) return; // sem reflexo
+  [$("#selo .reflexo"), $("#botao-plus .reflexo")].forEach((r, i) =>
+    r.animate([{ transform: "translateX(-130%)" }, { transform: "translateX(130%)" }],
+      { duration: ms(D.brilhoPlus), easing: C.padrao, delay: ms(D.atrasoBrilhoPlus + i * 150), fill: "both", iterations: 1 }));
+}
+
+/* ================= 8. PUXAR PARA ATUALIZAR ================= */
+const efPuxar = $("#ef-puxar"), lista = $("#puxar-lista"), roda = $("#roda");
+let puxado = 0, atualizando = false, novos = 0;
+function elastico(d) { const dim = 400, c = 0.55; return (d * dim * c) / (dim + c * Math.abs(d)); }
+function posicionar(y) { puxado = y; lista.style.transform = `translateY(${y}px)`; const p = Math.min(1, y / LIMITE_PUXAR);
+  roda.style.opacity = p; roda.style.transform = E.reduzir ? "none" : `rotate(${p * 270}deg)`; $("circle", roda).style.strokeDasharray = `${0.75 * p} 1`; }
+function voltarLista() {
+  const de = puxado; lista.getAnimations().forEach(a => a.cancel());
+  const a = mover(lista, [{ transform: `translateY(${de}px)` }, { transform: "translateY(0)" }], { dur: MOLA.padrao.duracao, easing: CURVA_MOLA.padrao, reduzido: "fim", fill: "none" });
+  puxado = 0; lista.style.transform = "translateY(0)"; roda.style.opacity = 0;
+}
+async function atualizar() {
+  atualizando = true; lista.getAnimations().forEach(a => a.cancel());
+  const de = puxado;
+  mover(lista, [{ transform: `translateY(${de}px)` }, { transform: "translateY(56px)" }], { dur: MOLA.padrao.duracao, easing: CURVA_MOLA.padrao, reduzido: "fim", fill: "none" });
+  puxado = 56; lista.style.transform = "translateY(56px)"; roda.style.opacity = 1; $("circle", roda).style.strokeDasharray = "0.75 1";
+  const giro = E.reduzir ? null : roda.animate([{ transform: "rotate(0)" }, { transform: "rotate(360deg)" }], { duration: 800, iterations: Infinity, easing: "linear" });
+  $("#puxar-aviso").textContent = E.reduzir ? "Atualizando…" : "Atualizando";
+  await new Promise(r => setTimeout(r, ms(900)));
+  // o dado chegou: o item novo entra no topo
+  novos++;
+  const item = document.createElement("div"); item.className = "linha-lista";
+  item.innerHTML = `<span><b>Novo aluno ${novos}</b><small>Pediu para entrar · agora</small></span>`;
+  $("#puxar-aviso").after(item);
+  mover(item, [{ opacity: 0, transform: `translateY(-${DESLOC}px)` }, { opacity: 1, transform: "translateY(0)" }], { dur: D.media, easing: C.entrada });
+  giro && giro.cancel(); $("#puxar-aviso").textContent = "Arraste a lista para baixo";
+  voltarLista(); atualizando = false;
+}
+(() => { let y0 = null;
+  efPuxar.querySelector(".puxar").addEventListener("pointerdown", e => { if (atualizando) return; y0 = e.clientY; lista.getAnimations().forEach(a => a.cancel()); e.currentTarget.setPointerCapture(e.pointerId); });
+  efPuxar.querySelector(".puxar").addEventListener("pointermove", e => { if (y0 === null) return; const d = e.clientY - y0; if (d > 0) posicionar(elastico(d)); });
+  const fim = () => { if (y0 === null) return; y0 = null; puxado >= LIMITE_PUXAR ? atualizar() : voltarLista(); };
+  efPuxar.querySelector(".puxar").addEventListener("pointerup", fim); efPuxar.querySelector(".puxar").addEventListener("pointercancel", fim);
+})();
+async function repetirPuxar() {
+  if (atualizando) return;
+  lista.getAnimations().forEach(a => a.cancel());
+  $$(".linha-lista", lista).forEach((l, i) => { if (i < novos) l.remove(); }); novos = 0;
+  const alvo = 96, passos = 24;
+  for (let i = 1; i <= passos; i++) { posicionar(elastico(alvo * 1.6 * (i / passos))); await new Promise(r => setTimeout(r, ms(400) / passos)); }
+  await esperar(150); atualizar();
+}
+
+/* ================= 9. TÍTULO GRANDE ================= */
+const efTit = $("#ef-titulo"), tg = $("#tg"), rol = $("#tg-rolagem"), barra = $("#tg-barra"), tAnd = $("#tg-and");
+let tgCruzou = false;
+function aoRolar() {
+  const y = rol.scrollTop, p = Math.min(1, Math.max(0, y / 40));
+  if (tg.dataset.plat === "ios") {
+    barra.style.transform = ""; tAnd.style.transform = "";
+    const passou = y > 40; barra.classList.toggle("mostra", passou); barra.classList.toggle("sombra", passou);
+  } else {
+    barra.classList.remove("mostra"); barra.classList.toggle("sombra", y > 40);
+    if (E.reduzir) {
+      // sem escala: ao cruzar os 40 px, o título grande dá lugar ao pequeno por esmaecer
+      barra.style.transform = y > 40 ? "translateY(-40px)" : "";
+      const cruzou = y > 40;
+      if (cruzou !== tgCruzou) { tgCruzou = cruzou; tAnd.style.fontSize = cruzou ? "22px" : "28px"; tAnd.animate([{ opacity: 0 }, { opacity: 1 }], { duration: ms(D.esmaecer), easing: C.entrada }); }
+    } else {
+      tAnd.style.fontSize = "28px";
+      barra.style.transform = `translateY(${-40 * p}px)`; // 96 → 56
+      tAnd.style.transform = `scale(${1 - (1 - 22 / 28) * p})`;
+    }
+  }
+}
+rol.addEventListener("scroll", aoRolar, { passive: true });
+$$(".plat button", efTit).forEach(b => b.addEventListener("click", () => {
+  tg.dataset.plat = b.dataset.plat; $$(".plat button", efTit).forEach(x => x.setAttribute("aria-pressed", x === b)); rol.scrollTop = 0; tgCruzou = false; aoRolar(); }));
+function rolarAte(alvo, dur) { return new Promise(r => { const de = rol.scrollTop, t0 = performance.now();
+  const q = now => { const k = Math.min(1, (now - t0) / ms(dur)); const e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; rol.scrollTop = de + (alvo - de) * e; k < 1 ? requestAnimationFrame(q) : r(); };
+  requestAnimationFrame(q); }); }
+async function repetirTitulo() { rol.scrollTop = 0; aoRolar(); await esperar(300); await rolarAte(180, 900); await esperar(500); await rolarAte(0, 900); }
+
+/* ================= controles ================= */
+const REPETIR = { serie: repetirSerie, fechar: repetirFechar, anel: repetirAnel, fase: repetirFase, nav: repetirNav, cartao: repetirCartao, esq: repetirEsq, plus: repetirPlus, puxar: repetirPuxar, titulo: repetirTitulo };
+$$("[data-repetir]").forEach(b => b.addEventListener("click", () => REPETIR[b.dataset.repetir]()));
+$("#repetir-todos").addEventListener("click", () => Object.values(REPETIR).forEach(f => f()));
+const chR = $("#chave-reduzir"), chL = $("#chave-lento"), chE = $("#chave-escuro");
+chR.checked = E.reduzir;
+chR.addEventListener("change", () => { E.reduzir = chR.checked; document.documentElement.dataset.reduzir = E.reduzir; });
+chL.addEventListener("change", () => { E.lento = chL.checked ? 4 : 1; document.documentElement.style.setProperty("--lento", E.lento); });
+chE.checked = matchMedia("(prefers-color-scheme: dark)").matches;
+const aplicarTema = () => { document.documentElement.dataset.tema = chE.checked ? "escuro" : "claro"; };
+chE.addEventListener("change", aplicarTema); aplicarTema();
+/* com reduzir movimento, as transições CSS de cor e de posição viram troca imediata (as de opacidade continuam) */
+const estiloReduzido = document.createElement("style");
+estiloReduzido.textContent = `[data-reduzir="true"] .serie__tinta, [data-reduzir="true"] .serie__val b, [data-reduzir="true"] .anel__prog,
+  [data-reduzir="true"] .aba i, [data-reduzir="true"] .rodadas i { transition: none !important; }`;
+document.head.appendChild(estiloReduzido);
+document.documentElement.dataset.reduzir = E.reduzir;
+
+/* gancho para a gravação em Playwright */
+window.demo = { repetir: id => REPETIR[id](), reduzir(v) { chR.checked = v; chR.dispatchEvent(new Event("change")); },
+  lento(v) { chL.checked = v; chL.dispatchEvent(new Event("change")); }, tema(escuro) { chE.checked = escuro; aplicarTema(); }, gravadas,
+  plataforma(p) { $(`.plat button[data-plat="${p}"]`, efTit).click(); } };
+
+montarSeries(); posIndicador(0, false); pintarFase(FASES[0], true); aoRolar();
+/* ao abrir a página, os efeitos de entrada tocam uma vez */
+repetirFechar(); repetirPlus(); repetirEsq();
+</script>
+</body>
+</html>

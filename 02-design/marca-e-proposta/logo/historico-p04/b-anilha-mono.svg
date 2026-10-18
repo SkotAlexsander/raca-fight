@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Academia Plus — símbolo monocromático">
+  <title>Academia Plus — caminho B, versão monocromática</title>
+  <path fill="currentColor" color="#131D1C" fill-rule="evenodd" d="
+    M512 112 A400 400 0 1 1 511.9 112 Z
+    M432 232 a80 80 0 0 1 160 0 V432 H792 a80 80 0 0 1 0 160 H592 V792 a80 80 0 0 1 -160 0 V592 H232 a80 80 0 0 1 0 -160 H432 Z"/>
+</svg>

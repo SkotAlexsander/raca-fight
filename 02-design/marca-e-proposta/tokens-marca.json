@@ -1,0 +1,231 @@
+{
+  "$descricao": "Valores finais de cor e tipografia da marca Academia Plus. MESMO formato e MESMOS nomes de 02-design/sistema-de-design/tokens.json: quem implementa substitui 'cor.claro', 'cor.escuro' e 'tipografia.familia' de lá por estes blocos, e nada mais muda. Os três nomes extras (plusTextoSobreFundo, plusSuave, marcaSuave) resolvem casos que os papéis do sistema não cobrem; o sistema pode adotá-los. OKLCH, contrastes medidos e regras de uso estão em 02-IDENTIDADE-VISUAL.md.",
+  "$versao": "1.2.0",
+  "$data": "2026-10-11",
+  "$contrato": "Os 10 papéis obrigatórios (fundo, superficie, texto, textoSecundario, marca, marcaTexto, sucesso, atencao, erro, plus) e os derivados do sistema (superficieElevada, borda, sucessoTexto, atencaoTexto, erroTexto, plusTexto, foco, sobreposicao, desabilitadoOpacidade) estão todos preenchidos.",
+  "cor": {
+    "claro": {
+      "fundo": "#F4F8F7",
+      "superficie": "#FFFFFF",
+      "texto": "#131D1C",
+      "textoSecundario": "#4A5958",
+      "marca": "#007761",
+      "marcaTexto": "#FFFFFF",
+      "sucesso": "#0A7E3A",
+      "atencao": "#B74D00",
+      "erro": "#C21725",
+      "plus": "#EAB444",
+      "superficieElevada": "#FFFFFF",
+      "borda": "#D0DAD9",
+      "sucessoTexto": "#FFFFFF",
+      "atencaoTexto": "#FFFFFF",
+      "erroTexto": "#FFFFFF",
+      "plusTexto": "#3A2B0D",
+      "foco": "#007761",
+      "sobreposicao": "rgba(0, 0, 0, 0.48)",
+      "desabilitadoOpacidade": 0.4,
+      "plusTextoSobreFundo": "#9A6100",
+      "plusSuave": "#FCF2E1",
+      "marcaSuave": "#D6F5EE",
+      "trilho": "#DCE5E3",
+      "regua": "rgba(19, 29, 28, 0.10)",
+      "viva": "#39F0CD",
+      "vivaTexto": "#00221A",
+      "progresso": "#007761"
+    },
+    "escuro": {
+      "fundo": "#070C0C",
+      "superficie": "#121A19",
+      "texto": "#E9F2F1",
+      "textoSecundario": "#A3B1B0",
+      "marca": "#39F0CD",
+      "marcaTexto": "#00221A",
+      "sucesso": "#67D283",
+      "atencao": "#FDA16B",
+      "erro": "#FF7E76",
+      "plus": "#F8C153",
+      "superficieElevada": "#1B2423",
+      "borda": "#2A3433",
+      "sucessoTexto": "#0B1313",
+      "atencaoTexto": "#0B1313",
+      "erroTexto": "#0B1313",
+      "plusTexto": "#2F2207",
+      "foco": "#39F0CD",
+      "sobreposicao": "rgba(0, 0, 0, 0.64)",
+      "desabilitadoOpacidade": 0.4,
+      "plusTextoSobreFundo": "#F8C153",
+      "plusSuave": "#332710",
+      "marcaSuave": "#0A332C",
+      "trilho": "#26302F",
+      "regua": "rgba(233, 242, 241, 0.10)",
+      "viva": "#39F0CD",
+      "vivaTexto": "#00221A",
+      "progresso": "#39F0CD"
+    },
+    "$regras": {
+      "plus": "No tema claro, 'plus' é PREENCHIMENTO (1,89:1 sobre branco, não serve de texto). A palavra 'Plus' solta em texto, preço ou link usa 'plusTextoSobreFundo' (5,14:1). Sobre o preenchimento, o texto é 'plusTexto'. No escuro, 'plus' e 'plusTextoSobreFundo' são a mesma cor de propósito, para o código usar um nome só.",
+      "sucesso": "Só em sinal pequeno (ícone de feita, borda da série concluída, toast). Nunca em botão nem em área grande, para não confundir com 'marca'.",
+      "atencao": "Sempre com ícone de alerta e nunca em pílula arredondada, para não confundir com o selo Plus.",
+      "borda": "Decorativa (1,3:1 a 1,6:1). Nunca carrega informação sozinha.",
+      "foco": "Anel de foco na cor de marca, 3 px (tokens.json: borda.foco).",
+      "contrasteMinimo": "4,5:1 texto normal; 3:1 texto grande (>= 24 px, ou >= 19 px em negrito) e ícone. Todos os pares texto/fundo desta paleta passam; medidas em 02-IDENTIDADE-VISUAL.md.",
+      "viva": "Verde vivo #39F0CD só como PREENCHIMENTO (botão primário, deslizar, comemoração), sempre com vivaTexto #00221A por cima (11,67:1). No claro nunca é texto nem traço sobre branco (1,45:1): texto, link, aba ativa e anel usam marca.",
+      "logo": "O logo e o ícone usam marca: símbolo e \"Plus\" do wordmark em #007761 no claro (5,51:1 sobre branco) e em #39F0CD no escuro (13,61:1 sobre o fundo escuro); \"Academia\" em texto (#131D1C / #E9F2F1). Ícone do app: fundo #007761 com o símbolo branco (5,51:1). Abertura: #007761 com o símbolo branco no claro, #0A332C com o símbolo #39F0CD no escuro (9,53:1). Dourado nunca no logo: só no selo Plus, que é a palavra."
+    }
+  },
+  "logo": {
+    "$nota": "Logo final (agente W, P11, 11/10/2026): a variação 1, \"barra e mais\", entre as 3 de logo/comparativo.html. Geometria na grade de 1024 (fonte: logo/fonte/gerar.py); todo SVG em currentColor.",
+    "simbolo": {
+      "grade": 1024,
+      "caixa": [
+        96,
+        96,
+        832,
+        832
+      ],
+      "barra": {
+        "x": 96,
+        "y": 448,
+        "largura": 832,
+        "altura": 128,
+        "raio": 64
+      },
+      "anilhas": [
+        {
+          "x": 200,
+          "y": 320,
+          "largura": 120,
+          "altura": 384,
+          "raio": 44
+        },
+        {
+          "x": 704,
+          "y": 320,
+          "largura": 120,
+          "altura": 384,
+          "raio": 44
+        }
+      ],
+      "bracoVertical": {
+        "x": 432,
+        "y": 96,
+        "largura": 160,
+        "altura": 832,
+        "raio": 80
+      },
+      "$regra": "O braço vertical é o traço mais grosso e o mais comprido (832 contra 384 das anilhas): é ele que faz o desenho ler \"+\" antes de \"barra\"."
+    },
+    "wordmark": {
+      "familia": "Archivo",
+      "peso": 800,
+      "espacamento": -0.01,
+      "alturaSimbolo": "1,54 × a altura de maiúscula (160 para 104)",
+      "vao": "40 na arte de 208 de altura",
+      "cores": {
+        "claro": {
+          "simbolo": "#007761",
+          "academia": "#131D1C",
+          "plus": "#007761"
+        },
+        "escuro": {
+          "simbolo": "#39F0CD",
+          "academia": "#E9F2F1",
+          "plus": "#39F0CD"
+        }
+      }
+    },
+    "icone": {
+      "ios": {
+        "arquivo": "app/recursos/icone.png",
+        "lado": 1024,
+        "fundo": "#007761",
+        "simbolo": "#FFFFFF",
+        "fracaoDoLado": 0.625,
+        "alfa": false
+      },
+      "androidAdaptativo": {
+        "arquivo": "app/recursos/icone-adaptativo.png",
+        "lado": 1024,
+        "fundoNoAppJson": "#007761",
+        "simbolo": "#FFFFFF",
+        "fracaoDoLado": 0.44,
+        "$nota": "a máscara mostra os 72 dp do meio da camada de 108: o símbolo aparece com 66 % do ícone; o ponto mais longe fica a 0,22 do lado (o círculo seguro é 0,306)"
+      },
+      "notificacao": {
+        "arquivo": "app/recursos/icone-notificacao.png",
+        "lado": 96,
+        "simbolo": "#FFFFFF",
+        "fracaoDoLado": 0.833,
+        "corNoAppJson": "#007761"
+      },
+      "abertura": {
+        "claro": {
+          "arquivo": "app/recursos/abertura-simbolo-claro.png",
+          "fundo": "#007761",
+          "simbolo": "#FFFFFF"
+        },
+        "escuro": {
+          "arquivo": "app/recursos/abertura-simbolo-escuro.png",
+          "fundo": "#0A332C",
+          "simbolo": "#39F0CD"
+        },
+        "lado": 1024,
+        "larguraSimbolo": 637,
+        "imageWidth": 154
+      }
+    },
+    "arquivos": [
+      "logo/simbolo.svg",
+      "logo/simbolo-escuro.svg",
+      "logo/simbolo-mono.svg",
+      "logo/wordmark.svg",
+      "logo/wordmark-escuro.svg",
+      "logo/wordmark-mono.svg",
+      "logo/selo-plus.svg"
+    ]
+  },
+  "tipografia": {
+    "familia": {
+      "interface": "Figtree, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+      "numero": "Archivo, Figtree, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+    },
+    "$fontes": {
+      "Figtree": {
+        "licenca": "SIL Open Font License 1.1",
+        "origem": "https://fonts.google.com/specimen/Figtree",
+        "pesosEmbutidos": [
+          400,
+          500,
+          600,
+          700
+        ],
+        "uso": "todo texto de interface: titulo1..3, corpo, corpoForte, corpoPequeno, legenda, rotuloAba, botão"
+      },
+      "Archivo": {
+        "licenca": "SIL Open Font License 1.1",
+        "origem": "https://fonts.google.com/specimen/Archivo",
+        "pesosEmbutidos": [
+          700,
+          800
+        ],
+        "uso": "só os papéis numeroCronometro, numeroCarga e numeroMedio da escala do sistema (todos >= 24 px). Número menor que isso é Figtree com tabular-nums."
+      }
+    },
+    "$regras": {
+      "tabular": "font-variant-numeric: tabular-nums em qualquer lista ou coluna de números, nas duas famílias.",
+      "pesoMinimo": "nunca 300: fino demais para tela com reflexo e suor.",
+      "reserva": "se o app não embutir fontes, a pilha cai para system-ui e a identidade perde pouco; o que carrega a marca é cor, logo e tom.",
+      "logo": "wordmark em Archivo ExtraBold (800) convertida em contorno (logo/fonte/gerar.py lê app/recursos/fontes/Archivo-ExtraBold.ttf com o kerning da fonte); o selo Plus em Figtree Bold (700), também em contorno. Nenhum SVG do logo depende de fonte instalada."
+    }
+  },
+  "icone": {
+    "$nota": "complementa 'icone' do tokens.json (tamanhos e traço já estão lá)",
+    "biblioteca": "próprios do Academia Plus sobre Lucide (ISC) e Tabler (MIT), em 02-design/icones/",
+    "licenca": "ISC",
+    "origem": "https://lucide.dev",
+    "pontas": "round (stroke-linecap e stroke-linejoin)",
+    "cor": "herda a cor do texto ao lado; exceções: selo Plus (plus/plusTexto) e ícone de feita (sucesso)",
+    "traco": 2.25
+  },
+  "$historico": "1.2.0 (11/10/2026, agente W, P11): entra o bloco 'logo' com o logo final (variação 1, barra e mais): a geometria, o wordmark em Archivo ExtraBold em contorno (antes Figtree 700 por nome) e as artes do app; o fundo do ícone adaptativo do Android passa a ser #007761 (era #0B1313). As cores não mudam. 1.1.0 (10/10/2026, agente Q, junção do P09): as cores passam a ser as do tokens.json 1.6.0 (agente N, verde da marca mais vivo), para o logo, o ícone e a abertura usarem a mesma cor. marca do claro #006B5F → #007761 (5,51:1 sobre superficie; branco sobre ela 5,51:1) e do escuro #6BD3C2 → #39F0CD (12,23:1 sobre superficie); entram viva, vivaTexto, progresso, trilho e regua; o escuro fica quase preto (#070C0C). Os contrastes estão em sistema-de-design/tokens.json › cor.$contraste e em docs/revisao/N-SISTEMA.md. 1.0.0: primeira paleta (P04)."
+}

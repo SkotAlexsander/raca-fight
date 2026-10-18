@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="pt-BR" data-aparelho="android" data-plataforma="android" data-movimento="reduzido" data-transparencia="normal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raça Fight — esboços do app do aluno (PDF do aluno)</title>
+<!-- Agente AT, 15/10/2026. ESBOÇOS das telas do aluno que o AL ainda não desenhou (aula experimental, indicação, avisos,
+     perfil, dados, Kids, Raça Responde, notificações). Usam as MESMAS classes e tokens dos mockups de 02-design
+     (sistema.css, novas.css, luta.css), para parecerem da mesma família; não são o desenho final.
+     O capturar.mjs abre esta página servindo a raiz do projeto, troca o marcador SPRITE do corpo pelo sprite do luta.html
+     e fotografa cada [data-esboco]. Nada aqui é gravado em 02-design. -->
+<!-- a página é servida em mockups/__esbocos.html, então os caminhos relativos já valem (sem <base>, que quebraria os <use href="#…">) -->
+<link rel="stylesheet" href="sistema.css">
+<link rel="stylesheet" href="novas.css">
+<link rel="stylesheet" href="luta.css">
+<script>
+  try { var t = localStorage.getItem('academia-plus-tema'); if (t === 'claro' || t === 'escuro') document.documentElement.setAttribute('data-tema', t); } catch (e) {}
+</script>
+<style>
+  /* só o que os mockups ainda não têm */
+  .e-chave { display: grid; grid-template-columns: 1fr auto; gap: var(--espaco-1) var(--espaco-3); align-items: center; padding: var(--espaco-3) var(--espaco-4); }
+  .e-chave + .e-chave { border-top: var(--borda-fina) solid var(--cor-regua); }
+  .e-chave b { font: 600 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); }
+  .e-chave small { grid-column: 1; display: block; font: 400 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--cor-texto-secundario); }
+  .e-chave i { grid-column: 2; grid-row: 1 / span 2; width: 52px; height: 32px; border-radius: 16px; background: var(--cor-trilho); position: relative; }
+  .e-chave i::after { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 13px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+  .e-chave i.on { background: var(--cor-viva); }
+  .e-chave i.on::after { left: auto; right: 3px; }
+  .e-grupo { background: var(--cor-superficie); border-radius: var(--raio-cartao); box-shadow: var(--sombra-2); overflow: hidden; }
+  .e-rot { font: 700 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--cor-texto-secundario); letter-spacing: .04em; text-transform: uppercase; margin: 0 0 calc(-1 * var(--espaco-3)) var(--espaco-1); }
+  .e-nota { display: flex; gap: var(--espaco-2); align-items: flex-start; color: var(--cor-texto-secundario); font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); }
+  .e-nota svg { flex: none; width: 16px; height: 16px; margin-top: 2px; }
+  .e-campo { display: grid; grid-template-columns: 1fr auto; gap: 2px var(--espaco-3); padding: var(--espaco-3) var(--espaco-4); align-items: center; }
+  .e-campo + .e-campo { border-top: var(--borda-fina) solid var(--cor-regua); }
+  .e-campo span { color: var(--cor-texto-secundario); font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); }
+  .e-campo b { font: 600 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); }
+  .e-campo em { grid-column: 2; grid-row: 1 / span 2; font-style: normal; font: 600 var(--tipo-corpo-pequeno)/1 var(--fonte-interface); color: var(--cor-texto-secundario); }
+  .e-campo--vazio b { color: var(--cor-texto-secundario); font-weight: 400; }
+  .e-opcoes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .e-opcoes li { display: grid; grid-template-columns: 1fr 24px; align-items: center; min-height: 48px; padding: 0 var(--espaco-1); font: 600 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); }
+  .e-opcoes li + li { border-top: var(--borda-fina) solid var(--cor-regua); }
+  .e-opcoes li small { display: block; font: 400 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--cor-texto-secundario); }
+  .e-radio { width: 22px; height: 22px; border-radius: 11px; box-shadow: inset 0 0 0 2px var(--cor-borda); }
+  .e-radio.on { box-shadow: inset 0 0 0 7px var(--cor-viva); }
+  .e-codigo { display: flex; align-items: center; justify-content: space-between; gap: var(--espaco-3); padding: var(--espaco-3) var(--espaco-4); border-radius: var(--raio-cartao); background: var(--cor-marca-suave); }
+  .e-codigo b { font: 800 var(--tipo-titulo-2)/1 var(--fonte-numero); letter-spacing: .12em; }
+  .e-msg { border-radius: var(--raio-cartao); padding: var(--espaco-3) var(--espaco-4); box-shadow: inset 0 0 0 var(--borda-fina) var(--cor-borda); font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); color: var(--cor-texto-secundario); }
+  .e-pessoa { display: grid; grid-template-columns: 40px 1fr auto; gap: var(--espaco-3); align-items: center; padding: var(--espaco-3) var(--espaco-4); }
+  .e-pessoa + .e-pessoa { border-top: var(--borda-fina) solid var(--cor-regua); }
+  .e-ini { width: 40px; height: 40px; border-radius: 20px; display: grid; place-items: center; background: var(--cor-marca-suave); font: 700 var(--tipo-corpo-pequeno)/1 var(--fonte-interface); color: var(--cor-texto); }
+  .e-pessoa b { display: block; font: 600 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); }
+  .e-pessoa small { display: block; font: 400 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); color: var(--cor-texto-secundario); }
+  .e-crianca { display: flex; flex-direction: column; gap: var(--espaco-3); }
+  .e-crianca__topo { display: flex; align-items: center; gap: var(--espaco-3); }
+  .e-crianca__topo .e-ini { width: 44px; height: 44px; border-radius: 22px; }
+  .e-crianca__topo p { flex: 1; }
+  .e-pergunta { padding: var(--espaco-3) var(--espaco-4); display: grid; grid-template-columns: 1fr 24px; gap: var(--espaco-2); align-items: start; }
+  .e-pergunta + .e-pergunta { border-top: var(--borda-fina) solid var(--cor-regua); }
+  .e-pergunta b { font: 600 var(--tipo-corpo)/var(--linha-corpo) var(--fonte-interface); }
+  .e-pergunta p { grid-column: 1 / -1; color: var(--cor-texto-secundario); font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); }
+  .e-pergunta svg { width: 20px; height: 20px; color: var(--cor-texto-secundario); margin-top: 2px; }
+  /* tela bloqueada */
+  .e-bloqueio { position: absolute; inset: 0; background: #0E0E0E url('../../imagens/raca-fight/entrada-fundo-tela-escuro-desfocado@1x.jpg') center / cover; display: flex; flex-direction: column; align-items: center; padding: 64px var(--espaco-3) 0; gap: var(--espaco-2); color: #fff; }
+  .e-bloqueio__data { font: 600 var(--tipo-corpo)/1.2 var(--fonte-interface); opacity: .9; }
+  .e-bloqueio__hora { font: 700 var(--tipo-numero-gigante)/1 var(--fonte-numero); letter-spacing: -.02em; margin-bottom: var(--espaco-6); }
+  .e-notif { width: 100%; border-radius: 20px; padding: var(--espaco-3) var(--espaco-4); background: rgba(40,40,40,.72); backdrop-filter: blur(18px); display: grid; grid-template-columns: 32px 1fr auto; gap: 2px var(--espaco-3); align-items: start; }
+  .e-notif__icone { grid-row: 1 / span 2; width: 32px; height: 32px; border-radius: 8px; background: #1C1C1C; display: grid; place-items: center; overflow: hidden; }
+  .e-notif__icone svg { width: 28px; height: 10px; fill: #fff; --logo-ponta: #C42024; }
+  .e-notif b { font: 700 var(--tipo-corpo-pequeno)/var(--linha-corpo-pequeno) var(--fonte-interface); }
+  .e-notif time { font-size: var(--tipo-corpo-pequeno); color: #C8C8C8; }
+  .e-notif p { grid-column: 2 / -1; font-size: var(--tipo-corpo-pequeno); line-height: var(--linha-corpo-pequeno); }
+  .e-fundo-folha { filter: none; }
+  .folha-moldura { border-radius: inherit; }
+</style>
+</head>
+<body style="background:#fff">
+
+<!--SPRITE-->
+
+<main style="display:flex;flex-wrap:wrap;gap:40px;padding:40px">
+
+<!-- 1. Vitrine + folha "Qual modalidade?" (sem conta) -->
+<div class="celular" data-esboco="experimental" data-hora="18:12" data-abas="nenhuma">
+  <div class="celular__tela p-tela">
+    <div class="p-rolagem">
+      <header class="p-saudacao"><div class="p-saudacao__texto"><p class="p-sobretitulo">Sem conta · vitrine</p><h2 class="p-titulo-grande">Conheça a Raça Fight</h2></div></header>
+      <article class="p-capa" style="min-height:200px"><img src="../../imagens/raca-fight/modalidade-muay-thai-cartao@1x.webp" width="358" height="200" alt=""></article>
+      <button class="p-botao p-botao--vivo p-botao--largo">Agendar aula experimental grátis</button>
+    </div>
+    <div class="folha-moldura">
+      <div class="folha">
+        <div class="folha__alca"></div>
+        <div><h3 class="p-titulo-secao">Qual modalidade?</h3><p class="p-texto-2">Ela vai escrita na mensagem para a academia.</p></div>
+        <ul class="e-opcoes">
+          <li><span>Muay Thai</span><i class="e-radio on"></i></li>
+          <li><span>Boxe</span><i class="e-radio"></i></li>
+          <li><span>Jiu-Jitsu ou Luta Livre</span><i class="e-radio"></i></li>
+          <li><span>MMA</span><i class="e-radio"></i></li>
+          <li><span>Kids<small>Muay Thai Kids ou Jiu-Jitsu Kids</small></span><i class="e-radio"></i></li>
+          <li><span>Ainda não sei</span><i class="e-radio"></i></li>
+        </ul>
+        <button class="p-botao p-botao--vivo p-botao--largo"><svg class="p-icone"><use href="#i-conversa"/></svg>Abrir o WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. Indicar um amigo (folha sobre o Início) -->
+<div class="celular" data-esboco="indicar" data-hora="12:30" data-abas="inicio">
+  <div class="celular__tela p-tela">
+    <div class="p-rolagem">
+      <header class="p-saudacao"><span class="p-avatar">L</span><div class="p-saudacao__texto"><p class="p-sobretitulo">Quinta, 15 de out.</p><p class="p-titulo-grande">Olá, Lucas</p></div></header>
+      <article class="p-capa" style="min-height:220px"><img src="../../imagens/raca-fight/modalidade-muay-thai-cartao@1x.webp" width="358" height="200" alt=""></article>
+    </div>
+    <div class="folha-moldura">
+      <div class="folha">
+        <div class="folha__alca"></div>
+        <div><h3 class="p-titulo-secao">Traga um amiguinho</h3><p class="p-texto-2">Quando o seu amigo se matricular, vocês dois ganham o benefício que a academia combinar.</p></div>
+        <div class="e-codigo"><div><p class="p-texto-2">Seu código</p><b>LU7K2Q</b></div><svg class="p-icone"><use href="#i-convite"/></svg></div>
+        <p class="e-msg">"Bora treinar comigo na Raça Fight? A aula experimental é grátis. Fale com eles pelo WhatsApp e diga o meu código: LU7K2Q."</p>
+        <div>
+          <p class="e-rot" style="margin:0 0 4px 0">Suas indicações</p>
+          <div class="e-pessoa" style="padding-left:0;padding-right:0"><span class="e-ini">R</span><span><b>Rafa</b><small>Virou matrícula · 02/10</small></span><span class="l-selo l-selo--marca">Valeu!</span></div>
+          <div class="e-pessoa" style="padding-left:0;padding-right:0"><span class="e-ini">B</span><span><b>Bruno</b><small>Agendou a aula experimental</small></span><span></span></div>
+        </div>
+        <button class="p-botao p-botao--vivo p-botao--largo">Compartilhar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. Notificações na tela bloqueada -->
+<div class="celular" data-esboco="notificacoes" data-hora="" data-abas="nenhuma" data-tema="escuro">
+  <div class="celular__tela">
+    <div class="e-bloqueio">
+      <p class="e-bloqueio__data">Quinta, 15 de outubro</p>
+      <p class="e-bloqueio__hora">18:30</p>
+      <div class="e-notif"><span class="e-notif__icone"><svg viewBox="-54 -24 1078 304"><use href="#s-simbolo"/></svg></span><b>Raça Fight</b><time>agora</time><p>Sua aula de Muay Thai começa às 20:00.</p></div>
+      <div class="e-notif"><span class="e-notif__icone"><svg viewBox="-54 -24 1078 304"><use href="#s-simbolo"/></svg></span><b>Raça Fight</b><time>16:05</time><p>Aula de Boxe de hoje, 21:00, cancelada.</p></div>
+      <div class="e-notif"><span class="e-notif__icone"><svg viewBox="-54 -24 1078 304"><use href="#s-simbolo"/></svg></span><b>Raça Fight</b><time>09:12</time><p>Você tem um aviso novo da academia.</p></div>
+      <div class="e-notif"><span class="e-notif__icone"><svg viewBox="-54 -24 1078 304"><use href="#s-simbolo"/></svg></span><b>Raça Fight</b><time>ontem</time><p>Uma graduação nova foi registrada para você.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. Avisos (Perfil › Avisos) -->
+<div class="celular" data-esboco="avisos" data-hora="19:41" data-abas="perfil">
+  <div class="celular__tela p-tela">
+    <div class="p-rolagem">
+      <header class="p-saudacao"><a class="p-sino" style="box-shadow:var(--sombra-1)"><svg class="p-icone"><use href="#i-voltar"/></svg></a><div class="p-saudacao__texto"><p class="p-sobretitulo">Perfil</p><h2 class="p-titulo-grande">Avisos</h2></div></header>
+      <p class="e-rot">Lembrete de aula</p>
+      <div class="e-grupo">
+        <div class="e-chave"><b>Muay Thai · seg e qua, 20h</b><small>1 hora antes</small><i class="on"></i></div>
+        <div class="e-chave"><b>Jiu-Jitsu · seg e qua, 20h</b><small>Desligado</small><i></i></div>
+      </div>
+      <p class="e-rot">Da academia</p>
+      <div class="e-grupo">
+        <div class="e-chave"><b>Turmas</b><small>Aviso do professor e aula cancelada</small><i class="on"></i></div>
+        <div class="e-chave"><b>Graduação</b><small>Graduação registrada, exame marcado</small><i class="on"></i></div>
+        <div class="e-chave"><b>Avisos da academia</b><small>Até 1 por dia</small><i class="on"></i></div>
+        <div class="e-chave"><b>Cronômetro</b><small>Fim do round e do intervalo</small><i class="on"></i></div>
+      </div>
+      <p class="e-nota"><svg><use href="#i-sino"/></svg>Das 22h às 7h nada toca. O aviso não mostra o seu nome na tela bloqueada.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 5. Perfil do aluno -->
+<div class="celular" data-esboco="perfil" data-hora="19:41" data-abas="perfil">
+  <div class="celular__tela p-tela">
+    <div class="p-rolagem">
+      <header class="p-saudacao"><span class="p-avatar">L</span><div class="p-saudacao__texto"><p class="p-sobretitulo">Aluno desde março de 2026</p><h2 class="p-titulo-grande">Lucas Andrade</h2></div></header>
+      <ul class="l-linhas">
+        <li><a><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-perfil"/></svg></span><span>Meus dados<small>Tudo opcional</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+        <li><a><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-check-in"/></svg></span><span>Minha matrícula<small>Muay Thai e Jiu-Jitsu · ativa</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+        <li><a><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-convite"/></svg></span><span>Indicar um amigo<small>Traga um amiguinho</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+        <li><a><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-luva"/></svg></span><span>Aparecer em Atletas<small>Desligado · só se você quiser</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+        <li><a><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-sino"/></svg></span><span>Avisos<small>Lembrete de aula, turmas, graduação</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+        <li><a><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-escudo"/></svg></span><span>Quem pode ver<small>Seus dados corporais: só você</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+        <li><a><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-cadeado"/></svg></span><span>Conta<small>E-mail, senha, sair, apagar a conta</small></span><svg class="p-icone"><use href="#i-avancar"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 6. Meus dados (opcionais) -->
+<div class="celular" data-esboco="meus-dados" data-hora="19:42" data-abas="perfil">
+  <div class="celular__tela p-tela">
+    <div class="p-rolagem">
+      <header class="p-saudacao"><a class="p-sino" style="box-shadow:var(--sombra-1)"><svg class="p-icone"><use href="#i-voltar"/></svg></a><div class="p-saudacao__texto"><p class="p-sobretitulo">Perfil</p><h2 class="p-titulo-grande">Meus dados</h2></div></header>
+      <p class="e-nota"><svg><use href="#i-escudo"/></svg>Nada aqui é obrigatório. Preencha só o que quiser.</p>
+      <div class="e-grupo">
+        <div class="e-campo"><span>Nome</span><b>Lucas Andrade</b></div>
+        <div class="e-campo"><span>Objetivo</span><b>Aprender a lutar</b><em>opcional</em></div>
+        <div class="e-campo"><span>Data de nascimento</span><b>04/08/1998</b><em>opcional</em></div>
+        <div class="e-campo e-campo--vazio"><span>Peso e altura</span><b>Não informado</b><em>opcional</em></div>
+        <div class="e-campo e-campo--vazio"><span>Lesão ou restrição</span><b>Não informado</b><em>opcional</em></div>
+        <div class="e-campo e-campo--vazio"><span>Contato de emergência</span><b>Não informado</b><em>opcional</em></div>
+      </div>
+      <div class="e-grupo"><div class="e-chave"><b>A Raça Fight pode ver meus dados corporais</b><small>Desligada: a academia vê só nome, turmas e presença</small><i></i></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. Kids: Início do responsável -->
+<div class="celular" data-esboco="kids-inicio" data-hora="18:41" data-abas="inicio">
+  <div class="celular__tela p-tela">
+    <div class="p-rolagem">
+      <header class="p-saudacao"><span class="p-avatar">C</span><div class="p-saudacao__texto"><p class="p-sobretitulo">Segunda, 19 de out.</p><p class="p-titulo-grande">Olá, Carla</p></div><a class="p-sino"><svg class="p-icone"><use href="#i-sino"/></svg></a></header>
+      <section class="p-cartao e-crianca">
+        <div class="e-crianca__topo"><span class="e-ini">T</span><p><b>Theo</b><span class="p-texto-2" style="display:block">Jiu-Jitsu Kids · hoje, 19:00</span></p><span class="l-selo l-selo--marca">Kids</span></div>
+        <button class="p-botao p-botao--vivo p-botao--largo"><svg class="p-icone"><use href="#i-check-in"/></svg>Theo está na aula</button>
+        <div class="l-graduacao"><svg class="l-faixa" role="img" aria-label="Faixa cinza, 2 graus" style="--l-faixa-cor:#9A9A9A"><use href="#f-faixa"/></svg><p class="p-texto-2">Cinza, 2º grau · 9 aulas desde o último grau</p></div>
+      </section>
+      <section class="p-cartao e-crianca">
+        <div class="e-crianca__topo"><span class="e-ini">B</span><p><b>Bia</b><span class="p-texto-2" style="display:block">Muay Thai Kids · terça, 19:00</span></p><span class="l-selo l-selo--marca">Kids</span></div>
+        <p class="p-texto-2">3 aulas em outubro · o check-in abre terça às 18:30</p>
+      </section>
+      <section class="p-aviso"><p class="p-aviso__de"><svg class="p-icone p-icone--pequeno"><use href="#i-tatame"/></svg>Jiu-Jitsu Kids · Prof. Marina</p><button class="p-aviso__fechar"><svg class="p-icone"><use href="#i-fechar"/></svg></button><p class="p-aviso__texto">Quarta tem exame de graduação Kids. Venham com o kimono limpo.</p></section>
+    </div>
+  </div>
+</div>
+
+<!-- 8. Kids: o dependente, com a autorização de imagem desligada -->
+<div class="celular" data-esboco="kids-dependente" data-hora="18:43" data-abas="perfil">
+  <div class="celular__tela p-tela">
+    <div class="p-rolagem">
+      <header class="p-saudacao"><a class="p-sino" style="box-shadow:var(--sombra-1)"><svg class="p-icone"><use href="#i-voltar"/></svg></a><div class="p-saudacao__texto"><p class="p-sobretitulo">Meus dependentes</p><h2 class="p-titulo-grande">Theo, 9 anos</h2></div></header>
+      <div class="e-grupo">
+        <div class="e-campo"><span>Turma</span><b>Jiu-Jitsu Kids · seg e qua, 19h</b></div>
+        <div class="e-campo"><span>Presenças em outubro</span><b>5 aulas</b></div>
+        <div class="e-campo"><span>Faixa</span><b>Cinza, 2º grau</b></div>
+        <div class="e-campo e-campo--vazio"><span>Saúde (alergia, asma)</span><b>Não informado</b><em>opcional</em></div>
+      </div>
+      <p class="e-rot">Imagem</p>
+      <div class="e-grupo"><div class="e-chave"><b>Autorizo foto e vídeo do Theo no app</b><small>Desligada: nenhuma foto dele aparece no app, e o app não guarda foto dele</small><i></i></div></div>
+      <p class="e-nota"><svg><use href="#i-escudo"/></svg>Vale só para o app. Foto nas redes da academia é outro termo, assinado na recepção.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 9. Raça Responde -->
+<div class="celular" data-esboco="raca-responde" data-hora="19:41" data-abas="academia">
+  <div class="celular__tela p-tela">
+    <div class="p-rolagem">
+      <header class="p-saudacao"><a class="p-sino" style="box-shadow:var(--sombra-1)"><svg class="p-icone"><use href="#i-voltar"/></svg></a><div class="p-saudacao__texto"><p class="p-sobretitulo">Academia</p><h2 class="p-titulo-grande">Raça Responde</h2></div></header>
+      <div class="e-grupo">
+        <div class="e-pergunta"><b>Preciso ter experiência para começar?</b><svg><use href="#i-subir"/></svg><p>Não. As turmas adultas recebem todos os níveis, e o professor adapta o treino para quem está chegando.</p></div>
+        <div class="e-pergunta"><b>O que levar na aula experimental?</b><svg><use href="#i-baixo"/></svg></div>
+        <div class="e-pergunta"><b>A partir de que idade tem Kids?</b><svg><use href="#i-baixo"/></svg></div>
+        <div class="e-pergunta"><b>Preciso comprar luva ou kimono antes?</b><svg><use href="#i-baixo"/></svg></div>
+        <div class="e-pergunta"><b>O que é a Sexta OPEN?</b><svg><use href="#i-baixo"/></svg></div>
+      </div>
+      <p class="e-nota"><svg><use href="#i-conversa"/></svg>As respostas são escritas pela academia, no Admin.</p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+  // status, abas e gesto em cada celular (iguais aos do luta.html)
+  const STATUS = (h) => `<div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">${h}</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>`
+  const ABAS = [['inicio', 'Início', 'i-inicio'], ['horarios', 'Horários', 'i-horarios'], ['treinos', 'Treinos', 'i-faixa'], ['academia', 'Academia', 'i-academia'], ['perfil', 'Perfil', 'i-perfil']]
+  const BARRA = (ativa) => `<div class="celular__base"><nav class="barra-abas">${ABAS.map(([id, rot, ic]) => `<a class="aba ${id === ativa ? 'aba--ativa' : ''}"><span class="aba__icone"><svg class="icone"><use href="#${ic}${id === ativa ? '-cheio' : ''}"/></svg></span><span class="aba__rotulo">${rot}</span></a>`).join('')}</nav></div>`
+  for (const c of document.querySelectorAll('.celular')) {
+    const tela = c.querySelector('.celular__tela')
+    if (c.dataset.hora) tela.insertAdjacentHTML('afterbegin', STATUS(c.dataset.hora))
+    else tela.insertAdjacentHTML('afterbegin', STATUS('').replace('<span class="celular__hora"></span>', '<span class="celular__hora"></span>'))
+    const moldura = tela.querySelector('.folha-moldura')
+    if (c.dataset.abas !== 'nenhuma') { if (moldura) moldura.insertAdjacentHTML('beforebegin', BARRA(c.dataset.abas)); else tela.insertAdjacentHTML('beforeend', BARRA(c.dataset.abas)) }
+    tela.insertAdjacentHTML('beforeend', '<div class="celular__gesto p-gesto" aria-hidden="true"></div>')
+  }
+</script>
+</body>
+</html>

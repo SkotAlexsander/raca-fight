@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academia Plus — Telas novas</title>
+<meta name="description" content="As telas novas do P09 na linguagem das referências do Alex: Início do aluno, Evolução, Modo treino, Comemoração e Painel do dono, em moldura de iPhone e Android, claro e escuro.">
+<link rel="stylesheet" href="sistema.css">
+<link rel="stylesheet" href="novas.css">
+<script>
+  // Mesmo começo do index.html: tema salvo, aparelho (?aparelho=), movimento, transparência e fonte, antes de pintar.
+  try { var t = localStorage.getItem('academia-plus-tema'); if (t === 'claro' || t === 'escuro') document.documentElement.setAttribute('data-tema', t); } catch (e) {}
+  try {
+    var ids = ['iphone-se', 'iphone-13-mini', 'iphone-16', 'iphone-16-pro-max', 'android'];
+    var a = new URLSearchParams(location.search).get('aparelho');
+    if (ids.indexOf(a) < 0) { try { a = localStorage.getItem('academia-plus-aparelho'); } catch (e) {} }
+    if (ids.indexOf(a) < 0) a = 'android';
+    document.documentElement.setAttribute('data-aparelho', a);
+    document.documentElement.setAttribute('data-plataforma', a === 'android' ? 'android' : 'ios');
+  } catch (e) {}
+  try {
+    var m = null; try { m = localStorage.getItem('academia-plus-movimento'); } catch (e) {}
+    if (m !== 'normal' && m !== 'reduzido') m = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'reduzido' : 'normal';
+    document.documentElement.setAttribute('data-movimento', m);
+  } catch (e) {}
+  try {
+    var tr = null; try { tr = localStorage.getItem('academia-plus-transparencia'); } catch (e) {}
+    if (tr !== 'normal' && tr !== 'reduzida') tr = matchMedia('(prefers-reduced-transparency: reduce)').matches ? 'reduzida' : 'normal';
+    document.documentElement.setAttribute('data-transparencia', tr);
+  } catch (e) {}
+  try { if (localStorage.getItem('academia-plus-fonte') === '160') document.documentElement.style.fontSize = '160%'; } catch (e) {}
+</script>
+</head>
+<body>
+
+<!-- Ícones provisórios (traço 2, 24 px, pontas redondas). O agente R entrega o sprite próprio em 02-design/icones/; o Q troca. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!-- ICONES:INICIO — cópia de 02-design/icones/sprite.svg (gerar.py → embutir.mjs); não editar aqui -->
+<symbol id="i-inicio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5h0a1.75 1.75 0 0 1 1.75 1.75v11.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-11.5a1.75 1.75 0 0 1 1.75 -1.75z"/><path d="M4 8h0a1.75 1.75 0 0 1 1.75 1.75v4.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-4.5a1.75 1.75 0 0 1 1.75 -1.75z"/><path d="M16.5 4.5h0a1.75 1.75 0 0 1 1.75 1.75v11.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-11.5a1.75 1.75 0 0 1 1.75 -1.75z"/><path d="M20 8h0a1.75 1.75 0 0 1 1.75 1.75v4.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-4.5a1.75 1.75 0 0 1 1.75 -1.75z"/><path d="M9.25 12h5.5"/></symbol>
+<symbol id="i-inicio-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5h0a1.75 1.75 0 0 1 1.75 1.75v11.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-11.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor"/><path d="M4 8h0a1.75 1.75 0 0 1 1.75 1.75v4.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-4.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor"/><path d="M16.5 4.5h0a1.75 1.75 0 0 1 1.75 1.75v11.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-11.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor"/><path d="M20 8h0a1.75 1.75 0 0 1 1.75 1.75v4.5a1.75 1.75 0 0 1 -1.75 1.75h-0a1.75 1.75 0 0 1 -1.75 -1.75v-4.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor"/><path d="M9.25 12h5.5"/></symbol>
+<symbol id="i-treinos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a2.5 2.5 0 0 1 2.5 2.5v12.5a2.5 2.5 0 0 1 -2.5 2.5h-10a2.5 2.5 0 0 1 -2.5 -2.5v-12.5a2.5 2.5 0 0 1 2.5 -2.5z"/><path d="M10 2.25h4a1.5 1.5 0 0 1 1.5 1.5v0.75a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-0.75a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M8.5 11h.01"/><path d="M12 11h3.5"/><path d="M8.5 16h.01"/><path d="M12 16h3.5"/></symbol>
+<symbol id="i-treinos-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2.88h10a3.62 3.62 0 0 1 3.62 3.62v12.5a3.62 3.62 0 0 1 -3.62 3.62h-10a3.62 3.62 0 0 1 -3.62 -3.62v-12.5a3.62 3.62 0 0 1 3.62 -3.62zM9.4 9.6h5.2a1.4 1.4 0 0 1 1.4 1.4v0a1.4 1.4 0 0 1 -1.4 1.4h-5.2a1.4 1.4 0 0 1 -1.4 -1.4v-0a1.4 1.4 0 0 1 1.4 -1.4zM9.4 15h5.2a1.4 1.4 0 0 1 1.4 1.4v0a1.4 1.4 0 0 1 -1.4 1.4h-5.2a1.4 1.4 0 0 1 -1.4 -1.4v-0a1.4 1.4 0 0 1 1.4 -1.4z" fill="currentColor" stroke="none" fill-rule="evenodd"/><path d="M10 2.25h4a1.5 1.5 0 0 1 1.5 1.5v0.75a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-0.75a1.5 1.5 0 0 1 1.5 -1.5z" fill="currentColor"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h0a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1 -1.5 1.5h-0a1.5 1.5 0 0 1 -1.5 -1.5v-4a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M17.5 8.5h0a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1 -1.5 1.5h-0a1.5 1.5 0 0 1 -1.5 -1.5v-4a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M3.25 12H5"/><path d="M8 12h8"/><path d="M19 12h1.75"/><path d="M12 3.25v17.5"/></symbol>
+<symbol id="i-plus-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5h17a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1 -1.5 1.5h-17a1.5 1.5 0 0 1 -1.5 -1.5v-0a1.5 1.5 0 0 1 1.5 -1.5zM5.75 7.5h0.5a1.25 1.25 0 0 1 1.25 1.25v6.5a1.25 1.25 0 0 1 -1.25 1.25h-0.5a1.25 1.25 0 0 1 -1.25 -1.25v-6.5a1.25 1.25 0 0 1 1.25 -1.25zM17.75 7.5h0.5a1.25 1.25 0 0 1 1.25 1.25v6.5a1.25 1.25 0 0 1 -1.25 1.25h-0.5a1.25 1.25 0 0 1 -1.25 -1.25v-6.5a1.25 1.25 0 0 1 1.25 -1.25zM12 2h0a2 2 0 0 1 2 2v16a2 2 0 0 1 -2 2h-0a2 2 0 0 1 -2 -2v-16a2 2 0 0 1 2 -2z" fill="currentColor" stroke="none" fill-rule="nonzero"/></symbol>
+<symbol id="i-perfil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></symbol>
+<symbol id="i-perfil-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z" fill="currentColor"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z" fill="currentColor"/></symbol>
+<symbol id="i-alunos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8" r="3.75"/><path d="M2.75 21a6.75 6.75 0 0 1 13.5 0"/><path d="M15.5 4.5a3.75 3.75 0 0 1 0 7"/><path d="M18.5 15a6.75 6.75 0 0 1 2.75 6"/></symbol>
+<symbol id="i-alunos-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.75 8a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0z" fill="currentColor"/><path d="M2.75 21a6.75 6.75 0 0 1 13.5 0z" fill="currentColor"/><path d="M15.5 4.5a3.75 3.75 0 0 1 0 7"/><path d="M18.5 15a6.75 6.75 0 0 1 2.75 6"/></symbol>
+<symbol id="i-academia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 5 3.5h14l2 5"/><path d="M3 8.5a3 3 0 0 0 6 0a3 3 0 0 0 6 0a3 3 0 0 0 6 0"/><path d="M5 12.5V21h14v-8.5"/><path d="M10 21v-4h4v4"/></symbol>
+<symbol id="i-academia-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 5 3.5h14l2 5a3 3 0 0 1 -6 0a3 3 0 0 1 -6 0a3 3 0 0 1 -6 0z" fill="currentColor"/><path d="M5 13.5V21h4.5v-3.5a1.5 1.5 0 0 1 1.5 -1.5h2a1.5 1.5 0 0 1 1.5 1.5V21H19v-7.5z" fill="currentColor"/></symbol>
+<symbol id="i-marcar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></symbol>
+<symbol id="i-mais" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+<symbol id="i-menos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></symbol>
+<symbol id="i-cronometro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15.75 7A7.5 7.5 0 1 1 8.25 7"/><path d="M10 3h4"/><path d="M12 3v3"/><path d="M12 13.5l3-3"/></symbol>
+<symbol id="i-pausar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 5v14"/><path d="M15.5 5v14"/></symbol>
+<symbol id="i-pausar-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.75 3.5h1.5a1.75 1.75 0 0 1 1.75 1.75v13.5a1.75 1.75 0 0 1 -1.75 1.75h-1.5a1.75 1.75 0 0 1 -1.75 -1.75v-13.5a1.75 1.75 0 0 1 1.75 -1.75zM15.75 3.5h1.5a1.75 1.75 0 0 1 1.75 1.75v13.5a1.75 1.75 0 0 1 -1.75 1.75h-1.5a1.75 1.75 0 0 1 -1.75 -1.75v-13.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-comecar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 7 5.2z"/></symbol>
+<symbol id="i-comecar-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 7 5.2z" fill="currentColor"/></symbol>
+<symbol id="i-pular" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.2v11.6a1 1 0 0 0 1.53.85l9.2-5.8a1 1 0 0 0 0-1.7l-9.2-5.8A1 1 0 0 0 4.5 6.2z"/><path d="M19.5 5v14"/></symbol>
+<symbol id="i-buscar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.75"/><path d="M15.5 15.5 20.5 20.5"/></symbol>
+<symbol id="i-filtro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6h17"/><path d="M6.5 12h11"/><path d="M9.5 18h5"/></symbol>
+<symbol id="i-voltar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+<symbol id="i-avancar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.25" fill="currentColor"/><circle cx="12" cy="12" r="1.25" fill="currentColor"/><circle cx="19" cy="12" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></symbol>
+<symbol id="i-vibrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4.5h4a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-12a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M2.5 8.5l2 1.75-2 1.75 2 1.75-2 1.75"/><path d="M21.5 8.5l-2 1.75 2 1.75-2 1.75 2 1.75"/></symbol>
+<symbol id="i-sino" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5V10a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 21h4"/></symbol>
+<symbol id="i-sino-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5V10a6 6 0 0 1 12 0v5.5l1.5 2h-15z" fill="currentColor"/><path d="M10 21h4"/></symbol>
+<symbol id="i-prato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3v5.5a3 3 0 0 0 6 0V3"/><path d="M7.5 11.5V21"/><path d="M19.5 14.5V3a4.5 4.5 0 0 0-4.5 4.5v5.5a1.5 1.5 0 0 0 1.5 1.5h3zm0 0V21"/></symbol>
+<symbol id="i-grafico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 20V14"/><path d="M12 20V4.5"/><path d="M18.5 20V9.5"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9a2 2 0 0 1 2-2h2.5l1.6-2.5h5.8L16.5 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13.25" r="3"/></symbol>
+<symbol id="i-cadeado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11h11a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></symbol>
+<symbol id="i-email" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z"/><path d="M3.5 7.5 12 13l8.5-5.5"/></symbol>
+<symbol id="i-apple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M16.37 12.6c-.02-2.2 1.8-3.27 1.88-3.32-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.17-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.3-3.5zM14.2 6.13c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.64-1.05 1.67-.92 2.66.97.08 1.96-.49 2.56-1.21z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-google" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M18.2 6.6A8.25 8.25 0 1 0 20.25 12H12.5"/></symbol>
+<symbol id="i-calendario" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 5h13a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-13a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z"/><path d="M3.5 10h17"/><path d="M8 2.75v4"/><path d="M16 2.75v4"/></symbol>
+<symbol id="i-baixo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></symbol>
+<symbol id="i-subir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></symbol>
+<symbol id="i-seta-direita" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="M13 5.5l6.5 6.5-6.5 6.5"/></symbol>
+<symbol id="i-lista" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11.5"/><path d="M9 12h11.5"/><path d="M9 18h11.5"/><circle cx="4.25" cy="6" r="1.25" fill="currentColor"/><circle cx="4.25" cy="12" r="1.25" fill="currentColor"/><circle cx="4.25" cy="18" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-conversa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2.5 21.5z"/></symbol>
+<symbol id="i-desfazer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+<symbol id="i-trocar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20V4"/><path d="M3 8l4-4 4 4"/><path d="M17 4v16"/><path d="M13 16l4 4 4-4"/></symbol>
+<symbol id="i-alerta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10.27 4.5a2 2 0 0 1 3.46 0l7.6 13.25A2 2 0 0 1 19.6 20.75H4.4a2 2 0 0 1-1.73-3z"/><path d="M12 9.5v4"/><circle cx="12" cy="17" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-alca" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1.25" fill="currentColor"/><circle cx="15" cy="6" r="1.25" fill="currentColor"/><circle cx="9" cy="12" r="1.25" fill="currentColor"/><circle cx="15" cy="12" r="1.25" fill="currentColor"/><circle cx="9" cy="18" r="1.25" fill="currentColor"/><circle cx="15" cy="18" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-nuvem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></symbol>
+<symbol id="i-olho" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-escudo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></symbol>
+<symbol id="i-convite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h15a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2h-15a2 2 0 0 0-2 2z"/><path d="M13 5v2"/><path d="M13 11v2"/><path d="M13 17v2"/></symbol>
+<symbol id="i-relogio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.25 2"/></symbol>
+<symbol id="i-estrela" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.75l2.78 5.64 6.22.9-4.5 4.39 1.06 6.2L12 16.95l-5.56 2.93 1.06-6.2L3 9.29l6.22-.9z"/></symbol>
+<symbol id="i-anilha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.75"/></symbol>
+<symbol id="i-anilha-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M1.88 12a10.12 10.12 0 1 0 20.25 0a10.12 10.12 0 1 0 -20.25 0zM10.38 12a1.62 1.62 0 1 0 3.25 0a1.62 1.62 0 1 0 -3.25 0z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-barra" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6.5h0a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1 -1.5 1.5h-0a1.5 1.5 0 0 1 -1.5 -1.5v-8a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M18 6.5h0a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1 -1.5 1.5h-0a1.5 1.5 0 0 1 -1.5 -1.5v-8a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M7.5 12h9"/><path d="M2 12h2.5"/><path d="M19.5 12H22"/></symbol>
+<symbol id="i-esteira" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="3.75" r="1.75" fill="currentColor"/><path d="M3.5 14l4 1 .5-.5"/><path d="M12 18v-3l-3-2.9.75-5.1"/><path d="M6 10V8l4-1 2.5 2.5 2.5.5"/><path d="M3 21.5h17"/><path d="M18 21.5l1-11 2-1"/></symbol>
+<symbol id="i-bicicleta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1.5" fill="currentColor"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></symbol>
+<symbol id="i-corrida" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="4.5" r="2" fill="currentColor"/><path d="M4 17l5 1 .75-1.5"/><path d="M15 21v-4l-4-3 1-6"/><path d="M7 12V9l5-1 3 3 3 1"/></symbol>
+<symbol id="i-alongamento" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="5.5" r="2" fill="currentColor"/><path d="M6.5 21l3.5-5"/><path d="M5 11l7-2"/><path d="M16 21l-4-7V9l7-4"/></symbol>
+<symbol id="i-balanca" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3.5h9a4 4 0 0 1 4 4v9a4 4 0 0 1 -4 4h-9a4 4 0 0 1 -4 -4v-9a4 4 0 0 1 4 -4z"/><path d="M12 8a6 6 0 0 1 4.3 1.8l-2.6 2.6a2.4 2.4 0 0 0-3.4 0L7.7 9.8A6 6 0 0 1 12 8z"/></symbol>
+<symbol id="i-medida" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1z"/><path d="M7.5 12v3"/><path d="M12 12v3"/><path d="M16.5 12v3"/><path d="M3 3.5v4"/><path d="M3 5.5h18"/><path d="M21 3.5v4"/></symbol>
+<symbol id="i-frequencia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5a5.25 5.25 0 0 1 9.1-3.6.55.55 0 0 0 .8 0A5.25 5.25 0 0 1 21.5 9.5c0 2.2-1.45 3.85-2.9 5.3l-5.2 5.1a2 2 0 0 1-2.8 0l-5.2-5.1C3.95 13.35 2.5 11.7 2.5 9.5"/><path d="M6 12.5h3l1.5-2.5 3 5 1.5-2.5h3"/></symbol>
+<symbol id="i-sequencia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a7 7 0 0 1-14 0 5 5 0 0 1 1-3 2.5 2.5 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4z"/></symbol>
+<symbol id="i-sequencia-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a7 7 0 0 1-14 0 5 5 0 0 1 1-3 2.5 2.5 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4z" fill="currentColor"/></symbol>
+<symbol id="i-trofeu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6.5H4.5v1.5a3 3 0 0 0 3 3"/><path d="M17 6.5h2.5v1.5a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/><path d="M9.5 18h5"/></symbol>
+<symbol id="i-musculo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12.4 13A5 5 0 0 1 22 15c0 3.87-4 7-9 7-4.08 0-8.15-.82-10.37-2.46-.43-.32-.63-.83-.62-1.36C2.12 12.72 2.63 2 10 2a3 3 0 0 1 3 3 2 2 0 0 1-2 2c-1.1 0-1.64-.44-2-1"/><path d="M15 14a5 5 0 0 0-7.6 2"/></symbol>
+<symbol id="i-garrafa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.75h4"/><path d="M10.25 2.75v2.5c0 1.2-.6 2-1.5 3.2A6 6 0 0 0 7.5 12v7.5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2V12a6 6 0 0 0-1.25-3.55c-.9-1.2-1.5-2-1.5-3.2v-2.5"/><path d="M7.5 14.5c1.5-1 3-1 4.5 0s3 1 4.5 0"/></symbol>
+<symbol id="i-personal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6.5v3.5"/><path d="M21 6.5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5.7A6.75 6.75 0 1 1 9 6.5z"/></symbol>
+<symbol id="i-grafico-linha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 3.5V19a1.5 1.5 0 0 0 1.5 1.5h15.5"/><path d="M7.5 15l4-4.5 3 3 5-6"/></symbol>
+<symbol id="ex-supino-reto" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M7 31.5h28"/><path d="M11 31.5v9"/><path d="M31 31.5v9"/><path d="M10.5 10.5a4.5 4.5 0 1 0 9 0a4.5 4.5 0 1 0 -9 0"/></g><g class="corpo" stroke-width="3"><path d="M14.5 27.5L29 27.5"/><path d="M29 27.5L36 25.5L38.5 40"/><path d="M14.5 27.5L15 20L15 12"/></g><circle class="cabeca" cx="9.6" cy="27.5" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M15.22 25.8L21.75 25.8"/></g></symbol>
+<symbol id="ex-supino-inclinado-com-halteres" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M14 26 23.5 36.5h12"/><path d="M27 36.5v5"/><path d="M15.5 7.5h7 M15.5 6v3 M22.5 6v3"/></g><g class="corpo" stroke-width="3"><path d="M16.5 21.5L26 32"/><path d="M26 32L34.5 29.5L37 41"/><path d="M16.5 21.5L17.5 15L19 8.5"/></g><circle class="cabeca" cx="13.21" cy="17.87" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M18.24 20.88L22.51 25.61"/></g></symbol>
+<symbol id="ex-crucifixo-na-maquina" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M7 6v16"/><path d="M41 6v16"/><path d="M17 41h14"/></g><g class="corpo" stroke-width="3"><path d="M24 15L24 30"/><path d="M17.5 17L30.5 17"/><path d="M17.5 17L9.5 18L9.5 9"/><path d="M30.5 17L38.5 18L38.5 9"/><path d="M20.5 30L27.5 30"/><path d="M20.5 30L19.5 41"/><path d="M27.5 30L28.5 41"/></g><circle class="cabeca" cx="24" cy="9.5" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M19.5 20.5h9"/></g></symbol>
+<symbol id="ex-triceps-corda" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M33.5 5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"/><path d="M35.3 7.4 31 28.5"/></g><g class="corpo" stroke-width="3"><path d="M21.5 14L20 28.5"/><path d="M20 28.5L22 35.5L21 42"/><path d="M20 28.5L17.5 35.5L16 42"/><path d="M21.5 14L26 22.5L30.5 29"/></g><circle class="cabeca" cx="22" cy="9.13" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M20.54 15.82L24.27 22.87"/></g></symbol>
+<symbol id="ex-agachamento-livre" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M13.5 18.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0"/><path d="M10 18.5h16"/></g><g class="corpo" stroke-width="3"><path d="M22.5 17L17.5 30.5"/><path d="M17.5 30.5L30 32.5L27 42"/><path d="M22.5 17L28 22L25.5 18.5"/></g><circle class="cabeca" cx="24.44" cy="11.75" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M19.02 29.02L29.02 30.62"/></g></symbol>
+<symbol id="ex-remada-curvada" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M23.5 33a4.5 4.5 0 1 0 9 0a4.5 4.5 0 1 0 -9 0"/></g><g class="corpo" stroke-width="3"><path d="M30.5 17L16.5 25"/><path d="M16.5 25L20.5 33L18 42"/><path d="M30.5 17L25 23.5L28 29"/></g><circle class="cabeca" cx="34.75" cy="14.57" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M28.54 16.16L19.86 21.12"/></g></symbol>
+<symbol id="ex-esteira" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M6 41.5h30.5"/><path d="M36.5 41.5 40 21.5"/><path d="M40 21.5h-6"/></g><g class="corpo" stroke-width="3"><path d="M23.5 13L21 26.5"/><path d="M21 26.5L27.5 31.5L26 39.5"/><path d="M21 26.5L17.5 33L11.5 37"/><path d="M23.5 13L27.5 19.5L31 16"/><path d="M23.5 13L19.5 20.5L16 23.5"/></g><circle class="cabeca" cx="24.39" cy="8.18" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M22.69 25.65L27.89 29.65"/></g></symbol>
+<symbol id="ex-leg-press" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M6 22 18 37.5h8"/><path d="M33 15.5 39 29"/><path d="M36 22.5 44 41"/></g><g class="corpo" stroke-width="3"><path d="M11 25.5L19 34.5"/><path d="M19 34.5L25 23.5L35 22.5"/><path d="M11 25.5L16 30.5L21.5 34"/></g><circle class="cabeca" cx="7.74" cy="21.84" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M21.09 34.21L25.89 25.41"/></g></symbol>
+<symbol id="ex-puxada" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M6 5.5h36"/><path d="M24 5.5V2"/></g><g class="corpo" stroke-width="3"><path d="M24 20L24 33"/><path d="M18 21.5L30 21.5"/><path d="M18 21.5L12.5 15L11.5 5.5"/><path d="M30 21.5L35.5 15L36.5 5.5"/><path d="M20.5 33L27.5 33"/><path d="M20.5 33L19.5 42"/><path d="M27.5 33L28.5 42"/></g><circle class="cabeca" cx="24" cy="14.9" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M19.5 24.5 21 31"/><path d="M28.5 24.5 27 31"/></g></symbol>
+<symbol id="ex-desenvolvimento" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M8 8.5h7 M8 7v3 M15 7v3"/><path d="M33 8.5h7 M33 7v3 M40 7v3"/></g><g class="corpo" stroke-width="3"><path d="M24 19L24 31"/><path d="M17.5 20.5L30.5 20.5"/><path d="M17.5 20.5L11 21L11.5 10.5"/><path d="M30.5 20.5L37 21L36.5 10.5"/><path d="M20.5 31L27.5 31"/><path d="M20.5 31L19.5 42"/><path d="M27.5 31L28.5 42"/></g><circle class="cabeca" cx="24" cy="13.7" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M18 18.2 14.5 18.5"/><path d="M30 18.2 33.5 18.5"/></g></symbol>
+<symbol id="ex-rosca" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M29.5 14.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"/></g><g class="corpo" stroke-width="3"><path d="M22 13.5L21.5 28"/><path d="M21.5 28L23 35L22 42"/><path d="M21.5 28L19 35L17.5 42"/><path d="M22 13.5L25.5 22.5L31.5 15.5"/></g><circle class="cabeca" cx="22.17" cy="8.6" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M23.93 13.78L26.73 20.98"/></g></symbol>
+<symbol id="ex-prancha" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M3 43h42"/></g><g class="corpo" stroke-width="3"><path d="M33 32.5L19.5 35"/><path d="M19.5 35L12.5 37.5L5.5 40.5"/><path d="M33 32.5L33 40.5L40.5 40.5"/></g><circle class="cabeca" cx="37.82" cy="31.61" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M31.28 34.55L20.48 36.55"/></g></symbol>
+<symbol id="ex-abdominal" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M3 43h42"/></g><g class="corpo" stroke-width="3"><path d="M15 33L26.5 38.5"/><path d="M26.5 38.5L32.5 29L38 39"/><path d="M15 33L20 29.5L25.5 30"/></g><circle class="cabeca" cx="10.58" cy="30.89" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M16.88 32.02L26.66 36.69"/></g></symbol>
+<symbol id="ex-elevacao-pelvica" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M3 43h42"/></g><g class="corpo" stroke-width="3"><path d="M12.5 38.5L25 30"/><path d="M25 30L33 27.5L35 40"/><path d="M12.5 38.5L17.5 40.5L22.5 40.5"/></g><circle class="cabeca" cx="8.45" cy="41.26" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M20.5 34.5Q25.5 33.5 29.5 31.5"/></g></symbol>
+<symbol id="ex-panturrilha" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M27 43.5h14"/><path d="M27 43.5v4"/><path d="M35 43.5V20"/></g><g class="corpo" stroke-width="3"><path d="M23.5 11.5L23.5 26"/><path d="M23.5 26L24.5 33.5L25 39.5L29 42"/><path d="M23.5 11.5L28.5 18.5L34 21"/></g><circle class="cabeca" cx="23.5" cy="6.6" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M22.81 33.64L23.31 39.64"/></g></symbol>
+<symbol id="ex-bicicleta" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g class="aparelho" stroke-width="2.5" opacity=".45"><path d="M26 36a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"/><path d="M18.5 27.5 22.5 41.5"/><path d="M12 42.5h26"/><path d="M33 30.5 36 17"/><path d="M14.5 26h7"/></g><g class="corpo" stroke-width="3"><path d="M26 13.5L18.5 25"/><path d="M18.5 25L28.5 26.5L25.5 35.5"/><path d="M26 13.5L31 17.5L36 17"/></g><circle class="cabeca" cx="28.68" cy="9.4" r="3.4" fill="currentColor" stroke="none"/><g class="musculo" stroke-width="4.5" style="stroke:var(--ilustracao-destaque, #C42024)"><path d="M19.75 23.47L27.75 24.67"/></g></symbol>
+<!-- ICONES:FIM -->
+  <symbol id="s-sinal" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></symbol>
+  <symbol id="s-wifi" viewBox="0 0 16 12"><path d="M8 11.6l2.3-2.6a3.3 3.3 0 0 0-4.6 0z"/><path d="M3.3 6.4l1.5 1.7a4.8 4.8 0 0 1 6.4 0l1.5-1.7a7.1 7.1 0 0 0-9.4 0z"/><path d="M.6 3.5l1.5 1.7a9 9 0 0 1 11.8 0l1.5-1.7a11.3 11.3 0 0 0-14.8 0z"/></symbol>
+  <symbol id="s-bateria" viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="22" height="11" rx="3" fill="none" stroke="currentColor" opacity="0.45"/><rect x="2" y="2" width="16" height="8" rx="1.5"/><path d="M24 4v4a2 2 0 0 0 0-4z" opacity="0.45"/></symbol>
+</svg>
+
+<main class="pagina">
+
+  <header class="pagina__topo">
+    <div>
+      <nav class="paginas-nav" aria-label="Páginas do mockup"><span class="paginas-nav__marca" aria-hidden="true">Raça Fight</span><a href="luta.html">Telas de luta</a><a href="entrada.html">Abertura e entrada</a><a href="index.html">Sistema (histórico)</a><a href="novas.html" aria-current="page">Musculação (histórico)</a></nav>
+      <h1 class="so-leitor">Academia Plus — telas novas</h1>
+      <p class="corpo-pequeno"><b>Histórico (15/10/2026):</b> telas da fase de musculação (Academia Plus), mantidas como referência dos componentes. As cores já são as da Raça Fight (tokens 2.0.0); as telas de luta estão em <code>luta.html</code> (menu acima).</p>
+      
+      <p class="p-nota-topo corpo-pequeno">P09, agente P. Início, Evolução, Modo treino, Comemoração e Painel do dono na linguagem das referências: foto escura, vidro, números enormes, verde vivo. Usa o <code>sistema.css</code> do N sem alterar; o que falta está em <code>novas.css</code> com o prefixo <code>--p-</code>.</p>
+    </div>
+    <div class="seletores">
+      <div class="seletor-tema" role="group" aria-label="Tema">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-tema-botao="claro">Claro</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-tema-botao="escuro">Escuro</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-tema-botao="sistema">Sistema</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Aparelho da moldura">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="iphone-se">iPhone SE</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="iphone-16">iPhone 16</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="iphone-16-pro-max">iPhone 16 Pro Max</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-aparelho-botao="android">Android 390</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Movimento">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-movimento-botao="normal">Movimento</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-movimento-botao="reduzido">Reduzido</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Transparência">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-transparencia-botao="normal">Vidro</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-transparencia-botao="reduzida">Reduzir transparência</button>
+      </div>
+      <div class="seletor-tema" role="group" aria-label="Tamanho da fonte do sistema">
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-fonte-botao="100">Fonte 100 %</button>
+        <button class="botao botao--secundario botao--pequeno botao--intrinseco" data-fonte-botao="160">160 %</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="galeria" id="telas">
+    <div class="galeria__titulo">
+      <h2 class="titulo-2">5 telas novas em 7 quadros · <span id="rotulo-aparelho">Android 390 · 390 × 844</span></h2>
+      <p class="texto-secundario corpo-pequeno">Ana, aluna Plus da Academia do Marcos, numa quarta, 14 de outubro. As telas respondem: marque a série no modo treino (o descanso recomeça), toque num grupo da rosca, passe o dedo nos gráficos, dispense o aviso e repita a comemoração.</p>
+    </div>
+
+    <div class="telas">
+
+      <!-- ===================== 1. INÍCIO DO ALUNO ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: Início do aluno">
+          <div class="celular__tela p-tela">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-rolagem">
+              <header class="p-saudacao">
+                <span class="p-avatar" aria-hidden="true">A</span>
+                <div class="p-saudacao__texto">
+                  <p class="p-sobretitulo">Quarta, 14 de out.</p>
+                  <h2 class="p-titulo-grande">Olá, Ana</h2>
+                </div>
+                <a class="p-sino" href="#" aria-label="Avisos: 1 novo"><svg class="p-icone"><use href="#i-sino"/></svg></a>
+              </header>
+
+              <section class="p-aviso" aria-label="Aviso da academia" data-aviso>
+                <p class="p-aviso__de"><svg class="p-icone p-icone--pequeno"><use href="#i-academia"/></svg>Academia do Marcos · há 2 h</p>
+                <button class="p-aviso__fechar" aria-label="Dispensar aviso" data-dispensar><svg class="p-icone"><use href="#i-fechar"/></svg></button>
+                <p class="p-aviso__texto">Feriado na segunda, 2/11: abrimos das 8h às 12h.</p>
+              </section>
+
+              <section class="p-semana" aria-labelledby="p-semana-titulo">
+                <div class="p-semana__topo">
+                  <div>
+                    <h3 class="p-titulo-secao" id="p-semana-titulo">Sua semana</h3>
+                    <p class="p-texto-2">Você quer treinar 4 dias</p>
+                  </div>
+                  <p class="p-semana__conta" role="img" aria-label="2 de 4 treinos nesta semana"><span class="p-numero-hero">2</span><span class="p-texto-2">de 4</span></p>
+                </div>
+                <ol class="p-dias" aria-label="Dias da semana">
+                  <li class="p-dia p-dia--feito" aria-label="Segunda, treinou"><span class="p-dia__letra" aria-hidden="true">S</span><span class="p-dia__bola"><svg class="p-icone p-icone--pequeno"><use href="#i-marcar"/></svg></span></li>
+                  <li class="p-dia p-dia--feito" aria-label="Terça, treinou"><span class="p-dia__letra" aria-hidden="true">T</span><span class="p-dia__bola"><svg class="p-icone p-icone--pequeno"><use href="#i-marcar"/></svg></span></li>
+                  <li class="p-dia p-dia--hoje" aria-label="Quarta, hoje"><span class="p-dia__letra" aria-hidden="true">Q</span><span class="p-dia__bola">14</span></li>
+                  <li class="p-dia" aria-label="Quinta"><span class="p-dia__letra" aria-hidden="true">Q</span><span class="p-dia__bola"></span></li>
+                  <li class="p-dia" aria-label="Sexta"><span class="p-dia__letra" aria-hidden="true">S</span><span class="p-dia__bola"></span></li>
+                  <li class="p-dia" aria-label="Sábado"><span class="p-dia__letra" aria-hidden="true">S</span><span class="p-dia__bola"></span></li>
+                  <li class="p-dia" aria-label="Domingo"><span class="p-dia__letra" aria-hidden="true">D</span><span class="p-dia__bola"></span></li>
+                </ol>
+              </section>
+
+              <article class="p-capa p-cartao-tocavel" aria-label="Treino de hoje: Treino A, peito e tríceps">
+                <img src="../../imagens/treinos/abc-hipertrofia-capa@1x.webp" srcset="../../imagens/treinos/abc-hipertrofia-capa@1x.webp 1x, ../../imagens/treinos/abc-hipertrofia-capa@2x.webp 2x" width="358" height="240" alt="Homem no supino reto com barra">
+                <span class="p-capa__etiqueta p-vidro vidro--escuro">Hoje · Treino A</span>
+                <div class="p-capa__painel p-vidro">
+                  <div>
+                    <h2 class="p-titulo-grande">Peito e tríceps</h2>
+                    <p class="p-capa__meta p-texto-2"><span><svg class="p-icone p-icone--pequeno"><use href="#i-inicio"/></svg>7 exercícios</span><span><svg class="p-icone p-icone--pequeno"><use href="#i-relogio"/></svg>cerca de 40 min</span></p>
+                  </div>
+                  <button class="p-botao p-botao--vivo p-botao--grande p-botao--largo">Começar <span class="p-botao__seta" aria-hidden="true"><svg class="p-icone"><use href="#i-seta-direita"/></svg></span></button>
+                </div>
+              </article>
+
+              <a class="p-cartao p-cartao-tocavel p-dieta" href="#" aria-label="Dieta de hoje: 3 de 5 refeições feitas. Próxima: lanche da tarde, 16:00">
+                <span class="p-dieta__anel" aria-hidden="true">
+                  <svg viewBox="0 0 64 64"><circle class="trilho" cx="32" cy="32" r="27" fill="none" stroke-width="6"/><circle class="valor" cx="32" cy="32" r="27" fill="none" stroke-width="6" stroke-linecap="round" pathLength="100" stroke-dasharray="60 100"/></svg>
+                  <span class="p-numero" style="font-size:var(--tipo-titulo-3);line-height:var(--linha-titulo-3)">3/5</span>
+                </span>
+                <span>
+                  <span class="p-titulo-secao" style="display:flex;align-items:center;gap:8px">Dieta de hoje <span class="p-selo-plus">Plus</span></span>
+                  <span class="p-texto-2" style="display:block">Próxima: lanche da tarde, 16:00</span>
+                </span>
+                <svg class="p-icone" style="color:var(--cor-texto-secundario)"><use href="#i-avancar"/></svg>
+              </a>
+
+              <nav aria-label="Atalhos" class="p-atalhos">
+                <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-relogio"/></svg></span>Cronômetro</a>
+                <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-grafico"/></svg></span>Evolução</a>
+                <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-lista"/></svg></span>Treinos prontos</a>
+                <a class="p-atalho p-cartao-tocavel" href="#"><span class="p-atalho__icone"><svg class="p-icone"><use href="#i-calendario"/></svg></span>Treino passado</a>
+              </nav>
+            </div>
+            <div class="celular__base"><nav class="barra-abas" aria-label="Navegação do aluno"><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio-cheio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos"/></svg></span><span class="aba__rotulo">Treinos</span></a><a class="aba" href="#" aria-label="Plus: personal, treino e dieta"><span class="aba__icone"><svg class="icone"><use href="#i-plus"/></svg></span><span class="aba__rotulo">Plus</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav></div>
+            <div class="celular__gesto p-gesto" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">1 · Início do aluno</p>
+        <p class="legenda texto-secundario">Saudação, aviso da academia (dispensável), a semana em bolinhas com o "2 de 4" grande, o treino de hoje em foto com vidro e "Começar", a dieta do Plus e quatro atalhos. Abas em vidro flutuante.</p>
+      </div>
+
+      <!-- ===================== 2. EVOLUÇÃO ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: Evolução do aluno">
+          <div class="celular__tela p-tela p-tela--foto-topo">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-rolagem p-rolagem--sob-foto">
+              <div class="p-foto p-foto--evolucao">
+                <img src="../../imagens/telas/evolucao-agachamento@1x.webp" srcset="../../imagens/telas/evolucao-agachamento@1x.webp 1x, ../../imagens/telas/evolucao-agachamento@2x.webp 2x" width="390" height="300" alt="">
+                <div class="p-foto__barra">
+                  <a class="p-botao-vidro p-vidro vidro--escuro" href="#" aria-label="Voltar para Treinos"><svg class="p-icone"><use href="#i-voltar"/></svg></a>
+                  <div class="p-chips" role="group" aria-label="Período">
+                    <button class="p-chip p-vidro vidro--escuro" aria-pressed="false">4 sem.</button>
+                    <button class="p-chip p-vidro vidro--escuro" aria-pressed="true">3 meses</button>
+                  </div>
+                </div>
+                <h2 class="p-titulo-grande" style="margin-bottom:var(--espaco-12)">Evolução</h2>
+              </div>
+
+              <section class="p-hero p-vidro" aria-label="Carga no agachamento livre">
+                <button class="p-seletor-exercicio" aria-label="Exercício: agachamento livre. Trocar">Agachamento livre <svg class="p-icone"><use href="#i-baixo"/></svg></button>
+                <div class="p-hero__linha">
+                  <p><span class="p-numero-hero">60<small>kg</small></span></p>
+                  <p class="p-delta"><svg class="p-icone p-icone--pequeno"><use href="#i-grafico-linha"/></svg>15 kg desde 20 de jul.</p>
+                </div>
+                <p class="p-texto-2">Maior carga por semana, nas séries feitas</p>
+              </section>
+
+              <section class="p-cartao" aria-labelledby="p-g-carga-t">
+                <div class="p-cartao__topo"><h3 class="p-titulo-secao" id="p-g-carga-t">Carga ao longo do tempo</h3><span class="p-texto-2">kg</span></div>
+                <div class="p-grafico" data-grafico="linha" data-titulo="Carga no agachamento livre"
+                  data-rotulos="20/7,27/7,3/8,10/8,17/8,24/8,31/8,7/9,14/9,21/9,28/9,5/10,12/10"
+                  data-valores="45,45,47.5,47.5,50,50,50,52.5,52.5,55,57.5,57.5,60"
+                  data-meses="0:jul,2:ago,7:set,11:out"></div>
+                <details class="p-tabela"><summary>Ver em tabela</summary><table><thead><tr><th>Semana</th><th>Carga</th></tr></thead><tbody data-tabela-de="linha"></tbody></table></details>
+              </section>
+
+              <section class="p-cartao" aria-labelledby="p-g-mapa-t">
+                <div class="p-cartao__topo"><h3 class="p-titulo-secao" id="p-g-mapa-t">Outubro</h3><span class="p-texto-2"><b class="p-numero" style="font-size:var(--tipo-titulo-3);line-height:var(--linha-titulo-3);color:var(--cor-texto)">7</b> treinos</span></div>
+                <div class="p-mapa" data-mapa data-primeiro-dia="4" data-dias="31" data-treinos="1,3,5,7,9,12,13" data-hoje="14" role="img" aria-label="Outubro: treinou nos dias 1, 3, 5, 7, 9, 12 e 13. Hoje é 14."></div>
+                <p class="p-legenda-mapa p-texto-2"><span><i></i>treinou</span><span><i class="vazio"></i>não treinou</span></p>
+              </section>
+
+              <section class="p-cartao" aria-labelledby="p-g-semanas-t">
+                <div class="p-cartao__topo"><h3 class="p-titulo-secao" id="p-g-semanas-t">Treinos por semana</h3><span class="p-texto-2">média 3,4</span></div>
+                <div class="p-grafico" data-grafico="barras" data-titulo="Treinos por semana"
+                  data-rotulos="24/8,31/8,7/9,14/9,21/9,28/9,5/10,12/10" data-valores="3,4,2,4,3,4,3,2"
+                  data-maximo="5" data-meta="4" data-andamento="7" data-unidade="treinos" data-unidade-1="treino"></div>
+                <details class="p-tabela"><summary>Ver em tabela</summary><table><thead><tr><th>Semana de</th><th>Treinos</th></tr></thead><tbody data-tabela-de="barras"></tbody></table></details>
+              </section>
+
+              <section class="p-cartao" aria-labelledby="p-g-rosca-t">
+                <div class="p-cartao__topo"><h3 class="p-titulo-secao" id="p-g-rosca-t">Volume por grupo</h3><span class="p-texto-2">4 semanas</span></div>
+                <div class="p-rosca" data-rosca
+                  data-grupos="Pernas,Peito,Costas,Ombros e braços" data-valores="25100,23400,20100,15000" data-destaque="0"></div>
+              </section>
+            </div>
+            <div class="celular__base"><nav class="barra-abas" aria-label="Navegação do aluno"><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos-cheio"/></svg></span><span class="aba__rotulo">Treinos</span></a><a class="aba" href="#" aria-label="Plus: personal, treino e dieta"><span class="aba__icone"><svg class="icone"><use href="#i-plus"/></svg></span><span class="aba__rotulo">Plus</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav></div>
+            <div class="celular__gesto p-gesto" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">2 · Evolução</p>
+        <p class="legenda texto-secundario">Treinos › Evolução. A carga do exercício escolhido em número enorme sobre a foto e em linha; outubro em mapa de dias; treinos por semana em barras, com a meta de 4 tracejada e a semana em andamento hachurada; volume por grupo em rosca com um grupo em destaque. Sem kcal.</p>
+      </div>
+
+      <!-- ===================== 2b. EVOLUÇÃO VAZIA ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: Evolução de quem começou agora">
+          <div class="celular__tela p-tela">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-rolagem">
+              <header class="p-saudacao">
+                <a class="p-sino" href="#" aria-label="Voltar para Treinos" style="box-shadow:var(--sombra-1)"><svg class="p-icone"><use href="#i-voltar"/></svg></a>
+                <h2 class="p-titulo-grande" style="flex:1">Evolução</h2>
+              </header>
+              <section class="p-cartao p-vazio">
+                <img class="tema-claro-so" src="../../imagens/estados-vazios/historico-vazio-claro@1x.webp" srcset="../../imagens/estados-vazios/historico-vazio-claro@1x.webp 1x, ../../imagens/estados-vazios/historico-vazio-claro@2x.webp 2x" width="120" height="120" alt="">
+                <img class="tema-escuro-so" src="../../imagens/estados-vazios/historico-vazio-escuro@1x.webp" srcset="../../imagens/estados-vazios/historico-vazio-escuro@1x.webp 1x, ../../imagens/estados-vazios/historico-vazio-escuro@2x.webp 2x" width="120" height="120" alt="">
+                <h3 class="p-titulo-secao">Nenhum treino fechado ainda.</h3>
+                <p class="p-texto-2" style="font-size:var(--tipo-corpo);line-height:var(--linha-corpo)">O primeiro aparece aqui. Depois de dois treinos, a linha da carga começa a se desenhar.</p>
+                <button class="p-botao p-botao--vivo p-botao--grande p-botao--largo">Começar treino A</button>
+              </section>
+              <section class="p-fantasma" aria-label="O que vai aparecer aqui">
+                <p class="p-titulo-secao">Carga ao longo do tempo</p>
+                <svg viewBox="0 0 320 96" aria-hidden="true"><path class="linha-fantasma" d="M8 80 C 70 76, 110 60, 160 52 S 260 22, 312 14"/></svg>
+                <p class="p-texto-2">Cada exercício ganha a sua linha, com a maior carga de cada semana.</p>
+              </section>
+              <section class="p-fantasma" aria-label="Frequência">
+                <p class="p-titulo-secao">Outubro</p>
+                <div class="p-mapa" data-mapa data-primeiro-dia="4" data-dias="31" data-treinos="" data-hoje="14" role="img" aria-label="Outubro, nenhum treino ainda. Hoje é 14."></div>
+              </section>
+            </div>
+            <div class="celular__base"><nav class="barra-abas" aria-label="Navegação do aluno"><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-inicio"/></svg></span><span class="aba__rotulo">Início</span></a><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos-cheio"/></svg></span><span class="aba__rotulo">Treinos</span></a><a class="aba" href="#" aria-label="Plus: personal, treino e dieta"><span class="aba__icone"><svg class="icone"><use href="#i-plus"/></svg></span><span class="aba__rotulo">Plus</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav></div>
+            <div class="celular__gesto p-gesto" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">2b · Evolução de quem começou agora</p>
+        <p class="legenda texto-secundario">Sem foto e sem número: a frase do tom de voz, um botão para o primeiro treino e o contorno tracejado do que vai aparecer. Nenhum gráfico vazio com eixo zerado.</p>
+      </div>
+
+      <!-- ===================== 3a. MODO TREINO: SÉRIE ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" data-tema="escuro" role="group" aria-label="Tela: modo treino, série em andamento">
+          <div class="celular__tela p-tela p-treino p-tela--foto-topo">
+            <div class="p-treino__foto"><img src="../../imagens/telas/modo-treino-crucifixo-no-cabo@1x.webp" srcset="../../imagens/telas/modo-treino-crucifixo-no-cabo@1x.webp 1x, ../../imagens/telas/modo-treino-crucifixo-no-cabo@2x.webp 2x" width="390" height="844" alt="Mulher de hijab no crucifixo no cabo, academia escura"></div>
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-treino__corpo">
+              <div class="p-treino__barra">
+                <a class="p-botao-vidro p-vidro vidro--escuro" href="#" aria-label="Minimizar o treino (ele continua)"><svg class="p-icone"><use href="#i-baixo"/></svg></a>
+                <div class="p-treino__titulo">
+                  <span>Treino A · exercício 4 de 7</span>
+                  <div class="p-segmentos" aria-hidden="true"><i class="feito"></i><i class="feito"></i><i class="feito"></i><i class="atual"></i><i></i><i></i><i></i></div>
+                </div>
+                <button class="p-botao-vidro p-vidro vidro--escuro" aria-label="Pausar o treino"><svg class="p-icone"><use href="#i-pausar"/></svg></button>
+              </div>
+              <div class="p-treino__palco">
+                <p class="p-treino__grupo">Peito · 15 kg</p>
+                <h2 class="p-treino__exercicio">Crucifixo no cabo</h2>
+                <p class="p-gigante" role="img" aria-label="12 repetições"><span class="numero-gigante" data-reps>12</span><span>repetições</span></p>
+              </div>
+              <section class="p-painel p-vidro vidro--escuro" aria-label="Série atual">
+                <div class="p-painel__topo">
+                  <p class="corpo-forte" data-serie-texto>Série 2 de 3</p>
+                  <div class="p-series" aria-hidden="true" data-series><i class="feita"><svg class="p-icone"><use href="#i-marcar"/></svg></i><i class="atual">2</i><i>3</i></div>
+                </div>
+                <div class="p-painel__passos">
+                  <div class="p-passo"><button aria-label="Diminuir a carga"><svg class="p-icone"><use href="#i-menos"/></svg></button><div class="p-passo__valor"><span class="p-numero">15</span><span>kg</span></div><button aria-label="Aumentar a carga"><svg class="p-icone"><use href="#i-mais"/></svg></button></div>
+                  <div class="p-passo"><button aria-label="Diminuir repetições" data-reps-menos><svg class="p-icone"><use href="#i-menos"/></svg></button><div class="p-passo__valor"><span class="p-numero" data-reps-campo>12</span><span>reps</span></div><button aria-label="Aumentar repetições" data-reps-mais><svg class="p-icone"><use href="#i-mais"/></svg></button></div>
+                </div>
+                <p class="p-texto-2">Última vez: 3 × 12 · 12,5 kg</p>
+                <button class="p-botao p-botao--vivo p-botao--grande p-botao--largo" data-marcar-serie><svg class="p-icone"><use href="#i-marcar"/></svg>Série feita</button>
+                <p class="p-registro" role="status" data-registro></p>
+                <a class="p-proximo" href="#" aria-label="Próximo exercício: tríceps corda, 4 × 12">
+                  <span><span class="p-texto-2">Próximo</span><b>Tríceps corda · 4 × 12</b></span>
+                  <span class="p-botao-vidro"><svg class="p-icone"><use href="#i-avancar"/></svg></span>
+                </a>
+              </section>
+            </div>
+            <div class="celular__gesto p-gesto p-gesto--claro" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">3 · Modo treino (série)</p>
+        <p class="legenda texto-secundario">Ao "Começar", o app vai para o escuro em tela cheia, sem abas. Foto grande do exercício, o "12" enorme, e série, carga e "Próximo" num painel de vidro. "Série feita" grava antes de qualquer animação (o tempo aparece embaixo do botão).</p>
+      </div>
+
+      <!-- ===================== 3b. MODO TREINO: DESCANSO ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" data-tema="escuro" role="group" aria-label="Tela: modo treino, descanso">
+          <div class="celular__tela p-tela p-treino p-tela--foto-topo">
+            <div class="p-treino__foto p-treino__foto--descanso"><img src="../../imagens/telas/modo-treino-crucifixo-no-cabo@1x.webp" srcset="../../imagens/telas/modo-treino-crucifixo-no-cabo@1x.webp 1x, ../../imagens/telas/modo-treino-crucifixo-no-cabo@2x.webp 2x" width="390" height="844" alt=""></div>
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:42</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-treino__corpo">
+              <div class="p-treino__barra">
+                <a class="p-botao-vidro p-vidro vidro--escuro" href="#" aria-label="Minimizar o treino (ele continua)"><svg class="p-icone"><use href="#i-baixo"/></svg></a>
+                <div class="p-treino__titulo">
+                  <span>Treino A · exercício 4 de 7</span>
+                  <div class="p-segmentos" aria-hidden="true"><i class="feito"></i><i class="feito"></i><i class="feito"></i><i class="atual"></i><i></i><i></i><i></i></div>
+                </div>
+                <button class="p-botao-vidro p-vidro vidro--escuro" aria-label="Pausar o treino"><svg class="p-icone"><use href="#i-pausar"/></svg></button>
+              </div>
+              <div class="p-descanso">
+                <div class="p-anel" role="timer" aria-label="Descanso, 45 segundos restantes" data-anel data-total="60" data-restante="45">
+                  <svg viewBox="0 0 248 248" aria-hidden="true"><circle class="trilho" cx="124" cy="124" r="116"/><circle class="valor" cx="124" cy="124" r="116" pathLength="1000" stroke-dasharray="750 1000" data-anel-valor/></svg>
+                  <div class="p-anel__centro"><span>Descanso</span><span class="p-anel__tempo" data-anel-tempo>0:45</span></div>
+                </div>
+                <div class="p-controles">
+                  <button class="p-botao p-vidro vidro--escuro" data-anel-ajuste="-30" aria-label="Menos 30 segundos">−30 s</button>
+                  <button class="p-botao p-vidro vidro--escuro" data-anel-pular><svg class="p-icone"><use href="#i-pular"/></svg>Pular</button>
+                  <button class="p-botao p-vidro vidro--escuro" data-anel-ajuste="30" aria-label="Mais 30 segundos">+30 s</button>
+                </div>
+              </div>
+              <section class="p-painel p-vidro vidro--escuro" aria-label="Depois do descanso">
+                <div class="p-feita-linha"><svg class="p-icone"><use href="#i-marcar"/></svg><span>Série 2 feita · 12 × 15 kg</span><button>Desfazer</button></div>
+                <div class="p-proximo">
+                  <span><span class="p-texto-2">A seguir</span><b>Série 3 de 3 · 12 × 15 kg</b></span>
+                  <button class="p-botao-vidro" aria-label="Ver a série 3"><svg class="p-icone"><use href="#i-avancar"/></svg></button>
+                </div>
+              </section>
+            </div>
+            <div class="celular__gesto p-gesto p-gesto--claro" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">3b · Modo treino (descanso)</p>
+        <p class="legenda texto-secundario">A mesma foto, desfocada. O anel esvazia em linha reta (efeito 3a do catálogo) e fica laranja nos últimos 10 s. O aviso "Série 2 feita" mora no painel, nunca por cima da série seguinte.</p>
+      </div>
+
+      <!-- ===================== 4. COMEMORAÇÃO ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" data-tema="escuro" role="group" aria-label="Tela: treino fechado">
+          <div class="celular__tela p-tela p-comemoracao" data-comemoracao>
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">10:29</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-comemoracao__corpo">
+              <svg class="p-comemoracao__check" viewBox="0 0 112 112" aria-hidden="true" data-circulo><circle cx="56" cy="56" r="56"/><path d="M33 58l15 15 32-34" pathLength="1" stroke-dasharray="1" stroke-dashoffset="0" data-traco/></svg>
+              <div data-entra>
+                <h2>Treino fechado.</h2>
+              </div>
+              <p class="p-comemoracao__sub" data-entra>Treino A · Peito e tríceps</p>
+              <div class="p-numeros">
+                <div data-entra><span class="p-numero">7</span><span>exercícios</span></div>
+                <div data-entra><span class="p-numero">41</span><span>minutos</span></div>
+                <div data-entra><span class="p-numero">20</span><span>séries</span></div>
+              </div>
+              <p class="p-destaque" data-entra><svg class="p-icone"><use href="#i-grafico-linha"/></svg><span>Supino inclinado subiu: <b>22,5 → 24 kg</b></span></p>
+              <div class="p-comemoracao__acoes" data-entra>
+                <button class="p-botao p-botao--escuro p-botao--grande p-botao--largo">Pronto</button>
+                <button class="p-botao p-botao--texto-escuro">Como foi? Escrever uma nota</button>
+              </div>
+            </div>
+            <div class="celular__gesto p-gesto" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">4 · Comemoração</p>
+        <p class="legenda texto-secundario">Cor cheia no verde vivo, nos dois temas. O círculo cresce, o check se desenha e o resumo entra em sequência (efeito 2 do catálogo, ~880 ms). "Treino fechado." sem exclamação; a festa é do feito, não do corpo. <button class="botao botao--texto botao--intrinseco" data-repetir-comemoracao>Repetir</button></p>
+      </div>
+
+      <!-- ===================== 5. PAINEL DO DONO ===================== -->
+      <div class="tela-legenda">
+        <div class="celular" role="group" aria-label="Tela: painel do dono da academia">
+          <div class="celular__tela p-tela p-tela--foto-topo">
+            <div class="celular__inset-topo" aria-hidden="true"><div class="celular__status"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha"></div></div>
+            <div class="p-rolagem p-rolagem--sob-foto p-densa">
+              <div class="p-foto p-foto--dono">
+                <img src="../../imagens/telas/painel-dono-sala@1x.webp" srcset="../../imagens/telas/painel-dono-sala@1x.webp 1x, ../../imagens/telas/painel-dono-sala@2x.webp 2x" width="390" height="280" alt="">
+                <p class="p-sobretitulo">Quarta, 14 de out.</p>
+                <h2 class="p-titulo-grande">Academia do Marcos</h2>
+              </div>
+
+              <a class="p-ativos p-vidro p-cartao-tocavel" href="#" aria-label="214 alunos ativos de 350 vinculados. Abrir a lista">
+                <span class="p-sobretitulo">Alunos ativos · treinaram nos últimos 30 dias</span>
+                <span style="display:flex;align-items:baseline;gap:8px"><span class="p-numero-hero">214</span><span class="p-texto-2" style="font-size:var(--tipo-titulo-3);line-height:var(--linha-titulo-3);line-height:var(--linha-titulo-3)">de 350 vinculados</span></span>
+                <span class="p-medidor" aria-hidden="true"><i style="width:61%"></i></span>
+              </a>
+
+              <div class="p-grade-2">
+                <a class="p-quadro p-cartao-tocavel" href="#" aria-label="486 treinos nos últimos 7 dias. Nos 7 dias antes, 512">
+                  <span class="p-quadro__rotulo"><svg class="p-icone p-icone--pequeno"><use href="#i-inicio"/></svg>Treinos · 7 dias</span>
+                  <span class="p-numero-medio">486</span>
+                  <span class="p-texto-2">7 dias antes: 512</span>
+                </a>
+                <a class="p-quadro p-cartao-tocavel" href="#" aria-label="29 de 350 alunos no Plus">
+                  <span class="p-quadro__rotulo"><span class="p-aba__mais" style="width:16px;height:16px;border-radius:5px"><svg class="p-icone" style="width:11px;height:11px"><use href="#i-mais"/></svg></span>No Plus</span>
+                  <span class="p-numero-medio">29</span>
+                  <span class="p-texto-2">de 350 alunos</span>
+                </a>
+                <a class="p-quadro p-quadro--atencao p-cartao-tocavel" href="#" aria-label="14 alunos sem treinar há 14 dias ou mais. Ver a lista">
+                  <span class="p-quadro__rotulo"><svg class="p-icone p-icone--pequeno"><use href="#i-alerta"/></svg>Sumidos</span>
+                  <span class="p-numero-medio">14</span>
+                  <span class="p-texto-2">sem treinar há 14 dias ou mais</span>
+                  <span class="p-quadro__acao">Ver lista <svg class="p-icone p-icone--pequeno"><use href="#i-avancar"/></svg></span>
+                </a>
+                <a class="p-quadro p-cartao-tocavel" href="#" aria-label="Frequência média: 2,3 treinos por aluno ativo por semana">
+                  <span class="p-quadro__rotulo"><svg class="p-icone p-icone--pequeno"><use href="#i-calendario"/></svg>Frequência</span>
+                  <span class="p-numero-medio">2,3</span>
+                  <span class="p-texto-2">treinos por aluno ativo, por semana</span>
+                </a>
+              </div>
+
+              <section class="p-cartao" aria-labelledby="p-g-dias-t">
+                <div class="p-cartao__topo"><h3 class="p-titulo-secao" id="p-g-dias-t">Treinos por dia</h3><span class="p-texto-2">últimos 7 dias</span></div>
+                <div class="p-grafico" data-grafico="barras" data-titulo="Treinos por dia"
+                  data-rotulos="qui,sex,sáb,dom,seg,ter,qua" data-valores="80,71,38,20,98,87,92" data-maximo="100"
+                  data-destaque="6" data-unidade="treinos" data-unidade-1="treino" data-todos-rotulos="1"></div>
+                <details class="p-tabela"><summary>Ver em tabela</summary><table><thead><tr><th>Dia</th><th>Treinos</th></tr></thead><tbody data-tabela-de="barras"></tbody></table></details>
+              </section>
+
+              <section class="p-cartao" aria-labelledby="p-plus-t">
+                <div class="p-cartao__topo"><h3 class="p-titulo-secao" id="p-plus-t">Plus por personal</h3><span class="p-texto-2">29 alunos</span></div>
+                <ul class="p-personais">
+                  <li><span>Carla</span><b class="p-numero">11</b><span class="p-medidor" aria-hidden="true"><i style="width:38%"></i></span></li>
+                  <li><span>Diego</span><b class="p-numero">9</b><span class="p-medidor" aria-hidden="true"><i style="width:31%"></i></span></li>
+                  <li><span>Rafael</span><b class="p-numero">8</b><span class="p-medidor" aria-hidden="true"><i style="width:28%"></i></span></li>
+                  <li class="sem"><span style="display:flex;align-items:center;gap:8px"><svg class="p-icone p-icone--pequeno"><use href="#i-alerta"/></svg>1 sem personal</span><a href="#">Designar</a></li>
+                </ul>
+              </section>
+
+              <p class="p-privacidade"><svg class="p-icone p-icone--pequeno"><use href="#i-cadeado"/></svg>Números da academia, somados. Nenhum dado de saúde de aluno aparece aqui.</p>
+            </div>
+            <div class="celular__base"><nav class="barra-abas" aria-label="Navegação da academia"><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-alunos"/></svg></span><span class="aba__rotulo">Alunos</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-treinos"/></svg></span><span class="aba__rotulo">Treinos</span></a><a class="aba aba--ativa" aria-current="page" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-academia-cheio"/></svg></span><span class="aba__rotulo">Academia</span></a><a class="aba" href="#"><span class="aba__icone"><svg class="icone"><use href="#i-perfil"/></svg></span><span class="aba__rotulo">Perfil</span></a></nav></div>
+            <div class="celular__gesto p-gesto" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="corpo-forte">5 · Painel do dono</p>
+        <p class="legenda texto-secundario">Aba Academia. Mais denso, na mesma linguagem: foto da sala, "214" em vidro, quatro quadros, treinos por dia (hoje em destaque) e o Plus por personal, com o aluno sem personal à vista. Tudo somado, sem nome de aluno e sem dado de saúde.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="galeria" aria-labelledby="p-dec-t">
+    <h2 class="titulo-2" id="p-dec-t">Decisões dos gráficos</h2>
+    <div class="p-decisoes">
+      <div><h3>Uma cor, a do progresso</h3><p>Todo gráfico usa uma cor só: <code>--cor-progresso</code> (o verde vivo no escuro, o verde da marca no claro, porque o vivo some no branco). O que não está em destaque fica em cinza. Rótulo e número nunca vão na cor da série.</p></div>
+      <div><h3>Rosca com um grupo em destaque</h3><p>Quatro grupos em quatro cores não passaram no teste de daltonismo (validador do dataviz, protan e deutan). Então a rosca destaca um grupo no verde e põe os outros em três cinzas, separados por 2 px, com nome, % e kg na legenda. Tocar num grupo troca o destaque.</p></div>
+      <div><h3>Barras com meta e semana em andamento</h3><p>A meta (a frequência que a pessoa escolheu) é uma linha tracejada, não um placar. A semana que ainda não acabou fica hachurada, para o "2" de quarta não parecer uma semana ruim.</p></div>
+      <div><h3>Sem gráfico vazio</h3><p>Quem começou agora vê uma frase, um botão e o contorno tracejado do que vai aparecer, nunca um eixo zerado. A linha da carga só aparece com 2 treinos.</p></div>
+      <div><h3>Acessível sem cor e sem mouse</h3><p>Cada gráfico tem "Ver em tabela". As barras e os pontos recebem foco pelo teclado e dizem o valor. A dica aparece no toque, no mouse e no foco.</p></div>
+      <div><h3>O dono vê somas</h3><p>Nada de dado de saúde nem de nome no painel (R6.7). "29 de 350 alunos no Plus", como o tom de voz pede, e não "taxa de conversão 8,3 %".</p></div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  /* Página: tema, aparelho, movimento, transparência, fonte e moldura (igual ao index.html, mais a chave de transparência). */
+  (function () {
+    var raiz = document.documentElement;
+    function marcarGrupo(lista, atributo, atual) {
+      lista.forEach(function (b) {
+        var ativo = b.getAttribute(atributo) === atual;
+        b.classList.toggle('botao--primario', ativo); b.classList.toggle('botao--secundario', !ativo);
+        b.setAttribute('aria-pressed', ativo ? 'true' : 'false');
+      });
+    }
+    var botoes = document.querySelectorAll('[data-tema-botao]');
+    function marcar() { marcarGrupo(botoes, 'data-tema-botao', raiz.getAttribute('data-tema') || 'sistema'); }
+    botoes.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = b.getAttribute('data-tema-botao');
+        if (t === 'sistema') raiz.removeAttribute('data-tema'); else raiz.setAttribute('data-tema', t);
+        try { if (t === 'sistema') localStorage.removeItem('academia-plus-tema'); else localStorage.setItem('academia-plus-tema', t); } catch (e) {}
+        marcar();
+      });
+    });
+    var botoesFonte = document.querySelectorAll('[data-fonte-botao]');
+    function marcarFonte() { marcarGrupo(botoesFonte, 'data-fonte-botao', parseFloat(getComputedStyle(raiz).fontSize) / 16 >= 1.6 - 0.001 ? '160' : '100'); }
+    botoesFonte.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-fonte-botao');
+        raiz.style.fontSize = f === '160' ? '160%' : '';
+        try { if (f === '160') localStorage.setItem('academia-plus-fonte', '160'); else localStorage.removeItem('academia-plus-fonte'); } catch (e) {}
+        marcarFonte(); ajustar();
+      });
+    });
+    function chave(seletor, atributo, armazenamento) {
+      var lista = document.querySelectorAll(seletor);
+      function m() { marcarGrupo(lista, seletor.slice(1, -1), raiz.getAttribute(atributo)); }
+      lista.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.getAttribute(seletor.slice(1, -1));
+          raiz.setAttribute(atributo, v);
+          try { localStorage.setItem(armazenamento, v); } catch (e) {}
+          m();
+        });
+      });
+      m();
+    }
+    chave('[data-movimento-botao]', 'data-movimento', 'academia-plus-movimento');
+    chave('[data-transparencia-botao]', 'data-transparencia', 'academia-plus-transparencia');
+
+    var APARELHOS = {
+      'iphone-se': 'iPhone SE · 375 × 667', 'iphone-13-mini': 'iPhone 13 mini · 375 × 812', 'iphone-16': 'iPhone 16 · 393 × 852',
+      'iphone-16-pro-max': 'iPhone 16 Pro Max · 440 × 956', 'android': 'Android 390 · 390 × 844'
+    };
+    var botoesAparelho = document.querySelectorAll('[data-aparelho-botao]');
+    function marcarAparelho() {
+      var atual = raiz.getAttribute('data-aparelho') || 'android';
+      marcarGrupo(botoesAparelho, 'data-aparelho-botao', atual);
+      var rot = document.getElementById('rotulo-aparelho'); if (rot && APARELHOS[atual]) rot.textContent = APARELHOS[atual];
+    }
+    botoesAparelho.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var a = b.getAttribute('data-aparelho-botao');
+        raiz.setAttribute('data-aparelho', a);
+        raiz.setAttribute('data-plataforma', a === 'android' ? 'android' : 'ios');
+        try { localStorage.setItem('academia-plus-aparelho', a); } catch (e) {}
+        try { var u = new URL(location.href); u.searchParams.set('aparelho', a); history.replaceState(null, '', u.href); } catch (e) {}
+        marcarAparelho(); ajustar();
+      });
+    });
+
+    // Moldura: mesmo cálculo do index.html (zoom pela altura em janela deitada, colunas equilibradas, ?moldura=real sem zoom).
+    function ajustar() {
+      var cs = getComputedStyle(raiz);
+      var escala = parseFloat(cs.fontSize) / 16;
+      var faixa = function (n, padrao) { return parseFloat(cs.getPropertyValue(n)) || padrao; };
+      raiz.setAttribute('data-fonte', escala > faixa('--fonte-maxima', 1.6) + 0.001 ? 'maxima' : escala >= faixa('--fonte-ampliada', 1.3) - 0.001 ? 'ampliada' : 'padrao');
+      var v = function (n) { return parseFloat(cs.getPropertyValue(n)) || 0; };
+      var telas = document.querySelector('.telas');
+      var n = telas.querySelectorAll('.tela-legenda').length;
+      var gs = getComputedStyle(telas), vao = parseFloat(gs.columnGap) || 0;
+      var borda = v('--moldura-borda'), bordaV = v('--moldura-borda-v') || borda;
+      var largura = v('--moldura-tela-largura') + 2 * borda, altura = v('--moldura-tela-altura') + 2 * bordaV;
+      var W = telas.clientWidth, minimo = v('--moldura-zoom-minimo') || 0.5;
+      var real = /[?&]moldura=real\b/.test(location.search);
+      var zAltura = 1;
+      if (!real && innerWidth > innerHeight) {
+        // tudo o que fica acima da 1ª fileira (topo fixo + título da galeria): a moldura inteira cabe na 1ª tela (o ultrawide do Alex, 2040 × 790)
+        var acima = telas.getBoundingClientRect().top + scrollY;
+        zAltura = Math.max(minimo, Math.min(1, (innerHeight - acima - v('--espaco-4')) / altura));
+      }
+      var zDe = function (c) { return Math.min(zAltura, (W - (c - 1) * vao) / (c * largura)); };
+      var cabe = 1; for (var c = n; c >= 1; c--) { if (zDe(c) >= zAltura - 0.0001 || c === 1) { cabe = c; break; } }
+      var col = cabe;
+      for (var c2 = n; c2 > cabe; c2--) { if (zDe(c2) >= Math.max(minimo, 0.85 * zAltura)) { col = c2; break; } }
+      var linhas = Math.ceil(n / col); col = Math.ceil(n / linhas);
+      var z = real ? 1 : Math.max(Math.min(1, zDe(col)), minimo);
+      if (real) { col = Math.max(1, Math.min(n, Math.floor((W + vao) / (largura + vao)))); linhas = Math.ceil(n / col); col = Math.ceil(n / linhas); }
+      raiz.style.setProperty('--moldura-zoom', z.toFixed(4));
+      telas.style.setProperty('--colunas-telas', col);
+    }
+    window.addEventListener('resize', ajustar);
+    ajustar(); marcar(); marcarFonte(); marcarAparelho();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustar);
+  })();
+
+  /* =====================================================================
+     GRÁFICOS em SVG inline, desenhados a partir dos data-* (uma fonte só para o desenho e a tabela).
+     Regras da skill dataviz: uma cor por série (--cor-progresso), traço de 2,5, ponta de 4 px arredondada
+     presa à base, grade discreta, rótulo direto só onde importa, dica no toque, no mouse e no foco.
+     ===================================================================== */
+  (function () {
+    var NS = 'http://www.w3.org/2000/svg';
+    function el(nome, atributos, pai) { var e = document.createElementNS(NS, nome); for (var k in atributos) e.setAttribute(k, atributos[k]); if (pai) pai.appendChild(e); return e; }
+    function num(v, casas) { return Number(v).toLocaleString('pt-BR', { minimumFractionDigits: casas || 0, maximumFractionDigits: casas === undefined ? 1 : casas }); }
+    function lista(s) { return (s || '').split(',').filter(function (x) { return x !== ''; }); }
+    var W = 326; // largura útil do cartão no celular de 390 (390 − 2 × 16 − 2 × 16): o texto do SVG sai no tamanho real
+
+    // dica compartilhada por gráfico
+    function dica(alvo) { var d = document.createElement('div'); d.className = 'p-dica'; d.setAttribute('aria-hidden', 'true'); alvo.appendChild(d); return d; }
+    function mostrar(d, alvo, svg, x, y, texto) {
+      // (agente U) as medidas da tela vêm com o zoom da moldura; left e top são em px do próprio cartão (sem zoom).
+      // Antes só o left era dividido, e pelo zoom do alvo (1, porque o zoom fica na moldura): com a moldura
+      // reduzida a dica saía até 73 px longe do ponto.
+      var r = svg.getBoundingClientRect(), ra = alvo.getBoundingClientRect(), z = r.width / W;
+      var Z = alvo.offsetWidth ? ra.width / alvo.offsetWidth : 1;
+      d.textContent = texto; d.style.left = (r.left - ra.left + x * z) / Z + 'px';
+      d.style.top = (r.top - ra.top + y * z) / Z + 'px'; d.setAttribute('data-visivel', '');
+    }
+    function esconder(d) { d.removeAttribute('data-visivel'); }
+    // (agente U) o gráfico como grupo (o role="img" deixava mudos os pontos focáveis), cada ponto como imagem com o
+    // valor, setas/Home/End andando entre os pontos, e o toque: o dedo que arrasta leva a dica junto
+    // (o navegador prende o ponteiro de toque no primeiro alvo) e a dica fica depois de soltar.
+    function interativo(svg, alvo, dc) {
+      svg.setAttribute('role', 'group');
+      svg.style.touchAction = 'pan-y';
+      var alvos = function () { return Array.prototype.slice.call(svg.querySelectorAll('[data-dica]')); };
+      svg.addEventListener('pointerdown', function (e) { if (e.pointerType === 'touch' && e.target.hasPointerCapture && e.target.hasPointerCapture(e.pointerId)) e.target.releasePointerCapture(e.pointerId); });
+      svg.addEventListener('keydown', function (e) {
+        var l = alvos(), i = l.indexOf(document.activeElement); if (i < 0) return;
+        var j = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? i + 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? i - 1 : e.key === 'Home' ? 0 : e.key === 'End' ? l.length - 1 : null;
+        if (j === null) return; e.preventDefault(); l[Math.max(0, Math.min(l.length - 1, j))].focus();
+      });
+      document.addEventListener('pointerdown', function (e) { if (e.pointerType === 'touch' && !svg.contains(e.target)) esconder(dc); });
+    }
+    function ponto(h, on, off) {
+      h.setAttribute('role', 'img');
+      h.addEventListener('pointerenter', on); h.addEventListener('focus', on);
+      h.addEventListener('pointerleave', function (e) { if (e.pointerType !== 'touch') off(); });
+      h.addEventListener('blur', off);
+    }
+
+    // barra com só o topo arredondado (4 px), presa à base
+    function caminhoBarra(x, y, w, base) { var r = Math.min(4, (base - y) / 2, w / 2); return 'M' + x + ',' + base + 'V' + (y + r) + 'Q' + x + ',' + y + ' ' + (x + r) + ',' + y + 'H' + (x + w - r) + 'Q' + (x + w) + ',' + y + ' ' + (x + w) + ',' + (y + r) + 'V' + base + 'Z'; }
+
+    // ---- linha: carga ao longo do tempo ----
+    document.querySelectorAll('[data-grafico="linha"]').forEach(function (alvo) {
+      var rot = lista(alvo.dataset.rotulos), val = lista(alvo.dataset.valores).map(Number);
+      var H = 168, x0 = 34, x1 = W - 10, y0 = 136, y1 = 14, vMin = 40, vMax = 65;
+      var X = function (i) { return x0 + i * (x1 - x0) / (val.length - 1); }, Y = function (v) { return y0 - (v - vMin) / (vMax - vMin) * (y0 - y1); };
+      var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': alvo.dataset.titulo + ': de ' + num(val[0]) + ' kg em ' + rot[0] + ' para ' + num(val[val.length - 1]) + ' kg em ' + rot[rot.length - 1] + '.' }, alvo);
+      [40, 50, 60].forEach(function (g) { el('line', { class: 'grade', x1: x0, x2: x1, y1: Y(g), y2: Y(g) }, svg); var t = el('text', { x: 0, y: Y(g) + 4 }, svg); t.textContent = g; });
+      var d = val.map(function (v, i) { return (i ? 'L' : 'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1); }).join('');
+      el('path', { class: 'area', d: d + 'L' + X(val.length - 1) + ',' + y0 + 'L' + x0 + ',' + y0 + 'Z' }, svg);
+      el('path', { class: 'linha', d: d }, svg);
+      lista(alvo.dataset.meses).forEach(function (m) { var p = m.split(':'), i = +p[0]; var t = el('text', { x: X(i), y: H - 8, 'text-anchor': i === 0 ? 'start' : 'middle' }, svg); t.textContent = p[1]; });
+      var u = val.length - 1;
+      el('circle', { class: 'ponto', cx: X(u), cy: Y(val[u]), r: 5 }, svg);
+      var tv = el('text', { class: 'rotulo-valor', x: X(u) - 10, y: Y(val[u]) - 10, 'text-anchor': 'end' }, svg); tv.textContent = num(val[u]) + ' kg';
+      var cursor = el('line', { class: 'cursor', y1: y1, y2: y0 }, svg), pc = el('circle', { class: 'ponto-cursor', r: 5 }, svg);
+      var dc = dica(alvo), passo = (x1 - x0) / (val.length - 1);
+      val.forEach(function (v, i) {
+        var h = el('rect', { x: X(i) - passo / 2, y: 0, width: passo, height: y0, fill: 'transparent', tabindex: '0', 'data-dica': '', 'aria-label': 'Semana de ' + rot[i] + ': ' + num(v) + ' kg' }, svg);
+        var on = function () { cursor.setAttribute('x1', X(i)); cursor.setAttribute('x2', X(i)); cursor.style.opacity = 1; pc.setAttribute('cx', X(i)); pc.setAttribute('cy', Y(v)); pc.style.opacity = 1; mostrar(dc, alvo, svg, X(i), Y(v), rot[i] + ' · ' + num(v) + ' kg'); };
+        var off = function () { cursor.style.opacity = 0; pc.style.opacity = 0; esconder(dc); };
+        ponto(h, on, off);
+      });
+      interativo(svg, alvo, dc);
+      var tb = alvo.parentNode.querySelector('[data-tabela-de="linha"]');
+      if (tb) tb.innerHTML = val.map(function (v, i) { return '<tr><td>' + rot[i] + '</td><td>' + num(v) + ' kg</td></tr>'; }).join('');
+    });
+
+    // ---- barras: treinos por semana (aluno) e treinos por dia (dono) ----
+    document.querySelectorAll('[data-grafico="barras"]').forEach(function (alvo) {
+      var rot = lista(alvo.dataset.rotulos), val = lista(alvo.dataset.valores).map(Number), max = +alvo.dataset.maximo;
+      var meta = alvo.dataset.meta ? +alvo.dataset.meta : null, and = alvo.dataset.andamento ? +alvo.dataset.andamento : -1;
+      var dest = alvo.dataset.destaque !== undefined ? +alvo.dataset.destaque : -1;
+      var un = alvo.dataset.unidade, un1 = alvo.dataset.unidade1 || un;
+      var H = 160, base = 126, topo = 18, x0 = meta !== null ? 0 : 0, larg = W - x0, slot = larg / val.length, bw = Math.min(24, slot * 0.56);
+      var Y = function (v) { return base - v / max * (base - topo); };
+      var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': alvo.dataset.titulo + ': ' + val.map(function (v, i) { return rot[i] + ' ' + v; }).join(', ') + (meta !== null ? '. Meta: ' + meta + ' por semana.' : '.') }, alvo);
+      var defs = el('defs', {}, svg), pat = el('pattern', { id: 'p-hachura', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' }, defs);
+      el('line', { class: 'p-hachura-traco', x1: 0, y1: 0, x2: 0, y2: 6 }, pat);
+      el('line', { class: 'grade', x1: 0, x2: W, y1: base, y2: base }, svg);
+      var dc = dica(alvo);
+      val.forEach(function (v, i) {
+        var cx = x0 + slot * i + slot / 2, x = cx - bw / 2, y = Y(v);
+        var cls = i === and ? 'barra barra--andamento' : (dest < 0 || i === dest ? 'barra barra--destaque' : 'barra');
+        el('path', { class: cls, d: caminhoBarra(x, y, bw, base) }, svg);
+        if (i === and || i === dest || alvo.dataset.todosRotulos) {
+          var tv = el('text', { class: (i === and || i === dest) ? 'rotulo-valor' : '', x: cx, y: y - 6, 'text-anchor': 'middle' }, svg); tv.textContent = v;
+        }
+        var t = el('text', { x: cx, y: H - 10, 'text-anchor': 'middle' }, svg); t.textContent = rot[i];
+        if (i === dest || i === and) { t.setAttribute('class', 'rotulo-valor'); }
+        var h = el('rect', { x: x0 + slot * i, y: 0, width: slot, height: H, fill: 'transparent', tabindex: '0', 'data-dica': '', 'aria-label': rot[i] + ': ' + v + ' ' + (v === 1 ? un1 : un) + (i === and ? ', semana em andamento' : '') }, svg);
+        var on = function () { mostrar(dc, alvo, svg, cx, y, rot[i] + ' · ' + v + ' ' + (v === 1 ? un1 : un) + (i === and ? ' (em andamento)' : '')); };
+        ponto(h, on, function () { esconder(dc); });
+      });
+      interativo(svg, alvo, dc);
+      if (meta !== null) {
+        el('line', { class: 'meta', x1: 0, x2: W, y1: Y(meta), y2: Y(meta) }, svg);
+        var tm = el('text', { x: W, y: Y(meta) - 6, 'text-anchor': 'end' }, svg); tm.textContent = 'meta ' + meta;
+      }
+      var tb = alvo.parentNode.querySelector('[data-tabela-de="barras"]');
+      if (tb) tb.innerHTML = val.map(function (v, i) { return '<tr><td>' + rot[i] + (i === and ? ' (em andamento)' : '') + '</td><td>' + v + '</td></tr>'; }).join('');
+    });
+
+    // ---- rosca: volume por grupo, um grupo em destaque ----
+    document.querySelectorAll('[data-rosca]').forEach(function (alvo) {
+      var gr = lista(alvo.dataset.grupos), val = lista(alvo.dataset.valores).map(Number), total = val.reduce(function (a, b) { return a + b; }, 0);
+      var neutros = ['var(--grafico-neutro-1)', 'var(--grafico-neutro-2)', 'var(--grafico-neutro-3)', 'var(--grafico-neutro-1)'];
+      var caixa = document.createElement('div'); caixa.className = 'p-rosca__svg'; alvo.appendChild(caixa);
+      var svg = el('svg', { viewBox: '0 0 148 148', 'aria-hidden': 'true' }, caixa);
+      var r = 58, vao = 0.8, acum = 0, arcos = [];
+      val.forEach(function (v, i) {
+        var p = v / total * 100;
+        arcos.push(el('circle', { cx: 74, cy: 74, r: r, pathLength: 100, 'stroke-dasharray': (p - vao) + ' ' + (100 - p + vao), 'stroke-dashoffset': -acum }, svg));
+        acum += p;
+      });
+      var centro = document.createElement('div'); centro.className = 'p-rosca__centro'; caixa.appendChild(centro);
+      var ul = document.createElement('ul'); ul.className = 'p-legenda-rosca'; alvo.appendChild(ul);
+      var botoes = gr.map(function (g, i) {
+        var li = document.createElement('li'), b = document.createElement('button');
+        b.innerHTML = '<i></i><span>' + g + ' · <b>' + Math.round(val[i] / total * 100) + ' %</b></span><span class="p-texto-2">' + num(val[i], 0) + ' kg</span>';
+        b.addEventListener('click', function () { pintar(i); });
+        li.appendChild(b); ul.appendChild(li); return b;
+      });
+      function pintar(d) {
+        arcos.forEach(function (a, i) { a.style.stroke = i === d ? 'var(--cor-progresso)' : neutros[i]; });
+        botoes.forEach(function (b, i) { b.setAttribute('aria-pressed', i === d ? 'true' : 'false'); b.querySelector('i').style.background = i === d ? 'var(--cor-progresso)' : neutros[i]; });
+        centro.innerHTML = '<span class="p-numero" style="font-size:var(--tipo-numero-medio);line-height:var(--linha-numero-medio)">' + Math.round(val[d] / total * 100) + ' %</span><span class="p-texto-2">' + gr[d].toLowerCase() + '</span>';
+      }
+      pintar(+alvo.dataset.destaque || 0);
+      alvo.setAttribute('role', 'group'); alvo.setAttribute('aria-label', 'Volume por grupo em 4 semanas, total ' + num(total, 0) + ' kg');
+    });
+
+    // ---- mapa de dias ----
+    document.querySelectorAll('[data-mapa]').forEach(function (alvo) {
+      var primeiro = +alvo.dataset.primeiroDia, dias = +alvo.dataset.dias, hoje = +alvo.dataset.hoje, treinos = lista(alvo.dataset.treinos).map(Number);
+      var h = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'].map(function (l) { return '<span class="p-mapa__cab" aria-hidden="true">' + l + '</span>'; }).join('');
+      for (var k = 1; k < primeiro; k++) h += '<span class="p-mapa__dia p-mapa__dia--fora"></span>';
+      for (var d = 1; d <= dias; d++) {
+        var c = treinos.indexOf(d) >= 0 ? ' p-mapa__dia--treino' : d === hoje ? ' p-mapa__dia--hoje' : d > hoje ? ' p-mapa__dia--futuro' : '';
+        h += '<span class="p-mapa__dia' + c + '" aria-hidden="true">' + d + '</span>';
+      }
+      alvo.innerHTML = h;
+    });
+  })();
+
+  /* =====================================================================
+     EFEITOS (movimento/00-CATALOGO.md). Regra 1: o dado é gravado antes; nada espera a animação.
+     Regra 2: com movimento reduzido, todo efeito vira esmaecer de 160 ms.
+     ===================================================================== */
+  (function () {
+    var raiz = document.documentElement;
+    var reduzido = function () { return raiz.getAttribute('data-movimento') === 'reduzido'; };
+    var D = { rapida: 120, media: 200, lenta: 320, esmaecer: 160, comemoracao: 480, escalonamento: 60 };
+    var C = { padrao: 'cubic-bezier(0.2, 0, 0, 1)', entrada: 'cubic-bezier(0, 0, 0.2, 1)', saida: 'cubic-bezier(0.4, 0, 1, 1)' };
+    function curvaMola(z, ms) {
+      var T = ms / 1000, w = z < 1 ? 4.6 / (z * T) : 6.6 / T, n = 32, pts = [];
+      for (var i = 0; i <= n; i++) {
+        var t = (i / n) * T, x;
+        if (z < 1) { var wd = w * Math.sqrt(1 - z * z); x = 1 - Math.exp(-z * w * t) * (Math.cos(wd * t) + (z * w / wd) * Math.sin(wd * t)); }
+        else x = 1 - Math.exp(-w * t) * (1 + w * t);
+        pts.push(+x.toFixed(4));
+      }
+      pts[n] = 1; return 'linear(' + pts.join(', ') + ')';
+    }
+    var MOLA_PADRAO = curvaMola(1, 320), MOLA_CHECK = curvaMola(0.6, 400);
+    function esmaecer(e) { return e.animate([{ opacity: 0 }, { opacity: 1 }], { duration: D.esmaecer, easing: C.entrada, fill: 'both' }); }
+
+    // Aviso da academia: dispensar some só para a pessoa
+    document.querySelectorAll('[data-dispensar]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var av = b.closest('[data-aviso]');
+        var a = av.animate([{ opacity: 1 }, { opacity: 0 }], { duration: reduzido() ? D.esmaecer : D.rapida, easing: C.saida, fill: 'both' });
+        a.onfinish = function () {
+          // (agente U) o botão some com o aviso: o foco passa para o próximo controle da tela, em vez de cair no body
+          var tela = av.closest('.celular__tela'), foc = tela ? Array.prototype.slice.call(tela.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')) : [];
+          var depois = foc.filter(function (x) { return !av.contains(x) && (av.compareDocumentPosition(x) & Node.DOCUMENT_POSITION_FOLLOWING); })[0];
+          var voltar = av.contains(document.activeElement);
+          av.hidden = true;
+          if (voltar && depois) depois.focus();
+        };
+      });
+    });
+
+    // Repetições ± (o dado muda na hora; o número gigante acompanha)
+    var campo = document.querySelector('[data-reps-campo]'), gigante = document.querySelector('[data-reps]');
+    function reps(dv) { var v = Math.max(1, (+campo.textContent) + dv); campo.textContent = v; gigante.textContent = v; (gigante.closest('.p-gigante') || gigante).setAttribute('aria-label', v + ' repetições'); } // (agente U) só o número da tela, nunca um ancestral qualquer com rótulo
+    document.querySelector('[data-reps-menos]').addEventListener('click', function () { reps(-1); });
+    document.querySelector('[data-reps-mais]').addEventListener('click', function () { reps(1); });
+
+    // Anel do descanso (4.3a): esvazia linear com o tempo restante; últimos 10 s em atenção; reduzido = salta por segundo
+    var anel = document.querySelector('[data-anel]'), arco = anel.querySelector('[data-anel-valor]'), tempo = anel.querySelector('[data-anel-tempo]');
+    var total = +anel.dataset.total, fim = 0, pausado = true, restanteParado = +anel.dataset.restante * 1000, quadro = 0;
+    function fmt(ms) { var s = Math.ceil(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+    function desenhar(ms) {
+      var p = Math.max(0, ms) / (total * 1000);
+      if (reduzido()) p = Math.ceil(Math.max(0, ms) / 1000) / total;
+      arco.setAttribute('stroke-dasharray', (p * 1000).toFixed(1) + ' 1000');
+      tempo.textContent = fmt(Math.max(0, ms));
+      anel.classList.toggle('p-anel--acabando', ms <= 10000 && ms > 0);
+      anel.setAttribute('aria-label', ms > 0 ? 'Descanso, ' + Math.ceil(ms / 1000) + ' segundos restantes' : 'Descanso terminou');
+    }
+    function passo() {
+      var ms = fim - Date.now(); desenhar(ms);
+      // (agente U) ao chegar a zero o restante parado também zera: antes ficava o valor velho (45 s) e o +30 seguinte dava 1:15
+      if (ms > 0) quadro = requestAnimationFrame(passo); else { pausado = true; restanteParado = 0; tempo.textContent = '0:00'; }
+    }
+    function iniciar(ms) { cancelAnimationFrame(quadro); total = Math.max(total, Math.ceil(ms / 1000)); fim = Date.now() + ms; pausado = false; passo(); }
+    desenhar(restanteParado);
+    document.querySelectorAll('[data-anel-ajuste]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var resto = pausado ? restanteParado : fim - Date.now();
+        resto = Math.max(0, resto + (+b.dataset.anelAjuste) * 1000);
+        if (resto / 1000 > total) total = Math.ceil(resto / 1000);
+        if (pausado) { restanteParado = resto; desenhar(resto); } else iniciar(resto);
+      });
+    });
+    document.querySelector('[data-anel-pular]').addEventListener('click', function () { cancelAnimationFrame(quadro); pausado = true; restanteParado = 0; desenhar(0); });
+
+    // "Série feita" (efeito 1): 1) grava, 2) vibra (no app), 3) anima. O registro mostra o tempo até a gravação.
+    var registro = [], botao = document.querySelector('[data-marcar-serie]'), linhaRegistro = document.querySelector('[data-registro]');
+    var bolas = document.querySelectorAll('[data-series] i'), textoSerie = document.querySelector('[data-serie-texto]');
+    var atual = 1; // índice da série atual (0 = série 1, já feita)
+    botao.addEventListener('click', function () {
+      var t0 = performance.now();
+      if (atual >= bolas.length) return;
+      registro.push({ serie: atual + 1, reps: +campo.textContent, cargaG: 15000, feitaEm: new Date().toISOString() }); // 1) o dado
+      var gravado = performance.now() - t0;
+      if (navigator.vibrate) { try { navigator.vibrate(10); } catch (e) {} }                                       // 2) a vibração
+      var b = bolas[atual];                                                                                        // 3) a animação segue o dado
+      b.className = 'feita'; b.innerHTML = '<svg class="p-icone"><use href="#i-marcar"/></svg>';
+      if (reduzido()) esmaecer(b);
+      else b.firstChild.animate([{ transform: 'scale(0.25)', filter: 'blur(4px)', opacity: 0 }, { transform: 'scale(1)', filter: 'blur(0)', opacity: 1 }], { duration: 400, easing: MOLA_CHECK, fill: 'both' });
+      atual++;
+      if (bolas[atual]) bolas[atual].className = 'atual';
+      textoSerie.textContent = atual < bolas.length ? 'Série ' + (atual + 1) + ' de ' + bolas.length : 'Exercício completo';
+      linhaRegistro.textContent = 'Série ' + atual + ' gravada em ' + gravado.toFixed(2).replace('.', ',') + ' ms, antes da animação. O descanso recomeçou no quadro ao lado.';
+      total = 60; iniciar(60000); // (agente U) o total antes do primeiro quadro, para ele não sair na escala velha
+    });
+
+    // Comemoração (efeito 2): círculo com mola, traço do check em 480 ms, resumo escalonado (60 ms), tudo parado em ~880 ms
+    function comemorar() {
+      var tela = document.querySelector('[data-comemoracao]');
+      var circulo = tela.querySelector('[data-circulo]'), traco = tela.querySelector('[data-traco]'), itens = tela.querySelectorAll('[data-entra]');
+      if (reduzido()) { traco.style.strokeDashoffset = 0; esmaecer(circulo); itens.forEach(esmaecer); return; }
+      circulo.animate([{ transform: 'scale(0.8)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: D.lenta, easing: MOLA_PADRAO, fill: 'both' });
+      traco.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { duration: D.comemoracao, delay: D.rapida, easing: C.padrao, fill: 'both' });
+      itens.forEach(function (e, i) { e.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: D.media, delay: D.lenta + i * D.escalonamento, easing: C.entrada, fill: 'both' }); });
+    }
+    document.querySelector('[data-repetir-comemoracao]').addEventListener('click', comemorar);
+
+    // (agente U) os links "#" das telas são de mentira: sem isto, cada toque num cartão, atalho ou aba
+    // levava a página de volta ao topo e punha "#" na URL
+    document.querySelectorAll('.celular a[href="#"]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); }); });
+    // (agente U) troca de aba como no index.html (efeito 4 do catálogo): a aba muda de verdade (aria-current e ícone cheio)
+    // e a pílula da aba nova esmaece e cresce em 200 ms; com movimento reduzido, só esmaece
+    document.querySelectorAll('.celular .barra-abas .aba').forEach(function (a) {
+      a.addEventListener('click', function () {
+        var nav = a.closest('.barra-abas'); if (a.classList.contains('aba--ativa')) return;
+        nav.querySelectorAll('.aba').forEach(function (x) { x.classList.remove('aba--ativa'); x.removeAttribute('aria-current'); trocarIcone(x, false); });
+        a.classList.add('aba--ativa'); a.setAttribute('aria-current', 'page'); trocarIcone(a, true);
+        var ic = a.querySelector('.aba__icone'); if (!ic) return;
+        if (reduzido()) ic.animate([{ opacity: 0 }, { opacity: 1 }], { duration: D.esmaecer, easing: C.entrada });
+        else ic.animate([{ backgroundColor: 'transparent', transform: 'scaleX(.6)' }, { transform: 'scaleX(1)' }], { duration: D.media, easing: C.padrao });
+      });
+    });
+    // (agente U) a mesma barra aparece em várias telas: o número da tela entra no rótulo de cada uma (regiões distintas no leitor de tela)
+    document.querySelectorAll('.telas .celular').forEach(function (c, i) {
+      c.querySelectorAll('.barra-abas[aria-label]').forEach(function (nav) { nav.setAttribute('aria-label', nav.getAttribute('aria-label') + ' (tela ' + (i + 1) + ')'); });
+    });
+    function trocarIcone(aba, cheio) {
+      var u = aba.querySelector('.aba__icone use'); if (!u) return;
+      var h = (u.getAttribute('href') || '').replace(/-cheio$/, ''), novo = cheio ? h + '-cheio' : h;
+      if (document.getElementById(novo.slice(1))) u.setAttribute('href', novo);
+    }
+    // toca uma vez quando a tela aparece na janela
+    var tela = document.querySelector('[data-comemoracao]');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { comemorar(); io.disconnect(); } }); }, { threshold: 0.5 });
+      io.observe(tela);
+    }
+  })();
+</script>
+<script>document.querySelectorAll('.paginas-nav a').forEach(function (a) { a.addEventListener('click', function () { if (location.search) a.href = a.getAttribute('href').split('?')[0] + location.search; }); });</script>
+</body>
+</html>

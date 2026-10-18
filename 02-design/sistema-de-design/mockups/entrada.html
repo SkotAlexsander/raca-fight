@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raça Fight — Abertura e entrada</title>
+<meta name="description" content="Raça Fight (P12, agente AL): abertura no preto da marca com o logo provisório, boas-vindas com as duas portas (Sou aluno · Sou da academia) e a linha da aula experimental e os caminhos de entrada, em vidro sobre foto, no claro e no escuro, em moldura de iPhone e Android.">
+<link rel="stylesheet" href="sistema.css">
+<link rel="stylesheet" href="entrada.css">
+<script>
+  // Antes de pintar: tema, aparelho, movimento, transparência e foto. As chaves de tema, aparelho e movimento
+  // são as mesmas do index.html (a escolha vale nas duas páginas).
+  (function () {
+    var r = document.documentElement, q = new URLSearchParams(location.search), g = function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } };
+    var t = q.get('tema') || g('academia-plus-tema'); if (t === 'claro' || t === 'escuro') r.setAttribute('data-tema', t);
+    var ids = ['iphone-se', 'iphone-13-mini', 'iphone-16', 'iphone-16-pro-max', 'android'];
+    var a = q.get('aparelho'); if (ids.indexOf(a) < 0) a = g('academia-plus-aparelho'); if (ids.indexOf(a) < 0) a = 'android';
+    r.setAttribute('data-aparelho', a); r.setAttribute('data-plataforma', a === 'android' ? 'android' : 'ios');
+    var m = g('academia-plus-movimento'); if (m !== 'normal' && m !== 'reduzido') m = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'reduzido' : 'normal';
+    r.setAttribute('data-movimento', m);
+    var tr = q.get('transparencia') || g('academia-plus-transparencia'); if (tr !== 'normal' && tr !== 'reduzida') tr = matchMedia('(prefers-reduced-transparency: reduce)').matches ? 'reduzida' : 'normal';
+    r.setAttribute('data-transparencia', tr);
+    var f = q.get('foto') || g('academia-plus-foto-entrada'); r.setAttribute('data-foto', f === 'alternativa' ? 'alternativa' : 'principal');
+    if (g('academia-plus-fonte') === '160') r.style.fontSize = '160%';
+  })();
+</script>
+</head>
+<body>
+
+<!-- Ícones (traço 2, 24 px, pontas redondas), no desenho do index.html. O agente R entrega os definitivos. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!-- SPRITE:INICIO (montar-mockups.mjs: ícones gerais sem os de musculação + ícones de luta + logo provisório da Raça Fight) -->
+<symbol id="i-treinos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a2.5 2.5 0 0 1 2.5 2.5v12.5a2.5 2.5 0 0 1 -2.5 2.5h-10a2.5 2.5 0 0 1 -2.5 -2.5v-12.5a2.5 2.5 0 0 1 2.5 -2.5z"/><path d="M10 2.25h4a1.5 1.5 0 0 1 1.5 1.5v0.75a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-0.75a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M8.5 11h.01"/><path d="M12 11h3.5"/><path d="M8.5 16h.01"/><path d="M12 16h3.5"/></symbol>
+<symbol id="i-treinos-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2.88h10a3.62 3.62 0 0 1 3.62 3.62v12.5a3.62 3.62 0 0 1 -3.62 3.62h-10a3.62 3.62 0 0 1 -3.62 -3.62v-12.5a3.62 3.62 0 0 1 3.62 -3.62zM9.4 9.6h5.2a1.4 1.4 0 0 1 1.4 1.4v0a1.4 1.4 0 0 1 -1.4 1.4h-5.2a1.4 1.4 0 0 1 -1.4 -1.4v-0a1.4 1.4 0 0 1 1.4 -1.4zM9.4 15h5.2a1.4 1.4 0 0 1 1.4 1.4v0a1.4 1.4 0 0 1 -1.4 1.4h-5.2a1.4 1.4 0 0 1 -1.4 -1.4v-0a1.4 1.4 0 0 1 1.4 -1.4z" fill="currentColor" stroke="none" fill-rule="evenodd"/><path d="M10 2.25h4a1.5 1.5 0 0 1 1.5 1.5v0.75a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-0.75a1.5 1.5 0 0 1 1.5 -1.5z" fill="currentColor"/></symbol>
+<symbol id="i-perfil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></symbol>
+<symbol id="i-perfil-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z" fill="currentColor"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z" fill="currentColor"/></symbol>
+<symbol id="i-alunos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8" r="3.75"/><path d="M2.75 21a6.75 6.75 0 0 1 13.5 0"/><path d="M15.5 4.5a3.75 3.75 0 0 1 0 7"/><path d="M18.5 15a6.75 6.75 0 0 1 2.75 6"/></symbol>
+<symbol id="i-alunos-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.75 8a3.75 3.75 0 1 0 7.5 0a3.75 3.75 0 1 0 -7.5 0z" fill="currentColor"/><path d="M2.75 21a6.75 6.75 0 0 1 13.5 0z" fill="currentColor"/><path d="M15.5 4.5a3.75 3.75 0 0 1 0 7"/><path d="M18.5 15a6.75 6.75 0 0 1 2.75 6"/></symbol>
+<symbol id="i-academia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 5 3.5h14l2 5"/><path d="M3 8.5a3 3 0 0 0 6 0a3 3 0 0 0 6 0a3 3 0 0 0 6 0"/><path d="M5 12.5V21h14v-8.5"/><path d="M10 21v-4h4v4"/></symbol>
+<symbol id="i-academia-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 5 3.5h14l2 5a3 3 0 0 1 -6 0a3 3 0 0 1 -6 0a3 3 0 0 1 -6 0z" fill="currentColor"/><path d="M5 13.5V21h4.5v-3.5a1.5 1.5 0 0 1 1.5 -1.5h2a1.5 1.5 0 0 1 1.5 1.5V21H19v-7.5z" fill="currentColor"/></symbol>
+<symbol id="i-marcar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></symbol>
+<symbol id="i-mais" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+<symbol id="i-menos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></symbol>
+<symbol id="i-cronometro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15.75 7A7.5 7.5 0 1 1 8.25 7"/><path d="M10 3h4"/><path d="M12 3v3"/><path d="M12 13.5l3-3"/></symbol>
+<symbol id="i-pausar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 5v14"/><path d="M15.5 5v14"/></symbol>
+<symbol id="i-pausar-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.75 3.5h1.5a1.75 1.75 0 0 1 1.75 1.75v13.5a1.75 1.75 0 0 1 -1.75 1.75h-1.5a1.75 1.75 0 0 1 -1.75 -1.75v-13.5a1.75 1.75 0 0 1 1.75 -1.75zM15.75 3.5h1.5a1.75 1.75 0 0 1 1.75 1.75v13.5a1.75 1.75 0 0 1 -1.75 1.75h-1.5a1.75 1.75 0 0 1 -1.75 -1.75v-13.5a1.75 1.75 0 0 1 1.75 -1.75z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-comecar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 7 5.2z"/></symbol>
+<symbol id="i-comecar-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 7 5.2z" fill="currentColor"/></symbol>
+<symbol id="i-pular" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.2v11.6a1 1 0 0 0 1.53.85l9.2-5.8a1 1 0 0 0 0-1.7l-9.2-5.8A1 1 0 0 0 4.5 6.2z"/><path d="M19.5 5v14"/></symbol>
+<symbol id="i-buscar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.75"/><path d="M15.5 15.5 20.5 20.5"/></symbol>
+<symbol id="i-filtro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6h17"/><path d="M6.5 12h11"/><path d="M9.5 18h5"/></symbol>
+<symbol id="i-voltar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+<symbol id="i-avancar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.25" fill="currentColor"/><circle cx="12" cy="12" r="1.25" fill="currentColor"/><circle cx="19" cy="12" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></symbol>
+<symbol id="i-vibrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4.5h4a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1 -1.5 1.5h-4a1.5 1.5 0 0 1 -1.5 -1.5v-12a1.5 1.5 0 0 1 1.5 -1.5z"/><path d="M2.5 8.5l2 1.75-2 1.75 2 1.75-2 1.75"/><path d="M21.5 8.5l-2 1.75 2 1.75-2 1.75 2 1.75"/></symbol>
+<symbol id="i-sino" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5V10a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 21h4"/></symbol>
+<symbol id="i-sino-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5V10a6 6 0 0 1 12 0v5.5l1.5 2h-15z" fill="currentColor"/><path d="M10 21h4"/></symbol>
+<symbol id="i-prato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3v5.5a3 3 0 0 0 6 0V3"/><path d="M7.5 11.5V21"/><path d="M19.5 14.5V3a4.5 4.5 0 0 0-4.5 4.5v5.5a1.5 1.5 0 0 0 1.5 1.5h3zm0 0V21"/></symbol>
+<symbol id="i-grafico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 20V14"/><path d="M12 20V4.5"/><path d="M18.5 20V9.5"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9a2 2 0 0 1 2-2h2.5l1.6-2.5h5.8L16.5 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13.25" r="3"/></symbol>
+<symbol id="i-cadeado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11h11a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></symbol>
+<symbol id="i-email" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z"/><path d="M3.5 7.5 12 13l8.5-5.5"/></symbol>
+<symbol id="i-apple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M16.37 12.6c-.02-2.2 1.8-3.27 1.88-3.32-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.17-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.3-3.5zM14.2 6.13c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.64-1.05 1.67-.92 2.66.97.08 1.96-.49 2.56-1.21z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-google" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M18.2 6.6A8.25 8.25 0 1 0 20.25 12H12.5"/></symbol>
+<symbol id="i-calendario" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 5h13a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-13a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z"/><path d="M3.5 10h17"/><path d="M8 2.75v4"/><path d="M16 2.75v4"/></symbol>
+<symbol id="i-baixo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></symbol>
+<symbol id="i-subir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></symbol>
+<symbol id="i-seta-direita" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="M13 5.5l6.5 6.5-6.5 6.5"/></symbol>
+<symbol id="i-lista" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11.5"/><path d="M9 12h11.5"/><path d="M9 18h11.5"/><circle cx="4.25" cy="6" r="1.25" fill="currentColor"/><circle cx="4.25" cy="12" r="1.25" fill="currentColor"/><circle cx="4.25" cy="18" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-conversa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2.5 21.5z"/></symbol>
+<symbol id="i-desfazer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+<symbol id="i-trocar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20V4"/><path d="M3 8l4-4 4 4"/><path d="M17 4v16"/><path d="M13 16l4 4 4-4"/></symbol>
+<symbol id="i-alerta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10.27 4.5a2 2 0 0 1 3.46 0l7.6 13.25A2 2 0 0 1 19.6 20.75H4.4a2 2 0 0 1-1.73-3z"/><path d="M12 9.5v4"/><circle cx="12" cy="17" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-alca" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1.25" fill="currentColor"/><circle cx="15" cy="6" r="1.25" fill="currentColor"/><circle cx="9" cy="12" r="1.25" fill="currentColor"/><circle cx="15" cy="12" r="1.25" fill="currentColor"/><circle cx="9" cy="18" r="1.25" fill="currentColor"/><circle cx="15" cy="18" r="1.25" fill="currentColor"/></symbol>
+<symbol id="i-nuvem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></symbol>
+<symbol id="i-olho" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-escudo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></symbol>
+<symbol id="i-convite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h15a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2h-15a2 2 0 0 0-2 2z"/><path d="M13 5v2"/><path d="M13 11v2"/><path d="M13 17v2"/></symbol>
+<symbol id="i-relogio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.25 2"/></symbol>
+<symbol id="i-estrela" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.75l2.78 5.64 6.22.9-4.5 4.39 1.06 6.2L12 16.95l-5.56 2.93 1.06-6.2L3 9.29l6.22-.9z"/></symbol>
+<symbol id="i-corrida" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="4.5" r="2" fill="currentColor"/><path d="M4 17l5 1 .75-1.5"/><path d="M15 21v-4l-4-3 1-6"/><path d="M7 12V9l5-1 3 3 3 1"/></symbol>
+<symbol id="i-alongamento" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="5.5" r="2" fill="currentColor"/><path d="M6.5 21l3.5-5"/><path d="M5 11l7-2"/><path d="M16 21l-4-7V9l7-4"/></symbol>
+<symbol id="i-balanca" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3.5h9a4 4 0 0 1 4 4v9a4 4 0 0 1 -4 4h-9a4 4 0 0 1 -4 -4v-9a4 4 0 0 1 4 -4z"/><path d="M12 8a6 6 0 0 1 4.3 1.8l-2.6 2.6a2.4 2.4 0 0 0-3.4 0L7.7 9.8A6 6 0 0 1 12 8z"/></symbol>
+<symbol id="i-medida" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1z"/><path d="M7.5 12v3"/><path d="M12 12v3"/><path d="M16.5 12v3"/><path d="M3 3.5v4"/><path d="M3 5.5h18"/><path d="M21 3.5v4"/></symbol>
+<symbol id="i-frequencia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5a5.25 5.25 0 0 1 9.1-3.6.55.55 0 0 0 .8 0A5.25 5.25 0 0 1 21.5 9.5c0 2.2-1.45 3.85-2.9 5.3l-5.2 5.1a2 2 0 0 1-2.8 0l-5.2-5.1C3.95 13.35 2.5 11.7 2.5 9.5"/><path d="M6 12.5h3l1.5-2.5 3 5 1.5-2.5h3"/></symbol>
+<symbol id="i-sequencia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a7 7 0 0 1-14 0 5 5 0 0 1 1-3 2.5 2.5 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4z"/></symbol>
+<symbol id="i-sequencia-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a7 7 0 0 1-14 0 5 5 0 0 1 1-3 2.5 2.5 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4z" fill="currentColor"/></symbol>
+<symbol id="i-trofeu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6.5H4.5v1.5a3 3 0 0 0 3 3"/><path d="M17 6.5h2.5v1.5a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/><path d="M9.5 18h5"/></symbol>
+<symbol id="i-garrafa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.75h4"/><path d="M10.25 2.75v2.5c0 1.2-.6 2-1.5 3.2A6 6 0 0 0 7.5 12v7.5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2V12a6 6 0 0 0-1.25-3.55c-.9-1.2-1.5-2-1.5-3.2v-2.5"/><path d="M7.5 14.5c1.5-1 3-1 4.5 0s3 1 4.5 0"/></symbol>
+<symbol id="i-personal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6.5v3.5"/><path d="M21 6.5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5.7A6.75 6.75 0 1 1 9 6.5z"/></symbol>
+<symbol id="i-grafico-linha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 3.5V19a1.5 1.5 0 0 0 1.5 1.5h15.5"/><path d="M7.5 15l4-4.5 3 3 5-6"/></symbol>
+<symbol id="i-inicio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-7.5a1 1 0 0 0 -1 -1h-4a1 1 0 0 0 -1 1V21"/><path d="M3 10a2 2 0 0 1 .71 -1.53l7 -6a2 2 0 0 1 2.58 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1 -2 2H5a2 2 0 0 1 -2 -2z"/></symbol>
+<symbol id="i-inicio-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10a2 2 0 0 1 .71 -1.53l7 -6a2 2 0 0 1 2.58 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1 -2 2H5a2 2 0 0 1 -2 -2zM10 14v6h4v-6z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-horarios" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0 -2 -2H5a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><path d="M10.5 16a5.5 5.5 0 1 0 11 0a5.5 5.5 0 1 0 -11 0"/></symbol>
+<symbol id="i-horarios-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0 -2 -2H5a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M9.4 16a6.6 6.6 0 1 0 13.2 0a6.6 6.6 0 1 0 -13.2 0zM15.1 13.2v3.6l2.6 2 .9 -1.2 -2.1 -1.6v-2.8z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-hoje" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-hoje-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M1.9 12a10.1 10.1 0 1 0 20.2 0a10.1 10.1 0 1 0 -20.2 0zM10.9 6.5v6.1l3.6 2.4 1.2 -1.9 -2.6 -1.7V6.5z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-check-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2H5a2 2 0 0 1 -2 -2V6a2 2 0 0 1 2 -2z"/><path d="M3 10h18"/><path d="m9 16 2 2 4 -4"/></symbol>
+<symbol id="i-modalidade" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M16.75 4a1.25 1.25 0 1 0 2.5 0a1.25 1.25 0 1 0 -2.5 0"/><path d="M3 9l4.5 1l3 2.5"/><path d="M13 21v-8l3 -5.5"/><path d="M8 4.5l4 2l4 1l4 3.5l-2 3.5"/></symbol>
+<symbol id="i-luva" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3h4.5a6 6 0 0 1 6 6v3.5a4.5 4.5 0 0 1 -4.5 4.5H8.5a3.5 3.5 0 0 1 -3.5 -3.5V6.5a3.5 3.5 0 0 1 3.5 -3.5z"/><path d="M5 11.5h3.5a2 2 0 0 0 2 -2V8"/><path d="M7.5 17v2.5a1.5 1.5 0 0 0 1.5 1.5h6a1.5 1.5 0 0 0 1.5 -1.5V17"/></symbol>
+<symbol id="i-faixa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h7"/><path d="M14.5 8h7"/><path d="M2.5 12h7"/><path d="M14.5 12h7"/><path d="M11 6h2a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1 -1.5 1.5h-2a1.5 1.5 0 0 1 -1.5 -1.5v-5A1.5 1.5 0 0 1 11 6z"/><path d="M10.5 14l-2.5 7"/><path d="M13.5 14l2.5 7"/></symbol>
+<symbol id="i-faixa-cheio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h7"/><path d="M14.5 8h7"/><path d="M2.5 12h7"/><path d="M14.5 12h7"/><path d="M10.5 14l-2.5 7"/><path d="M13.5 14l2.5 7"/><path d="M11 4.9h2a2.6 2.6 0 0 1 2.6 2.6v5a2.6 2.6 0 0 1 -2.6 2.6h-2a2.6 2.6 0 0 1 -2.6 -2.6v-5A2.6 2.6 0 0 1 11 4.9z" fill="currentColor" stroke="none" fill-rule="evenodd"/></symbol>
+<symbol id="i-tatame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7.5h15l-3 11H3z"/><path d="M11 7.5l-3 11"/><path d="M16 7.5l-3 11"/><path d="M4.5 13h15"/></symbol>
+<symbol id="i-saco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5v2"/><path d="M8.5 7.5 12 4.5l3.5 3"/><path d="M11 7.5h2a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-2a4 4 0 0 1 -4 -4v-6a4 4 0 0 1 4 -4z"/><path d="M7 11.5h10"/><path d="M7 17.5h10"/></symbol>
+<symbol id="i-cronometro-round" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M13.56 6.16A7.5 7.5 0 0 1 19.13 15.82"/><path d="M17.57 18.52A7.5 7.5 0 0 1 6.43 18.52"/><path d="M4.87 15.82A7.5 7.5 0 0 1 10.44 6.16"/><path d="M10 2.5h4"/><path d="M12 2.5v3.5"/><path d="M12 13.5l2.5 -2.5"/></symbol>
+<symbol id="i-gongo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 21V4h15v17"/><path d="M3 21h3"/><path d="M18 21h3"/><path d="M9.5 4l1 3.5"/><path d="M14.5 4l-1 3.5"/><path d="M7 13a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"/><path d="M12 13h.01"/></symbol>
+<symbol id="i-kimono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3.5 3.5 6.5l1.5 5.5 2.5 -1v10.5h9V11l2.5 1 1.5 -5.5 -5 -3"/><path d="M8.5 3.5 12 9l3.5 -5.5"/><path d="M12 9l-3.5 6"/><path d="M7.5 15h9"/></symbol>
+<symbol id="i-caneleira" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5h8v9.5a5 5 0 0 1 -1.6 3.7L13.5 17.5h-3l-.9 -.8A5 5 0 0 1 8 13z"/><path d="M8 7.5h8"/><path d="M8 11.5h8"/><path d="M10.5 17.5v3h3v-3"/></symbol>
+<symbol id="s-simbolo" viewBox="-54 -24 1078 304"><path d="M30 0H182A40 40 0 0 1 222 40V44A40 40 0 0 1 182 84H0V52H182A8 8 0 0 0 190 44V40A8 8 0 0 0 182 32H14ZM0 52H32V140H0ZM120 84H162L234 140H192ZM256 140L380 0H416L492 140ZM322 108H440L394 46ZM738 0H566A46 46 0 0 0 520 46V94A46 46 0 0 0 566 140H738V108H566A14 14 0 0 1 552 94V46A14 14 0 0 1 566 32H738ZM754 140L878 0H914L990 140ZM820 108H938L892 46ZM622 150H642L636 190H616Z"/><path fill-rule="evenodd" d="M-30 168H1000V256H58ZM-10.69 176H992V248H61.31Z"/><path d="M108.93 230V189.91H148.39V198.71H120.8V206.8H145.34V215.6H120.8V230ZM161.52 230V189.91H173.39V230ZM211.9 230.7Q199.74 230.7 193.64 225.57Q187.55 220.44 187.55 209.97Q187.55 203.11 190.72 198.49Q193.89 193.88 199.89 191.54Q205.89 189.21 214.31 189.21Q219.52 189.21 223.97 190.15Q228.42 191.08 231.76 192.95Q235.1 194.82 236.94 197.65Q238.79 200.48 238.79 204.27H227.25Q227.25 202.65 226.24 201.44Q225.24 200.24 223.49 199.49Q221.74 198.74 219.51 198.37Q217.29 198.01 214.82 198.01Q211.31 198.01 208.51 198.71Q205.71 199.4 203.74 200.82Q201.78 202.24 200.75 204.35Q199.72 206.45 199.72 209.24V210.64Q199.72 214.59 201.37 217.07Q203.02 219.56 206.17 220.73Q209.32 221.9 213.84 221.9Q217.95 221.9 220.96 221.16Q223.96 220.42 225.59 218.99Q227.21 217.55 227.21 215.58V215.24H213.19V207.61H238.85V230H231.91L230.79 225.2Q228.54 227.07 225.64 228.31Q222.75 229.54 219.31 230.12Q215.86 230.7 211.9 230.7ZM254.27 230V189.91H266.15V204.83H290.21V189.91H302.08V230H290.21V214.39H266.15V230ZM331.81 230V199.47H314.44V189.91H361.05V199.47H343.68V230Z"/><path fill-rule="evenodd" d="M832 178H966V246H832ZM838 184V240H960V184Z"/><path style="fill:var(--logo-ponta, currentColor)" d="M838 184H960V240H838Z"/></symbol>
+<!-- SPRITE:FIM -->
+  <!-- símbolo do logo, variação 1 do agente W (marca-e-proposta/logo/simbolo.svg): a barra, as duas anilhas e o braço vertical -->
+  <!-- barra de status do sistema (desenho do aparelho, não do app) -->
+  <symbol id="s-sinal" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></symbol>
+  <symbol id="s-wifi" viewBox="0 0 16 12"><path d="M8 11.6l2.3-2.6a3.3 3.3 0 0 0-4.6 0z"/><path d="M3.3 6.4l1.5 1.7a4.8 4.8 0 0 1 6.4 0l1.5-1.7a7.1 7.1 0 0 0-9.4 0z"/><path d="M.6 3.5l1.5 1.7a9 9 0 0 1 11.8 0l1.5-1.7a11.3 11.3 0 0 0-14.8 0z"/></symbol>
+  <symbol id="s-bateria" viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="22" height="11" rx="3" fill="none" stroke="currentColor" opacity="0.45"/><rect x="2" y="2" width="16" height="8" rx="1.5"/><path d="M24 4v4a2 2 0 0 0 0-4z" opacity="0.45"/></symbol>
+  <!-- marcas das contas: maçã da Apple (uma cor, segue o texto do botão) e "G" do Google (as quatro cores oficiais) -->
+  <symbol id="m-apple" viewBox="0 0 24 24"><path d="M16.37 1.43c0 1.14-.49 2.27-1.18 3.08-.74.9-1.99 1.57-2.99 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.57-2.27 1.21-2.98.8-.94 2.14-1.64 3.25-1.68.03.13.05.28.05.43zm4.56 15.71c-.03.07-.46 1.58-1.52 3.12-.94 1.34-1.94 2.71-3.43 2.71-1.52 0-1.9-.88-3.63-.88-1.7 0-2.3.91-3.67.91-1.38 0-2.33-1.26-3.43-2.8C3.96 18.38 2.93 15.57 2.93 12.92c0-4.28 2.8-6.55 5.55-6.55 1.45 0 2.68.95 3.6.95.87 0 2.22-1.01 3.9-1.01.61 0 2.89.06 4.37 2.19-.13.09-2.38 1.37-2.38 4.19 0 3.26 2.85 4.42 2.96 4.45z"/></symbol>
+  <symbol id="m-google" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></symbol>
+</svg>
+
+<main class="o-pagina">
+
+  <header class="o-pagina__topo">
+    <div>
+      <nav class="paginas-nav" aria-label="Páginas do mockup"><span class="paginas-nav__marca" aria-hidden="true">Raça Fight</span><a href="luta.html">Telas de luta</a><a href="entrada.html" aria-current="page">Abertura e entrada</a><a href="index.html">Sistema (histórico)</a><a href="novas.html">Musculação (histórico)</a></nav>
+      <h1 class="so-leitor">Raça Fight — abertura e entrada</h1>
+      <p class="o-pagina__nota">15/10 (agente AL): marca da Raça Fight (tokens 2.0.0), <b>logo provisório</b> reconstruído das fotos, foto da academia sem rosto e a linha "Quero conhecer · aula experimental grátis". Antes: abertura com a cor da marca; boas-vindas com as duas portas; os caminhos do aluno e da academia, tudo em vidro sobre a mesma foto (nítida nas boas-vindas, desfocada nos passos). Carrega o <code>sistema.css</code> do agente N; o que falta está em <code>entrada.css</code> como <code>--o-</code>. Abre por <code>file://</code>.</p>
+    </div>
+    <div class="o-seletores">
+      <div class="o-grupo" role="group" aria-label="Tema"><span class="o-grupo__nome">Tema</span>
+        <button data-tema-botao="claro">Claro</button><button data-tema-botao="escuro">Escuro</button><button data-tema-botao="sistema">Sistema</button></div>
+      <div class="o-grupo" role="group" aria-label="Aparelho da moldura"><span class="o-grupo__nome">Aparelho</span>
+        <button data-aparelho-botao="iphone-se">iPhone SE</button><button data-aparelho-botao="iphone-16">iPhone 16</button><button data-aparelho-botao="iphone-16-pro-max">16 Pro Max</button><button data-aparelho-botao="android">Android 390</button></div>
+      <div class="o-grupo" role="group" aria-label="Movimento"><span class="o-grupo__nome">Movimento</span>
+        <button data-movimento-botao="normal">Normal</button><button data-movimento-botao="reduzido">Reduzido</button></div>
+      <div class="o-grupo" role="group" aria-label="Transparência"><span class="o-grupo__nome">Transparência</span>
+        <button data-transparencia-botao="normal">Normal</button><button data-transparencia-botao="reduzida">Reduzida</button></div>
+      <div class="o-grupo" role="group" aria-label="Foto de fundo"><span class="o-grupo__nome">Foto</span>
+        <button data-foto-botao="principal">Principal</button><button data-foto-botao="alternativa">Alternativa</button></div>
+    </div>
+  </header>
+
+  <!-- ===================== 1. ABERTURA ===================== -->
+  <section class="o-secao" aria-labelledby="t-abertura">
+    <div class="o-secao__cabeca">
+      <h2 class="titulo-2" id="t-abertura">1 · Abertura e boas-vindas</h2>
+      <p class="corpo-pequeno">A abertura é o preto da marca com o logo provisório. Na demo, o logo encolhe e sobe para o selo e a foto aparece por baixo; com "reduzir movimento", a abertura só esmaece em 160 ms. A versão estática é o que o <code>expo-splash-screen</code> mostra enquanto o app carrega.</p>
+    </div>
+    <div class="o-telas">
+
+      <!-- A1: abertura animada (o conteúdo das boas-vindas é copiado da A3 pelo script) -->
+      <figure class="o-quadro" id="tela-abertura-demo">
+        <div class="celular" role="group" aria-label="Tela: abertura que vira a tela de boas-vindas">
+          <div class="celular__tela">
+            <div class="o-tela" data-copiar-de="tela-boas-vindas"></div>
+            <div class="o-abertura" aria-hidden="true"></div>
+            <svg class="o-viajante" aria-hidden="true"><use href="#s-simbolo"/></svg>
+          </div>
+        </div>
+        <figcaption>
+          <span class="o-quadro__nome">Abertura → boas-vindas</span>
+          <span class="o-quadro__nota">Símbolo desce 14 px e aparece (200 ms) · espera · símbolo encolhe de 96 para 32 e sobe (320 ms, curva padrão) · foto entra de 1,04 para 1 · texto e portas sobem 8 px, 60 ms entre um e outro.</span>
+          <span class="o-quadro__acoes"><button class="o-grupo__botao botao botao--secundario botao--pequeno botao--intrinseco" id="repetir-abertura">Repetir abertura</button></span>
+        </figcaption>
+      </figure>
+
+      <!-- A2: abertura estática (expo-splash-screen) -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: abertura estática, a cor da marca com o símbolo no centro">
+          <div class="celular__tela">
+            <div class="o-abertura o-abertura--estatica"><svg class="o-abertura__simbolo"><use href="#s-simbolo"/></svg></div>
+          </div>
+        </div>
+        <figcaption>
+          <span class="o-quadro__nome">Abertura estática</span>
+          <span class="o-quadro__nota">Só o preto da marca (#1C1C1C) e o logo compacto com 240 pt de largura, igual nos dois temas, sem barra de status do app, sem texto e sem animação. O logo é branco com a ponta da faixa em vermelho.</span>
+        </figcaption>
+      </figure>
+
+      <!-- A3: boas-vindas, as duas portas -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: boas-vindas com as portas Sou aluno e Sou da academia">
+          <div class="celular__tela">
+            <div class="o-tela" id="tela-boas-vindas">
+              <div class="o-fundo" data-foto-fundo></div>
+              <div class="o-topo"></div>
+              <div class="o-conteudo">
+                <div class="o-barra o-entra"><span class="o-selo-logo o-vidro" data-alvo-simbolo role="img" aria-label="Raça Fight"><svg class="o-simbolo" aria-hidden="true"><use href="#s-simbolo"/></svg></span></div>
+                <div class="o-mola"></div>
+                <div class="o-pilha o-entra">
+                  <h1 class="o-titulo">Treine com disciplina, técnica e respeito.</h1>
+                  <p class="o-apoio">Escolha por onde você entra.</p>
+                </div>
+                <div class="o-pilha" role="group" aria-label="Por onde você entra">
+                  <button class="o-porta o-vidro o-vidro--forte o-entra"><span class="o-porta__icone"><svg class="icone"><use href="#i-inicio"/></svg></span><span class="o-porta__texto"><span class="o-porta__titulo">Sou aluno</span><span class="o-porta__apoio">Horários, presença e a sua faixa</span></span><svg class="icone"><use href="#i-avancar"/></svg></button>
+                  <button class="o-porta o-vidro o-vidro--forte o-entra"><span class="o-porta__icone"><svg class="icone"><use href="#i-academia"/></svg></span><span class="o-porta__texto"><span class="o-porta__titulo">Sou da academia</span><span class="o-porta__apoio">Professores e recepção</span></span><svg class="icone"><use href="#i-avancar"/></svg></button>
+                  <a class="o-conhecer o-entra" href="#">Quero conhecer · <b>aula experimental grátis</b></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>
+          <span class="o-quadro__nome">Boas-vindas</span>
+          <span class="o-quadro__nota">A foto da academia (o capacete vermelho sobre o kimono, sem rosto) com a camada de contraste embaixo. As duas portas são cartões de vidro de 88; embaixo, a linha da vitrine para quem quer conhecer (abre o WhatsApp com a modalidade, R19.2). O logo provisório fica num selo de vidro, nunca direto na foto.</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <table class="o-tabela" aria-label="Abertura estática no expo-splash-screen (Expo SDK 54)">
+      <thead><tr><th>Peça</th><th>Claro (sistema claro)</th><th>Escuro (sistema escuro, chave <code>dark</code>)</th></tr></thead>
+      <tbody>
+        <tr><td>Fundo (<code>backgroundColor</code>)</td><td colspan="2"><code>#1C1C1C</code>, o preto da marca, nos dois temas (tokens 2.0.0 › abertura)</td></tr>
+        <tr><td>Imagem (<code>image</code>)</td><td colspan="2"><code>02-design/marca-e-proposta/logo-raca-fight/png/abertura-logo-1024.png</code>: o logo compacto branco com a ponta vermelha, fundo transparente. <b>Provisório</b> até chegar o logo original.</td></tr>
+        <tr><td>Arquivo</td><td colspan="2">PNG 1024 × 1024, fundo transparente (o Expo só aceita PNG). O logo ocupa 620 px de largura e os cantos ficam dentro do círculo central de 2/3 da arte, que é o que o Android 12+ mostra.</td></tr>
+        <tr><td><code>imageWidth</code></td><td colspan="2"><code>396</code> → o logo aparece com cerca de 240 pt de largura (396 × 620 / 1024).</td></tr>
+        <tr><td><code>resizeMode</code></td><td colspan="2"><code>contain</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===================== 2. ALUNO ===================== -->
+  <section class="o-secao" aria-labelledby="t-aluno">
+    <div class="o-secao__cabeca">
+      <h2 class="titulo-2" id="t-aluno">2 · Porta "Sou aluno"</h2>
+      <p class="corpo-pequeno">Conta (Apple, Google ou e-mail) → academia pelo código (opcional) → objetivo e dias por semana (opcionais, com "Pular") → quem pode ver (só se há academia e o aluno respondeu) → Início. Nenhuma tela trava.</p>
+    </div>
+    <div class="o-telas">
+
+      <!-- B1: métodos -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: aluno escolhe como entrar">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"><button class="o-redondo o-vidro" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button></div><div class="o-barra__meio"><span class="o-etiqueta"><svg class="icone"><use href="#i-inicio"/></svg>Aluno</span></div><div class="o-barra__lado"></div></div>
+              <div class="o-mola"></div>
+              <div class="o-pilha o-centro"><h2 class="o-titulo-passo">Vamos começar.</h2><p class="o-apoio">Entre ou crie a sua conta. Leva um minuto.</p></div>
+              <div class="o-pilha">
+                <button class="o-pilula o-pilula--social"><svg class="o-marca-social o-maca" aria-hidden="true"><use href="#m-apple"/></svg>Continuar com a Apple</button>
+                <button class="o-pilula o-pilula--social"><svg class="o-marca-social" aria-hidden="true"><use href="#m-google"/></svg>Continuar com o Google</button>
+                <div class="o-ou">ou</div>
+                <button class="o-pilula o-pilula--marca"><svg class="icone"><use href="#i-email"/></svg>Continuar com e-mail</button>
+              </div>
+              <p class="o-legenda-tela o-centro">Ao continuar, você aceita os <u>Termos de uso</u> e a <u>Política de privacidade</u>.</p>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Aluno · como entrar</span><span class="o-quadro__nota">Apple e Google no mesmo tamanho, no mesmo estilo e um embaixo do outro (diretriz 4.8). No iPhone a Apple usa o botão nativo; no Android, o fluxo pela web.</span></figcaption>
+      </figure>
+
+      <!-- B2: entrar com e-mail -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: entrar com e-mail e senha">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"><button class="o-redondo o-vidro" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button></div><div class="o-barra__meio"></div><div class="o-barra__lado"></div></div>
+              <div class="o-pilha"><h2 class="o-titulo-passo">Entrar</h2><p class="o-apoio">Com o e-mail e a senha da sua conta.</p></div>
+              <div class="o-campo o-campo--foco"><span class="o-rotulo">E-mail</span><div class="o-campo__caixa o-vidro o-vidro--forte"><svg class="icone"><use href="#i-email"/></svg><span class="o-campo__valor">ana.souza@email.com</span></div></div>
+              <div class="o-campo"><span class="o-rotulo">Senha</span><div class="o-campo__caixa o-vidro o-vidro--forte"><svg class="icone"><use href="#i-cadeado"/></svg><span class="o-campo__valor">••••••••••</span><button class="o-campo__acao" aria-label="Mostrar a senha"><svg class="icone"><use href="#i-olho"/></svg></button></div></div>
+              <a class="o-link" href="#tela-esqueci">Esqueci a senha</a>
+              <div class="o-mola"></div>
+              <button class="o-pilula o-pilula--marca o-pilula--grande">Entrar</button>
+              <button class="o-pilula o-pilula--texto">Não tem conta?&nbsp;<b>Criar conta</b></button>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Aluno · entrar com e-mail</span><span class="o-quadro__nota">Rótulo sempre visível acima do campo de vidro. "Entrar" fica no fim, acima do teclado quando ele abre.</span></figcaption>
+      </figure>
+
+      <!-- B3: criar conta -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: criar conta com nome, e-mail e senha">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"><button class="o-redondo o-vidro" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button></div><div class="o-barra__meio"></div><div class="o-barra__lado"></div></div>
+              <div class="o-pilha"><h2 class="o-titulo-passo">Criar conta</h2><p class="o-apoio">Depois a gente manda um código para confirmar o e-mail.</p></div>
+              <div class="o-campo"><span class="o-rotulo">Nome</span><div class="o-campo__caixa o-vidro o-vidro--forte"><svg class="icone"><use href="#i-perfil"/></svg><span class="o-campo__valor">Ana Souza</span></div></div>
+              <div class="o-campo"><span class="o-rotulo">E-mail</span><div class="o-campo__caixa o-vidro o-vidro--forte"><svg class="icone"><use href="#i-email"/></svg><span class="o-campo__valor">ana.souza@email.com</span></div></div>
+              <div class="o-campo o-campo--foco"><span class="o-rotulo">Senha</span><div class="o-campo__caixa o-vidro o-vidro--forte"><svg class="icone"><use href="#i-cadeado"/></svg><span class="o-campo__valor">••••••</span><button class="o-campo__acao" aria-label="Mostrar a senha"><svg class="icone"><use href="#i-olho"/></svg></button></div><span class="o-campo__apoio">Pelo menos 8 caracteres.</span></div>
+              <div class="o-mola"></div>
+              <button class="o-pilula o-pilula--marca o-pilula--grande">Criar conta</button>
+              <p class="o-legenda-tela o-centro">Ao criar, você aceita os <u>Termos de uso</u> e a <u>Política de privacidade</u>.</p>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Aluno · criar conta</span><span class="o-quadro__nota">Três campos. O aviso de tamanho da senha aparece antes do erro, não depois.</span></figcaption>
+      </figure>
+
+      <!-- B4: esqueci a senha (passo do código) -->
+      <figure class="o-quadro" id="tela-esqueci">
+        <div class="celular" role="group" aria-label="Tela: esqueci a senha, código e nova senha">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"><button class="o-redondo o-vidro" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button></div><div class="o-barra__meio"></div><div class="o-barra__lado"></div></div>
+              <div class="o-pilha"><h2 class="o-titulo-passo">Nova senha</h2><p class="o-apoio">Mandamos um código de 6 números para ana.souza@email.com.</p></div>
+              <div class="o-codigo" role="group" aria-label="Código: 4 de 6 números digitados"><span class="o-vidro o-vidro--forte">4</span><span class="o-vidro o-vidro--forte">8</span><span class="o-vidro o-vidro--forte">1</span><span class="o-vidro o-vidro--forte">0</span><span class="o-vidro o-vidro--forte o-atual"></span><span class="o-vidro o-vidro--forte"></span></div>
+              <div class="o-campo"><span class="o-rotulo">Nova senha</span><div class="o-campo__caixa o-vidro o-vidro--forte"><svg class="icone"><use href="#i-cadeado"/></svg><span class="o-campo__valor o-campo__valor--vazio">Pelo menos 8 caracteres</span><button class="o-campo__acao" aria-label="Mostrar a senha"><svg class="icone"><use href="#i-olho"/></svg></button></div></div>
+              <div class="o-mola"></div>
+              <button class="o-pilula o-pilula--marca o-pilula--grande">Salvar nova senha</button>
+              <button class="o-pilula o-pilula--texto">Reenviar o código em 0:42</button>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Aluno · esqueci a senha</span><span class="o-quadro__nota">Antes desta, uma tela com só o e-mail e "Enviar código". O mesmo campo de 6 caixas confirma o e-mail da conta nova.</span></figcaption>
+      </figure>
+
+      <!-- B5: sua academia -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: código da academia, opcional">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"></div><div class="o-barra__meio"><div class="o-passos" role="img" aria-label="Passo 1 de 3"><span class="o-passos__tracos" aria-hidden="true"><i class="o-feito"></i><i></i><i></i></span><span class="o-passos__texto">1 de 3</span></div></div><div class="o-barra__lado o-barra__lado--texto"><button class="o-pular o-vidro">Pular</button></div></div>
+              <div class="o-pilha"><h2 class="o-titulo-passo">Qual é a sua academia?</h2><p class="o-apoio">O código está no cartaz da recepção. Sem código, você já vê os horários e a academia.</p></div>
+              <div class="o-codigo" role="group" aria-label="Código da academia: MRC4K2"><span class="o-vidro o-vidro--forte">M</span><span class="o-vidro o-vidro--forte">R</span><span class="o-vidro o-vidro--forte">C</span><span class="o-vidro o-vidro--forte">4</span><span class="o-vidro o-vidro--forte">K</span><span class="o-vidro o-vidro--forte">2</span></div>
+              <div class="o-cartao o-vidro o-vidro--forte">
+                <div class="o-cartao__linha"><span class="o-cartao__avatar" aria-hidden="true">RF</span><div><p class="o-cartao__titulo">Raça Fight Gravataí</p><p class="o-legenda-tela">Achamos pelo código MRC4K2.</p></div></div>
+                <p class="o-legenda-tela">A recepção confirma o seu pedido. Até lá, você já vê os horários.</p>
+              </div>
+              <div class="o-mola"></div>
+              <button class="o-pilula o-pilula--marca o-pilula--grande">É esta, pedir para entrar</button>
+              <button class="o-pilula o-pilula--texto">Vou treinar sozinho por enquanto</button>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Aluno · sua academia (opcional)</span><span class="o-quadro__nota">O código de 6 caracteres da academia (R8.1). O vínculo nasce pendente e a recepção confirma, ou entra direto se o dono desligou a confirmação.</span></figcaption>
+      </figure>
+
+      <!-- B6: objetivo -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: objetivo, opcional">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"><button class="o-redondo o-vidro" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button></div><div class="o-barra__meio"><div class="o-passos" role="img" aria-label="Passo 2 de 3"><span class="o-passos__tracos" aria-hidden="true"><i class="o-feito"></i><i class="o-feito"></i><i></i></span><span class="o-passos__texto">2 de 3</span></div></div><div class="o-barra__lado o-barra__lado--texto"><button class="o-pular o-vidro">Pular</button></div></div>
+              <div class="o-pilha"><h2 class="o-titulo-passo">Qual é o seu objetivo?</h2><p class="o-apoio">Ajuda o professor a conhecer você. Dá para mudar quando quiser.</p></div>
+              <div class="o-pilha" role="radiogroup" aria-label="Objetivo">
+                <button class="o-opcao o-vidro o-vidro--forte" role="radio" aria-checked="true"><span>Aprender a lutar</span><span class="o-opcao__marca"><svg class="icone"><use href="#i-marcar"/></svg></span></button>
+                <button class="o-opcao o-vidro o-vidro--forte" role="radio" aria-checked="false"><span>Condicionamento</span><span class="o-opcao__marca"><svg class="icone"><use href="#i-marcar"/></svg></span></button>
+                <button class="o-opcao o-vidro o-vidro--forte" role="radio" aria-checked="false"><span>Defesa pessoal</span><span class="o-opcao__marca"><svg class="icone"><use href="#i-marcar"/></svg></span></button>
+                <button class="o-opcao o-vidro o-vidro--forte" role="radio" aria-checked="false"><span>Competir</span><span class="o-opcao__marca"><svg class="icone"><use href="#i-marcar"/></svg></span></button>
+                <button class="o-opcao o-vidro o-vidro--forte" role="radio" aria-checked="false"><span>Perder peso</span><span class="o-opcao__marca"><svg class="icone"><use href="#i-marcar"/></svg></span></button>
+                <button class="o-opcao o-vidro o-vidro--forte" role="radio" aria-checked="false"><span>Saúde e disciplina</span><span class="o-opcao__marca"><svg class="icone"><use href="#i-marcar"/></svg></span></button>
+              </div>
+              <div class="o-mola"></div>
+              <button class="o-pilula o-pilula--marca o-pilula--grande">Continuar</button>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Aluno · objetivo (opcional)</span><span class="o-quadro__nota">A lista de luta de R14.10 (os nomes são [decidir] L9). Uma escolha só (R2.2).</span></figcaption>
+      </figure>
+
+      <!-- B7: dias por semana -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: dias por semana, opcional">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"><button class="o-redondo o-vidro" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button></div><div class="o-barra__meio"><div class="o-passos" role="img" aria-label="Passo 3 de 3"><span class="o-passos__tracos" aria-hidden="true"><i class="o-feito"></i><i class="o-feito"></i><i class="o-feito"></i></span><span class="o-passos__texto">3 de 3</span></div></div><div class="o-barra__lado o-barra__lado--texto"><button class="o-pular o-vidro">Pular</button></div></div>
+              <div class="o-pilha"><h2 class="o-titulo-passo">Quantos dias por semana você quer treinar?</h2><p class="o-apoio">É uma meta sua. O app usa para a sequência da semana e não cobra nada.</p></div>
+              <div class="o-dias o-vidro o-vidro--forte">
+                <button class="o-dias__botao o-vidro" aria-label="Menos um dia"><svg class="icone"><use href="#i-menos"/></svg></button>
+                <div class="o-dias__centro"><span class="o-dias__numero">3</span><span class="o-dias__unidade">dias por semana</span></div>
+                <button class="o-dias__botao o-vidro" aria-label="Mais um dia"><svg class="icone"><use href="#i-mais"/></svg></button>
+              </div>
+              <div class="o-semana" aria-hidden="true"><i class="o-feito"></i><i></i><i class="o-feito"></i><i></i><i class="o-feito"></i><i></i><i></i></div>
+              <div class="o-mola"></div>
+              <button class="o-pilula o-pilula--marca o-pilula--grande">Continuar</button>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Aluno · dias por semana (opcional)</span><span class="o-quadro__nota">O número enorme (112, Archivo, o numero-gigante do N) entre − e + de 64. Vai de 1 a 7; começa vazio ("—") se o aluno nunca respondeu.</span></figcaption>
+      </figure>
+
+      <!-- B8: quem pode ver -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: quem pode ver os dados corporais">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"><button class="o-redondo o-vidro" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button></div><div class="o-barra__meio"></div><div class="o-barra__lado"></div></div>
+              <div class="o-pilha"><h2 class="o-titulo-passo">Quem pode ver os seus dados</h2><p class="o-apoio">Objetivo, peso, altura e restrições são dados de saúde. Você decide quem vê.</p></div>
+              <div class="o-chave o-vidro o-vidro--forte" role="switch" aria-checked="true" tabindex="0"><span>A Raça Fight Gravataí pode ver meus dados corporais</span><i class="o-interruptor" aria-hidden="true"></i></div>
+              <ul class="o-lista-pontos o-cartao o-vidro o-vidro--forte">
+                <li><svg class="icone"><use href="#i-escudo"/></svg><span>Desligada, a academia vê só o seu nome, as suas turmas e a presença.</span></li>
+                <li><svg class="icone"><use href="#i-escudo"/></svg><span>Dá para mudar quando quiser em Perfil › Privacidade.</span></li>
+              </ul>
+              <div class="o-mola"></div>
+              <button class="o-pilula o-pilula--marca o-pilula--grande">Entendi</button>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Aluno · quem pode ver</span><span class="o-quadro__nota">É o passo 6 do F1. Só aparece se há academia e o aluno respondeu o objetivo; sem academia, não há a quem autorizar.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== 3. DA ACADEMIA ===================== -->
+  <section class="o-secao" aria-labelledby="t-academia">
+    <div class="o-secao__cabeca">
+      <h2 class="titulo-2" id="t-academia">3 · Porta "Sou da academia"</h2>
+      <p class="corpo-pequeno">Conta (as mesmas três formas) → "Tenho um convite ou código" → pedido pendente até o dono confirmar, ou "Vou abrir minha academia" (dono). O papel quem dá é o dono; a porta só escolhe o caminho do cadastro.</p>
+    </div>
+    <div class="o-telas">
+
+      <!-- C1: entrar na equipe -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: entrar na equipe da academia">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"><button class="o-redondo o-vidro" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button></div><div class="o-barra__meio"><span class="o-etiqueta"><svg class="icone"><use href="#i-academia"/></svg>Academia</span></div><div class="o-barra__lado"></div></div>
+              <div class="o-mola"></div>
+              <div class="o-pilha o-centro"><h2 class="o-titulo-passo">Entrar na equipe</h2><p class="o-apoio">Para professor e recepção. O dono usa o app Admin.</p></div>
+              <div class="o-pilha">
+                <button class="o-pilula o-pilula--social"><svg class="o-marca-social o-maca" aria-hidden="true"><use href="#m-apple"/></svg>Continuar com a Apple</button>
+                <button class="o-pilula o-pilula--social"><svg class="o-marca-social" aria-hidden="true"><use href="#m-google"/></svg>Continuar com o Google</button>
+                <button class="o-pilula o-pilula--marca"><svg class="icone"><use href="#i-email"/></svg>Continuar com e-mail</button>
+                <div class="o-ou">primeira vez?</div>
+                <button class="o-pilula o-pilula--vidro o-vidro o-vidro--forte"><svg class="icone"><use href="#i-convite"/></svg>Tenho um convite ou código</button>
+                <button class="o-pilula o-pilula--vidro o-vidro o-vidro--forte"><svg class="icone"><use href="#i-academia"/></svg>Vou abrir minha academia</button>
+              </div>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Academia · entrar</span><span class="o-quadro__nota">Quem já é da equipe entra e cai direto na visão que o vínculo dá. Quem chega pela primeira vez escolhe convite ou abrir academia, e cria a conta no passo seguinte.</span></figcaption>
+      </figure>
+
+      <!-- C2: convite / código -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: código de convite da equipe">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"><button class="o-redondo o-vidro" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button></div><div class="o-barra__meio"></div><div class="o-barra__lado"></div></div>
+              <div class="o-pilha"><h2 class="o-titulo-passo">Código da equipe</h2><p class="o-apoio">O dono passa esse código. Se ele mandou um convite por e-mail, é só abrir o link de lá.</p></div>
+              <div class="o-codigo" role="group" aria-label="Código da equipe: T9K2WM"><span class="o-vidro o-vidro--forte">T</span><span class="o-vidro o-vidro--forte">9</span><span class="o-vidro o-vidro--forte">K</span><span class="o-vidro o-vidro--forte">2</span><span class="o-vidro o-vidro--forte">W</span><span class="o-vidro o-vidro--forte">M</span></div>
+              <div class="o-cartao o-vidro o-vidro--forte">
+                <div class="o-cartao__linha"><span class="o-cartao__avatar" aria-hidden="true">RF</span><div><p class="o-cartao__titulo">Raça Fight Gravataí</p><p class="o-legenda-tela">Equipe · código T9K2WM</p></div></div>
+                <p class="o-rotulo">Qual é o seu papel?</p>
+                <div class="o-pilha" role="radiogroup" aria-label="Papel na academia">
+                  <button class="o-opcao o-vidro" role="radio" aria-checked="false"><span>Recepção</span><span class="o-opcao__marca"><svg class="icone"><use href="#i-marcar"/></svg></span></button>
+                  <button class="o-opcao o-vidro" role="radio" aria-checked="true"><span>Professor</span><span class="o-opcao__marca"><svg class="icone"><use href="#i-marcar"/></svg></span></button>
+                </div>
+              </div>
+              <div class="o-mola"></div>
+              <button class="o-pilula o-pilula--marca o-pilula--grande">Pedir para entrar</button>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Academia · convite ou código</span><span class="o-quadro__nota">Código da equipe (diferente do código dos alunos). A pessoa diz o papel que espera; quem decide é o dono, ao confirmar. "Dono" não é opção aqui.</span></figcaption>
+      </figure>
+
+      <!-- C3: pendente -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: pedido pendente até o dono confirmar">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"></div><div class="o-barra__meio"></div><div class="o-barra__lado"></div></div>
+              <div class="o-mola"></div>
+              <div class="o-pilha o-centro">
+                <span class="o-porta__icone" style="margin: 0 auto;" aria-hidden="true"><svg class="icone"><use href="#i-relogio"/></svg></span>
+                <h2 class="o-titulo-passo">Pedido enviado</h2>
+                <p class="o-apoio">O dono confirma pelo app. Você recebe um aviso quando ele confirmar.</p>
+              </div>
+              <div class="o-cartao o-vidro o-vidro--forte">
+                <div class="o-cartao__linha"><span class="o-cartao__avatar" aria-hidden="true">RF</span><div><p class="o-cartao__titulo">Raça Fight Gravataí</p><p class="o-legenda-tela">Pedido como professor · hoje, 9:41</p></div></div>
+                <span class="o-etiqueta"><svg class="icone"><use href="#i-relogio"/></svg>Esperando o dono</span>
+              </div>
+              <div class="o-mola"></div>
+              <button class="o-pilula o-pilula--vidro o-vidro o-vidro--forte"><svg class="icone"><use href="#i-inicio"/></svg>Treinar como aluno enquanto isso</button>
+              <button class="o-pilula o-pilula--texto">Cancelar o pedido</button>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Academia · pedido pendente</span><span class="o-quadro__nota">Ninguém fica numa tela vazia: enquanto espera, a pessoa pode usar a visão do aluno com a mesma conta. Quando o dono confirma, o vínculo novo aparece em "Trocar de visão".</span></figcaption>
+      </figure>
+
+      <!-- C4: dono cria a academia [decidir] -->
+      <figure class="o-quadro">
+        <div class="celular" role="group" aria-label="Tela: dono abre a academia, depende da decisão uma ou várias academias">
+          <div class="celular__tela"><div class="o-tela">
+            <div class="o-fundo o-fundo--desfocado"></div><div class="o-topo"></div>
+            <div class="o-conteudo">
+              <div class="o-barra"><div class="o-barra__lado"><button class="o-redondo o-vidro" aria-label="Voltar"><svg class="icone"><use href="#i-voltar"/></svg></button></div><div class="o-barra__meio"></div><div class="o-barra__lado"></div></div>
+              <div class="o-pilha"><h2 class="o-titulo-passo">Abrir a sua academia</h2><p class="o-apoio">Você entra como dono. Depois convida a equipe e recebe o código dos alunos.</p></div>
+              <p class="o-decidir o-vidro o-vidro--forte"><span><b>[decidir] Uma academia ou várias.</b> Com várias, qualquer dono abre a sua aqui. Com uma só, esta tela não existe: a academia é criada na implantação e o dono entra por convite.</span></p>
+              <div class="o-campo"><span class="o-rotulo">Nome da academia</span><div class="o-campo__caixa o-vidro o-vidro--forte"><svg class="icone"><use href="#i-academia"/></svg><span class="o-campo__valor">Raça Fight Gravataí</span></div></div>
+              <div class="o-campo"><span class="o-rotulo">Cidade</span><div class="o-campo__caixa o-vidro o-vidro--forte"><span class="o-campo__valor">Campinas, SP</span></div></div>
+              <div class="o-mola"></div>
+              <button class="o-pilula o-pilula--marca o-pilula--grande">Abrir academia</button>
+            </div>
+          </div></div>
+        </div>
+        <figcaption><span class="o-quadro__nome">Academia · dono abre a academia</span><span class="o-quadro__nota">[decidir] do Alex (P00): "uma academia só ou várias". A tela está desenhada para as duas respostas caberem.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  var raiz = document.documentElement;
+  var guarda = function (k, v) { try { if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} };
+  var naUrl = function (k, v) { try { var u = new URL(location.href); if (v === null) u.searchParams.delete(k); else u.searchParams.set(k, v); history.replaceState(null, '', u.href); } catch (e) {} };
+
+  // --- barra de status, ilha e indicador de início em toda tela (desenho do aparelho, não do app) ---
+  var STATUS = '<div class="celular__status" aria-hidden="true"><span class="celular__hora">9:41</span><span class="celular__icones"><svg class="status-icone status-icone--sinal"><use href="#s-sinal"/></svg><svg class="status-icone status-icone--wifi"><use href="#s-wifi"/></svg><svg class="status-icone status-icone--bateria"><use href="#s-bateria"/></svg></span></div><div class="celular__ilha" aria-hidden="true"></div>';
+  // a abertura animada recebe uma cópia das boas-vindas
+  document.querySelectorAll('[data-copiar-de]').forEach(function (d) {
+    var o = document.getElementById(d.getAttribute('data-copiar-de'));
+    d.innerHTML = o.innerHTML; d.querySelectorAll('[id]').forEach(function (e) { e.removeAttribute('id'); });
+    d.querySelectorAll('h1').forEach(function (h) { var p = document.createElement('p'); p.className = h.className; p.innerHTML = h.innerHTML; h.replaceWith(p); });
+  });
+  // a faixa do topo é o inset do sistema (a mesma classe do index.html: a auditoria sabe que é desenho do aparelho)
+  document.querySelectorAll('.o-topo').forEach(function (t) { t.classList.add('celular__inset-topo'); t.setAttribute('aria-hidden', 'true'); t.innerHTML = STATUS.replace(/<div class="celular__ilha"[^>]*><\/div>/, ''); });
+  document.querySelectorAll('.celular__tela').forEach(function (t) {
+    // o recorte e o indicador de início são do aparelho: aparecem em toda tela, inclusive na abertura
+    if (!t.querySelector('.celular__ilha')) { var il = document.createElement('div'); il.className = 'celular__ilha'; il.setAttribute('aria-hidden', 'true'); t.appendChild(il); }
+    var g = document.createElement('div'); g.className = 'celular__gesto'; g.setAttribute('aria-hidden', 'true'); t.appendChild(g);
+  });
+
+  // --- seletores do topo ---
+  function grupo(attr, aplicar, atual) {
+    var bs = document.querySelectorAll('[' + attr + ']');
+    function marcar() { var a = atual(); bs.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute(attr) === a ? 'true' : 'false'); }); }
+    bs.forEach(function (b) { b.addEventListener('click', function () { aplicar(b.getAttribute(attr)); marcar(); ajustar(); }); });
+    marcar();
+  }
+  grupo('data-tema-botao', function (t) {
+    if (t === 'sistema') raiz.removeAttribute('data-tema'); else raiz.setAttribute('data-tema', t);
+    guarda('academia-plus-tema', t === 'sistema' ? null : t); naUrl('tema', null);
+  }, function () { return raiz.getAttribute('data-tema') || 'sistema'; });
+  grupo('data-aparelho-botao', function (a) {
+    raiz.setAttribute('data-aparelho', a); raiz.setAttribute('data-plataforma', a === 'android' ? 'android' : 'ios');
+    guarda('academia-plus-aparelho', a); naUrl('aparelho', a);
+  }, function () { return raiz.getAttribute('data-aparelho'); });
+  grupo('data-movimento-botao', function (m) { raiz.setAttribute('data-movimento', m); guarda('academia-plus-movimento', m); }, function () { return raiz.getAttribute('data-movimento'); });
+  grupo('data-transparencia-botao', function (t) { raiz.setAttribute('data-transparencia', t); guarda('academia-plus-transparencia', t); naUrl('transparencia', null); }, function () { return raiz.getAttribute('data-transparencia'); });
+  grupo('data-foto-botao', function (f) { raiz.setAttribute('data-foto', f); guarda('academia-plus-foto-entrada', f); naUrl('foto', f === 'alternativa' ? f : null); }, function () { return raiz.getAttribute('data-foto'); });
+
+  // --- moldura: o mesmo cálculo do index.html, por grade. ?moldura=real desliga o zoom. ---
+  function ajustar() {
+    var cs = getComputedStyle(raiz), v = function (n) { return parseFloat(cs.getPropertyValue(n)) || 0; };
+    var escala = parseFloat(cs.fontSize) / 16;
+    raiz.setAttribute('data-fonte', escala > (v('--fonte-maxima') || 1.6) + 0.001 ? 'maxima' : escala >= (v('--fonte-ampliada') || 1.3) - 0.001 ? 'ampliada' : 'padrao');
+    var borda = v('--moldura-borda'), bordaV = v('--moldura-borda-v') || borda;
+    var largura = v('--moldura-tela-largura') + 2 * borda, altura = v('--moldura-tela-altura') + 2 * bordaV;
+    var real = /[?&]moldura=real\b/.test(location.search), minimo = v('--moldura-zoom-minimo') || 0.5;
+    var topo = document.querySelector('.o-pagina__topo').getBoundingClientRect().height;
+    document.querySelectorAll('.o-telas').forEach(function (telas, i) {
+      // a 1ª seção cabe inteira na 1ª tela; as outras, abaixo do topo fixo com o título da seção (o ultrawide do Alex, 2040 × 790)
+      var r = telas.getBoundingClientRect(), secao = telas.closest('section') || telas.parentElement;
+      var acima = i === 0 ? r.top + scrollY : topo + (r.top - secao.getBoundingClientRect().top) + v('--espaco-4');
+      var n = telas.querySelectorAll('.o-quadro').length, vao = parseFloat(getComputedStyle(telas).columnGap) || 0, W = telas.clientWidth;
+      var zAltura = 1;
+      if (!real && innerWidth > innerHeight) zAltura = Math.max(minimo, Math.min(1, (innerHeight - acima - v('--espaco-4')) / altura));
+      var zDe = function (c) { return Math.min(zAltura, (W - (c - 1) * vao) / (c * largura)); };
+      var cabe = 1; for (var c = n; c >= 1; c--) { if (zDe(c) >= zAltura - 0.0001 || c === 1) { cabe = c; break; } }
+      var col = cabe; for (var c2 = n; c2 > cabe; c2--) { if (zDe(c2) >= Math.max(minimo, 0.85 * zAltura)) { col = c2; break; } }
+      var linhas = Math.ceil(n / col); col = Math.ceil(n / linhas);
+      var z = real ? 1 : Math.max(Math.min(1, zDe(col)), minimo);
+      if (real) { col = Math.max(1, Math.min(n, Math.floor((W + vao) / (largura + vao)))); linhas = Math.ceil(n / col); col = Math.ceil(n / linhas); }
+      telas.style.setProperty('--moldura-zoom', z.toFixed(4));
+      telas.style.setProperty('--colunas-telas', col);
+    });
+  }
+  window.addEventListener('resize', ajustar);
+  ajustar();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustar);
+
+  // --- (agente U) os controles das telas cumprem o papel que anunciam ao leitor de tela ---
+  // role="radio": tocar marca só aquela opção; setas andam e marcam (padrão radiogroup); só a marcada fica no Tab
+  document.querySelectorAll('[role="radiogroup"]').forEach(function (g) {
+    var rs = Array.prototype.slice.call(g.querySelectorAll('[role="radio"]'));
+    function escolher(r, focar) {
+      rs.forEach(function (x) { var m = x === r; x.setAttribute('aria-checked', m ? 'true' : 'false'); x.tabIndex = m ? 0 : -1; });
+      if (focar) r.focus();
+    }
+    var marcada = rs.filter(function (x) { return x.getAttribute('aria-checked') === 'true'; })[0] || rs[0];
+    rs.forEach(function (x) { x.tabIndex = x === marcada ? 0 : -1; });
+    rs.forEach(function (r, i) {
+      r.addEventListener('click', function () { escolher(r, false); });
+      r.addEventListener('keydown', function (e) {
+        var j = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? i - 1 : e.key === 'Home' ? 0 : e.key === 'End' ? rs.length - 1 : null;
+        if (j === null) return; e.preventDefault(); escolher(rs[(j + rs.length) % rs.length], true);
+      });
+    });
+  });
+  // role="switch" (div com tabindex): clique, espaço e Enter ligam e desligam
+  document.querySelectorAll('[role="switch"]').forEach(function (s) {
+    function alternar() { s.setAttribute('aria-checked', s.getAttribute('aria-checked') === 'true' ? 'false' : 'true'); }
+    s.addEventListener('click', alternar);
+    s.addEventListener('keydown', function (e) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); if (!e.repeat) alternar(); } });
+  });
+  // dias por semana: − e + de 1 a 7; a semana de exemplo embaixo acompanha (3 dias = seg, qua, sex, como a página abre)
+  var DIAS = { 1: [0], 2: [0, 3], 3: [0, 2, 4], 4: [0, 1, 3, 4], 5: [0, 1, 2, 3, 4], 6: [0, 1, 2, 3, 4, 5], 7: [0, 1, 2, 3, 4, 5, 6] };
+  document.querySelectorAll('.o-dias').forEach(function (caixa) {
+    var num = caixa.querySelector('.o-dias__numero'), centro = caixa.querySelector('.o-dias__centro'), semana = caixa.parentElement.querySelector('.o-semana');
+    var menos = caixa.querySelector('[aria-label="Menos um dia"]'), mais = caixa.querySelector('[aria-label="Mais um dia"]');
+    if (!num || !menos || !mais) return;
+    if (centro) centro.setAttribute('aria-live', 'polite');
+    function por(d) {
+      var v = Math.max(1, Math.min(7, (parseInt(num.textContent, 10) || 3) + d)); num.textContent = v;
+      if (semana) semana.querySelectorAll('i').forEach(function (i, k) { i.classList.toggle('o-feito', DIAS[v].indexOf(k) >= 0); });
+    }
+    menos.addEventListener('click', function () { por(-1); }); mais.addEventListener('click', function () { por(1); });
+  });
+  // links para outra tela da página (#tela-…): a tela para abaixo do topo fixo e recebe o foco
+  document.querySelectorAll('a[href^="#tela-"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var alvo = document.getElementById(a.getAttribute('href').slice(1)); if (!alvo) return;
+      e.preventDefault();
+      var topo = document.querySelector('.o-pagina__topo'), h = topo ? topo.getBoundingClientRect().height : 0;
+      var cs = getComputedStyle(raiz), folga = parseFloat(cs.getPropertyValue('--espaco-4')) || 16;
+      window.scrollTo({ top: alvo.getBoundingClientRect().top + scrollY - h - folga, behavior: raiz.getAttribute('data-movimento') === 'reduzido' ? 'auto' : 'smooth' });
+      if (!alvo.hasAttribute('tabindex')) alvo.setAttribute('tabindex', '-1');
+      alvo.focus({ preventScroll: true });
+    });
+  });
+
+  // --- abertura animada (movimento/00-CATALOGO.md: só transform e opacity; reduzido = esmaecer de 160 ms) ---
+  var quadro = document.getElementById('tela-abertura-demo');
+  var tela = quadro.querySelector('.celular__tela'), capa = quadro.querySelector('.o-abertura'), viajante = quadro.querySelector('.o-viajante');
+  var fundo = quadro.querySelector('.o-fundo'), entra = quadro.querySelectorAll('.o-entra'), alvo = quadro.querySelector('[data-alvo-simbolo] .o-simbolo');
+  var braco = null; // o braço vertical do "+" é animado por um retângulo próprio dentro do viajante
+  var animacoes = [];
+  function parar() { animacoes.forEach(function (a) { try { a.cancel(); } catch (e) {} }); animacoes = []; }
+  function anima(el, quadros, op) { var a = el.animate(quadros, op); animacoes.push(a); return a; }
+  function abrir() {
+    parar();
+    var cs = getComputedStyle(raiz), ms = function (n, p) { return parseFloat(cs.getPropertyValue(n)) || p; };
+    var rapida = ms('--duracao-rapida', 120), media = ms('--duracao-media', 200), lenta = ms('--duracao-lenta', 320), esmaecer = ms('--duracao-esmaecer', 160);
+    var espera = parseFloat(cs.getPropertyValue('--abertura-espera')) || 700;
+    var curva = cs.getPropertyValue('--curva-padrao').trim() || 'cubic-bezier(0.2,0,0,1)', entrada = cs.getPropertyValue('--curva-entrada').trim() || 'cubic-bezier(0,0,0.2,1)';
+    var mola = cs.getPropertyValue('--mola-toque').trim() || curva;
+    var reduzido = raiz.getAttribute('data-movimento') === 'reduzido';
+    alvo.style.opacity = '';
+    if (reduzido) {
+      // sem deslocamento nem escala: a abertura fica um instante e esmaece; o símbolo do selo aparece junto
+      var some = [{ opacity: 1 }, { opacity: 1, offset: espera / (espera + esmaecer) }, { opacity: 0 }];
+      anima(capa, some, { duration: espera + esmaecer, easing: entrada, fill: 'both' });
+      anima(viajante, some, { duration: espera + esmaecer, easing: entrada, fill: 'both' });
+      anima(alvo, [{ opacity: 0 }, { opacity: 1 }], { duration: esmaecer, delay: espera, easing: entrada, fill: 'both' });
+      return;
+    }
+    // onde o símbolo termina: o centro do símbolo no selo, relativo à tela (as medidas dividem pelo zoom da moldura)
+    var z = parseFloat(getComputedStyle(quadro.parentNode).getPropertyValue('--moldura-zoom')) || 1;
+    var rt = tela.getBoundingClientRect(), ra = alvo.getBoundingClientRect(), rv = viajante.getBoundingClientRect();
+    var dx = ((ra.left + ra.width / 2) - (rv.left + rv.width / 2)) / z, dy = ((ra.top + ra.height / 2) - (rv.top + rv.height / 2)) / z;
+    var s = ra.width / rv.width;
+    // 1. o braço vertical do "+" desce sobre a barra (200 ms, saída suave)
+    var b = viajante.querySelector('use');
+    anima(viajante, [{ transform: 'translateY(-14px)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }], { duration: media, easing: entrada, fill: 'both' });
+    // 2. espera e 3. encolhe e sobe até o selo
+    anima(viajante, [{ transform: 'translate(0,0) scale(1)' }, { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(' + s + ')' }], { duration: lenta, delay: espera, easing: curva, fill: 'forwards', composite: 'replace' })
+;
+    // ao chegar, o viajante some e o símbolo do selo assume (troca de 120 ms, sem salto)
+    anima(viajante, [{ opacity: 1 }, { opacity: 0 }], { duration: rapida, delay: espera + lenta, easing: curva, fill: 'forwards' });
+    anima(alvo, [{ opacity: 0 }, { opacity: 1 }], { duration: rapida, delay: espera + lenta, easing: curva, fill: 'both' });
+    // a cor da marca sai e a foto aparece por baixo, crescendo de 1,04 para 1
+    anima(capa, [{ opacity: 1 }, { opacity: 0 }], { duration: lenta, delay: espera, easing: curva, fill: 'both' });
+    anima(fundo, [{ transform: 'scale(1.04)' }, { transform: 'scale(1)' }], { duration: lenta + 160, delay: espera, easing: entrada, fill: 'both' });
+    // 4. o resto entra subindo 8 px, 60 ms entre um e outro
+    entra.forEach(function (el, i) {
+      anima(el, [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: media, delay: espera + lenta - rapida + i * 60, easing: entrada, fill: 'both' });
+    });
+  }
+  document.getElementById('repetir-abertura').addEventListener('click', abrir);
+  window.__abrir = abrir;
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { setTimeout(abrir, 300); });
+})();
+</script>
+<script>document.querySelectorAll('.paginas-nav a').forEach(function (a) { a.addEventListener('click', function () { if (location.search) a.href = a.getAttribute('href').split('?')[0] + location.search; }); });</script>
+</body>
+</html>

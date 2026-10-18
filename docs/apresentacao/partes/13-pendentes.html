@@ -1,0 +1,136 @@
+<section class="parte" id="pendentes">
+  <p class="parte__olho">Parte 13</p>
+  <h1 class="parte__titulo">Decisões pendentes</h1>
+  <p class="parte__lide">Só o Alex responde estas perguntas. Em 11/10/2026 ele disse "pode prosseguir": para o app ser construído, as que travavam o código ficaram com a opção recomendada, <strong>de forma provisória</strong>. Cada uma pode mudar depois sem refazer o modelo de dados, que já cabe nas duas respostas. As marcadas como provisórias continuam com o selo <span class="decidir">decidir</span>: o app só não esperou por elas.</p>
+
+  <h2>As escolhas provisórias de 11/10</h2>
+  <table class="tabela-compacta">
+    <thead><tr><th>Pendência</th><th>Provisório no app</th><th>Por que dá para trocar depois</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">Uma academia ou várias</td><td>Telas para <strong>uma</strong>; a academia em todo registro</td><td>O modelo já é para várias</td></tr>
+      <tr><td class="chave">Quem paga o Plus</td><td><strong>Via academia</strong>: o dono liga e desliga, sem pagamento no app</td><td>Nenhum pagamento entrou no código</td></tr>
+      <tr><td class="chave">Dieta no Plus</td><td>Plano escrito por <strong>nutricionista parceira</strong>; o personal acompanha</td><td>A tela é a mesma; muda quem assina</td></tr>
+      <tr><td class="chave">Chat ou WhatsApp</td><td><strong>Chat no app, só texto</strong> (a tela ainda não existe)</td><td>Conversa e mensagem ficam isoladas</td></tr>
+      <tr><td class="chave">"+" central na barra</td><td><strong>Não</strong>: 4 abas</td><td>O protótipo com "+" continua pronto</td></tr>
+      <tr><td class="chave">CREF no perfil</td><td><strong>Só mostrar</strong>, "informado pelo profissional"</td><td>O campo "conferido" já existe</td></tr>
+      <tr><td class="chave">Avaliação de profissional</td><td><strong>Não</strong></td><td>—</td></tr>
+      <tr><td class="chave">Servidor</td><td><strong>Dados de exemplo no aparelho</strong> até existir a conta do Supabase</td><td>Uma pasta só (<code>app/dados/</code>) fala com os dados</td></tr>
+    </tbody>
+  </table>
+
+  <div class="decisao"><div class="decisao__n">1</div><div>
+    <h3>Uma academia só, ou várias (um serviço que qualquer academia assina)?</h3>
+    <p>Uma é mais simples. Várias transforma o app num produto para vender, e torna o logo de cada academia um argumento de venda.</p>
+    <p><span class="rec">Recomendação:</span> começar com uma academia real e o banco já pronto para várias. Isso já está feito: todo registro carrega a academia, então a resposta não trava o código.</p>
+      <p><span class="rec">No app, provisório desde 11/10:</span> telas para uma academia, com o banco pronto para várias.</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">2</div><div>
+    <h3>Quem paga o Plus: o aluno direto, ou a academia cobra junto da mensalidade?</h3>
+    <p>No app, pela loja: a loja fica com 15 a 30 %. No app, por Pix ou cartão: 1 a 4 %, mas a Apple pode exigir a compra pela loja. Pela academia: nenhuma integração de pagamento.</p>
+    <p><span class="rec">Recomendação:</span> via academia, com o Plus desenhado como serviço da academia (com uma parte presencial de verdade), contratado na recepção e sem botão de compra no app. <strong>Não é risco zero</strong>: as regras 3.1.3(b) e (d) da Apple podem pegar até esse caminho. Confirmar com as regras da Apple (e, se possível, com uma consulta prévia à revisão da loja) antes do primeiro envio.</p>
+      <p><span class="rec">No app, provisório desde 11/10:</span> via academia, o dono liga e desliga o Plus no app, sem botão de compra.</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">3</div><div>
+    <h3>Alimentação: texto livre, ou banco de alimentos com calorias?</h3>
+    <p>Texto livre: "2 ovos mexidos + 1 fatia de pão integral". Banco: busca o alimento, informa gramas, o app soma calorias e macronutrientes.</p>
+    <p><span class="rec">Recomendação:</span> texto livre na primeira versão. O banco precisa de uma base confiável e só vale depois de ver como os planos são escritos na prática. O modelo de dados já reserva os campos. Esta pergunta depende da 7.</p>
+      <p><span class="rec">No app, hoje:</span> texto livre (o plano do dia, refeição por refeição, com a marca de feito ou "não segui").</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">4</div><div>
+    <h3>Conversa com o personal: chat dentro do app, ou botão para o WhatsApp?</h3>
+    <p>WhatsApp não custa nada para construir e todo mundo já usa. Chat no app custa mais, mas a conversa fica junto do plano.</p>
+    <p><span class="rec">Recomendação deste documento:</span> chat no app, só texto, na primeira versão. Com ele, o personal perde o acesso quando o Plus acaba (regra da Parte 5), o número pessoal dele não fica exposto e a conversa, que pode ter dado de saúde, fica protegida pelas mesmas regras. Se a pressa for lançar, o WhatsApp serve como começo. (Proposta deste PDF, ainda não registrada nos documentos do projeto.)</p>
+      <p><span class="rec">No app, provisório desde 11/10:</span> chat no app, só texto. A tela ainda não foi feita; hoje o Plus diz "Fale com Júlia na academia".</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">5</div><div>
+    <h3>Marca: a cara do Academia Plus, ou a cara de cada academia?</h3>
+    <p>Três degraus: o nome da academia no app (já desenhado, custo zero); o logo dela dentro do app (2 a 3 dias); a cor dela nos botões (1 a 2 semanas e cuidado a cada academia nova, porque a cor precisa passar no teste de contraste).</p>
+    <p><span class="rec">Recomendação:</span> se for uma academia, o nome dela no app agora. Se forem várias, o logo dela desde o início. A cor da academia em nenhum caso na primeira versão. O dourado do Plus nunca muda.</p>
+      <p><span class="rec">No app, hoje:</span> a marca do Academia Plus, com o nome da academia nas telas.</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">6</div><div>
+    <h3>Qual é a primeira academia? Existe um cliente real?</h3>
+    <p>Um dono de verdade responde metade das outras perguntas: se cobra o Plus junto da mensalidade, se tem personal, se quer o logo dele no app, se tem balança, se a recepção tem tablet.</p>
+    <p><span class="rec">Recomendação:</span> achar essa academia antes de construir as telas. Os documentos foram escritos com um "Marcos" imaginário: 350 alunos, 3 funcionários.</p>
+      <p><span class="rec">No app, hoje:</span> a "Academia do Marcos" de exemplo, com 7 alunos e 5 profissionais.</p>
+  </div></div>
+
+  <div class="decisao"><div class="decisao__n">7</div><div>
+    <h3>Alimentação no Plus: quem prescreve?</h3>
+    <p>A Lei 8.234/1991 e o Conselho Federal de Nutricionistas tratam a prescrição de dieta como atividade de nutricionista. Do jeito que a especificação está escrita hoje, o personal monta o plano, e isso pode ser exercício ilegal da profissão.</p>
+    <p><span class="rec">Opções:</span> um nutricionista parceiro da academia escreve o plano (um papel novo no app, ao lado do personal); ou o personal só acompanha um plano feito por nutricionista e dá orientações gerais.</p>
+    <p><span class="rec">Recomendação:</span> ouvir um advogado ou um nutricionista (ou o conselho regional) <strong>antes de desenhar as telas de alimentação</strong>. A ideia de que o Plus inclui treino e alimentação não muda; muda quem escreve o plano.</p>
+      <p><span class="rec">No app, provisório desde 11/10:</span> plano escrito por nutricionista parceira e acompanhado pelo personal; a tela do personal não tem "Novo plano". Falta ouvir advogado ou nutricionista.</p>
+  </div></div>
+
+  <h2>As novas, que surgiram ao construir</h2>
+  <div class="decisao"><div class="decisao__n">8</div><div>
+    <h3>Mapa muscular: vetor ou IA, e onde entra na Evolução</h3>
+    <p>O corpo cinza com o músculo vermelho no lugar das ilustrações (Parte 9). <span class="rec">Recomendação:</span> o vetor (A) em todos os tamanhos; na Evolução, decidir se o corpo pintado substitui a rosca ou entra junto dela. <strong>Aguarda a aprovação do Alex</strong>; o app ainda usa as ilustrações.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">9</div><div>
+    <h3>Treino descartado: sobe ao servidor ou sai da fila?</h3>
+    <p>Hoje as séries do treino descartado continuam gravadas (a folha promete isso) e ele não volta ao reabrir o app, mas ainda sobe, aberto. <span class="rec">Opções:</span> sair da fila · subir marcado como descartado.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">10</div><div>
+    <h3>Aluno pendente: a academia já pode abrir o perfil e mandar treino antes de confirmar?</h3>
+    <p><span class="rec">Opções:</span> esconder até confirmar · permitir. Hoje o aluno pendente já vê os treinos prontos da academia.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">11</div><div>
+    <h3>Aviso da academia: o instrutor também escreve?</h3>
+    <p>Hoje só o dono e a recepção, e a tela de aviso não abre para os outros papéis nem pelo endereço. <span class="rec">Opções:</span> como está · instrutor também.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">12</div><div>
+    <h3>Recepção na entrada da equipe</h3>
+    <p>Quem escolhe "recepção ou instrutor" ao pedir para entrar vira instrutor no pedido, e o dono ajusta ao confirmar. <span class="rec">Opções:</span> opção própria para a recepção · como está.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">13</div><div>
+    <h3>CREF no perfil do professor</h3>
+    <p>Não há consulta pública nacional fácil de usar pelo app. <span class="rec">Provisório:</span> só mostrar, com "informado pelo profissional". Outras opções: o dono confere à mão · integrar se surgir uma API.</p>
+  </div></div>
+  <div class="decisao"><div class="decisao__n">14</div><div>
+    <h3>Avaliação de profissional pelo aluno</h3>
+    <p>Nota ou estrela expõe o profissional. <span class="rec">Provisório:</span> não ter (recomendado). Outras opções: só elogio, sem nota · nota.</p>
+  </div></div>
+
+  <h2>A tabela inteira, como está no P00</h2>
+  <table class="tabela-compacta">
+    <thead><tr><th>#</th><th>Pergunta</th><th>Opções</th><th>Hoje no app</th></tr></thead>
+    <tbody>
+      <tr><td class="chave">1</td><td>Uma academia ou várias</td><td>Uma · várias</td><td>Uma (provisório)</td></tr>
+      <tr><td class="chave">2</td><td>Quem paga o Plus</td><td>Aluno no app · academia cobra</td><td>Via academia (provisório)</td></tr>
+      <tr><td class="chave">3</td><td>Dieta: texto livre ou banco de alimentos</td><td>Texto livre · banco</td><td>Texto livre</td></tr>
+      <tr><td class="chave">4</td><td>Chat ou WhatsApp</td><td>Chat próprio · WhatsApp</td><td>Chat, só texto (provisório; tela por fazer)</td></tr>
+      <tr><td class="chave">5</td><td>Marca própria ou da academia</td><td>Própria · white-label</td><td>Própria</td></tr>
+      <tr><td class="chave">6</td><td>Primeira academia cliente</td><td>—</td><td>Academia de exemplo</td></tr>
+      <tr><td class="chave">7</td><td>Quem prescreve a dieta no Plus</td><td>Nutricionista parceiro · personal só orienta · sem dieta na v1</td><td>Nutricionista parceira (provisório)</td></tr>
+      <tr><td class="chave">8</td><td>Revisão dos treinos prontos (CREF)</td><td>Profissional da academia parceira · contratado</td><td>Aviso "ainda não passaram por um profissional com CREF"</td></tr>
+      <tr><td class="chave">9</td><td>CREF no perfil</td><td>Só mostrar · dono confere · API</td><td>Só mostrar (provisório)</td></tr>
+      <tr><td class="chave">10</td><td>Avaliação de profissional</td><td>Não · só elogio · nota</td><td>Não (provisório)</td></tr>
+      <tr><td class="chave">11</td><td>Mapa muscular</td><td>Vetor · IA · no lugar da rosca · os dois</td><td>Aguarda o Alex</td></tr>
+      <tr><td class="chave">12</td><td>Treino descartado</td><td>Sai da fila · sobe marcado</td><td>Sobe, aberto</td></tr>
+      <tr><td class="chave">13</td><td>Aluno pendente</td><td>Esconder até confirmar · permitir</td><td>Em aberto</td></tr>
+      <tr><td class="chave">14</td><td>Aviso pelo instrutor</td><td>Só dono e recepção · instrutor também</td><td>Só dono e recepção</td></tr>
+      <tr><td class="chave">15</td><td>Recepção na entrada da equipe</td><td>Opção própria · como está</td><td>Vira instrutor; o dono ajusta</td></tr>
+      <tr><td class="chave">16</td><td>Circuito conduzido pelo app</td><td>Só texto na v1 · regra nova</td><td>Só texto</td></tr>
+      <tr><td class="chave">17</td><td>Nomes dos objetivos</td><td>Perder peso · Ganhar massa · Condicionamento · Começar a treinar · Manter</td><td>A proposta da marca</td></tr>
+      <tr><td class="chave">18</td><td>Nome do pacote do app</td><td><code>com.pixelmartins.academiaplus</code> · outro</td><td>O proposto (não muda depois do 1º envio)</td></tr>
+      <tr><td class="chave">19</td><td>Conta Apple Developer</td><td>Empresa (recomendado) · pessoa física</td><td>—</td></tr>
+      <tr><td class="chave">20</td><td>Plus nas lojas</td><td>Serviço da academia com parte presencial · assinatura pela loja · só na web</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Outras escolhas que esperam o Alex</h2>
+  <ul>
+    <li><strong>O logo está resolvido</strong> (Parte 8). Fica, sem pressa, o ícone escuro próprio do iOS 18.</li>
+    <li><strong>Palavras</strong>: "dieta" ou "plano alimentar" na tela.</li>
+    <li><strong>A conversa</strong> com a personal e as telas de plano alimentar do personal, que dependem das perguntas 4 e 7.</li>
+    <li><strong>Mensalidade, catraca e caixa</strong> dentro do app ou não.</li>
+    <li><strong>As perguntas menores</strong>, cada uma com recomendação, em <code>01-especificacao/90-PERGUNTAS-PARA-O-ALEX.md</code>.</li>
+  </ul>
+</section>

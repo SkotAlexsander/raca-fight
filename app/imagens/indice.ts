@@ -1,0 +1,63 @@
+/* eslint-disable */
+/**
+ * GERADO por ferramentas/copiar-imagens.mjs. NÃO EDITE À MÃO.
+ * Fonte: 02-design/imagens/ (créditos em imagens/CREDITOS*.md).
+ */
+import type { ImageSourcePropType } from 'react-native';
+
+export const IMAGENS = {
+  'estados-vazios/aguardando-personal-claro': require('./estados-vazios/aguardando-personal-claro.webp') as ImageSourcePropType,
+  'estados-vazios/aguardando-personal-escuro': require('./estados-vazios/aguardando-personal-escuro.webp') as ImageSourcePropType,
+  'estados-vazios/biblioteca-vazia-claro': require('./estados-vazios/biblioteca-vazia-claro.webp') as ImageSourcePropType,
+  'estados-vazios/biblioteca-vazia-escuro': require('./estados-vazios/biblioteca-vazia-escuro.webp') as ImageSourcePropType,
+  'estados-vazios/busca-sem-resultado-claro': require('./estados-vazios/busca-sem-resultado-claro.webp') as ImageSourcePropType,
+  'estados-vazios/busca-sem-resultado-escuro': require('./estados-vazios/busca-sem-resultado-escuro.webp') as ImageSourcePropType,
+  'estados-vazios/erro-carregar-claro': require('./estados-vazios/erro-carregar-claro.webp') as ImageSourcePropType,
+  'estados-vazios/erro-carregar-escuro': require('./estados-vazios/erro-carregar-escuro.webp') as ImageSourcePropType,
+  'estados-vazios/historico-vazio-claro': require('./estados-vazios/historico-vazio-claro.webp') as ImageSourcePropType,
+  'estados-vazios/historico-vazio-escuro': require('./estados-vazios/historico-vazio-escuro.webp') as ImageSourcePropType,
+  'estados-vazios/nenhum-aluno-claro': require('./estados-vazios/nenhum-aluno-claro.webp') as ImageSourcePropType,
+  'estados-vazios/nenhum-aluno-escuro': require('./estados-vazios/nenhum-aluno-escuro.webp') as ImageSourcePropType,
+  'estados-vazios/primeiro-treino-claro': require('./estados-vazios/primeiro-treino-claro.webp') as ImageSourcePropType,
+  'estados-vazios/primeiro-treino-escuro': require('./estados-vazios/primeiro-treino-escuro.webp') as ImageSourcePropType,
+  'estados-vazios/sem-conexao-claro': require('./estados-vazios/sem-conexao-claro.webp') as ImageSourcePropType,
+  'estados-vazios/sem-conexao-escuro': require('./estados-vazios/sem-conexao-escuro.webp') as ImageSourcePropType,
+  'estados-vazios/sem-plano-claro': require('./estados-vazios/sem-plano-claro.webp') as ImageSourcePropType,
+  'estados-vazios/sem-plano-escuro': require('./estados-vazios/sem-plano-escuro.webp') as ImageSourcePropType,
+  'estados-vazios/sem-plus-alimentacao-claro': require('./estados-vazios/sem-plus-alimentacao-claro.webp') as ImageSourcePropType,
+  'estados-vazios/sem-plus-alimentacao-escuro': require('./estados-vazios/sem-plus-alimentacao-escuro.webp') as ImageSourcePropType,
+  'raca-fight/admin-fundo-cartao': require('./raca-fight/admin-fundo-cartao.webp') as ImageSourcePropType,
+  'raca-fight/aula-capa-capa': require('./raca-fight/aula-capa-capa.webp') as ImageSourcePropType,
+  'raca-fight/aula-capa-cartao': require('./raca-fight/aula-capa-cartao.webp') as ImageSourcePropType,
+  'raca-fight/cronometro-fundo-tela': require('./raca-fight/cronometro-fundo-tela.webp') as ImageSourcePropType,
+  'raca-fight/cronometro-fundo-tela-claro': require('./raca-fight/cronometro-fundo-tela-claro.webp') as ImageSourcePropType,
+  'raca-fight/cronometro-fundo-tela-claro-desfocado': require('./raca-fight/cronometro-fundo-tela-claro-desfocado.webp') as ImageSourcePropType,
+  'raca-fight/cronometro-fundo-tela-desfocado': require('./raca-fight/cronometro-fundo-tela-desfocado.webp') as ImageSourcePropType,
+  'raca-fight/cronometro-fundo-tela-escuro': require('./raca-fight/cronometro-fundo-tela-escuro.webp') as ImageSourcePropType,
+  'raca-fight/cronometro-fundo-tela-escuro-desfocado': require('./raca-fight/cronometro-fundo-tela-escuro-desfocado.webp') as ImageSourcePropType,
+  'raca-fight/entrada-fundo-tela': require('./raca-fight/entrada-fundo-tela.webp') as ImageSourcePropType,
+  'raca-fight/entrada-fundo-tela-claro': require('./raca-fight/entrada-fundo-tela-claro.webp') as ImageSourcePropType,
+  'raca-fight/entrada-fundo-tela-claro-desfocado': require('./raca-fight/entrada-fundo-tela-claro-desfocado.webp') as ImageSourcePropType,
+  'raca-fight/entrada-fundo-tela-desfocado': require('./raca-fight/entrada-fundo-tela-desfocado.webp') as ImageSourcePropType,
+  'raca-fight/entrada-fundo-tela-escuro': require('./raca-fight/entrada-fundo-tela-escuro.webp') as ImageSourcePropType,
+  'raca-fight/entrada-fundo-tela-escuro-desfocado': require('./raca-fight/entrada-fundo-tela-escuro-desfocado.webp') as ImageSourcePropType,
+  'raca-fight/evento-entrada-do-atleta-capa': require('./raca-fight/evento-entrada-do-atleta-capa.webp') as ImageSourcePropType,
+  'raca-fight/evento-entrada-do-atleta-cartao': require('./raca-fight/evento-entrada-do-atleta-cartao.webp') as ImageSourcePropType,
+  'raca-fight/evento-noite-de-luta-cartao': require('./raca-fight/evento-noite-de-luta-cartao.webp') as ImageSourcePropType,
+  'raca-fight/graduacao-cordao-capa': require('./raca-fight/graduacao-cordao-capa.webp') as ImageSourcePropType,
+  'raca-fight/graduacao-cordao-cartao': require('./raca-fight/graduacao-cordao-cartao.webp') as ImageSourcePropType,
+  'raca-fight/inicio-capa-capa': require('./raca-fight/inicio-capa-capa.webp') as ImageSourcePropType,
+  'raca-fight/inicio-capa-cartao': require('./raca-fight/inicio-capa-cartao.webp') as ImageSourcePropType,
+  'raca-fight/modalidade-boxe-cartao': require('./raca-fight/modalidade-boxe-cartao.webp') as ImageSourcePropType,
+  'raca-fight/modalidade-boxe-mini': require('./raca-fight/modalidade-boxe-mini.webp') as ImageSourcePropType,
+  'raca-fight/modalidade-jiu-jitsu-cartao': require('./raca-fight/modalidade-jiu-jitsu-cartao.webp') as ImageSourcePropType,
+  'raca-fight/modalidade-jiu-jitsu-mini': require('./raca-fight/modalidade-jiu-jitsu-mini.webp') as ImageSourcePropType,
+  'raca-fight/modalidade-kids-cartao': require('./raca-fight/modalidade-kids-cartao.webp') as ImageSourcePropType,
+  'raca-fight/modalidade-kids-mini': require('./raca-fight/modalidade-kids-mini.webp') as ImageSourcePropType,
+  'raca-fight/modalidade-mma-cartao': require('./raca-fight/modalidade-mma-cartao.webp') as ImageSourcePropType,
+  'raca-fight/modalidade-mma-mini': require('./raca-fight/modalidade-mma-mini.webp') as ImageSourcePropType,
+  'raca-fight/modalidade-muay-thai-cartao': require('./raca-fight/modalidade-muay-thai-cartao.webp') as ImageSourcePropType,
+  'raca-fight/modalidade-muay-thai-mini': require('./raca-fight/modalidade-muay-thai-mini.webp') as ImageSourcePropType,
+} as const;
+
+export type NomeDaImagem = keyof typeof IMAGENS;

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ícones Academia Plus</title>
+<!-- Gerado por fonte/gerar.py a partir de fonte/galeria-modelo.html. Abre por file://: o sprite está embutido. -->
+<style>
+  :root {
+    /* cores de tokens.json 1.5.0; --r-* são locais do agente R e o Q leva para o tokens.json */
+    --c-fundo: #F4F8F7; --c-superficie: #FFFFFF; --c-texto: #131D1C; --c-texto-2: #556463; --c-borda: #D0DAD9; --c-marca: #007761;
+    --r-ilustracao-fundo: #E6F1EF; --r-ilustracao-traco: #131D1C; --ilustracao-destaque: #007761; /* tokens 1.7.0: ilustracao.claro.destaque = marca */
+    --e-fundo: #070C0C; --e-superficie: #121A19; --e-texto: #E9F2F1; --e-texto-2: #A3B1B0; --e-borda: #2A3433; --e-marca: #39F0CD;
+    --er-ilustracao-fundo: #222D2C; --er-ilustracao-traco: #E9F2F1; --er-ilustracao-destaque: #39F0CD;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.45 Figtree, "Segoe UI", system-ui, sans-serif; background: #E9EEED; color: #131D1C; }
+  header { padding: 24px 16px 8px; max-width: 1400px; margin: 0 auto; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  h2 { font-size: 19px; margin: 28px 0 10px; }
+  header p { margin: 0; color: #556463; max-width: 70ch; }
+  main { max-width: 1400px; margin: 0 auto; padding: 0 16px 48px; }
+  .temas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 900px) { .temas { grid-template-columns: 1fr; } }
+  .tema { border-radius: 16px; padding: 14px; }
+  .claro { background: var(--c-fundo); color: var(--c-texto); --sup: var(--c-superficie); --t2: var(--c-texto-2); --bd: var(--c-borda); --mc: var(--c-marca); }
+  .escuro { background: var(--e-fundo); color: var(--e-texto); --sup: var(--e-superficie); --t2: var(--e-texto-2); --bd: var(--e-borda); --mc: var(--e-marca);
+    --r-ilustracao-fundo: var(--er-ilustracao-fundo); --r-ilustracao-traco: var(--er-ilustracao-traco); --ilustracao-destaque: var(--er-ilustracao-destaque); }
+  .tema > b { display: block; font-size: 13px; color: var(--t2); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .06em; }
+  svg.i { display: block; flex: none; }
+  .grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 8px; }
+  .cel { background: var(--sup); border-radius: 12px; padding: 10px; }
+  .cel .tam { display: flex; align-items: flex-end; gap: 12px; min-height: 34px; }
+  .cel small { display: block; margin-top: 6px; font-size: 12px; color: var(--t2); }
+  .cel .cheio { color: var(--mc); }
+  .faixa { display: flex; flex-wrap: wrap; gap: 14px; background: var(--sup); border-radius: 12px; padding: 12px; align-items: center; }
+  .abas { display: flex; justify-content: space-around; background: var(--sup); border-radius: 20px; padding: 10px 6px; margin-top: 10px; }
+  .abas div { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 12px; color: var(--t2); min-width: 48px; }
+  .abas div.ativa { color: var(--mc); font-weight: 600; }
+  .ilus { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; }
+  .ilu { background: var(--sup); border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .ilu .tam { display: flex; align-items: flex-end; gap: 10px; }
+  .ilu .tile { background: var(--r-ilustracao-fundo); color: var(--r-ilustracao-traco); border-radius: 12px; display: grid; place-items: center; }
+  .ilu small { font-size: 12px; color: var(--t2); }
+  .linha-lista { display: flex; align-items: center; gap: 12px; background: var(--sup); border-radius: 14px; padding: 8px 12px 8px 8px; margin-top: 8px; }
+  .linha-lista .tile { background: var(--r-ilustracao-fundo); color: var(--r-ilustracao-traco); border-radius: 12px; display: grid; place-items: center; width: 56px; height: 56px; flex: none; }
+  .linha-lista strong { display: block; font-size: 16px; } .linha-lista span { font-size: 14px; color: var(--t2); }
+</style>
+</head>
+<body>
+<!--SPRITE-->
+<header>
+  <h1>Ícones e ilustrações</h1>
+  <p>Traço do logo, grade 24, pontas redondas, <code>currentColor</code>. Cada ícone em 16, 24 e 32 px; o cheio (em verde) é só para a aba ativa. As ilustrações de exercício em 48, 56 e 64 px, com o músculo trabalhado na cor de destaque (<code>--ilustracao-destaque</code>).</p>
+</header>
+<main id="app"></main>
+<script>
+/*DADOS*/
+const u = (id, t) => `<svg class="i" width="${t}" height="${t}" aria-hidden="true"><use href="#${id}"/></svg>`;
+const temas = html => `<div class="temas"><section class="tema claro"><b>Claro</b>${html}</section><section class="tema escuro"><b>Escuro</b>${html}</section></div>`;
+const grupos = [['aba', 'Abas (contorno · cheio)'], ['acao', 'Ações'], ['tema', 'Temáticos: academia, treino, alimentação'], ['marca', 'Entrar com (marcas de terceiros, só mockup)']];
+let h = '';
+h += '<h2>Teste de 16 px: todos lado a lado</h2>' + temas('<div class="faixa">' + DADOS.icones.map(i => u('i-' + i.nome, 16)).join('') + '</div>' +
+  '<div class="faixa" style="margin-top:8px">' + DADOS.icones.filter(i => i.cheio).map(i => u('i-' + i.nome + '-cheio', 16)).join('') + '</div>');
+const abas = [['inicio', 'Início'], ['treinos', 'Treinos'], ['plus', 'Plus'], ['perfil', 'Perfil']];
+const abasA = [['inicio', 'Início'], ['alunos', 'Alunos'], ['academia', 'Academia'], ['perfil', 'Perfil']];
+const barra = (lista, ativa) => '<div class="abas">' + lista.map(([n, r], k) => `<div class="${k === ativa ? 'ativa' : ''}">${u('i-' + n + (k === ativa ? '-cheio' : ''), 24)}${r}</div>`).join('') + '</div>';
+h += '<h2>Barra de abas (aluno e academia)</h2>' + temas(barra(abas, 0) + barra(abas, 2) + barra(abasA, 1) + barra(abasA, 2));
+for (const [g, titulo] of grupos) {
+  h += `<h2>${titulo}</h2>` + temas('<div class="grade">' + DADOS.icones.filter(i => i.grupo === g).map(i =>
+    `<div class="cel"><div class="tam">${[16, 24, 32].map(t => u('i-' + i.nome, t)).join('')}</div>` +
+    (i.cheio ? `<div class="tam cheio" style="margin-top:6px">${[16, 24, 32].map(t => u('i-' + i.nome + '-cheio', t)).join('')}</div>` : '') +
+    `<small>${i.nome}</small></div>`).join('') + '</div>');
+}
+h += '<h2>Ilustrações de exercício (48 · 56 · 64)</h2>' + temas('<div class="ilus">' + DADOS.ilustracoes.map(e =>
+  `<div class="ilu"><div class="tam">${[48, 56, 64].map(t => `<div class="tile" style="width:${t}px;height:${t}px">${u('ex-' + e.nome, t)}</div>`).join('')}</div>` +
+  `<small><b>${e.titulo}</b> · ${e.musculo}</small></div>`).join('') + '</div>');
+h += '<h2>Na lista do treino (56 px)</h2>' + temas(DADOS.ilustracoes.slice(0, 6).map(e =>
+  `<div class="linha-lista"><div class="tile">${u('ex-' + e.nome, 56)}</div><div><strong>${e.titulo}</strong><span>3 × 12 · 40 kg · 60 s</span></div></div>`).join(''));
+document.getElementById('app').innerHTML = h;
+</script>
+</body>
+</html>

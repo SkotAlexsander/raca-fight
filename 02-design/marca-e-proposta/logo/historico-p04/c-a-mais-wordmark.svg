@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 200" width="980" height="200" role="img" aria-label="Academia Plus">
+  <title>Academia Plus — wordmark (caminho C)</title>
+  <g fill="none" stroke="#006B5F" stroke-linecap="round" stroke-linejoin="round" transform="translate(20 20) scale(0.15625)">
+    <path d="M208 880 L512 176 L816 880" stroke-width="128"/>
+    <path d="M512 536 V792 M384 664 H640" stroke-width="80"/>
+  </g>
+  <text x="210" y="138" font-family="Figtree, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="116" letter-spacing="-3" fill="#131D1C">Academia <tspan fill="#006B5F">Plus</tspan></text>
+</svg>

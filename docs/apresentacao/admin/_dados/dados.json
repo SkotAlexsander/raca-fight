@@ -1,0 +1,2245 @@
+{
+ "geradoEm": "2026-10-16T18:11:51.251Z",
+ "hoje": "2026-10-15",
+ "hojeBR": "15/10/2026",
+ "mes": "2026-10",
+ "mesNome": "outubro de 2026",
+ "setNome": "setembro de 2026",
+ "regraDoPrimeiroMes": "cheio",
+ "planos": [
+  {
+   "nome": "Muay Thai livre",
+   "valor": "R$ 150,00",
+   "periodicidade": "mensal",
+   "taxa": "R$ 50,00",
+   "modalidades": [
+    "Muay Thai"
+   ]
+  },
+  {
+   "nome": "Muay Thai 2×",
+   "valor": "R$ 120,00",
+   "periodicidade": "mensal",
+   "taxa": null,
+   "modalidades": [
+    "Muay Thai"
+   ]
+  },
+  {
+   "nome": "Jiu-Jitsu / Luta Livre",
+   "valor": "R$ 140,00",
+   "periodicidade": "mensal",
+   "taxa": null,
+   "modalidades": [
+    "Jiu-Jitsu",
+    "Luta Livre"
+   ]
+  },
+  {
+   "nome": "MMA",
+   "valor": "R$ 160,00",
+   "periodicidade": "mensal",
+   "taxa": null,
+   "modalidades": [
+    "MMA"
+   ]
+  },
+  {
+   "nome": "Boxe 2×",
+   "valor": "R$ 120,00",
+   "periodicidade": "mensal",
+   "taxa": null,
+   "modalidades": [
+    "Boxe"
+   ]
+  },
+  {
+   "nome": "Combo 2 modalidades",
+   "valor": "R$ 220,00",
+   "periodicidade": "mensal",
+   "taxa": null,
+   "modalidades": [
+    "Muay Thai",
+    "Jiu-Jitsu"
+   ]
+  },
+  {
+   "nome": "Muay Thai Kids",
+   "valor": "R$ 110,00",
+   "periodicidade": "mensal",
+   "taxa": null,
+   "modalidades": [
+    "Muay Thai"
+   ]
+  },
+  {
+   "nome": "Jiu-Jitsu Kids",
+   "valor": "R$ 110,00",
+   "periodicidade": "mensal",
+   "taxa": null,
+   "modalidades": [
+    "Jiu-Jitsu"
+   ]
+  },
+  {
+   "nome": "Muay Thai trimestral",
+   "valor": "R$ 405,00",
+   "periodicidade": "trimestral",
+   "taxa": null,
+   "modalidades": [
+    "Muay Thai"
+   ]
+  },
+  {
+   "nome": "Aula experimental",
+   "valor": "R$ 0,00",
+   "periodicidade": "gratuito",
+   "taxa": null,
+   "modalidades": [
+    "Muay Thai",
+    "Boxe",
+    "Jiu-Jitsu",
+    "Luta Livre",
+    "MMA"
+   ]
+  }
+ ],
+ "contagem": {
+  "pessoas": 272,
+  "matriculas": 239,
+  "cobrancas": 2127,
+  "lancamentos": 2358,
+  "interessados": 62
+ },
+ "painel": {
+  "alunos": {
+   "matriculados": 181,
+   "trancados": 6,
+   "inativos": 52,
+   "novosNoMes": 3,
+   "total": 239
+  },
+  "funcionarios": {
+   "total": 6,
+   "porFuncao": {
+    "professor": 4,
+    "recepcao": 1,
+    "limpeza": 1
+   }
+  },
+  "mes": {
+   "entradas": 1786400,
+   "saidas": 1894745,
+   "resultado": -108345,
+   "entradasPendentes": 0,
+   "saidasPendentes": 210502,
+   "quantidade": 139
+  },
+  "comparacao": {
+   "periodoAtual": {
+    "de": "2026-10-01",
+    "ate": "2026-10-15"
+   },
+   "periodoAnterior": {
+    "de": "2026-09-01",
+    "ate": "2026-09-15"
+   },
+   "entradas": {
+    "atual": 1786400,
+    "anterior": 1807700,
+    "diferenca": -21300,
+    "pontosBase": -118
+   },
+   "saidas": {
+    "atual": 1894745,
+    "anterior": 1699045,
+    "diferenca": 195700,
+    "pontosBase": 1152
+   },
+   "resultado": {
+    "atual": -108345,
+    "anterior": 108655,
+    "diferenca": -217000,
+    "pontosBase": -19971
+   }
+  },
+  "mesAnterior": {
+   "competencia": "2026-09",
+   "totais": {
+    "entradas": 2586700,
+    "saidas": 1917137,
+    "resultado": 669563,
+    "entradasPendentes": 0,
+    "saidasPendentes": 0,
+    "quantidade": 193
+   }
+  },
+  "previsao": {
+   "jaEntrou": 1786400,
+   "aReceberNoMes": 1035300,
+   "atrasadoDeMesesAnteriores": 54000,
+   "jaSaiu": 1894745,
+   "aPagarNoMes": 210502,
+   "resultadoPrevisto": 716453
+  },
+  "inadimplentes": {
+   "pessoas": 14,
+   "centavos": 274800
+  },
+  "evolucao": [
+   {
+    "competencia": "2025-11",
+    "entradas": 2440100,
+    "saidas": 1680196,
+    "resultado": 759904
+   },
+   {
+    "competencia": "2025-12",
+    "entradas": 2511700,
+    "saidas": 1842176,
+    "resultado": 669524
+   },
+   {
+    "competencia": "2026-01",
+    "entradas": 2333700,
+    "saidas": 1893947,
+    "resultado": 439753
+   },
+   {
+    "competencia": "2026-02",
+    "entradas": 2270200,
+    "saidas": 1807717,
+    "resultado": 462483
+   },
+   {
+    "competencia": "2026-03",
+    "entradas": 2320700,
+    "saidas": 2047307,
+    "resultado": 273393
+   },
+   {
+    "competencia": "2026-04",
+    "entradas": 2313200,
+    "saidas": 1899737,
+    "resultado": 413463
+   },
+   {
+    "competencia": "2026-05",
+    "entradas": 2534700,
+    "saidas": 1791037,
+    "resultado": 743663
+   },
+   {
+    "competencia": "2026-06",
+    "entradas": 2656700,
+    "saidas": 1926027,
+    "resultado": 730673
+   },
+   {
+    "competencia": "2026-07",
+    "entradas": 2574200,
+    "saidas": 2130297,
+    "resultado": 443903
+   },
+   {
+    "competencia": "2026-08",
+    "entradas": 2728200,
+    "saidas": 1994197,
+    "resultado": 734003
+   },
+   {
+    "competencia": "2026-09",
+    "entradas": 2586700,
+    "saidas": 1917137,
+    "resultado": 669563
+   },
+   {
+    "competencia": "2026-10",
+    "entradas": 1786400,
+    "saidas": 1894745,
+    "resultado": -108345
+   }
+  ],
+  "funil": {
+   "contatos": 15,
+   "agendaram": 12,
+   "fizeramExperimental": 9,
+   "matricularam": 2,
+   "desistiram": 2,
+   "experimentalParaMatriculaPontosBase": 2222,
+   "contatoParaMatriculaPontosBase": 1333
+  },
+  "hoje": {
+   "lembretesAtrasados": 1,
+   "lembretesDeHoje": 3,
+   "lembretesEmBreve": 2,
+   "tarefasAtrasadas": 1
+  },
+  "mesTexto": {
+   "entradas": "R$ 17.864,00",
+   "saidas": "R$ 18.947,45",
+   "resultado": "−R$ 1.083,45",
+   "entradasPendentes": "R$ 0,00",
+   "saidasPendentes": "R$ 2.105,02"
+  },
+  "comparacaoTexto": {
+   "entradas": {
+    "atual": 1786400,
+    "anterior": 1807700,
+    "diferenca": -21300,
+    "pontosBase": -118,
+    "diferencaTexto": "−R$ 213,00",
+    "pbTexto": "-1,18 %"
+   },
+   "saidas": {
+    "atual": 1894745,
+    "anterior": 1699045,
+    "diferenca": 195700,
+    "pontosBase": 1152,
+    "diferencaTexto": "R$ 1.957,00",
+    "pbTexto": "11,52 %"
+   },
+   "resultado": {
+    "atual": -108345,
+    "anterior": 108655,
+    "diferenca": -217000,
+    "pontosBase": -19971,
+    "diferencaTexto": "−R$ 2.170,00",
+    "pbTexto": "-199,71 %"
+   }
+  },
+  "previsaoTexto": {
+   "jaEntrou": "R$ 17.864,00",
+   "aReceberNoMes": "R$ 10.353,00",
+   "atrasadoDeMesesAnteriores": "R$ 540,00",
+   "jaSaiu": "R$ 18.947,45",
+   "aPagarNoMes": "R$ 2.105,02",
+   "resultadoPrevisto": "R$ 7.164,53"
+  },
+  "inadimplentesTexto": "R$ 2.748,00",
+  "funilTexto": {
+   "contatos": 15,
+   "agendaram": 12,
+   "fizeramExperimental": 9,
+   "matricularam": 2,
+   "desistiram": 2,
+   "experimentalParaMatriculaPontosBase": 2222,
+   "contatoParaMatriculaPontosBase": 1333,
+   "expMat": "22,22 %",
+   "contMat": "13,33 %"
+  }
+ },
+ "hojeLista": {
+  "atrasados": [
+   "Cobrar Kauã Prates"
+  ],
+  "hoje": [
+   "Renovar o alvará dos bombeiros",
+   "Retorno da aula experimental: Yuri Gomes",
+   "Retorno da aula experimental: Maurício Cardoso"
+  ],
+  "emBreve": [
+   {
+    "titulo": "Vence: Luz e água",
+    "data": "20/10/2026"
+   },
+   {
+    "titulo": "Card da Lomba do Pinheiro: fechar a van",
+    "data": "10/11/2026"
+   }
+  ],
+  "tarefas": [
+   {
+    "titulo": "Trocar 4 placas do tatame",
+    "prazo": "12/10/2026",
+    "atrasada": true,
+    "resp": null
+   },
+   {
+    "titulo": "Comprar bandagens para a loja",
+    "prazo": "18/10/2026",
+    "atrasada": false,
+    "resp": "Tatiane Moura"
+   },
+   {
+    "titulo": "Mandar o fechamento de setembro ao contador",
+    "prazo": "20/10/2026",
+    "atrasada": false,
+    "resp": null
+   },
+   {
+    "titulo": "Orçamento de ventiladores novos",
+    "prazo": null,
+    "atrasada": false,
+    "resp": null
+   }
+  ]
+ },
+ "notas": [
+  {
+   "texto": "Pedro combinou pagar a mensalidade no dia 20.",
+   "pessoa": "Pedro Weber",
+   "data": "2026-10-11",
+   "fixada": true
+  },
+  {
+   "texto": "Card de 21/11: 6 atletas confirmados, falta o exame médico de 2.",
+   "pessoa": null,
+   "data": "2026-10-09",
+   "fixada": true
+  },
+  {
+   "texto": "Fornecedor de luvas novo: pedir orçamento de 10 pares antes de dezembro.",
+   "pessoa": null,
+   "data": "2026-10-02",
+   "fixada": false
+  }
+ ],
+ "evolucao": [
+  {
+   "competencia": "2025-11",
+   "entradas": 2440100,
+   "saidas": 1680196,
+   "resultado": 759904,
+   "nome": "nov/25",
+   "entradasTexto": "R$ 24.401,00",
+   "saidasTexto": "R$ 16.801,96",
+   "resultadoTexto": "R$ 7.599,04"
+  },
+  {
+   "competencia": "2025-12",
+   "entradas": 2511700,
+   "saidas": 1842176,
+   "resultado": 669524,
+   "nome": "dez/25",
+   "entradasTexto": "R$ 25.117,00",
+   "saidasTexto": "R$ 18.421,76",
+   "resultadoTexto": "R$ 6.695,24"
+  },
+  {
+   "competencia": "2026-01",
+   "entradas": 2333700,
+   "saidas": 1893947,
+   "resultado": 439753,
+   "nome": "jan/26",
+   "entradasTexto": "R$ 23.337,00",
+   "saidasTexto": "R$ 18.939,47",
+   "resultadoTexto": "R$ 4.397,53"
+  },
+  {
+   "competencia": "2026-02",
+   "entradas": 2270200,
+   "saidas": 1807717,
+   "resultado": 462483,
+   "nome": "fev/26",
+   "entradasTexto": "R$ 22.702,00",
+   "saidasTexto": "R$ 18.077,17",
+   "resultadoTexto": "R$ 4.624,83"
+  },
+  {
+   "competencia": "2026-03",
+   "entradas": 2320700,
+   "saidas": 2047307,
+   "resultado": 273393,
+   "nome": "mar/26",
+   "entradasTexto": "R$ 23.207,00",
+   "saidasTexto": "R$ 20.473,07",
+   "resultadoTexto": "R$ 2.733,93"
+  },
+  {
+   "competencia": "2026-04",
+   "entradas": 2313200,
+   "saidas": 1899737,
+   "resultado": 413463,
+   "nome": "abr/26",
+   "entradasTexto": "R$ 23.132,00",
+   "saidasTexto": "R$ 18.997,37",
+   "resultadoTexto": "R$ 4.134,63"
+  },
+  {
+   "competencia": "2026-05",
+   "entradas": 2534700,
+   "saidas": 1791037,
+   "resultado": 743663,
+   "nome": "mai/26",
+   "entradasTexto": "R$ 25.347,00",
+   "saidasTexto": "R$ 17.910,37",
+   "resultadoTexto": "R$ 7.436,63"
+  },
+  {
+   "competencia": "2026-06",
+   "entradas": 2656700,
+   "saidas": 1926027,
+   "resultado": 730673,
+   "nome": "jun/26",
+   "entradasTexto": "R$ 26.567,00",
+   "saidasTexto": "R$ 19.260,27",
+   "resultadoTexto": "R$ 7.306,73"
+  },
+  {
+   "competencia": "2026-07",
+   "entradas": 2574200,
+   "saidas": 2130297,
+   "resultado": 443903,
+   "nome": "jul/26",
+   "entradasTexto": "R$ 25.742,00",
+   "saidasTexto": "R$ 21.302,97",
+   "resultadoTexto": "R$ 4.439,03"
+  },
+  {
+   "competencia": "2026-08",
+   "entradas": 2728200,
+   "saidas": 1994197,
+   "resultado": 734003,
+   "nome": "ago/26",
+   "entradasTexto": "R$ 27.282,00",
+   "saidasTexto": "R$ 19.941,97",
+   "resultadoTexto": "R$ 7.340,03"
+  },
+  {
+   "competencia": "2026-09",
+   "entradas": 2586700,
+   "saidas": 1917137,
+   "resultado": 669563,
+   "nome": "set/26",
+   "entradasTexto": "R$ 25.867,00",
+   "saidasTexto": "R$ 19.171,37",
+   "resultadoTexto": "R$ 6.695,63"
+  },
+  {
+   "competencia": "2026-10",
+   "entradas": 1786400,
+   "saidas": 1894745,
+   "resultado": -108345,
+   "nome": "out/26",
+   "entradasTexto": "R$ 17.864,00",
+   "saidasTexto": "R$ 18.947,45",
+   "resultadoTexto": "−R$ 1.083,45"
+  }
+ ],
+ "geracaoOut": {
+  "novas": 173,
+  "mensalidades": 171,
+  "taxas": 2,
+  "valor": 2522700,
+  "descontos": 21300,
+  "puladas": {
+   "nao_e_mes_de_cobranca": 9,
+   "trancada": 6,
+   "isenta": 1
+  }
+ },
+ "geracaoOutTexto": "R$ 25.227,00",
+ "descontosOutTexto": "R$ 213,00",
+ "cobrancasOut": {
+  "total": 173,
+  "contaSit": {
+   "atrasada": 16,
+   "a_vencer": 51,
+   "paga": 101,
+   "vence_hoje": 5
+  },
+  "somaSit": {
+   "atrasada": "R$ 2.208,00",
+   "a_vencer": "R$ 7.405,00",
+   "paga": "R$ 14.874,00",
+   "vence_hoje": "R$ 740,00"
+  },
+  "amostra": [
+   {
+    "nome": "Sabrina Souza",
+    "aluno": "Laura Souza",
+    "plano": "Jiu-Jitsu Kids",
+    "vencimento": "10/10/2026",
+    "bruto": "R$ 110,00",
+    "desconto": "—",
+    "valor": "R$ 110,00",
+    "situacao": "Atrasada",
+    "dias": 5,
+    "pagaEm": null,
+    "forma": null,
+    "reparticao": "Jiu-Jitsu R$ 110,00"
+   },
+   {
+    "nome": "Tiago Pereira",
+    "aluno": null,
+    "plano": "Combo 2 modalidades",
+    "vencimento": "05/10/2026",
+    "bruto": "R$ 220,00",
+    "desconto": "—",
+    "valor": "R$ 220,00",
+    "situacao": "Atrasada",
+    "dias": 10,
+    "pagaEm": null,
+    "forma": null,
+    "reparticao": "Muay Thai R$ 110,00 + Jiu-Jitsu R$ 110,00"
+   },
+   {
+    "nome": "Vitor Ribeiro",
+    "aluno": null,
+    "plano": "Boxe 2×",
+    "vencimento": "15/10/2026",
+    "bruto": "R$ 120,00",
+    "desconto": "—",
+    "valor": "R$ 120,00",
+    "situacao": "Vence hoje",
+    "dias": 0,
+    "pagaEm": null,
+    "forma": null,
+    "reparticao": "Boxe R$ 120,00"
+   },
+   {
+    "nome": "Alan Rocha",
+    "aluno": "Lorenzo Rocha",
+    "plano": "Jiu-Jitsu Kids",
+    "vencimento": "15/10/2026",
+    "bruto": "R$ 110,00",
+    "desconto": "—",
+    "valor": "R$ 110,00",
+    "situacao": "Vence hoje",
+    "dias": 0,
+    "pagaEm": null,
+    "forma": null,
+    "reparticao": "Jiu-Jitsu R$ 110,00"
+   },
+   {
+    "nome": "Márcio Vargas",
+    "aluno": null,
+    "plano": "Muay Thai livre",
+    "vencimento": "05/10/2026",
+    "bruto": "R$ 150,00",
+    "desconto": "R$ 75,00 (atleta)",
+    "valor": "R$ 75,00",
+    "situacao": "Paga",
+    "dias": 0,
+    "pagaEm": "07/10/2026",
+    "forma": "pix",
+    "reparticao": "Muay Thai R$ 75,00"
+   },
+   {
+    "nome": "Natália Lemos",
+    "aluno": "Manuela Lemos",
+    "plano": "Jiu-Jitsu Kids",
+    "vencimento": "05/10/2026",
+    "bruto": "R$ 110,00",
+    "desconto": "—",
+    "valor": "R$ 110,00",
+    "situacao": "Paga",
+    "dias": 0,
+    "pagaEm": "01/10/2026",
+    "forma": "cartao_debito",
+    "reparticao": "Jiu-Jitsu R$ 110,00"
+   },
+   {
+    "nome": "Rodrigo Pacheco",
+    "aluno": null,
+    "plano": "Muay Thai livre",
+    "vencimento": "10/10/2026",
+    "bruto": "R$ 150,00",
+    "desconto": "—",
+    "valor": "R$ 150,00",
+    "situacao": "Paga",
+    "dias": 0,
+    "pagaEm": "11/10/2026",
+    "forma": "pix",
+    "reparticao": "Muay Thai R$ 150,00"
+   },
+   {
+    "nome": "Emerson Bittencourt",
+    "aluno": null,
+    "plano": "Boxe 2×",
+    "vencimento": "20/10/2026",
+    "bruto": "R$ 120,00",
+    "desconto": "—",
+    "valor": "R$ 120,00",
+    "situacao": "A vencer",
+    "dias": 0,
+    "pagaEm": null,
+    "forma": null,
+    "reparticao": "Boxe R$ 120,00"
+   },
+   {
+    "nome": "Gustavo Dias",
+    "aluno": "Alice Dias",
+    "plano": "Muay Thai Kids",
+    "vencimento": "20/10/2026",
+    "bruto": "R$ 110,00",
+    "desconto": "—",
+    "valor": "R$ 110,00",
+    "situacao": "A vencer",
+    "dias": 0,
+    "pagaEm": null,
+    "forma": null,
+    "reparticao": "Muay Thai R$ 110,00"
+   }
+  ],
+  "combo": {
+   "descricao": "Combo 2 modalidades — outubro/2026",
+   "valor": "R$ 220,00",
+   "partes": [
+    "Muay Thai: R$ 110,00",
+    "Jiu-Jitsu: R$ 110,00"
+   ]
+  }
+ },
+ "indicacoesDeOutubro": [
+  {
+   "indicador": "Daniel Weber",
+   "novo": "Marcelo Fagundes"
+  }
+ ],
+ "setembro": {
+  "entradas": 2586700,
+  "saidas": 1917137,
+  "resultado": 669563,
+  "entradasPendentes": 0,
+  "saidasPendentes": 0,
+  "quantidade": 193,
+  "entradasTexto": "R$ 25.867,00",
+  "saidasTexto": "R$ 19.171,37",
+  "resultadoTexto": "R$ 6.695,63",
+  "entradasPendentesTexto": "R$ 0,00",
+  "saidasPendentesTexto": "R$ 0,00",
+  "porCategoria": [
+   {
+    "id": "mensalidades",
+    "nome": "Mensalidades",
+    "entradas": 2501700,
+    "saidas": 0,
+    "entradasTexto": "R$ 25.017,00",
+    "saidasTexto": "R$ 0,00"
+   },
+   {
+    "id": "matriculas",
+    "nome": "Taxas de matrícula",
+    "entradas": 10000,
+    "saidas": 0,
+    "entradasTexto": "R$ 100,00",
+    "saidasTexto": "R$ 0,00"
+   },
+   {
+    "id": "aluguel",
+    "nome": "Aluguel",
+    "entradas": 0,
+    "saidas": 350000,
+    "entradasTexto": "R$ 0,00",
+    "saidasTexto": "R$ 3.500,00"
+   },
+   {
+    "id": "salarios",
+    "nome": "Salários",
+    "entradas": 0,
+    "saidas": 370000,
+    "entradasTexto": "R$ 0,00",
+    "saidasTexto": "R$ 3.700,00"
+   },
+   {
+    "id": "contador",
+    "nome": "Contador",
+    "entradas": 0,
+    "saidas": 35000,
+    "entradasTexto": "R$ 0,00",
+    "saidasTexto": "R$ 350,00"
+   },
+   {
+    "id": "internet",
+    "nome": "Internet e telefone",
+    "entradas": 0,
+    "saidas": 12000,
+    "entradasTexto": "R$ 0,00",
+    "saidasTexto": "R$ 120,00"
+   },
+   {
+    "id": "luz",
+    "nome": "Luz",
+    "entradas": 0,
+    "saidas": 43800,
+    "entradasTexto": "R$ 0,00",
+    "saidasTexto": "R$ 438,00"
+   },
+   {
+    "id": "agua",
+    "nome": "Água",
+    "entradas": 0,
+    "saidas": 10600,
+    "entradasTexto": "R$ 0,00",
+    "saidasTexto": "R$ 106,00"
+   },
+   {
+    "id": "marketing",
+    "nome": "Divulgação",
+    "entradas": 0,
+    "saidas": 20000,
+    "entradasTexto": "R$ 0,00",
+    "saidasTexto": "R$ 200,00"
+   },
+   {
+    "id": "comissoes",
+    "nome": "Comissão de professores",
+    "entradas": 0,
+    "saidas": 891045,
+    "entradasTexto": "R$ 0,00",
+    "saidasTexto": "R$ 8.910,45"
+   },
+   {
+    "id": "impostos",
+    "nome": "Impostos e taxas",
+    "entradas": 0,
+    "saidas": 163692,
+    "entradasTexto": "R$ 0,00",
+    "saidasTexto": "R$ 1.636,92"
+   },
+   {
+    "id": "produtos",
+    "nome": "Venda de produtos",
+    "entradas": 55000,
+    "saidas": 0,
+    "entradasTexto": "R$ 550,00",
+    "saidasTexto": "R$ 0,00"
+   },
+   {
+    "id": "aulas-avulsas",
+    "nome": "Aulas avulsas e particulares",
+    "entradas": 20000,
+    "saidas": 0,
+    "entradasTexto": "R$ 200,00",
+    "saidasTexto": "R$ 0,00"
+   },
+   {
+    "id": "limpeza",
+    "nome": "Limpeza e manutenção",
+    "entradas": 0,
+    "saidas": 21000,
+    "entradasTexto": "R$ 0,00",
+    "saidasTexto": "R$ 210,00"
+   }
+  ],
+  "fechadoEm": "03/10/2026",
+  "aReceberEmAberto": "R$ 2.390,00"
+ },
+ "outubro": {
+  "entradas": 1786400,
+  "saidas": 1894745,
+  "resultado": -108345,
+  "entradasPendentes": 0,
+  "saidasPendentes": 210502,
+  "quantidade": 139,
+  "entradasTexto": "R$ 17.864,00",
+  "saidasTexto": "R$ 18.947,45",
+  "resultadoTexto": "−R$ 1.083,45",
+  "entradasPendentesTexto": "R$ 0,00",
+  "saidasPendentesTexto": "R$ 2.105,02"
+ },
+ "pendenciasOut": [
+  {
+   "tipo": "mes_nao_terminou",
+   "quantidade": 0,
+   "centavos": 0,
+   "texto": "R$ 0,00"
+  },
+  {
+   "tipo": "lancamento_pendente",
+   "quantidade": 3,
+   "centavos": 210502,
+   "texto": "R$ 2.105,02"
+  },
+  {
+   "tipo": "cobranca_em_aberto",
+   "quantidade": 72,
+   "centavos": 1035300,
+   "texto": "R$ 10.353,00"
+  }
+ ],
+ "fechamentos": [
+  {
+   "mes": "nov/25",
+   "em": "03/12/2025",
+   "entradas": "R$ 24.401,00",
+   "saidas": "R$ 16.801,96",
+   "resultado": "R$ 7.599,04",
+   "resultadoCentavos": 759904
+  },
+  {
+   "mes": "dez/25",
+   "em": "03/01/2026",
+   "entradas": "R$ 25.117,00",
+   "saidas": "R$ 18.421,76",
+   "resultado": "R$ 6.695,24",
+   "resultadoCentavos": 669524
+  },
+  {
+   "mes": "jan/26",
+   "em": "03/02/2026",
+   "entradas": "R$ 23.337,00",
+   "saidas": "R$ 18.939,47",
+   "resultado": "R$ 4.397,53",
+   "resultadoCentavos": 439753
+  },
+  {
+   "mes": "fev/26",
+   "em": "03/03/2026",
+   "entradas": "R$ 22.702,00",
+   "saidas": "R$ 18.077,17",
+   "resultado": "R$ 4.624,83",
+   "resultadoCentavos": 462483
+  },
+  {
+   "mes": "mar/26",
+   "em": "03/04/2026",
+   "entradas": "R$ 23.207,00",
+   "saidas": "R$ 20.473,07",
+   "resultado": "R$ 2.733,93",
+   "resultadoCentavos": 273393
+  },
+  {
+   "mes": "abr/26",
+   "em": "03/05/2026",
+   "entradas": "R$ 23.132,00",
+   "saidas": "R$ 18.997,37",
+   "resultado": "R$ 4.134,63",
+   "resultadoCentavos": 413463
+  },
+  {
+   "mes": "mai/26",
+   "em": "03/06/2026",
+   "entradas": "R$ 25.347,00",
+   "saidas": "R$ 17.910,37",
+   "resultado": "R$ 7.436,63",
+   "resultadoCentavos": 743663
+  },
+  {
+   "mes": "jun/26",
+   "em": "03/07/2026",
+   "entradas": "R$ 26.567,00",
+   "saidas": "R$ 19.260,27",
+   "resultado": "R$ 7.306,73",
+   "resultadoCentavos": 730673
+  },
+  {
+   "mes": "jul/26",
+   "em": "03/08/2026",
+   "entradas": "R$ 25.742,00",
+   "saidas": "R$ 21.302,97",
+   "resultado": "R$ 4.439,03",
+   "resultadoCentavos": 443903
+  },
+  {
+   "mes": "ago/26",
+   "em": "03/09/2026",
+   "entradas": "R$ 27.282,00",
+   "saidas": "R$ 19.941,97",
+   "resultado": "R$ 7.340,03",
+   "resultadoCentavos": 734003
+  },
+  {
+   "mes": "set/26",
+   "em": "03/10/2026",
+   "entradas": "R$ 25.867,00",
+   "saidas": "R$ 19.171,37",
+   "resultado": "R$ 6.695,63",
+   "resultadoCentavos": 669563
+  }
+ ],
+ "inadimplentes": [
+  {
+   "nome": "Kauã Prates",
+   "alunos": [],
+   "planos": [
+    "Muay Thai livre"
+   ],
+   "cobrancas": 3,
+   "totalCentavos": 45000,
+   "total": "R$ 450,00",
+   "dias": 66,
+   "vencimento": "10/08/2026"
+  },
+  {
+   "nome": "Fernanda Oliveira",
+   "alunos": [],
+   "planos": [
+    "Muay Thai 2×"
+   ],
+   "cobrancas": 2,
+   "totalCentavos": 24000,
+   "total": "R$ 240,00",
+   "dias": 40,
+   "vencimento": "05/09/2026"
+  },
+  {
+   "nome": "Jonas Pacheco",
+   "alunos": [],
+   "planos": [
+    "Boxe 2×"
+   ],
+   "cobrancas": 2,
+   "totalCentavos": 24000,
+   "total": "R$ 240,00",
+   "dias": 35,
+   "vencimento": "10/09/2026"
+  },
+  {
+   "nome": "Tiago Pereira",
+   "alunos": [],
+   "planos": [
+    "Combo 2 modalidades"
+   ],
+   "cobrancas": 1,
+   "totalCentavos": 22000,
+   "total": "R$ 220,00",
+   "dias": 10,
+   "vencimento": "05/10/2026"
+  },
+  {
+   "nome": "Natália Ferreira",
+   "alunos": [],
+   "planos": [
+    "MMA"
+   ],
+   "cobrancas": 1,
+   "totalCentavos": 16000,
+   "total": "R$ 160,00",
+   "dias": 10,
+   "vencimento": "05/10/2026"
+  },
+  {
+   "nome": "Emerson Pereira",
+   "alunos": [],
+   "planos": [
+    "Muay Thai livre"
+   ],
+   "cobrancas": 1,
+   "totalCentavos": 15000,
+   "total": "R$ 150,00",
+   "dias": 10,
+   "vencimento": "05/10/2026"
+  },
+  {
+   "nome": "Pedro Weber",
+   "alunos": [],
+   "planos": [
+    "Jiu-Jitsu / Luta Livre"
+   ],
+   "cobrancas": 1,
+   "totalCentavos": 14000,
+   "total": "R$ 140,00",
+   "dias": 10,
+   "vencimento": "05/10/2026"
+  },
+  {
+   "nome": "Tiago Brum",
+   "alunos": [],
+   "planos": [
+    "Combo 2 modalidades"
+   ],
+   "cobrancas": 1,
+   "totalCentavos": 22000,
+   "total": "R$ 220,00",
+   "dias": 7,
+   "vencimento": "08/10/2026"
+  },
+  {
+   "nome": "Sabrina Souza",
+   "alunos": [
+    "Laura Souza",
+    "Manuela Souza"
+   ],
+   "planos": [
+    "Jiu-Jitsu Kids",
+    "Muay Thai Kids"
+   ],
+   "cobrancas": 2,
+   "totalCentavos": 20900,
+   "total": "R$ 209,00",
+   "dias": 5,
+   "vencimento": "10/10/2026"
+  },
+  {
+   "nome": "Beatriz Machado",
+   "alunos": [
+    "Antônio Machado",
+    "Gael Machado"
+   ],
+   "planos": [
+    "Muay Thai Kids",
+    "Jiu-Jitsu Kids"
+   ],
+   "cobrancas": 2,
+   "totalCentavos": 20900,
+   "total": "R$ 209,00",
+   "dias": 5,
+   "vencimento": "10/10/2026"
+  },
+  {
+   "nome": "Daniel Saldanha",
+   "alunos": [],
+   "planos": [
+    "Jiu-Jitsu / Luta Livre"
+   ],
+   "cobrancas": 1,
+   "totalCentavos": 14000,
+   "total": "R$ 140,00",
+   "dias": 5,
+   "vencimento": "10/10/2026"
+  },
+  {
+   "nome": "Anderson Medeiros",
+   "alunos": [],
+   "planos": [
+    "Jiu-Jitsu / Luta Livre"
+   ],
+   "cobrancas": 1,
+   "totalCentavos": 14000,
+   "total": "R$ 140,00",
+   "dias": 5,
+   "vencimento": "10/10/2026"
+  },
+  {
+   "nome": "Vanessa Schmidt",
+   "alunos": [],
+   "planos": [
+    "Boxe 2×"
+   ],
+   "cobrancas": 1,
+   "totalCentavos": 12000,
+   "total": "R$ 120,00",
+   "dias": 5,
+   "vencimento": "10/10/2026"
+  },
+  {
+   "nome": "Helena Prates",
+   "alunos": [
+    "Gael Prates"
+   ],
+   "planos": [
+    "Jiu-Jitsu Kids"
+   ],
+   "cobrancas": 1,
+   "totalCentavos": 11000,
+   "total": "R$ 110,00",
+   "dias": 1,
+   "vencimento": "14/10/2026"
+  }
+ ],
+ "maisDe30": 3,
+ "maisDe30Texto": "R$ 930,00",
+ "taxaSet": {
+  "vencidoCentavos": 2600700,
+  "emAtrasoCentavos": 39000,
+  "pontosBase": 150,
+  "texto": "1,5 %",
+  "vencido": "R$ 26.007,00",
+  "atraso": "R$ 390,00"
+ },
+ "taxaOut": {
+  "vencidoCentavos": 1770200,
+  "emAtrasoCentavos": 220800,
+  "pontosBase": 1247,
+  "texto": "12,47 %",
+  "vencido": "R$ 17.702,00",
+  "atraso": "R$ 2.208,00"
+ },
+ "encargos": {
+  "regra": "2 % de multa, 1 % ao mês de juros, 5 dias de tolerância",
+  "valor": "R$ 150,00",
+  "vencimento": "10/09/2026",
+  "pagoEm": "15/10/2026",
+  "multa": "R$ 3,00",
+  "juros": "R$ 1,75",
+  "total": "R$ 154,75",
+  "dias": 35
+ },
+ "whats": "Olá, Tiago! A mensalidade de outubro da Raça Fight venceu em 05/10, no valor de R$ 220,00. Se já pagou, desconsidere.",
+ "porModalidadeSet": {
+  "linhas": [
+   {
+    "id": "muay-thai",
+    "nome": "Muay Thai",
+    "centavos": 1306800,
+    "texto": "R$ 13.068,00"
+   },
+   {
+    "id": "jiu-jitsu",
+    "nome": "Jiu-Jitsu",
+    "centavos": 522900,
+    "texto": "R$ 5.229,00"
+   },
+   {
+    "id": "boxe",
+    "nome": "Boxe",
+    "centavos": 252000,
+    "texto": "R$ 2.520,00"
+   },
+   {
+    "id": "luta-livre",
+    "nome": "Luta Livre",
+    "centavos": 238000,
+    "texto": "R$ 2.380,00"
+   },
+   {
+    "id": "mma",
+    "nome": "MMA",
+    "centavos": 192000,
+    "texto": "R$ 1.920,00"
+   }
+  ],
+  "semModalidade": {
+   "centavos": 75000,
+   "texto": "R$ 750,00"
+  },
+  "total": {
+   "centavos": 2586700,
+   "texto": "R$ 25.867,00"
+  }
+ },
+ "porModalidadeTri": {
+  "linhas": [
+   {
+    "id": "muay-thai",
+    "nome": "Muay Thai",
+    "centavos": 3996400,
+    "texto": "R$ 39.964,00"
+   },
+   {
+    "id": "jiu-jitsu",
+    "nome": "Jiu-Jitsu",
+    "centavos": 1554700,
+    "texto": "R$ 15.547,00"
+   },
+   {
+    "id": "boxe",
+    "nome": "Boxe",
+    "centavos": 768000,
+    "texto": "R$ 7.680,00"
+   },
+   {
+    "id": "luta-livre",
+    "nome": "Luta Livre",
+    "centavos": 700000,
+    "texto": "R$ 7.000,00"
+   },
+   {
+    "id": "mma",
+    "nome": "MMA",
+    "centavos": 624000,
+    "texto": "R$ 6.240,00"
+   }
+  ],
+  "semModalidade": {
+   "centavos": 246000,
+   "texto": "R$ 2.460,00"
+  },
+  "total": {
+   "centavos": 7889100,
+   "texto": "R$ 78.891,00"
+  }
+ },
+ "porFormaSet": [
+  {
+   "id": "pix",
+   "centavos": 1633300,
+   "texto": "R$ 16.333,00"
+  },
+  {
+   "id": "cartao_debito",
+   "centavos": 392400,
+   "texto": "R$ 3.924,00"
+  },
+  {
+   "id": "dinheiro",
+   "centavos": 307000,
+   "texto": "R$ 3.070,00"
+  },
+  {
+   "id": "cartao_credito",
+   "centavos": 254000,
+   "texto": "R$ 2.540,00"
+  }
+ ],
+ "eventos": [
+  {
+   "id": "ev-graduacao-jj",
+   "nome": "Graduação de Jiu-Jitsu (dez/25)",
+   "entradas": 140000,
+   "saidas": 56000,
+   "resultado": 84000,
+   "entradasTexto": "R$ 1.400,00",
+   "saidasTexto": "R$ 560,00",
+   "resultadoTexto": "R$ 840,00"
+  },
+  {
+   "id": "ev-cordoes-mt",
+   "nome": "Exame de cordões do Muay Thai (jun/26)",
+   "entradas": 144000,
+   "saidas": 45000,
+   "resultado": 99000,
+   "entradasTexto": "R$ 1.440,00",
+   "saidasTexto": "R$ 450,00",
+   "resultadoTexto": "R$ 990,00"
+  },
+  {
+   "id": "ev-copa",
+   "nome": "Copa Gravataí de Jiu-Jitsu (ago/26)",
+   "entradas": 81000,
+   "saidas": 117000,
+   "resultado": -36000,
+   "entradasTexto": "R$ 810,00",
+   "saidasTexto": "R$ 1.170,00",
+   "resultadoTexto": "−R$ 360,00"
+  }
+ ],
+ "filtros": {
+  "mt30": {
+   "n": 2,
+   "total": "R$ 690,00",
+   "nomes": [
+    {
+     "nome": "Kauã Prates",
+     "dias": 66,
+     "total": "R$ 450,00"
+    },
+    {
+     "nome": "Fernanda Oliveira",
+     "dias": 40,
+     "total": "R$ 240,00"
+    }
+   ]
+  },
+  "jjTri": "R$ 15.547,00",
+  "boxeTri": "R$ 7.680,00",
+  "kids": 26,
+  "novosOut": 3,
+  "equipAno": {
+   "n": 3,
+   "total": "R$ 4.220,00"
+  },
+  "alunosPorModalidade": [
+   {
+    "nome": "Muay Thai",
+    "n": 106
+   },
+   {
+    "nome": "Boxe",
+    "n": 20
+   },
+   {
+    "nome": "Jiu-Jitsu",
+    "n": 57
+   },
+   {
+    "nome": "Luta Livre",
+    "n": 30
+   },
+   {
+    "nome": "MMA",
+    "n": 14
+   }
+  ]
+ },
+ "funilOut": {
+  "total": {
+   "contatos": 15,
+   "agendaram": 12,
+   "fizeramExperimental": 9,
+   "matricularam": 2,
+   "desistiram": 2,
+   "experimentalParaMatriculaPontosBase": 2222,
+   "contatoParaMatriculaPontosBase": 1333,
+   "expMat": "22,22 %",
+   "contMat": "13,33 %"
+  },
+  "porOrigem": {
+   "instagram": {
+    "contatos": 4,
+    "agendaram": 4,
+    "fizeramExperimental": 4,
+    "matricularam": 0,
+    "desistiram": 2,
+    "experimentalParaMatriculaPontosBase": 0,
+    "contatoParaMatriculaPontosBase": 0,
+    "expMat": "0 %",
+    "contMat": "0 %"
+   },
+   "whatsapp": {
+    "contatos": 2,
+    "agendaram": 1,
+    "fizeramExperimental": 1,
+    "matricularam": 0,
+    "desistiram": 0,
+    "experimentalParaMatriculaPontosBase": 0,
+    "contatoParaMatriculaPontosBase": 0,
+    "expMat": "0 %",
+    "contMat": "0 %"
+   },
+   "indicacao": {
+    "contatos": 5,
+    "agendaram": 4,
+    "fizeramExperimental": 2,
+    "matricularam": 1,
+    "desistiram": 0,
+    "experimentalParaMatriculaPontosBase": 5000,
+    "contatoParaMatriculaPontosBase": 2000,
+    "expMat": "50 %",
+    "contMat": "20 %"
+   },
+   "passou_na_porta": {
+    "contatos": 3,
+    "agendaram": 2,
+    "fizeramExperimental": 1,
+    "matricularam": 0,
+    "desistiram": 0,
+    "experimentalParaMatriculaPontosBase": 0,
+    "contatoParaMatriculaPontosBase": 0,
+    "expMat": "0 %",
+    "contMat": "0 %"
+   },
+   "outro": {
+    "contatos": 0,
+    "agendaram": 0,
+    "fizeramExperimental": 0,
+    "matricularam": 0,
+    "desistiram": 0,
+    "experimentalParaMatriculaPontosBase": 0,
+    "contatoParaMatriculaPontosBase": 0,
+    "expMat": "0 %",
+    "contMat": "0 %"
+   },
+   "nao_informado": {
+    "contatos": 1,
+    "agendaram": 1,
+    "fizeramExperimental": 1,
+    "matricularam": 1,
+    "desistiram": 0,
+    "experimentalParaMatriculaPontosBase": 10000,
+    "contatoParaMatriculaPontosBase": 10000,
+    "expMat": "100 %",
+    "contMat": "100 %"
+   }
+  }
+ },
+ "funil3": {
+  "total": {
+   "contatos": 62,
+   "agendaram": 52,
+   "fizeramExperimental": 35,
+   "matricularam": 16,
+   "desistiram": 10,
+   "experimentalParaMatriculaPontosBase": 4571,
+   "contatoParaMatriculaPontosBase": 2581,
+   "expMat": "45,71 %",
+   "contMat": "25,81 %"
+  },
+  "porOrigem": [
+   {
+    "origem": "Instagram",
+    "contatos": 29,
+    "agendaram": 24,
+    "fizeramExperimental": 19,
+    "matricularam": 6,
+    "desistiram": 8,
+    "experimentalParaMatriculaPontosBase": 3158,
+    "contatoParaMatriculaPontosBase": 2069,
+    "expMat": "31,58 %",
+    "contMat": "20,69 %"
+   },
+   {
+    "origem": "WhatsApp",
+    "contatos": 11,
+    "agendaram": 8,
+    "fizeramExperimental": 3,
+    "matricularam": 1,
+    "desistiram": 1,
+    "experimentalParaMatriculaPontosBase": 3333,
+    "contatoParaMatriculaPontosBase": 909,
+    "expMat": "33,33 %",
+    "contMat": "9,09 %"
+   },
+   {
+    "origem": "Indicação",
+    "contatos": 13,
+    "agendaram": 12,
+    "fizeramExperimental": 9,
+    "matricularam": 7,
+    "desistiram": 0,
+    "experimentalParaMatriculaPontosBase": 7778,
+    "contatoParaMatriculaPontosBase": 5385,
+    "expMat": "77,78 %",
+    "contMat": "53,85 %"
+   },
+   {
+    "origem": "Passou na porta",
+    "contatos": 5,
+    "agendaram": 4,
+    "fizeramExperimental": 2,
+    "matricularam": 1,
+    "desistiram": 0,
+    "experimentalParaMatriculaPontosBase": 5000,
+    "contatoParaMatriculaPontosBase": 2000,
+    "expMat": "50 %",
+    "contMat": "20 %"
+   },
+   {
+    "origem": "Não informado",
+    "contatos": 4,
+    "agendaram": 4,
+    "fizeramExperimental": 2,
+    "matricularam": 1,
+    "desistiram": 1,
+    "experimentalParaMatriculaPontosBase": 5000,
+    "contatoParaMatriculaPontosBase": 2500,
+    "expMat": "50 %",
+    "contMat": "25 %"
+   }
+  ]
+ },
+ "retornos": [
+  {
+   "nome": "Alisson Oliveira",
+   "modalidade": "MMA",
+   "fez": "12/08/2026",
+   "dias": 64,
+   "origem": "Instagram"
+  },
+  {
+   "nome": "Camila Araújo",
+   "modalidade": "Jiu-Jitsu",
+   "fez": "22/09/2026",
+   "dias": 23,
+   "origem": "Instagram"
+  },
+  {
+   "nome": "Felipe Oliveira",
+   "modalidade": "Boxe",
+   "fez": "28/09/2026",
+   "dias": 17,
+   "origem": "Instagram"
+  },
+  {
+   "nome": "Mariana Brum",
+   "modalidade": "Jiu-Jitsu",
+   "fez": "30/09/2026",
+   "dias": 15,
+   "origem": "Indicação"
+  },
+  {
+   "nome": "Yuri Gomes",
+   "modalidade": "Boxe",
+   "fez": "12/10/2026",
+   "dias": 3,
+   "origem": "Indicação"
+  },
+  {
+   "nome": "Maurício Cardoso",
+   "modalidade": "Muay Thai",
+   "fez": "12/10/2026",
+   "dias": 3,
+   "origem": "Instagram"
+  }
+ ],
+ "equipe": [
+  {
+   "nome": "Diego Ramos",
+   "funcao": "Professor",
+   "modalidades": "Muay Thai",
+   "regra": "Comissão de 40 %",
+   "desde": "01/03/2023",
+   "setembro": "R$ 5.227,20",
+   "detalhe": "base R$ 13.068,00"
+  },
+  {
+   "nome": "Paulo Vieira",
+   "funcao": "Professor",
+   "modalidades": "Boxe",
+   "regra": "Comissão de 40 %",
+   "desde": "01/02/2024",
+   "setembro": "R$ 1.008,00",
+   "detalhe": "base R$ 2.520,00"
+  },
+  {
+   "nome": "Fábio Nunes",
+   "funcao": "Professor",
+   "modalidades": "Jiu-Jitsu e Luta Livre",
+   "regra": "R$ 1.200,00 + 25 %",
+   "desde": "01/08/2023",
+   "setembro": "R$ 3.102,25",
+   "detalhe": "base R$ 7.609,00"
+  },
+  {
+   "nome": "Vinícius Prado",
+   "funcao": "Professor",
+   "modalidades": "MMA",
+   "regra": "R$ 60,00 por aula",
+   "desde": "15/01/2026",
+   "setembro": "R$ 540,00",
+   "detalhe": "9 aulas"
+  },
+  {
+   "nome": "Tatiane Moura",
+   "funcao": "Recepção",
+   "modalidades": "—",
+   "regra": "Fixo de R$ 1.600,00",
+   "desde": "01/05/2025",
+   "setembro": "R$ 1.600,00",
+   "detalhe": "despesa fixa"
+  },
+  {
+   "nome": "Sônia Barros",
+   "funcao": "Limpeza",
+   "modalidades": "—",
+   "regra": "Fixo de R$ 900,00",
+   "desde": "01/09/2024",
+   "setembro": "R$ 900,00",
+   "detalhe": "despesa fixa"
+  }
+ ],
+ "folhaSet": "R$ 12.377,45",
+ "professoresSetTotal": "R$ 9.877,45",
+ "remuneracoesSet": [
+  {
+   "nome": "Diego Ramos",
+   "modalidades": [
+    "muay-thai"
+   ],
+   "tipo": "comissao",
+   "fixoCentavos": 0,
+   "baseDaComissaoCentavos": 1306800,
+   "comissaoCentavos": 522720,
+   "porAulaCentavos": 0,
+   "totalCentavos": 522720,
+   "aulas": null,
+   "totalTexto": "R$ 5.227,20",
+   "baseTexto": "R$ 13.068,00",
+   "comissaoTexto": "R$ 5.227,20",
+   "fixoTexto": "R$ 0,00",
+   "porAulaTexto": "R$ 0,00"
+  },
+  {
+   "nome": "Paulo Vieira",
+   "modalidades": [
+    "boxe"
+   ],
+   "tipo": "comissao",
+   "fixoCentavos": 0,
+   "baseDaComissaoCentavos": 252000,
+   "comissaoCentavos": 100800,
+   "porAulaCentavos": 0,
+   "totalCentavos": 100800,
+   "aulas": null,
+   "totalTexto": "R$ 1.008,00",
+   "baseTexto": "R$ 2.520,00",
+   "comissaoTexto": "R$ 1.008,00",
+   "fixoTexto": "R$ 0,00",
+   "porAulaTexto": "R$ 0,00"
+  },
+  {
+   "nome": "Fábio Nunes",
+   "modalidades": [
+    "jiu-jitsu",
+    "luta-livre"
+   ],
+   "tipo": "fixo_mais_comissao",
+   "fixoCentavos": 120000,
+   "baseDaComissaoCentavos": 760900,
+   "comissaoCentavos": 190225,
+   "porAulaCentavos": 0,
+   "totalCentavos": 310225,
+   "aulas": null,
+   "totalTexto": "R$ 3.102,25",
+   "baseTexto": "R$ 7.609,00",
+   "comissaoTexto": "R$ 1.902,25",
+   "fixoTexto": "R$ 1.200,00",
+   "porAulaTexto": "R$ 0,00"
+  },
+  {
+   "nome": "Vinícius Prado",
+   "modalidades": [
+    "mma"
+   ],
+   "tipo": "por_aula",
+   "fixoCentavos": 0,
+   "baseDaComissaoCentavos": 0,
+   "comissaoCentavos": 0,
+   "porAulaCentavos": 54000,
+   "totalCentavos": 54000,
+   "aulas": 9,
+   "totalTexto": "R$ 540,00",
+   "baseTexto": "R$ 0,00",
+   "comissaoTexto": "R$ 0,00",
+   "fixoTexto": "R$ 0,00",
+   "porAulaTexto": "R$ 540,00"
+  }
+ ],
+ "despesasNovembro": [
+  {
+   "descricao": "Aluguel da sala",
+   "categoria": "Aluguel",
+   "valor": "R$ 3.500,00",
+   "centavos": 350000,
+   "dia": "10/11",
+   "estimado": false
+  },
+  {
+   "descricao": "Salário — Tatiane Moura (recepção)",
+   "categoria": "Salários",
+   "valor": "R$ 1.600,00",
+   "centavos": 160000,
+   "dia": "05/11",
+   "estimado": false
+  },
+  {
+   "descricao": "Salário — Sônia Barros (limpeza)",
+   "categoria": "Salários",
+   "valor": "R$ 900,00",
+   "centavos": 90000,
+   "dia": "05/11",
+   "estimado": false
+  },
+  {
+   "descricao": "Contador",
+   "categoria": "Contador",
+   "valor": "R$ 350,00",
+   "centavos": 35000,
+   "dia": "10/11",
+   "estimado": false
+  },
+  {
+   "descricao": "Internet",
+   "categoria": "Internet e telefone",
+   "valor": "R$ 120,00",
+   "centavos": 12000,
+   "dia": "15/11",
+   "estimado": false
+  },
+  {
+   "descricao": "Luz",
+   "categoria": "Luz",
+   "valor": "R$ 451,00",
+   "centavos": 45100,
+   "dia": "20/11",
+   "estimado": true
+  },
+  {
+   "descricao": "Água",
+   "categoria": "Água",
+   "valor": "R$ 102,00",
+   "centavos": 10200,
+   "dia": "20/11",
+   "estimado": true
+  },
+  {
+   "descricao": "Divulgação no Instagram",
+   "categoria": "Divulgação",
+   "valor": "R$ 200,00",
+   "centavos": 20000,
+   "dia": "01/11",
+   "estimado": false
+  }
+ ],
+ "despesasNovembroTotal": "R$ 7.223,00",
+ "grade": [
+  {
+   "data": "15/10/2026",
+   "descricao": "Jiu-Jitsu / Luta Livre — outubro/2026",
+   "categoria": "Mensalidades",
+   "tipo": "Entrada",
+   "valor": "R$ 140,00",
+   "forma": "Pix",
+   "pessoa": "Aline Almeida",
+   "situacao": "Pago",
+   "estimado": false,
+   "origem": "mensalidade"
+  },
+  {
+   "data": "15/10/2026",
+   "descricao": "Jiu-Jitsu / Luta Livre — outubro/2026",
+   "categoria": "Mensalidades",
+   "tipo": "Entrada",
+   "valor": "R$ 140,00",
+   "forma": "Pix",
+   "pessoa": "Gustavo Ferreira",
+   "situacao": "Pago",
+   "estimado": false,
+   "origem": "mensalidade"
+  },
+  {
+   "data": "15/10/2026",
+   "descricao": "Boxe 2× — outubro/2026",
+   "categoria": "Mensalidades",
+   "tipo": "Entrada",
+   "valor": "R$ 120,00",
+   "forma": "Pix",
+   "pessoa": "Ricardo Pereira",
+   "situacao": "Pago",
+   "estimado": false,
+   "origem": "mensalidade"
+  },
+  {
+   "data": "15/10/2026",
+   "descricao": "Muay Thai 2× — outubro/2026",
+   "categoria": "Mensalidades",
+   "tipo": "Entrada",
+   "valor": "R$ 120,00",
+   "forma": "Pix",
+   "pessoa": "Cristian Pacheco",
+   "situacao": "Pago",
+   "estimado": false,
+   "origem": "mensalidade"
+  },
+  {
+   "data": "15/10/2026",
+   "descricao": "Muay Thai livre — outubro/2026",
+   "categoria": "Mensalidades",
+   "tipo": "Entrada",
+   "valor": "R$ 150,00",
+   "forma": "Pix",
+   "pessoa": "Wesley Lemos",
+   "situacao": "Pago",
+   "estimado": false,
+   "origem": "mensalidade"
+  },
+  {
+   "data": "15/10/2026",
+   "descricao": "Matrícula — Muay Thai livre",
+   "categoria": "Taxas de matrícula",
+   "tipo": "Entrada",
+   "valor": "R$ 50,00",
+   "forma": "Débito",
+   "pessoa": "Wesley Lemos",
+   "situacao": "Pago",
+   "estimado": false,
+   "origem": "mensalidade"
+  },
+  {
+   "data": "15/10/2026",
+   "descricao": "Aula particular",
+   "categoria": "Aulas avulsas e particulares",
+   "tipo": "Entrada",
+   "valor": "R$ 100,00",
+   "forma": "Pix",
+   "pessoa": "",
+   "situacao": "Pago",
+   "estimado": false,
+   "origem": "manual"
+  },
+  {
+   "data": "15/10/2026",
+   "descricao": "Internet",
+   "categoria": "Internet e telefone",
+   "tipo": "Saída",
+   "valor": "R$ 120,00",
+   "forma": "Boleto",
+   "pessoa": "",
+   "situacao": "Pago",
+   "estimado": false,
+   "origem": "despesa_fixa"
+  },
+  {
+   "data": "14/10/2026",
+   "descricao": "Combo 2 modalidades — setembro/2026",
+   "categoria": "Mensalidades",
+   "tipo": "Entrada",
+   "valor": "R$ 220,00",
+   "forma": "Pix",
+   "pessoa": "Douglas Martins",
+   "situacao": "Pago",
+   "estimado": false,
+   "origem": "mensalidade"
+  },
+  {
+   "data": "20/10/2026",
+   "descricao": "Luz",
+   "categoria": "Luz",
+   "tipo": "Saída",
+   "valor": "R$ 451,00",
+   "forma": "Boleto",
+   "pessoa": "",
+   "situacao": "Pendente",
+   "estimado": true,
+   "origem": "despesa_fixa"
+  },
+  {
+   "data": "20/10/2026",
+   "descricao": "Água",
+   "categoria": "Água",
+   "tipo": "Saída",
+   "valor": "R$ 102,00",
+   "forma": "Boleto",
+   "pessoa": "",
+   "situacao": "Pendente",
+   "estimado": true,
+   "origem": "despesa_fixa"
+  },
+  {
+   "data": "20/10/2026",
+   "descricao": "DAS (Simples Nacional) — setembro de 2026",
+   "categoria": "Impostos e taxas",
+   "tipo": "Saída",
+   "valor": "R$ 1.552,02",
+   "forma": "Boleto",
+   "pessoa": "",
+   "situacao": "Pendente",
+   "estimado": false,
+   "origem": "manual"
+  }
+ ],
+ "outubroTotais": {
+  "entradas": 1786400,
+  "saidas": 1894745,
+  "resultado": -108345,
+  "entradasPendentes": 0,
+  "saidasPendentes": 210502,
+  "quantidade": 139,
+  "entradasTexto": "R$ 17.864,00",
+  "saidasTexto": "R$ 18.947,45",
+  "resultadoTexto": "−R$ 1.083,45",
+  "entradasPendentesTexto": "R$ 0,00",
+  "saidasPendentesTexto": "R$ 2.105,02"
+ },
+ "colado": [
+  {
+   "ok": true,
+   "erros": [],
+   "descricao": "Venda — Bandagem",
+   "valor": "R$ 35,00",
+   "tipo": "entrada"
+  },
+  {
+   "ok": true,
+   "erros": [],
+   "descricao": "Venda — Protetor bucal",
+   "valor": "R$ 25,00",
+   "tipo": "entrada"
+  },
+  {
+   "ok": true,
+   "erros": [],
+   "descricao": "Gás do bebedouro",
+   "valor": "R$ 110,00",
+   "tipo": "saida"
+  },
+  {
+   "ok": true,
+   "erros": [],
+   "descricao": "Aula particular",
+   "valor": "R$ 100,00",
+   "tipo": "entrada"
+  },
+  {
+   "ok": false,
+   "erros": [
+    "Coluna Data: Data inválida."
+   ],
+   "valor": null
+  }
+ ],
+ "edicoes": [
+  {
+   "digitou": "160",
+   "coluna": "valor",
+   "vira": "R$ 160,00"
+  },
+  {
+   "digitou": "R$ 1.600",
+   "coluna": "valor",
+   "vira": "R$ 1.600,00"
+  },
+  {
+   "digitou": "-20",
+   "coluna": "valor",
+   "vira": "saída de R$ 20,00"
+  },
+  {
+   "digitou": "5/10",
+   "coluna": "data",
+   "vira": "05/10/2026"
+  },
+  {
+   "digitou": "espécie",
+   "coluna": "forma",
+   "vira": "Dinheiro"
+  },
+  {
+   "digitou": "doze",
+   "coluna": "valor",
+   "vira": "não grava: Valor inválido."
+  }
+ ],
+ "importacao": {
+  "colunas": [
+   {
+    "cabecalho": "Data",
+    "papel": "data",
+    "exemplo": "01/09/2026"
+   },
+   {
+    "cabecalho": "Descrição",
+    "papel": "descricao",
+    "exemplo": "Mensalidade Douglas G."
+   },
+   {
+    "cabecalho": "Entrada",
+    "papel": "entrada",
+    "exemplo": "120,00"
+   },
+   {
+    "cabecalho": "Saída",
+    "papel": "saida",
+    "exemplo": "900,00"
+   },
+   {
+    "cabecalho": "Categoria",
+    "papel": "categoria",
+    "exemplo": "Mensalidades"
+   },
+   {
+    "cabecalho": "Pago?",
+    "papel": "situacao",
+    "exemplo": "sim"
+   }
+  ],
+  "resumo": {
+   "lidas": 43,
+   "prontas": 41,
+   "repetidas": 0,
+   "comErro": 2
+  },
+  "comAviso": 0,
+  "categoriasNovas": [
+   {
+    "nome": "Kimonos",
+    "tipo": "entrada"
+   }
+  ],
+  "erros": [
+   {
+    "numero": 44,
+    "erros": [
+     "Data inválida: \"31/09/2026\"."
+    ]
+   },
+   {
+    "numero": 45,
+    "erros": [
+     "Valor que não dá para ler."
+    ]
+   }
+  ],
+  "repetidasSeJaExiste": 4
+ },
+ "exportado": [
+  "Data;Descrição;Categoria;Tipo;Valor;Valor (±);Forma de pagamento;Pessoa;Situação;Modalidade;Observação",
+  "01/10/2026;Jiu-Jitsu Kids — outubro/2026;Mensalidades;Entrada;110,00;110,00;Cartão de débito;Natália Lemos;Pago;Jiu-Jitsu;",
+  "01/10/2026;Jiu-Jitsu / Luta Livre — outubro/2026;Mensalidades;Entrada;140,00;140,00;Dinheiro;Igor Silva;Pago;Jiu-Jitsu + Luta Livre;",
+  "01/10/2026;Jiu-Jitsu / Luta Livre — outubro/2026;Mensalidades;Entrada;140,00;140,00;Pix;Igor Kunz;Pago;Jiu-Jitsu + Luta Livre;",
+  "01/10/2026;Muay Thai livre — outubro/2026;Mensalidades;Entrada;150,00;150,00;Pix;Gustavo Costa;Pago;Muay Thai;",
+  "01/10/2026;Divulgação no Instagram;Divulgação;Saída;200,00;-200,00;Cartão de crédito;;Pago;;",
+  "02/10/2026;Reforma do vestiário (pintura);Limpeza e manutenção;Saída;650,00;-650,00;Pix;;Pago;;",
+  "05/10/2026;Salário — Tatiane Moura (recepção);Salários;Saída;1600,00;-1600,00;Pix;Tatiane Moura;Pago;;"
+ ],
+ "historico": [
+  [
+   "Você mudou o lançamento em 14/10/2026 às 18:22",
+   "Valor: R$ 720,00 → R$ 760,00"
+  ],
+  [
+   "Você mudou a matrícula em 01/10/2026 às 09:40",
+   "Estado: ativa → trancada",
+   "Trancada até: — → 30/11/2026",
+   "Trancada desde: — → 01/10/2026"
+  ],
+  [
+   "Você mudou a cobrança em 14/10/2026 às 19:05",
+   "Estado: aberta → paga",
+   "Forma de pagamento: — → Débito",
+   "Lançamento: — → x5010",
+   "Paga em: — → 14/10/2026",
+   "Valor pago: — → R$ 220,00"
+  ],
+  [
+   "Você fechou setembro de 2026 em 03/10/2026 às 21:10"
+  ],
+  [
+   "Tatiane Moura criou o interessado em 15/10/2026 às 15:12",
+   "Academia: — → raca-fight",
+   "Contato em: — → 15/10/2026",
+   "Id: — → x445",
+   "Indicado por: — → Jonas Fontoura",
+   "Modalidades: — → 1 item",
+   "Nome: — → Rosana Dias",
+   "Origem: — → indicação",
+   "WhatsApp: — → (51) 99710-9492"
+  ]
+ ],
+ "alunosAmostra": [
+  {
+   "nome": "Débora Souza",
+   "telefone": "(51) 99203-3006",
+   "situacao": "Matriculado",
+   "planos": "Combo 2 modalidades",
+   "responsavel": "",
+   "atraso": "—",
+   "dias": 0,
+   "desconto": "",
+   "desde": "04/05/2024"
+  },
+  {
+   "nome": "Emerson Bittencourt",
+   "telefone": "(51) 99405-7551",
+   "situacao": "Matriculado",
+   "planos": "Boxe 2×",
+   "responsavel": "",
+   "atraso": "—",
+   "dias": 0,
+   "desconto": "",
+   "desde": "05/01/2024"
+  },
+  {
+   "nome": "Igor Pacheco",
+   "telefone": "(51) 98158-8308",
+   "situacao": "Matriculado",
+   "planos": "MMA",
+   "responsavel": "",
+   "atraso": "—",
+   "dias": 0,
+   "desconto": "",
+   "desde": "15/01/2025"
+  },
+  {
+   "nome": "Jonas Lemos",
+   "telefone": "(51) 98158-8713",
+   "situacao": "Trancado",
+   "planos": "Boxe 2×",
+   "responsavel": "",
+   "atraso": "—",
+   "dias": 0,
+   "desconto": "",
+   "desde": "08/03/2025"
+  },
+  {
+   "nome": "Kauã Prates",
+   "telefone": "(51) 98443-9012",
+   "situacao": "Matriculado",
+   "planos": "Muay Thai livre",
+   "responsavel": "",
+   "atraso": "R$ 450,00",
+   "dias": 66,
+   "desconto": "",
+   "desde": "24/09/2024"
+  },
+  {
+   "nome": "Laura Souza",
+   "telefone": "",
+   "situacao": "Matriculado",
+   "planos": "Jiu-Jitsu Kids",
+   "responsavel": "Sabrina Souza",
+   "atraso": "R$ 110,00",
+   "dias": 5,
+   "desconto": "",
+   "desde": "01/08/2024"
+  },
+  {
+   "nome": "Manuela Souza",
+   "telefone": "",
+   "situacao": "Matriculado",
+   "planos": "Muay Thai Kids",
+   "responsavel": "Sabrina Souza",
+   "atraso": "R$ 99,00",
+   "dias": 5,
+   "desconto": "familia",
+   "desde": "01/08/2024"
+  },
+  {
+   "nome": "Marcelo Fagundes",
+   "telefone": "(51) 98807-6263",
+   "situacao": "Matriculado",
+   "planos": "Muay Thai livre",
+   "responsavel": "",
+   "atraso": "—",
+   "dias": 0,
+   "desconto": "indicacao",
+   "desde": "03/10/2026"
+  },
+  {
+   "nome": "Márcio Vargas",
+   "telefone": "(51) 98760-3248",
+   "situacao": "Matriculado",
+   "planos": "Muay Thai livre",
+   "responsavel": "",
+   "atraso": "—",
+   "dias": 0,
+   "desconto": "atleta",
+   "desde": "12/01/2025"
+  }
+ ],
+ "ficha": {
+  "responsavel": "Sabrina Souza",
+  "telefone": "(51) 98993-7531",
+  "dependentes": [
+   {
+    "nome": "Laura Souza",
+    "plano": "Jiu-Jitsu Kids",
+    "desde": "01/08/2024",
+    "dia": 10,
+    "desconto": ""
+   },
+   {
+    "nome": "Manuela Souza",
+    "plano": "Muay Thai Kids",
+    "desde": "01/08/2024",
+    "dia": 10,
+    "desconto": "10 % (família)"
+   }
+  ],
+  "cobrancas": [
+   {
+    "aluno": "Laura",
+    "mes": "out/26",
+    "valor": "R$ 110,00",
+    "situacao": "Atrasada",
+    "dias": 5,
+    "pagaEm": null
+   },
+   {
+    "aluno": "Manuela",
+    "mes": "out/26",
+    "valor": "R$ 99,00",
+    "situacao": "Atrasada",
+    "dias": 5,
+    "pagaEm": null
+   },
+   {
+    "aluno": "Laura",
+    "mes": "set/26",
+    "valor": "R$ 110,00",
+    "situacao": "Paga",
+    "dias": 0,
+    "pagaEm": "11/09/2026"
+   },
+   {
+    "aluno": "Manuela",
+    "mes": "set/26",
+    "valor": "R$ 99,00",
+    "situacao": "Paga",
+    "dias": 0,
+    "pagaEm": "13/09/2026"
+   },
+   {
+    "aluno": "Laura",
+    "mes": "ago/26",
+    "valor": "R$ 110,00",
+    "situacao": "Paga",
+    "dias": 0,
+    "pagaEm": "12/08/2026"
+   },
+   {
+    "aluno": "Manuela",
+    "mes": "ago/26",
+    "valor": "R$ 99,00",
+    "situacao": "Paga",
+    "dias": 0,
+    "pagaEm": "12/08/2026"
+   }
+  ]
+ },
+ "alunosTotal": 239,
+ "sugestaoFamilia": 3
+}

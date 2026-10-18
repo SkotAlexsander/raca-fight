@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 200" width="980" height="200" role="img" aria-label="Academia Plus">
+  <title>Academia Plus — wordmark (caminho A)</title>
+  <!-- Fonte por nome só para avaliação; a versão final vira contorno. -->
+  <g transform="translate(20 20) scale(0.15625)" fill="#007761">
+    <rect x="96" y="352" width="120" height="320" rx="60"/>
+    <rect x="808" y="352" width="120" height="320" rx="60"/>
+    <rect x="180" y="452" width="664" height="120"/>
+    <rect x="452" y="192" width="120" height="640" rx="60"/>
+  </g>
+  <text x="210" y="138" font-family="Figtree, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="116" letter-spacing="-3" fill="#131D1C">Academia <tspan fill="#007761">Plus</tspan></text>
+</svg>

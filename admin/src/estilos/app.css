@@ -1,0 +1,76 @@
+/* =====================================================================
+   O que o app acrescenta ao admin.css do AK (agente AM1, 15/10/2026).
+   Só o que o desenho não previa ou que o React pede; cores sempre por token.
+   ===================================================================== */
+
+/* o app é UM quadro do tamanho da janela (no mockup, a prancha empilhava vários) */
+.ad-quadro.ad-app { height: 100vh; height: 100dvh; border-bottom: 0; }
+#raiz { min-height: 100vh; }
+
+/* rótulo de campo com <label> (o mockup usava <span>) */
+.campo > label:first-child { font-size: var(--t13); line-height: var(--l13); font-weight: 600; color: var(--ad-texto-2); }
+.campo__caixa textarea { flex: 1; min-width: 0; min-height: 96px; padding: 8px 0; font-size: var(--t16); line-height: var(--l16); }
+.campo__caixa:has(textarea) { align-items: stretch; }
+.ad-gaveta details summary { cursor: pointer; padding: 4px 0; }
+.ad-gaveta form { display: contents; }
+
+/* o aviso de modo local, na barra lateral */
+.ad-modo-local { font-size: var(--t13); line-height: var(--l13b); color: var(--ad-lateral-texto-2); padding: 4px 8px; border: 1px dashed var(--rf-grafite); border-radius: var(--raio-p); }
+
+/* a tela de entrada (login) usa o bloqueio preto do AK */
+.ad-login { width: min(440px, 100%); }
+.ad-login .campo { width: 100%; }
+.ad-login .campo__caixa { background: #141414; border-color: #343434; color: #F5F5F5; }
+.ad-login .campo > span:first-child { color: #ADADAD; }
+.ad-login .ad-btn--primario { background: var(--rf-vermelho); border-color: var(--rf-vermelho); color: #FFFFFF; align-self: stretch; }
+
+/* botão desligado */
+.ad-btn:disabled, .ad-btn[aria-disabled="true"] { opacity: .4; cursor: not-allowed; }
+
+/* a grade: a célula em edição e a de erro ganham a mensagem embaixo */
+.ad-grade td { position: relative; }
+.ad-grade td .ad-cel-erro { position: absolute; left: 0; top: 100%; z-index: 5; white-space: nowrap; padding: 4px 8px; border-radius: var(--raio-p); background: var(--ad-elevada); box-shadow: var(--ad-sombra); }
+.ad-grade td:focus { outline: none; }
+.ad-grade td.ad-ativa:focus-visible { outline: 2px solid var(--ad-foco); outline-offset: -2px; }
+.ad-grade tr.ad-linha-virtual td { color: var(--ad-texto); }
+.ad-grade tr.ad-linha-virtual .ad-c-desc { font-style: normal; }
+.ad-grade td.ad-c-sel { width: 40px; text-align: center; }
+
+/* filtros cruzados da lista de pessoas (a coluna da esquerda) */
+.ad-filtros { display: flex; flex-direction: column; gap: 12px; }
+.ad-filtros fieldset { border: 0; display: flex; flex-direction: column; gap: 4px; }
+.ad-filtros legend { margin-bottom: 4px; }
+.ad-filtros .marcar { display: flex; align-items: center; }
+
+/* tabela clicável */
+.ad-tabela tbody tr[data-abre] { cursor: pointer; }
+.ad-tabela td a.forte { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ad-borda); }
+
+/* no celular, a gaveta não tem altura fixa */
+@media (max-width: 1023px) {
+  .ad-aviso { left: 16px; right: 16px; transform: none; max-width: none; }
+  @keyframes ad-entra-cima { from { opacity: 0; transform: translateY(8px); } }
+}
+
+/* importar: a área de soltar o arquivo */
+.ad-soltar { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 24px; border: 2px dashed var(--ad-borda); border-radius: var(--raio); background: var(--ad-fundo); cursor: pointer; }
+.ad-soltar b { font-size: var(--t16); line-height: var(--l16); }
+.ad-soltar span { font-size: var(--t13); line-height: var(--l13b); color: var(--ad-texto-2); }
+.ad-soltar input { font-size: var(--t13); }
+.ad-soltar--sobre { border-color: var(--ad-foco); background: var(--ad-marca-suave); }
+
+/* AO (16/10): dois campos lado a lado na gaveta (valor de / até) */
+.ad-par-campos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+
+/* AO (16/10): a grade da semana (Ajustes › Turmas e horários) e a linha de horário da gaveta */
+.ad-semana { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.ad-semana__dia { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.ad-semana__aula { display: flex; flex-direction: column; align-items: flex-start; gap: 0; min-height: 44px; padding: 6px 8px; text-align: left; border: 1px solid var(--ad-borda); border-radius: var(--raio-p); background: var(--ad-fundo); color: var(--ad-texto); font: inherit; cursor: pointer; }
+.ad-semana__aula b { font-size: var(--t13); line-height: var(--l13); font-variant-numeric: tabular-nums; }
+.ad-semana__aula span { font-size: var(--t13); line-height: var(--l13b); color: var(--ad-texto-2); overflow-wrap: anywhere; }
+.ad-semana__aula:hover { border-color: var(--ad-foco); }
+.ad-semana__aula:focus-visible { outline: 2px solid var(--ad-foco); outline-offset: 2px; }
+.ad-horario { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, .9fr) auto; gap: 8px; align-items: center; }
+@media (max-width: 1023px) {
+  .ad-semana { grid-template-columns: minmax(0, 1fr); }
+}

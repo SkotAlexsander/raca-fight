@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academia Plus — caminhos de logo (P04, histórico)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Archivo:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  /* HISTÓRICO: o comparativo dos três caminhos do P04 (10/10/2026), guardado como estava quando o agente W
+     (P11, 11/10/2026) refez o logo. O comparativo atual é ../comparativo.html. */
+  :root { --fundo:#F4F8F7; --superficie:#FFFFFF; --texto:#131D1C; --texto2:#556463; --marca:#007761; --borda:#D0DAD9; --plus:#EAB444; --plusTexto:#3A2B0D;
+          --largura-maxima: 1080px; }
+  [data-tema="escuro"] { --fundo:#0B1313; --superficie:#1B2423; --texto:#E7F1F0; --texto2:#A1AEAD; --marca:#39F0CD; --borda:#313A39; --plus:#F8C153; --plusTexto:#2F2207; }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--fundo); color:var(--texto); font-family:Figtree, system-ui, sans-serif; font-size:1rem; line-height:1.5rem; padding:24px 16px 64px }
+  body > * { max-width:var(--largura-maxima); margin-left:auto; margin-right:auto }
+  h1 { font-size:1.5625rem; line-height:1.875rem; margin-top:0; margin-bottom:4px } p.sub { color:var(--texto2); margin-top:0; margin-bottom:24px }
+  button { font:inherit; line-height:1.5rem; min-height:40px; position:relative; padding:0 16px; border-radius:999px; border:1px solid var(--borda); background:var(--superficie); color:var(--texto); cursor:pointer }
+  figure { margin:0 }
+  .caminho { background:var(--superficie); border:1px solid var(--borda); border-radius:16px; padding:20px; margin-bottom:20px }
+  .caminho h2 { margin:0 0 12px; font-size:1.25rem; line-height:1.625rem } .caminho h2 small { font-size:inherit; color:var(--texto2); font-weight:400 }
+  .linha { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:16px; align-items:center }
+  @media (max-width: 599.98px) { .linha { grid-template-columns:repeat(2, minmax(0, 1fr)) } }
+  .linha img { width:100%; height:auto; display:block } .linha figcaption { font-size:0.8125rem; line-height:1rem; color:var(--texto2); margin-top:8px; text-align:center }
+  .wordmark { grid-column:1 / -1 } .wordmark img { max-width:560px }
+  .mini { display:flex; gap:12px; align-items:center; justify-content:center }
+  .mini img { flex:none; width:28px; height:28px; border-radius:8px }
+  .mini .ap { width:48px; height:48px; border-radius:12px } .mini .peq { width:20px; height:20px; border-radius:4px }
+  .mono img { background:#fff; border-radius:12px; padding:8px }
+  button::before { content:""; position:absolute; left:50%; top:50%; width:max(100%, 48px); height:max(100%, 48px); transform:translate(-50%, -50%) }
+</style>
+</head>
+<body>
+<h1>Academia Plus — três caminhos de logo (P04, histórico)</h1>
+<p class="sub">Guardado como estava em 10/10/2026. O logo atual está em <a href="../comparativo.html">../comparativo.html</a>. <button onclick="alternarTema()">Alternar tema</button></p>
+<script>
+  function alternarTema() {
+    const raiz = document.documentElement;
+    const escuro = raiz.dataset.tema !== 'escuro';
+    raiz.dataset.tema = escuro ? 'escuro' : 'claro';
+    document.querySelectorAll('img[src*="-simbolo"], img[src*="-wordmark"]').forEach(img => {
+      img.src = escuro ? img.src.replace(/(-simbolo|-wordmark)\.svg$/, '$1-escuro.svg')
+                       : img.src.replace(/-escuro\.svg$/, '.svg');
+    });
+  }
+</script>
+
+<section class="caminho">
+  <h2>A — Barra e mais <small>(recomendado no P04)</small></h2>
+  <div class="linha">
+    <figure><img src="a-barra-simbolo.svg" alt=""><figcaption>símbolo</figcaption></figure>
+    <figure><img src="a-barra-icone-1024.svg" alt=""><figcaption>ícone 1024</figcaption></figure>
+    <figure class="mono"><img src="a-barra-mono.svg" alt=""><figcaption>mono</figcaption></figure>
+    <figure><div class="mini"><img class="ap" src="a-barra-icone-1024.svg" alt=""><img src="a-barra-icone-1024.svg" alt=""><img class="peq" src="a-barra-icone-1024.svg" alt=""></div><figcaption>48 · 28 · 20 px</figcaption></figure>
+    <figure class="wordmark"><img src="a-barra-wordmark.svg" alt="Academia Plus"></figure>
+  </div>
+</section>
+
+<section class="caminho">
+  <h2>B — Anilha</h2>
+  <div class="linha">
+    <figure><img src="b-anilha-simbolo.svg" alt=""><figcaption>símbolo</figcaption></figure>
+    <figure><img src="b-anilha-icone-1024.svg" alt=""><figcaption>ícone 1024</figcaption></figure>
+    <figure class="mono"><img src="b-anilha-mono.svg" alt=""><figcaption>mono</figcaption></figure>
+    <figure><div class="mini"><img class="ap" src="b-anilha-icone-1024.svg" alt=""><img src="b-anilha-icone-1024.svg" alt=""><img class="peq" src="b-anilha-icone-1024.svg" alt=""></div><figcaption>48 · 28 · 20 px</figcaption></figure>
+    <figure class="wordmark"><img src="b-anilha-wordmark.svg" alt="Academia Plus"></figure>
+  </div>
+</section>
+
+<section class="caminho">
+  <h2>C — A+</h2>
+  <div class="linha">
+    <figure><img src="c-a-mais-simbolo.svg" alt=""><figcaption>símbolo</figcaption></figure>
+    <figure><img src="c-a-mais-icone-1024.svg" alt=""><figcaption>ícone 1024</figcaption></figure>
+    <figure class="mono"><img src="c-a-mais-mono.svg" alt=""><figcaption>mono</figcaption></figure>
+    <figure><div class="mini"><img class="ap" src="c-a-mais-icone-1024.svg" alt=""><img src="c-a-mais-icone-1024.svg" alt=""><img class="peq" src="c-a-mais-icone-1024.svg" alt=""></div><figcaption>48 · 28 · 20 px</figcaption></figure>
+    <figure class="wordmark"><img src="c-a-mais-wordmark.svg" alt="Academia Plus"></figure>
+  </div>
+</section>
+</body>
+</html>

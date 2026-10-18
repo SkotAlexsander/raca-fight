@@ -1,0 +1,27 @@
+{
+  "name": "Raça Fight · Admin",
+  "short_name": "RF Admin",
+  "description": "O app do dono da Raça Fight: painel, pessoas, financeiro, relatórios, funil, agenda e histórico.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "/#/painel",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "any",
+  "background_color": "#1C1C1C",
+  "theme_color": "#1C1C1C",
+  "categories": ["business", "finance", "productivity"],
+  "icons": [
+    { "src": "/icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icones/icone-mascara-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icones/icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Lançamentos", "url": "/#/financeiro/lancamentos" },
+    { "name": "Cobranças", "url": "/#/financeiro/cobrancas" },
+    { "name": "Agenda", "url": "/#/agenda" }
+  ]
+}

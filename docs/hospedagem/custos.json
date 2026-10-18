@@ -1,0 +1,374 @@
+{
+  "gerado_em": "2026-10-15",
+  "moeda": {
+    "ptax_venda_usd_brl": 5.0521,
+    "data": "2026-10-15",
+    "fonte": "Banco Central do Brasil, PTAX (API Olinda): https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/",
+    "iof_cartao_exterior": 0.035,
+    "iof_fonte": "Decreto 12.499/2025 (3,5% desde jul/2025), via https://arqfinance.com/articles/?p=2031 — não conferido no DOU",
+    "cambio_usado": 5.2289,
+    "nota": "Câmbio usado = PTAX venda x (1 + IOF 3,5%). O spread do banco do cartão não está incluído e pode somar alguns por cento."
+  },
+  "escopo": "Só infraestrutura (o que a academia paga aos fornecedores). Desenvolvimento e manutenção são outra conta, a combinar com o Alex; nada disso está aqui.",
+  "degraus": [
+    {
+      "id": "comecar",
+      "nome": "Começar",
+      "publico": "1 academia, ~150 alunos",
+      "recomendado": false,
+      "porque": "O mínimo aceitável para dado de verdade: Brasil, criptografia, backup diário de 7 dias.",
+      "itens": [
+        {
+          "id": "supabase_pro",
+          "nome": "Supabase Pro (banco, login, fotos, tempo real) em São Paulo",
+          "usd": 25,
+          "brl": 130.72,
+          "recorrencia": "mensal",
+          "fonte": "https://supabase.com/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Inclui US$ 10 de computação (cobre o tamanho Micro), backup diário guardado 7 dias, 100 GB de arquivos, 8 GB de disco, nunca pausa."
+        },
+        {
+          "id": "apple",
+          "nome": "Conta Apple Developer (publicar no iPhone)",
+          "usd": 99,
+          "brl": 517.66,
+          "recorrencia": "anual",
+          "fonte": "https://developer.apple.com/br/support/enrollment/",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Cobrada em moeda local na inscrição; o valor em R$ exato só aparece na hora (não confirmado)."
+        },
+        {
+          "id": "google",
+          "nome": "Conta Google Play (publicar no Android)",
+          "usd": 25,
+          "brl": 130.72,
+          "recorrencia": "unico",
+          "fonte": "https://support.google.com/googleplay/android-developer/answer/6112435",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Paga uma vez só."
+        },
+        {
+          "id": "dominio",
+          "nome": "Domínio .com.br no Registro.br",
+          "usd": null,
+          "brl": 40,
+          "recorrencia": "anual",
+          "fonte": "https://registro.br/ajuda/valores/",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Preço em reais, sem dólar."
+        },
+        {
+          "id": "eas",
+          "nome": "EAS Build (gerar o app) — plano Free",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://expo.dev/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "15 builds Android + 15 iOS por mês, fila de baixa prioridade."
+        },
+        {
+          "id": "push",
+          "nome": "Avisos no celular (Expo push)",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://docs.expo.dev/push-notifications/faq/",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Grátis; limite de 600 avisos por segundo por projeto."
+        },
+        {
+          "id": "email",
+          "nome": "E-mail de cadastro e senha (Resend Free)",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://resend.com/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "3.000 e-mails/mês e 100/dia. O SMTP embutido do Supabase não serve para produção (2 por hora, só para a equipe)."
+        },
+        {
+          "id": "homologacao",
+          "nome": "Banco de testes (Supabase Free, organização separada, sem dado real)",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://supabase.com/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Pausa após 1 semana parado; aceitável porque não guarda dado real."
+        }
+      ],
+      "totais": {
+        "mensal_usd": 25,
+        "mensal_brl": 130.72,
+        "anual_contas_anuais_brl": 557.66,
+        "ano_corrente_brl": 2126.3,
+        "primeiro_ano_brl": 2257.02,
+        "media_mensal_no_ano_brl": 177.19
+      }
+    },
+    {
+      "id": "recomendado",
+      "nome": "Recomendado",
+      "publico": "1 academia, ~150 a 300 alunos (a Raça Fight hoje)",
+      "recomendado": true,
+      "porque": "Quase o mesmo preço do Começar, com folga de máquina e uma cópia própria de 30 dias: um erro descoberto duas semanas depois ainda tem volta.",
+      "itens": [
+        {
+          "id": "supabase_pro",
+          "nome": "Supabase Pro (banco, login, fotos, tempo real) em São Paulo",
+          "usd": 25,
+          "brl": 130.72,
+          "recorrencia": "mensal",
+          "fonte": "https://supabase.com/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Inclui US$ 10 de computação (cobre o tamanho Micro), backup diário guardado 7 dias, 100 GB de arquivos, 8 GB de disco, nunca pausa."
+        },
+        {
+          "id": "supabase_small",
+          "nome": "Computação Small (2 GB de RAM) no lugar da Micro",
+          "usd": 5,
+          "brl": 26.14,
+          "recorrencia": "mensal",
+          "fonte": "https://supabase.com/docs/guides/platform/compute-and-disk",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Small custa US$ 15; os US$ 10 de crédito do Pro abatem, sobram US$ 5. É o mínimo para ligar a volta no tempo (PITR)."
+        },
+        {
+          "id": "copia_externa",
+          "nome": "Cópia externa diária guardada 30 dias (AWS S3 São Paulo)",
+          "usd": 1,
+          "brl": 5.23,
+          "recorrencia": "mensal",
+          "fonte": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/current/sa-east-1/index.json",
+          "data_da_fonte": "2026-10-15",
+          "obs": "S3 São Paulo: US$ 0,0405 por GB/mês. 30 cópias de ~50 MB = ~1,5 GB = ~US$ 0,06; arredondado para US$ 1 de teto (estimativa nossa, tamanho do banco não medido)."
+        },
+        {
+          "id": "apple",
+          "nome": "Conta Apple Developer (publicar no iPhone)",
+          "usd": 99,
+          "brl": 517.66,
+          "recorrencia": "anual",
+          "fonte": "https://developer.apple.com/br/support/enrollment/",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Cobrada em moeda local na inscrição; o valor em R$ exato só aparece na hora (não confirmado)."
+        },
+        {
+          "id": "google",
+          "nome": "Conta Google Play (publicar no Android)",
+          "usd": 25,
+          "brl": 130.72,
+          "recorrencia": "unico",
+          "fonte": "https://support.google.com/googleplay/android-developer/answer/6112435",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Paga uma vez só."
+        },
+        {
+          "id": "dominio",
+          "nome": "Domínio .com.br no Registro.br",
+          "usd": null,
+          "brl": 40,
+          "recorrencia": "anual",
+          "fonte": "https://registro.br/ajuda/valores/",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Preço em reais, sem dólar."
+        },
+        {
+          "id": "eas",
+          "nome": "EAS Build (gerar o app) — plano Free",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://expo.dev/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "15 builds Android + 15 iOS por mês, fila de baixa prioridade."
+        },
+        {
+          "id": "push",
+          "nome": "Avisos no celular (Expo push)",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://docs.expo.dev/push-notifications/faq/",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Grátis; limite de 600 avisos por segundo por projeto."
+        },
+        {
+          "id": "email",
+          "nome": "E-mail de cadastro e senha (Resend Free)",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://resend.com/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "3.000 e-mails/mês e 100/dia. O SMTP embutido do Supabase não serve para produção (2 por hora, só para a equipe)."
+        },
+        {
+          "id": "homologacao",
+          "nome": "Banco de testes (Supabase Free, organização separada, sem dado real)",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://supabase.com/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Pausa após 1 semana parado; aceitável porque não guarda dado real."
+        }
+      ],
+      "totais": {
+        "mensal_usd": 31,
+        "mensal_brl": 162.09,
+        "anual_contas_anuais_brl": 557.66,
+        "ano_corrente_brl": 2502.74,
+        "primeiro_ano_brl": 2633.46,
+        "media_mensal_no_ano_brl": 208.56
+      }
+    },
+    {
+      "id": "crescer",
+      "nome": "Crescer",
+      "publico": "~500 alunos ou 2 unidades",
+      "recomendado": false,
+      "porque": "Com mais gente lançando ao mesmo tempo, perder um dia de lançamentos passa a custar caro; a volta no tempo reduz a perda a minutos.",
+      "itens": [
+        {
+          "id": "supabase_pro",
+          "nome": "Supabase Pro (banco, login, fotos, tempo real) em São Paulo",
+          "usd": 25,
+          "brl": 130.72,
+          "recorrencia": "mensal",
+          "fonte": "https://supabase.com/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Inclui US$ 10 de computação (cobre o tamanho Micro), backup diário guardado 7 dias, 100 GB de arquivos, 8 GB de disco, nunca pausa."
+        },
+        {
+          "id": "supabase_small",
+          "nome": "Computação Small (2 GB de RAM) no lugar da Micro",
+          "usd": 5,
+          "brl": 26.14,
+          "recorrencia": "mensal",
+          "fonte": "https://supabase.com/docs/guides/platform/compute-and-disk",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Small custa US$ 15; os US$ 10 de crédito do Pro abatem, sobram US$ 5. É o mínimo para ligar a volta no tempo (PITR)."
+        },
+        {
+          "id": "copia_externa",
+          "nome": "Cópia externa diária guardada 30 dias (AWS S3 São Paulo)",
+          "usd": 1,
+          "brl": 5.23,
+          "recorrencia": "mensal",
+          "fonte": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/current/sa-east-1/index.json",
+          "data_da_fonte": "2026-10-15",
+          "obs": "S3 São Paulo: US$ 0,0405 por GB/mês. 30 cópias de ~50 MB = ~1,5 GB = ~US$ 0,06; arredondado para US$ 1 de teto (estimativa nossa, tamanho do banco não medido)."
+        },
+        {
+          "id": "supabase_pitr",
+          "nome": "Volta no tempo (PITR) de 7 dias",
+          "usd": 100,
+          "brl": 522.89,
+          "recorrencia": "mensal",
+          "fonte": "https://supabase.com/docs/guides/platform/backups",
+          "data_da_fonte": "2026-10-15",
+          "obs": "US$ 0,137/hora, ~US$ 100/mês. Volta o banco a qualquer minuto dos últimos 7 dias (perda máxima ~2 min). Desliga o backup diário comum."
+        },
+        {
+          "id": "apple",
+          "nome": "Conta Apple Developer (publicar no iPhone)",
+          "usd": 99,
+          "brl": 517.66,
+          "recorrencia": "anual",
+          "fonte": "https://developer.apple.com/br/support/enrollment/",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Cobrada em moeda local na inscrição; o valor em R$ exato só aparece na hora (não confirmado)."
+        },
+        {
+          "id": "google",
+          "nome": "Conta Google Play (publicar no Android)",
+          "usd": 25,
+          "brl": 130.72,
+          "recorrencia": "unico",
+          "fonte": "https://support.google.com/googleplay/android-developer/answer/6112435",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Paga uma vez só."
+        },
+        {
+          "id": "dominio",
+          "nome": "Domínio .com.br no Registro.br",
+          "usd": null,
+          "brl": 40,
+          "recorrencia": "anual",
+          "fonte": "https://registro.br/ajuda/valores/",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Preço em reais, sem dólar."
+        },
+        {
+          "id": "eas",
+          "nome": "EAS Build (gerar o app) — plano Free",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://expo.dev/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "15 builds Android + 15 iOS por mês, fila de baixa prioridade."
+        },
+        {
+          "id": "push",
+          "nome": "Avisos no celular (Expo push)",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://docs.expo.dev/push-notifications/faq/",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Grátis; limite de 600 avisos por segundo por projeto."
+        },
+        {
+          "id": "email",
+          "nome": "E-mail de cadastro e senha (Resend Free)",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://resend.com/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "3.000 e-mails/mês e 100/dia. O SMTP embutido do Supabase não serve para produção (2 por hora, só para a equipe)."
+        },
+        {
+          "id": "homologacao",
+          "nome": "Banco de testes (Supabase Free, organização separada, sem dado real)",
+          "usd": 0,
+          "brl": 0,
+          "recorrencia": "mensal",
+          "fonte": "https://supabase.com/pricing",
+          "data_da_fonte": "2026-10-15",
+          "obs": "Pausa após 1 semana parado; aceitável porque não guarda dado real."
+        }
+      ],
+      "totais": {
+        "mensal_usd": 131,
+        "mensal_brl": 684.98,
+        "anual_contas_anuais_brl": 557.66,
+        "ano_corrente_brl": 8777.42,
+        "primeiro_ano_brl": 8908.14,
+        "media_mensal_no_ano_brl": 731.45
+      }
+    }
+  ],
+  "fora_da_conta": [
+    {
+      "nome": "Desenvolvimento e manutenção (Alex)",
+      "obs": "Outra conta, a combinar."
+    },
+    {
+      "nome": "Supabase Team (US$ 599/mês)",
+      "obs": "Dá relatório SOC 2 e registro de acesso ao painel; desproporcional para uma academia."
+    },
+    {
+      "nome": "Resend Pro (US$ 20/mês, 50.000 e-mails)",
+      "obs": "Só se a academia quiser mandar cobrança por e-mail em massa."
+    },
+    {
+      "nome": "EAS Starter (US$ 19/mês)",
+      "obs": "Só se a fila grátis de build ficar lenta demais; o Free basta."
+    }
+  ]
+}
