@@ -4,7 +4,7 @@
 //
 // Uso (de dentro de docs/apresentacao/professor):
 //   node capturar.mjs   → fotos, logo e as telas prontas do AL (luta.html, entrada.html) em _capturas/
-//   node montar.mjs     → gera professor.html e saida/Raça Fight — Professor.pdf, e copia para A:\Projetos\Academia Plus\
+//   node montar.mjs     → gera professor.html e saida/Raça Fight — Professor.pdf, e copia para A:\Projetos\10-10-26 Raça Fight - Academia Plus (app)\
 //   node folhear.mjs    → cada página em PNG (_capturas/_pdf/) para conferir a olho
 // Variáveis: ESBOCOS=1 ignora as capturas de telas que também têm esboço; SEM_COPIA=1 não copia para A:\Projetos.
 import { copyFileSync, existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
@@ -15,7 +15,7 @@ import { paginas } from './paginas.mjs'
 
 const aqui = dirname(fileURLToPath(import.meta.url))
 export const ARQUIVO = 'Raça Fight — Professor.pdf'
-const COPIA = 'A:/Projetos/Academia Plus'
+const COPIA = 'A:/Projetos/10-10-26 Raça Fight - Academia Plus (app)'
 const TITULO = 'Raça Fight · Professor e recepção, a equipe no tatame'
 const HOJE = '16/10/2026'
 // telas que só existem como captura (as que o AL desenhou); as outras têm esboço em paginas.mjs

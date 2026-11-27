@@ -4,7 +4,7 @@
 //
 // Uso (de dentro de docs/apresentacao/aluno):
 //   node capturar.mjs   → fotos, logo, as telas do AL e os esboços em _capturas/
-//   node montar.mjs     → gera aluno.html e saida/Raça Fight — Aluno.pdf, e copia para A:\Projetos\Academia Plus//   node folhear.mjs    → cada página em PNG (_capturas/_pdf/) para conferir a olho
+//   node montar.mjs     → gera aluno.html e saida/Raça Fight — Aluno.pdf, e copia para A:\Projetos\10-10-26 Raça Fight - Academia Plus (app)//   node folhear.mjs    → cada página em PNG (_capturas/_pdf/) para conferir a olho
 // Variável: SEM_COPIA=1 não copia para A:\Projetos.
 import { copyFileSync, existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -14,7 +14,7 @@ import { paginas } from './paginas.mjs'
 
 const aqui = dirname(fileURLToPath(import.meta.url))
 export const ARQUIVO = 'Raça Fight — Aluno.pdf'
-const COPIA = 'A:/Projetos/Academia Plus'
+const COPIA = 'A:/Projetos/10-10-26 Raça Fight - Academia Plus (app)'
 const TITULO = 'Raça Fight · O app do aluno'
 
 // 1. o que vem de fora (capturar.mjs)

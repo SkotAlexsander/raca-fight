@@ -5,7 +5,7 @@
 // Uso (de dentro de docs/apresentacao/admin):
 //   node capturar.mjs   → fotos, logo e (quando houver) as telas do AK em _capturas/
 //   node capturar-admin.mjs → as telas do Admin CONSTRUÍDO em _capturas/admin/ (AV, 16/10; precisa do admin/dist)
-//   node montar.mjs     → roda o dados.mjs, gera admin.html e saida/Raça Fight — Admin.pdf, e copia para A:\Projetos\Academia Plus\
+//   node montar.mjs     → roda o dados.mjs, gera admin.html e saida/Raça Fight — Admin.pdf, e copia para A:\Projetos\10-10-26 Raça Fight - Academia Plus (app)\
 //   node folhear.mjs    → cada página em PNG (_capturas/_pdf/) para conferir a olho
 // Variáveis: ESBOCOS=1 força os esboços mesmo com captura do AK; SEM_COPIA=1 não copia para A:\Projetos.
 import { copyFileSync, existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
@@ -17,7 +17,7 @@ import { paginas } from './paginas.mjs'
 
 const aqui = dirname(fileURLToPath(import.meta.url))
 export const ARQUIVO = 'Raça Fight — Admin.pdf'
-const COPIA = 'A:/Projetos/Academia Plus'
+const COPIA = 'A:/Projetos/10-10-26 Raça Fight - Academia Plus (app)'
 const TITULO = 'Raça Fight · Admin, o painel do dono'
 
 // 1. os números (sempre recalculados: o PDF nunca sai com número velho)
